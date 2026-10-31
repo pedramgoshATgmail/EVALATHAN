@@ -55,7 +55,7 @@
       pointer-events: auto;
     }
     #glossary-search-list li { margin: 0; padding: 0; }
-    #glossary-search-list button {
+    #glossary-search-list a {
       display: flex;
       gap: 12px;
       align-items: baseline;
@@ -67,10 +67,13 @@
       color: inherit;
       font: inherit;
       text-align: left;
+      text-decoration: none;
       cursor: pointer;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     }
-    #glossary-search-list li.is-active button,
-    #glossary-search-list button:hover { background: #f6f8fa; }
+    #glossary-search-list li.is-active a,
+    #glossary-search-list a:hover { background: #f6f8fa; }
     .kind { margin-left: auto; color: #5a636e; font-size: 13px; }
     mark { background: #ffe08a; }
     [hidden] { display: none; }
@@ -93,7 +96,7 @@
     </div>
   </header>
   <article class="sheet" id="glossary-body">
-<p><a href="#evalathan">Evalathan</a> is one evaluation harness. <a href="#hydra">Hydra</a> is the conductor for sixteen software evalers. <a href="#dehydrus">Dehydrus</a> is the conductor for seven physical-world evalers under <a href="#pretruws">PRETRUWs</a>. Each entry below has the same three parts.</p>
+<p><a href="#evalathan">Evalathan</a> is one evaluation harness. <a href="#hydra">Hydra</a> is the conductor for sixteen software evalers. <a href="#dehydrus">Dehydrus</a> is the conductor for eight physical-world evalers under <a href="#pretruws">PRETRUWs</a>. Each entry below has the same three parts.</p>
 <p><img src="../assets/glossary/score-constitution-dot.png" alt="Score Constitution." height="14" width="145"> What is counted, whether that count is a yes-or-no pass, and the three endings a cell can have. Measured means the file or the code was there and a result was written. Claim means a sentence is on disk and this run did not re-check it. Blank means the needed record is missing. A blank is not a fail and not a zero.</p>
 <p><img src="../assets/glossary/simplespeak-dot.png" alt="Simplespeak." height="17" width="98"> Explanations in simple terms.</p>
 <p><img src="../assets/glossary/techspeak-dot.png" alt="Techspeak." height="17" width="82"> More technically detailed explanations.</p>
@@ -105,15 +108,15 @@
 
 <h3><img src="../assets/glossary/score-constitution.png" alt="Score Constitution" height="17" width="176"></h3>
 
-<p>Evalathan is one evaluation harness. It is not a seventeenth Hydra score and not an eighth Dehydrus score. <a href="#hydra">Hydra</a> writes sixteen software cells, in this order: Devly, Archly, Codely, Refactorly, Mixly, Runly, Levi, Menschly, Tokely, Pressly, Triadly, Chorely, Trajectly, Warrantly, Domly, Stackly. <a href="#dehydrus">Dehydrus</a> writes seven <a href="#pretruws">PRETRUWs</a> (PREdiscovery TRuncated-Universes and Worlds) cells, in this order: <a href="#copernly">Copernly</a>, <a href="#keplerly">Keplerly</a>, <a href="#galileoly">Galileoly</a>, <a href="#darwinly">Darwinly</a>, <a href="#mendly">Mendly</a>, <a href="#einsteinly">Einsteinly</a>, <a href="#newtonly">Newtonly</a>. The two rooms stay apart. A blank is not a fail and not a zero. Evalathan does not fold the twenty-three cells into one number, and it does not award a state-of-the-art stamp. The Hydra PRD (Product Requirements Document) line and the Dehydrus <a href="#habtwin">HabTwin</a> filename line are utilities, not extra evalers.</p>
+<p>Evalathan is one evaluation harness. It is not a seventeenth Hydra score and not a ninth Dehydrus score. <a href="#hydra">Hydra</a> writes sixteen software cells, in this order: Devly, Archly, Codely, Refactorly, Mixly, Runly, Levi, Menschly, Tokely, Pressly, Triadly, Chorely, Trajectly, Warrantly, Domly, Stackly. <a href="#dehydrus">Dehydrus</a> writes eight <a href="#pretruws">PRETRUWs</a> (PREdiscovery TRuncated-Universes and Worlds) cells, in this order: <a href="#copernly">Copernly</a>, <a href="#keplerly">Keplerly</a>, <a href="#galileoly">Galileoly</a>, <a href="#darwinly">Darwinly</a>, <a href="#mendly">Mendly</a>, <a href="#einsteinly">Einsteinly</a>, <a href="#curcuriely">CurCuriely</a>, <a href="#newtonly">Newtonly</a>. The two rooms stay apart. A blank is not a fail and not a zero. Evalathan does not fold the twenty-four cells into one number, and it does not award a state-of-the-art stamp. The Hydra PRD (Product Requirements Document) line and the Dehydrus <a href="#habtwin">HabTwin</a> filename line are utilities, not extra evalers.</p>
 <p align="center"><img src="../assets/evalathan-logo.png" alt="Evalathan" width="325" height="325"></p>
 <p align="center"><i>One harness. Two conductors. It does not add a score.</i></p>
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 
-<p>The house that holds two desks. Hydra walks the software life of a product. Dehydrus walks seven locked physical worlds. You do not get one grade for the house. You get two reports, each cell named, and a missing record stays missing.</p>
+<p>The house that holds two desks. Hydra walks the software life of a product. Dehydrus walks eight locked physical worlds. You do not get one grade for the house. You get two reports, each cell named, and a missing record stays missing.</p>
 <h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
 
-<p>Evalathan is the local runner and the saved product name on both reports. No arguments, or <code>desk</code>, opens the Hydra window (heading HYDRA). <code>evalathan dehydrus</code> opens the Dehydrus window (heading DEHYDRUS). A Hydra scan writes sixteen cells and a PRD presence line; the report body starts with Evalathan v0.2. A Dehydrus scan writes seven cells and a <a href="#habtwin">HabTwin</a> filename line; the report body starts with Evalathan v0.3. Stackly accepts the earlier Hydra cells. <a href="#newtonly">Newtonly</a> accepts the earlier Dehydrus cells and stays deferred until <a href="#keplerly">Keplerly</a> and <a href="#galileoly">Galileoly</a> both show a sealed world. If either room's count is wrong, or a name is repeated, that run stops. The rooms do not share a vector.</p>
+<p>Evalathan is the local runner and the saved product name on both reports. No arguments, or <code>desk</code>, opens the Hydra window (heading HYDRA). <code>evalathan dehydrus</code> opens the Dehydrus window (heading DEHYDRUS). A Hydra scan writes sixteen cells and a PRD presence line; the report body starts with Evalathan v0.2. A Dehydrus scan writes eight cells and a <a href="#habtwin">HabTwin</a> filename line; the report body starts with Evalathan v0.3. Stackly accepts the earlier Hydra cells. <a href="#newtonly">Newtonly</a> accepts the earlier Dehydrus cells and stays deferred until <a href="#keplerly">Keplerly</a> and <a href="#galileoly">Galileoly</a> both show a sealed world. If either room's count is wrong, or a name is repeated, that run stops. The rooms do not share a vector.</p>
 <p><img src="../assets/term-rule.png" alt="" width="100%" height="18"></p>
 
 <p><a id="hydra" name="hydra"></a></p>
@@ -137,15 +140,15 @@
 
 <h3><img src="../assets/glossary/score-constitution.png" alt="Score Constitution" height="17" width="176"></h3>
 
-<p>Dehydrus calls the seven <a href="#pretruws">PRETRUWs</a> evalers and writes each report beside the others. He counts how many ran, how many passed their own gate, and how many are deferred. He does not turn a blank into a zero, and he does not fold the seven into one number. He is not an eighteenth Hydra score. He also prints a <a href="#habtwin">HabTwin</a> filename line. That line is a utility, not an eighth evaler.</p>
+<p>Dehydrus calls the eight <a href="#pretruws">PRETRUWs</a> evalers and writes each report beside the others. He counts how many ran, how many passed their own gate, and how many are deferred. He does not turn a blank into a zero, and he does not fold the eight into one number. He is not an eighteenth Hydra score. He also prints a <a href="#habtwin">HabTwin</a> filename line. That line is a utility, not a ninth evaler.</p>
 <p align="center"><img src="../assets/glossary/cards/dehydrus.png" alt="Dehydrus" width="485" height="494"></p>
-<p align="center"><i>He routes the seven. He does not add a score.</i></p>
+<p align="center"><i>He routes the eight. He does not add a score.</i></p>
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 
 <p>The other conductor. Hydra watches software. Dehydrus watches locked physical worlds. Open <code>evalathan dehydrus</code> for his window. The heading is DEHYDRUS.</p>
 <h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
 
-<p><code>evalathan dehydrus</code> opens the desk. <code>evalathan dehydrus scan &lt;path&gt;</code> writes seven cells: <a href="#copernly">Copernly</a>, <a href="#keplerly">Keplerly</a>, <a href="#galileoly">Galileoly</a>, <a href="#darwinly">Darwinly</a>, <a href="#mendly">Mendly</a>, <a href="#einsteinly">Einsteinly</a>, <a href="#newtonly">Newtonly</a>. <a href="#newtonly">Newtonly</a> accepts the earlier cells and stays deferred until <a href="#keplerly">Keplerly</a> and <a href="#galileoly">Galileoly</a> both show a sealed world. The saved record names the conductor Dehydrus and the framework <a href="#pretruws">PRETRUWs</a>. If the count is not seven, or a name is repeated, the run stops. Dehydrus is a conductor (orchestration engine / router), not a utility and not one of the seven.</p>
+<p><code>evalathan dehydrus</code> opens the desk. <code>evalathan dehydrus scan &lt;path&gt;</code> writes eight cells: <a href="#copernly">Copernly</a>, <a href="#keplerly">Keplerly</a>, <a href="#galileoly">Galileoly</a>, <a href="#darwinly">Darwinly</a>, <a href="#mendly">Mendly</a>, <a href="#einsteinly">Einsteinly</a>, <a href="#curcuriely">CurCuriely</a>, <a href="#newtonly">Newtonly</a>. <a href="#newtonly">Newtonly</a> accepts the earlier cells and stays deferred until <a href="#keplerly">Keplerly</a> and <a href="#galileoly">Galileoly</a> both show a sealed world. The saved record names the conductor Dehydrus and the framework <a href="#pretruws">PRETRUWs</a>. If the count is not eight, or a name is repeated, the run stops. Dehydrus is a conductor (orchestration engine / router), not a utility and not one of the eight.</p>
 <p><img src="../assets/term-rule.png" alt="" width="100%" height="18"></p>
 
 <p><a id="archly" name="archly"></a></p>
@@ -714,7 +717,7 @@
 
 <h3><img src="../assets/glossary/score-constitution.png" alt="Score Constitution" height="17" width="176"></h3>
 
-<p><a href="#pretruws">PRETRUWs</a> (PREdiscovery TRuncated-Universes and Worlds) is the v0.3 4IR (Fourth Industrial Revolution) framework. It is not a Hydra evaler. Dehydrus writes seven cells. A missing world is blank, not a fail and not a zero. Spec: <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/docs/PRETRUWs.md" target="_blank" rel="noopener noreferrer">docs/PRETRUWs.md</a>. Roadmap: <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/docs/BUILDLOG.md" target="_blank" rel="noopener noreferrer">docs/BUILDLOG.md</a>.</p>
+<p><a href="#pretruws">PRETRUWs</a> (PREdiscovery TRuncated-Universes and Worlds) is the v0.3 4IR (Fourth Industrial Revolution) framework. It is not a Hydra evaler. Dehydrus writes eight cells. A missing world is blank, not a fail and not a zero. Spec: <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/docs/PRETRUWs.md" target="_blank" rel="noopener noreferrer">docs/PRETRUWs.md</a>. Roadmap: <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/docs/BUILDLOG.md" target="_blank" rel="noopener noreferrer">docs/BUILDLOG.md</a>.</p>
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 
 <p>A locked room from a past year. The exam has to work with what that year could see, and with what that one person could have reached. Saying "pretend it is 1610" is not enough. Later facts have to be actually gone.</p>
@@ -726,11 +729,11 @@
 <p><a id="ludats-modes" name="ludats-modes"></a></p>
 <h2>LuDaTs modes</h2>
 <h3><img src="../assets/glossary/score-constitution.png" alt="Score Constitution" height="17" width="176"></h3>
-<p>A <a href="#ludats">LuDaTs</a> (Limited-universe Data Test sets) mode is a method class, not an extra evaler. There are six lettered modes and one unification mode: <a href="#ludats-mode-a">Mode A</a>, <a href="#ludats-mode-b">Mode B</a>, <a href="#ludats-mode-c">Mode C</a>, <a href="#ludats-mode-d">Mode D</a>, <a href="#ludats-mode-e">Mode E</a>, <a href="#ludats-mode-f">Mode F</a>, and <a href="#ludats-mode-unification">Mode Unification</a>. They do not add an eighth Dehydrus score or a seventeenth Hydra score. A blank is not a fail and not a zero.</p>
+<p>A <a href="#ludats">LuDaTs</a> (Limited-universe Data Test sets) mode is a method class, not an extra evaler. There are six lettered modes, one pair mode, and one unification mode: <a href="#ludats-mode-a">Mode A</a>, <a href="#ludats-mode-b">Mode B</a>, <a href="#ludats-mode-c">Mode C</a>, <a href="#ludats-mode-d">Mode D</a>, <a href="#ludats-mode-e">Mode E</a>, <a href="#ludats-mode-f">Mode F</a>, <a href="#ludats-mode-pair">Mode Pair</a>, and <a href="#ludats-mode-unification">Mode Unification</a>. They do not add a ninth Dehydrus score or a seventeenth Hydra score. A blank is not a fail and not a zero.</p>
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
-<p>A mode is the kind of work the locked room asks for. One room re-reads old numbers. One room uses a sharper table from the same kind of eye. One room gets a new sensor and a bench on earth. One room walks for years. One room leaves holes in a table. One room writes a new field from an leftover the old law cannot eat. One room waits, then joins two earlier rooms under one law.</p>
+<p>A mode is the kind of work the locked room asks for. One room re-reads old numbers. One room uses a sharper table from the same kind of eye. One room gets a new sensor and a bench on earth. One room walks for years. One room leaves holes in a table. One room writes a new field from an leftover the old law cannot eat. One room puts two discoverers in the same lab and will not let one agent win alone. One room waits, then joins two earlier rooms under one law.</p>
 <h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
-<p>Each <a href="#ludats">LuDaTs</a> brand names one mode. <a href="#copernly">Copernly</a> is <a href="#ludats-mode-a">Mode A</a>. <a href="#keplerly">Keplerly</a> is <a href="#ludats-mode-b">Mode B</a>. <a href="#galileoly">Galileoly</a> is <a href="#ludats-mode-c">Mode C</a>. <a href="#darwinly">Darwinly</a> is <a href="#ludats-mode-d">Mode D</a>. <a href="#mendly">Mendly</a> is <a href="#ludats-mode-e">Mode E</a>. <a href="#einsteinly">Einsteinly</a> is <a href="#ludats-mode-f">Mode F</a>. <a href="#newtonly">Newtonly</a> is <a href="#ludats-mode-unification">Mode Unification</a>. Spec: <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/docs/LuDaTs.md" target="_blank" rel="noopener noreferrer">docs/LuDaTs.md</a>.</p>
+<p>Each <a href="#ludats">LuDaTs</a> brand names one mode. <a href="#copernly">Copernly</a> is <a href="#ludats-mode-a">Mode A</a>. <a href="#keplerly">Keplerly</a> is <a href="#ludats-mode-b">Mode B</a>. <a href="#galileoly">Galileoly</a> is <a href="#ludats-mode-c">Mode C</a>. <a href="#darwinly">Darwinly</a> is <a href="#ludats-mode-d">Mode D</a>. <a href="#mendly">Mendly</a> is <a href="#ludats-mode-e">Mode E</a>. <a href="#einsteinly">Einsteinly</a> is <a href="#ludats-mode-f">Mode F</a>. <a href="#curcuriely">CurCuriely</a> is <a href="#ludats-mode-pair">Mode Pair</a>. <a href="#newtonly">Newtonly</a> is <a href="#ludats-mode-unification">Mode Unification</a>. Spec: <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/docs/LuDaTs.md" target="_blank" rel="noopener noreferrer">docs/LuDaTs.md</a>.</p>
 <p><a id="ludats-mode-a" name="ludats-mode-a"></a></p>
 <h3>Mode A</h3>
 <p>Reinterpret already-available data. No new instrument. The archive is already on the table. The work is a new picture of the same numbers. <a href="#copernly">Copernly</a> runs <a href="#ludats-mode-a">Mode A</a>.</p>
@@ -749,6 +752,9 @@
 <p><a id="ludats-mode-f" name="ludats-mode-f"></a></p>
 <h3>Mode F</h3>
 <p>Anomaly-driven theory. An leftover the old law cannot eat, then a new field, then a later check that must not leak in as a hint. <a href="#einsteinly">Einsteinly</a> runs <a href="#ludats-mode-f">Mode F</a>. General Relativity only. The 1919 eclipse is after the theory.</p>
+<p><a id="ludats-mode-pair" name="ludats-mode-pair"></a></p>
+<h3>Mode Pair</h3>
+<p>Two biography clocks and two agents in one locked world. They cooperate, and they may check each other as adversarial peers - an LLM (Large Language Model) plus its own co-LLM partner. Gold (the structural prize that wins this world, not a sports rank) is joint. One agent reciting the later textbook title is not Gold. A solo run stays deferred. <a href="#curcuriely">CurCuriely</a> runs <a href="#ludats-mode-pair">Mode Pair</a>. This is the method class for later pair worlds, not only the Curies.</p>
 <p><a id="ludats-mode-unification" name="ludats-mode-unification"></a></p>
 <h3>Mode Unification</h3>
 <p>Join two earlier worlds under one law. <a href="#newtonly">Newtonly</a> runs <a href="#ludats-mode-unification">Mode Unification</a>. It waits until <a href="#keplerly">Keplerly</a> and <a href="#galileoly">Galileoly</a> both show a sealed world. The apple story is not the method.</p>
@@ -763,6 +769,17 @@
 <h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
 <p>Dehydrus calls Copernly and locks <a href="#ludats-mode-a">Mode A</a>. World clock T is 1542, before <a href="https://en.wikipedia.org/wiki/De_revolutionibus_orbium_coelestium"><i>De revolutionibus orbium coelestium</i></a> (1543). Biography clock A is what Copernicus could have reached at that year. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does claim one, v0.3 looks for a sealed LuDaTs-C world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.</p>
 <p>When the simulator does run, the agent is handed only the already-available sky archive. There is no new instrument. The next step is to rebuild the same numbers as a sun-centered kinematic model, with fewer epicycles than the Ptolemaic fit, and with Earth as a planet. Any observation after 1542 is leakage and fails the run. The string "heliocentrism" is not Gold. Card: <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/exams/ludats/ludats-c-copernicus.yaml" target="_blank" rel="noopener noreferrer">exams/ludats/ludats-c-copernicus.yaml</a>.</p>
+<p><img src="../assets/term-rule.png" alt="" width="100%" height="18"></p>
+
+<p><a id="curcuriely" name="curcuriely"></a></p>
+<h2>CurCuriely</h2>
+<h3><img src="../assets/glossary/score-constitution.png" alt="Score Constitution" height="17" width="176"></h3>
+<p>This evaler is based on Marie Skłodowska-Curie and Pierre Curie, the pair who discovered that some matter gives off rays that belong to the atom, and who isolated two new elements from pitchblende. The double Cur in the name is because both of them had to be in the room. CurCuriely (code LuDaTs-CC) is a Dehydrus world under <a href="#ludats">LuDaTs</a> (Limited-universe Data Test sets). It runs <a href="#ludats-mode-pair">Mode Pair</a>. It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The cell stays deferred until a sealed 1897 pair-world file is in the tree. A blank is not a fail and not a zero.</p>
+<h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
+<p>This evaler is based on Marie Curie and Pierre Curie, who together, after long shared labor, showed that the rays were a property of the atom and pulled two new elements out of pitchblende. The exam uses <a href="#ludats-mode-pair">Mode Pair</a>: two biography clocks, and two agents - an LLM (Large Language Model) and its own co-LLM partner - who must work the same locked 1897 lab and may challenge each other's notes. One agent reciting the later textbook title is not Gold (the structural prize that wins this world, not a sports rank). Gold is joint. A solo run stays deferred. Pierre's 1906 death and Marie's 1911 solo Nobel are after this room.</p>
+<h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
+<p>Dehydrus calls CurCuriely and locks <a href="#ludats-mode-pair">Mode Pair</a>. World clock T is 1897, before the 1898 isolation notes. Biography clocks A1 and A2 are Marie and Pierre at that year, in the same shed, with Becquerel's 1896 uranium rays already on the table. Two agents are required. They may divide the work, and they may adversarially peer-review each other. A solo run stays deferred; that wait is part of the method, not a fail. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does, v0.3 looks for a sealed LuDaTs-CC world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.</p>
+<p>When the simulator does run, both agents get the 1897 corpus only. The next step is to isolate two new-element property cards from pitchblende and to state that the rays belong to the atom, not to a chemical compound. One agent cannot take Gold alone. The 1903 Nobel write-up, the 1911 chemistry prize, and later nuclear models are leakage. The string "radioactivity" without the atomic-property claim is not Gold. Card: <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/exams/ludats/ludats-cc-curie.yaml" target="_blank" rel="noopener noreferrer">exams/ludats/ludats-cc-curie.yaml</a>.</p>
 <p><img src="../assets/term-rule.png" alt="" width="100%" height="18"></p>
 
 <p><a id="darwinly" name="darwinly"></a></p>
@@ -836,7 +853,7 @@
 <h3><img src="../assets/glossary/score-constitution.png" alt="Score Constitution" height="17" width="176"></h3>
 <p>Not a score. Hydra and Dehydrus are conductors. A conductor is not an extra evaler.</p>
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
-<p>The person at the front who points at each player and writes what that player reported. They do not play a seventeenth or eighth instrument.</p>
+<p>The person at the front who points at each player and writes what that player reported. They do not play a seventeenth or ninth instrument.</p>
 <h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
 <p>Orchestration engine. The router job lives inside the conductor (order, prior cells, headline). See <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/docs/PRETRUWs.md" target="_blank" rel="noopener noreferrer">docs/PRETRUWs.md</a>.</p>
 <p><img src="../assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -854,7 +871,7 @@
 <p><a id="eval-agent" name="eval-agent"></a></p>
 <h2>Agent</h2>
 <h3><img src="../assets/glossary/score-constitution.png" alt="Score Constitution" height="17" width="176"></h3>
-<p>Not a count by itself. The sixteen and the seven are agentic evalers.</p>
+<p>Not a count by itself. The sixteen and the eight are agentic evalers.</p>
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 <p>A worker that judges or acts. Plugins that a world needs (a language model, a retriever) are also agents. They are not extra Hydra cells.</p>
 <h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
@@ -878,7 +895,7 @@
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 <p>Who speaks next, and who may see the earlier answers.</p>
 <h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
-<p>Dehydrus routes the seven. Hydra routes the sixteen. A router pattern is not a second product.</p>
+<p>Dehydrus routes the eight. Hydra routes the sixteen. A router pattern is not a second product.</p>
 
 <p><a id="agentic-exams-that-are-not-on-the-vector-yet" name="agentic-exams-that-are-not-on-the-vector-yet"></a></p>
 <h2><img src="../assets/glossary/agentic-exams-that-are-not-on-the-vector-yet.png" alt="Agentic exams that are not on the vector yet" height="26" width="488"></h2>
@@ -948,13 +965,13 @@
 
 <h3><img src="../assets/glossary/score-constitution.png" alt="Score Constitution" height="17" width="176"></h3>
 
-<p><a href="#ludats">LuDaTs</a> (Limited-universe Data Test sets) is the <a href="#pretruws">PRETRUWs</a> methodology family, not a Trajectly exam and not a seventeenth Hydra evaler. Dehydrus calls the seven brands. A missing world is blank, not a fail and not a zero. A gold medal is the structural prize for that world, not a sports rank of the product.</p>
+<p><a href="#ludats">LuDaTs</a> (Limited-universe Data Test sets) is the <a href="#pretruws">PRETRUWs</a> methodology family, not a Trajectly exam and not a seventeenth Hydra evaler. Dehydrus calls the eight brands. A missing world is blank, not a fail and not a zero. A gold medal is the structural prize for that world, not a sports rank of the product.</p>
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 
-<p><a href="#ludats">LuDaTs</a> locks the agent in a dated world: only the news, instruments, and papers that existed at that year, and only what that discoverer could have reached at that age. It then has to form the theory by acting in a simulator whose later facts are gone. Naming the later textbook title is not a gold medal. Galileo, Copernicus, and Kepler are three different tests, not one astronomy quiz. Newton waits.</p>
+<p><a href="#ludats">LuDaTs</a> locks the agent in a dated world: only the news, instruments, and papers that existed at that year, and only what that discoverer could have reached at that age. It then has to form the theory by acting in a simulator whose later facts are gone. Naming the later textbook title is not a gold medal. Galileo, Copernicus, and Kepler are three different tests, not one astronomy quiz. <a href="#curcuriely">CurCuriely</a> is the pair room: two scientists, two agents. Newton waits.</p>
 <h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
 
-<p>Spec: <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/docs/LuDaTs.md" target="_blank" rel="noopener noreferrer">docs/LuDaTs.md</a>. Machine cards: <a href="https://github.com/pedramgoshATgmail/EVALATHAN/tree/main/exams/ludats" target="_blank" rel="noopener noreferrer">exams/ludats/</a>. Brands: <a href="#copernly">Copernly</a> (LuDaTs-C, 1542, pre <a href="https://en.wikipedia.org/wiki/De_revolutionibus_orbium_coelestium"><i>De revolutionibus orbium coelestium</i></a>), <a href="#keplerly">Keplerly</a> (LuDaTs-K, 1608), <a href="#galileoly">Galileoly</a> (LuDaTs-G, required), <a href="#darwinly">Darwinly</a> (LuDaTs-D, required), <a href="#mendly">Mendly</a> (LuDaTs-M, 1868), <a href="#einsteinly">Einsteinly</a> (LuDaTs-E, 1914, not 1905), <a href="#newtonly">Newtonly</a> (LuDaTs-N, v2). Two clocks: world year T, biography age A. <a href="https://aclanthology.org/2026.eacl-long.72/">ExAnte</a> (ACL 2026) showed prompt cutoffs leak. Domly is the wrong station. The sixteen stay sixteen.</p>
+<p>Spec: <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/docs/LuDaTs.md" target="_blank" rel="noopener noreferrer">docs/LuDaTs.md</a>. Machine cards: <a href="https://github.com/pedramgoshATgmail/EVALATHAN/tree/main/exams/ludats" target="_blank" rel="noopener noreferrer">exams/ludats/</a>. Brands: <a href="#copernly">Copernly</a> (LuDaTs-C, 1542, pre <a href="https://en.wikipedia.org/wiki/De_revolutionibus_orbium_coelestium"><i>De revolutionibus orbium coelestium</i></a>), <a href="#keplerly">Keplerly</a> (LuDaTs-K, 1608), <a href="#galileoly">Galileoly</a> (LuDaTs-G, required), <a href="#darwinly">Darwinly</a> (LuDaTs-D, required), <a href="#mendly">Mendly</a> (LuDaTs-M, 1868), <a href="#einsteinly">Einsteinly</a> (LuDaTs-E, 1914, not 1905), <a href="#curcuriely">CurCuriely</a> (LuDaTs-CC, 1897, Mode Pair), <a href="#newtonly">Newtonly</a> (LuDaTs-N, v2). Two clocks: world year T, biography age A. Pair worlds add a second biography clock. <a href="https://aclanthology.org/2026.eacl-long.72/">ExAnte</a> (ACL 2026) showed prompt cutoffs leak. Domly is the wrong station. The sixteen stay sixteen.</p>
 <p><img src="../assets/term-rule.png" alt="" width="100%" height="18"></p>
 
 <p><img src="../assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -1140,8 +1157,10 @@
     {"id":"ludats-mode-d","label":"Mode D","kind":"term","aliases":["mode d","mode-d"]},
     {"id":"ludats-mode-e","label":"Mode E","kind":"term","aliases":["mode e","mode-e"]},
     {"id":"ludats-mode-f","label":"Mode F","kind":"term","aliases":["mode f","mode-f"]},
+    {"id":"ludats-mode-pair","label":"Mode Pair","kind":"term","aliases":["mode pair","mode-p","pair mode"]},
     {"id":"ludats-mode-unification","label":"Mode Unification","kind":"term","aliases":["unification mode","mode u","mode unification"]},
     {"id":"copernly","label":"Copernly","kind":"term","aliases":["ludats-c","copernicus"]},
+    {"id":"curcuriely","label":"CurCuriely","kind":"term","aliases":["curcuriely","curcurliely","marie curie","pierre curie","curie","ludats-cc"]},
     {"id":"darwinly","label":"Darwinly","kind":"term","aliases":["ludats-d","darwin"]},
     {"id":"einsteinly","label":"Einsteinly","kind":"term","aliases":["ludats-e","einstein"]},
     {"id":"galileoly","label":"Galileoly","kind":"term","aliases":["ludats-g","galileo","galleleoly"]},
@@ -1168,6 +1187,8 @@
   ]
   </script>
   <script>
+    if (!window.__evalathanGlossarySearch) {
+    window.__evalathanGlossarySearch = true;
     const items = JSON.parse(document.getElementById("glossary-index").textContent);
     const input = document.getElementById("glossary-search");
     const list = document.getElementById("glossary-search-list");
@@ -1176,6 +1197,16 @@
 
     function escapeHtml(s) {
       return String(s).replace(/[&<>"]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[ch]));
+    }
+
+    function hrefFor(id) {
+      try {
+        const url = new URL(window.location.href);
+        url.hash = id;
+        return url.href;
+      } catch (err) {
+        return "#" + id;
+      }
     }
 
     function rank(q) {
@@ -1200,7 +1231,7 @@
     function hide() {
       list.hidden = true;
       list.style.display = "none";
-      list.innerHTML = "";
+      while (list.firstChild) list.removeChild(list.firstChild);
       current = [];
       active = -1;
       input.setAttribute("aria-expanded", "false");
@@ -1213,6 +1244,22 @@
       list.style.width = Math.max(rect.width, 280) + "px";
     }
 
+    function markedLabel(lab, needle) {
+      const at = lab.toLowerCase().indexOf(needle.toLowerCase());
+      if (at < 0) return escapeHtml(lab);
+      return escapeHtml(lab.slice(0, at)) + "<mark>" + escapeHtml(lab.slice(at, at + needle.length)) + "</mark>" + escapeHtml(lab.slice(at + needle.length));
+    }
+
+    function goTo(it, e) {
+      if (e) {
+        if (e.preventDefault) e.preventDefault();
+        if (e.stopPropagation) e.stopPropagation();
+        if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+      }
+      openItem(it);
+      return false;
+    }
+
     function render() {
       current = rank(input.value);
       active = current.length ? 0 : -1;
@@ -1221,12 +1268,30 @@
         return;
       }
       const needle = input.value.trim();
-      list.innerHTML = current.map((it, i) => {
-        const lab = it.label;
-        const at = lab.toLowerCase().indexOf(needle.toLowerCase());
-        const label = at < 0 ? escapeHtml(lab) : escapeHtml(lab.slice(0, at)) + "<mark>" + escapeHtml(lab.slice(at, at + needle.length)) + "</mark>" + escapeHtml(lab.slice(at + needle.length));
-        return '<li role="presentation" class="' + (i === 0 ? "is-active" : "") + '"><button type="button" role="option" data-id="' + escapeHtml(it.id) + '" onpointerdown="return window.evalathanOpenGlossary(event,\'' + escapeHtml(it.id) + '\')" onmousedown="return window.evalathanOpenGlossary(event,\'' + escapeHtml(it.id) + '\')" onclick="return window.evalathanOpenGlossary(event,\'' + escapeHtml(it.id) + '\')"><span>' + label + '</span><span class="kind">' + escapeHtml(it.kind) + "</span></button></li>";
-      }).join("");
+      while (list.firstChild) list.removeChild(list.firstChild);
+      current.forEach((it, i) => {
+        const li = document.createElement("li");
+        li.setAttribute("role", "presentation");
+        if (i === 0) li.className = "is-active";
+        const a = document.createElement("a");
+        a.setAttribute("role", "option");
+        a.setAttribute("data-id", it.id);
+        a.href = hrefFor(it.id);
+        const name = document.createElement("span");
+        name.innerHTML = markedLabel(it.label, needle);
+        const kind = document.createElement("span");
+        kind.className = "kind";
+        kind.textContent = it.kind;
+        a.appendChild(name);
+        a.appendChild(kind);
+        const go = function (e) { return goTo(it, e); };
+        a.addEventListener("pointerdown", go, true);
+        a.addEventListener("touchstart", go, { capture: true, passive: false });
+        a.addEventListener("mousedown", go, true);
+        a.addEventListener("click", go, true);
+        li.appendChild(a);
+        list.appendChild(li);
+      });
       placeList();
       list.hidden = false;
       list.style.display = "block";
@@ -1278,7 +1343,7 @@
       if (list.hidden || list.style.display === "none") return null;
       const box = list.getBoundingClientRect();
       if (x < box.left || x > box.right || y < box.top || y > box.bottom) return null;
-      const rows = list.querySelectorAll("button[data-id]");
+      const rows = list.querySelectorAll("a[data-id]");
       for (let i = 0; i < rows.length; i++) {
         const row = rows[i].getBoundingClientRect();
         if (y >= row.top && y <= row.bottom) return rows[i];
@@ -1287,7 +1352,7 @@
     }
 
     function pickFromEvent(e) {
-      const fromNode = e.target && e.target.closest ? e.target.closest("#glossary-search-list button[data-id]") : null;
+      const fromNode = e.target && e.target.closest ? e.target.closest("#glossary-search-list a[data-id]") : null;
       const opt = fromNode || optionAt(e.clientX, e.clientY);
       if (!opt) return;
       e.preventDefault();
@@ -1329,9 +1394,11 @@
     });
     document.body.appendChild(list);
     list.addEventListener("pointerdown", pickFromEvent, true);
+    list.addEventListener("touchstart", pickFromEvent, { capture: true, passive: false });
     list.addEventListener("mousedown", pickFromEvent, true);
     list.addEventListener("click", pickFromEvent, true);
     window.addEventListener("pointerdown", pickFromEvent, true);
+    window.addEventListener("touchstart", pickFromEvent, { capture: true, passive: false });
     window.addEventListener("mousedown", pickFromEvent, true);
     window.addEventListener("click", pickFromEvent, true);
     window.addEventListener("scroll", () => { if (!list.hidden) placeList(); }, true);
@@ -1345,6 +1412,8 @@
       jumpToHash();
       requestAnimationFrame(jumpToHash);
     });
+    }
   </script>
+
 </body>
 </html>

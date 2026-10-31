@@ -26,3 +26,9 @@ def test_search_index_matches_glossary_anchors() -> None:
     assert 'replaceState(null, "", "#"' not in html
     assert "evalathanOpenGlossary" in html
     assert "scrollTo" in html
+    assert "__evalathanGlossarySearch" in html
+    assert 'createElement("a")' in html
+    assert "touchstart" in html
+    assert "hrefFor" in html
+    assert "curcuriely" in indexed
+    assert "ludats-mode-pair" in indexed

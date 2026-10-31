@@ -1,0 +1,33 @@
+id: LuDaTs-CC
+brand: CurCuriely
+status: v1
+mode: Pair-two-scientists
+discoverers:
+  - Marie Skłodowska-Curie
+  - Pierre Curie
+target_work: 1898 isolation notes for two new elements from pitchblende; radioactivity as an atomic property
+world_clock_T: 1897
+biography:
+  marie:
+    birth: 1867
+    age_at_T: 30
+    post: Paris shed / School of Physics and Chemistry path with Pierre
+  pierre:
+    birth: 1859
+    age_at_T: 38
+    post: same shed; piezoelectric and crystal work already in-era
+  not_available: 1903 Nobel write-up; Pierre's 1906 death as a plot device; Marie's 1911 chemistry prize; later nuclear models
+instrument_class: Becquerel 1896 uranium rays, electrometer, pitchblende chemistry, two paired agents
+interaction: two biography clocks; LLM plus co-LLM adversarial peers; joint Gold only
+gold_structural:
+  - radioactivity as a property of the atom, not of a chemical compound
+  - two new-element property cards isolated from pitchblende by the pair
+not_gold:
+  - one agent reciting the later textbook title
+  - a solo run
+  - the 1903 or 1911 prize write-up as a hint
+folklore_banned:
+  - scoring the string "radioactivity" without the atomic-property claim
+  - letting one of the two agents take Gold alone
+physical_world_need: 7
+notes: Mode Pair flagship. Double Cur because both Curies must be in the room. v0.3 names a sealed file and does not run the pair simulator.

@@ -1,4 +1,4 @@
-"""Conductor for the seven PRETRUWs world evalers. A blank is never a zero."""
+"""Conductor for the eight PRETRUWs world evalers. A blank is never a zero."""
 
 from __future__ import annotations
 
@@ -75,9 +75,9 @@ def conduct(root: Path, subject: Subject | None = None) -> Report:
             cells.append(evaler(seen, cells))
         else:
             cells.append(evaler(seen))
-    if len(cells) != 7:
-        raise RuntimeError(f"Dehydrus expected 7 evalers, got {len(cells)}")
+    if len(cells) != 8:
+        raise RuntimeError(f"Dehydrus expected 8 evalers, got {len(cells)}")
     names = [cell.agent for cell in cells]
-    if len(set(names)) != 7:
+    if len(set(names)) != 8:
         raise RuntimeError("Duplicate evaler name")
     return Report(root=str(seen.root), cells=cells, habtwin=habtwin_note(seen))

@@ -5,7 +5,7 @@
 **Conductor:** Dehydrus
 **Product:** Evalathan, [github.com/pedramgoshATgmail/EVALATHAN](https://github.com/pedramgoshATgmail/EVALATHAN)
 
-PRETRUWs (PREdiscovery TRuncated-Universes and Worlds) is the physical-world evaluation framework. It holds the LuDaTs (Limited-universe Data Test sets) methodology family. Hydra still conducts the sixteen software evalers. Dehydrus conducts the seven world evalers. The two rooms do not mix scores.
+PRETRUWs (PREdiscovery TRuncated-Universes and Worlds) is the physical-world evaluation framework. It holds the LuDaTs (Limited-universe Data Test sets) methodology family. Hydra still conducts the sixteen software evalers. Dehydrus conducts the eight world evalers. The two rooms do not mix scores.
 
 ## 1. Hierarchy (these words are not synonyms)
 
@@ -17,10 +17,10 @@ From the house vocabulary (paradigm, framework, method, methodology, mandate, pr
 | Paradigm | 4IR (Fourth Industrial Revolution) physical-world evals that stay correlatable with LLM (Large Language Model) / agentic plugins. |
 | Framework | PRETRUWs. Reusable structure: world clock T, biography clock A, sealed simulator, gold medal, leakage fail. |
 | Methodology | LuDaTs. The organized approach for historically locked discovery worlds. |
-| Method | One brand: Copernly, Keplerly, Galileoly, Darwinly, Mendly, Einsteinly, Newtonly. Each has a mode (A-F or unification). |
+| Method | One brand: Copernly, Keplerly, Galileoly, Darwinly, Mendly, Einsteinly, CurCuriely, Newtonly. Each has a mode (A-F, pair, or unification). |
 | Methodstack | That brand's instruments, interaction, hidden labels, and structural gold. |
-| Protocol | The eight rules in [LuDaTs.md](LuDaTs.md). |
-| Mandate | Dehydrus may route and write the seven cells. He may not add an eighteenth Hydra score. He may not award a gold medal from a filename. |
+| Protocol | The nine rules in [LuDaTs.md](LuDaTs.md). |
+| Mandate | Dehydrus may route and write the eight cells. He may not add an eighteenth Hydra score. He may not award a gold medal from a filename. |
 | Conductor / router | Dehydrus. Orchestration. See [roles](#4-what-each-kind-of-thing-is). |
 | Engine | The evaler that writes one cell, or the HabTwin scoring engine planned for v0.4. |
 | Agent / agentic | An evaler with judgment about a world or a software tree. Also the LLM / RAG (Retrieval-Augmented Generation) plugins a world may need. |
@@ -50,9 +50,9 @@ Trajectly reads software / agentic traces (intangibles). LuDaTs locks a physical
 - **Conductor:** the orchestrator who calls every evaler in one family and writes the report. Hydra and Dehydrus are conductors. A conductor is an engine of routing, not a utility, and not one more evaler.
 - **Router:** the job inside a conductor (which cell runs, in what order, what prior cells another cell may see).
 - **Engine:** a scoring body that emits cells or a headline. Hydra, Dehydrus, each evaler, and later HabTwin's scorer are engines.
-- **Agent / agentic:** a unit that judges or acts. The sixteen and the seven are agentic evalers. Plugins (LLM, RAG 3.0) that a world needs are agentic boltons, not extra Hydra cells.
+- **Agent / agentic:** a unit that judges or acts. The sixteen and the eight are agentic evalers. Plugins (LLM, RAG 3.0) that a world needs are agentic boltons, not extra Hydra cells. Pair worlds use two agents.
 - **Utility:** a deterministic transform with no gate (the PRD line, the HabTwin filename line).
 
 ## 5. Allowed sentence
 
-PRETRUWs is the 4IR framework for PREdiscovery TRuncated-Universes and Worlds. Dehydrus conducts seven LuDaTs methods. Hydra still conducts sixteen software evalers. A gold medal is structural. A prompt cutoff is not a world. A blank is not a zero.
+PRETRUWs is the 4IR framework for PREdiscovery TRuncated-Universes and Worlds. Dehydrus conducts eight LuDaTs methods. Hydra still conducts sixteen software evalers. A gold medal is structural. A prompt cutoff is not a world. A blank is not a zero.

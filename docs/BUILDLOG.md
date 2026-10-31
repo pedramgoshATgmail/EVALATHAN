@@ -12,11 +12,11 @@ First of two 4IR (Fourth Industrial Revolution) eval paradigms.
 
 - Manifesto direction: *Until Artificial Intelligence Independently Eurekas on its own* (ASD-shaped paper, after [Jim Highsmith's Adaptive Software Development](https://en.wikipedia.org/wiki/Adaptive_software_development)).
 - Framework: **[PRETRUWs](../GLOSSARY.md#user-content-pretruws)** (PREdiscovery TRuncated-Universes and Worlds).
-- Methodology family: **[LuDaTs](../GLOSSARY.md#user-content-ludats)** (Limited-universe Data Test sets) - seven world methods, each with its own methodstack.
+- Methodology family: **[LuDaTs](../GLOSSARY.md#user-content-ludats)** (Limited-universe Data Test sets) - eight world methods, each with its own methodstack.
 - Conductor / router: **[Dehydrus](../GLOSSARY.md#user-content-dehydrus)**. Window title DEHYDRUS. Command `evalathan dehydrus`. He is not an eighteenth Hydra score.
-- Full desk ships all seven brands: Copernly, Keplerly, Galileoly, Darwinly, Mendly, Einsteinly, Newtonly. Newtonly is on the desk and deferred to v2 until Keplerly and Galileoly both show a sealed world.
+- Full desk ships all eight brands: Copernly, Keplerly, Galileoly, Darwinly, Mendly, Einsteinly, CurCuriely, Newtonly. CurCuriely is the pair world (Marie Curie and Pierre Curie; two agents). Newtonly is on the desk and deferred to v2 until Keplerly and Galileoly both show a sealed world.
 - v0.3 names a sealed world file. It does not pretend a prompt cutoff is 1610. ExAnte (ACL 2026 / EACL) showed large language models leak past a stated cutoff.
-- [HabTwin](../GLOSSARY.md#user-content-habtwin) is named on the Dehydrus report (`No HabTwin lab trace` or the file list). It is not a Trajectly exam and not an eighth [LuDaTs](../GLOSSARY.md#user-content-ludats) cell.
+- [HabTwin](../GLOSSARY.md#user-content-habtwin) is named on the Dehydrus report (`No HabTwin lab trace` or the file list). It is not a Trajectly exam and not a ninth [LuDaTs](../GLOSSARY.md#user-content-ludats) cell.
 
 ## Next - v0.4
 

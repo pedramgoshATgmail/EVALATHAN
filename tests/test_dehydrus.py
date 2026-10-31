@@ -5,9 +5,9 @@ from evalathan.hydra import conduct as hydra_conduct
 from evalathan.model import Status
 
 
-def test_empty_tree_lists_seven_deferrals(tmp_path: Path) -> None:
+def test_empty_tree_lists_eight_deferrals(tmp_path: Path) -> None:
     report = conduct(tmp_path)
-    assert len(report.cells) == 7
+    assert len(report.cells) == 8
     assert report.passed == []
     assert "Evalathan v0.3" in report.render()
     assert report.to_dict()["conductor"] == "Dehydrus"
@@ -20,6 +20,7 @@ def test_empty_tree_lists_seven_deferrals(tmp_path: Path) -> None:
         "Darwinly",
         "Mendly",
         "Einsteinly",
+        "CurCuriely",
         "Newtonly",
     ]
     assert all(cell.status is Status.DEFERRED for cell in report.cells)
@@ -30,6 +31,7 @@ def test_hydra_stays_sixteen(tmp_path: Path) -> None:
     report = hydra_conduct(tmp_path)
     assert len(report.cells) == 16
     assert "Copernly" not in {cell.agent for cell in report.cells}
+    assert "CurCuriely" not in {cell.agent for cell in report.cells}
 
 
 def test_sealed_galileo_is_measured_not_a_gold_medal(tmp_path: Path) -> None:

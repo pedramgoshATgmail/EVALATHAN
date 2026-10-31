@@ -76,8 +76,12 @@ def einsteinly(subject: Subject) -> Cell:
     return _run_world(WORLDS[5], subject)
 
 
+def curcuriely(subject: Subject) -> Cell:
+    return _run_world(WORLDS[6], subject)
+
+
 def newtonly(subject: Subject, prior: list[Cell]) -> Cell:
-    return _run_world(WORLDS[6], subject, prior)
+    return _run_world(WORLDS[7], subject, prior)
 
 
 copernly.ACCEPTS_PRIOR = False
@@ -86,6 +90,7 @@ galileoly.ACCEPTS_PRIOR = False
 darwinly.ACCEPTS_PRIOR = False
 mendly.ACCEPTS_PRIOR = False
 einsteinly.ACCEPTS_PRIOR = False
+curcuriely.ACCEPTS_PRIOR = False
 newtonly.ACCEPTS_PRIOR = True
 
 ALL = (
@@ -95,5 +100,6 @@ ALL = (
     darwinly,
     mendly,
     einsteinly,
+    curcuriely,
     newtonly,
 )

@@ -12,7 +12,7 @@ This file retires the EurekaRAG “Galileo Test” (circa January to October 202
 
 **Gold medal** means the structural prize for that world: the equation, the predicted observable, or the held-out property card that wins the exam. It is not a sports ranking of the product, and it is not a filename.
 
-Hydra still conducts **sixteen** software evalers. Dehydrus conducts **seven** world evalers. LuDaTs is not a seventeenth Hydra cell. A missing world is blank, not a fail and not a zero.
+Hydra still conducts **sixteen** software evalers. Dehydrus conducts **eight** world evalers. LuDaTs is not a seventeenth Hydra cell. A missing world is blank, not a fail and not a zero.
 
 ---
 
@@ -28,9 +28,10 @@ Use this table on GitHub. The Copernicus target work is the full title, linked.
 | LuDaTs-D | Darwinly | Darwin | D. Long-horizon field accumulation. | 1858 (pre [*On the Origin of Species*](https://en.wikipedia.org/wiki/On_the_Origin_of_Species) 1859) | Keep, required |
 | LuDaTs-M | Mendly | Mendeleev | E. Tabular gaps whose later filling is locked out of the world. | 1868 (Ga 1875 and Ge 1886 are hidden labels) | Keep |
 | LuDaTs-E | Einsteinly | Einstein GR | F. Anomaly-driven theory. 1919 eclipse is post-theory. | 1914 (field equations Nov 1915). Not 1905. | Keep |
+| LuDaTs-CC | CurCuriely | Marie Curie and Pierre Curie | Pair. Two biography clocks, two agents, joint Gold. | 1897 (pre 1898 isolation notes) | Keep |
 | LuDaTs-N | Newtonly | Newton | Unification of Kepler + Galileo. Apple is folklore. | 1686 ([*Principia*](https://en.wikipedia.org/wiki/Philosophi%C3%A6_Naturalis_Principia_Mathematica) 1687) | Defer to v2 |
 
-The full desk ships all seven. Do not ship only Galileo, Darwin, and Mendeleev.
+The full desk ships all eight. Do not ship only Galileo, Darwin, and Mendeleev.
 
 **Copernicus, Kepler, and Galileo are all required if you ship astronomy.** They are not substitutes.
 
@@ -52,6 +53,7 @@ Machine cards: [`exams/ludats/`](../exams/ludats/).
 | Darwinly | Descent with modification; a selection mechanism that can accumulate | The string "evolution"; genetics after 1858; the finch cartoon as 1835 eureka |
 | Mendly | Periodic grouping of the 1868 set; eka-aluminium and eka-silicon property cards scored later without those names in-world | A modern periodic table; a slogan about a periodic table for AI |
 | Einsteinly | Field equations whose weak-field limit recovers Newton; Mercury perihelion; light deflection checked only after submission | The string "general relativity"; 1905 photoelectric / Brownian / special relativity |
+| CurCuriely | Radioactivity as an atomic property; two new-element cards from pitchblende, formed by the pair | One agent reciting the later title; a solo run; 1903 / 1911 prize write-ups as hints |
 | Newtonly | Inverse-square universal gravitation; the same law for heavens and earth | The apple story |
 
 ---
@@ -66,6 +68,7 @@ Machine cards: [`exams/ludats/`](../exams/ludats/).
 6. **Gold medal.** Equations, predicted observables, or held-out property cards.
 7. **Leakage fail.** Post-T tokens, later element names, 1919 eclipse plates before a theory is submitted, or Darwin-finch cartoon keys fail the run.
 8. **Claim gate.** Dehydrus only treats a folder as in-scope when it claims discovery, world-models, scientific agents, or physical-world AI. A compiler with no such claim stays deferred.
+9. **Pair worlds.** [Mode Pair](../GLOSSARY.md#user-content-ludats-mode-pair) adds a second biography clock and a second agent (an LLM plus its co-LLM partner). Gold is joint. A solo run stays deferred. [CurCuriely](../GLOSSARY.md#user-content-curcuriely) is the first pair method.
 
 ---
 
@@ -75,7 +78,7 @@ Machine cards: [`exams/ludats/`](../exams/ludats/).
 |-------|----------|
 | Hydra sixteen | No. Do not add a LuDaTs evaler to Hydra. |
 | Trajectly exam shelf | No. Trajectly is software / agentic traces. |
-| Dehydrus seven | Yes. Full desk. Command `evalathan dehydrus`. |
+| Dehydrus eight | Yes. Full desk. Command `evalathan dehydrus`. |
 | Domly | No. Domly matches question ids. LuDaTs grades hypothesis formation. |
 | v0.3 laptop scan | Name the sealed file if present. Do not execute the world. Blank is not a zero. |
 
@@ -93,7 +96,7 @@ Machine cards: [`exams/ludats/`](../exams/ludats/).
 ## 6. Not to do
 
 - Do not put LuDaTs under Trajectly.
-- Do not add the seven to Hydra's sixteen.
+- Do not add the eight to Hydra's sixteen.
 - Do not collapse Copernicus, Kepler, and Galileo into one heliocentrism quiz.
 - Do not ship only three worlds.
 - Do not treat a prompt that says "it is 1610" as a truncated universe.
@@ -105,4 +108,4 @@ Machine cards: [`exams/ludats/`](../exams/ludats/).
 
 ## 7. Allowed sentence
 
-LuDaTs is the PRETRUWs methodology of seven historically locked worlds. Dehydrus conducts Copernly, Keplerly, Galileoly, Darwinly, Mendly, Einsteinly, and deferred Newtonly. Each world has a year freeze and a biography freeze. A gold medal is structural. Leakage fails the run. The sixteen Hydra evalers do not grow.
+LuDaTs is the PRETRUWs methodology of eight historically locked worlds. Dehydrus conducts Copernly, Keplerly, Galileoly, Darwinly, Mendly, Einsteinly, CurCuriely, and deferred Newtonly. CurCuriely is the pair room: two scientists, two agents, joint Gold. Each world has a year freeze and a biography freeze. A gold medal is structural. Leakage fails the run. The sixteen Hydra evalers do not grow.
