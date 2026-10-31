@@ -9,7 +9,7 @@
 
 Evalathan grades a product across its life cycle. Evalathan is one evaluation harness; [Hydra](GLOSSARY.md#user-content-hydra) is the conductor - she orchestrates sixteen evaluators ('evalers'); each evaluator reports against a life-cycle gate.
 
-**v0.3** is a local runner. Hydra still conducts sixteen software evalers. [Dehydrus](GLOSSARY.md#user-content-dehydrus) conducts seven PRETRUWs (Prediscovery Truncated Universe and Worlds) evalers. It does not award a state-of-the-art stamp. A deferred cell is not a fail and not a zero. Roadmap: [docs/BUILDLOG.md](docs/BUILDLOG.md).
+**v0.3** is a local runner. Hydra still conducts sixteen software evalers. [Dehydrus](GLOSSARY.md#user-content-dehydrus) conducts seven [PRETRUWs](GLOSSARY.md#user-content-pretruws) (PREdiscovery TRuncated-Universes and Worlds) evalers. It does not award a state-of-the-art stamp. A deferred cell is not a fail and not a zero. Roadmap: [docs/BUILDLOG.md](docs/BUILDLOG.md).
 
 On Windows, clone the program, then run `launch.bat` inside that folder. On a Mac, run `bash launch.sh` in that same folder. Either one opens the Hydra window. If that folder already exists, skip the clone and run the launcher there. On Windows you can also double-click `launch.bat`. The Dehydrus window is `evalathan dehydrus`.
 
@@ -169,8 +169,8 @@ These are public evals that already exist. Hydra does not run them and does not 
 
 **PRDBench.** [PRDBench](GLOSSARY.md#user-content-prdbench) grades an agent that builds from a [PRD](GLOSSARY.md#user-content-prd) (Product Requirements Document). Evalathan does not sit that exam and does not copy its board.
 
-**PRETRUWs / LuDaTs / Dehydrus.** [PRETRUWs](GLOSSARY.md#user-content-pretruws) (Prediscovery Truncated Universe and Worlds) is the v0.3 4IR (Fourth Industrial Revolution) framework. [LuDaTs](GLOSSARY.md#user-content-ludats) (Limited-universe Data Test sets) is its methodology family, not a Trajectly exam. [Dehydrus](GLOSSARY.md#user-content-dehydrus) conducts the seven brands. Spec: [docs/PRETRUWs.md](docs/PRETRUWs.md), [docs/LuDaTs.md](docs/LuDaTs.md). Cards: [exams/ludats/](exams/ludats/). v0.3 names a sealed world file and does not run the simulator. The sixteen stay sixteen.
+**[PRETRUWs](GLOSSARY.md#user-content-pretruws) / [LuDaTs](GLOSSARY.md#user-content-ludats) / [Dehydrus](GLOSSARY.md#user-content-dehydrus).** [PRETRUWs](GLOSSARY.md#user-content-pretruws) (PREdiscovery TRuncated-Universes and Worlds) is the v0.3 4IR (Fourth Industrial Revolution) framework. [LuDaTs](GLOSSARY.md#user-content-ludats) (Limited-universe Data Test sets) is its methodology family, not a Trajectly exam. [Dehydrus](GLOSSARY.md#user-content-dehydrus) conducts the seven brands. Spec: [docs/PRETRUWs.md](docs/PRETRUWs.md), [docs/LuDaTs.md](docs/LuDaTs.md). Cards: [exams/ludats/](exams/ludats/). v0.3 names a sealed world file and does not run the simulator. The sixteen stay sixteen.
 
-**HabTwin.** [HabTwin](GLOSSARY.md#user-content-habtwin) is the v0.4 twin-fidelity exam (person-specific, distributional, leak-gated, lab-only). v0.3 prints a filename line only. Spec: [docs/HabTwin.md](docs/HabTwin.md). It is not a Trajectly exam and not an eighth LuDaTs cell.
+**HabTwin.** [HabTwin](GLOSSARY.md#user-content-habtwin) is the v0.4 twin-fidelity exam (person-specific, distributional, leak-gated, lab-only). v0.3 prints a filename line only. Spec: [docs/HabTwin.md](docs/HabTwin.md). It is not a Trajectly exam and not an eighth [LuDaTs](GLOSSARY.md#user-content-ludats) cell.
 
 **AOSE.** [AOSE](GLOSSARY.md#user-content-aose) (agent-oriented software engineering) is the field, not a score. The public catalog named on that entry includes [WildBench](GLOSSARY.md#user-content-wildbench).

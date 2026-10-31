@@ -1,11 +1,11 @@
-# PRETRUWs - Prediscovery Truncated Universe and Worlds
+# PRETRUWs - PREdiscovery TRuncated-Universes and Worlds
 
 **Date:** 31 Oct 2026
 **Status:** v0.3 framework. Not a Hydra evaler.
 **Conductor:** Dehydrus
 **Product:** Evalathan, [github.com/pedramgoshATgmail/EVALATHAN](https://github.com/pedramgoshATgmail/EVALATHAN)
 
-PRETRUWs (Prediscovery Truncated Universe and Worlds) is the physical-world evaluation framework. It holds the LuDaTs (Limited-universe Data Test sets) methodology family. Hydra still conducts the sixteen software evalers. Dehydrus conducts the seven world evalers. The two rooms do not mix scores.
+PRETRUWs (PREdiscovery TRuncated-Universes and Worlds) is the physical-world evaluation framework. It holds the LuDaTs (Limited-universe Data Test sets) methodology family. Hydra still conducts the sixteen software evalers. Dehydrus conducts the seven world evalers. The two rooms do not mix scores.
 
 ## 1. Hierarchy (these words are not synonyms)
 
@@ -55,4 +55,4 @@ Trajectly reads software / agentic traces (intangibles). LuDaTs locks a physical
 
 ## 5. Allowed sentence
 
-PRETRUWs is the 4IR framework for prediscovery truncated worlds. Dehydrus conducts seven LuDaTs methods. Hydra still conducts sixteen software evalers. A gold medal is structural. A prompt cutoff is not a world. A blank is not a zero.
+PRETRUWs is the 4IR framework for PREdiscovery TRuncated-Universes and Worlds. Dehydrus conducts seven LuDaTs methods. Hydra still conducts sixteen software evalers. A gold medal is structural. A prompt cutoff is not a world. A blank is not a zero.

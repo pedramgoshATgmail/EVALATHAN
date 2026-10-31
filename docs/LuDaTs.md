@@ -2,7 +2,7 @@
 
 **Date:** 31 Oct 2026
 **Status:** PRETRUWs methodology family. Not a Hydra evaler. Not a Trajectly exam.
-**Framework:** [PRETRUWs](PRETRUWs.md) (Prediscovery Truncated Universe and Worlds)
+**Framework:** [PRETRUWs](PRETRUWs.md) (PREdiscovery TRuncated-Universes and Worlds)
 **Conductor:** Dehydrus
 **Product:** Evalathan, [github.com/pedramgoshATgmail/EVALATHAN](https://github.com/pedramgoshATgmail/EVALATHAN)
 

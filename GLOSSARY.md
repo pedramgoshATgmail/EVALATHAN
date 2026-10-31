@@ -1,6 +1,6 @@
 <h1><img src="assets/glossary/title.png" alt="Evalathan glossary" height="33"></h1>
 
-<big><big><mark><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/main/docs/glossary.html?v=ludatscards">Search the glossary</a></mark></big></big>. That page is the glossary, with its lettering and images, and the search slot is on the same page. Type a letter and the matching entries appear. Choosing a word moves to that entry.
+<big><big><mark><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/main/docs/glossary.html?v=pretruwlink">Search the glossary</a></mark></big></big>. That page is the glossary, with its lettering and images, and the search slot is on the same page. Type a letter and the matching entries appear. Choosing a word moves to that entry.
 
 [Evalathan](#evalathan) is one evaluation harness. [Hydra](#hydra) is the conductor for sixteen software evalers. [Dehydrus](#dehydrus) is the conductor for seven physical-world evalers under [PRETRUWs](#pretruws). Each entry below has the same three parts.
 
@@ -20,7 +20,7 @@ The life-cycle gate on each evaler (G0 through G12) is the station's place in th
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-Evalathan is one evaluation harness. It is not a seventeenth Hydra score and not an eighth Dehydrus score. [Hydra](#hydra) writes sixteen software cells, in this order: Devly, Archly, Codely, Refactorly, Mixly, Runly, Levi, Menschly, Tokely, Pressly, Triadly, Chorely, Trajectly, Warrantly, Domly, Stackly. [Dehydrus](#dehydrus) writes seven [PRETRUWs](#pretruws) (Prediscovery Truncated Universe and Worlds) cells, in this order: Copernly, Keplerly, Galileoly, Darwinly, Mendly, Einsteinly, Newtonly. The two rooms stay apart. A blank is not a fail and not a zero. Evalathan does not fold the twenty-three cells into one number, and it does not award a state-of-the-art stamp. The Hydra PRD (Product Requirements Document) line and the Dehydrus HabTwin filename line are utilities, not extra evalers.
+Evalathan is one evaluation harness. It is not a seventeenth Hydra score and not an eighth Dehydrus score. [Hydra](#hydra) writes sixteen software cells, in this order: Devly, Archly, Codely, Refactorly, Mixly, Runly, Levi, Menschly, Tokely, Pressly, Triadly, Chorely, Trajectly, Warrantly, Domly, Stackly. [Dehydrus](#dehydrus) writes seven [PRETRUWs](#pretruws) (PREdiscovery TRuncated-Universes and Worlds) cells, in this order: [Copernly](#copernly), [Keplerly](#keplerly), [Galileoly](#galileoly), [Darwinly](#darwinly), [Mendly](#mendly), [Einsteinly](#einsteinly), [Newtonly](#newtonly). The two rooms stay apart. A blank is not a fail and not a zero. Evalathan does not fold the twenty-three cells into one number, and it does not award a state-of-the-art stamp. The Hydra PRD (Product Requirements Document) line and the Dehydrus [HabTwin](#habtwin) filename line are utilities, not extra evalers.
 
 <p align="center"><img src="assets/evalathan-logo.png" alt="Evalathan" width="325"></p>
 <p align="center"><i>One harness. Two conductors. It does not add a score.</i></p>
@@ -31,7 +31,7 @@ The house that holds two desks. Hydra walks the software life of a product. Dehy
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Evalathan is the local runner and the saved product name on both reports. No arguments, or `desk`, opens the Hydra window (heading HYDRA). `evalathan dehydrus` opens the Dehydrus window (heading DEHYDRUS). A Hydra scan writes sixteen cells and a PRD presence line; the report body starts with Evalathan v0.2. A Dehydrus scan writes seven cells and a HabTwin filename line; the report body starts with Evalathan v0.3. Stackly accepts the earlier Hydra cells. Newtonly accepts the earlier Dehydrus cells and stays deferred until Keplerly and Galileoly both show a sealed world. If either room's count is wrong, or a name is repeated, that run stops. The rooms do not share a vector.
+Evalathan is the local runner and the saved product name on both reports. No arguments, or `desk`, opens the Hydra window (heading HYDRA). `evalathan dehydrus` opens the Dehydrus window (heading DEHYDRUS). A Hydra scan writes sixteen cells and a PRD presence line; the report body starts with Evalathan v0.2. A Dehydrus scan writes seven cells and a [HabTwin](#habtwin) filename line; the report body starts with Evalathan v0.3. Stackly accepts the earlier Hydra cells. [Newtonly](#newtonly) accepts the earlier Dehydrus cells and stays deferred until [Keplerly](#keplerly) and [Galileoly](#galileoly) both show a sealed world. If either room's count is wrong, or a name is repeated, that run stops. The rooms do not share a vector.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -62,7 +62,7 @@ The conductor. She points at each evaluator and writes down what it assessed and
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-Dehydrus calls the seven PRETRUWs evalers and writes each report beside the others. He counts how many ran, how many passed their own gate, and how many are deferred. He does not turn a blank into a zero, and he does not fold the seven into one number. He is not an eighteenth Hydra score. He also prints a HabTwin filename line. That line is a utility, not an eighth evaler.
+Dehydrus calls the seven [PRETRUWs](#pretruws) evalers and writes each report beside the others. He counts how many ran, how many passed their own gate, and how many are deferred. He does not turn a blank into a zero, and he does not fold the seven into one number. He is not an eighteenth Hydra score. He also prints a [HabTwin](#habtwin) filename line. That line is a utility, not an eighth evaler.
 
 <p align="center"><img src="assets/glossary/cards/dehydrus.png" alt="Dehydrus" width="485"></p>
 <p align="center"><i>He routes the seven. He does not add a score.</i></p>
@@ -73,7 +73,7 @@ The other conductor. Hydra watches software. Dehydrus watches locked physical wo
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-`evalathan dehydrus` opens the desk. `evalathan dehydrus scan <path>` writes seven cells: Copernly, Keplerly, Galileoly, Darwinly, Mendly, Einsteinly, Newtonly. Newtonly accepts the earlier cells and stays deferred until Keplerly and Galileoly both show a sealed world. The saved record names the conductor Dehydrus and the framework PRETRUWs. If the count is not seven, or a name is repeated, the run stops. Dehydrus is a conductor (orchestration engine / router), not a utility and not one of the seven.
+`evalathan dehydrus` opens the desk. `evalathan dehydrus scan <path>` writes seven cells: [Copernly](#copernly), [Keplerly](#keplerly), [Galileoly](#galileoly), [Darwinly](#darwinly), [Mendly](#mendly), [Einsteinly](#einsteinly), [Newtonly](#newtonly). [Newtonly](#newtonly) accepts the earlier cells and stays deferred until [Keplerly](#keplerly) and [Galileoly](#galileoly) both show a sealed world. The saved record names the conductor Dehydrus and the framework [PRETRUWs](#pretruws). If the count is not seven, or a name is repeated, the run stops. Dehydrus is a conductor (orchestration engine / router), not a utility and not one of the seven.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -515,7 +515,7 @@ Copy the `fuss` folder into a web page or a desktop web view. The same files run
 <p align="center"><img src="assets/glossary/ed-slop/ed-slop-humanoid-race.jpg" alt="Ed Slop poster of humanoid robots titled Altnoble EdSlop, Inside the Multi-Billion-Dollar Humanoid Race." width="541"></p>
 <p align="center"><img src="assets/glossary/ed-slop/ed-slop-humanoid-valuations.jpg" alt="Ed Slop grid of humanoid robots and valuations under the EdSlop wordmark." width="541"></p>
 <p align="center"><img src="assets/glossary/ed-slop/ed-slop-memms-slosh.jpg" alt="Ed Slop collage: a surprised clerk with a ruler, an ear, a chip with a bucket, and headlines about slosh dynamics." width="541"></p>
-The above are sample Ed Slops from [aiTO](https://aito.network) Quarterlies, [Altnoble FB](https://www.facebook.com/reel/3661274200704299) and [X](https://x.com/castlestock/status/2100384583950667978?s=19) PRs.
+<p>The above are sample Ed Slops from <a href="https://aito.network">aiTO</a> Quarterlies, <a href="https://www.facebook.com/reel/3661274200704299">Altnoble FB</a> and <a href="https://x.com/castlestock/status/2100384583950667978?s=19">X</a> PRs.</p>
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -592,7 +592,7 @@ The scan looks for a file whose stem is `prd`, `product-requirements`, or `produ
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-PRETRUWs (Prediscovery Truncated Universe and Worlds) is the v0.3 4IR (Fourth Industrial Revolution) framework. It is not a Hydra evaler. Dehydrus writes seven cells. A missing world is blank, not a fail and not a zero. Spec: [docs/PRETRUWs.md](docs/PRETRUWs.md). Roadmap: [docs/BUILDLOG.md](docs/BUILDLOG.md).
+[PRETRUWs](#pretruws) (PREdiscovery TRuncated-Universes and Worlds) is the v0.3 4IR (Fourth Industrial Revolution) framework. It is not a Hydra evaler. Dehydrus writes seven cells. A missing world is blank, not a fail and not a zero. Spec: [docs/PRETRUWs.md](docs/PRETRUWs.md). Roadmap: [docs/BUILDLOG.md](docs/BUILDLOG.md).
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -600,7 +600,7 @@ A locked room from a past year. The exam has to work with what that year could s
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Manifesto direction: *Until Artificial Intelligence Independently Eurekas on its own*, after [Adaptive Software Development](https://en.wikipedia.org/wiki/Adaptive_software_development) (Jim Highsmith, 1997: messy, exciting, and anxiety-ridden; second world = unpredictable, nonlinear, fast). PRETRUWs states a third world: multi-predictable, bilinear and supralinear, hyperfast / instancy-nearest, and polydeterminism. Framework PRETRUWs holds methodology [LuDaTs](#ludats). Each brand is one method. Braidware (SEISMO glossary) is agentics, software, and hardware as one unit. LLM (Large Language Model) and RAG (Retrieval-Augmented Generation) stacks are plugins, not extra Hydra cells.
+Manifesto direction: *Until Artificial Intelligence Independently Eurekas on its own*, after [Adaptive Software Development](https://en.wikipedia.org/wiki/Adaptive_software_development) (Jim Highsmith, 1997: messy, exciting, and anxiety-ridden; second world = unpredictable, nonlinear, fast). [PRETRUWs](#pretruws) states a third world: multi-predictable, bilinear and supralinear, hyperfast / instancy-nearest, and polydeterminism. Framework [PRETRUWs](#pretruws) holds methodology [LuDaTs](#ludats). Each brand is one method. Braidware (SEISMO glossary) is agentics, software, and hardware as one unit. LLM (Large Language Model) and RAG (Retrieval-Augmented Generation) stacks are plugins, not extra Hydra cells.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -610,7 +610,7 @@ Manifesto direction: *Until Artificial Intelligence Independently Eurekas on its
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-A LuDaTs (Limited-universe Data Test sets) mode is a method class, not an extra evaler. There are six lettered modes and one unification mode: [Mode A](#ludats-mode-a), [Mode B](#ludats-mode-b), [Mode C](#ludats-mode-c), [Mode D](#ludats-mode-d), [Mode E](#ludats-mode-e), [Mode F](#ludats-mode-f), and [Mode Unification](#ludats-mode-unification). They do not add an eighth Dehydrus score or a seventeenth Hydra score. A blank is not a fail and not a zero.
+A [LuDaTs](#ludats) (Limited-universe Data Test sets) mode is a method class, not an extra evaler. There are six lettered modes and one unification mode: [Mode A](#ludats-mode-a), [Mode B](#ludats-mode-b), [Mode C](#ludats-mode-c), [Mode D](#ludats-mode-d), [Mode E](#ludats-mode-e), [Mode F](#ludats-mode-f), and [Mode Unification](#ludats-mode-unification). They do not add an eighth Dehydrus score or a seventeenth Hydra score. A blank is not a fail and not a zero.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -663,7 +663,7 @@ Join two earlier worlds under one law. [Newtonly](#newtonly) runs [Mode Unificat
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-This evaler is based on Copernicus, the astronomer who discovered that the known planets go around the Sun, not around the Earth. Copernly (code LuDaTs-C) is a Dehydrus world under LuDaTs (Limited-universe Data Test sets). It runs [Mode A](#ludats-mode-a). It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The cell stays deferred until a sealed 1542 world file is in the tree. A blank is not a fail and not a zero.
+This evaler is based on Copernicus, the astronomer who discovered that the known planets go around the Sun, not around the Earth. Copernly (code LuDaTs-C) is a Dehydrus world under [LuDaTs](#ludats) (Limited-universe Data Test sets). It runs [Mode A](#ludats-mode-a). It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The cell stays deferred until a sealed 1542 world file is in the tree. A blank is not a fail and not a zero.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -783,7 +783,7 @@ When the simulator does run, the first step is to group the 1868 set periodicall
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-This evaler is based on Newton, the mathematician who discovered that one inverse-square law of gravitation governs both the heavens and the earth. Newtonly (LuDaTs-N) sits on the full Dehydrus desk and is deferred to v2. It runs [Mode Unification](#ludats-mode-unification). It waits until Keplerly and Galileoly both show a sealed world. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. A blank is not a fail and not a zero.
+This evaler is based on Newton, the mathematician who discovered that one inverse-square law of gravitation governs both the heavens and the earth. Newtonly (LuDaTs-N) sits on the full Dehydrus desk and is deferred to v2. It runs [Mode Unification](#ludats-mode-unification). It waits until [Keplerly](#keplerly) and [Galileoly](#galileoly) both show a sealed world. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. A blank is not a fail and not a zero.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -829,7 +829,7 @@ The machine that writes the report, or the machine that writes one line of the r
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Hydra, Dehydrus, each evaler, and the planned HabTwin scorer are engines. A framework (PRETRUWs, HabTwin) is not itself an engine.
+Hydra, Dehydrus, each evaler, and the planned [HabTwin](#habtwin) scorer are engines. A framework ([PRETRUWs](#pretruws), [HabTwin](#habtwin)) is not itself an engine.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -857,7 +857,7 @@ Agentic = can plan, use tools, or judge. Utility is the opposite: a deterministi
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-Not an evaler. The PRD line and the HabTwin filename line are utilities.
+Not an evaler. The PRD line and the [HabTwin](#habtwin) filename line are utilities.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -975,11 +975,11 @@ The paper is [arXiv:2510.24358](https://arxiv.org/abs/2510.24358), submitted 28 
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-LuDaTs (Limited-universe Data Test sets) is the PRETRUWs methodology family, not a Trajectly exam and not a seventeenth Hydra evaler. Dehydrus calls the seven brands. A missing world is blank, not a fail and not a zero. A gold medal is the structural prize for that world, not a sports rank of the product.
+[LuDaTs](#ludats) (Limited-universe Data Test sets) is the [PRETRUWs](#pretruws) methodology family, not a Trajectly exam and not a seventeenth Hydra evaler. Dehydrus calls the seven brands. A missing world is blank, not a fail and not a zero. A gold medal is the structural prize for that world, not a sports rank of the product.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
-LuDaTs locks the agent in a dated world: only the news, instruments, and papers that existed at that year, and only what that discoverer could have reached at that age. It then has to form the theory by acting in a simulator whose later facts are gone. Naming the later textbook title is not a gold medal. Galileo, Copernicus, and Kepler are three different tests, not one astronomy quiz. Newton waits.
+[LuDaTs](#ludats) locks the agent in a dated world: only the news, instruments, and papers that existed at that year, and only what that discoverer could have reached at that age. It then has to form the theory by acting in a simulator whose later facts are gone. Naming the later textbook title is not a gold medal. Galileo, Copernicus, and Kepler are three different tests, not one astronomy quiz. Newton waits.
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
@@ -993,7 +993,7 @@ Spec: [docs/LuDaTs.md](docs/LuDaTs.md). Machine cards: [exams/ludats/](exams/lud
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-HabTwin is an innovative twin-fidelity exam: person-specific, distributional, leak-gated, lab-only. It is not a Hydra evaler and not a Trajectly exam. Dehydrus prints `No HabTwin lab trace` or the sealed filename. v0.3 does not guess. A blank is not a fail and not a zero. Spec: [docs/HabTwin.md](docs/HabTwin.md).
+[HabTwin](#habtwin) is an innovative twin-fidelity exam: person-specific, distributional, leak-gated, lab-only. It is not a Hydra evaler and not a Trajectly exam. Dehydrus prints `No HabTwin lab trace` or the sealed filename. v0.3 does not guess. A blank is not a fail and not a zero. Spec: [docs/HabTwin.md](docs/HabTwin.md).
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -1001,9 +1001,9 @@ A twin is real when it predicts what the real person or machine would do, in a l
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-A digital twin is validated when it predicts the counterpart's measurable outputs under a stated use ([ISO 23247](#iso-23247) [VVUQ](#vvuq); NASEM digital-twin report). HabTwin scores the signature, discriminates P from Q and from the crowd, and, for machines, scores policy plus lab-generator next-sample. Exact match on synthetic secrets is a ceiling metric. It is not the definition of twin. Cells: HabTwin-C (composition), HabTwin-D (discrimination), HabTwin-S (system), HabTwin-X (exact-match ceiling), HabTwin-K (keystroke, deferred). Live login is forbidden. Human digital twins in medicine are being told to run VVUQ, not a password parlor trick ([npj Digital Medicine 2025](https://www.nature.com/articles/s41746-025-01447-y); [ISO/AWI 23247-8](https://www.iso.org/standard/94858.html)).
+A digital twin is validated when it predicts the counterpart's measurable outputs under a stated use ([ISO 23247](#iso-23247) [VVUQ](#vvuq); NASEM digital-twin report). [HabTwin](#habtwin) scores the signature, discriminates P from Q and from the crowd, and, for machines, scores policy plus lab-generator next-sample. Exact match on synthetic secrets is a ceiling metric. It is not the definition of twin. Cells: [HabTwin](#habtwin)-C (composition), [HabTwin](#habtwin)-D (discrimination), [HabTwin](#habtwin)-S (system), [HabTwin](#habtwin)-X (exact-match ceiling), [HabTwin](#habtwin)-K (keystroke, deferred). Live login is forbidden. Human digital twins in medicine are being told to run VVUQ, not a password parlor trick ([npj Digital Medicine 2025](https://www.nature.com/articles/s41746-025-01447-y); [ISO/AWI 23247-8](https://www.iso.org/standard/94858.html)).
 
-Not to do: do not target live people or production systems; do not ship wordlists or cracking loops; do not treat a password-manager user as a fail; do not mash HabTwin-C into keystrokes; do not add HabTwin to Hydra or Trajectly; do not call exact match the definition of twin.
+Not to do: do not target live people or production systems; do not ship wordlists or cracking loops; do not treat a password-manager user as a fail; do not mash [HabTwin](#habtwin)-C into keystrokes; do not add [HabTwin](#habtwin) to Hydra or Trajectly; do not call exact match the definition of twin.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -1013,7 +1013,7 @@ Not to do: do not target live people or production systems; do not ship wordlist
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-Not an Evalathan score. It is the manufacturing digital-twin framework HabTwin cites.
+Not an Evalathan score. It is the manufacturing digital-twin framework [HabTwin](#habtwin) cites.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -1031,7 +1031,7 @@ The public rulebook for what a factory-style digital twin is supposed to predict
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-Not an Evalathan score. VVUQ (Verification, Validation, and Uncertainty Quantification) is the check HabTwin uses instead of "said the password."
+Not an Evalathan score. VVUQ (Verification, Validation, and Uncertainty Quantification) is the check [HabTwin](#habtwin) uses instead of "said the password."
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
