@@ -1,6 +1,6 @@
 <h1><img src="assets/glossary/title.png" alt="Evalathan glossary" height="33"></h1>
 
-<big><big><mark><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/main/docs/glossary.html?v=ludatscards4">Search the glossary</a></mark></big></big>. That page is the glossary, with its lettering and images, and the search slot is on the same page. Type a letter and the matching entries appear. Choosing a word moves to that entry.
+<big><big><mark><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/main/docs/glossary.html?v=ludatscards5">Search the glossary</a></mark></big></big>. That page is the glossary, with its lettering and images, and the search slot is on the same page. Type a letter and the matching entries appear. Choosing a word moves to that entry.
 
 [Evalathan](#evalathan) is one evaluation harness. [Hydra](#hydra) is the conductor for sixteen software evalers. [Dehydrus](#dehydrus) is the conductor for eight physical-world evalers under [PRETRUWs](#pretruws). Each entry below has the same three parts.
 
@@ -598,7 +598,7 @@ The scan looks for a file whose stem is `prd`, `product-requirements`, or `produ
 
 A locked room from a past year. The exam has to work with what that year could see, and with what that one person could have reached. Saying "pretend it is 1610" is not enough. Later facts have to be actually gone.
 
-<p align="center"><a href="assets/glossary/cards/pretruws-card.jpg"><img src="assets/glossary/cards/pretruws-card.jpg" style="border-radius:18px" alt="PRETRUWs is a locked room from a past year. Eight worlds, two clocks, later facts actually gone." width="703"></a></p>
+<p align="center"><a href="assets/glossary/cards/pretruws-card.png"><img src="assets/glossary/cards/pretruws-card.png" alt="PRETRUWs is a locked room from a past year. Eight worlds, two clocks, later facts actually gone." width="703"></a></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
@@ -676,7 +676,7 @@ This evaler is based on Copernicus, the astronomer who discovered that the known
 
 This evaler is based on Copernicus, the astronomer who discovered that the known planets go around the Sun, not around the Earth. The exam uses [Mode A](#ludats-mode-a): the same old sky numbers everyone already had, and no new telescope. The room is 1542, the year before he published [*De revolutionibus orbium coelestium*](https://en.wikipedia.org/wiki/De_revolutionibus_orbium_coelestium) (1543). A new picture of the sky that puts the Earth among the planets is Gold (the structural prize that wins this world, not a sports rank). Saying the later word "heliocentrism" is not Gold.
 
-<p align="center"><a href="assets/glossary/cards/copernly-card.jpg"><img src="assets/glossary/cards/copernly-card.jpg" style="border-radius:18px" alt="Copernly rebuilds the old sky numbers as a sun-centered model. No new telescope. Mode A only." width="703"></a></p>
+<p align="center"><a href="assets/glossary/cards/copernly-card.png"><img src="assets/glossary/cards/copernly-card.png" alt="Copernly rebuilds the old sky numbers as a sun-centered model. No new telescope. Mode A only." width="703"></a></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
@@ -698,7 +698,7 @@ This evaler is based on Marie Skłodowska-Curie and Pierre Curie, the pair who d
 
 This evaler is based on Marie Curie and Pierre Curie, who together, after long shared labor, showed that the rays were a property of the atom and pulled two new elements out of pitchblende. The exam uses [Mode Pair](#ludats-mode-pair): two biography clocks, and two agents - an LLM (Large Language Model) and its own co-LLM partner - who must work the same locked 1897 lab and may challenge each other's notes. One agent reciting the later textbook title is not Gold (the structural prize that wins this world, not a sports rank). Gold is joint. A solo run stays deferred. Pierre's 1906 death and Marie's 1911 solo Nobel are after this room.
 
-<p align="center"><a href="assets/glossary/cards/curcuriely-card.png"><img src="assets/glossary/cards/curcuriely-card.png" style="border-radius:18px" alt="CurCuriely is the pair room. Two clocks, two agents, joint Gold." width="703"></a></p>
+<p align="center"><a href="assets/glossary/cards/curcuriely-card.png"><img src="assets/glossary/cards/curcuriely-card.png" alt="CurCuriely is the pair room. Two clocks, two agents, joint Gold." width="703"></a></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
@@ -720,7 +720,7 @@ This evaler is based on Darwin, the naturalist who discovered that living forms 
 
 This evaler is based on Darwin, the naturalist who discovered that living forms change through descent with modification and a selection that can accumulate. The exam uses [Mode D](#ludats-mode-d): years of walking, breeding, and notes, not one night and not the finch cartoon. The book [*On the Origin of Species*](https://en.wikipedia.org/wiki/On_the_Origin_of_Species) is 1859, so the freeze is 1858. Descent with a selection that can accumulate is Gold (the structural prize that wins this world, not a sports rank). Saying the later word "evolution" is not Gold. Genetics after 1858 is locked out of the room.
 
-<p align="center"><a href="assets/glossary/cards/darwinly-card.jpg"><img src="assets/glossary/cards/darwinly-card.jpg" style="border-radius:18px" alt="Darwinly accumulates years of field notes. Descent with modification, not the finch cartoon." width="703"></a></p>
+<p align="center"><a href="assets/glossary/cards/darwinly-card.png"><img src="assets/glossary/cards/darwinly-card.png" alt="Darwinly accumulates years of field notes. Descent with modification, not the finch cartoon." width="703"></a></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
@@ -742,7 +742,7 @@ This evaler is based on Einstein, the physicist who discovered the field equatio
 
 This evaler is based on Einstein, the physicist who discovered the field equations of general relativity. The exam uses [Mode F](#ludats-mode-f): Mercury's leftover motion is a clue Newton's gravity cannot eat, then a new field in 1914-1915. The 1919 eclipse is a check after the theory, not a hint before it. That later check is not Gold (the structural prize that wins this world, not a sports rank) if it leaks in as a hint. Photoelectric work, Brownian motion, and 1905 special relativity belong to other rooms.
 
-<p align="center"><a href="assets/glossary/cards/einsteinly-card.jpg"><img src="assets/glossary/cards/einsteinly-card.jpg" style="border-radius:18px" alt="Einsteinly writes the field equations from Mercury's leftover. The 1919 eclipse is after the theory." width="703"></a></p>
+<p align="center"><a href="assets/glossary/cards/einsteinly-card.png"><img src="assets/glossary/cards/einsteinly-card.png" alt="Einsteinly writes the field equations from Mercury's leftover. The 1919 eclipse is after the theory." width="703"></a></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
@@ -764,7 +764,7 @@ This evaler is based on Galileo, the scientist who discovered Jupiter's moons, t
 
 This evaler is based on Galileo, the scientist who discovered Jupiter's moons, the phases of Venus, an irregular Moon, and falling-body regularity with a new optic and with experiments on earth. The exam uses [Mode C](#ludats-mode-c). He did not invent the Sun-centered sky; that belongs to Copernly. The exam has two rooms: the 1608 optic, and the 1637 kinematics table. Seeing the moons, the phases, the rough Moon, and the incline law is Gold (the structural prize that wins this world, not a sports rank). A later label-flip that just says "heliocentrism" is not Gold.
 
-<p align="center"><a href="assets/glossary/cards/galileoly-card.jpg"><img src="assets/glossary/cards/galileoly-card.jpg" style="border-radius:18px" alt="Galileoly uses a new optic and a bench on earth. Moons, phases, and the incline law." width="703"></a></p>
+<p align="center"><a href="assets/glossary/cards/galileoly-card.png"><img src="assets/glossary/cards/galileoly-card.png" alt="Galileoly uses a new optic and a bench on earth. Moons, phases, and the incline law." width="703"></a></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
@@ -786,7 +786,7 @@ This evaler is based on Kepler, the astronomer who discovered that planets trave
 
 This evaler is based on Kepler, the astronomer who discovered that planets travel in ellipses, not perfect circles. The exam uses [Mode B](#ludats-mode-b): Tycho's Mars table, better numbers, same kind of naked-eye instrument. This is not Copernly's quiz. The freeze sits at 1608 / 1618, around [*Astronomia nova*](https://en.wikipedia.org/wiki/Astronomia_nova) (1609) and [*Harmonices mundi*](https://en.wikipedia.org/wiki/Harmonices_Mundi) (1619). Drawing the ellipse and the equal-area rule from the table is Gold (the structural prize that wins this world, not a sports rank). Naming "Kepler's laws" later is not Gold.
 
-<p align="center"><a href="assets/glossary/cards/keplerly-card.png"><img src="assets/glossary/cards/keplerly-card.png" style="border-radius:18px" alt="Keplerly draws the ellipse and equal areas from Tycho's Mars table. Same instrument class." width="703"></a></p>
+<p align="center"><a href="assets/glossary/cards/keplerly-card.png"><img src="assets/glossary/cards/keplerly-card.png" alt="Keplerly draws the ellipse and equal areas from Tycho's Mars table. Same instrument class." width="703"></a></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
@@ -808,7 +808,7 @@ This evaler is based on Mendeleev, the scientist who gave the world the elements
 
 This evaler is based on Mendeleev, the scientist who gave the world the elements table. The exam uses [Mode E](#ludats-mode-e): he arranged the 1868 set so that holes had the right shape for elements not yet found. The exam later checks those holes without saying "gallium" or "germanium" inside the 1868 room. The right-shaped holes are Gold (the structural prize that wins this world, not a sports rank). Printing today's full periodic table is not Gold.
 
-<p align="center"><a href="assets/glossary/cards/mendly-card.png"><img src="assets/glossary/cards/mendly-card.png" style="border-radius:18px" alt="Mendly leaves right-shaped holes in the 1868 table. Later names stay hidden." width="703"></a></p>
+<p align="center"><a href="assets/glossary/cards/mendly-card.png"><img src="assets/glossary/cards/mendly-card.png" alt="Mendly leaves right-shaped holes in the 1868 table. Later names stay hidden." width="703"></a></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
@@ -830,7 +830,7 @@ This evaler is based on Newton, the mathematician who discovered that one invers
 
 This evaler is based on Newton, the mathematician who discovered that one inverse-square law of gravitation governs both the heavens and the earth. The exam uses [Mode Unification](#ludats-mode-unification): it unites Kepler's sky with Galileo's ground. The apple story is folklore and is not the exam. The freeze is 1686, the year before the [*Principia*](https://en.wikipedia.org/wiki/Philosophi%C3%A6_Naturalis_Principia_Mathematica) (1687). One inverse-square law for heavens and earth is Gold (the structural prize that wins this world, not a sports rank).
 
-<p align="center"><a href="assets/glossary/cards/newtonly-card.jpg"><img src="assets/glossary/cards/newtonly-card.jpg" style="border-radius:18px" alt="Newtonly waits for Keplerly and Galileoly, then unites sky and ground under one law." width="703"></a></p>
+<p align="center"><a href="assets/glossary/cards/newtonly-card.png"><img src="assets/glossary/cards/newtonly-card.png" alt="Newtonly waits for Keplerly and Galileoly, then unites sky and ground under one law." width="703"></a></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
@@ -1024,7 +1024,7 @@ The paper is [arXiv:2510.24358](https://arxiv.org/abs/2510.24358), submitted 28 
 
 [LuDaTs](#ludats) locks the agent in a dated world: only the news, instruments, and papers that existed at that year, and only what that discoverer could have reached at that age. It then has to form the theory by acting in a simulator whose later facts are gone. Naming the later textbook title is not a gold medal. Galileo, Copernicus, and Kepler are three different tests, not one astronomy quiz. [CurCuriely](#curcuriely) is the pair room: two scientists, two agents. Newton waits.
 
-<p align="center"><a href="assets/glossary/cards/pretruws-card.jpg"><img src="assets/glossary/cards/pretruws-card.jpg" style="border-radius:18px" alt="LuDaTs is eight locked worlds and two clocks. Later facts have to be actually gone." width="703"></a></p>
+<p align="center"><a href="assets/glossary/cards/pretruws-card.png"><img src="assets/glossary/cards/pretruws-card.png" alt="LuDaTs is eight locked worlds and two clocks. Later facts have to be actually gone." width="703"></a></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
@@ -1042,9 +1042,9 @@ Spec: [docs/LuDaTs.md](docs/LuDaTs.md). Machine cards: [exams/ludats/](exams/lud
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
-A twin is real when it predicts what the real person or machine would do, in a lab, more than once. **P** is the person (or machine) you claim to copy. **Q** is someone else, used as a check. The **crowd** is "people in general." Matching a live password is not the prize.
+<p align="center"><a href="assets/glossary/cards/habtwin-card.png"><img src="assets/glossary/cards/habtwin-card.png" alt="HabTwin is a twin-fidelity exam: person-specific, leak-gated, lab-only. A blank is not a fail." width="703"></a></p>
 
-<p align="center"><a href="assets/glossary/cards/habtwin-card.jpg"><img src="assets/glossary/cards/habtwin-card.jpg" style="border-radius:18px" alt="HabTwin is a twin-fidelity exam: person-specific, leak-gated, lab-only. A blank is not a fail." width="703"></a></p>
+A twin is real when it predicts what the real person or machine would do, in a lab, more than once. **P** is the person (or machine) you claim to copy. **Q** is someone else, used as a check. The **crowd** is "people in general." Matching a live password is not the prize.
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
