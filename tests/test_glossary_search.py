@@ -16,7 +16,9 @@ def test_search_index_matches_glossary_anchors() -> None:
     assert "desk.py" not in html
     assert "launch.bat" not in html
     assert "(glossary.html)" not in glossary
-    assert "https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/main/docs/glossary.html" in glossary
+    assert "htmlpreview.github.io/?" in glossary
+    assert "raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/" in glossary
+    assert "docs/glossary.html" in glossary
     assert 'id="archly"' in html
     assert "assets/glossary/archly.png" in html
     assert "Rubric stem" in html

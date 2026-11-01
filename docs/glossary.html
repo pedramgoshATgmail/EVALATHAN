@@ -32,9 +32,22 @@
       font-weight: 700;
       white-space: nowrap;
     }
-    .search { position: relative; flex: 1; }
+    .search { position: relative; flex: 1; display: flex; align-items: center; gap: 8px; }
+    #glossary-back {
+      flex: 0 0 auto;
+      font: 16px Calibri, "Segoe UI", sans-serif;
+      padding: 8px 12px;
+      border: 1px solid #c5d0dc;
+      background: #fff;
+      color: #1f2328;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    #glossary-back:focus { outline: 2px solid #b22335; }
     #glossary-search {
+      flex: 1;
       width: 100%;
+      min-width: 0;
       font: 16px Calibri, "Segoe UI", sans-serif;
       padding: 8px 10px;
       border: 1px solid #c5d0dc;
@@ -118,6 +131,7 @@
   <header class="bar">
     <h1>Evalathan glossary</h1>
     <div class="search">
+      <button type="button" id="glossary-back" title="Back - return to the previous page">Back</button>
       <label for="glossary-search" class="visually-hidden" style="position:absolute;left:-9999px;">Search glossary</label>
       <input id="glossary-search" type="text" autocomplete="off" spellcheck="false" placeholder="Search glossary" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="glossary-search-list">
       <ul id="glossary-search-list" role="listbox" hidden></ul>
@@ -1514,6 +1528,28 @@
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && box.classList.contains("is-open")) closeXl();
     });
+    }
+  </script>
+  <script>
+    if (!window.__evalathanGlossaryBack) {
+    window.__evalathanGlossaryBack = true;
+    const back = document.getElementById("glossary-back");
+    if (back) {
+      back.addEventListener("click", function () {
+        const box = document.getElementById("ludats-xl");
+        if (box && box.classList.contains("is-open")) {
+          box.classList.remove("is-open");
+          const pic = box.querySelector("img");
+          if (pic) pic.removeAttribute("src");
+          return;
+        }
+        if (window.history.length > 1) {
+          window.history.back();
+          return;
+        }
+        window.location.href = "https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/GLOSSARY.md";
+      });
+    }
     }
   </script>
 
