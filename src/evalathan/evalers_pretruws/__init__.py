@@ -1,4 +1,4 @@
-"""Eight PRETRUWs world evalers. Dehydrus is not in this list."""
+"""Eight LuDaTs evalers under PRETRUWs. Dehydrus is not in this list."""
 
 from evalathan.evalers_pretruws import family
 

@@ -1,4 +1,4 @@
-"""Conductor for the eight PRETRUWs world evalers. A blank is never a zero."""
+"""Conductor for the eight LuDaTs evalers under PRETRUWs. A blank is never a zero."""
 
 from __future__ import annotations
 

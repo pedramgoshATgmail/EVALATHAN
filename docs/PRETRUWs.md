@@ -5,7 +5,7 @@
 **Conductor:** Dehydrus
 **Product:** Evalathan, [github.com/pedramgoshATgmail/EVALATHAN](https://github.com/pedramgoshATgmail/EVALATHAN)
 
-PRETRUWs (PREdiscovery TRuncated-Universes and Worlds) is the physical-world evaluation framework. It holds the LuDaTs (Limited-universe Data Test sets) methodology family. Hydra still conducts the sixteen software evalers. Dehydrus conducts the eight world evalers. The two rooms do not mix scores.
+PRETRUWs (PREdiscovery TRuncated-Universes and Worlds) is the physical-world evaluation framework. LuDaTs (Limited-universe Data Test sets) is a subset of PRETRUWs: the methodology family inside that framework. Hydra still conducts the sixteen software evalers. Dehydrus conducts the eight LuDaTs evalers. Do not say Dehydrus conducts eight PRETRUWs evalers. The two rooms do not mix scores.
 
 ## 1. Hierarchy (these words are not synonyms)
 
@@ -16,7 +16,7 @@ From the house vocabulary (paradigm, framework, method, methodology, mandate, pr
 | Manifesto | *Until Artificial Intelligence Independently Eurekas on its own* - the belief that a physical-world AI must form a result inside a locked world, not recite a later textbook. |
 | Paradigm | 4IR (Fourth Industrial Revolution) physical-world evals that stay correlatable with LLM (Large Language Model) / agentic plugins. |
 | Framework | PRETRUWs. Reusable structure: world clock T, biography clock A, sealed simulator, gold medal, leakage fail. |
-| Methodology | LuDaTs. The organized approach for historically locked discovery worlds. |
+| Methodology | LuDaTs. A subset of PRETRUWs. The organized approach for historically locked discovery worlds. |
 | Method | One brand: Copernly, Keplerly, Galileoly, Darwinly, Mendly, Einsteinly, CurCuriely, Newtonly. Each has a mode (A-F, pair, or unification). |
 | Methodstack | That brand's instruments, interaction, hidden labels, and structural gold. |
 | Protocol | The nine rules in [LuDaTs.md](LuDaTs.md). |
@@ -55,4 +55,4 @@ Trajectly reads software / agentic traces (intangibles). LuDaTs locks a physical
 
 ## 5. Allowed sentence
 
-PRETRUWs is the 4IR framework for PREdiscovery TRuncated-Universes and Worlds. Dehydrus conducts eight LuDaTs methods. Hydra still conducts sixteen software evalers. A gold medal is structural. A prompt cutoff is not a world. A blank is not a zero.
+PRETRUWs is the 4IR framework for PREdiscovery TRuncated-Universes and Worlds. LuDaTs is a subset of PRETRUWs. Dehydrus conducts eight LuDaTs evalers. Hydra still conducts sixteen software evalers. A gold medal is structural. A prompt cutoff is not a world. A blank is not a zero.
