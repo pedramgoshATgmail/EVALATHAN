@@ -626,7 +626,7 @@ The scan looks for a file whose stem is `prd`, `product-requirements`, or `produ
 
 A locked room from a past year. The exam has to work with what that year could see, and with what that one person could have reached. Saying "pretend it is 1610" is not enough. Later facts have to be actually gone.
 
-<p align="center"><a href="assets/glossary/cards/pretruws-card-20261101r.png"><img src="assets/glossary/cards/pretruws-card-20261101r.png" alt="PRETRUWs is a locked room from a past year. Eight worlds, two clocks, later facts actually gone." width="703"></a></p>
+<p align="center"><a href="assets/glossary/cards/pretruws-card-20261101s-xl.png"><img src="assets/glossary/cards/pretruws-card-20261101s.png" alt="PRETRUWs is a locked room from a past year. Eight worlds, two clocks, later facts actually gone." width="703"></a></p>
 <p align="center"><i>If AI was locked in a past century or age, with only what that century could see and know, would it still form new discoveries the way humans have - and even create or recite the later textbooks?</i></p>
 <p align="center"><i>Saying "pretend it is 1610" is not a world or universe. The later facts and eureka discoveries have to actually not exist at all. The 1610 LLM would only be trained on all the data until 1610 - and nothing more.</i></p>
 
