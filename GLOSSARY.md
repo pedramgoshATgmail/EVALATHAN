@@ -1078,6 +1078,11 @@ Spec: [docs/LuDaTs.md](docs/LuDaTs.md). Machine cards: [exams/ludats/](exams/lud
 
 [HabTwin](#habtwin) is a later exam for a digital twin: a stand-in that is supposed to act like one real person or one real machine. It is not one of Hydra's sixteen software evalers, and it is not a [Trajectly](#trajectly) exam. In v0.3 Dehydrus only looks for a lab file. If none is there, it prints `No HabTwin lab trace`. It does not invent a score. A blank is not a fail and not a zero. Spec: [docs/HabTwin.md](docs/HabTwin.md).
 
+<p align="center"><a href="assets/glossary/cards/habtwin-card.png"><img src="assets/glossary/cards/habtwin-card.png" alt="HabTwin asks whether a stand-in predicts the real person or machine, in a lab, more than once." width="703"></a></p>
+<p align="center"><i>If AI made a copy of me, would that copy still sound like me tomorrow, or only like "people in general"?</i></p>
+<p align="center"><i>Copy me once and you have a sketch. Copy me again and still be right - that is a twin.</i></p>
+<p align="center"><i>But guessing my passwords correctly is not the prize; the prize is encoding the habits and idiosyncracies that went into secretly making my passwords.</i></p>
+
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
 A digital twin is a stand-in. HabTwin asks whether that stand-in keeps predicting what the real person or the real machine would do, in a safe lab, more than once. One lucky guess is not enough.
@@ -1085,11 +1090,6 @@ A digital twin is a stand-in. HabTwin asks whether that stand-in keeps predictin
 **P** is the person or machine you claim to have copied. **Q** is someone else, used as a check, so the stand-in cannot just sound generic. The **crowd** is "people in general," not P. A real twin should fit P, and should not fit Q or the crowd as well as it fits P.
 
 Guessing a live password is not the prize. A mind is not a short login string. HabTwin looks for a stable habit - how someone builds a secret - not the live account itself. v0.3 does not run this exam yet. It only names a sealed lab file if one is in the folder.
-
-<p align="center"><a href="assets/glossary/cards/habtwin-card.png"><img src="assets/glossary/cards/habtwin-card.png" alt="HabTwin asks whether a stand-in predicts the real person or machine, in a lab, more than once." width="703"></a></p>
-<p align="center"><i>If AI made a copy of me, would that copy still sound like me tomorrow, or only like "people in general"?</i></p>
-<p align="center"><i>Copy me once and you have a sketch. Copy me again and still be right - that is a twin.</i></p>
-<p align="center"><i>But guessing my passwords correctly is not the prize; the prize is encoding the habits and idiosyncracies that went into secretly making my passwords.</i></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
