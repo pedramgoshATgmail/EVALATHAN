@@ -129,12 +129,12 @@ Those eight cells are not fully wired into the install you get when you double-c
 
 | Evaler | What it does |
 | :--- | :--- |
-| [Copernly](GLOSSARY.md#user-content-copernly) | Rebuilds already-available 1542 sky numbers as a sun-centered picture. No new telescope. [Mode A](GLOSSARY.md#user-content-ludats-mode-a). |
+| [Copernly](GLOSSARY.md#user-content-copernly) | Rebuilds already-available 1542 (A.D.) sky/known universe numbers as a sun-centered picture. No new telescope. [Mode A](GLOSSARY.md#user-content-ludats-mode-a). |
 | [Keplerly](GLOSSARY.md#user-content-keplerly) | Draws the ellipse and equal-area rule from Tycho's Mars table. Same instrument class, not a new optic. [Mode B](GLOSSARY.md#user-content-ludats-mode-b). |
-| [Galileoly](GLOSSARY.md#user-content-galileoly) | Required physical-world flagship. New optic plus a bench on earth: moons, phases, a rough Moon, and the incline law. [Mode C](GLOSSARY.md#user-content-ludats-mode-c). |
+| [Galileoly](GLOSSARY.md#user-content-galileoly) | Required physical-world flagship (pre 1609 A.D). New optic plus a bench on earth: moons, phases, a rough Moon, and the incline law. [Mode C](GLOSSARY.md#user-content-ludats-mode-c). |
 | [Darwinly](GLOSSARY.md#user-content-darwinly) | Required long-horizon field world. Years of walking, breeding, and notes. Descent with modification, not the finch cartoon. [Mode D](GLOSSARY.md#user-content-ludats-mode-d). |
-| [Mendly](GLOSSARY.md#user-content-mendly) | Arranges the 1868 set so the holes have the right shape. Later names stay hidden. [Mode E](GLOSSARY.md#user-content-ludats-mode-e). |
-| [Einsteinly](GLOSSARY.md#user-content-einsteinly) | Writes the field equations from Mercury's leftover. General Relativity only. 1905 is another room. [Mode F](GLOSSARY.md#user-content-ludats-mode-f). |
+| [Mendly](GLOSSARY.md#user-content-mendly) | Arranges the 1868 A.D. set so the holes have the right shape. Later names stay hidden. [Mode E](GLOSSARY.md#user-content-ludats-mode-e). |
+| [Einsteinly](GLOSSARY.md#user-content-einsteinly) | Writes the field equations from Mercury's leftover. General Relativity only. 1905 A.D. is another room. [Mode F](GLOSSARY.md#user-content-ludats-mode-f). |
 | [CurCuriely](GLOSSARY.md#user-content-curcuriely) | Marie Curie and Pierre Curie. Two biography clocks and two agents. Gold is joint. A solo run stays deferred. [Mode Pair](GLOSSARY.md#user-content-ludats-mode-pair). |
 | [Newtonly](GLOSSARY.md#user-content-newtonly) | Unites Kepler's sky with Galileo's ground under one inverse-square law. The apple story is not the method. [Mode Unification](GLOSSARY.md#user-content-ludats-mode-unification). Deferred to v2 until Keplerly and Galileoly are both sealed. |
 
