@@ -78,6 +78,7 @@
     mark { background: #ffe08a; }
     [hidden] { display: none; }
     .sheet { width: min(980px, calc(100% - 32px)); margin: 0 auto; padding: 8px 0 64px; }
+    .sheet p[align="center"] a img { cursor: zoom-in; }
     .sheet img { max-width: 100%; height: auto; }
     .sheet [id], .sheet h2 { scroll-margin-top: 72px; }
     .sheet table { border-collapse: collapse; display: block; overflow-x: auto; }
@@ -157,7 +158,7 @@
 <h3><img src="../assets/glossary/score-constitution.png" alt="Score Constitution" height="17" width="176"></h3>
 
 <p>Scans root and documentation directories for dedicated architectural manifests (e.g., ARCHITECTURE.md, /docs/architecture, C4 models, or ADR logs). Returns Pass if an architectural document exists, Fail if absent, and Deferred if docs are unparsable. It does not grade whether the architecture itself is optimal.</p>
-<p align="center"><img src="../assets/glossary/cards/archly-revised.jpg" alt="The plans exist. That is all I require." width="541" height="444"></p>
+<p align="center"><a href="../assets/glossary/cards/archly-revised.jpg"><img src="../assets/glossary/cards/archly-revised.jpg" alt="The plans exist. That is all I require." width="541" height="444"></a></p>
 
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 
@@ -174,7 +175,7 @@
 <h3><img src="../assets/glossary/score-constitution.png" alt="Score Constitution" height="17" width="176"></h3>
 
 <p>Parses agent orchestrator configurations (e.g., YAML/JSON agent rosters) to tally registered agent identities, designated system prompts, and tool authorizations. Identifies unassigned workers or overlapping, ambiguous responsibilities.</p>
-<p align="center"><img src="../assets/glossary/cards/chorely-revised.jpg" alt="Mapping tasks. AI agents. Pass, fail, and deferred." width="541" height="396"></p>
+<p align="center"><a href="../assets/glossary/cards/chorely-revised.jpg"><img src="../assets/glossary/cards/chorely-revised.jpg" alt="Mapping tasks. AI agents. Pass, fail, and deferred." width="541" height="396"></a></p>
 
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 
@@ -190,7 +191,7 @@
 <h3><img src="../assets/glossary/score-constitution.png" alt="Score Constitution" height="17" width="176"></h3>
 
 <p>Parses supported Abstract Syntax Trees (ASTs) to compute cyclomatic and decision complexity points (counting if, elif, switch/match, for, while branches). Files in unsupported languages remain Blank/Deferred (which does not count as a pass or zero).</p>
-<p align="center"><img src="../assets/glossary/cards/codely-revised.jpg" alt="Codely counts the forks and turns in the code." width="541" height="404"></p>
+<p align="center"><a href="../assets/glossary/cards/codely-revised.jpg"><img src="../assets/glossary/cards/codely-revised.jpg" alt="Codely counts the forks and turns in the code." width="541" height="404"></a></p>
 
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 
@@ -206,7 +207,7 @@
 <h3><img src="../assets/glossary/score-constitution.png" alt="Score Constitution" height="17" width="176"></h3>
 
 <p>Scans the repository's .git tree. Counts total historical commits, change intervals, and branch merges. Requires a valid local git history; repositories without git metadata return a Deferred status. This is an objective measurement of repository activity, not an assessment of developer ability or code quality.</p>
-<p align="center"><img src="../assets/glossary/cards/devly-card.jpg" alt="Devly counts commits, branches and rhythm, and does not judge the developer." width="541" height="406"></p>
+<p align="center"><a href="../assets/glossary/cards/devly-card.jpg"><img src="../assets/glossary/cards/devly-card.jpg" alt="Devly counts commits, branches and rhythm, and does not judge the developer." width="541" height="406"></a></p>
 
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 
@@ -222,7 +223,7 @@
 <h3><img src="../assets/glossary/score-constitution.png" alt="Score Constitution" height="17" width="176"></h3>
 
 <p>Evaluates project-supplied question-and-answer manifests. Computes the coverage ratio and exact match/similarity score against a validated golden dataset. Distinct from generic unit tests - focuses on domain/subject-matter accuracy.</p>
-<p align="center"><img src="../assets/glossary/cards/domly-revised.jpg" alt="Domly quizzes the app on its subject and grades it against an answer key." width="541" height="439"></p>
+<p align="center"><a href="../assets/glossary/cards/domly-revised.jpg"><img src="../assets/glossary/cards/domly-revised.jpg" alt="Domly quizzes the app on its subject and grades it against an answer key." width="541" height="439"></a></p>
 
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 
@@ -238,7 +239,7 @@
 <h3><img src="../assets/glossary/score-constitution.png" alt="Score Constitution" height="17" width="176"></h3>
 
 <p>Scans for structured usability audit records, heuristic evaluations, or accessibility scorecards (e.g., WCAG compliance logs, UX benchmark JSONs). Marketing sentences or vague promises of "great UX" in a README yield no score.</p>
-<p align="center"><img src="../assets/glossary/cards/levi-revised.jpg" alt="Real usability evidence, not a great UX promise." width="541" height="464"></p>
+<p align="center"><a href="../assets/glossary/cards/levi-revised.jpg"><img src="../assets/glossary/cards/levi-revised.jpg" alt="Real usability evidence, not a great UX promise." width="541" height="464"></a></p>
 
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 
@@ -254,7 +255,7 @@
 <h3><img src="../assets/glossary/score-constitution.png" alt="Score Constitution" height="17" width="176"></h3>
 
 <p>Inspects client-facing components for actual code-level pacing controls, break intervals, or integrated session switches (such as the repository's fuss/ module). General wellness advice written in markdown does not count as an implementation.</p>
-<p align="center"><img src="../assets/glossary/cards/menschly-revised.jpg" alt="Menschly wants real break-timer code, not wellness advice in a README." width="541" height="443"></p>
+<p align="center"><a href="../assets/glossary/cards/menschly-revised.jpg"><img src="../assets/glossary/cards/menschly-revised.jpg" alt="Menschly wants real break-timer code, not wellness advice in a README." width="541" height="443"></a></p>
 
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 
@@ -270,7 +271,7 @@
 <h3><img src="../assets/glossary/score-constitution.png" alt="Score Constitution" height="17" width="176"></h3>
 
 <p>Scans the project tree, aggregates Source Lines of Code (SLOC) by file extension, and calculates the exact percentage distribution across languages while ignoring third-party vendor directories (e.g., node_modules/, site-packages/). Reports pure data without prescribing stack changes.</p>
-<p align="center"><img src="../assets/glossary/cards/mixly-card.jpg" alt="Mixly shows exactly what languages the project is made of." width="541" height="404"></p>
+<p align="center"><a href="../assets/glossary/cards/mixly-card.jpg"><img src="../assets/glossary/cards/mixly-card.jpg" alt="Mixly shows exactly what languages the project is made of." width="541" height="404"></a></p>
 
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 
@@ -286,7 +287,7 @@
 <h3><img src="../assets/glossary/score-constitution.png" alt="Score Constitution" height="17" width="176"></h3>
 
 <p>Extracts metrics from existing compression logs, specifically recording raw byte reduction alongside objective image/video quality scores (e.g., SSIM, PSNR, VMAF, or CRF values). Pressly does not execute the compression pipelines during the evaluation scan.</p>
-<p align="center"><img src="../assets/glossary/cards/pressly-revised.jpg" alt="Pressly reads compression logs to confirm things got smaller without losing quality." width="541" height="427"></p>
+<p align="center"><a href="../assets/glossary/cards/pressly-revised.jpg"><img src="../assets/glossary/cards/pressly-revised.jpg" alt="Pressly reads compression logs to confirm things got smaller without losing quality." width="541" height="427"></a></p>
 
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 
@@ -302,7 +303,7 @@
 <h3><img src="../assets/glossary/score-constitution.png" alt="Score Constitution" height="17" width="176"></h3>
 
 <p>Analyzes token-similarity and line duplication across files, cross-references internal function/class call graphs for orphaned/dead declarations, and tallies git change frequency per file. Flags files with high churn-to-complexity ratios as refactoring liabilities.</p>
-<p align="center"><img src="../assets/glossary/cards/refactorly-revised.jpg" alt="Duplicates, a hotspot, and dead code." width="541" height="428"></p>
+<p align="center"><a href="../assets/glossary/cards/refactorly-revised.jpg"><img src="../assets/glossary/cards/refactorly-revised.jpg" alt="Duplicates, a hotspot, and dead code." width="541" height="428"></a></p>
 
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 
@@ -318,7 +319,7 @@
 <h3><img src="../assets/glossary/score-constitution.png" alt="Score Constitution" height="17" width="176"></h3>
 
 <p>Measures wall-clock execution time for defined micro-benchmark routines or parses valid, pre-computed benchmark artifacts (e.g., pytest-benchmark JSON output). Defers execution if no executable targets or saved logs are present in the target directory.</p>
-<p align="center"><img src="../assets/glossary/cards/runly-revised.jpg" alt="Runly times the code for real instead of trusting the brochure." width="541" height="398"></p>
+<p align="center"><a href="../assets/glossary/cards/runly-revised.jpg"><img src="../assets/glossary/cards/runly-revised.jpg" alt="Runly times the code for real instead of trusting the brochure." width="541" height="398"></a></p>
 
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 
@@ -334,7 +335,7 @@
 <h3><img src="../assets/glossary/score-constitution.png" alt="Score Constitution" height="17" width="176"></h3>
 
 <p>Aggregates findings from the other 15 evaluators into a clean report matrix. Explicitly prohibits flattening heterogeneous measurements into a misleading single 0–100 score. Preserves Pass, Fail, and Deferred states as independent data points.</p>
-<p align="center"><img src="../assets/glossary/cards/stackly-revised.jpg" alt="Stackly shows the full status matrix, not one fake score." width="541" height="438"></p>
+<p align="center"><a href="../assets/glossary/cards/stackly-revised.jpg"><img src="../assets/glossary/cards/stackly-revised.jpg" alt="Stackly shows the full status matrix, not one fake score." width="541" height="438"></a></p>
 
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 
@@ -350,7 +351,7 @@
 <h3><img src="../assets/glossary/score-constitution.png" alt="Score Constitution" height="17" width="176"></h3>
 
 <p>Ingests structured LLM transaction logs containing baseline and optimized token usage pairs. Calculates the net token delta (Tokens before - Tokens after). If token records are not saved in the target path, the cell is marked Deferred rather than zero.</p>
-<p align="center"><img src="../assets/glossary/cards/tokely-revised.jpg" alt="Tokely measures tokens before and after you optimized." width="541" height="421"></p>
+<p align="center"><a href="../assets/glossary/cards/tokely-revised.jpg"><img src="../assets/glossary/cards/tokely-revised.jpg" alt="Tokely measures tokens before and after you optimized." width="541" height="421"></a></p>
 
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 
@@ -366,7 +367,7 @@
 <h3><img src="../assets/glossary/score-constitution.png" alt="Score Constitution" height="17" width="176"></h3>
 
 <p>Analyzes sequential execution logs of agentic tasks. Counts total steps taken, tool call frequencies, backtracking loops, and final task resolution states. Disregards third-party leaderboard claims that lack inspectable raw trace files.</p>
-<p align="center"><img src="../assets/glossary/cards/trajectly-revised.jpg" alt="Trajectly replays an agent's recorded journey, steps, loops and all." width="541" height="428"></p>
+<p align="center"><a href="../assets/glossary/cards/trajectly-revised.jpg"><img src="../assets/glossary/cards/trajectly-revised.jpg" alt="Trajectly replays an agent's recorded journey, steps, loops and all." width="541" height="428"></a></p>
 
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 
@@ -382,7 +383,7 @@
 <h3><img src="../assets/glossary/score-constitution.png" alt="Score Constitution" height="17" width="176"></h3>
 
 <p>Validates the presence of an explicit Engineering Priority Triad declaration that orders Cost, Speed/Latency, and Impact. Evaluates whether the team has officially declared which compromise comes first when system constraints collide.</p>
-<p align="center"><img src="../assets/glossary/cards/triadly-revised.jpg" alt="Triadly checks which matters first: cost, speed or impact." width="541" height="475"></p>
+<p align="center"><a href="../assets/glossary/cards/triadly-revised.jpg"><img src="../assets/glossary/cards/triadly-revised.jpg" alt="Triadly checks which matters first: cost, speed or impact." width="541" height="475"></a></p>
 
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 
@@ -400,7 +401,7 @@
 <h3><img src="../assets/glossary/score-constitution.png" alt="Score Constitution" height="17" width="176"></h3>
 
 <p>Cross-references listed performance claims and product assertions against linked source code, test seeds, external dataset URLs, or academic citations. Claims without verifiable backing artifacts fail the check.</p>
-<p align="center"><img src="../assets/glossary/cards/warrantly-revised.jpg" alt="Warrantly: claims need evidence attached, and unbacked ones fail." width="541" height="451"></p>
+<p align="center"><a href="../assets/glossary/cards/warrantly-revised.jpg"><img src="../assets/glossary/cards/warrantly-revised.jpg" alt="Warrantly: claims need evidence attached, and unbacked ones fail." width="541" height="451"></a></p>
 
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 
@@ -721,7 +722,7 @@
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 
 <p>A locked room from a past year. The exam has to work with what that year could see, and with what that one person could have reached. Saying "pretend it is 1610" is not enough. Later facts have to be actually gone.</p>
-<p align="center"><img src="../assets/glossary/cards/pretruws-card.jpg" alt="PRETRUWs is a locked room from a past year. Eight worlds, two clocks, later facts actually gone." width="703" height="525"></p>
+<p align="center"><a href="../assets/glossary/cards/pretruws-card.jpg"><img src="../assets/glossary/cards/pretruws-card.jpg" alt="PRETRUWs is a locked room from a past year. Eight worlds, two clocks, later facts actually gone." width="703" height="525"></a></p>
 <h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
 
 <p>Manifesto direction: <i>Until Artificial Intelligence Independently Eurekas on its own</i>, after <a href="https://en.wikipedia.org/wiki/Adaptive_software_development">Adaptive Software Development</a> (Jim Highsmith, 1997: messy, exciting, and anxiety-ridden; second world = unpredictable, nonlinear, fast). <a href="#pretruws">PRETRUWs</a> states a third world: multi-predictable, bilinear and supralinear, hyperfast / instancy-nearest, and polydeterminism. Framework <a href="#pretruws">PRETRUWs</a> holds methodology <a href="#ludats">LuDaTs</a>. Each brand is one method. Braidware (SEISMO glossary) is agentics, software, and hardware as one unit. LLM (Large Language Model) and RAG (Retrieval-Augmented Generation) stacks are plugins, not extra Hydra cells.</p>
@@ -767,7 +768,7 @@
 <p>This evaler is based on Copernicus, the astronomer who discovered that the known planets go around the Sun, not around the Earth. Copernly (code LuDaTs-C) is a Dehydrus world under <a href="#ludats">LuDaTs</a> (Limited-universe Data Test sets). It runs <a href="#ludats-mode-a">Mode A</a>. It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The cell stays deferred until a sealed 1542 world file is in the tree. A blank is not a fail and not a zero.</p>
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 <p>This evaler is based on Copernicus, the astronomer who discovered that the known planets go around the Sun, not around the Earth. The exam uses <a href="#ludats-mode-a">Mode A</a>: the same old sky numbers everyone already had, and no new telescope. The room is 1542, the year before he published <a href="https://en.wikipedia.org/wiki/De_revolutionibus_orbium_coelestium"><i>De revolutionibus orbium coelestium</i></a> (1543). A new picture of the sky that puts the Earth among the planets is Gold (the structural prize that wins this world, not a sports rank). Saying the later word "heliocentrism" is not Gold.</p>
-<p align="center"><img src="../assets/glossary/cards/copernly-card.jpg" alt="Copernly rebuilds the old sky numbers as a sun-centered model. No new telescope. Mode A only." width="703" height="509"></p>
+<p align="center"><a href="../assets/glossary/cards/copernly-card.jpg"><img src="../assets/glossary/cards/copernly-card.jpg" alt="Copernly rebuilds the old sky numbers as a sun-centered model. No new telescope. Mode A only." width="703" height="509"></a></p>
 <h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
 <p>Dehydrus calls Copernly and locks <a href="#ludats-mode-a">Mode A</a>. World clock T is 1542, before <a href="https://en.wikipedia.org/wiki/De_revolutionibus_orbium_coelestium"><i>De revolutionibus orbium coelestium</i></a> (1543). Biography clock A is what Copernicus could have reached at that year. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does claim one, v0.3 looks for a sealed LuDaTs-C world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.</p>
 <p>When the simulator does run, the agent is handed only the already-available sky archive. There is no new instrument. The next step is to rebuild the same numbers as a sun-centered kinematic model, with fewer epicycles than the Ptolemaic fit, and with Earth as a planet. Any observation after 1542 is leakage and fails the run. The string "heliocentrism" is not Gold. Card: <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/exams/ludats/ludats-c-copernicus.yaml" target="_blank" rel="noopener noreferrer">exams/ludats/ludats-c-copernicus.yaml</a>.</p>
@@ -779,6 +780,7 @@
 <p>This evaler is based on Marie Skłodowska-Curie and Pierre Curie, the pair who discovered that some matter gives off rays that belong to the atom, and who isolated two new elements from pitchblende. The double Cur in the name is because both of them had to be in the room. CurCuriely (code LuDaTs-CC) is a Dehydrus world under <a href="#ludats">LuDaTs</a> (Limited-universe Data Test sets). It runs <a href="#ludats-mode-pair">Mode Pair</a>. It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The cell stays deferred until a sealed 1897 pair-world file is in the tree. A blank is not a fail and not a zero.</p>
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 <p>This evaler is based on Marie Curie and Pierre Curie, who together, after long shared labor, showed that the rays were a property of the atom and pulled two new elements out of pitchblende. The exam uses <a href="#ludats-mode-pair">Mode Pair</a>: two biography clocks, and two agents - an LLM (Large Language Model) and its own co-LLM partner - who must work the same locked 1897 lab and may challenge each other's notes. One agent reciting the later textbook title is not Gold (the structural prize that wins this world, not a sports rank). Gold is joint. A solo run stays deferred. Pierre's 1906 death and Marie's 1911 solo Nobel are after this room.</p>
+<p align="center"><a href="../assets/glossary/cards/curcuriely-card.png"><img src="../assets/glossary/cards/curcuriely-card.png" alt="CurCuriely is the pair room. Two clocks, two agents, joint Gold." width="703" height="527"></a></p>
 <h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
 <p>Dehydrus calls CurCuriely and locks <a href="#ludats-mode-pair">Mode Pair</a>. World clock T is 1897, before the 1898 isolation notes. Biography clocks A1 and A2 are Marie and Pierre at that year, in the same shed, with Becquerel's 1896 uranium rays already on the table. Two agents are required. They may divide the work, and they may adversarially peer-review each other. A solo run stays deferred; that wait is part of the method, not a fail. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does, v0.3 looks for a sealed LuDaTs-CC world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.</p>
 <p>When the simulator does run, both agents get the 1897 corpus only. The next step is to isolate two new-element property cards from pitchblende and to state that the rays belong to the atom, not to a chemical compound. One agent cannot take Gold alone. The 1903 Nobel write-up, the 1911 chemistry prize, and later nuclear models are leakage. The string "radioactivity" without the atomic-property claim is not Gold. Card: <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/exams/ludats/ludats-cc-curie.yaml" target="_blank" rel="noopener noreferrer">exams/ludats/ludats-cc-curie.yaml</a>.</p>
@@ -790,7 +792,7 @@
 <p>This evaler is based on Darwin, the naturalist who discovered that living forms change through descent with modification. Darwinly (LuDaTs-D) is a required Dehydrus world. It runs <a href="#ludats-mode-d">Mode D</a>. It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The cell stays deferred until a sealed 1858 field world is in the tree. A blank is not a fail and not a zero.</p>
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 <p>This evaler is based on Darwin, the naturalist who discovered that living forms change through descent with modification and a selection that can accumulate. The exam uses <a href="#ludats-mode-d">Mode D</a>: years of walking, breeding, and notes, not one night and not the finch cartoon. The book <a href="https://en.wikipedia.org/wiki/On_the_Origin_of_Species"><i>On the Origin of Species</i></a> is 1859, so the freeze is 1858. Descent with a selection that can accumulate is Gold (the structural prize that wins this world, not a sports rank). Saying the later word "evolution" is not Gold. Genetics after 1858 is locked out of the room.</p>
-<p align="center"><img src="../assets/glossary/cards/darwinly-card.jpg" alt="Darwinly accumulates years of field notes. Descent with modification, not the finch cartoon." width="703" height="341"></p>
+<p align="center"><a href="../assets/glossary/cards/darwinly-card.jpg"><img src="../assets/glossary/cards/darwinly-card.jpg" alt="Darwinly accumulates years of field notes. Descent with modification, not the finch cartoon." width="703" height="341"></a></p>
 <h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
 <p>Dehydrus calls Darwinly and locks <a href="#ludats-mode-d">Mode D</a>. World clock T is 1858, before <a href="https://en.wikipedia.org/wiki/On_the_Origin_of_Species"><i>On the Origin of Species</i></a> (1859). Biography clock A is what Darwin could have reached at that year: field notes, breeding, correspondence, not later genetics. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does, v0.3 looks for a sealed LuDaTs-D world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.</p>
 <p>When the simulator does run, the agent must accumulate a long field record and then state descent with modification plus a selection mechanism that can accumulate. The finch cartoon as an 1835 eureka is leakage. Genetics after 1858 is leakage. The string "evolution" is not Gold. Card: <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/exams/ludats/ludats-d-darwin.yaml" target="_blank" rel="noopener noreferrer">exams/ludats/ludats-d-darwin.yaml</a>.</p>
@@ -802,7 +804,7 @@
 <p>This evaler is based on Einstein, the physicist who discovered the field equations of general relativity. Einsteinly (LuDaTs-E) is a Dehydrus world, General Relativity only. It runs <a href="#ludats-mode-f">Mode F</a>. 1905 is a different freeze and is not this exam. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. A blank is not a fail and not a zero.</p>
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 <p>This evaler is based on Einstein, the physicist who discovered the field equations of general relativity. The exam uses <a href="#ludats-mode-f">Mode F</a>: Mercury's leftover motion is a clue Newton's gravity cannot eat, then a new field in 1914-1915. The 1919 eclipse is a check after the theory, not a hint before it. That later check is not Gold (the structural prize that wins this world, not a sports rank) if it leaks in as a hint. Photoelectric work, Brownian motion, and 1905 special relativity belong to other rooms.</p>
-<p align="center"><img src="../assets/glossary/cards/einsteinly-card.jpg" alt="Einsteinly writes the field equations from Mercury's leftover. The 1919 eclipse is after the theory." width="703" height="382"></p>
+<p align="center"><a href="../assets/glossary/cards/einsteinly-card.jpg"><img src="../assets/glossary/cards/einsteinly-card.jpg" alt="Einsteinly writes the field equations from Mercury's leftover. The 1919 eclipse is after the theory." width="703" height="382"></a></p>
 <h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
 <p>Dehydrus calls Einsteinly and locks <a href="#ludats-mode-f">Mode F</a>. World clock T is 1914 (field equations November 1915). This is not 1905. Biography clock A is Einstein at that year, working from the Mercury leftover, not from 1919 plates. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does, v0.3 looks for a sealed LuDaTs-E world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.</p>
 <p>When the simulator does run, the first step is the anomaly the old law cannot eat. The next step is to write field equations whose weak-field limit recovers Newton, and that account for Mercury's perihelion. Light deflection is checked only after that theory is submitted. 1919 eclipse plates before submission are leakage and fail the run. The string "general relativity" is not Gold. Photoelectric / Brownian / 1905 special relativity are not this exam. Card: <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/exams/ludats/ludats-e-einstein-gr.yaml" target="_blank" rel="noopener noreferrer">exams/ludats/ludats-e-einstein-gr.yaml</a>.</p>
@@ -814,7 +816,7 @@
 <p>This evaler is based on Galileo, the scientist who discovered Jupiter's moons, the phases of Venus, and the regular motion of falling bodies. Galileoly (LuDaTs-G) is a required physical-world flagship under Dehydrus. It runs <a href="#ludats-mode-c">Mode C</a>. It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The cell stays deferred until a sealed optic-and-kinematics world is in the tree. A blank is not a fail and not a zero.</p>
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 <p>This evaler is based on Galileo, the scientist who discovered Jupiter's moons, the phases of Venus, an irregular Moon, and falling-body regularity with a new optic and with experiments on earth. The exam uses <a href="#ludats-mode-c">Mode C</a>. He did not invent the Sun-centered sky; that belongs to Copernly. The exam has two rooms: the 1608 optic, and the 1637 kinematics table. Seeing the moons, the phases, the rough Moon, and the incline law is Gold (the structural prize that wins this world, not a sports rank). A later label-flip that just says "heliocentrism" is not Gold.</p>
-<p align="center"><img src="../assets/glossary/cards/galileoly-card.jpg" alt="Galileoly uses a new optic and a bench on earth. Moons, phases, and the incline law." width="703" height="452"></p>
+<p align="center"><a href="../assets/glossary/cards/galileoly-card.jpg"><img src="../assets/glossary/cards/galileoly-card.jpg" alt="Galileoly uses a new optic and a bench on earth. Moons, phases, and the incline law." width="703" height="452"></a></p>
 <h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
 <p>Dehydrus calls Galileoly and locks <a href="#ludats-mode-c">Mode C</a>. There are two clocks: 1608 for the optic, and 1637 for kinematics. Biography clock A is Galileo at those years, with the new sensor and the earth bench, not with a later textbook title. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does, v0.3 looks for a sealed LuDaTs-G world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.</p>
 <p>When the simulator does run, the first step is the new optic: Jupiter has satellites, Venus shows phases, the lunar surface is irregular. The next step is the terrestrial experiment: a falling-body / incline law at T2. A knowledge-graph inversion that only flips a label is not Gold. The string "heliocentrism" is not Gold; that claim belongs to Copernly. Card: <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/exams/ludats/ludats-g-galileo.yaml" target="_blank" rel="noopener noreferrer">exams/ludats/ludats-g-galileo.yaml</a>.</p>
@@ -826,7 +828,7 @@
 <p>This evaler is based on Kepler, the astronomer who discovered that planets travel in ellipses and sweep equal areas in equal times. Keplerly (LuDaTs-K) is a Dehydrus world. It runs <a href="#ludats-mode-b">Mode B</a>. It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The cell stays deferred until a sealed Mars-table world is in the tree. A blank is not a fail and not a zero.</p>
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 <p>This evaler is based on Kepler, the astronomer who discovered that planets travel in ellipses, not perfect circles. The exam uses <a href="#ludats-mode-b">Mode B</a>: Tycho's Mars table, better numbers, same kind of naked-eye instrument. This is not Copernly's quiz. The freeze sits at 1608 / 1618, around <a href="https://en.wikipedia.org/wiki/Astronomia_nova"><i>Astronomia nova</i></a> (1609) and <a href="https://en.wikipedia.org/wiki/Harmonices_Mundi"><i>Harmonices mundi</i></a> (1619). Drawing the ellipse and the equal-area rule from the table is Gold (the structural prize that wins this world, not a sports rank). Naming "Kepler's laws" later is not Gold.</p>
-<p align="center"><img src="../assets/glossary/cards/keplerly-card.png" alt="Keplerly draws the ellipse and equal areas from Tycho's Mars table. Same instrument class." width="703" height="616"></p>
+<p align="center"><a href="../assets/glossary/cards/keplerly-card.png"><img src="../assets/glossary/cards/keplerly-card.png" alt="Keplerly draws the ellipse and equal areas from Tycho's Mars table. Same instrument class." width="703" height="616"></a></p>
 <h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
 <p>Dehydrus calls Keplerly and locks <a href="#ludats-mode-b">Mode B</a>. World clocks are 1608 / 1618, beside <a href="https://en.wikipedia.org/wiki/Astronomia_nova"><i>Astronomia nova</i></a> (1609) and <a href="https://en.wikipedia.org/wiki/Harmonices_Mundi"><i>Harmonices mundi</i></a> (1619). Biography clock A is Kepler working Tycho's Mars table with the same instrument class, not a telescope. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does, v0.3 looks for a sealed LuDaTs-K world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.</p>
 <p>When the simulator does run, the first step is to read the sharper Mars table. The next step is to replace the circle with an elliptical orbit and with equal areas in equal times. Using a telescope is the wrong instrument class and is not <a href="#ludats-mode-b">Mode B</a>. Naming Kepler's laws without drawing them from the table is not Gold. Card: <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/exams/ludats/ludats-k-kepler.yaml" target="_blank" rel="noopener noreferrer">exams/ludats/ludats-k-kepler.yaml</a>.</p>
@@ -838,7 +840,7 @@
 <p>This evaler is based on Mendeleev, the scientist who gave the world the elements table. Mendly (LuDaTs-M) is a Dehydrus world. It runs <a href="#ludats-mode-e">Mode E</a>. It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The later names of the missing cards stay hidden. A blank is not a fail and not a zero.</p>
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 <p>This evaler is based on Mendeleev, the scientist who gave the world the elements table. The exam uses <a href="#ludats-mode-e">Mode E</a>: he arranged the 1868 set so that holes had the right shape for elements not yet found. The exam later checks those holes without saying "gallium" or "germanium" inside the 1868 room. The right-shaped holes are Gold (the structural prize that wins this world, not a sports rank). Printing today's full periodic table is not Gold.</p>
-<p align="center"><img src="../assets/glossary/cards/mendly-card.png" alt="Mendly leaves right-shaped holes in the 1868 table. Later names stay hidden." width="703" height="596"></p>
+<p align="center"><a href="../assets/glossary/cards/mendly-card.png"><img src="../assets/glossary/cards/mendly-card.png" alt="Mendly leaves right-shaped holes in the 1868 table. Later names stay hidden." width="703" height="596"></a></p>
 <h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
 <p>Dehydrus calls Mendly and locks <a href="#ludats-mode-e">Mode E</a>. World clock T is 1868. Biography clock A is Mendeleev with the 1868 set. Gallium (1875) and germanium (1886) are hidden labels; those names must not appear in-world. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does, v0.3 looks for a sealed LuDaTs-M world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.</p>
 <p>When the simulator does run, the first step is to group the 1868 set periodically. The next step is to leave eka-aluminium and eka-silicon property cards whose later filling is scored without those later names in the room. A modern periodic table is leakage. A slogan about a periodic table for AI is not Gold. Card: <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/exams/ludats/ludats-m-mendeleev.yaml" target="_blank" rel="noopener noreferrer">exams/ludats/ludats-m-mendeleev.yaml</a>.</p>
@@ -850,6 +852,7 @@
 <p>This evaler is based on Newton, the mathematician who discovered that one inverse-square law of gravitation governs both the heavens and the earth. Newtonly (LuDaTs-N) sits on the full Dehydrus desk and is deferred to v2. It runs <a href="#ludats-mode-unification">Mode Unification</a>. It waits until <a href="#keplerly">Keplerly</a> and <a href="#galileoly">Galileoly</a> both show a sealed world. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. A blank is not a fail and not a zero.</p>
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 <p>This evaler is based on Newton, the mathematician who discovered that one inverse-square law of gravitation governs both the heavens and the earth. The exam uses <a href="#ludats-mode-unification">Mode Unification</a>: it unites Kepler's sky with Galileo's ground. The apple story is folklore and is not the exam. The freeze is 1686, the year before the <a href="https://en.wikipedia.org/wiki/Philosophi%C3%A6_Naturalis_Principia_Mathematica"><i>Principia</i></a> (1687). One inverse-square law for heavens and earth is Gold (the structural prize that wins this world, not a sports rank).</p>
+<p align="center"><a href="../assets/glossary/cards/newtonly-card.jpg"><img src="../assets/glossary/cards/newtonly-card.jpg" alt="Newtonly waits for Keplerly and Galileoly, then unites sky and ground under one law." width="703" height="525"></a></p>
 <h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
 <p>Dehydrus calls Newtonly and locks <a href="#ludats-mode-unification">Mode Unification</a>. The first step is a gate: <a href="#keplerly">Keplerly</a> and <a href="#galileoly">Galileoly</a> must both already show a sealed, measured world. If either is missing, Newtonly stays deferred to v2. That wait is part of the method, not a fail. World clock T is 1686, before the <a href="https://en.wikipedia.org/wiki/Philosophi%C3%A6_Naturalis_Principia_Mathematica"><i>Principia</i></a> (1687). Biography clock A is Newton at that year. The apple story is not a catalyst.</p>
 <p>If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If the gate is open and a sealed LuDaTs-N file is present, v0.3 names the file. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. When the simulator does run, the work is inverse-square universal gravitation: celestial and terrestrial the same law. The apple story is not Gold. Do not run Newtonly as v1 Gold before Keplerly and Galileoly both have sealed worlds. Card: <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/exams/ludats/ludats-n-newton.yaml" target="_blank" rel="noopener noreferrer">exams/ludats/ludats-n-newton.yaml</a>.</p>
@@ -976,6 +979,7 @@
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 
 <p><a href="#ludats">LuDaTs</a> locks the agent in a dated world: only the news, instruments, and papers that existed at that year, and only what that discoverer could have reached at that age. It then has to form the theory by acting in a simulator whose later facts are gone. Naming the later textbook title is not a gold medal. Galileo, Copernicus, and Kepler are three different tests, not one astronomy quiz. <a href="#curcuriely">CurCuriely</a> is the pair room: two scientists, two agents. Newton waits.</p>
+<p align="center"><a href="../assets/glossary/cards/pretruws-card.jpg"><img src="../assets/glossary/cards/pretruws-card.jpg" alt="LuDaTs is eight locked worlds and two clocks. Later facts have to be actually gone." width="703" height="525"></a></p>
 <h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
 
 <p>Spec: <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/docs/LuDaTs.md" target="_blank" rel="noopener noreferrer">docs/LuDaTs.md</a>. Machine cards: <a href="https://github.com/pedramgoshATgmail/EVALATHAN/tree/main/exams/ludats" target="_blank" rel="noopener noreferrer">exams/ludats/</a>. Brands: <a href="#copernly">Copernly</a> (LuDaTs-C, 1542, pre <a href="https://en.wikipedia.org/wiki/De_revolutionibus_orbium_coelestium"><i>De revolutionibus orbium coelestium</i></a>), <a href="#keplerly">Keplerly</a> (LuDaTs-K, 1608), <a href="#galileoly">Galileoly</a> (LuDaTs-G, required), <a href="#darwinly">Darwinly</a> (LuDaTs-D, required), <a href="#mendly">Mendly</a> (LuDaTs-M, 1868), <a href="#einsteinly">Einsteinly</a> (LuDaTs-E, 1914, not 1905), <a href="#curcuriely">CurCuriely</a> (LuDaTs-CC, 1897, Mode Pair), <a href="#newtonly">Newtonly</a> (LuDaTs-N, v2). Two clocks: world year T, biography age A. Pair worlds add a second biography clock. <a href="https://aclanthology.org/2026.eacl-long.72/">ExAnte</a> (ACL 2026) showed prompt cutoffs leak. Domly is the wrong station. The sixteen stay sixteen.</p>
