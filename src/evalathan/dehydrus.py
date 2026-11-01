@@ -1,4 +1,4 @@
-"""Conductor for the eight LuDaTs evalers under PRETRUWs. A blank is never a zero."""
+"""Conductor for the eight LuDaTs methodology framework evalers under PRETRUWs. A blank is never a zero."""
 
 from __future__ import annotations
 
@@ -56,7 +56,7 @@ class Report:
             "product": "Evalathan",
             "version": "0.3.0",
             "conductor": "Dehydrus",
-            "framework": "PRETRUWs",
+            "paradigm": "PRETRUWs",
             "root": self.root,
             "headline": self.headline(),
             "habtwin": self.habtwin,

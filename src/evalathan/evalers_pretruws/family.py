@@ -1,4 +1,4 @@
-"""One run() per LuDaTs brand under PRETRUWs. v0.3 names a sealed world. It does not simulate T."""
+"""One run() per LuDaTs methodology framework brand under PRETRUWs. v0.3 names a sealed world. It does not simulate T."""
 
 from __future__ import annotations
 
