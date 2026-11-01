@@ -64,7 +64,7 @@ evalathan scan . --json report.json
 
 ## Overview & Core Philosophy
 
-EVALATHAN is an open-source (Apache-2.0), Python-based (to be refractored for v1 release) evaluation harness designed to audit and score software projects, codebases, compilers, and AI agent pipelines across their entire lifecycle.
+EVALATHAN is a holistic open-source (Apache-2.0), Python-based (to be refractored for v1 release) evaluation harness designed to audit and score software projects, codebases, compilers, and AI agent pipelines across their entire lifecycle.
 
 The tool is a local runner (v0.3) aimed at Product-led growth (PLG) and codebase verification. Rather than generating a single aggregated or opaque score, EVALATHAN uses two conductors. [Hydra](GLOSSARY.md#user-content-hydra) orchestrates sixteen software evaluators ("evalers") and writes a transparent status matrix. [Dehydrus](GLOSSARY.md#user-content-dehydrus) orchestrates eight [LuDaTs](GLOSSARY.md#user-content-ludats) (Limited-universe Data Test sets) evalers under [PRETRUWs](GLOSSARY.md#user-content-pretruws). LuDaTs is a subset of PRETRUWs. The two rooms do not share a vector, and they are not folded into one number.
 
@@ -83,7 +83,7 @@ Dehydrus's eight LuDaTs evalers sit in their own room. They are listed under [Wh
 
 ### Unique Features: SELFBELT, FUSS, and PRETRUWs
 
-A standout aspect of the project is its integration of developer and user wellness into the evaluation criteria:
+A standout aspect of EVALATHAN platform is its integration of developer and user wellness into the evaluation criteria:
 
 [SELFBELT](GLOSSARY.md#user-content-selfbelt) / SELFBELTING: A methodology documented in docs/SELFBELT.md addressing developer fatigue and extended screen time.
 
@@ -95,7 +95,7 @@ A standout aspect of the project is its integration of developer and user wellne
 
 [HabTwin](GLOSSARY.md#user-content-habtwin): A digital twin is a stand-in. HabTwin asks whether that stand-in keeps predicting what the real person or the real machine would do, in a safe lab, more than once. One lucky guess is not enough. Guessing a live password is not the prize. v0.3 does not run this exam yet. Dehydrus only looks for a lab file. If none is there, it prints `No HabTwin lab trace`. It does not invent a score.
 
-[Deglove](GLOSSARY.md#user-content-deglove) (Refactoring): A name for a still-running codebase so old, messy, and complicated that a local tidy is the wrong job and a big overhaul is the honest one. The proposed Deglove Rate is not computed in v0.3 and is not a seventeenth evaler.
+[Deglove](GLOSSARY.md#user-content-deglove) (Refactoring): A name for a still-running codebase so old, messy, and complicated that a local tidy (light refactorying) is the wrong job and a big overhaul is the honest one. The proposed Deglove Rate is not computed in v0.3 and is not a seventeenth evaler.
 
 ## What v0.2 runs
 
