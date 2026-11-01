@@ -798,7 +798,7 @@ This evaler is based on Galileo, the scientist who discovered Jupiter's moons, t
 
 This evaler is based on Galileo, the scientist who discovered Jupiter's moons, the phases of Venus, an irregular Moon, and falling-body regularity with a new optic and with experiments on earth. The exam uses [Mode C](#ludats-mode-c). He did not invent the Sun-centered sky; that belongs to Copernly. The exam has two rooms: the 1608 optic, and the 1637 kinematics table. Seeing the moons, the phases, the rough Moon, and the incline law is Gold (the structural prize that wins this world, not a sports rank). A later label-flip that just says "heliocentrism" is not Gold.
 
-<p align="center"><a href="assets/glossary/cards/galileoly-card-xl.png"><img src="assets/glossary/cards/galileoly-card.png" alt="Galileoly uses a new optic and a bench on earth. Moons, phases, and the incline law." width="703"></a></p>
+<p align="center"><a href="assets/glossary/cards/galileoly-card-20261101-xl.png"><img src="assets/glossary/cards/galileoly-card-20261101.png" alt="Galileoly uses a new optic and a bench on earth. Moons, phases, and the incline law." width="703"></a></p>
 <p align="center"><i>If AI was around in my time, would it reject or confirm what I saw through my new telescope - moons, phases, a rough Moon, falling bodies - which even the Catholic church would not accept?</i></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
@@ -821,7 +821,7 @@ This evaler is based on Kepler, the astronomer who discovered that planets trave
 
 This evaler is based on Kepler, the astronomer who discovered that planets travel in ellipses, not perfect circles. The exam uses [Mode B](#ludats-mode-b): Tycho's Mars table, better numbers, same kind of naked-eye instrument. This is not Copernly's quiz. The freeze sits at 1608 / 1618, around [*Astronomia nova*](https://en.wikipedia.org/wiki/Astronomia_nova) (1609) and [*Harmonices mundi*](https://en.wikipedia.org/wiki/Harmonices_Mundi) (1619). Drawing the ellipse and the equal-area rule from the table is Gold (the structural prize that wins this world, not a sports rank). Naming "Kepler's laws" later is not Gold.
 
-<p align="center"><a href="assets/glossary/cards/keplerly-card-xl.png"><img src="assets/glossary/cards/keplerly-card.png" alt="Keplerly draws the ellipse and equal areas from Tycho's Mars table. Same instrument class." width="703"></a></p>
+<p align="center"><a href="assets/glossary/cards/keplerly-card-20261101-xl.png"><img src="assets/glossary/cards/keplerly-card-20261101.png" alt="Keplerly draws the ellipse and equal areas from Tycho's Mars table. Same instrument class." width="703"></a></p>
 <p align="center"><i>If AI was around in my time, sitting with Tycho's Mars table and the same kind of eye as mine, would it throw out perfect circles and draw the ellipse - or keep the circles because a new glass had not been invented yet?</i></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
@@ -844,7 +844,7 @@ This evaler is based on Mendeleev, the scientist who gave the world the elements
 
 This evaler is based on Mendeleev, the scientist who gave the world the elements table. The exam uses [Mode E](#ludats-mode-e): he arranged the 1868 set so that holes had the right shape for elements not yet found. The exam later checks those holes without saying "gallium" or "germanium" inside the 1868 room. The right-shaped holes are Gold (the structural prize that wins this world, not a sports rank). Printing today's full periodic table is not Gold.
 
-<p align="center"><a href="assets/glossary/cards/mendly-card-xl.png"><img src="assets/glossary/cards/mendly-card.png" alt="Mendly leaves right-shaped holes in the 1868 table. Later names stay hidden." width="703"></a></p>
+<p align="center"><a href="assets/glossary/cards/mendly-card-20261101-xl.png"><img src="assets/glossary/cards/mendly-card-20261101.png" alt="Mendly leaves right-shaped holes in the 1868 table. Later names stay hidden." width="703"></a></p>
 <p align="center"><i>If AI only knew the elements discovered up to 1868 A.D., would it (independently) infer that some elements were still undiscovered and leave room for them - or even work to discover them through its artificial 'intelligence'?</i></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
