@@ -1,8 +1,8 @@
 <h1><img src="assets/glossary/title.png" alt="Evalathan glossary" height="33"></h1>
 
-<big><big><mark><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/main/docs/glossary.html?v=paradigm1">Search the glossary</a></mark></big></big>. That page is the glossary, with its lettering and images, and the search slot is on the same page. Type a letter and the matching entries appear. Choosing a word moves to that entry.
+<big><big><mark><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/main/docs/glossary.html?v=deglove1">Search the glossary</a></mark></big></big>. That page is the glossary, with its lettering and images, and the search slot is on the same page. Type a letter and the matching entries appear. Choosing a word moves to that entry.
 
-[Evalathan](#evalathan) is one evaluation harness. [Hydra](#hydra) is the conductor for sixteen software evalers. [Dehydrus](#dehydrus) is the conductor for eight [LuDaTs](#ludats) methodology framework evalers under [PRETRUWs](#pretruws). [LuDaTs](#ludats) methodology framework is a subset of [PRETRUWs](#pretruws). Each entry below has the same three parts.
+[Evalathan](#evalathan) is one evaluation harness. [Hydra](#hydra) is the conductor for sixteen software evalers. [Dehydrus](#dehydrus) is the conductor for eight [LuDaTs](#ludats) evalers under [PRETRUWs](#pretruws). [LuDaTs](#ludats) methodology framework is a subset of [PRETRUWs](#pretruws). Each entry below has the same three parts.
 
 <img src="assets/glossary/score-constitution-dot.png" alt="Score Constitution." height="14"> What is counted, whether that count is a yes-or-no pass, and the three endings a cell can have. Measured means the file or the code was there and a result was written. Claim means a sentence is on disk and this run did not re-check it. Blank means the needed record is missing. A blank is not a fail and not a zero.
 
@@ -20,7 +20,7 @@ The life-cycle gate on each evaler (G0 through G12) is the station's place in th
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-Evalathan is one evaluation harness. It is not a seventeenth Hydra score and not a ninth Dehydrus score. [Hydra](#hydra) writes sixteen software cells, in this order: Devly, Archly, Codely, Refactorly, Mixly, Runly, Levi, Menschly, Tokely, Pressly, Triadly, Chorely, [Trajectly](#trajectly), Warrantly, Domly, Stackly. [Dehydrus](#dehydrus) writes eight [LuDaTs](#ludats) (Limited-universe Data Test sets) methodology framework cells under [PRETRUWs](#pretruws), in this order: [Copernly](#copernly), [Keplerly](#keplerly), [Galileoly](#galileoly), [Darwinly](#darwinly), [Mendly](#mendly), [Einsteinly](#einsteinly), [CurCuriely](#curcuriely), [Newtonly](#newtonly). The two rooms stay apart. A blank is not a fail and not a zero. Evalathan does not fold the twenty-four cells into one number, and it does not award a state-of-the-art stamp. The Hydra PRD (Product Requirements Document) line and the Dehydrus [HabTwin](#habtwin) filename line are utilities, not extra evalers.
+Evalathan is one evaluation harness. It is not a seventeenth Hydra score and not a ninth Dehydrus score. [Hydra](#hydra) writes sixteen software cells, in this order: Devly, Archly, Codely, Refactorly, Mixly, Runly, Levi, Menschly, Tokely, Pressly, Triadly, Chorely, [Trajectly](#trajectly), Warrantly, Domly, Stackly. [Dehydrus](#dehydrus) writes eight [LuDaTs](#ludats) (Limited-universe Data Test sets) cells under [PRETRUWs](#pretruws), in this order: [Copernly](#copernly), [Keplerly](#keplerly), [Galileoly](#galileoly), [Darwinly](#darwinly), [Mendly](#mendly), [Einsteinly](#einsteinly), [CurCuriely](#curcuriely), [Newtonly](#newtonly). The two rooms stay apart. A blank is not a fail and not a zero. Evalathan does not fold the twenty-four cells into one number, and it does not award a state-of-the-art stamp. The Hydra PRD (Product Requirements Document) line and the Dehydrus [HabTwin](#habtwin) filename line are utilities, not extra evalers.
 
 <p align="center"><img src="assets/evalathan-logo.png" alt="Evalathan" width="325"></p>
 <p align="center"><i>One harness. Two conductors. It does not add a score.</i></p>
@@ -62,7 +62,7 @@ The conductor. She points at each evaluator and writes down what it assessed and
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-Dehydrus calls the eight [LuDaTs](#ludats) methodology framework evalers and writes each report beside the others. He counts how many ran, how many passed their own gate, and how many are deferred. He does not turn a blank into a zero, and he does not fold the eight into one number. He is not an eighteenth Hydra score. He also prints a [HabTwin](#habtwin) filename line. That line is a utility, not a ninth evaler.
+Dehydrus calls the eight [LuDaTs](#ludats) evalers and writes each report beside the others. He counts how many ran, how many passed their own gate, and how many are deferred. He does not turn a blank into a zero, and he does not fold the eight into one number. He is not an eighteenth Hydra score. He also prints a [HabTwin](#habtwin) filename line. That line is a utility, not a ninth evaler.
 
 <p align="center"><img src="assets/glossary/cards/dehydrus.png" alt="Dehydrus" width="485"></p>
 <p align="center"><i>He routes the eight. He does not add a score.</i></p>
@@ -275,7 +275,7 @@ An inspector checking your house for duplicate furniture you bought twice, aband
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Identical-byte groups are SHA-256 matches among files between 1 and 200,000 bytes. Unused names are Python functions and classes that are defined and never referenced, skipping names that start with `_` or `test`. Change is `git log --numstat` over the last 40 commits when git exists. The unused-name walk is the one language-specific check in this version. The copy check and the change check apply to whatever files are in the tree.
+Identical-byte groups are SHA-256 matches among files between 1 and 200,000 bytes. Unused names are Python functions and classes that are defined and never referenced, skipping names that start with `_` or `test`. Change is `git log --numstat` over the last 40 commits when git exists. The unused-name walk is the one language-specific check in this version. The copy check and the change check apply to whatever files are in the tree. When those spots are not the job, and the living tree itself has to come off, that case is [Deglove](#deglove) (Refactoring).
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -464,6 +464,34 @@ H14 on the card is the NASA-TLX row: one educated user, overall 9 out of 100, lo
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
 
+<a id="deglove" name="deglove"></a>
+<h2>Deglove (Refactoring)</h2>
+
+<h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
+
+Not a Hydra evaler and not a seventeenth score. [Refactorly](#refactorly) still reports duplicates, dead names, and churn. Deglove names the other case: the codebase to be refactored is so messy, layered, and awful that a local tidy is the wrong job and a big overhaul is the honest one. v0.3 does not compute a Deglove Rate. A missing rate is blank, not a fail and not a zero.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+Some programs have run for decades. That lasting quality is the point. The same age that made the system robust also made the code awful to touch. Updating it is not swapping a door handle. It is taking the glove off the hand: skin, seams, and all. That overhaul is Deglove. A messy unused folder is not a deglove candidate. A messy production system that still pays the bills is.
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Proposed Deglove Rate (DR), 0 to 100. Not computed in v0.3. DR estimates how much of the living codebase would have to be rewritten, re-sited, or re-taught before an ordinary refactor is cheaper than a peel.
+
+`DR = 100 × clip(0.25A + 0.25E + 0.25O + 0.25C, 0, 1) × (0.50 + 0.50L)`
+
+- **A Age-load.** Share of source whose last real edit, language, or runtime is old. `A = clip(median file age in years / 25, 0, 1)`. Twenty-five years is a full load.
+- **E Entanglement.** Cycles, god modules, and the share of the tree that lives in the hottest hubs.
+- **O Opacity.** Missing tests, missing docs, dead names, and duplication. [Refactorly](#refactorly) already sees the last two.
+- **C Churn-pain.** Files that change often and are also complex. [Codely](#codely) sees branching. [Refactorly](#refactorly) sees churn.
+- **L Liveness.** 1 if the system is still in production and paying for itself, else closer to 0. Deglove assumes a lasting program, not a dead folder.
+
+Bands: 0–20 ordinary refactor. 21–40 staged module-by-module. 41–60 peel candidate. 61–80 deglove. 81–100 replace, do not refactor. The formula borrows the shape of the Oman–Hagemeister Maintainability Index (MI) (1992), McCabe cyclomatic complexity, and SQALE (Software Quality Assessment based on Lifecycle Expectations) technical-debt ratio. It is not those scores, and it is not folded into Hydra.
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+
 <a id="selfbelt" name="selfbelt"></a>
 <h2><img src="assets/glossary/selfbelt.png" alt="SELFBELT" height="19"></h2>
 
@@ -592,7 +620,7 @@ The scan looks for a file whose stem is `prd`, `product-requirements`, or `produ
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-[PRETRUWs](#pretruws) (PREdiscovery TRuncated-Universes and Worlds) is the v0.3 4IR (Fourth Industrial Revolution) paradigm. It is not a Hydra evaler. [LuDaTs](#ludats) methodology framework is a subset of [PRETRUWs](#pretruws). Dehydrus writes eight [LuDaTs](#ludats) methodology framework cells, not eight PRETRUWs evalers. A missing world is blank, not a fail and not a zero. Spec: [docs/PRETRUWs.md](docs/PRETRUWs.md). Roadmap: [docs/BUILDLOG.md](docs/BUILDLOG.md).
+[PRETRUWs](#pretruws) (PREdiscovery TRuncated-Universes and Worlds) is the v0.3 4IR (Fourth Industrial Revolution) paradigm. It is not a Hydra evaler. [LuDaTs](#ludats) methodology framework is a subset of [PRETRUWs](#pretruws). Dehydrus writes eight [LuDaTs](#ludats) cells, not eight PRETRUWs evalers. A missing world is blank, not a fail and not a zero. Spec: [docs/PRETRUWs.md](docs/PRETRUWs.md). Roadmap: [docs/BUILDLOG.md](docs/BUILDLOG.md).
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -602,17 +630,17 @@ A locked room from a past year. The exam has to work with what that year could s
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Manifesto direction: *Until Artificial Intelligence Independently Eurekas on its own*, after [Adaptive Software Development](https://en.wikipedia.org/wiki/Adaptive_software_development) (Jim Highsmith, 1997: messy, exciting, and anxiety-ridden; second world = unpredictable, nonlinear, fast). [PRETRUWs](#pretruws) states a third world: multi-predictable, bilinear and supralinear, hyperfast / instancy-nearest, and polydeterminism. Paradigm [PRETRUWs](#pretruws) holds the [LuDaTs](#ludats) methodology framework. [LuDaTs](#ludats) methodology framework is a subset of [PRETRUWs](#pretruws). Each brand is one method. Braidware (SEISMO glossary) is agentics, software, and hardware as one unit. LLM (Large Language Model) and RAG (Retrieval-Augmented Generation) stacks are plugins, not extra Hydra cells.
+Manifesto direction: *Until Artificial Intelligence Independently Eurekas on its own*, after [Adaptive Software Development](https://en.wikipedia.org/wiki/Adaptive_software_development) (Jim Highsmith, 1997: messy, exciting, and anxiety-ridden; second world = unpredictable, nonlinear, fast). [PRETRUWs](#pretruws) states a third world: multi-predictable, bilinear and supralinear, hyperfast / instancy-nearest, and polydeterminism. Paradigm [PRETRUWs](#pretruws) holds the [LuDaTs](#ludats) methodology framework. Each brand is one method. Braidware (SEISMO glossary) is agentics, software, and hardware as one unit. LLM (Large Language Model) and RAG (Retrieval-Augmented Generation) stacks are plugins, not extra Hydra cells.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
 
 <a id="ludats-modes" name="ludats-modes"></a>
-<h2>LuDaTs methodology framework modes</h2>
+<h2>LuDaTs modes</h2>
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-A [LuDaTs](#ludats) (Limited-universe Data Test sets) methodology framework mode is a method class, not an extra evaler. There are six lettered modes, one pair mode, and one unification mode: [Mode A](#ludats-mode-a), [Mode B](#ludats-mode-b), [Mode C](#ludats-mode-c), [Mode D](#ludats-mode-d), [Mode E](#ludats-mode-e), [Mode F](#ludats-mode-f), [Mode Pair](#ludats-mode-pair), and [Mode Unification](#ludats-mode-unification). They do not add a ninth Dehydrus score or a seventeenth Hydra score. A blank is not a fail and not a zero.
+A [LuDaTs](#ludats) (Limited-universe Data Test sets) mode is a method class, not an extra evaler. There are six lettered modes, one pair mode, and one unification mode: [Mode A](#ludats-mode-a), [Mode B](#ludats-mode-b), [Mode C](#ludats-mode-c), [Mode D](#ludats-mode-d), [Mode E](#ludats-mode-e), [Mode F](#ludats-mode-f), [Mode Pair](#ludats-mode-pair), and [Mode Unification](#ludats-mode-unification). They do not add a ninth Dehydrus score or a seventeenth Hydra score. A blank is not a fail and not a zero.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -620,7 +648,7 @@ A mode is the kind of work the locked room asks for. One room re-reads old numbe
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Each [LuDaTs](#ludats) methodology framework brand names one mode. [Copernly](#copernly) is [Mode A](#ludats-mode-a). [Keplerly](#keplerly) is [Mode B](#ludats-mode-b). [Galileoly](#galileoly) is [Mode C](#ludats-mode-c). [Darwinly](#darwinly) is [Mode D](#ludats-mode-d). [Mendly](#mendly) is [Mode E](#ludats-mode-e). [Einsteinly](#einsteinly) is [Mode F](#ludats-mode-f). [CurCuriely](#curcuriely) is [Mode Pair](#ludats-mode-pair). [Newtonly](#newtonly) is [Mode Unification](#ludats-mode-unification). Spec: [docs/LuDaTs.md](docs/LuDaTs.md).
+Each [LuDaTs](#ludats) brand names one mode. [Copernly](#copernly) is [Mode A](#ludats-mode-a). [Keplerly](#keplerly) is [Mode B](#ludats-mode-b). [Galileoly](#galileoly) is [Mode C](#ludats-mode-c). [Darwinly](#darwinly) is [Mode D](#ludats-mode-d). [Mendly](#mendly) is [Mode E](#ludats-mode-e). [Einsteinly](#einsteinly) is [Mode F](#ludats-mode-f). [CurCuriely](#curcuriely) is [Mode Pair](#ludats-mode-pair). [Newtonly](#newtonly) is [Mode Unification](#ludats-mode-unification). Spec: [docs/LuDaTs.md](docs/LuDaTs.md).
 
 <a id="ludats-mode-a" name="ludats-mode-a"></a>
 <h3>Mode A</h3>
@@ -670,7 +698,7 @@ Join two earlier worlds under one law. [Newtonly](#newtonly) runs [Mode Unificat
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-This evaler is based on Copernicus, the astronomer who discovered that the known planets go around the Sun, not around the Earth. Copernly (code LuDaTs-C) is a Dehydrus world under [LuDaTs](#ludats) (Limited-universe Data Test sets) methodology framework. It runs [Mode A](#ludats-mode-a). It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The cell stays deferred until a sealed 1542 world file is in the tree. A blank is not a fail and not a zero.
+This evaler is based on Copernicus, the astronomer who discovered that the known planets go around the Sun, not around the Earth. Copernly (code LuDaTs-C) is a Dehydrus world under [LuDaTs](#ludats) (Limited-universe Data Test sets). It runs [Mode A](#ludats-mode-a). It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The cell stays deferred until a sealed 1542 world file is in the tree. A blank is not a fail and not a zero.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -692,7 +720,7 @@ When the simulator does run, the agent is handed only the already-available sky 
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-This evaler is based on Marie Skłodowska-Curie and Pierre Curie, the pair who discovered that some matter gives off rays that belong to the atom, and who isolated two new elements from pitchblende. The double Cur in the name is because both of them had to be in the room. CurCuriely (code LuDaTs-CC) is a Dehydrus world under [LuDaTs](#ludats) (Limited-universe Data Test sets) methodology framework. It runs [Mode Pair](#ludats-mode-pair). It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The cell stays deferred until a sealed 1897 pair-world file is in the tree. A blank is not a fail and not a zero.
+This evaler is based on Marie Skłodowska-Curie and Pierre Curie, the pair who discovered that some matter gives off rays that belong to the atom, and who isolated two new elements from pitchblende. The double Cur in the name is because both of them had to be in the room. CurCuriely (code LuDaTs-CC) is a Dehydrus world under [LuDaTs](#ludats) (Limited-universe Data Test sets). It runs [Mode Pair](#ludats-mode-pair). It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The cell stays deferred until a sealed 1897 pair-world file is in the tree. A blank is not a fail and not a zero.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -936,7 +964,7 @@ Dehydrus routes the eight. Hydra routes the sixteen. A router pattern is not a s
 
 These are public exams for coding agents and for chat models. They matter in this period. Evalathan does not run them in the laptop scan, and it does not paste their leaderboards. That is a scope fact, not a dismissal. [Trajectly](#trajectly) is the station that will count one of them on the day a saved trace from that exam is in the folder you scan. A percent copied from a website is still not a grade.
 
-The same shelf holds retrieval catalogs. A catalog is a list of public scores. It is not an exam, and it is not on the vector. It also holds [PRDBench](#prdbench), which grades an agent that builds from a [PRD](#prd). [LuDaTs](#ludats) methodology framework is not on this shelf. It sits under [PRETRUWs](#pretruws) and [Dehydrus](#dehydrus).
+The same shelf holds retrieval catalogs. A catalog is a list of public scores. It is not an exam, and it is not on the vector. It also holds [PRDBench](#prdbench), which grades an agent that builds from a [PRD](#prd). [LuDaTs](#ludats) is not on this shelf. It sits under [PRETRUWs](#pretruws) and [Dehydrus](#dehydrus).
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -1018,13 +1046,13 @@ The paper is [arXiv:2510.24358](https://arxiv.org/abs/2510.24358), submitted 28 
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-[LuDaTs](#ludats) (Limited-universe Data Test sets) methodology framework is a subset of [PRETRUWs](#pretruws): the methodology framework inside that paradigm, not a [Trajectly](#trajectly) exam and not a seventeenth Hydra evaler. Dehydrus conducts the eight [LuDaTs](#ludats) methodology framework evalers. A missing world is blank, not a fail and not a zero. A gold medal is the structural prize for that world, not a sports rank of the product.
+[LuDaTs](#ludats) (Limited-universe Data Test sets) methodology framework is a subset of [PRETRUWs](#pretruws): the methodology framework inside that paradigm, not a [Trajectly](#trajectly) exam and not a seventeenth Hydra evaler. Dehydrus conducts the eight [LuDaTs](#ludats) evalers. A missing world is blank, not a fail and not a zero. A gold medal is the structural prize for that world, not a sports rank of the product.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
 [LuDaTs](#ludats) methodology framework locks the agent in a dated world: only the news, instruments, and papers that existed at that year, and only what that discoverer could have reached at that age. It then has to form the theory by acting in a simulator whose later facts are gone. Naming the later textbook title is not a gold medal. Galileo, Copernicus, and Kepler are three different tests, not one astronomy quiz. [CurCuriely](#curcuriely) is the pair room: two scientists, two agents. Newton waits.
 
-<p align="center"><a href="assets/glossary/cards/ludats-card.png"><img src="assets/glossary/cards/ludats-card.png" alt="LuDaTs methodology framework is eight locked worlds. Each brand is one method, not one astronomy quiz." width="703"></a></p>
+<p align="center"><a href="assets/glossary/cards/ludats-card.png"><img src="assets/glossary/cards/ludats-card.png" alt="LuDaTs is eight locked worlds. Each brand is one method, not one astronomy quiz." width="703"></a></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 

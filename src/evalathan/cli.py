@@ -21,7 +21,7 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         prog="evalathan",
         description=(
-            "Grade a software tree with Hydra, or a LuDaTs methodology framework tree with Dehydrus under PRETRUWs. "
+            "Grade a software tree with Hydra, or a LuDaTs tree with Dehydrus under PRETRUWs. "
             "Blanks stay blank. Run evalathan with no arguments to open Hydra. "
             "Run evalathan dehydrus to open Dehydrus."
         ),

@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "evalathan"
 version = "0.3.0"
-description = "Hydra conducts sixteen software evalers. Dehydrus conducts eight LuDaTs methodology framework evalers under PRETRUWs."
+description = "Hydra conducts sixteen software evalers. Dehydrus conducts eight LuDaTs evalers under PRETRUWs."
 readme = "README.md"
 requires-python = ">=3.10"
 license = "Apache-2.0"

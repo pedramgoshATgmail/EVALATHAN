@@ -5,7 +5,7 @@
 **Conductor:** Dehydrus
 **Product:** Evalathan, [github.com/pedramgoshATgmail/EVALATHAN](https://github.com/pedramgoshATgmail/EVALATHAN)
 
-PRETRUWs (PREdiscovery TRuncated-Universes and Worlds) is the physical-world evaluation paradigm. LuDaTs methodology framework (Limited-universe Data Test sets) is a subset of PRETRUWs: the methodology framework inside that paradigm. Hydra still conducts the sixteen software evalers. Dehydrus conducts the eight LuDaTs methodology framework evalers. Do not say Dehydrus conducts eight PRETRUWs evalers. The two rooms do not mix scores.
+PRETRUWs (PREdiscovery TRuncated-Universes and Worlds) is the physical-world evaluation paradigm. LuDaTs methodology framework (Limited-universe Data Test sets) is a subset of PRETRUWs: the methodology framework inside that paradigm. Hydra still conducts the sixteen software evalers. Dehydrus conducts the eight LuDaTs evalers. Do not say Dehydrus conducts eight PRETRUWs evalers. The two rooms do not mix scores.
 
 ## 1. Hierarchy (these words are not synonyms)
 
@@ -40,9 +40,9 @@ Braidware, from the SEISMO glossary, is the post-4IR term for agentics, software
 
 This is doctrine, not a score. It does not replace Highsmith. It does not award a number.
 
-## 3. Why LuDaTs methodology framework is not Trajectly
+## 3. Why LuDaTs is not Trajectly
 
-[Trajectly](../GLOSSARY.md#user-content-trajectly) reads software / agentic traces (intangibles). LuDaTs methodology framework locks a physical or part-tangible world (an optic, a field year, a lab table). Putting LuDaTs methodology framework on [Trajectly](../GLOSSARY.md#user-content-trajectly)'s exam shelf mixed those rooms. v0.3 moves LuDaTs methodology framework under PRETRUWs and Dehydrus.
+[Trajectly](../GLOSSARY.md#user-content-trajectly) reads software / agentic traces (intangibles). LuDaTs locks a physical or part-tangible world (an optic, a field year, a lab table). Putting LuDaTs on [Trajectly](../GLOSSARY.md#user-content-trajectly)'s exam shelf mixed those rooms. v0.3 moves LuDaTs under PRETRUWs and Dehydrus.
 
 ## 4. What each kind of thing is
 
@@ -54,4 +54,4 @@ This is doctrine, not a score. It does not replace Highsmith. It does not award 
 
 ## 5. Allowed sentence
 
-PRETRUWs is the 4IR paradigm for PREdiscovery TRuncated-Universes and Worlds. LuDaTs methodology framework is a subset of PRETRUWs. Dehydrus conducts eight LuDaTs methodology framework evalers. Hydra still conducts sixteen software evalers. A gold medal is structural. A prompt cutoff is not a world. A blank is not a zero.
+PRETRUWs is the 4IR paradigm for PREdiscovery TRuncated-Universes and Worlds. LuDaTs methodology framework is a subset of PRETRUWs. Dehydrus conducts eight LuDaTs evalers. Hydra still conducts sixteen software evalers. A gold medal is structural. A prompt cutoff is not a world. A blank is not a zero.

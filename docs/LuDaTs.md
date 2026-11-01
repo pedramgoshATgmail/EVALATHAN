@@ -12,7 +12,7 @@ This file retires the EurekaRAG “Galileo Test” (circa January to October 202
 
 **Gold medal** means the structural prize for that world: the equation, the predicted observable, or the held-out property card that wins the exam. It is not a sports ranking of the product, and it is not a filename.
 
-Hydra still conducts **sixteen** software evalers. Dehydrus conducts **eight** LuDaTs methodology framework evalers. LuDaTs methodology framework is not a seventeenth Hydra cell. A missing world is blank, not a fail and not a zero.
+Hydra still conducts **sixteen** software evalers. Dehydrus conducts **eight** LuDaTs evalers. LuDaTs is not a seventeenth Hydra cell. A missing world is blank, not a fail and not a zero.
 
 ---
 
@@ -63,7 +63,7 @@ Machine cards: [`exams/ludats/`](../exams/ludats/).
 1. **World clock T.** Corpus, instruments, news, and correspondence dated after T are absent.
 2. **Biography clock A.** Access is that person's age, education, post, and travel at T.
 3. **News sync.** Periodicals are dated to T and to A.
-4. **Interaction.** The agent acts in a simulator whose observations are generated at T. A cutoff sentence on a modern model is not LuDaTs methodology framework. [ExAnte](https://aclanthology.org/2026.eacl-long.72/) (ACL 2026, EACL long paper; also [arXiv:2505.19533](https://arxiv.org/abs/2505.19533)) already showed that large language models leak past a stated cutoff.
+4. **Interaction.** The agent acts in a simulator whose observations are generated at T. A cutoff sentence on a modern model is not LuDaTs. [ExAnte](https://aclanthology.org/2026.eacl-long.72/) (ACL 2026, EACL long paper; also [arXiv:2505.19533](https://arxiv.org/abs/2505.19533)) already showed that large language models leak past a stated cutoff.
 5. **Hidden labels.** The task does not name the later theory.
 6. **Gold medal.** Equations, predicted observables, or held-out property cards.
 7. **Leakage fail.** Post-T tokens, later element names, 1919 eclipse plates before a theory is submitted, or Darwin-finch cartoon keys fail the run.
@@ -76,18 +76,18 @@ Machine cards: [`exams/ludats/`](../exams/ludats/).
 
 | Place | Decision |
 |-------|----------|
-| Hydra sixteen | No. Do not add a LuDaTs methodology framework evaler to Hydra. |
+| Hydra sixteen | No. Do not add a LuDaTs evaler to Hydra. |
 | [Trajectly](../GLOSSARY.md#user-content-trajectly) exam shelf | No. [Trajectly](../GLOSSARY.md#user-content-trajectly) is software / agentic traces. |
 | Dehydrus eight | Yes. Full desk. Command `evalathan dehydrus`. |
-| Domly | No. Domly matches question ids. LuDaTs methodology framework grades hypothesis formation. |
+| Domly | No. Domly matches question ids. LuDaTs grades hypothesis formation. |
 | v0.3 laptop scan | Name the sealed file if present. Do not execute the world. Blank is not a zero. |
 
 ---
 
 ## 5. Peers (do not duplicate)
 
-- **ExAnte** (ACL 2026): prompt-level cutoff and leakage rate. LuDaTs methodology framework needs a simulator.
-- **Turing tests for an AI scientist** (arXiv 2405.13352): one sky library that already merges Copernicus and Kepler. LuDaTs methodology framework splits C/K/G.
+- **ExAnte** (ACL 2026): prompt-level cutoff and leakage rate. LuDaTs needs a simulator.
+- **Turing tests for an AI scientist** (arXiv 2405.13352): one sky library that already merges Copernicus and Kepler. LuDaTs splits C/K/G.
 - **ScienceWorld / DiscoveryWorld:** interactive science, not a dated human life.
 - **AllenAI DiscoveryBench:** hypothesis from a CSV. Different object.
 
@@ -95,7 +95,7 @@ Machine cards: [`exams/ludats/`](../exams/ludats/).
 
 ## 6. Not to do
 
-- Do not put LuDaTs methodology framework under [Trajectly](../GLOSSARY.md#user-content-trajectly).
+- Do not put LuDaTs under [Trajectly](../GLOSSARY.md#user-content-trajectly).
 - Do not add the eight to Hydra's sixteen.
 - Do not collapse Copernicus, Kepler, and Galileo into one heliocentrism quiz.
 - Do not ship only three worlds.
@@ -108,4 +108,4 @@ Machine cards: [`exams/ludats/`](../exams/ludats/).
 
 ## 7. Allowed sentence
 
-LuDaTs methodology framework is a subset of PRETRUWs: eight historically locked worlds. Dehydrus conducts those eight LuDaTs methodology framework evalers: Copernly, Keplerly, Galileoly, Darwinly, Mendly, Einsteinly, CurCuriely, and deferred Newtonly. CurCuriely is the pair room: two scientists, two agents, joint Gold. Each world has a year freeze and a biography freeze. A gold medal is structural. Leakage fails the run. The sixteen Hydra evalers do not grow.
+LuDaTs is a subset of PRETRUWs: eight historically locked worlds. Dehydrus conducts those eight LuDaTs evalers: Copernly, Keplerly, Galileoly, Darwinly, Mendly, Einsteinly, CurCuriely, and deferred Newtonly. CurCuriely is the pair room: two scientists, two agents, joint Gold. Each world has a year freeze and a biography freeze. A gold medal is structural. Leakage fails the run. The sixteen Hydra evalers do not grow.
