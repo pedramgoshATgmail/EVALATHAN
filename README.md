@@ -65,7 +65,7 @@ evalathan scan . --json report.json
 
 EVALATHAN is an open-source (Apache-2.0), Python-based (to be refractored for v1 release) evaluation harness designed to audit and score software projects, codebases, compilers, and AI agent pipelines across their entire lifecycle.
 
-The tool positions itself as a local runner (v0.2) aimed at Product-led growth (PLG) and codebase verification. Rather than generating a single aggregated or opaque score, EVALATHAN uses a conductor engine named Hydra to orchestrate 16 distinct evaluators ("evalers") and output a transparent status matrix.
+The tool is a local runner (v0.3) aimed at Product-led growth (PLG) and codebase verification. Rather than generating a single aggregated or opaque score, EVALATHAN uses two conductors. [Hydra](GLOSSARY.md#user-content-hydra) orchestrates sixteen software evaluators ("evalers") and writes a transparent status matrix. [Dehydrus](GLOSSARY.md#user-content-dehydrus) orchestrates eight [PRETRUWs](GLOSSARY.md#user-content-pretruws) (PREdiscovery TRuncated-Universes and Worlds) world evalers. The two rooms do not share a vector, and they are not folded into one number.
 
 ## Architecture & The 16 Evaluators
 
@@ -78,7 +78,9 @@ EVALATHAN evaluates a project by passing a local directory path (`evalathan scan
 | AI Agents & LLM Observability | Tokely, Chorely, Trajectly, Domly, Warrantly | Tracks token delta/reduction metrics, maps multi-agent rosters and responsibilities, counts agent trace steps, tests domain-specific Q&A pairs, and audits whether factual claims link to verifiable evidence. |
 | Human Ergonomics & Reporting | Levi, Menschly, Stackly | Evaluates user-centric scorecards, checks for built-in user break timers, and produces an itemized report of completed vs. deferred checks. |
 
-### Unique Features: SELFBELT and FUSS
+Dehydrus's eight world evalers sit in their own room. They are listed under [What v0.3 runs](#what-v03-runs). They are not a seventeenth Hydra score.
+
+### Unique Features: SELFBELT, FUSS, and PRETRUWs
 
 A standout aspect of the project is its integration of developer and user wellness into the evaluation criteria:
 
@@ -87,6 +89,10 @@ A standout aspect of the project is its integration of developer and user wellne
 [FUSS](GLOSSARY.md#user-content-fuss) (For-User Session Switch): A modular front-end/desktop widget inside the repository (fuss/) that developers can embed into software to enforce scheduled rest breaks.
 
 [Menschly](GLOSSARY.md#user-content-menschly): The evaluator specifically tasked with verifying whether a codebase incorporates real session limiters/timers rather than just vague README promises.
+
+[PRETRUWs](GLOSSARY.md#user-content-pretruws) / [LuDaTs](GLOSSARY.md#user-content-ludats) / [Dehydrus](GLOSSARY.md#user-content-dehydrus): The v0.3 physical-world room. PRETRUWs is the 4IR (Fourth Industrial Revolution) framework. LuDaTs (Limited-universe Data Test sets) is its methodology family, not a Trajectly exam. Dehydrus conducts eight locked-year brands. A prompt cutoff is not a world. A blank is not a fail and not a zero.
+
+[HabTwin](GLOSSARY.md#user-content-habtwin): Named on the Dehydrus report as a filename line only (`No HabTwin lab trace` or the sealed file). It is not a ninth LuDaTs cell and not a Hydra evaler. Scoring is reserved for v0.4.
 
 ## What v0.2 runs
 
@@ -115,21 +121,46 @@ Each name opens its glossary entry. An entry has three parts: what is counted, s
 
 Levi reads a [4Uvals](GLOSSARY.md#user-content-4uvals) card when one is in the tree. 4Uvals (Ultimate User-User-User evaluations) is a 10-check list asking whether a session put the person first. The published card, v1.2, is a pass: 9 of 10 checks Solid or Strong, mean 3.4 out of 4.
 
+## What v0.3 runs
+
+[Dehydrus](GLOSSARY.md#user-content-dehydrus) conducts eight [PRETRUWs](GLOSSARY.md#user-content-pretruws) evalers. He is not an eighteenth Hydra score. The default local install still opens Hydra (`launch.bat` / `bash launch.sh`). The Dehydrus desk is a second command: `evalathan dehydrus`. A Dehydrus scan writes eight cells and a [HabTwin](GLOSSARY.md#user-content-habtwin) filename line. The report body starts with Evalathan v0.3.
+
+Those eight cells are not fully wired into the install you get when you double-click the launcher. v0.3 looks for a sealed world file and names it when one is in the tree. It does not run the locked-year simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. Until a sealed world is present, and until the simulator is the thing the local install runs, the cell stays deferred. A deferred cell is not a fail and not a zero. [Newtonly](GLOSSARY.md#user-content-newtonly) waits until [Keplerly](GLOSSARY.md#user-content-keplerly) and [Galileoly](GLOSSARY.md#user-content-galileoly) both show a sealed world.
+
+| Evaler | What it does |
+| :--- | :--- |
+| [Copernly](GLOSSARY.md#user-content-copernly) | Rebuilds already-available 1542 sky numbers as a sun-centered picture. No new telescope. [Mode A](GLOSSARY.md#user-content-ludats-mode-a). |
+| [Keplerly](GLOSSARY.md#user-content-keplerly) | Draws the ellipse and equal-area rule from Tycho's Mars table. Same instrument class, not a new optic. [Mode B](GLOSSARY.md#user-content-ludats-mode-b). |
+| [Galileoly](GLOSSARY.md#user-content-galileoly) | Required physical-world flagship. New optic plus a bench on earth: moons, phases, a rough Moon, and the incline law. [Mode C](GLOSSARY.md#user-content-ludats-mode-c). |
+| [Darwinly](GLOSSARY.md#user-content-darwinly) | Required long-horizon field world. Years of walking, breeding, and notes. Descent with modification, not the finch cartoon. [Mode D](GLOSSARY.md#user-content-ludats-mode-d). |
+| [Mendly](GLOSSARY.md#user-content-mendly) | Arranges the 1868 set so the holes have the right shape. Later names stay hidden. [Mode E](GLOSSARY.md#user-content-ludats-mode-e). |
+| [Einsteinly](GLOSSARY.md#user-content-einsteinly) | Writes the field equations from Mercury's leftover. General Relativity only. 1905 is another room. [Mode F](GLOSSARY.md#user-content-ludats-mode-f). |
+| [CurCuriely](GLOSSARY.md#user-content-curcuriely) | Marie Curie and Pierre Curie. Two biography clocks and two agents. Gold is joint. A solo run stays deferred. [Mode Pair](GLOSSARY.md#user-content-ludats-mode-pair). |
+| [Newtonly](GLOSSARY.md#user-content-newtonly) | Unites Kepler's sky with Galileo's ground under one inverse-square law. The apple story is not the method. [Mode Unification](GLOSSARY.md#user-content-ludats-mode-unification). Deferred to v2 until Keplerly and Galileoly are both sealed. |
+
+Each name opens its glossary entry. An entry has the same three parts as the Hydra table: what is counted, simplespeak, and techspeak. Spec: [docs/PRETRUWs.md](docs/PRETRUWs.md), [docs/LuDaTs.md](docs/LuDaTs.md). Cards: [exams/ludats/](exams/ludats/).
+
 ## Key Strengths
 
-Holistic Lifecycle View: Most evaluation tools are siloed into either static analysis (e.g., SonarQube, flake8), benchmark profiling (e.g., pytest-benchmark), or LLM observability (e.g., Promptfoo, DeepEval). EVALATHAN attempts to unify traditional software metrics, AI agent evaluations, and human-centric design under one roof.
+Holistic Lifecycle View: Most evaluation tools are siloed into either static analysis (e.g., SonarQube, flake8), benchmark profiling (e.g., pytest-benchmark), or LLM (Large Language Model) observability (e.g., Promptfoo, DeepEval). EVALATHAN attempts to unify traditional software metrics, AI agent evaluations, and human-centric design under Hydra, and locked physical-world discovery under Dehydrus.
 
-Honest, Uninflated Scoring Methodology: The system adopts a strict policy that "a deferred cell is not a fail and not a zero," refusing to synthesize dissimilar metrics into an artificial 0–100 score. It reports what was actually measured versus what was skipped.
+Two Rooms, Two Conductors: Hydra still writes sixteen software cells. Dehydrus writes eight PRETRUWs cells. The rooms do not share a vector. Twenty-four cells are not folded into one number, and there is no state-of-the-art stamp.
 
-Clean Packaging: Structured as a modern Python package (pyproject.toml, src/evalathan, tests/), with CLI support and JSON export options for pipeline integration.
+Honest, Uninflated Scoring Methodology: The system adopts a strict policy that "a deferred cell is not a fail and not a zero," refusing to synthesize dissimilar metrics into an artificial 0-100 score. It reports what was actually measured versus what was skipped. A sealed-world filename is not Gold.
+
+Locked-Year Honesty: PRETRUWs / LuDaTs refuse a prompt that only says "pretend it is 1610." Later facts have to be actually gone. ExAnte (ACL 2026) showed prompt cutoffs leak.
+
+Clean Packaging: Structured as a modern Python package (pyproject.toml, src/evalathan, tests/), with CLI support and JSON export options for pipeline integration. `evalathan` opens Hydra. `evalathan dehydrus` opens Dehydrus.
 
 Attention to Ergonomics/Ethics: Bringing developer wellness (FUSS/SELFBELT) into code grading is novel and addresses a real blind spot in typical CI/CD quality gates.
 
 ## Current Limitations & Areas for Growth
 
-Early Stage (v0.2): The repository has around 27 commits and no public releases or distribution yet (e.g., not yet packaged on PyPI). It is in early development.
+Early Stage (v0.3): The repository now has more than 150 commits and still has no public distribution (it is not on PyPI). Hydra is the window the launcher opens. Dehydrus is present as a second command.
 
-Passive Log Parsing vs. Active Execution: Several AI and performance evaluators (e.g., Tokely, Trajectly, Pressly) rely on reading pre-existing log files and saved run artifacts rather than executing live tracing or active benchmarking. If a project lacks standardized log outputs, those cells will simply remain blank/deferred.
+Dehydrus Not Fully Wired: The eight PRETRUWs evalers ship as desk cells and exam cards. v0.3 names a sealed world file when one is in the tree. It does not yet run the locked-year simulator inside a default local install, and it does not award Gold from a filename. Missing worlds stay deferred. That wait is part of the method, not a fail.
+
+Passive Log Parsing vs. Active Execution: Several Hydra AI and performance evaluators (e.g., Tokely, Trajectly, Pressly) rely on reading pre-existing log files and saved run artifacts rather than executing live tracing or active benchmarking. If a project lacks standardized log outputs, those cells will simply remain blank/deferred.
 
 AST and Language Parsing Depth: Running branching/decision checks (Codely) across arbitrary compilers and languages is non-trivial; depending on the parsers implemented in src/evalathan/, support for languages outside Python may be basic.
 
@@ -137,7 +168,7 @@ DevOps & Community Infrastructure: The repository would benefit from automated G
 
 ## Current Assessment
 
-EVALATHAN is an ambitious, conceptually fresh evaluation harness. While still in its early stages (v0.2), it stands out for its balanced philosophy: it bridges modern AI agent auditing with classic static analysis while introducing thoughtful developer wellness checks (FUSS/Menschly). For production use, it is best treated as an experimental framework or early-stage evaluation baseline that will mature as active log integrations and language parsers expand.
+EVALATHAN is an ambitious, conceptually fresh evaluation harness. v0.3 keeps Hydra's sixteen software evalers and adds the PRETRUWs room: Dehydrus conducts eight LuDaTs brands (Copernly, Keplerly, Galileoly, Darwinly, Mendly, Einsteinly, CurCuriely, Newtonly) under one 4IR framework. It still stands out for a balanced philosophy: modern AI agent auditing, classic static analysis, developer wellness (FUSS/Menschly), and locked-year physical-world exams that refuse a textbook title as Gold. The Dehydrus desk is on the tree, but a default local install does not yet run those worlds as live simulators. For production use, treat v0.3 as an experimental two-conductor baseline. The sixteen stay sixteen. The eight stay eight. A blank is not a fail and not a zero.
 
 ## SELFBELT
 
@@ -153,7 +184,7 @@ EVALATHAN is an ambitious, conceptually fresh evaluation harness. While still in
 
 ## License
 
-Apache-2.0 for this runner and these rules. The name Evalathan is the product name. Hosted runs are not part of v0.2.
+Apache-2.0 for this runner and these rules. The name Evalathan is the product name. Hosted runs are not part of v0.3.
 
 ## Not in this version
 
@@ -170,6 +201,8 @@ These are public evals that already exist. Hydra does not run them and does not 
 **PRDBench.** [PRDBench](GLOSSARY.md#user-content-prdbench) grades an agent that builds from a [PRD](GLOSSARY.md#user-content-prd) (Product Requirements Document). Evalathan does not sit that exam and does not copy its board.
 
 **[PRETRUWs](GLOSSARY.md#user-content-pretruws) / [LuDaTs](GLOSSARY.md#user-content-ludats) / [Dehydrus](GLOSSARY.md#user-content-dehydrus).** [PRETRUWs](GLOSSARY.md#user-content-pretruws) (PREdiscovery TRuncated-Universes and Worlds) is the v0.3 4IR (Fourth Industrial Revolution) framework. [LuDaTs](GLOSSARY.md#user-content-ludats) (Limited-universe Data Test sets) is its methodology family, not a Trajectly exam. [Dehydrus](GLOSSARY.md#user-content-dehydrus) conducts the eight brands, including [CurCuriely](GLOSSARY.md#user-content-curcuriely) ([Mode Pair](GLOSSARY.md#user-content-ludats-mode-pair): Marie Curie and Pierre Curie, two agents). Spec: [docs/PRETRUWs.md](docs/PRETRUWs.md), [docs/LuDaTs.md](docs/LuDaTs.md). Cards: [exams/ludats/](exams/ludats/). v0.3 names a sealed world file and does not run the simulator. The sixteen stay sixteen.
+
+**Follow-up paper.** Pedram Goshtasbpour will release *Until Artificial Intelligence Independently Eurekas on its own* and put it up for peer review in early 2027, thirty years after Jim Highsmith's [Messy, Exciting, and Anxiety-Ridden: Adaptive Software Development](https://web.archive.org/web/20171004140236/http://www.adaptivesd.com/articles/messy.htm) (American Programmer, 1997; also described at [Adaptive Software Development](https://en.wikipedia.org/wiki/Adaptive_software_development)). Highsmith called the second world messy, exciting, and anxiety-ridden: unpredictable, nonlinear, and fast. The follow-up does not replace that paper. It states the PRETRUWs third world.
 
 **HabTwin.** [HabTwin](GLOSSARY.md#user-content-habtwin) is the v0.4 twin-fidelity exam (person-specific, distributional, leak-gated, lab-only). v0.3 prints a filename line only. Spec: [docs/HabTwin.md](docs/HabTwin.md). It is not a Trajectly exam and not a ninth [LuDaTs](GLOSSARY.md#user-content-ludats) cell.
 

@@ -10,7 +10,7 @@ Hydra conducts sixteen software and agentic evalers on a local folder. The lapto
 
 First of two 4IR (Fourth Industrial Revolution) eval paradigms.
 
-- Manifesto direction: *Until Artificial Intelligence Independently Eurekas on its own* (ASD-shaped paper, after [Jim Highsmith's Adaptive Software Development](https://en.wikipedia.org/wiki/Adaptive_software_development)).
+- Manifesto direction: *Until Artificial Intelligence Independently Eurekas on its own*. Pedram Goshtasbpour will release that follow-up paper and put it up for peer review in early 2027, thirty years after Jim Highsmith's [Messy, Exciting, and Anxiety-Ridden: Adaptive Software Development](https://web.archive.org/web/20171004140236/http://www.adaptivesd.com/articles/messy.htm) (American Programmer, 1997; also [Adaptive Software Development](https://en.wikipedia.org/wiki/Adaptive_software_development)). Highsmith's second world was unpredictable, nonlinear, and fast. PRETRUWs states a third world. The follow-up does not replace Highsmith.
 - Framework: **[PRETRUWs](../GLOSSARY.md#user-content-pretruws)** (PREdiscovery TRuncated-Universes and Worlds).
 - Methodology family: **[LuDaTs](../GLOSSARY.md#user-content-ludats)** (Limited-universe Data Test sets) - eight world methods, each with its own methodstack.
 - Conductor / router: **[Dehydrus](../GLOSSARY.md#user-content-dehydrus)**. Window title DEHYDRUS. Command `evalathan dehydrus`. He is not an eighteenth Hydra score.
