@@ -1,6 +1,6 @@
 <h1><img src="assets/glossary/title.png" alt="Evalathan glossary" height="33"></h1>
 
-<big><big><mark><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/main/docs/glossary.html?v=ludatscards6">Search the glossary</a></mark></big></big>. That page is the glossary, with its lettering and images, and the search slot is on the same page. Type a letter and the matching entries appear. Choosing a word moves to that entry.
+<big><big><mark><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/main/docs/glossary.html?v=habtwinplain1">Search the glossary</a></mark></big></big>. That page is the glossary, with its lettering and images, and the search slot is on the same page. Type a letter and the matching entries appear. Choosing a word moves to that entry.
 
 [Evalathan](#evalathan) is one evaluation harness. [Hydra](#hydra) is the conductor for sixteen software evalers. [Dehydrus](#dehydrus) is the conductor for eight physical-world evalers under [PRETRUWs](#pretruws). Each entry below has the same three parts.
 
@@ -1038,19 +1038,25 @@ Spec: [docs/LuDaTs.md](docs/LuDaTs.md). Machine cards: [exams/ludats/](exams/lud
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-[HabTwin](#habtwin) is an innovative twin-fidelity exam: person-specific, distributional, leak-gated, lab-only. It is not a Hydra evaler and not a Trajectly exam. Dehydrus prints `No HabTwin lab trace` or the sealed filename. v0.3 does not guess. A blank is not a fail and not a zero. Spec: [docs/HabTwin.md](docs/HabTwin.md).
+[HabTwin](#habtwin) is a later exam for a digital twin: a stand-in that is supposed to act like one real person or one real machine. It is not one of Hydra's sixteen software evalers, and it is not a Trajectly exam. In v0.3 Dehydrus only looks for a lab file. If none is there, it prints `No HabTwin lab trace`. It does not invent a score. A blank is not a fail and not a zero. Spec: [docs/HabTwin.md](docs/HabTwin.md).
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
-<p align="center"><a href="assets/glossary/cards/habtwin-card.png"><img src="assets/glossary/cards/habtwin-card.png" alt="HabTwin is a twin-fidelity exam: person-specific, leak-gated, lab-only. A blank is not a fail." width="703"></a></p>
+<p align="center"><a href="assets/glossary/cards/habtwin-card.png"><img src="assets/glossary/cards/habtwin-card.png" alt="HabTwin asks whether a stand-in predicts the real person or machine, in a lab, more than once." width="703"></a></p>
 
-A twin is real when it predicts what the real person or machine would do, in a lab, more than once. **P** is the person (or machine) you claim to copy. **Q** is someone else, used as a check. The **crowd** is "people in general." Matching a live password is not the prize.
+A digital twin is a stand-in. HabTwin asks whether that stand-in keeps predicting what the real person or the real machine would do, in a safe lab, more than once. One lucky guess is not enough.
+
+**P** is the person or machine you claim to have copied. **Q** is someone else, used as a check, so the stand-in cannot just sound generic. The **crowd** is "people in general," not P. A real twin should fit P, and should not fit Q or the crowd as well as it fits P.
+
+Guessing a live password is not the prize. A mind is not a short login string. HabTwin looks for a stable habit - how someone builds a secret - not the live account itself. v0.3 does not run this exam yet. It only names a sealed lab file if one is in the folder.
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-A digital twin is validated when it predicts the counterpart's measurable outputs under a stated use ([ISO 23247](#iso-23247) [VVUQ](#vvuq); NASEM digital-twin report). [HabTwin](#habtwin) scores the signature, discriminates P from Q and from the crowd, and, for machines, scores policy plus lab-generator next-sample. Exact match on synthetic secrets is a ceiling metric. It is not the definition of twin. Cells: [HabTwin](#habtwin)-C (composition), [HabTwin](#habtwin)-D (discrimination), [HabTwin](#habtwin)-S (system), [HabTwin](#habtwin)-X (exact-match ceiling), [HabTwin](#habtwin)-K (keystroke, deferred). Live login is forbidden. Human digital twins in medicine are being told to run VVUQ, not a password parlor trick ([npj Digital Medicine 2025](https://www.nature.com/articles/s41746-025-01447-y); [ISO/AWI 23247-8](https://www.iso.org/standard/94858.html)).
+A digital twin is valid when it predicts the counterpart's measurable outputs under a stated use ([ISO 23247](#iso-23247), Digital twin framework for manufacturing; [VVUQ](#vvuq), Verification, Validation, and Uncertainty Quantification; NASEM, National Academies of Sciences, Engineering, and Medicine, digital-twin report). [HabTwin](#habtwin) scores the habit signature, then checks that the twin fits **P** better than **Q** and better than the crowd. For a machine, it also scores the generator's policy and a next sample only inside a lab toy. Matching one synthetic secret exactly is a ceiling check. It is not the definition of twin.
 
-Not to do: do not target live people or production systems; do not ship wordlists or cracking loops; do not treat a password-manager user as a fail; do not mash [HabTwin](#habtwin)-C into keystrokes; do not add [HabTwin](#habtwin) to Hydra or Trajectly; do not call exact match the definition of twin.
+Five cells, when scoring ships in v0.4: [HabTwin](#habtwin)-C (composition: the shape of the habit), [HabTwin](#habtwin)-D (discrimination: P vs Q vs crowd), [HabTwin](#habtwin)-S (system twin of a documented generator), [HabTwin](#habtwin)-X (exact-match ceiling, never required Gold), [HabTwin](#habtwin)-K (keystroke timing, deferred). Live login is forbidden. Medicine is being told to run VVUQ on human digital twins, not a password parlor trick ([npj Digital Medicine 2025](https://www.nature.com/articles/s41746-025-01447-y); [ISO/AWI 23247-8](https://www.iso.org/standard/94858.html)).
+
+Do not target live people or production systems. Do not ship wordlists or cracking loops. Do not fail a person for using a password manager. Do not mash [HabTwin](#habtwin)-C into keystrokes. Do not add [HabTwin](#habtwin) to Hydra or Trajectly. Do not call exact match the definition of twin.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
