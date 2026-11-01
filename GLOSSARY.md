@@ -1,6 +1,6 @@
 <h1><img src="assets/glossary/title.png" alt="Evalathan glossary" height="33"></h1>
 
-<big><big><mark><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/main/docs/glossary.html?v=ludatscards3">Search the glossary</a></mark></big></big>. That page is the glossary, with its lettering and images, and the search slot is on the same page. Type a letter and the matching entries appear. Choosing a word moves to that entry.
+<big><big><mark><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/main/docs/glossary.html?v=ludatscards4">Search the glossary</a></mark></big></big>. That page is the glossary, with its lettering and images, and the search slot is on the same page. Type a letter and the matching entries appear. Choosing a word moves to that entry.
 
 [Evalathan](#evalathan) is one evaluation harness. [Hydra](#hydra) is the conductor for sixteen software evalers. [Dehydrus](#dehydrus) is the conductor for eight physical-world evalers under [PRETRUWs](#pretruws). Each entry below has the same three parts.
 
@@ -1043,6 +1043,8 @@ Spec: [docs/LuDaTs.md](docs/LuDaTs.md). Machine cards: [exams/ludats/](exams/lud
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
 A twin is real when it predicts what the real person or machine would do, in a lab, more than once. **P** is the person (or machine) you claim to copy. **Q** is someone else, used as a check. The **crowd** is "people in general." Matching a live password is not the prize.
+
+<p align="center"><a href="assets/glossary/cards/habtwin-card.jpg"><img src="assets/glossary/cards/habtwin-card.jpg" style="border-radius:18px" alt="HabTwin is a twin-fidelity exam: person-specific, leak-gated, lab-only. A blank is not a fail." width="703"></a></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
