@@ -43,7 +43,7 @@ This is doctrine, not a score. It does not replace Highsmith. It does not award 
 
 ## 3. Why LuDaTs is not Trajectly
 
-Trajectly reads software / agentic traces (intangibles). LuDaTs locks a physical or part-tangible world (an optic, a field year, a lab table). Putting LuDaTs on Trajectly's exam shelf mixed those rooms. v0.3 moves LuDaTs under PRETRUWs and Dehydrus.
+[Trajectly](../GLOSSARY.md#user-content-trajectly) reads software / agentic traces (intangibles). LuDaTs locks a physical or part-tangible world (an optic, a field year, a lab table). Putting LuDaTs on [Trajectly](../GLOSSARY.md#user-content-trajectly)'s exam shelf mixed those rooms. v0.3 moves LuDaTs under PRETRUWs and Dehydrus.
 
 ## 4. What each kind of thing is
 

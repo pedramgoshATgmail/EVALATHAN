@@ -1,7 +1,7 @@
 # LuDaTs v1 - Limited-universe Data Test sets
 
 **Date:** 31 Oct 2026
-**Status:** Subset of PRETRUWs. Methodology family. Not a Hydra evaler. Not a Trajectly exam.
+**Status:** Subset of PRETRUWs. Methodology family. Not a Hydra evaler. Not a [Trajectly](../GLOSSARY.md#user-content-trajectly) exam.
 **Framework:** [PRETRUWs](PRETRUWs.md) (PREdiscovery TRuncated-Universes and Worlds)
 **Conductor:** Dehydrus
 **Product:** Evalathan, [github.com/pedramgoshATgmail/EVALATHAN](https://github.com/pedramgoshATgmail/EVALATHAN)
@@ -77,7 +77,7 @@ Machine cards: [`exams/ludats/`](../exams/ludats/).
 | Place | Decision |
 |-------|----------|
 | Hydra sixteen | No. Do not add a LuDaTs evaler to Hydra. |
-| Trajectly exam shelf | No. Trajectly is software / agentic traces. |
+| [Trajectly](../GLOSSARY.md#user-content-trajectly) exam shelf | No. [Trajectly](../GLOSSARY.md#user-content-trajectly) is software / agentic traces. |
 | Dehydrus eight | Yes. Full desk. Command `evalathan dehydrus`. |
 | Domly | No. Domly matches question ids. LuDaTs grades hypothesis formation. |
 | v0.3 laptop scan | Name the sealed file if present. Do not execute the world. Blank is not a zero. |
@@ -95,7 +95,7 @@ Machine cards: [`exams/ludats/`](../exams/ludats/).
 
 ## 6. Not to do
 
-- Do not put LuDaTs under Trajectly.
+- Do not put LuDaTs under [Trajectly](../GLOSSARY.md#user-content-trajectly).
 - Do not add the eight to Hydra's sixteen.
 - Do not collapse Copernicus, Kepler, and Galileo into one heliocentrism quiz.
 - Do not ship only three worlds.

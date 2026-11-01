@@ -75,7 +75,7 @@ EVALATHAN evaluates a project by passing a local directory path (`evalathan scan
 | :--- | :--- | :--- |
 | Code Health & Repository Metrics | Devly, Archly, Codely, Refactorly, Mixly | Inspects Git history (commits), presence of architectural documentation, cyclomatic/branching complexity, dead code, code churn/duplication, and language breakdown. |
 | Performance & Trade-offs | Runly, Pressly, Triadly | Times micro-benchmarks, reads compression and asset quality logs (image/video/file sizes), and documents the project's prioritization order across cost, latency, and impact. |
-| AI Agents & LLM Observability | Tokely, Chorely, Trajectly, Domly, Warrantly | Tracks token delta/reduction metrics, maps multi-agent rosters and responsibilities, counts agent trace steps, tests domain-specific Q&A pairs, and audits whether factual claims link to verifiable evidence. |
+| AI Agents & LLM Observability | Tokely, Chorely, [Trajectly](GLOSSARY.md#user-content-trajectly), Domly, Warrantly | Tracks token delta/reduction metrics, maps multi-agent rosters and responsibilities, counts agent trace steps, tests domain-specific Q&A pairs, and audits whether factual claims link to verifiable evidence. |
 | Human Ergonomics & Reporting | Levi, Menschly, Stackly | Evaluates user-centric scorecards, checks for built-in user break timers, and produces an itemized report of completed vs. deferred checks. |
 
 Dehydrus's eight LuDaTs evalers sit in their own room. They are listed under [What v0.3 runs](#what-v03-runs). They are not a seventeenth Hydra score.
@@ -90,7 +90,7 @@ A standout aspect of the project is its integration of developer and user wellne
 
 [Menschly](GLOSSARY.md#user-content-menschly): The evaluator specifically tasked with verifying whether a codebase incorporates real session limiters/timers rather than just vague README promises.
 
-[PRETRUWs](GLOSSARY.md#user-content-pretruws) / [LuDaTs](GLOSSARY.md#user-content-ludats) / [Dehydrus](GLOSSARY.md#user-content-dehydrus): The v0.3 physical-world room. PRETRUWs is the 4IR (Fourth Industrial Revolution) framework. LuDaTs (Limited-universe Data Test sets) is a subset of PRETRUWs: the methodology family inside that framework, not a Trajectly exam. Dehydrus conducts eight LuDaTs evalers. A prompt cutoff is not a world. A blank is not a fail and not a zero.
+[PRETRUWs](GLOSSARY.md#user-content-pretruws) / [LuDaTs](GLOSSARY.md#user-content-ludats) / [Dehydrus](GLOSSARY.md#user-content-dehydrus): The v0.3 physical-world room. PRETRUWs is the 4IR (Fourth Industrial Revolution) framework. LuDaTs (Limited-universe Data Test sets) is a subset of PRETRUWs: the methodology family inside that framework, not a [Trajectly](GLOSSARY.md#user-content-trajectly) exam. Dehydrus conducts eight LuDaTs evalers. A prompt cutoff is not a world. A blank is not a fail and not a zero.
 
 [HabTwin](GLOSSARY.md#user-content-habtwin): A digital twin is a stand-in. HabTwin asks whether that stand-in keeps predicting what the real person or the real machine would do, in a safe lab, more than once. One lucky guess is not enough. Guessing a live password is not the prize. v0.3 does not run this exam yet. Dehydrus only looks for a lab file. If none is there, it prints `No HabTwin lab trace`. It does not invent a score.
 
@@ -160,7 +160,7 @@ Early Stage (v0.3): The repository now has more than 150 commits and still has n
 
 Dehydrus Not Fully Wired: The eight LuDaTs evalers ship as desk cells and exam cards. v0.3 names a sealed world file when one is in the tree. It does not yet run the locked-year simulator inside a default local install, and it does not award Gold from a filename. Missing worlds stay deferred. That wait is part of the method, not a fail.
 
-Passive Log Parsing vs. Active Execution: Several Hydra AI and performance evaluators (e.g., Tokely, Trajectly, Pressly) rely on reading pre-existing log files and saved run artifacts rather than executing live tracing or active benchmarking. If a project lacks standardized log outputs, those cells will simply remain blank/deferred.
+Passive Log Parsing vs. Active Execution: Several Hydra AI and performance evaluators (e.g., Tokely, [Trajectly](GLOSSARY.md#user-content-trajectly), Pressly) rely on reading pre-existing log files and saved run artifacts rather than executing live tracing or active benchmarking. If a project lacks standardized log outputs, those cells will simply remain blank/deferred.
 
 AST and Language Parsing Depth: Running branching/decision checks (Codely) across arbitrary compilers and languages is non-trivial; depending on the parsers implemented in src/evalathan/, support for languages outside Python may be basic.
 

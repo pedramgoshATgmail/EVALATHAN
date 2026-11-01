@@ -1,6 +1,6 @@
 <h1><img src="assets/glossary/title.png" alt="Evalathan glossary" height="33"></h1>
 
-<big><big><mark><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/main/docs/glossary.html?v=habtwinabove1">Search the glossary</a></mark></big></big>. That page is the glossary, with its lettering and images, and the search slot is on the same page. Type a letter and the matching entries appear. Choosing a word moves to that entry.
+<big><big><mark><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/main/docs/glossary.html?v=trajectlylink1">Search the glossary</a></mark></big></big>. That page is the glossary, with its lettering and images, and the search slot is on the same page. Type a letter and the matching entries appear. Choosing a word moves to that entry.
 
 [Evalathan](#evalathan) is one evaluation harness. [Hydra](#hydra) is the conductor for sixteen software evalers. [Dehydrus](#dehydrus) is the conductor for eight [LuDaTs](#ludats) evalers under [PRETRUWs](#pretruws). [LuDaTs](#ludats) is a subset of [PRETRUWs](#pretruws). Each entry below has the same three parts.
 
@@ -20,7 +20,7 @@ The life-cycle gate on each evaler (G0 through G12) is the station's place in th
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-Evalathan is one evaluation harness. It is not a seventeenth Hydra score and not a ninth Dehydrus score. [Hydra](#hydra) writes sixteen software cells, in this order: Devly, Archly, Codely, Refactorly, Mixly, Runly, Levi, Menschly, Tokely, Pressly, Triadly, Chorely, Trajectly, Warrantly, Domly, Stackly. [Dehydrus](#dehydrus) writes eight [LuDaTs](#ludats) (Limited-universe Data Test sets) cells under [PRETRUWs](#pretruws), in this order: [Copernly](#copernly), [Keplerly](#keplerly), [Galileoly](#galileoly), [Darwinly](#darwinly), [Mendly](#mendly), [Einsteinly](#einsteinly), [CurCuriely](#curcuriely), [Newtonly](#newtonly). The two rooms stay apart. A blank is not a fail and not a zero. Evalathan does not fold the twenty-four cells into one number, and it does not award a state-of-the-art stamp. The Hydra PRD (Product Requirements Document) line and the Dehydrus [HabTwin](#habtwin) filename line are utilities, not extra evalers.
+Evalathan is one evaluation harness. It is not a seventeenth Hydra score and not a ninth Dehydrus score. [Hydra](#hydra) writes sixteen software cells, in this order: Devly, Archly, Codely, Refactorly, Mixly, Runly, Levi, Menschly, Tokely, Pressly, Triadly, Chorely, [Trajectly](#trajectly), Warrantly, Domly, Stackly. [Dehydrus](#dehydrus) writes eight [LuDaTs](#ludats) (Limited-universe Data Test sets) cells under [PRETRUWs](#pretruws), in this order: [Copernly](#copernly), [Keplerly](#keplerly), [Galileoly](#galileoly), [Darwinly](#darwinly), [Mendly](#mendly), [Einsteinly](#einsteinly), [CurCuriely](#curcuriely), [Newtonly](#newtonly). The two rooms stay apart. A blank is not a fail and not a zero. Evalathan does not fold the twenty-four cells into one number, and it does not award a state-of-the-art stamp. The Hydra PRD (Product Requirements Document) line and the Dehydrus [HabTwin](#habtwin) filename line are utilities, not extra evalers.
 
 <p align="center"><img src="assets/evalathan-logo.png" alt="Evalathan" width="325"></p>
 <p align="center"><i>One harness. Two conductors. It does not add a score.</i></p>
@@ -934,7 +934,7 @@ Dehydrus routes the eight. Hydra routes the sixteen. A router pattern is not a s
 <a id="agentic-exams-that-are-not-on-the-vector-yet" name="agentic-exams-that-are-not-on-the-vector-yet"></a>
 <h2><img src="assets/glossary/agentic-exams-that-are-not-on-the-vector-yet.png" alt="Agentic exams that are not on the vector yet" height="26"></h2>
 
-These are public exams for coding agents and for chat models. They matter in this period. Evalathan does not run them in the laptop scan, and it does not paste their leaderboards. That is a scope fact, not a dismissal. Trajectly is the station that will count one of them on the day a saved trace from that exam is in the folder you scan. A percent copied from a website is still not a grade.
+These are public exams for coding agents and for chat models. They matter in this period. Evalathan does not run them in the laptop scan, and it does not paste their leaderboards. That is a scope fact, not a dismissal. [Trajectly](#trajectly) is the station that will count one of them on the day a saved trace from that exam is in the folder you scan. A percent copied from a website is still not a grade.
 
 The same shelf holds retrieval catalogs. A catalog is a list of public scores. It is not an exam, and it is not on the vector. It also holds [PRDBench](#prdbench), which grades an agent that builds from a [PRD](#prd). [LuDaTs](#ludats) is not on this shelf. It sits under [PRETRUWs](#pretruws) and [Dehydrus](#dehydrus).
 
@@ -954,7 +954,7 @@ SWE-bench (Software Engineering Benchmark) is a set of real GitHub issues a codi
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-The project site is [swebench.com](https://www.swebench.com/). A short public account is on [Wikipedia](https://en.wikipedia.org/wiki/SWE-bench). Trajectly would count a local file whose name contains `trace`, `trajectory`, or `passk`. It will not count a screenshot.
+The project site is [swebench.com](https://www.swebench.com/). A short public account is on [Wikipedia](https://en.wikipedia.org/wiki/SWE-bench). [Trajectly](#trajectly) would count a local file whose name contains `trace`, `trajectory`, or `passk`. It will not count a screenshot.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -972,7 +972,7 @@ SWE-bench Pro is a harder, later set from the same family, with a public slice a
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-The paper is [arXiv:2509.16941](https://arxiv.org/abs/2509.16941). Inclusion later means a frozen task folder, the grader that ships with it, and a trace Trajectly can count. It does not mean embedding the live leaderboard.
+The paper is [arXiv:2509.16941](https://arxiv.org/abs/2509.16941). Inclusion later means a frozen task folder, the grader that ships with it, and a trace [Trajectly](#trajectly) can count. It does not mean embedding the live leaderboard.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -1018,7 +1018,7 @@ The paper is [arXiv:2510.24358](https://arxiv.org/abs/2510.24358), submitted 28 
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-[LuDaTs](#ludats) (Limited-universe Data Test sets) is a subset of [PRETRUWs](#pretruws): the methodology family inside that framework, not a Trajectly exam and not a seventeenth Hydra evaler. Dehydrus conducts the eight [LuDaTs](#ludats) evalers. A missing world is blank, not a fail and not a zero. A gold medal is the structural prize for that world, not a sports rank of the product.
+[LuDaTs](#ludats) (Limited-universe Data Test sets) is a subset of [PRETRUWs](#pretruws): the methodology family inside that framework, not a [Trajectly](#trajectly) exam and not a seventeenth Hydra evaler. Dehydrus conducts the eight [LuDaTs](#ludats) evalers. A missing world is blank, not a fail and not a zero. A gold medal is the structural prize for that world, not a sports rank of the product.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -1038,7 +1038,7 @@ Spec: [docs/LuDaTs.md](docs/LuDaTs.md). Machine cards: [exams/ludats/](exams/lud
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-[HabTwin](#habtwin) is a later exam for a digital twin: a stand-in that is supposed to act like one real person or one real machine. It is not one of Hydra's sixteen software evalers, and it is not a Trajectly exam. In v0.3 Dehydrus only looks for a lab file. If none is there, it prints `No HabTwin lab trace`. It does not invent a score. A blank is not a fail and not a zero. Spec: [docs/HabTwin.md](docs/HabTwin.md).
+[HabTwin](#habtwin) is a later exam for a digital twin: a stand-in that is supposed to act like one real person or one real machine. It is not one of Hydra's sixteen software evalers, and it is not a [Trajectly](#trajectly) exam. In v0.3 Dehydrus only looks for a lab file. If none is there, it prints `No HabTwin lab trace`. It does not invent a score. A blank is not a fail and not a zero. Spec: [docs/HabTwin.md](docs/HabTwin.md).
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -1056,7 +1056,7 @@ A digital twin is valid when it predicts the counterpart's measurable outputs un
 
 Five cells, when scoring ships in v0.4: [HabTwin](#habtwin)-C (composition: the shape of the habit), [HabTwin](#habtwin)-D (discrimination: P vs Q vs crowd), [HabTwin](#habtwin)-S (system twin of a documented generator), [HabTwin](#habtwin)-X (exact-match ceiling, never required Gold), [HabTwin](#habtwin)-K (keystroke timing, deferred). Live login is forbidden. Medicine is being told to run VVUQ on human digital twins, not a password parlor trick ([npj Digital Medicine 2025](https://www.nature.com/articles/s41746-025-01447-y); [ISO/AWI 23247-8](https://www.iso.org/standard/94858.html)).
 
-Do not target live people or production systems. Do not ship wordlists or cracking loops. Do not fail a person for using a password manager. Do not mash [HabTwin](#habtwin)-C into keystrokes. Do not add [HabTwin](#habtwin) to Hydra or Trajectly. Do not call exact match the definition of twin.
+Do not target live people or production systems. Do not ship wordlists or cracking loops. Do not fail a person for using a password manager. Do not mash [HabTwin](#habtwin)-C into keystrokes. Do not add [HabTwin](#habtwin) to Hydra or [Trajectly](#trajectly). Do not call exact match the definition of twin.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -1124,7 +1124,7 @@ Not on the vector. WildBench grades chat replies. It is not a trace of a coding 
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
-WildBench is a public benchmark of hard chat tasks drawn from real use. It is worth knowing about. Evalathan does not host it and does not quote its board. It would show up under Trajectly only if you saved a run in the folder.
+WildBench is a public benchmark of hard chat tasks drawn from real use. It is worth knowing about. Evalathan does not host it and does not quote its board. It would show up under [Trajectly](#trajectly) only if you saved a run in the folder.
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 

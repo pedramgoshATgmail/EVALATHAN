@@ -4,7 +4,7 @@ Past, current, and next. This is the product roadmap, not a diary.
 
 ## Past - v0.2
 
-Hydra conducts sixteen software and agentic evalers on a local folder. The laptop scan grades only what is on disk. A blank is not a fail and not a zero. The sixteen stay sixteen. Public coding exams (SWE-bench, PRDBench, Ragas catalogs) sit on Trajectly's exam shelf and are not run.
+Hydra conducts sixteen software and agentic evalers on a local folder. The laptop scan grades only what is on disk. A blank is not a fail and not a zero. The sixteen stay sixteen. Public coding exams (SWE-bench, PRDBench, Ragas catalogs) sit on [Trajectly](../GLOSSARY.md#user-content-trajectly)'s exam shelf and are not run.
 
 ## Current - v0.3
 

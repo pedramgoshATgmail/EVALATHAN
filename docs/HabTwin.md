@@ -4,7 +4,7 @@
 **Status:** Named in v0.3. Scoring engine planned for v0.4.
 **Tagline:** HabTwin is an innovative twin-fidelity exam: person-specific, distributional, leak-gated, lab-only.
 **Framework (v0.4):** HabTwin
-**Router:** Dehydrus (not Trajectly, not Hydra)
+**Router:** Dehydrus (not [Trajectly](../GLOSSARY.md#user-content-trajectly), not Hydra)
 **Product:** Evalathan, [github.com/pedramgoshATgmail/EVALATHAN](https://github.com/pedramgoshATgmail/EVALATHAN)
 
 A digital twin is validated when it predicts the counterpart's measurable outputs under a stated use ([ISO 23247](https://www.iso.org/standard/75066.html) VVUQ - Verification, Validation, and Uncertainty Quantification; NASEM digital-twin report).
@@ -92,7 +92,7 @@ Human digital twins in medicine are being told to run VVUQ, not a password parlo
 - Do not treat a password-manager user as a failure because the twin cannot emit a random 20-character secret.
 - Do not collapse HabTwin-C into keystroke dynamics.
 - Do not add HabTwin to Hydra's sixteen.
-- Do not sit HabTwin on Trajectly's exam shelf.
+- Do not sit HabTwin on [Trajectly](../GLOSSARY.md#user-content-trajectly)'s exam shelf.
 - Do not call exact match the ultimate 4IR science test.
 - Do not publish this pack as how to guess passwords from a biography.
 
