@@ -1,6 +1,6 @@
 <h1><img src="assets/glossary/title.png" alt="Evalathan glossary" height="33"></h1>
 
-<big><big><mark><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/main/docs/glossary.html?v=searchclick3">Search the glossary</a></mark></big></big>. That page is the glossary, with its lettering and images, and the search slot is on the same page. Type a letter and the matching entries appear. Choosing a word moves to that entry.
+<big><big><mark><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/main/docs/glossary.html?v=ludatscards1">Search the glossary</a></mark></big></big>. That page is the glossary, with its lettering and images, and the search slot is on the same page. Type a letter and the matching entries appear. Choosing a word moves to that entry.
 
 [Evalathan](#evalathan) is one evaluation harness. [Hydra](#hydra) is the conductor for sixteen software evalers. [Dehydrus](#dehydrus) is the conductor for eight physical-world evalers under [PRETRUWs](#pretruws). Each entry below has the same three parts.
 
@@ -598,6 +598,8 @@ The scan looks for a file whose stem is `prd`, `product-requirements`, or `produ
 
 A locked room from a past year. The exam has to work with what that year could see, and with what that one person could have reached. Saying "pretend it is 1610" is not enough. Later facts have to be actually gone.
 
+<p align="center"><img src="assets/glossary/cards/pretruws-card.jpg" alt="PRETRUWs is a locked room from a past year. Eight worlds, two clocks, later facts actually gone." width="703"></p>
+
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
 Manifesto direction: *Until Artificial Intelligence Independently Eurekas on its own*, after [Adaptive Software Development](https://en.wikipedia.org/wiki/Adaptive_software_development) (Jim Highsmith, 1997: messy, exciting, and anxiety-ridden; second world = unpredictable, nonlinear, fast). [PRETRUWs](#pretruws) states a third world: multi-predictable, bilinear and supralinear, hyperfast / instancy-nearest, and polydeterminism. Framework [PRETRUWs](#pretruws) holds methodology [LuDaTs](#ludats). Each brand is one method. Braidware (SEISMO glossary) is agentics, software, and hardware as one unit. LLM (Large Language Model) and RAG (Retrieval-Augmented Generation) stacks are plugins, not extra Hydra cells.
@@ -674,6 +676,8 @@ This evaler is based on Copernicus, the astronomer who discovered that the known
 
 This evaler is based on Copernicus, the astronomer who discovered that the known planets go around the Sun, not around the Earth. The exam uses [Mode A](#ludats-mode-a): the same old sky numbers everyone already had, and no new telescope. The room is 1542, the year before he published [*De revolutionibus orbium coelestium*](https://en.wikipedia.org/wiki/De_revolutionibus_orbium_coelestium) (1543). A new picture of the sky that puts the Earth among the planets is Gold (the structural prize that wins this world, not a sports rank). Saying the later word "heliocentrism" is not Gold.
 
+<p align="center"><img src="assets/glossary/cards/copernly-card.jpg" alt="Copernly rebuilds the old sky numbers as a sun-centered model. No new telescope. Mode A only." width="703"></p>
+
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
 Dehydrus calls Copernly and locks [Mode A](#ludats-mode-a). World clock T is 1542, before [*De revolutionibus orbium coelestium*](https://en.wikipedia.org/wiki/De_revolutionibus_orbium_coelestium) (1543). Biography clock A is what Copernicus could have reached at that year. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does claim one, v0.3 looks for a sealed LuDaTs-C world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.
@@ -714,6 +718,8 @@ This evaler is based on Darwin, the naturalist who discovered that living forms 
 
 This evaler is based on Darwin, the naturalist who discovered that living forms change through descent with modification and a selection that can accumulate. The exam uses [Mode D](#ludats-mode-d): years of walking, breeding, and notes, not one night and not the finch cartoon. The book [*On the Origin of Species*](https://en.wikipedia.org/wiki/On_the_Origin_of_Species) is 1859, so the freeze is 1858. Descent with a selection that can accumulate is Gold (the structural prize that wins this world, not a sports rank). Saying the later word "evolution" is not Gold. Genetics after 1858 is locked out of the room.
 
+<p align="center"><img src="assets/glossary/cards/darwinly-card.jpg" alt="Darwinly accumulates years of field notes. Descent with modification, not the finch cartoon." width="703"></p>
+
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
 Dehydrus calls Darwinly and locks [Mode D](#ludats-mode-d). World clock T is 1858, before [*On the Origin of Species*](https://en.wikipedia.org/wiki/On_the_Origin_of_Species) (1859). Biography clock A is what Darwin could have reached at that year: field notes, breeding, correspondence, not later genetics. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does, v0.3 looks for a sealed LuDaTs-D world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.
@@ -733,6 +739,8 @@ This evaler is based on Einstein, the physicist who discovered the field equatio
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
 This evaler is based on Einstein, the physicist who discovered the field equations of general relativity. The exam uses [Mode F](#ludats-mode-f): Mercury's leftover motion is a clue Newton's gravity cannot eat, then a new field in 1914-1915. The 1919 eclipse is a check after the theory, not a hint before it. That later check is not Gold (the structural prize that wins this world, not a sports rank) if it leaks in as a hint. Photoelectric work, Brownian motion, and 1905 special relativity belong to other rooms.
+
+<p align="center"><img src="assets/glossary/cards/einsteinly-card.jpg" alt="Einsteinly writes the field equations from Mercury's leftover. The 1919 eclipse is after the theory." width="703"></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
@@ -754,6 +762,8 @@ This evaler is based on Galileo, the scientist who discovered Jupiter's moons, t
 
 This evaler is based on Galileo, the scientist who discovered Jupiter's moons, the phases of Venus, an irregular Moon, and falling-body regularity with a new optic and with experiments on earth. The exam uses [Mode C](#ludats-mode-c). He did not invent the Sun-centered sky; that belongs to Copernly. The exam has two rooms: the 1608 optic, and the 1637 kinematics table. Seeing the moons, the phases, the rough Moon, and the incline law is Gold (the structural prize that wins this world, not a sports rank). A later label-flip that just says "heliocentrism" is not Gold.
 
+<p align="center"><img src="assets/glossary/cards/galileoly-card.jpg" alt="Galileoly uses a new optic and a bench on earth. Moons, phases, and the incline law." width="703"></p>
+
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
 Dehydrus calls Galileoly and locks [Mode C](#ludats-mode-c). There are two clocks: 1608 for the optic, and 1637 for kinematics. Biography clock A is Galileo at those years, with the new sensor and the earth bench, not with a later textbook title. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does, v0.3 looks for a sealed LuDaTs-G world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.
@@ -774,6 +784,8 @@ This evaler is based on Kepler, the astronomer who discovered that planets trave
 
 This evaler is based on Kepler, the astronomer who discovered that planets travel in ellipses, not perfect circles. The exam uses [Mode B](#ludats-mode-b): Tycho's Mars table, better numbers, same kind of naked-eye instrument. This is not Copernly's quiz. The freeze sits at 1608 / 1618, around [*Astronomia nova*](https://en.wikipedia.org/wiki/Astronomia_nova) (1609) and [*Harmonices mundi*](https://en.wikipedia.org/wiki/Harmonices_Mundi) (1619). Drawing the ellipse and the equal-area rule from the table is Gold (the structural prize that wins this world, not a sports rank). Naming "Kepler's laws" later is not Gold.
 
+<p align="center"><img src="assets/glossary/cards/keplerly-card.png" alt="Keplerly draws the ellipse and equal areas from Tycho's Mars table. Same instrument class." width="703"></p>
+
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
 Dehydrus calls Keplerly and locks [Mode B](#ludats-mode-b). World clocks are 1608 / 1618, beside [*Astronomia nova*](https://en.wikipedia.org/wiki/Astronomia_nova) (1609) and [*Harmonices mundi*](https://en.wikipedia.org/wiki/Harmonices_Mundi) (1619). Biography clock A is Kepler working Tycho's Mars table with the same instrument class, not a telescope. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does, v0.3 looks for a sealed LuDaTs-K world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.
@@ -793,6 +805,8 @@ This evaler is based on Mendeleev, the scientist who gave the world the elements
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
 This evaler is based on Mendeleev, the scientist who gave the world the elements table. The exam uses [Mode E](#ludats-mode-e): he arranged the 1868 set so that holes had the right shape for elements not yet found. The exam later checks those holes without saying "gallium" or "germanium" inside the 1868 room. The right-shaped holes are Gold (the structural prize that wins this world, not a sports rank). Printing today's full periodic table is not Gold.
+
+<p align="center"><img src="assets/glossary/cards/mendly-card.png" alt="Mendly leaves right-shaped holes in the 1868 table. Later names stay hidden." width="703"></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
