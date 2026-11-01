@@ -845,7 +845,7 @@ This evaler is based on Mendeleev, the scientist who gave the world the elements
 This evaler is based on Mendeleev, the scientist who gave the world the elements table. The exam uses [Mode E](#ludats-mode-e): he arranged the 1868 set so that holes had the right shape for elements not yet found. The exam later checks those holes without saying "gallium" or "germanium" inside the 1868 room. The right-shaped holes are Gold (the structural prize that wins this world, not a sports rank). Printing today's full periodic table is not Gold.
 
 <p align="center"><a href="assets/glossary/cards/mendly-card-xl.png"><img src="assets/glossary/cards/mendly-card.png" alt="Mendly leaves right-shaped holes in the 1868 table. Later names stay hidden." width="703"></a></p>
-<p align="center"><i>If AI was around in my time, with only the 1868 element cards and the later names covered, would it leave the right-shaped holes - or cheat with today's full table?</i></p>
+<p align="center"><i>If AI only knew the elements discovered up to 1868 A.D., would it (independently) infer that some elements were still undiscovered and leave room for them - or even work to discover them through its artificial 'intelligence'?</i></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
@@ -868,7 +868,7 @@ This evaler is based on Newton, the mathematician who discovered that one invers
 This evaler is based on Newton, the mathematician who discovered that one inverse-square law of gravitation governs both the heavens and the earth. The exam uses [Mode Unification](#ludats-mode-unification): it unites Kepler's sky with Galileo's ground. The apple story is folklore and is not the exam. The freeze is 1686, the year before the [*Principia*](https://en.wikipedia.org/wiki/Philosophi%C3%A6_Naturalis_Principia_Mathematica) (1687). One inverse-square law for heavens and earth is Gold (the structural prize that wins this world, not a sports rank).
 
 <p align="center"><a href="assets/glossary/cards/newtonly-card-xl.png"><img src="assets/glossary/cards/newtonly-card.png" alt="Newtonly waits for Keplerly and Galileoly, then unites sky and ground under one law." width="703"></a></p>
-<p align="center"><i>If AI was around in my time, already holding Kepler's sky and Galileo's ground and not the apple story, would it join heaven and earth under one inverse-square law?</i></p>
+<p align="center"><i>Kepler mapped the sky. Galileo mapped falling things on Earth. If AI had both these knowleges, would it join them under one law and prove something called Gravity, as well as Method of Fluxons (what became Calculus)?</i></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
@@ -1063,6 +1063,8 @@ The paper is [arXiv:2510.24358](https://arxiv.org/abs/2510.24358), submitted 28 
 [LuDaTs](#ludats) methodology framework locks the agent in a dated world: only the news, instruments, and papers that existed at that year, and only what that discoverer could have reached at that age. It then has to form the theory by acting in a simulator whose later facts are gone. Naming the later textbook title is not a gold medal. Galileo, Copernicus, and Kepler are three different tests, not one astronomy quiz. [CurCuriely](#curcuriely) is the pair room: two scientists, two agents. Newton waits.
 
 <p align="center"><a href="assets/glossary/cards/ludats-card-20261101s-xl.png"><img src="assets/glossary/cards/ludats-card-20261101s.png" alt="LuDaTs is eight locked worlds. Each brand is one method, not one astronomy quiz." width="703"></a></p>
+<p align="center"><i>PRETRUWs locks the year and era. LuDaTs is the eight different rooms inside that lock - eight methods, not one science quiz.</i></p>
+<p align="center"><i>If AI aces one locked year (for example, Galileoly), that is one room, will it also ace the other locked years and eras (i.e. Newtonly, CurCurie, Eisteinly).</i></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
