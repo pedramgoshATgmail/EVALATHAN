@@ -620,7 +620,7 @@ The scan looks for a file whose stem is `prd`, `product-requirements`, or `produ
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-[PRETRUWs](#pretruws) (PREdiscovery TRuncated-Universes and Worlds) is the v0.3 4IR (Fourth Industrial Revolution) paradigm. It is not a Hydra evaler. [LuDaTs](#ludats) methodology framework is a subset of [PRETRUWs](#pretruws). Dehydrus writes eight [LuDaTs](#ludats) cells, not eight PRETRUWs evalers. A missing world is blank, not a fail and not a zero. Spec: [docs/PRETRUWs.md](docs/PRETRUWs.md). Roadmap: [docs/BUILDLOG.md](docs/BUILDLOG.md).
+[PRETRUWs](#pretruws) (PREdiscovery TRuncated-Universes and Worlds. pronounced Pre-trues) is the v0.3 4IR (Fourth Industrial Revolution) paradigm. It is not a Hydra evaler. [LuDaTs](#ludats) methodology framework is a subset of [PRETRUWs](#pretruws). Dehydrus writes eight [LuDaTs](#ludats) cells, not eight PRETRUWs evalers. A missing world is blank, not a fail and not a zero. Spec: [docs/PRETRUWs.md](docs/PRETRUWs.md). Roadmap: [docs/BUILDLOG.md](docs/BUILDLOG.md).
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
