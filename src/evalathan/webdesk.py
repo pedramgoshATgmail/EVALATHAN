@@ -3,10 +3,6 @@
 from __future__ import annotations
 
 import json
-import os
-import shutil
-import subprocess
-import sys
 import threading
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -30,94 +26,6 @@ def ui_root() -> Path:
     raise FileNotFoundError(
         "ui/v2 was not found. Run from an Evalathan checkout with ui/v2 present."
     )
-
-
-def _repo_root() -> Path | None:
-    here = Path(__file__).resolve()
-    for parent in here.parents:
-        if (parent / ".git").exists() and (parent / "ui" / "v2" / "index.html").is_file():
-            return parent
-    return None
-
-
-def sync_published_main() -> None:
-    """
-    Hard-sync this checkout to origin/main before serving ui/v2.
-    Launchers also do this; open_desk repeats it so a stale Desktop app
-    cannot keep serving a no-logo / old desk after GitHub has moved on.
-    """
-    if os.environ.get("EVALATHAN_SKIP_UPDATE", "").strip() in ("1", "true", "yes"):
-        return
-    if os.environ.get("EVALATHAN_SYNCING", "").strip() == "1":
-        return
-    root = _repo_root()
-    if root is None or shutil.which("git") is None:
-        return
-    before = subprocess.run(
-        ["git", "-C", str(root), "rev-parse", "HEAD"],
-        capture_output=True,
-        text=True,
-        check=False,
-    )
-    before_sha = (before.stdout or "").strip()
-    subprocess.run(
-        ["git", "-C", str(root), "fetch", "origin"],
-        capture_output=True,
-        text=True,
-        check=False,
-    )
-    subprocess.run(
-        ["git", "-C", str(root), "checkout", "main"],
-        capture_output=True,
-        text=True,
-        check=False,
-    )
-    subprocess.run(
-        ["git", "-C", str(root), "reset", "--hard", "origin/main"],
-        capture_output=True,
-        text=True,
-        check=False,
-    )
-    after = subprocess.run(
-        ["git", "-C", str(root), "rev-parse", "HEAD"],
-        capture_output=True,
-        text=True,
-        check=False,
-    )
-    after_sha = (after.stdout or "").strip()
-    if before_sha and after_sha and before_sha != after_sha:
-        # Tree changed under us - reinstall editable pack and relaunch desk once.
-        subprocess.run(
-            [sys.executable, "-m", "pip", "install", "-e", str(root)],
-            capture_output=True,
-            text=True,
-            check=False,
-        )
-        install = root / "install_desktop_app.sh"
-        if sys.platform == "darwin" and install.is_file():
-            subprocess.run(
-                ["bash", str(install)],
-                capture_output=True,
-                text=True,
-                check=False,
-            )
-        env = os.environ.copy()
-        env["EVALATHAN_SKIP_UPDATE"] = "1"
-        env["EVALATHAN_SYNCING"] = "1"
-        code = "from evalathan.webdesk import open_desk; raise SystemExit(open_desk())"
-        try:
-            subprocess.Popen(
-                [sys.executable, "-c", code],
-                env=env,
-                stdin=subprocess.DEVNULL,
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-                start_new_session=True,
-            )
-        except OSError:
-            os.execv(sys.executable, [sys.executable, "-c", code])
-            return
-        raise SystemExit(0)
 
 
 def app_icon() -> Path | None:
@@ -341,13 +249,15 @@ def _open_desktop_window(url: str, title: str) -> bool:
 
 def open_desk(port: int = PORT, open_window: bool = True) -> int:
     """Serve ui/v2 from this PC and open the Evalathan desktop window."""
-    # Global sync: always match GitHub main before serving local ui/v2.
+    # Global update ask: if GitHub main is ahead, popup Update now / Not now.
     try:
-        sync_published_main()
+        from evalathan.desk_update import ensure_published_main
+
+        ensure_published_main(interactive=True)
     except SystemExit:
         raise
     except Exception as exc:  # noqa: BLE001
-        print(f"Evalathan sync skipped: {exc}", flush=True)
+        print(f"Evalathan update check skipped: {exc}", flush=True)
 
     root = ui_root()
     try:

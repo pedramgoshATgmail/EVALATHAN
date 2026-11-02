@@ -79,7 +79,7 @@ Then open **Evalathan.app** from the Desktop.
 
 <p><img src="assets/readme/mac.png" alt="Mac" height="43" align="absmiddle"> <img src="assets/readme/python.png" alt="Python" height="36" align="absmiddle"> If that Mac Python has no window library, install Python from <a href="https://www.python.org/downloads/macos/">https://www.python.org/downloads/macos/</a> and run <code>bash launch.sh</code> again. That installer includes the window library.</p>
 
-`launch.bat` resets this clone to published `main` when it can, installs into `.venv`, installs the Desktop Evalathan icon, then opens the local desk window. Next time, click the Desktop icon (or `Evalathan.bat` in the program folder). `git reset --hard` discards local edits inside `evalathan-program` so the published desk always wins.
+`launch.bat` / `launch.sh` / the Desktop icon install into `.venv`, then on every open check GitHub `main`. If this PC is behind, a native **Update now / Not now** popup appears (Windows and Mac). **Update now** hard-resets the clone to `origin/main` and restarts the desk so every machine matches GitHub.
 
 `cd evalathan-program` is required before `python -m pip install -e .`. The dot means the current folder. That folder must be the clone, because `pyproject.toml` is there. From a home folder, the dot is that home folder and pip stops. Python 3.10 or newer is required. Git is required to clone this program, and again when the desk evaluates a GitHub link (same download step as before). A folder already on the PC can be evaluated without cloning it.
 

@@ -2,27 +2,13 @@
 setlocal EnableExtensions
 cd /d "%~dp0"
 
-REM Always take published main when this folder is a git clone (old Tk desk -> browser desk).
+REM Prefetch only - Update now / Not now popup applies origin/main when the user agrees.
 if exist ".git\" (
   where git >nul 2>&1
   if not errorlevel 1 (
-    echo Updating Evalathan to the published main tree...
-    for /f "delims=" %%H in ('git rev-parse HEAD') do set "BEFORE=%%H"
+    echo Checking Evalathan GitHub main...
     git fetch origin
-    if not errorlevel 1 (
-      git checkout main
-      git reset --hard origin/main
-      for /f "delims=" %%H in ('git rev-parse HEAD') do set "AFTER=%%H"
-      if defined BEFORE if defined AFTER if /I not "%BEFORE%"=="%AFTER%" (
-        if not defined EVALATHAN_RELAUNCHED (
-          echo Update applied. Restarting launcher...
-          endlocal
-          set "EVALATHAN_RELAUNCHED=1"
-          "%~f0" %*
-          exit /b %ERRORLEVEL%
-        )
-      )
-    ) else (
+    if errorlevel 1 (
       echo git fetch failed. Continuing with the files already on disk.
     )
   )
@@ -103,6 +89,11 @@ echo Starting Evalathan v0.3.2 local desk window...
 echo Look for the Evalathan icon on your Desktop ^(and Desktop\Evalathan\^).
 echo Keep this console open while the desk is running, or use the Desktop icon next time.
 echo.
+if exist "%~dp0ui\v2\launch_splash.py" "%VENVPY%" "%~dp0ui\v2\launch_splash.py" --close >nul 2>&1
+"%VENVPY%" -c "from evalathan.desk_update import sync_or_prompt; raise SystemExit(sync_or_prompt())"
+set "UP=%ERRORLEVEL%"
+if "%UP%"=="42" exit /b 0
+set "EVALATHAN_SKIP_UPDATE=1"
 "%VENVPY%" -c "from evalathan.webdesk import open_desk; raise SystemExit(open_desk())"
 set "EC=%ERRORLEVEL%"
 if exist "%~dp0ui\v2\launch_splash.py" "%VENVPY%" "%~dp0ui\v2\launch_splash.py" --close >nul 2>&1

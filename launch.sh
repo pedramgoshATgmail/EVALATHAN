@@ -32,26 +32,13 @@ stop_fuss_splash() {
 trap stop_fuss_splash EXIT
 start_fuss_splash
 
-# Always take published main when this folder is a git clone (old Tk desk -> browser desk).
+# Prefetch only - Update now / Not now popup applies origin/main when the user agrees.
 if [ -d .git ] && command -v git >/dev/null 2>&1; then
-  echo "Updating Evalathan to the published main tree..."
-  BEFORE="$(git rev-parse HEAD)"
-  if git fetch origin; then
-    git checkout main
-    git reset --hard origin/main
-    AFTER="$(git rev-parse HEAD)"
-    if [ "$BEFORE" != "$AFTER" ] && [ -z "${EVALATHAN_RELAUNCHED:-}" ]; then
-      echo "Update applied. Restarting launcher..."
-      export EVALATHAN_RELAUNCHED=1
-      # Keep splash up across relaunch; do not stop it here.
-      trap - EXIT
-      exec bash "$0" "$@"
-    fi
-  else
+  echo "Checking Evalathan GitHub main..."
+  if ! git fetch origin; then
     echo "git fetch failed. Continuing with the files already on disk."
   fi
 fi
-# Splash script may have refreshed with main.
 start_fuss_splash
 
 if [ -x /opt/homebrew/bin/brew ]; then
@@ -151,4 +138,12 @@ echo "Starting Evalathan v0.3.2 local desk window..."
 echo "Look for Evalathan.app on your Desktop (dragon icon), or Evalathan.command as a fallback."
 echo "Keep this terminal open while the desk is running, or use the Desktop launcher next time."
 echo
+set +e
+python -c "from evalathan.desk_update import sync_or_prompt; raise SystemExit(sync_or_prompt())"
+UP=$?
+set -e
+if [ "$UP" = "42" ]; then
+  exit 0
+fi
+export EVALATHAN_SKIP_UPDATE=1
 exec python -c "from evalathan.webdesk import open_desk; raise SystemExit(open_desk())"
