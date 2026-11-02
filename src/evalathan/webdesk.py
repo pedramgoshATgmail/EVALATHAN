@@ -1,4 +1,4 @@
-"""Local Hydra desk: ui/v2 files on this PC, shown in an Evalathan desktop window."""
+﻿"""Local Hydra desk: ui/v2 files on this PC, shown in an Evalathan desktop window."""
 
 from __future__ import annotations
 
@@ -199,7 +199,7 @@ def open_desk(port: int = PORT, open_window: bool = True) -> int:
     try:
         from evalathan import __version__ as ver
     except Exception:  # noqa: BLE001
-        ver = "0.3.2"
+        ver = "0.3.1"
     httpd = None
     bound = port
     last_err: Exception | None = None

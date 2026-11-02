@@ -1,4 +1,4 @@
-"""Conductor. Sixteen cells. A blank is printed, never turned into a zero."""
+﻿"""Conductor. Sixteen cells. A blank is printed, never turned into a zero."""
 
 from __future__ import annotations
 
@@ -54,7 +54,7 @@ class Report:
     def to_dict(self) -> dict:
         return {
             "product": "Evalathan",
-            "version": "0.3.3",
+            "version": "0.3.1",
             "conductor": "Hydra",
             "root": self.root,
             "headline": self.headline(),

@@ -49,7 +49,7 @@ if not exist "ui\v2\index.html" (
   echo   git fetch origin
   echo   git checkout main
   echo   git reset --hard origin/main
-  echo Then run launch.bat again. Expected: v0.3.2 local desk.
+  echo Then run launch.bat again. Expected: v0.3.1 local desk.
   pause
   exit /b 1
 )
@@ -86,7 +86,7 @@ if errorlevel 1 (
 )
 
 echo.
-echo Starting Evalathan v0.3.2 local desk window...
+echo Starting Evalathan v0.3.1 local desk window...
 echo Look for the Evalathan icon on your Desktop ^(and Desktop\Evalathan\^).
 echo Keep this console open while the desk is running, or use the Desktop icon next time.
 echo.

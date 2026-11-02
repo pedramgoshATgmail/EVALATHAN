@@ -1,10 +1,10 @@
-[build-system]
+﻿[build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "evalathan"
-version = "0.3.3"
+version = "0.3.1"
 description = "Hydra conducts sixteen software evalers. Dehydrus conducts eight LuDaTs evalers under PRETRUWs."
 readme = "README.md"
 requires-python = ">=3.10"

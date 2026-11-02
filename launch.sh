@@ -102,7 +102,7 @@ if [ ! -f ui/v2/index.html ]; then
   echo "  git fetch origin"
   echo "  git checkout main"
   echo "  git reset --hard origin/main"
-  echo "Then run bash launch.sh again. Expected: v0.3.2 local desk."
+  echo "Then run bash launch.sh again. Expected: v0.3.1 local desk."
   exit 1
 fi
 
@@ -113,7 +113,7 @@ echo
 echo "Installing the Evalathan Desktop launcher..."
 bash "$(dirname "$0")/install_desktop_app.sh" || true
 echo
-echo "Starting Evalathan v0.3.2 local desk window..."
+echo "Starting Evalathan v0.3.1 local desk window..."
 echo "Look for Evalathan.command on your Desktop (and Desktop/Evalathan/)."
 echo "Keep this terminal open while the desk is running, or use the Desktop launcher next time."
 echo
