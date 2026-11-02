@@ -1,7 +1,7 @@
-"""Bake Biasrex emblem into glossary card + UI logo assets (black / white / grey).
+"""Bake Biasrex emblem into glossary card + white/grey UI assets.
 
-Source is already 630x655 RGBA (same as UI lock). Copy exactly for glossary +
-black + white; derive grey from white for the grey theme.
+Black-theme desk emblem (biasrex-logo.png / .webp) is intentionally NOT overwritten.
+White-screen / glossary use assets/BIASREX_full_trans_FINAL.png.
 """
 from pathlib import Path
 
@@ -25,24 +25,21 @@ def main() -> None:
     if src.size != (630, 655):
         raise SystemExit(f"unexpected source size {src.size}; expected 630x655")
 
-    # Keep black UI canvas size lock (must match prior splash slot).
+    # Size lock only - do not replace black art.
     black_ref = Image.open(BLACK_UI).convert("RGBA")
     if black_ref.size != (630, 655):
         raise SystemExit(f"unexpected black UI size {black_ref.size}")
 
     white = src.copy()
-    black = src.copy()
     grey = grey_from_white(white)
 
     outs = {
         ROOT / "assets" / "glossary" / "cards" / "biasrex.png": white,
         ROOT / "ui" / "v2" / "assets" / "biasrex-logo-white.png": white,
-        ROOT / "ui" / "v2" / "assets" / "biasrex-logo.png": black,
         ROOT / "ui" / "v2" / "assets" / "biasrex-logo-grey.png": grey,
     }
     webps = {
         ROOT / "ui" / "v2" / "assets" / "biasrex-logo-white.webp": white,
-        ROOT / "ui" / "v2" / "assets" / "biasrex-logo.webp": black,
         ROOT / "ui" / "v2" / "assets" / "biasrex-logo-grey.webp": grey,
     }
 
@@ -52,6 +49,7 @@ def main() -> None:
     for path, im in webps.items():
         im.save(path, "WEBP", quality=90, method=6)
         print(path.relative_to(ROOT), im.size, path.stat().st_size)
+    print("left untouched", BLACK_UI.relative_to(ROOT), black_ref.size)
 
 
 if __name__ == "__main__":

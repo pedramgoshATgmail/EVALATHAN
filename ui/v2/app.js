@@ -366,7 +366,7 @@
       wired: false,
       wordOnDark: "assets/biasrex-word-white.png?v=shade1",
       wordOnLight: "assets/biasrex-word-black.png?v=shade1",
-      art: "assets/biasrex-logo.webp?v=11",
+      art: "assets/biasrex-logo.webp?v=12",
       artGrey: "assets/biasrex-logo-grey.webp?v=11",
       artWhite: "assets/biasrex-logo-white.webp?v=11",
       blurbs:
