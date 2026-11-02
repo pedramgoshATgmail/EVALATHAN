@@ -1505,8 +1505,8 @@ html {
 }
 .fuss-break-disk {
   position: relative;
-  width: min(440px, 78vw);
-  height: min(440px, 78vw);
+  width: min(480px, 82vw);
+  height: min(480px, 82vw);
   border: 0;
   padding: 0;
   margin: 0;
