@@ -340,24 +340,52 @@
     return { key: "dev-lr", title: "Dev L&R" };
   }
 
-  function appendPricklyRailHead(parent, label, kind) {
+  function appendPricklyRailNest(parent, label, kind, listEl, startCollapsed, targetTitle) {
+    const nest = document.createElement("div");
+    nest.className =
+      "rail-nest" + (startCollapsed !== false ? " is-collapsed" : "");
     const head = document.createElement("button");
     head.type = "button";
     head.className =
       "rail-head" + (kind === "saved" ? " rail-head-saved" : " rail-head-latest");
-    head.title = label;
-    head.innerHTML = "<span>" + escapeHtml(label) + "</span>";
-    parent.appendChild(head);
+    head.title = targetTitle ? label + targetTitle : label;
+    head.setAttribute(
+      "aria-expanded",
+      nest.classList.contains("is-collapsed") ? "false" : "true"
+    );
+    /* Test-type titles (Dev L&R, JaPoP …) use accent lime - same as history targets */
+    const labelHtml = targetTitle
+      ? escapeHtml(label) +
+        '<span class="rail-head-target">' +
+        escapeHtml(targetTitle) +
+        "</span>"
+      : escapeHtml(label);
+    head.innerHTML =
+      '<span class="rail-head-caret" aria-hidden="true">▸</span>' +
+      '<span class="rail-head-label">' +
+      labelHtml +
+      "</span>";
+    head.addEventListener("click", function () {
+      nest.classList.toggle("is-collapsed");
+      head.setAttribute(
+        "aria-expanded",
+        nest.classList.contains("is-collapsed") ? "false" : "true"
+      );
+    });
+    nest.appendChild(head);
+    nest.appendChild(listEl);
+    parent.appendChild(nest);
   }
 
+  /* Same pattern as history right rail: nest opens to date rows; click opens GUI */
   function appendPricklyRunButton(ul, res, opts) {
     const li = document.createElement("li");
     if (opts && opts.latest) li.className = "is-latest";
     const b = document.createElement("button");
     b.type = "button";
-    b.className = "run-entry-btn";
     const blurb = formatPricklyBlurb(res);
     b.title = blurb;
+    b.className = "run-entry-btn";
     b.innerHTML = '<span class="run-blurb">' + escapeHtml(blurb) + "</span>";
     b.addEventListener("click", function () {
       openSavedResult(res);
@@ -376,7 +404,9 @@
   function renderSavedRail() {
     const host = els.resultsList || $("prickly-results-list");
     if (!host) return;
+    const wasCollapsed = host.classList.contains("is-collapsed");
     host.innerHTML = "";
+    if (wasCollapsed) host.classList.add("is-collapsed");
     const store = loadStore();
     const saved = store.saved || [];
     if (!saved.length) {
@@ -403,13 +433,18 @@
       const latest = g.items[0];
       const earlier = g.items.slice(1);
 
-      appendPricklyRailHead(wrap, g.title + " - latest run", "latest");
       const latestList = document.createElement("ul");
       latestList.className = "past-list past-list-latest";
       appendPricklyRunButton(latestList, latest, { latest: true });
-      wrap.appendChild(latestList);
+      appendPricklyRailNest(
+        wrap,
+        "latest run for ",
+        "latest",
+        latestList,
+        true,
+        g.title
+      );
 
-      appendPricklyRailHead(wrap, g.title + " - saved runs", "saved");
       const savedList = document.createElement("ul");
       savedList.className = "past-list past-list-saved";
       if (!earlier.length) {
@@ -419,7 +454,14 @@
           appendPricklyRunButton(savedList, res, null);
         });
       }
-      wrap.appendChild(savedList);
+      appendPricklyRailNest(
+        wrap,
+        "past runs for ",
+        "saved",
+        savedList,
+        true,
+        g.title
+      );
       host.appendChild(wrap);
     });
   }
@@ -1569,8 +1611,18 @@
 
     const resultsHead = $("btn-prickly-results");
     if (resultsHead) {
+      const list = els.resultsList || $("prickly-results-list");
+      if (list && !list.classList.contains("is-collapsed")) {
+        list.classList.add("is-collapsed");
+      }
+      resultsHead.setAttribute("aria-expanded", "false");
       resultsHead.addEventListener("click", function () {
-        renderSavedRail();
+        const host = els.resultsList || $("prickly-results-list");
+        if (!host) return;
+        host.classList.toggle("is-collapsed");
+        const open = !host.classList.contains("is-collapsed");
+        resultsHead.setAttribute("aria-expanded", open ? "true" : "false");
+        if (open) renderSavedRail();
       });
     }
 

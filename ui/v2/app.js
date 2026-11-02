@@ -625,6 +625,88 @@
     if (panel) panel.setAttribute("aria-hidden", String(!open));
   }
 
+  const RAIL_W_KEYS = { slide: "evalathan_slide_w", runs: "evalathan_runs_w" };
+  const RAIL_W_DEFAULT = { slide: 260, runs: 320 };
+  const RAIL_W_MIN = { slide: 200, runs: 220 };
+  const RAIL_W_MAX = 560;
+
+  function railMaxW() {
+    return Math.min(RAIL_W_MAX, Math.max(280, Math.round(window.innerWidth * 0.48)));
+  }
+
+  function clampRailW(kind, px) {
+    const min = RAIL_W_MIN[kind] || 200;
+    const n = Math.round(Number(px) || RAIL_W_DEFAULT[kind] || 260);
+    return Math.max(min, Math.min(railMaxW(), n));
+  }
+
+  function applyRailWidth(kind, px) {
+    const w = clampRailW(kind, px);
+    const varName = kind === "slide" ? "--slide-w" : "--runs-w";
+    document.documentElement.style.setProperty(varName, w + "px");
+    try {
+      localStorage.setItem(RAIL_W_KEYS[kind], String(w));
+    } catch (err) {}
+    return w;
+  }
+
+  function loadRailWidths() {
+    ["slide", "runs"].forEach(function (kind) {
+      let raw = null;
+      try {
+        raw = localStorage.getItem(RAIL_W_KEYS[kind]);
+      } catch (err) {}
+      applyRailWidth(kind, raw != null ? raw : RAIL_W_DEFAULT[kind]);
+    });
+  }
+
+  function enableSidebarResize() {
+    const specs = [
+      { kind: "slide", handleId: "slideout-resize", grow: 1 },
+      { kind: "runs", handleId: "runs-resize", grow: -1 },
+    ];
+    specs.forEach(function (spec) {
+      const handle = document.getElementById(spec.handleId);
+      if (!handle || handle.getAttribute("data-resize-ready")) return;
+      handle.setAttribute("data-resize-ready", "1");
+      let resizing = false;
+      let sx = 0;
+      let startW = 0;
+      handle.addEventListener("mousedown", function (e) {
+        if (e.button !== 0) return;
+        const varName = spec.kind === "slide" ? "--slide-w" : "--runs-w";
+        const cur = getComputedStyle(document.documentElement).getPropertyValue(varName);
+        startW = parseFloat(cur) || RAIL_W_DEFAULT[spec.kind];
+        sx = e.clientX;
+        resizing = true;
+        handle.classList.add("is-dragging");
+        document.body.classList.add("is-rail-resizing");
+        e.preventDefault();
+        e.stopPropagation();
+      });
+      window.addEventListener("mousemove", function (e) {
+        if (!resizing) return;
+        const dx = (e.clientX - sx) * spec.grow;
+        applyRailWidth(spec.kind, startW + dx);
+      });
+      window.addEventListener("mouseup", function () {
+        if (!resizing) return;
+        resizing = false;
+        handle.classList.remove("is-dragging");
+        document.body.classList.remove("is-rail-resizing");
+      });
+    });
+    window.addEventListener("resize", function () {
+      ["slide", "runs"].forEach(function (kind) {
+        const varName = kind === "slide" ? "--slide-w" : "--runs-w";
+        const cur = parseFloat(
+          getComputedStyle(document.documentElement).getPropertyValue(varName)
+        );
+        applyRailWidth(kind, cur || RAIL_W_DEFAULT[kind]);
+      });
+    });
+  }
+
   function ensureSideOpen(side) {
     const cls = side === "engines" ? "engines-open" : "runs-open";
     if (!app.classList.contains(cls)) toggleSide(side);
@@ -2290,14 +2372,41 @@
     return li;
   }
 
-  function appendRailHead(scroll, label, titleAttr, kind) {
+  function appendRailNest(parent, label, titleAttr, kind, listEl, startCollapsed, targetTitle) {
+    const nest = document.createElement("div");
+    nest.className =
+      "rail-nest" + (startCollapsed !== false ? " is-collapsed" : "");
     const head = document.createElement("button");
     head.type = "button";
     head.className =
       "rail-head" + (kind === "saved" ? " rail-head-saved" : " rail-head-latest");
-    head.title = titleAttr || label;
-    head.innerHTML = "<span>" + escapeHtml(label) + "</span>";
-    scroll.appendChild(head);
+    head.title = titleAttr || (targetTitle ? label + targetTitle : label);
+    head.setAttribute(
+      "aria-expanded",
+      nest.classList.contains("is-collapsed") ? "false" : "true"
+    );
+    /* Product/target titles use accent lime - same as evals / history corner labels */
+    const labelHtml = targetTitle
+      ? escapeHtml(label) +
+        '<span class="rail-head-target">' +
+        escapeHtml(targetTitle) +
+        "</span>"
+      : escapeHtml(label);
+    head.innerHTML =
+      '<span class="rail-head-caret" aria-hidden="true">▸</span>' +
+      '<span class="rail-head-label">' +
+      labelHtml +
+      "</span>";
+    head.addEventListener("click", function () {
+      nest.classList.toggle("is-collapsed");
+      head.setAttribute(
+        "aria-expanded",
+        nest.classList.contains("is-collapsed") ? "false" : "true"
+      );
+    });
+    nest.appendChild(head);
+    nest.appendChild(listEl);
+    parent.appendChild(nest);
   }
 
   function appendEmptyLi(list, text) {
@@ -2313,16 +2422,14 @@
     scroll.innerHTML = "";
 
     if (!runSets.length) {
-      appendRailHead(scroll, "latest run", "Latest evaluation run", "latest");
       const emptyLatest = document.createElement("ul");
       emptyLatest.className = "past-list past-list-latest";
       appendEmptyLi(emptyLatest, "No latest run yet. Evaluate, then Save.");
-      scroll.appendChild(emptyLatest);
-      appendRailHead(scroll, "saved runs", "Saved evaluation runs", "saved");
+      appendRailNest(scroll, "latest run", "Latest evaluation run", "latest", emptyLatest, true);
       const emptySaved = document.createElement("ul");
       emptySaved.className = "past-list past-list-saved";
       appendEmptyLi(emptySaved, "No saved runs yet.");
-      scroll.appendChild(emptySaved);
+      appendRailNest(scroll, "past runs", "Past evaluation runs", "saved", emptySaved, true);
       return;
     }
 
@@ -2331,7 +2438,6 @@
       const wrap = document.createElement("div");
       wrap.className = "rail-set";
 
-      appendRailHead(wrap, caps + " - latest run", caps + " - latest run", "latest");
       const latestList = document.createElement("ul");
       latestList.className = "past-list past-list-latest";
       if (!set.latest) {
@@ -2343,14 +2449,21 @@
         }
         latestList.appendChild(renderRunButton(set.latest, { latest: true }));
       }
-      wrap.appendChild(latestList);
+      appendRailNest(
+        wrap,
+        "latest run for ",
+        "latest run for " + caps,
+        "latest",
+        latestList,
+        true,
+        caps
+      );
 
       /* Saved history excludes the latest entry so we do not double-list the same 1st/Nth run */
       const latestId = set.latest && set.latest.id;
       const saved = (set.saved || []).filter(function (r) {
         return !latestId || r.id !== latestId;
       });
-      appendRailHead(wrap, caps + " - saved runs", caps + " - saved runs", "saved");
       const savedList = document.createElement("ul");
       savedList.className = "past-list past-list-saved";
       if (!saved.length) {
@@ -2367,7 +2480,15 @@
           savedList.appendChild(renderRunButton(r));
         });
       }
-      wrap.appendChild(savedList);
+      appendRailNest(
+        wrap,
+        "past runs for ",
+        "past runs for " + caps,
+        "saved",
+        savedList,
+        true,
+        caps
+      );
       scroll.appendChild(wrap);
     });
   }
@@ -3697,6 +3818,8 @@
   document.getElementById("btn-toggle-runs").setAttribute("aria-expanded", "false");
   document.getElementById("slideout").setAttribute("aria-hidden", "true");
   document.getElementById("runs-rail").setAttribute("aria-hidden", "true");
+  loadRailWidths();
+  enableSidebarResize();
   preloadArts();
   setTheme(theme());
   renderRunsRail();

@@ -1,0 +1,32 @@
+---
+description: After Evalathan desk UI approval, commit and push so Mac/Windows apps see latest
+alwaysApply: true
+---
+
+# Evalathan desk ship-on-approve (global protocol)
+
+**Repo:** `C:\Users\admin\Desktop\TOKISH\evalathan` (GitHub `pedramgoshATgmail/EVALATHAN`).
+
+The Mac Evalathan app (and other desks) load from git / pulled `ui/v2`. Local-only edits are invisible there until **commit + push** to `origin/main`.
+
+## When the user approves / accepts desk UI work
+
+If they say anything in this family - approve, ship it, commit these, push so Mac sees it, make this global, I don't see latest on Mac - treat it as **ship protocol**, not chat-only:
+
+1. In `TOKISH/evalathan`, stage the approved desk files (usually `ui/v2/**`; include other approved paths they named).
+2. **Commit** with a concise why-focused message (hyphen, not em dash).
+3. **Push** to `origin` on the current branch (normally `main`) so Mac can pull / rebuild against latest.
+4. Tell them the commit SHA and that Mac needs a pull / app refresh to see it.
+
+## Standing default for Evalathan UI sessions
+
+- Do **not** leave approved `ui/v2` (or other Evalathan desk) changes sitting uncommitted when the user has approved or asked the Mac app to match.
+- If they approve a batch of desk changes in one breath, ship that batch in the same turn (commit + push) unless they explicitly say chat-only / no push.
+- Still honor normal git safety: no force-push to main, no secrets, no amending pushed commits unless they ask.
+- Unrelated untracked assessment/docx scripts stay out of the ship commit unless they asked those in too.
+
+## Do not
+
+- Assume Windows local disk is enough for the Mac app.
+- Stop after "hard-refresh" advice when the change is not on `origin` yet.
+- Skip push after an explicit approve/ship-for-Mac request.

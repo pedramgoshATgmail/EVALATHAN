@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=gold114" />
+  <link rel="stylesheet" href="styles.css?v=gold124" />
   <link rel="preload" as="image" href="assets/evalathan-dragon.webp?v=5" type="image/webp" />
   <link rel="preload" as="image" href="assets/hydra-logo.webp?v=5" type="image/webp" />
   <link rel="preload" as="image" href="assets/dehydrus-logo.webp?v=5" type="image/webp" />
@@ -30,6 +30,7 @@
   <div id="app-screen" class="app-screen">
     <!-- LEFT SLIDER - closed on splash; opens on evals -->
     <aside class="slideout" id="slideout" aria-hidden="true">
+      <div class="rail-resize rail-resize-e" id="slideout-resize" title="Drag to widen or narrow evals rail" role="separator" aria-orientation="vertical"></div>
       <div class="slideout-inner">
         <div class="rail-scroll" id="slideout-scroll">
           <button type="button" class="home-btn" id="btn-home" title="HOME - Evalathan splash">
@@ -51,7 +52,7 @@
             <button type="button" class="section-label" id="btn-selfbelt" title="Open SELFBELT glossary entry">SELFBELT</button>
           </div>
           <div class="slide-section prickly-results-section" id="prickly-results-section">
-            <button type="button" class="section-label rail-head-prickly" id="btn-prickly-results" title="PRICKLY results - saved results on this device">PRICKLY results</button>
+            <button type="button" class="section-label rail-head-prickly" id="btn-prickly-results" title="PRICKLY results - saved results on this device" aria-expanded="false"><span class="rail-head-caret" aria-hidden="true">▸</span><span class="rail-head-label">PRICKLY results</span></button>
             <div class="prickly-results-rail" id="prickly-results-list" aria-label="Saved PRICKLY results">
               <p class="prickly-rail-empty">No saved PRICKLY results yet.</p>
             </div>
@@ -73,7 +74,7 @@
           </button>
         </div>
         <div class="head-right">
-          <button type="button" class="corner-toggle runs-corner" id="btn-toggle-runs" aria-expanded="false" title="history - open latest run and saved runs">
+          <button type="button" class="corner-toggle runs-corner" id="btn-toggle-runs" aria-expanded="false" title="history - open latest run and past runs">
             <span class="corner-label">history</span>
           </button>
         </div>
@@ -111,6 +112,7 @@
 
     <!-- RIGHT SLIDER - closed on splash; opens on history -->
     <aside class="runs-rail" id="runs-rail" aria-hidden="true">
+      <div class="rail-resize rail-resize-w" id="runs-resize" title="Drag to widen or narrow history rail" role="separator" aria-orientation="vertical"></div>
       <div class="runs-inner">
         <div class="rail-scroll" id="rail-scroll"></div>
       </div>
@@ -461,7 +463,7 @@
     </div>
   </div>
 
-  <script src="app.js?v=gold96"></script>
-  <script src="prickly.js?v=20"></script>
+  <script src="app.js?v=gold100"></script>
+  <script src="prickly.js?v=24"></script>
 </body>
 </html>

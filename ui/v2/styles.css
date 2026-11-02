@@ -9,6 +9,7 @@
   --text-soft: #e8e8e8;
   --text-muted: #9a9a9a;
   --accent: #d8e04a;
+  --accent-past: #9aaa2e; /* 2 steps less bright yellow than --accent; past runs titles */
   --input-bg: #f2f3f4;
   --input-text: #333333;
   --btn-bg: #1a1a1a;
@@ -43,6 +44,7 @@
   --text-soft: #555555;
   --text-muted: #888888;
   --accent: #8a9a12;
+  --accent-past: #68740e; /* 2 steps less bright yellow than --accent; past runs titles */
   --input-bg: #fff;
   --input-text: #333333;
   --btn-bg: #e4e4e4;
@@ -74,6 +76,7 @@
   --text-soft: #d0d0d0;
   --text-muted: #a8a8a8;
   --accent: #c4b07a;
+  --accent-past: #96885c; /* 2 steps less bright yellow than --accent; past runs titles */
   --input-bg: #f2f3f4;
   --input-text: #333;
   --btn-bg: #333;
@@ -156,6 +159,33 @@ button { cursor: pointer; border: 0; background: none; }
 }
 .app-screen.engines-open .slideout { transform: translateX(0); }
 .app-screen.runs-open .runs-rail { transform: translateX(0); }
+
+/* Horizontal extend - drag inner edge of either sidebar */
+.rail-resize {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 7px;
+  z-index: 6;
+  cursor: ew-resize;
+  background: transparent;
+  touch-action: none;
+}
+.rail-resize:hover,
+.rail-resize.is-dragging {
+  background: color-mix(in srgb, var(--link-blue) 40%, transparent);
+}
+.slideout .rail-resize-e { right: 0; }
+.runs-rail .rail-resize-w { left: 0; }
+body.is-rail-resizing {
+  cursor: ew-resize !important;
+  user-select: none;
+}
+body.is-rail-resizing .slideout,
+body.is-rail-resizing .runs-rail,
+body.is-rail-resizing .center {
+  transition: none !important;
+}
 
 .slideout-inner, .runs-inner {
   width: 100%;
@@ -739,9 +769,12 @@ button { cursor: pointer; border: 0; background: none; }
 .rail-set + .rail-set {
   margin-top: 0.85rem;
   padding-top: 0.7rem;
-  border-top: 2px solid var(--link-blue); /* same blue as Evalathan GitHub; 100% thicker than 1px */
+  border-top: 0.5px solid var(--link-blue); /* same blue as Evalathan GitHub; one step thinner */
 }
 .rail-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.35rem;
   text-align: left;
   color: var(--link-blue); /* latest: same blue as Evalathan GitHub */
   font-family: var(--mono);
@@ -750,15 +783,44 @@ button { cursor: pointer; border: 0; background: none; }
   text-transform: none;
   margin: 0.35rem 0;
   width: 100%;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
 }
 .rail-head.rail-head-saved {
   color: var(--link-blue-faint); /* saved: fainter / less bright blue */
 }
-.rail-head span {
+.rail-head-caret {
+  flex: 0 0 auto;
+  display: inline-block;
+  width: 0.75rem;
+  transition: transform 0.12s ease;
+  line-height: 1.35;
+}
+.rail-nest:not(.is-collapsed) > .rail-head .rail-head-caret {
+  transform: rotate(90deg);
+}
+.rail-head-label {
+  flex: 1 1 auto;
   display: block;
   white-space: normal;
   overflow: visible;
   line-height: 1.35;
+}
+/* Evaled software / GitHub / upload titles - same lime as evals / history */
+.rail-head .rail-head-target {
+  color: var(--accent);
+}
+/* past runs for TITLE - 2 steps less yellow brightness than latest */
+.rail-head.rail-head-saved .rail-head-target {
+  color: var(--accent-past);
+}
+.rail-nest.is-collapsed > .past-list {
+  display: none;
+}
+.rail-nest > .past-list {
+  margin-left: 0.15rem;
 }
 .past-list {
   list-style: none;
@@ -2189,6 +2251,14 @@ html {
 /* PRICKLY RESULTS head + groups: same color/size/format as history "latest run" (.rail-head) */
 .rail-head-prickly,
 #btn-prickly-results.section-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.35rem;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
   font-family: var(--mono);
   font-size: 0.837rem;
   letter-spacing: 0.04em;
@@ -2201,8 +2271,23 @@ html {
 #btn-prickly-results.section-label:hover {
   color: var(--link-blue-hover);
 }
+#btn-prickly-results[aria-expanded="true"] .rail-head-caret {
+  transform: rotate(90deg);
+}
+#btn-prickly-results .rail-head-caret {
+  flex: 0 0 auto;
+  display: inline-block;
+  width: 0.75rem;
+  transition: transform 0.12s ease;
+  line-height: 1.35;
+}
 .prickly-results-rail {
-  margin-top: 0.35rem;
+  margin-top: 0.45rem;
+  padding-top: 0.7rem;
+  border-top: 2px solid var(--link-blue); /* under PRICKLY results head when open; 1.5px often rounds to 1px on screen */
+}
+.prickly-results-rail.is-collapsed {
+  display: none;
 }
 .prickly-rail-empty {
   margin: 0.12rem 0.1rem;
@@ -2211,11 +2296,58 @@ html {
   line-height: 1.3;
   color: var(--text-muted);
 }
+.rail-run-nest {
+  list-style: none;
+}
+.rail-run-nest-inner.is-collapsed > .rail-run-detail {
+  display: none;
+}
+.rail-run-toggle {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.35rem;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  padding: 0.15rem 0;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+}
+.rail-run-nest-inner:not(.is-collapsed) > .rail-run-toggle .rail-head-caret {
+  transform: rotate(90deg);
+}
+.rail-run-detail {
+  margin: 0.15rem 0 0.45rem 1.1rem;
+}
+.rail-run-detail-blurb {
+  margin: 0 0 0.35rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: var(--text-muted);
+  white-space: normal;
+}
+.rail-run-open {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  padding: 0.2rem 0.45rem;
+  cursor: pointer;
+  border: 1px solid var(--link-blue);
+  background: transparent;
+  color: var(--link-blue);
+  border-radius: 0.25rem;
+}
+.rail-run-open:hover {
+  color: var(--link-blue-hover);
+  border-color: var(--link-blue-hover);
+}
 /* Nest test types; same blue separators as history .rail-set + .rail-set */
 .prickly-rail-set + .prickly-rail-set {
   margin-top: 0.85rem;
   padding-top: 0.7rem;
-  border-top: 2px solid var(--link-blue);
+  border-top: 0.5px solid var(--link-blue);
 }
 /* Heads use shared .rail-head / .rail-head-saved; lists use .past-list-latest / .past-list-saved */
 .prickly-result-block {
