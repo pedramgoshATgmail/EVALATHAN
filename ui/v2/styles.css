@@ -396,8 +396,17 @@ button { cursor: pointer; border: 0; background: none; }
   color: var(--accent) !important;
   text-decoration: underline;
 }
-.blurbs .blurb-wired {
+.blurbs a.blurb-wired {
   color: var(--link-blue); /* same blue as Making your PLG... */
+  text-decoration: none;
+  cursor: pointer;
+}
+.blurbs a.blurb-wired:visited,
+.blurbs a.blurb-wired:hover,
+.blurbs a.blurb-wired:active,
+.blurbs a.blurb-wired:focus {
+  color: var(--link-blue);
+  text-decoration: none;
 }
 
 .slotbox {

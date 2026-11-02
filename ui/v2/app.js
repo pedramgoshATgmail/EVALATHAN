@@ -447,6 +447,23 @@
     if (panel) panel.setAttribute("aria-hidden", String(!open));
   }
 
+  function ensureSideOpen(side) {
+    const cls = side === "engines" ? "engines-open" : "runs-open";
+    if (!app.classList.contains(cls)) toggleSide(side);
+  }
+
+  /** Open an engine page inside this desk (evals left rail + hero). */
+  function openEnginePage(engineId) {
+    const id = engineId || "hydra";
+    if (!engine(id)) return;
+    activeId = id;
+    userPickedEngine = true;
+    openId = id;
+    ensureSideOpen("engines");
+    renderEngines();
+    renderHero();
+  }
+
   function renderEngines() {
     const root = document.getElementById("engine-stack");
     root.innerHTML = "";
@@ -538,7 +555,7 @@
       if (splash) {
         html = html.replace(
           /16 evalers currently wired in\./g,
-          '<span class="blurb-wired">16 evalers currently wired in.</span>'
+          '<a class="blurb-wired" href="#hydra" data-engine="hydra" title="Open Hydra in evals">16 evalers currently wired in.</a>'
         );
       }
       htmlOut += '<span class="blurb-line">' + html + "</span>";
@@ -685,6 +702,12 @@
     const onSplash = !userPickedEngine;
     title.textContent = view.label;
     blurbs.innerHTML = formatBlurbs(view.blurbs, onSplash);
+    blurbs.querySelectorAll("a.blurb-wired").forEach(function (el) {
+      el.addEventListener("click", function (ev) {
+        ev.preventDefault();
+        openEnginePage(el.getAttribute("data-engine") || "hydra");
+      });
+    });
     if (slot) {
       slot.className = "splash-art-slot art-" + artKey;
     }
