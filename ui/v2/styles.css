@@ -200,9 +200,9 @@ button { cursor: pointer; border: 0; background: none; }
   align-items: center;
   justify-content: center;
 }
-.splash-art-slot.art-hydra { --art-scale: 1.06; }
-.splash-art-slot.art-dehydrus { --art-scale: 1.10; }
-.splash-art-slot.art-benchrex { --art-scale: 1.15; }
+.splash-art-slot.art-hydra { --art-scale: 1.1342; } /* 1.06 x 1.07 */
+.splash-art-slot.art-dehydrus { --art-scale: 1.232; } /* 1.10 x 1.12 */
+.splash-art-slot.art-benchrex { --art-scale: 1.4145; } /* 1.15 x 1.23 */
 .splash-art {
   width: 100%;
   height: 100%;
@@ -278,7 +278,7 @@ button { cursor: pointer; border: 0; background: none; }
 }
 .repo-link {
   display: block;
-  margin: 1.75rem auto 0.35rem;
+  margin: 3.25rem auto 0.5rem;
   font-family: var(--mono);
   font-size: 0.78rem;
   color: #7eb8ff;
@@ -386,7 +386,7 @@ button { cursor: pointer; border: 0; background: none; }
 }
 .engine-btn img {
   display: block;
-  height: 12px; /* was 18px, -33% */
+  height: 13.32px; /* 12px + 11% */
   width: auto;
   max-width: 100%;
   object-fit: contain;
