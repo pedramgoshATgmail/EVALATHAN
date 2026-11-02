@@ -249,20 +249,6 @@ def _open_desktop_window(url: str, title: str) -> bool:
 
 def open_desk(port: int = PORT, open_window: bool = True) -> int:
     """Serve ui/v2 from this PC and open the Evalathan desktop window."""
-    # Belt-and-suspenders if launcher did not run sync_or_prompt first.
-    try:
-        from evalathan.desk_update import ensure_published_main, _log
-
-        ensure_published_main(interactive=True)
-    except SystemExit:
-        raise
-    except Exception as exc:  # noqa: BLE001 - never block the desk on update UI
-        try:
-            _log(f"open_desk ensure failed: {exc}")
-        except Exception:  # noqa: BLE001
-            pass
-        print(f"Evalathan update check skipped: {exc}", flush=True)
-
     root = ui_root()
     try:
         from evalathan import __version__ as ver

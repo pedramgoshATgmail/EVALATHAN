@@ -1,21 +1,30 @@
 @echo off
-REM Desktop icon: splash, hard-sync to GitHub main, then local desk.
+REM Desktop icon entry: FUSS launching splash ASAP, then published main, then local desk.
 setlocal EnableExtensions
 cd /d "%~dp0"
 
+REM Show the centered FUSS "launching..." circle as soon as the Desktop icon is clicked.
 call :start_splash
 
-REM Always take published main so Mac/Windows cannot stay on a stale desk (e.g. no-logo proof).
 if exist ".git\" (
   where git >nul 2>&1
   if not errorlevel 1 (
-    echo Syncing Evalathan to published main...
+    echo Updating Evalathan to published main...
+    for /f "delims=" %%H in ('git rev-parse HEAD') do set "BEFORE=%%H"
     git fetch origin
     if not errorlevel 1 (
       git checkout main
       git reset --hard origin/main
-    ) else (
-      echo git fetch failed. Continuing with the files already on disk.
+      for /f "delims=" %%H in ('git rev-parse HEAD') do set "AFTER=%%H"
+      if defined BEFORE if defined AFTER if /I not "%BEFORE%"=="%AFTER%" (
+        if not defined EVALATHAN_RELAUNCHED (
+          echo Update applied. Restarting...
+          endlocal
+          set "EVALATHAN_RELAUNCHED=1"
+          "%~f0" %*
+          exit /b %ERRORLEVEL%
+        )
+      )
     )
   )
 )
@@ -33,10 +42,11 @@ if not exist ".venv\Scripts\python.exe" (
   exit /b %ERRORLEVEL%
 )
 
+REM Splash file may have refreshed with main - keep one instance up.
 call :start_splash
+
 set "VENVPY=%~dp0.venv\Scripts\python.exe"
 "%VENVPY%" -m pip install -e "%~dp0." >nul 2>&1
-set "EVALATHAN_SKIP_UPDATE=1"
 echo Opening Evalathan local desk...
 "%VENVPY%" -c "from evalathan.webdesk import open_desk; raise SystemExit(open_desk())"
 set "EC=%ERRORLEVEL%"
@@ -56,6 +66,7 @@ if not defined SPY for /f "delims=" %%P in ('where python 2^>nul') do (
   if not defined SPY set "SPY=%%P"
 )
 if not defined SPY goto :eof
+REM Intentional start: clear prior stop so a fresh splash may paint.
 if exist "%USERPROFILE%\.evalathan\splash.stop" del /q "%USERPROFILE%\.evalathan\splash.stop" >nul 2>&1
 start "" "%SPY%" "%~dp0ui\v2\launch_splash.py"
 goto :eof

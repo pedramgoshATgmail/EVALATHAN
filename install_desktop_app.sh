@@ -111,17 +111,14 @@ stop_splash() {
 # Fast path when the venv + desk files already exist (daily Desktop click).
 if [ -x "\$REPO/.venv/bin/python" ] && [ -f "\$REPO/ui/v2/index.html" ]; then
   start_splash
-  # Always hard-sync to published main (logos / desk fixes cannot stay stuck on Mac).
+  # Keep published main current, but never block the desk on fetch failure.
   if [ -d "\$REPO/.git" ] && command -v git >/dev/null 2>&1; then
-    echo "Syncing Evalathan to published main..."
     git -C "\$REPO" fetch origin >/dev/null 2>&1 || true
     git -C "\$REPO" checkout main >/dev/null 2>&1 || true
     git -C "\$REPO" reset --hard origin/main >/dev/null 2>&1 || true
     start_splash
   fi
   "\$REPO/.venv/bin/python" -m pip install -e "\$REPO" >/dev/null 2>&1 || true
-  start_splash
-  export EVALATHAN_SKIP_UPDATE=1
   echo "Opening desk via .venv"
   "\$REPO/.venv/bin/python" -c "from evalathan.webdesk import open_desk; raise SystemExit(open_desk())"
   EC=\$?
