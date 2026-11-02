@@ -475,8 +475,6 @@ H14 on the card is the NASA-TLX row: one educated user, overall 9 out of 100, lo
 <a id="braidware" name="braidware"></a>
 <h2>Braidware</h2>
 
-This entry is the definition. It is not an evaler.
-
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
 Braidware is the post-4IR (Fourth Industrial Revolution) term that refers to agentics, software and hardware as a single consolidated unit (often sandboxed).
