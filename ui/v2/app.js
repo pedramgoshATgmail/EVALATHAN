@@ -11,8 +11,8 @@
     {
       id: "hydra",
       label: "HYDRA",
-      wordOnDark: "assets/hydra-word-white.png",
-      wordOnLight: "assets/hydra-word-black.png",
+      wordOnDark: "assets/hydra-word-white.png?v=shade1",
+      wordOnLight: "assets/hydra-word-black.png?v=shade1",
       art: "assets/hydra-logo.png?v=3",
       artGrey: "assets/hydra-logo-grey.png?v=3",
       blurbs:
@@ -30,8 +30,8 @@
     {
       id: "dehydrus",
       label: "DEHYDRUS",
-      wordOnDark: "assets/dehydrus-word-white.png",
-      wordOnLight: "assets/dehydrus-word-black.png",
+      wordOnDark: "assets/dehydrus-word-white.png?v=shade1",
+      wordOnLight: "assets/dehydrus-word-black.png?v=shade1",
       art: "assets/dehydrus-logo.png?v=3",
       artGrey: "assets/dehydrus-logo-grey.png?v=3",
       blurbs:
@@ -48,8 +48,8 @@
     {
       id: "benchrex",
       label: "BENCHREX",
-      wordOnDark: "assets/benchrex-word-white.png",
-      wordOnLight: "assets/benchrex-word-black.png",
+      wordOnDark: "assets/benchrex-word-white.png?v=shade1",
+      wordOnLight: "assets/benchrex-word-black.png?v=shade1",
       art: "assets/benchrex-logo.png?v=gold3",
       artGrey: "assets/benchrex-logo-grey.png?v=gold3",
       blurbs:
@@ -70,8 +70,8 @@
     {
       id: "biasrex",
       label: "BIASREX",
-      wordOnDark: "assets/biasrex-word-white.png",
-      wordOnLight: "assets/biasrex-word-black.png",
+      wordOnDark: "assets/biasrex-word-white.png?v=shade1",
+      wordOnLight: "assets/biasrex-word-black.png?v=shade1",
       art: null,
       artGrey: null,
       blurbs:
@@ -152,10 +152,10 @@
       btn.type = "button";
       btn.className = "engine-btn" + (e.id === activeId ? " active" : "");
       btn.title = e.label + " - router engine";
-      const img = document.createElement("img");
-      img.src = wordSrc(e);
-      img.alt = e.label;
-      btn.appendChild(img);
+      const word = document.createElement("span");
+      word.className = "engine-word";
+      word.textContent = e.label;
+      btn.appendChild(word);
       btn.addEventListener("click", () => {
         activeId = e.id;
         userPickedEngine = true;

@@ -19,6 +19,7 @@
   --logo-art-filter: none;
   --link-blue: #7eb8ff;
   --link-blue-hover: #a8d0ff;
+  --engine-title: #f1f1f1;
   --slide-w: 260px;
   --runs-w: 320px;
   --font: "IBM Plex Sans", system-ui, sans-serif;
@@ -45,6 +46,7 @@
   --logo-art-filter: none;
   --link-blue: #2f6fbf;
   --link-blue-hover: #1e5aa8;
+  --engine-title: #333333;
 }
 
 /* Grey: charcoal only - no blue art anywhere */
@@ -69,6 +71,7 @@
   --logo-art-filter: none;
   --link-blue: #7eb8ff;
   --link-blue-hover: #a8d0ff;
+  --engine-title: #f1f1f1;
 }
 
 * { box-sizing: border-box; }
@@ -467,16 +470,18 @@ button { cursor: pointer; border: 0; background: none; }
   text-align: left;
   padding: 0.2rem 0.1rem;
 }
-.engine-btn img {
+.engine-word {
   display: block;
-  height: 13.32px; /* 12px + 11% */
-  width: auto;
-  max-width: 100%;
-  object-fit: contain;
-  object-position: left center;
-  opacity: 0.78;
+  font-family: var(--font);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--engine-title);
+  line-height: 1.15;
+  opacity: 0.82;
 }
-.engine-btn.active img { opacity: 1; }
+.engine-btn.active .engine-word { opacity: 1; }
 .engine-sub {
   display: flex;
   flex-direction: column;
