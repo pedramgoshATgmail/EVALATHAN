@@ -730,7 +730,7 @@ When the simulator does run, the agent is handed only the already-available sky 
 This evaler is based on Kepler, the astronomer who discovered that planets travel in ellipses and sweep equal areas in equal times. Keplerly (LuDaTs-K) is a Dehydrus world. It runs [Mode B](#ludats-mode-b). It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The cell stays deferred until a sealed Mars-table world is in the tree. A blank is not a fail and not a zero.
 
 <p align="center"><a href="#keplerly"><img src="assets/glossary/cards/keplerly-card-20261101t.png" alt="Keplerly draws the ellipse and equal areas from Tycho's Mars table. Same instrument class." width="703"></a></p>
-<p align="center"><i>If AI was around in my time, sitting with Tycho's Mars table and the same kind of eye as mine, would it throw out perfect circles and draw the ellipse - or keep the circles because a new glass had not been invented yet?</i></p>
+<p align="center"><i>For thousands of years, everyone assumed planets moved in perfect circles. Kepler looked at the data, and saw a tiny mismatch, and dared to say the circles were wrong. Would AIs have done the same? - Furthermore, if LLMs were around and trained on all the pre-discovery data, would they have confirmed or denied Kepler his new discovery?</i></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
