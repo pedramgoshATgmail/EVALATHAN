@@ -1461,28 +1461,50 @@ html {
 .fuss-status.is-warn { color: #a33; }
 .fuss-status.is-on { color: #246338; }
 .fuss-setup[hidden],
+.fuss-panel.is-countdown {
+  width: min(320px, 72vw);
+  height: min(320px, 72vw);
+  max-height: none;
+  padding: 0;
+  border-radius: 50%;
+  border: 0;
+  overflow: hidden;
+  background: #ff7900; /* Irish flag orange */
+  color: #fff;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fuss-panel.is-countdown .fuss-close {
+  display: none;
+}
 .fuss-countdown[hidden] { display: none !important; }
 .fuss-countdown {
-  min-height: 14rem;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem 0.5rem;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 .fuss-countdown-num {
   margin: 0;
   font-family: "IBM Plex Mono", ui-monospace, monospace;
-  font-size: clamp(4.5rem, 18vw, 7rem);
+  font-size: clamp(4.8rem, 22vw, 7.2rem);
   font-weight: 300;
   line-height: 1;
-  color: #c45c26;
+  color: #fff;
   letter-spacing: 0.04em;
 }
 .fuss-countdown-hint {
-  margin: 0.85rem 0 0;
-  font-size: 0.95rem;
-  color: #555;
+  margin: 0.7rem 0 0;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.92);
 }
 
 /* Circular BREAK TIME overlay (enlarged launching-splash twin) */

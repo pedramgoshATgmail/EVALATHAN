@@ -3258,6 +3258,7 @@
   function fussEls() {
     return {
       layer: document.getElementById("fuss-layer"),
+      panel: document.querySelector("#fuss-layer .fuss-panel"),
       breakLayer: document.getElementById("fuss-break-layer"),
       setup: document.getElementById("fuss-setup"),
       countdown: document.getElementById("fuss-countdown"),
@@ -3322,12 +3323,14 @@
 
   function fussShowSetup() {
     const els = fussEls();
+    if (els.panel) els.panel.classList.remove("is-countdown");
     if (els.setup) els.setup.hidden = false;
     if (els.countdown) els.countdown.hidden = true;
   }
 
   function fussShowCountdownView() {
     const els = fussEls();
+    if (els.panel) els.panel.classList.add("is-countdown");
     if (els.setup) els.setup.hidden = true;
     if (els.countdown) els.countdown.hidden = false;
   }
