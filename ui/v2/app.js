@@ -1376,16 +1376,14 @@
       if (ch !== "." && ch !== "!" && ch !== "?") continue;
       const prev = i > 0 ? s[i - 1] : "";
       const next = i + 1 < s.length ? s[i + 1] : "";
-      /* Keep decimals like 2.50 and ellipses together. */
+      /* Keep decimals like 2.50 and ellipses together (no space after '.'). */
       if (ch === "." && /\d/.test(prev) && /\d/.test(next)) continue;
       if (ch === "." && next === ".") continue;
-      let j = i + 1;
-      while (j < s.length && /\s/.test(s[j])) j++;
-      if (j >= s.length || /[A-Z"'“(]/.test(s[j])) {
-        const piece = buf.trim();
-        if (piece) out.push(piece);
-        buf = "";
-      }
+      /* ". "/"! "/"? " (or end) starts a new sentence - including ones that begin with a digit. */
+      if (next && !/\s/.test(next)) continue;
+      const piece = buf.trim();
+      if (piece) out.push(piece);
+      buf = "";
     }
     const tail = buf.trim();
     if (tail) out.push(tail);
