@@ -624,6 +624,9 @@ button { cursor: pointer; border: 0; background: none; }
   background: transparent;
 }
 .mascot-wrap.is-soon .mascot {
+  /* Prickly only: ~1.27× FUSS (115px) to match desk reference disc ratio */
+  width: 146px;
+  height: 146px;
   opacity: 0.55;
   filter: grayscale(0.35);
 }
