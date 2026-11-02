@@ -262,7 +262,7 @@ button { cursor: pointer; border: 0; background: none; }
 }
 .splash-art-slot.art-evalathan { --art-scale: 1.5; } /* splash dragon +50% */
 .splash-art-slot.art-hydra { --art-scale: 1.8147; }
-.splash-art-slot.art-dehydrus { --art-scale: 2.363; }
+.splash-art-slot.art-dehydrus { --art-scale: 2.9538; } /* +25% */
 .splash-art-slot.art-benchrex { --art-scale: 2.9422; } /* +30% */
 .splash-art {
   width: 100%;
