@@ -57,8 +57,7 @@ The routing conductor. She points at each evaluator and writes down what it asse
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
 
-<a id="dehydrus" name="dehydrus"></a>
-<h2>Dehydrus</h2>
+<h2 id="dehydrus">Dehydrus</h2>
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
@@ -340,8 +339,7 @@ JSON may use `before` and `after`, or `total_tokex` and `tokex_this_run`, includ
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
 
-<a id="trajectly" name="trajectly"></a>
-<h2><img src="assets/glossary/trajectly.png" alt="Trajectly" height="26"></h2>
+<h2 id="trajectly"><img src="assets/glossary/trajectly.png" alt="Trajectly" height="26"></h2>
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
@@ -671,8 +669,7 @@ The scan looks for a file whose stem is `prd`, `product-requirements`, or `produ
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
 
-<a id="pretruws" name="pretruws"></a>
-<h2>PRETRUWs</h2>
+<h2 id="pretruws">PRETRUWs</h2>
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>     
 
@@ -1124,8 +1121,7 @@ The paper is [arXiv:2510.24358](https://arxiv.org/abs/2510.24358), submitted 28 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
 
-<a id="ludats" name="ludats"></a>
-<h2>LuDaTs methodology framework</h2>
+<h2 id="ludats">LuDaTs methodology framework</h2>
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
@@ -1146,8 +1142,7 @@ Spec: [docs/LuDaTs.md](docs/LuDaTs.md). Machine cards: [exams/ludats/](exams/lud
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
 
-<a id="habtwin" name="habtwin"></a>
-<h2>HabTwin</h2>
+<h2 id="habtwin">HabTwin</h2>
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
