@@ -61,8 +61,8 @@
   --chip: #2a2a2a;
   --pass: #9ccc9c;
   --deferred: #aaa;
-  /* Same grey wash for Evalathan / Hydra / Dehydrus / Benchrex art */
-  --logo-art-filter: grayscale(1) brightness(0.95) contrast(1.12);
+  /* Pre-matched grey PNGs used in JS; no extra CSS wash */
+  --logo-art-filter: none;
 }
 
 * { box-sizing: border-box; }
@@ -210,12 +210,23 @@ button { cursor: pointer; border: 0; background: none; }
   display: block;
   filter: var(--logo-art-filter);
 }
-[data-theme="grey"] .splash-art {
-  filter: var(--logo-art-filter);
-}
 .splash-art.is-blank {
   visibility: hidden;
 }
+.plg-tag {
+  margin: 0 0 0.35rem;
+  max-width: 34rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  line-height: 1.4;
+  text-align: center;
+}
+.plg-tag a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.plg-tag a:hover { text-decoration: underline; }
+.plg-tag.is-hidden { display: none; }
 .splash-title {
   margin: 0;
   padding: 0;
@@ -245,6 +256,10 @@ button { cursor: pointer; border: 0; background: none; }
   white-space: pre-line;
   text-align: center;
 }
+.blurbs .blurb-engine {
+  color: var(--accent);
+  font-weight: 500;
+}
 
 .page-lower {
   padding-bottom: 1.25rem;
@@ -256,7 +271,29 @@ button { cursor: pointer; border: 0; background: none; }
 .slotbox {
   width: 100%;
   max-width: min(560px, 92vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
 }
+.repo-link {
+  display: block;
+  margin: 1.75rem auto 0.35rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: #7eb8ff;
+  text-decoration: none;
+  text-align: center;
+}
+.repo-link:hover {
+  color: #a8d0ff;
+  text-decoration: underline;
+}
+.repo-link.is-hidden { display: none; }
+[data-theme="white"] .repo-link { color: #2f6fbf; }
+[data-theme="white"] .repo-link:hover { color: #1e5aa8; }
+[data-theme="grey"] .repo-link { color: #7eb8ff; }
+[data-theme="black"] .repo-link { color: #7eb8ff; }
 .slot-pill {
   display: flex;
   align-items: center;
@@ -349,7 +386,7 @@ button { cursor: pointer; border: 0; background: none; }
 }
 .engine-btn img {
   display: block;
-  height: 18px;
+  height: 12px; /* was 18px, -33% */
   width: auto;
   max-width: 100%;
   object-fit: contain;

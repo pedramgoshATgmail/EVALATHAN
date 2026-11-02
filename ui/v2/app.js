@@ -14,8 +14,9 @@
       wordOnDark: "assets/hydra-word-white.png",
       wordOnLight: "assets/hydra-word-black.png",
       art: "assets/hydra-logo.png",
+      artGrey: "assets/hydra-logo-grey.png",
       blurbs:
-        "Hydra engine conducts 16 static evalers (non-exhaustive).\nEach evaler reports its own life-cycle gate.\nA blank is not a fail and not a zero.",
+        "Hydra engine conducts 16 static evalers (non-exhaustive).\nEach evaler reports its own life-cycle gate.\nA blank is not a fail and not a zero.\nHydra's order is product life-cycle, not A-Z: Devly → Archly → Codely → … → Domly → Stackly. Conduct walks that sequence, and Stackly needs the earlier cells.",
       evalers: [
         "devly", "archly", "codely", "refactorly", "mixly", "runly", "levi", "menschly",
         "tokely", "pressly", "triadly", "chorely", "trajectly", "warrantly", "domly", "stackly",
@@ -32,6 +33,7 @@
       wordOnDark: "assets/dehydrus-word-white.png",
       wordOnLight: "assets/dehydrus-word-black.png",
       art: "assets/dehydrus-logo.png",
+      artGrey: "assets/dehydrus-logo-grey.png",
       blurbs:
         "Dehydrus engine conducts 8 physical world models (not wired in currently).\nLuDaTs (Limited-universe Data Test sets) rooms under PRETRUWs stay off Hydra's vector.\nA missing world stays deferred.",
       evalers: [
@@ -49,6 +51,7 @@
       wordOnDark: "assets/benchrex-word-white.png",
       wordOnLight: "assets/benchrex-word-black.png",
       art: "assets/benchrex-logo.png",
+      artGrey: "assets/benchrex-logo-grey.png",
       blurbs:
         "Benchrex engine conducts 10 Benchlux cells (3 not wired in currently).\nSeven criterion cells check whether a claimed benchmark is still fit to cite.\nAssessly, Reportly, and Notifyly stay deferred.",
       evalers: [
@@ -70,6 +73,7 @@
       wordOnDark: "assets/biasrex-word-white.png",
       wordOnLight: "assets/biasrex-word-black.png",
       art: null,
+      artGrey: null,
       blurbs:
         "Biasrex engine conducts 6 bias cells (2 not wired in currently).\nFilterly, Meaningly, Hastely, and Memoryly are artifact-backed gates.\nConfirmly and Automately stay deferred.",
       evalers: [
@@ -86,8 +90,9 @@
   const SPLASH = {
     label: "EVALATHAN",
     art: "assets/evalathan-dragon.png",
+    artGrey: "assets/evalathan-dragon-grey.png",
     blurbs:
-      "40 current evals, 4 routing engines.\nHydra engine conducts 16 static evalers (non-exhaustive).\nDehydrus engine conducts 8 physical world models (not wired in currently).\nBenchrex engine conducts 10 Benchlux cells (3 not wired in currently).\nBiasrex engine conducts 6 bias cells (2 not wired in currently).",
+      "40 current evals, 4 routing engines, 16 evalers currently wired in.\nHydra engine conducts 16 static evalers (non-exhaustive).\nDehydrus engine conducts 8 physical world models (not wired in currently).\nBenchrex engine conducts 10 Benchlux cells (3 not wired in currently).\nBiasrex engine conducts 6 bias cells (2 not wired in currently).",
   };
 
   let activeId = "hydra";
@@ -185,20 +190,47 @@
     });
   }
 
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function formatBlurbs(text) {
+    return escapeHtml(text)
+      .replace(
+        /(Hydra engine|Dehydrus engine|Benchrex engine|Biasrex engine)/g,
+        '<span class="blurb-engine">$1</span>'
+      )
+      .replace(/\n/g, "<br>");
+  }
+
+  function artSrc(view) {
+    if (theme() === "grey" && view.artGrey) return view.artGrey;
+    return view.art || null;
+  }
+
   function renderHero() {
     const title = document.getElementById("splash-title");
     const art = document.getElementById("splash-art");
     const slot = document.querySelector(".splash-art-slot");
     const blurbs = document.getElementById("blurbs");
+    const plg = document.getElementById("plg-tag");
+    const repo = document.getElementById("repo-link");
     const view = userPickedEngine ? engine(activeId) : SPLASH;
     const artKey = userPickedEngine ? activeId : "evalathan";
+    const src = artSrc(view);
     title.textContent = view.label;
-    blurbs.textContent = view.blurbs;
+    blurbs.innerHTML = formatBlurbs(view.blurbs);
     if (slot) {
       slot.className = "splash-art-slot art-" + artKey;
     }
-    if (view.art) {
-      art.src = view.art;
+    if (plg) plg.classList.toggle("is-hidden", userPickedEngine);
+    if (repo) repo.classList.toggle("is-hidden", userPickedEngine);
+    if (src) {
+      art.src = src;
       art.alt = view.label;
       art.classList.remove("is-blank");
     } else {
@@ -245,14 +277,6 @@
       btn.addEventListener("click", () => window.open(c.href || GLOSS_MD, "_blank", "noopener,noreferrer"));
       box.appendChild(btn);
     });
-  }
-
-  function escapeHtml(s) {
-    return String(s)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;");
   }
 
   function mockEvaluate(target) {
