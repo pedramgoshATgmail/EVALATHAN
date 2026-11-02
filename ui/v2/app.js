@@ -48,7 +48,7 @@
       label: "BENCHREX",
       wordOnDark: "assets/benchrex-word-white.png",
       wordOnLight: "assets/benchrex-word-black.png",
-      art: null,
+      art: "assets/benchrex-logo.png",
       blurbs:
         "Benchrex engine conducts 10 Benchlux cells (3 not wired in currently).\nSeven criterion cells check whether a claimed benchmark is still fit to cite.\nAssessly, Reportly, and Notifyly stay deferred.",
       evalers: [
