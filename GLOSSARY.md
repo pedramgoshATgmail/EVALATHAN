@@ -62,7 +62,7 @@ The routing conductor. She points at each evaluator and writes down what it asse
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-`conduct` walks the sixteen evalers in order. Stackly is the one that receives the earlier evalers, because that evaler accepts them. The headline of the report is how many ran, how many passed their own gate, and how many are deferred. The saved record names the conductor Hydra. If the count is not sixteen, or a name is repeated, the run stops. The window heading is HYDRA.
+Desk route id <code>hydra</code>. Sixteen evalers, in this order: <a href="#devly">Devly</a>, <a href="#archly">Archly</a>, <a href="#codely">Codely</a>, <a href="#refactorly">Refactorly</a>, <a href="#mixly">Mixly</a>, <a href="#runly">Runly</a>, <a href="#levi">Levi</a>, <a href="#menschly">Menschly</a>, <a href="#tokely">Tokely</a>, <a href="#pressly">Pressly</a>, <a href="#triadly">Triadly</a>, <a href="#chorely">Chorely</a>, <a href="#trajectly">Trajectly</a>, <a href="#warrantly">Warrantly</a>, <a href="#domly">Domly</a>, <a href="#stackly">Stackly</a>. <code>conduct</code> walks that order. <a href="#stackly">Stackly</a> is the one that receives the earlier evalers, because that evaler accepts them. The headline of the report is how many ran, how many passed their own gate, and how many are deferred. The saved record names the conductor Hydra. If the count is not sixteen, or a name is repeated, the run stops. The window heading is HYDRA.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -710,7 +710,8 @@ JSON may use `before` and `after`, or `total_tokex` and `tokex_this_run`, includ
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
 
-<h2 id="trajectly"><img src="assets/glossary/trajectly.png" alt="Trajectly" height="26"></h2>
+<a id="trajectly" name="trajectly"></a>
+<h2><img src="assets/glossary/trajectly.png" alt="Trajectly" height="26"></h2>
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
