@@ -231,6 +231,10 @@ button { cursor: pointer; border: 0; background: none; }
   padding-bottom: 2rem;
   box-sizing: border-box;
 }
+/* Engine pages: wider stage so each blurb sentence stays on one line with both rails open */
+.page-stage:not(.is-splash) {
+  max-width: min(980px, 100%);
+}
 .page-stage.is-splash {
   justify-content: flex-start;
   padding-top: 8vh;
@@ -368,14 +372,25 @@ button { cursor: pointer; border: 0; background: none; }
   max-width: 40rem;
   margin: 0;
   font-family: var(--mono);
-  font-size: clamp(0.825rem, 1.525vh, 0.965rem); /* was +2; -1 size */
+  font-size: clamp(0.825rem, 1.525vh, 0.965rem); /* splash keeps prior size */
   line-height: 1.7;
   color: var(--text);
   text-align: center;
 }
+/* Four engine briefs: +1 size, full stage width, no orphaned last words */
+.page-stage:not(.is-splash) .blurbs {
+  max-width: 100%;
+  width: 100%;
+  font-size: clamp(0.95rem, 1.65vh, 1.09rem); /* was clamp(0.825?0.965); +1 size */
+  padding: 0 0.35rem;
+  box-sizing: border-box;
+}
 .blurbs .blurb-line {
   display: block;
   padding: 0.25vh 0;
+}
+.page-stage:not(.is-splash) .blurbs .blurb-line {
+  white-space: nowrap; /* one sentence = one line; stage width absorbs it */
 }
 .blurbs .blurb-gap {
   display: block;

@@ -192,7 +192,7 @@
       art: "assets/dehydrus-logo.webp?v=5",
       artGrey: "assets/dehydrus-logo-grey.webp?v=5",
       blurbs:
-        "Dehydrus engine conducts 8 physical world models (not wired in currently).\nLuDaTs (Limited-universe Data Test sets) rooms under PRETRUWs stay off Hydra's vector.\nA missing world stays deferred.",
+        "Dehydrus engine conducts 8 physical world models (not wired in currently).\nLuDaTs rooms under PRETRUWs stay off Hydra's vector.\nA missing world stays deferred.",
       evalers: [
         "copernly", "keplerly", "galileoly", "darwinly", "mendly", "einsteinly", "curcuriely", "newtonly",
       ].map((id) => ({
@@ -234,7 +234,7 @@
       art: "assets/biasrex-logo.webp?v=6",
       artGrey: "assets/biasrex-logo-grey.webp?v=6",
       blurbs:
-        "Biasrex engine conducts 6 bias cells (not wired in currently).\nFilterly, Meaningly, Hastely, and Memoryly map the Cognitive Bias Codex four problems.\nConfirmly and Automately add confirmation and automation trust gates.",
+        "Biasrex engine conducts 6 bias cells (not wired in currently).\nFilterly, Meaningly, Hastely, and Memoryly map the Codex four problems.\nConfirmly and Automately add confirmation and automation trust gates.",
       evalers: [
         { id: "filterly", label: "Filterly", href: anchor("filterly"), later: false },
         { id: "meaningly", label: "Meaningly", href: anchor("meaningly"), later: false },
