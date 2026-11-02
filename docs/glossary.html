@@ -1092,23 +1092,52 @@
 <p>Copy the <code>fuss</code> folder into a web page or a desktop web view. The same files run on Windows and Mac. Before the end of the page, one script tag loads <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/fuss/fuss.js">fuss/fuss.js</a>. A desktop app shows <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/fuss/index.html">fuss/index.html</a> in a web view. The choices stay in the browser's local storage on that computer. The script's starting setup is 25 minutes a sitting, a reminder every 15 minutes, all days, and no end date. Each person still has to tick the box and press Use FUSS. The panel does not start a timer for someone who said no. Menschly treats <code>function bindFuss</code> in that file as a timer. The write-up is <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/fuss/README.md">fuss/README.md</a>.</p>
 <p><img src="../assets/term-rule.png" alt="" width="100%" height="18"></p>
 
+<p><a id="lr" name="lr"></a></p>
+<p><a id="l-and-r" name="l-and-r"></a></p>
+<h2>L&amp;R</h2>
+<p>L&amp;R (Live &amp; Realtime) is a desk questionnaire that is both interactive and timed. The two words are not synonyms. <a id="live" name="live"></a><b>Live</b> means the person is sitting the test now at the desk - answering in the moment, not waiting for a folder scan. <a id="realtime" name="realtime"></a><b>Realtime</b> means a clock is running on that sitting. You can take a test Live. If it is not timed, it is not Realtime. L&amp;R requires both: Live and Realtime together. It is not one of the sixteen Hydra evalers and it does not add a seventeenth score.</p>
+<h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
+<p>Live = you take the test now. Realtime = the test is timed. Live without a timer is still Live, but it is not Realtime. L&amp;R is the timed Live sitting (True/False under a countdown).</p>
+<h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
+<p>Desk labels <i>Developer L&amp;R</i> and <i>JaPoP L&amp;R</i> mean Live &amp; Realtime questionnaires under <a href="#prickly">PRICKLY</a>. Related: <a href="#static">Static</a>, <a href="#s-plus-lr">S+L&amp;R</a>, <a href="#live">Live</a>, <a href="#realtime">Realtime</a>, <a href="#japop">JaPoP</a>.</p>
+<p><img src="../assets/term-rule.png" alt="" width="100%" height="18"></p>
+
+<p><a id="static" name="static"></a></p>
+<h2>Static</h2>
+<p>Static is a paper-trail read: dated emails, texts, or notes you upload or paste. It is not <a href="#live">Live</a> and not <a href="#realtime">Realtime</a>. There is no interactive True/False sitting and no countdown. Soft duration guidance (~3 weeks provisional, ~6 months stronger) is advice only, not a hard gate. Undated dumps defer - not a fail and not a zero. Static is not a seventeenth Hydra score.</p>
+<h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
+<p>Static looks at what was already written over time. You do not sit a timed quiz. You hand in a dated trail.</p>
+<h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
+<p>Used on the desk as <i>JaPoP Static</i> inside <a href="#prickly">PRICKLY</a>. Heuristic in <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/ui/v2/prickly.js">ui/v2/prickly.js</a> scores span, reciprocity, and other-party thread starts. Related: <a href="#lr">L&amp;R</a>, <a href="#s-plus-lr">S+L&amp;R</a>, <a href="#japop">JaPoP</a>.</p>
+<p><img src="../assets/term-rule.png" alt="" width="100%" height="18"></p>
+
+<p><a id="s-plus-lr" name="s-plus-lr"></a></p>
+<p><a id="s-plus-l-and-r" name="s-plus-l-and-r"></a></p>
+<h2>S+L&amp;R</h2>
+<p>S+L&amp;R (Static + Live &amp; Realtime) is the full mode set: a <a href="#static">Static</a> trail plus an <a href="#lr">L&amp;R</a> sitting. Most Evalathan rooms are Static-only folder scans. S+L&amp;R is the rare mix that also sits a person <a href="#live">Live</a> under a <a href="#realtime">Realtime</a> clock. It is not a seventeenth Hydra score.</p>
+<h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
+<p>S = Static trail. L&amp;R = timed Live questionnaire. Together = Static + Live &amp; Realtime. That is the innovative shape <a href="#prickly">PRICKLY</a> uses for developers (and for <a href="#japop">JaPoP</a>).</p>
+<h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
+<p>Mode label for <a href="#prickly">PRICKLY</a>: Developer <a href="#lr">L&amp;R</a>, JaPoP <a href="#lr">L&amp;R</a>, and JaPoP <a href="#static">Static</a>. Related: <a href="#lr">L&amp;R</a>, <a href="#static">Static</a>, <a href="#live">Live</a>, <a href="#realtime">Realtime</a>.</p>
+<p><img src="../assets/term-rule.png" alt="" width="100%" height="18"></p>
+
 <p><a id="prickly" name="prickly"></a></p>
 <h2>PRICKLY</h2>
-<p>PRICKLY is the Evalathan desk rail for timed judgment sittings and for <a href="#japop">JaPoP</a> (Just-a-Professional-or-Partnerable). It is not one of the sixteen Hydra evalers and it does not add a seventeenth score. The local desk opens it like <a href="#fuss">FUSS</a>: pick a test, say who is sitting, then run a timed True/False bank or a static timestamped-comms read.</p>
+<p>PRICKLY is Evalathan's <a href="#s-plus-lr">S+L&amp;R</a> evaler for developers - and for <a href="#japop">JaPoP</a> (Just-a-Professional-or-Partnerable). It pairs a <a href="#static">Static</a> dated-comms read with <a href="#lr">L&amp;R</a> (<a href="#live">Live</a> &amp; <a href="#realtime">Realtime</a>) timed True/False sittings. That mix is the innovation: Hydra-style rooms stay Static folder scans; PRICKLY also puts a person Live under a Realtime clock. It is not one of the sixteen Hydra evalers and it does not add a seventeenth score. The local desk opens it like <a href="#fuss">FUSS</a>: pick a test, say who is sitting, then sit <a href="#lr">L&amp;R</a> or upload <a href="#static">Static</a>.</p>
 <p align="center"><img src="../assets/prickly-logo.png" alt="PRICKLY" width="280" height="280"></p>
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
-<p>Click PRICKLY. Choose Developer L&amp;R, JaPoP L&amp;R, or JaPoP Static. Answer who you are. For Developer L&amp;R, True or False against a curated bank (twelve specializations, five difficulty levels, ten questions each, with five rotatable packs so a repeat sitting is not the same set). For JaPoP L&amp;R, a timed True/False on partnerability. For Static, upload dated emails, texts, and audio notes for a soft partner-leaning / tool-leaning comment. A blank upload is deferred - not a fail and not a zero.</p>
+<p>Click PRICKLY. Choose Developer <a href="#lr">L&amp;R</a>, JaPoP <a href="#lr">L&amp;R</a>, or JaPoP <a href="#static">Static</a>. Answer who you are. Developer L&amp;R is a timed True/False bank for engineers (twelve specializations, five difficulty levels, ten questions each, five rotatable packs). JaPoP L&amp;R is a timed True/False on partnerability. Static uploads dated emails, texts, and audio notes for a soft partner-leaning / tool-leaning comment. A blank upload is deferred - not a fail and not a zero.</p>
 <h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
-<p>Desk files: <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/ui/v2/prickly.js">ui/v2/prickly.js</a>, Developer banks in <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/ui/v2/assets/prickly-dev-banks-variants.json">ui/v2/assets/prickly-dev-banks-variants.json</a> (3000 True/False items: 12 roles x 5 levels x 10 x 5 packs V1-V5), JaPoP levels in <code>ui/v2/assets/japop-lr-levels.json</code>. Answers and pack rotation stay in <code>localStorage</code> keys <code>evalathan.prickly.v1</code> and <code>evalathan.prickly.devVariantRot.v1</code>. Soft duration copy on Static (~3 weeks provisional, ~6 months stronger) cites multi-month assessment lags in relationship-satisfaction meta-analysis (Buhler et al., 2021; 6-month minimum lag) - guidance only, not a hard gate. Related: <a href="#japop">JaPoP</a>, <a href="#fuss">FUSS</a>.</p>
+<p>Desk files: <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/ui/v2/prickly.js">ui/v2/prickly.js</a>, Developer banks in <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/ui/v2/assets/prickly-dev-banks-variants.json">ui/v2/assets/prickly-dev-banks-variants.json</a> (3000 True/False items: 12 roles x 5 levels x 10 x 5 packs V1-V5), JaPoP levels in <code>ui/v2/assets/japop-lr-levels.json</code>. Answers and pack rotation stay in <code>localStorage</code> keys <code>evalathan.prickly.v1</code> and <code>evalathan.prickly.devVariantRot.v1</code>. Soft duration copy on <a href="#static">Static</a> (~3 weeks provisional, ~6 months stronger) cites multi-month assessment lags in relationship-satisfaction meta-analysis (Buhler et al., 2021; 6-month minimum lag) - guidance only, not a hard gate. Related: <a href="#s-plus-lr">S+L&amp;R</a>, <a href="#lr">L&amp;R</a>, <a href="#static">Static</a>, <a href="#japop">JaPoP</a>, <a href="#fuss">FUSS</a>.</p>
 <p><img src="../assets/term-rule.png" alt="" width="100%" height="18"></p>
 
 <p><a id="japop" name="japop"></a></p>
 <h2>JaPoP</h2>
-<p>JaPoP (Just-a-Professional-or-Partnerable), formerly ToP (Tool-or-Partnerable), is the partnerability lane inside <a href="#prickly">PRICKLY</a>. It asks whether timestamped two-way communication and judgment lean professional/tool or partnerable. It is not a hire cut and not a named-person public dossier.</p>
+<p>JaPoP (Just-a-Professional-or-Partnerable), formerly ToP (Tool-or-Partnerable), is the partnerability lane inside <a href="#prickly">PRICKLY</a>. It uses both <a href="#lr">L&amp;R</a> and <a href="#static">Static</a> under the <a href="#s-plus-lr">S+L&amp;R</a> shape. It asks whether timestamped two-way communication and judgment lean professional/tool or partnerable. It is not a hire cut and not a named-person public dossier.</p>
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
-<p>JaPoP has a timed True/False sitting (initiative vs proactiveness) and a Static upload of dated emails or texts. Soft windows: about three weeks of dense dated lines is provisional; about six months is a stronger pattern window. Longer is optional. Undated dumps defer.</p>
+<p>JaPoP has an <a href="#lr">L&amp;R</a> timed True/False sitting (initiative vs proactiveness) and a <a href="#static">Static</a> upload of dated emails or texts. Soft windows: about three weeks of dense dated lines is provisional; about six months is a stronger pattern window. Longer is optional. Undated dumps defer.</p>
 <h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
-<p>Static heuristic in <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/ui/v2/prickly.js">ui/v2/prickly.js</a> scores span, reciprocity, and other-party thread starts. Profile fields (age band, how met, relation, known-years) are context - they do not rewrite the L&amp;R answer key. Backend can store duration parameters; the upload surface only suggests them. Related: <a href="#prickly">PRICKLY</a>, <a href="#fuss">FUSS</a>.</p>
+<p><a href="#static">Static</a> heuristic in <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/ui/v2/prickly.js">ui/v2/prickly.js</a> scores span, reciprocity, and other-party thread starts. Profile fields (age band, how met, relation, known-years) are context - they do not rewrite the <a href="#lr">L&amp;R</a> answer key. Backend can store duration parameters; the upload surface only suggests them. Related: <a href="#prickly">PRICKLY</a>, <a href="#lr">L&amp;R</a>, <a href="#static">Static</a>, <a href="#s-plus-lr">S+L&amp;R</a>, <a href="#fuss">FUSS</a>.</p>
 <p><img src="../assets/term-rule.png" alt="" width="100%" height="18"></p>
 
 <p><a id="ed-slop" name="ed-slop"></a></p>
@@ -1686,7 +1715,12 @@
     {"id":"levi","label":"Levi","kind":"term"},
     {"id":"menschly","label":"Menschly","kind":"term","aliases":["fuss"]},
     {"id":"fuss","label":"FUSS","kind":"term","aliases":["for-user session switch","for user session switch"]},
-    {"id":"prickly","label":"PRICKLY","kind":"term","aliases":["prickly","developer l&r"]},
+    {"id":"lr","label":"L&R","kind":"term","aliases":["l&r","l and r","live and realtime","live & realtime","live & real-time"]},
+    {"id":"live","label":"Live","kind":"term","aliases":["live sitting","live test"]},
+    {"id":"realtime","label":"Realtime","kind":"term","aliases":["real time","real-time","timed sitting"]},
+    {"id":"static","label":"Static","kind":"term","aliases":["static upload","paper trail","japop static"]},
+    {"id":"s-plus-lr","label":"S+L&R","kind":"term","aliases":["s+l&r","s plus l&r","static + live & realtime","static plus live and realtime"]},
+    {"id":"prickly","label":"PRICKLY","kind":"term","aliases":["prickly","developer l&r","s+l&r evaler"]},
     {"id":"japop","label":"JaPoP","kind":"term","aliases":["japop","just-a-professional-or-partnerable","top","tool-or-partnerable","partnerability"]},
     {"id":"mixly","label":"Mixly","kind":"term"},
     {"id":"pressly","label":"Pressly","kind":"term"},
