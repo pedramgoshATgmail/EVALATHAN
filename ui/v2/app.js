@@ -16,7 +16,7 @@
       art: "assets/hydra-logo.png?v=3",
       artGrey: "assets/hydra-logo-grey.png?v=3",
       blurbs:
-        "Hydra engine conducts 16 static evalers (non-exhaustive).\nEach evaler reports its own life-cycle gate.\nA blank is not a fail and not a zero.\nHydra's order is product life-cycle, not A-Z: Devly → Archly → Codely → … → Domly → Stackly. Conduct walks that sequence, and Stackly needs the earlier cells.",
+        "Hydra engine conducts 16 static evalers (non-exhaustive).\nEach evaler reports its own life-cycle gate.\nA blank is not a fail and not a zero.\n\nHydra evalers order is not alphabetical, it is product life-cycle based.",
       evalers: [
         "devly", "archly", "codely", "refactorly", "mixly", "runly", "levi", "menschly",
         "tokely", "pressly", "triadly", "chorely", "trajectly", "warrantly", "domly", "stackly",
@@ -199,20 +199,25 @@
   }
 
   function formatBlurbs(text, splash) {
-    const lines = String(text).split("\n").filter((l) => l.length);
-    return lines
-      .map((line, i) => {
-        let html = escapeHtml(line).replace(
-          /(Hydra engine|Dehydrus engine|Benchrex engine|Biasrex engine)/g,
-          '<span class="blurb-engine">$1</span>'
-        );
-        const gap =
-          splash && i === 0
-            ? '<span class="blurb-gap" aria-hidden="true"></span>'
-            : "";
-        return '<span class="blurb-line">' + html + "</span>" + gap;
-      })
-      .join("");
+    const rawLines = String(text).split("\n");
+    let htmlOut = "";
+    let contentIdx = 0;
+    rawLines.forEach((line) => {
+      if (!line.length) {
+        htmlOut += '<span class="blurb-gap blurb-gap-sm" aria-hidden="true"></span>';
+        return;
+      }
+      let html = escapeHtml(line).replace(
+        /(Hydra engine|Dehydrus engine|Benchrex engine|Biasrex engine)/g,
+        '<span class="blurb-engine">$1</span>'
+      );
+      htmlOut += '<span class="blurb-line">' + html + "</span>";
+      if (splash && contentIdx === 0) {
+        htmlOut += '<span class="blurb-gap" aria-hidden="true"></span>';
+      }
+      contentIdx += 1;
+    });
+    return htmlOut;
   }
 
   function artSrc(view) {

@@ -260,10 +260,10 @@ button { cursor: pointer; border: 0; background: none; }
   justify-content: center;
   margin: 2.2vh 0 1.4vh;
 }
-.splash-art-slot.art-evalathan { --art-scale: 1; }
+.splash-art-slot.art-evalathan { --art-scale: 1.5; } /* splash dragon +50% */
 .splash-art-slot.art-hydra { --art-scale: 1.8147; }
 .splash-art-slot.art-dehydrus { --art-scale: 2.363; }
-.splash-art-slot.art-benchrex { --art-scale: 2.2632; }
+.splash-art-slot.art-benchrex { --art-scale: 2.9422; } /* +30% */
 .splash-art {
   width: 100%;
   height: 100%;
@@ -340,6 +340,9 @@ button { cursor: pointer; border: 0; background: none; }
 .blurbs .blurb-gap {
   display: block;
   height: 3.8vh; /* ref gap between stats line and engine lines */
+}
+.blurbs .blurb-gap-sm {
+  height: 1.15em; /* one blank line between Hydra blurbs */
 }
 .blurbs .blurb-engine {
   color: var(--accent) !important;
