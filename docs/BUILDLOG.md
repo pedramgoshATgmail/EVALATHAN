@@ -13,7 +13,8 @@ See [BUILDLOG.md](../BUILDLOG.md). Short form:
 - **v0.3.0** (2026-10-31): PRETRUWs + Dehydrus + eight LuDaTs evalers. Tk still default.
 - **v0.3.1** (2026-11-02): `ui/v2` local desk, hard-reset install, Desktop icon, Nell detail cards, glossary auto-links, disk-persisted saved runs, FUSS launching splash on Desktop open.
 - **v0.3.2** (2026-11-20): Benchrex (10) + Biasrex (6) glossary rooms at Hydra/Dehydrus depth; paper + Codex credits; illustrations pending; not live-wired yet.
-- **v0.3.3** (2026-11-20, current): Desk memo eye-comfort palette `#FFF4E5` / `#E8F3E8` / `#2B2B2B` under [4Uvals](../GLOSSARY.md#user-content-4uvals) + [Menschly](../GLOSSARY.md#user-content-menschly); FUSS and Prickly button hues documented the same way (see root BUILDLOG one-line).
+- **v0.3.3** (2026-11-20): Desk memo eye-comfort palette `#FFF4E5` / `#E8F3E8` / `#2B2B2B` under [4Uvals](../GLOSSARY.md#user-content-4uvals) + [Menschly](../GLOSSARY.md#user-content-menschly); FUSS and Prickly button hues documented the same way (see root BUILDLOG one-line).
+- **v0.3.4** (2026-11-21, current): [PRICKLY](../GLOSSARY.md#user-content-prickly) desk live + [JaPoP](../GLOSSARY.md#user-content-japop) L&R/Static (True/False banks, soft 3wk/6mo duration guidance).
 
 PRETRUWs (PREdiscovery TRuncated-Universes and Worlds) is the 4IR paradigm. LuDaTs (Limited-universe Data Test sets) is the methodology framework under it. Dehydrus conducts the eight LuDaTs brands. HabTwin is not one of those eight.
 

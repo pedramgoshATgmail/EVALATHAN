@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "format": "true_false",
+  "note": "True=agree-side key (SA/A); False=disagree-side (D/SD). Softened from 5-point Likert per Prickly prompt 21 Nov 2026.",
+  "items": [
+    {
+      "id": "Q101",
+      "text": "A repository with 3,000 commits in the last year demonstrates that its maintainers write high-quality code.",
+      "answer": false,
+      "key_likert": "SD"
+    },
+    {
+      "id": "Q102",
+      "text": "If one contributor wrote over 90% of a project\u2019s commits, that is a continuity risk worth reporting, though it does not by itself show the code is poor.",
+      "answer": true,
+      "key_likert": "A"
+    },
+    {
+      "id": "Q111",
+      "text": "Cyclomatic complexity counts independent paths through a function; it indicates testing effort, not whether the function is correct.",
+      "answer": true,
+      "key_likert": "SA"
+    },
+    {
+      "id": "Q112",
+      "text": "Splitting a 40-branch function into two 20-branch functions that are always called together has reduced the system\u2019s complexity.",
+      "answer": false,
+      "key_likert": "SD"
+    },
+    {
+      "id": "Q121",
+      "text": "If a project contains no benchmark results, the correct conclusion is that its performance is unknown, not that it is poor.",
+      "answer": true,
+      "key_likert": "SA"
+    },
+    {
+      "id": "Q122",
+      "text": "A function that ran 4% faster in one benchmark run than in the previous release\u2019s single run is confirmed to have improved.",
+      "answer": false,
+      "key_likert": "SD"
+    },
+    {
+      "id": "Q131",
+      "text": "A claim that a change saves tokens should be backed by before-and-after token counts on the same workload.",
+      "answer": true,
+      "key_likert": "SA"
+    },
+    {
+      "id": "Q132",
+      "text": "A prompt change that cuts token usage by 30% has lowered the cost of the task, even if the answer error rate doubles.",
+      "answer": false,
+      "key_likert": "SD"
+    },
+    {
+      "id": "Q141",
+      "text": "A recorded execution trace lets an evaluator check which tools an agent called, in what order, and whether it looped.",
+      "answer": true,
+      "key_likert": "SA"
+    },
+    {
+      "id": "Q142",
+      "text": "If an agent\u2019s final answer is correct, its execution path can be assumed to have been acceptable.",
+      "answer": false,
+      "key_likert": "SD"
+    },
+    {
+      "id": "Q151",
+      "text": "A domain-competency score is only meaningful relative to the reference dataset it was computed against.",
+      "answer": true,
+      "key_likert": "A"
+    },
+    {
+      "id": "Q152",
+      "text": "Using the same questions to tune a system\u2019s prompts and to report its final evaluation score gives an unbiased estimate of performance on new questions.",
+      "answer": false,
+      "key_likert": "SD"
+    }
+  ]
+}

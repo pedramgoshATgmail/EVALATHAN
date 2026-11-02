@@ -3229,7 +3229,7 @@
     b.addEventListener("click", () => setTheme(b.getAttribute("data-theme-set")));
   });
 
-  /* PRICKLY - still Coming soon */
+  /* PRICKLY - wired in prickly.js; legacy is-soon handler kept if any remain */
   document.querySelectorAll(".mascot-wrap.is-soon").forEach(function (wrap) {
     let hideTimer = null;
     wrap.addEventListener("click", function (e) {

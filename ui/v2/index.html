@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=gold91" />
+  <link rel="stylesheet" href="styles.css?v=gold92" />
   <link rel="preload" as="image" href="assets/evalathan-dragon.webp?v=5" type="image/webp" />
   <link rel="preload" as="image" href="assets/hydra-logo.webp?v=5" type="image/webp" />
   <link rel="preload" as="image" href="assets/dehydrus-logo.webp?v=5" type="image/webp" />
@@ -37,9 +37,8 @@
           </button>
           <nav class="engine-stack" id="engine-stack" aria-label="Router engines"></nav>
           <div class="mascots">
-            <button type="button" class="mascot-wrap is-soon" title="Coming soon" aria-label="PRICKLY - Coming soon">
+            <button type="button" class="mascot-wrap" id="btn-prickly" title="PRICKLY - Live and Realtime sittings plus JaPoP (Just-a-Professional-or-Partnerable)" aria-label="PRICKLY - open test picker">
               <img class="mascot" src="assets/prickly.png" alt="PRICKLY" draggable="false" />
-              <span class="mascot-soon-blurb" hidden>Coming soon</span>
             </button>
             <button type="button" class="mascot-wrap" id="btn-fuss" title="FUSS - For-User Session Switch (utility timer, not an agent)" aria-label="FUSS - For-User Session Switch">
               <img class="mascot" src="assets/fuss.png" alt="FUSS" draggable="false" />
@@ -175,6 +174,141 @@
     </div>
   </div>
 
+  <!-- PRICKLY centered popup (FUSS-simple: pick test → profile → sit / upload) -->
+  <div id="prickly-layer" class="prickly-layer" hidden>
+    <div class="prickly-panel" role="dialog" aria-modal="true" aria-labelledby="prickly-panel-title">
+      <button type="button" class="prickly-close" id="prickly-close" title="Close PRICKLY">×</button>
+
+      <div id="prickly-home">
+        <h2 id="prickly-panel-title" class="prickly-title">PRICKLY</h2>
+        <p class="prickly-lead">Pick what you want to sit. Everything here is timed or evidence-based - not a hire cut.</p>
+        <div class="prickly-choices">
+          <button type="button" class="prickly-choice" data-prickly-test="dev-lr" title="Developer Live and Realtime True/False sitting">
+            <strong>Developer L&amp;R</strong>
+            <span>Timed True / False from the Prickly bank (judgment, not the folder).</span>
+          </button>
+          <button type="button" class="prickly-choice" data-prickly-test="japop-lr" title="JaPoP Live and Realtime">
+            <strong>JaPoP L&amp;R</strong>
+            <span>Just-a-Professional-or-Partnerable - timed True / False on initiative vs proactiveness.</span>
+          </button>
+          <button type="button" class="prickly-choice" data-prickly-test="japop-static" title="JaPoP Static timestamped comms">
+            <strong>JaPoP Static</strong>
+            <span>Upload / paste timestamped emails or texts. Soft window: ~3 weeks provisional, ~6 months stronger.</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="prickly-profile" hidden>
+        <button type="button" class="prickly-back" id="prickly-back-home">← Back</button>
+        <h2 id="prickly-profile-title" class="prickly-title">Who is sitting?</h2>
+        <p id="prickly-profile-hint" class="prickly-lead"></p>
+        <div class="prickly-form">
+          <label>Role / lens
+            <select id="prickly-role">
+              <option value="developer">Developer / engineer</option>
+              <option value="founder">Founder / co-founder</option>
+              <option value="operator">Operator / partner candidate</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+          <label>Age band
+            <select id="prickly-age">
+              <option value="lt25">Under 25</option>
+              <option value="25-34" selected>25-34</option>
+              <option value="35-49">35-49</option>
+              <option value="50plus">50+</option>
+            </select>
+          </label>
+          <label>Experience
+            <select id="prickly-exp">
+              <option value="0-2">0-2 years</option>
+              <option value="3-7" selected>3-7 years</option>
+              <option value="8-15">8-15 years</option>
+              <option value="16plus">16+ years</option>
+            </select>
+          </label>
+          <label>Context
+            <select id="prickly-context">
+              <option value="startup">Starting a company</option>
+              <option value="existing">Already a company</option>
+              <option value="na">Not a company context</option>
+            </select>
+          </label>
+          <label>How you met (JaPoP)
+            <select id="prickly-howmet">
+              <option value="na">N/A</option>
+              <option value="friend">Friend</option>
+              <option value="family">Family</option>
+              <option value="school">School</option>
+              <option value="work">Work</option>
+              <option value="coffee">Just met / coffee</option>
+            </select>
+          </label>
+          <label>Relation (JaPoP)
+            <select id="prickly-relation">
+              <option value="na">N/A</option>
+              <option value="none">No family relation</option>
+              <option value="spouses">Spouses / partners</option>
+              <option value="parent-child">Parent / child</option>
+              <option value="siblings">Siblings</option>
+            </select>
+          </label>
+          <label>How long known (JaPoP)
+            <select id="prickly-known">
+              <option value="na">N/A</option>
+              <option value="lt3m">&lt; 3 months</option>
+              <option value="3-12m">3-12 months</option>
+              <option value="1-3y">1-3 years</option>
+              <option value="3yplus">3+ years</option>
+            </select>
+          </label>
+        </div>
+        <button type="button" class="prickly-btn" id="prickly-profile-next">Continue</button>
+      </div>
+
+      <div id="prickly-countdown" class="prickly-countdown" hidden aria-live="assertive">
+        <p class="prickly-countdown-num" id="prickly-countdown-num">3</p>
+        <p class="prickly-countdown-hint">Get ready...</p>
+      </div>
+
+      <div id="prickly-sit" hidden>
+        <div class="prickly-sit-head">
+          <span id="prickly-progress">Question 1</span>
+          <span id="prickly-clock" class="prickly-clock">00:00</span>
+        </div>
+        <p id="prickly-stem" class="prickly-stem"></p>
+        <div class="prickly-tf">
+          <button type="button" class="prickly-btn prickly-btn-true" id="prickly-true" title="True">True</button>
+          <button type="button" class="prickly-btn prickly-btn-false" id="prickly-false" title="False">False</button>
+        </div>
+      </div>
+
+      <div id="prickly-static" hidden>
+        <button type="button" class="prickly-back" id="prickly-back-profile">← Back</button>
+        <h2 class="prickly-title">JaPoP Static - timestamped comms</h2>
+        <p class="prickly-lead">Paste dated lines only. One line each. Keep it plain.</p>
+        <p class="prickly-example">Example: <code>2026-03-01 | from: alex | we should try X</code></p>
+        <p id="prickly-duration-note" class="prickly-soft"></p>
+        <label class="prickly-block-label">Your label in the file (from:)
+          <input id="prickly-self-label" type="text" value="me" autocomplete="off" />
+        </label>
+        <label class="prickly-block-label">Comms
+          <textarea id="prickly-comms" rows="10" placeholder="2026-01-15 | from: me | idea…&#10;2026-01-16 | from: pat | thanks&#10;…"></textarea>
+        </label>
+        <button type="button" class="prickly-btn" id="prickly-static-run">Score upload</button>
+      </div>
+
+      <div id="prickly-result" hidden>
+        <h2 id="prickly-result-title" class="prickly-title">Result</h2>
+        <div id="prickly-result-body" class="prickly-result-body"></div>
+        <div class="prickly-result-actions">
+          <button type="button" class="prickly-btn" id="prickly-again">Start over</button>
+          <button type="button" class="prickly-btn prickly-btn-secondary" id="prickly-another">Another test</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Circular BREAK TIME splash - stays until STOP -->
   <div id="fuss-break-layer" class="fuss-break-layer" hidden>
     <div class="fuss-break-stack" role="dialog" aria-modal="true" aria-label="BREAK TIME">
@@ -186,6 +320,7 @@
     </div>
   </div>
 
-  <script src="app.js?v=gold91"></script>
+  <script src="app.js?v=gold92"></script>
+  <script src="prickly.js?v=1"></script>
 </body>
 </html>

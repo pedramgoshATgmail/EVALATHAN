@@ -964,6 +964,38 @@ Copy the `fuss` folder into a web page or a desktop web view. The same files run
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
 
+<a id="prickly" name="prickly"></a>
+<h2>PRICKLY</h2>
+
+PRICKLY is the Evalathan desk rail for timed judgment sittings and for [JaPoP](#japop) (Just-a-Professional-or-Partnerable). It is not one of the sixteen Hydra evalers and it does not add a seventeenth score. The local desk opens it like [FUSS](#fuss): pick a test, say who is sitting, then run a timed True/False bank or a static timestamped-comms read.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+Click PRICKLY. Choose Developer L&R, JaPoP L&R, or JaPoP Static. Answer who you are. For L&R, True or False against a short bank. For Static, paste dated lines and get a soft partner-leaning / tool-leaning comment. A blank upload is deferred - not a fail and not a zero.
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Desk files: [ui/v2/prickly.js](ui/v2/prickly.js), banks under `ui/v2/assets/prickly-dev-tf-bank.json` and `ui/v2/assets/japop-lr-tf-bank.json`. Answers stay in `localStorage` key `evalathan.prickly.v1`. True/False replaced five-point Likert so shades do not blur. Soft duration copy on Static (~3 weeks provisional, ~6 months stronger) cites multi-month assessment lags in relationship-satisfaction meta-analysis (Buhler et al., 2021; 6-month minimum lag) - guidance only, not a hard gate. Post-score ask-anything chat is roadmap, not wired.
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+
+<a id="japop" name="japop"></a>
+<h2>JaPoP</h2>
+
+JaPoP (Just-a-Professional-or-Partnerable), formerly ToP (Tool-or-Partnerable), is the partnerability lane inside [PRICKLY](#prickly). It asks whether timestamped two-way communication and judgment lean professional/tool or partnerable. It is not a hire cut and not a named-person public dossier.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+JaPoP has a timed True/False sitting (initiative vs proactiveness) and a Static upload of dated emails or texts. Soft windows: about three weeks of dense dated lines is provisional; about six months is a stronger pattern window. Longer is optional. Undated dumps defer.
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Static heuristic in [ui/v2/prickly.js](ui/v2/prickly.js) scores span, reciprocity, and other-party thread starts. Profile fields (age band, how met, relation, known-years) are context - they do not rewrite the L&R answer key. Backend can store duration parameters; the upload surface only suggests them. Related: [PRICKLY](#prickly), [FUSS](#fuss).
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+
 <a id="ed-slop" name="ed-slop"></a>
 <h2>Ed Slop</h2>
 

@@ -1092,6 +1092,24 @@
 <p>Copy the <code>fuss</code> folder into a web page or a desktop web view. The same files run on Windows and Mac. Before the end of the page, one script tag loads <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/fuss/fuss.js">fuss/fuss.js</a>. A desktop app shows <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/fuss/index.html">fuss/index.html</a> in a web view. The choices stay in the browser's local storage on that computer. The script's starting setup is 25 minutes a sitting, a reminder every 15 minutes, all days, and no end date. Each person still has to tick the box and press Use FUSS. The panel does not start a timer for someone who said no. Menschly treats <code>function bindFuss</code> in that file as a timer. The write-up is <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/fuss/README.md">fuss/README.md</a>.</p>
 <p><img src="../assets/term-rule.png" alt="" width="100%" height="18"></p>
 
+<p><a id="prickly" name="prickly"></a></p>
+<h2>PRICKLY</h2>
+<p>PRICKLY is the Evalathan desk rail for timed judgment sittings and for <a href="#japop">JaPoP</a> (Just-a-Professional-or-Partnerable). It is not one of the sixteen Hydra evalers and it does not add a seventeenth score. The local desk opens it like <a href="#fuss">FUSS</a>: pick a test, say who is sitting, then run a timed True/False bank or a static timestamped-comms read.</p>
+<h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
+<p>Click PRICKLY. Choose Developer L&amp;R, JaPoP L&amp;R, or JaPoP Static. Answer who you are. For L&amp;R, True or False against a short bank. For Static, paste dated lines and get a soft partner-leaning / tool-leaning comment. A blank upload is deferred - not a fail and not a zero.</p>
+<h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
+<p>Desk files: <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/ui/v2/prickly.js">ui/v2/prickly.js</a>, banks under <code>ui/v2/assets/prickly-dev-tf-bank.json</code> and <code>ui/v2/assets/japop-lr-tf-bank.json</code>. Answers stay in <code>localStorage</code> key <code>evalathan.prickly.v1</code>. True/False replaced five-point Likert so shades do not blur. Soft duration copy on Static (~3 weeks provisional, ~6 months stronger) cites multi-month assessment lags in relationship-satisfaction meta-analysis (Buhler et al., 2021; 6-month minimum lag) - guidance only, not a hard gate. Post-score ask-anything chat is roadmap, not wired.</p>
+<p><img src="../assets/term-rule.png" alt="" width="100%" height="18"></p>
+
+<p><a id="japop" name="japop"></a></p>
+<h2>JaPoP</h2>
+<p>JaPoP (Just-a-Professional-or-Partnerable), formerly ToP (Tool-or-Partnerable), is the partnerability lane inside <a href="#prickly">PRICKLY</a>. It asks whether timestamped two-way communication and judgment lean professional/tool or partnerable. It is not a hire cut and not a named-person public dossier.</p>
+<h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
+<p>JaPoP has a timed True/False sitting (initiative vs proactiveness) and a Static upload of dated emails or texts. Soft windows: about three weeks of dense dated lines is provisional; about six months is a stronger pattern window. Longer is optional. Undated dumps defer.</p>
+<h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
+<p>Static heuristic in <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/ui/v2/prickly.js">ui/v2/prickly.js</a> scores span, reciprocity, and other-party thread starts. Profile fields (age band, how met, relation, known-years) are context - they do not rewrite the L&amp;R answer key. Backend can store duration parameters; the upload surface only suggests them. Related: <a href="#prickly">PRICKLY</a>, <a href="#fuss">FUSS</a>.</p>
+<p><img src="../assets/term-rule.png" alt="" width="100%" height="18"></p>
+
 <p><a id="ed-slop" name="ed-slop"></a></p>
 <h2>Ed Slop</h2>
 
@@ -1667,6 +1685,8 @@
     {"id":"levi","label":"Levi","kind":"term"},
     {"id":"menschly","label":"Menschly","kind":"term","aliases":["fuss"]},
     {"id":"fuss","label":"FUSS","kind":"term","aliases":["for-user session switch","for user session switch"]},
+    {"id":"prickly","label":"PRICKLY","kind":"term","aliases":["prickly","developer l&r"]},
+    {"id":"japop","label":"JaPoP","kind":"term","aliases":["japop","just-a-professional-or-partnerable","top","tool-or-partnerable","partnerability"]},
     {"id":"mixly","label":"Mixly","kind":"term"},
     {"id":"pressly","label":"Pressly","kind":"term"},
     {"id":"refactorly","label":"Refactorly","kind":"term"},
