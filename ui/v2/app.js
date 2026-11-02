@@ -5,15 +5,15 @@
   const anchor = (id) => GLOSS_MD + "#user-content-" + id;
   const app = document.getElementById("app-screen");
 
+  /* word-white = white glyphs for dark grounds; word-black = black glyphs for light grounds */
   const ENGINES = [
     {
       id: "hydra",
       label: "HYDRA",
-      wordDark: "assets/hydra-word-black.png",
-      wordLight: "assets/hydra-word-white.png",
-      art: "assets/hydra-logo.png",
+      wordOnDark: "assets/hydra-word-white.png",
+      wordOnLight: "assets/hydra-word-black.png",
       blurbs:
-        "Routes sixteen software evalers across the product life cycle.\nEach evaler reports its own gate.\nA blank is not a fail and not a zero.",
+        "Sixteen software evalers across the product life cycle.\nEach evaler reports its own gate.\nA blank is not a fail and not a zero.",
       evalers: [
         "devly", "archly", "codely", "refactorly", "mixly", "runly", "levi", "menschly",
         "tokely", "pressly", "triadly", "chorely", "trajectly", "warrantly", "domly", "stackly",
@@ -27,11 +27,10 @@
     {
       id: "dehydrus",
       label: "DEHYDRUS",
-      wordDark: "assets/dehydrus-word-black.png",
-      wordLight: "assets/dehydrus-word-white.png",
-      art: null,
+      wordOnDark: "assets/dehydrus-word-white.png",
+      wordOnLight: "assets/dehydrus-word-black.png",
       blurbs:
-        "Routes eight LuDaTs (Limited-universe Data Test sets) locked-past rooms under PRETRUWs (PREdiscovery TRuncated-Universes and Worlds).\nPhysical world-model and discovery claims stay off Hydra's vector.\nA missing world stays deferred.",
+        "Eight LuDaTs (Limited-universe Data Test sets) under PRETRUWs.\nPhysical world-model claims stay off Hydra's vector.\nA missing world stays deferred.",
       evalers: [
         "copernly", "keplerly", "galileoly", "darwinly", "mendly", "einsteinly", "curcuriely", "newtonly",
       ].map((id) => ({
@@ -44,11 +43,10 @@
     {
       id: "benchrex",
       label: "BENCHREX",
-      wordDark: "assets/benchrex-word-black.png",
-      wordLight: "assets/benchrex-word-white.png",
-      art: null,
+      wordOnDark: "assets/benchrex-word-white.png",
+      wordOnLight: "assets/benchrex-word-black.png",
       blurbs:
-        "Deprecathan desk: Benchlux checks whether a claimed benchmark is still fit to cite.\nSeven criterion cells in v1: Saturly, Contamly, Skewly, Annotly, Obsoletely, Assumly, Driftly.\nAssessly, Reportly, Notifyly stay deferred.",
+        "Benchlux checks whether a claimed benchmark is still fit to cite.\nSeven criterion cells in v1 - Saturly through Driftly.\nAssessly, Reportly, Notifyly stay deferred.",
       evalers: [
         { id: "saturly", label: "Saturly", href: GLOSS_MD, later: false },
         { id: "contamly", label: "Contamly", href: GLOSS_MD, later: false },
@@ -65,11 +63,10 @@
     {
       id: "biasrex",
       label: "BIASREX",
-      wordDark: "assets/biasrex-word-black.png",
-      wordLight: "assets/biasrex-word-white.png",
-      art: null,
+      wordOnDark: "assets/biasrex-word-white.png",
+      wordOnLight: "assets/biasrex-word-black.png",
       blurbs:
-        "Four Benson-shaped bias cells for artifact-backed gates.\nFilterly, Meaningly, Hastely, Memoryly.\nConfirmly and Automately stay deferred - never one blended bias score.",
+        "Four Benson-shaped bias cells for artifact-backed gates.\nFilterly, Meaningly, Hastely, Memoryly.\nConfirmly and Automately stay deferred.",
       evalers: [
         { id: "filterly", label: "Filterly", href: GLOSS_MD, later: false },
         { id: "meaningly", label: "Meaningly", href: GLOSS_MD, later: false },
@@ -81,9 +78,13 @@
     },
   ];
 
+  const SPLASH_BLURBS =
+    "Paste a GitHub link or a folder on this PC.\nOpen evals for Hydra, Dehydrus, Benchrex, Biasrex.\nOpen history for past evaluation runs.";
+
   let activeId = "hydra";
   let openId = null;
   let past = loadPast();
+  let userPickedEngine = false;
 
   function loadPast() {
     try {
@@ -114,7 +115,7 @@
   }
 
   function wordSrc(e) {
-    return theme() === "white" ? e.wordLight : e.wordDark;
+    return theme() === "white" ? e.wordOnLight : e.wordOnDark;
   }
 
   function toggleSide(side) {
@@ -143,6 +144,7 @@
       btn.appendChild(img);
       btn.addEventListener("click", () => {
         activeId = e.id;
+        userPickedEngine = true;
         openId = openId === e.id ? null : e.id;
         renderEngines();
         renderHero();
@@ -175,19 +177,11 @@
   }
 
   function renderHero() {
-    const e = engine(activeId);
-    document.getElementById("blurbs").textContent = e.blurbs;
-    const art = document.getElementById("splash-engine");
-    const dragon = document.querySelector(".splash-dragon");
-    // Grey: never show blue Hydra art - use dragon mark instead
-    if (e.art && theme() !== "grey") {
-      art.src = e.art;
-      art.hidden = false;
-      art.alt = e.label;
-      dragon.hidden = true;
+    const el = document.getElementById("blurbs");
+    if (userPickedEngine) {
+      el.textContent = engine(activeId).blurbs;
     } else {
-      art.hidden = true;
-      dragon.hidden = false;
+      el.textContent = SPLASH_BLURBS;
     }
   }
 
@@ -303,8 +297,11 @@
     b.addEventListener("click", () => setTheme(b.getAttribute("data-theme-set")));
   });
 
-  // Splash: both rails closed
   app.classList.remove("engines-open", "runs-open");
+  document.getElementById("btn-toggle-engines").setAttribute("aria-expanded", "false");
+  document.getElementById("btn-toggle-runs").setAttribute("aria-expanded", "false");
+  document.getElementById("slideout").setAttribute("aria-hidden", "true");
+  document.getElementById("runs-rail").setAttribute("aria-hidden", "true");
   setTheme(theme());
   renderPast();
 })();

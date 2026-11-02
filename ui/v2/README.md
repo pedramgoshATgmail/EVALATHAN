@@ -1,9 +1,11 @@
 # Evalathan UI/UX v2
 
-SEISMO-style overlay rails. **Splash = both sides closed.** Corner labels open the sliders.
+SEISMO-style overlay rails. **Splash = both sides closed.** Corner words open the sliders.
 
-- Top-left **EVALATHAN** → left engines rail (HYDRA / DEHYDRUS / BENCHREX / BIASREX wordmark headers)
-- Top-right **PAST RUNS** → right history rail
+- Top-left **evals** (lime mono) → left engines rail (HYDRA / DEHYDRUS / BENCHREX / BIASREX wordmark headers)
+- Top-right **history** (lime mono) → right PAST RUNS rail
+
+Splash brand stack (matches PDF ref): red dragon mark → **EVALATHAN** title → rule → three mono blurbs → pill upload. No blue Hydra art on the splash.
 
 ## Open in a browser
 
@@ -14,10 +16,12 @@ python -m http.server 8787
 
 http://127.0.0.1:8787/
 
+Hard-refresh (Ctrl+Shift+R) after pulls.
+
 ## Themes
 
-White / Grey / Black (in the left rail once opened). White text uses Granite Gray. Grey theme mutes blue Hydra art (uses dragon mark instead) so logos do not clash.
+White / Grey / Black (in the left rail once opened). Engine wordmarks use white glyphs on dark themes and black glyphs on white.
 
 ## Slotbox
 
-*Paste a GitHub link, or a folder on this PC. Then press Evaluate.* Buttons: **Browse folder**, **Evaluate**.
+Pill: *Upload your GitHub link or folder…* Buttons: **Browse**, **Evaluate**.

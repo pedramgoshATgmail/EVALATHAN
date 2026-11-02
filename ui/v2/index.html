@@ -18,7 +18,7 @@
 </head>
 <body>
   <div id="app-screen" class="app-screen">
-    <!-- LEFT SLIDER (closed on splash) -->
+    <!-- LEFT SLIDER - closed on splash; opens on evals -->
     <aside class="slideout" id="slideout" aria-hidden="true">
       <div class="slideout-inner">
         <div class="rail-scroll" id="slideout-scroll">
@@ -45,34 +45,31 @@
     <main class="center" id="center">
       <header class="center-head">
         <div class="head-left">
-          <button type="button" class="corner-toggle engines-corner" id="btn-toggle-engines" aria-expanded="false" title="Open engines">
-            <img class="corner-word theme-on-dark" src="assets/evalathan-black.png" alt="EVALATHAN" />
-            <img class="corner-word theme-on-light" src="assets/evalathan-white.png" alt="EVALATHAN" />
+          <button type="button" class="corner-toggle engines-corner" id="btn-toggle-engines" aria-expanded="false" title="evals - open engine rail">
+            <span class="corner-label">evals</span>
           </button>
         </div>
         <div class="head-right">
-          <button type="button" class="corner-toggle runs-corner" id="btn-toggle-runs" aria-expanded="false" title="Open past runs">
-            <span class="corner-text">PAST RUNS</span>
+          <button type="button" class="corner-toggle runs-corner" id="btn-toggle-runs" aria-expanded="false" title="history - open past runs">
+            <span class="corner-label">history</span>
           </button>
         </div>
       </header>
 
       <div class="page-stage">
         <div class="page-upper">
-          <img class="splash-mark theme-on-dark" src="assets/evalathan-black.png" alt="EVALATHAN" />
-          <img class="splash-mark theme-on-light" src="assets/evalathan-white.png" alt="EVALATHAN" />
           <img class="splash-dragon" src="assets/evalathan-dragon.png" alt="" />
-          <img class="splash-engine" id="splash-engine" src="assets/hydra-logo.png" alt="" hidden />
-          <p class="blurbs" id="blurbs">Paste a target below, or open the left corner for Hydra, Dehydrus, Benchrex, and Biasrex.</p>
+          <h1 class="splash-title">EVALATHAN</h1>
+          <hr class="splash-rule" />
+          <p class="blurbs" id="blurbs"></p>
         </div>
         <div class="page-lower">
           <section class="slotbox" aria-label="Evaluate target">
-            <p class="slot-label">Paste a GitHub link, or a folder on this PC. Then press Evaluate.</p>
-            <div class="slot-row">
-              <input id="target-input" type="text" spellcheck="false" autocomplete="off" />
+            <div class="slot-pill">
+              <input id="target-input" type="text" spellcheck="false" autocomplete="off" placeholder="Upload your GitHub link or folder…" />
               <input id="folder-picker" type="file" webkitdirectory directory multiple hidden />
-              <button type="button" id="btn-browse">Browse folder</button>
-              <button type="button" id="btn-eval" class="primary">Evaluate</button>
+              <button type="button" id="btn-browse" title="Browse a folder on this PC">Browse</button>
+              <button type="button" id="btn-eval" class="primary" title="Evaluate">Evaluate</button>
             </div>
           </section>
           <section class="results" id="results" aria-live="polite"></section>
@@ -80,7 +77,7 @@
       </div>
     </main>
 
-    <!-- RIGHT SLIDER (closed on splash) -->
+    <!-- RIGHT SLIDER - closed on splash; opens on history -->
     <aside class="runs-rail" id="runs-rail" aria-hidden="true">
       <div class="runs-inner">
         <div class="slide-top">
