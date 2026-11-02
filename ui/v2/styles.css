@@ -603,8 +603,12 @@ button { cursor: pointer; border: 0; background: none; }
   width: 92px;
   height: 92px;
   object-fit: contain;
-  border-radius: 50%;
+  /* PNGs are already circular with alpha - radius/ring chrome draws a white halo */
+  border-radius: 0;
   display: block;
+  box-shadow: none;
+  outline: none;
+  background: transparent;
 }
 .mascot-wrap.is-soon .mascot {
   opacity: 0.55;
@@ -614,8 +618,23 @@ button { cursor: pointer; border: 0; background: none; }
   opacity: 1;
   filter: none;
 }
-.mascot-wrap.is-armed .mascot {
-  box-shadow: 0 0 0 2px #2f7a45;
+.mascot-wrap.is-armed {
+  /* Armed cue without a ring around the logo */
+  filter: none;
+}
+.mascot-wrap.is-armed::after {
+  content: "on";
+  position: absolute;
+  right: -0.15rem;
+  bottom: -0.05rem;
+  padding: 0.05rem 0.28rem;
+  border-radius: 0.25rem;
+  background: #2f7a45;
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
 }
 .mascot-soon-blurb {
   position: absolute;
@@ -1257,7 +1276,7 @@ html {
   border: 0;
 }
 
-/* FUSS session timer panel (GUI art + live hit targets) */
+/* FUSS centered popup (reference-style session timer) */
 .fuss-layer {
   position: fixed;
   inset: 0;
@@ -1265,214 +1284,159 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.72);
+  background: rgba(0, 0, 0, 0.55);
   pointer-events: auto;
 }
 .fuss-layer[hidden] { display: none !important; }
 .fuss-panel {
   position: relative;
-  width: min(819px, 96vw);
-  padding: 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
+  width: min(560px, 92vw);
+  max-height: min(90vh, 720px);
+  overflow: auto;
+  padding: 1.15rem 1.25rem 1.05rem;
+  border-radius: 0.65rem;
+  background: #ececec;
+  border: 1px solid #cfcfcf;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.4);
+  color: #111;
 }
 .fuss-close {
   position: absolute;
-  top: -0.15rem;
-  right: -0.15rem;
-  z-index: 4;
+  top: 0.45rem;
+  right: 0.55rem;
+  z-index: 2;
   width: 1.7rem;
   height: 1.7rem;
   border: 0;
   border-radius: 999px;
-  background: rgba(0, 0, 0, 0.55);
-  color: #fff;
+  background: #d8d8d8;
+  color: #222;
   font-size: 1.15rem;
   line-height: 1;
   cursor: pointer;
 }
-.fuss-close:hover { background: rgba(0, 0, 0, 0.75); }
-.fuss-art-wrap {
-  position: relative;
-  width: 100%;
-  line-height: 0;
+.fuss-close:hover { background: #c8c8c8; }
+.fuss-title {
+  margin: 0 1.5rem 0.55rem 0;
+  font-family: var(--font);
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.25;
 }
-.fuss-art {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 0;
-  user-select: none;
-  -webkit-user-select: none;
-  pointer-events: none;
+.fuss-title-session { color: #c45c26; }
+.fuss-title-dash { color: #333; }
+.fuss-title-fuss {
+  color: #2f6fbf;
+  text-decoration: underline;
 }
-/* Seat on painted LCD digits only - same face color, no floating card chrome */
-.fuss-lcd {
-  position: absolute;
-  left: 46.4%;
-  top: 16.5%;
-  width: 31.8%;
-  height: 13.2%;
+.fuss-lead {
+  margin: 0 0 0.7rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: #222;
+}
+.fuss-steps {
+  margin: 0 0 0.9rem;
+  padding-left: 1.25rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: #222;
+}
+.fuss-steps li { margin: 0 0 0.35rem; }
+.fuss-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+.fuss-ack-row {
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+  font-size: 0.84rem;
+  line-height: 1.4;
+  color: #222;
+  cursor: pointer;
+}
+.fuss-ack-row input {
+  margin-top: 0.15rem;
+  flex: 0 0 auto;
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: #2f7a45;
+  cursor: pointer;
+}
+.fuss-mins-row {
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: #c3c8ba;
-  color: #1c1c1c;
-  font-family: "IBM Plex Mono", ui-monospace, monospace;
-  font-size: clamp(1.85rem, 5.2vw, 2.85rem);
+  gap: 0.55rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  line-height: 1;
-  pointer-events: none;
-  box-shadow: none;
 }
-.fuss-hit {
-  position: absolute;
-  border: 0;
-  padding: 0;
-  background: transparent;
-  cursor: pointer;
-  border-radius: 999px;
-}
-.fuss-hit:focus-visible {
-  outline: 2px solid #2f6fbf;
-  outline-offset: 2px;
-}
-.fuss-hit:hover {
-  box-shadow: inset 0 0 0 999px rgba(255, 255, 255, 0.06);
-}
-.fuss-hit:active {
-  box-shadow: inset 0 0 0 999px rgba(0, 0, 0, 0.1);
-}
-.fuss-hit-start {
-  left: 43.8%;
-  top: 39.2%;
-  width: 24.1%;
-  height: 11.4%;
-}
-.fuss-hit-stop {
-  left: 70%;
-  top: 40.5%;
-  width: 15.5%;
-  height: 11%;
-}
-.fuss-hit-mins-up,
-.fuss-hit-mins-down {
-  border-radius: 0.2rem;
-  left: 79.4%;
-  width: 3.6%;
-  height: 5.2%;
-}
-.fuss-hit-mins-up { top: 56.8%; }
-.fuss-hit-mins-down { top: 62.2%; }
-/* Number field only - leave painted spinner arrows visible beside it */
-.fuss-mins-wrap {
-  position: absolute;
-  left: 58.9%;
-  top: 57.2%;
-  width: 20.5%;
-  height: 12.2%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  cursor: text;
-}
-.fuss-mins-wrap input {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  border: 0;
-  border-radius: 0.2rem;
-  background: #fff;
-  color: #111;
+.fuss-mins-row input {
+  width: 4.2rem;
+  height: 2rem;
+  border: 1px solid #bbb;
+  border-radius: 0.3rem;
+  padding: 0 0.4rem;
   font-family: "IBM Plex Mono", ui-monospace, monospace;
-  font-size: clamp(1.05rem, 2.6vw, 1.45rem);
-  font-weight: 500;
+  font-size: 0.95rem;
   text-align: center;
-  box-shadow: none;
-  outline: none;
-  -moz-appearance: textfield;
-  appearance: textfield;
+  background: #fff;
 }
-.fuss-mins-wrap input::-webkit-outer-spin-button,
-.fuss-mins-wrap input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-.fuss-mins-wrap input:focus {
-  outline: 1px solid #8a8a8a;
-}
-/* Sit on the painted checkbox square; transparent when empty so art shows */
-.fuss-ack-wrap {
-  position: absolute;
-  left: 6.1%;
-  top: 87.4%;
-  width: 3.6%;
-  height: 5.1%;
+.fuss-actions {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  cursor: pointer;
+  flex-wrap: wrap;
+  gap: 0.55rem;
 }
-.fuss-ack-wrap input {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
+.fuss-btn {
+  height: 2.15rem;
+  padding: 0 1rem;
   border: 0;
-  border-radius: 0.12rem;
-  background: transparent;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-}
-.fuss-ack-wrap input:checked {
-  background: #2f7a45;
-  box-shadow: inset 0 0 0 1px #1f5a32;
-}
-.fuss-ack-wrap input:checked::after {
-  content: "";
-  width: 42%;
-  height: 68%;
-  border: solid #fff;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg) translate(-5%, -8%);
-}
-.fuss-ack-wrap input:focus-visible {
-  outline: 2px solid #2f6fbf;
-  outline-offset: 2px;
-}
-/* Wide invisible hit over the painted disclaimer line */
-.fuss-ack-text-hit {
-  position: absolute;
-  left: 10.2%;
-  top: 86.5%;
-  width: 84%;
-  height: 8.5%;
-  border: 0;
-  padding: 0;
-  margin: 0;
-  background: transparent;
-  cursor: pointer;
-}
-.fuss-status {
-  margin: 0.4rem 0.2rem 0;
+  border-radius: 0.35rem;
   font-family: var(--font);
   font-size: 0.88rem;
-  color: #e8e8e8;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+}
+.fuss-btn-start { background: #2f7a45; }
+.fuss-btn-start:hover { background: #246338; }
+.fuss-btn-stop { background: #c45c4a; }
+.fuss-btn-stop:hover { background: #a84a3b; }
+.fuss-status {
+  margin: 0.75rem 0 0;
+  font-family: var(--font);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
   line-height: 1.35;
 }
-.fuss-status.is-warn { color: #ffb4b4; }
-.fuss-status.is-on { color: #9fddb0; }
+.fuss-status.is-warn { color: #a33; }
+.fuss-status.is-on { color: #246338; }
+.fuss-setup[hidden],
+.fuss-countdown[hidden] { display: none !important; }
+.fuss-countdown {
+  min-height: 14rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 0.5rem;
+}
+.fuss-countdown-num {
+  margin: 0;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: clamp(4.5rem, 18vw, 7rem);
+  font-weight: 700;
+  line-height: 1;
+  color: #c45c26;
+  letter-spacing: 0.02em;
+}
+.fuss-countdown-hint {
+  margin: 0.85rem 0 0;
+  font-size: 0.95rem;
+  color: #555;
+}
 
 /* Circular BREAK TIME overlay (launching-splash twin) */
 .fuss-break-layer {

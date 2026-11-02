@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=gold69" />
+  <link rel="stylesheet" href="styles.css?v=gold70" />
   <link rel="preload" as="image" href="assets/evalathan-dragon.webp?v=5" type="image/webp" />
   <link rel="preload" as="image" href="assets/hydra-logo.webp?v=5" type="image/webp" />
   <link rel="preload" as="image" href="assets/dehydrus-logo.webp?v=5" type="image/webp" />
@@ -124,33 +124,51 @@
     </div>
   </div>
 
-  <!-- FUSS (For-User Session Switch) panel - GUI art with live controls -->
+  <!-- FUSS (For-User Session Switch) centered popup -->
   <div id="fuss-layer" class="fuss-layer" hidden>
     <div class="fuss-panel" role="dialog" aria-modal="true" aria-labelledby="fuss-panel-title">
       <button type="button" class="fuss-close" id="fuss-close" title="Close FUSS">×</button>
-      <h2 id="fuss-panel-title" class="visually-hidden">FUSS session timer</h2>
-      <div class="fuss-art-wrap">
-        <img class="fuss-art" src="assets/fuss-panel-gui.png?v=1" alt="FUSS session timer panel" draggable="false" />
-        <div class="fuss-lcd" id="fuss-lcd" aria-live="polite">25:00</div>
-        <button type="button" class="fuss-hit fuss-hit-start" id="fuss-start" title="Start timer" aria-label="Start timer"></button>
-        <button type="button" class="fuss-hit fuss-hit-stop" id="fuss-stop" title="Stop timer" aria-label="Stop timer"></button>
-        <label class="fuss-mins-wrap" title="Sitting length in minutes (20-45)">
-          <span class="visually-hidden">Minutes</span>
-          <input id="fuss-mins" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" value="25" autocomplete="off" />
-        </label>
-        <button type="button" class="fuss-hit fuss-hit-mins-up" id="fuss-mins-up" title="Increase minutes" aria-label="Increase minutes"></button>
-        <button type="button" class="fuss-hit fuss-hit-mins-down" id="fuss-mins-down" title="Decrease minutes" aria-label="Decrease minutes"></button>
-        <label class="fuss-ack-wrap" title="Confirm FUSS is only a timer">
-          <input id="fuss-ack" type="checkbox" />
-          <span class="visually-hidden">I understand this is only a timer for my sitting with AI. It is not medical advice, not a diagnosis, and not a replacement for my firm's AI policy.</span>
-        </label>
-        <button type="button" class="fuss-ack-text-hit" id="fuss-ack-text" title="Confirm FUSS is only a timer" aria-label="Toggle disclaimer checkbox"></button>
+      <div class="fuss-setup" id="fuss-setup">
+        <h2 id="fuss-panel-title" class="fuss-title">
+          <span class="fuss-title-session">Session timer</span>
+          <span class="fuss-title-dash"> - </span>
+          <a class="fuss-title-fuss" href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/GLOSSARY.md#user-content-fuss" target="_blank" rel="noopener noreferrer" title="FUSS - For-User Session Switch (glossary)">FUSS</a>
+        </h2>
+        <p class="fuss-lead">
+          FUSS stands for For-User Session Switch. FUSS is a utility timer, not an agent.
+          You use it to time your sitting with AI. It is not medical advice.
+        </p>
+        <ol class="fuss-steps">
+          <li>Tick the box to confirm you are only setting a timer.</li>
+          <li>Choose a duration in minutes (1 or more; 25 is typical).</li>
+          <li>Press <strong>Start timer</strong>. The popup counts 3-2-1-0, then closes while the sitting runs.</li>
+          <li>Every 15 minutes you will see time remaining in the status line when you reopen FUSS.</li>
+          <li>Press <strong>Stop timer</strong> if you finish early.</li>
+        </ol>
+        <div class="fuss-controls">
+          <label class="fuss-ack-row">
+            <input id="fuss-ack" type="checkbox" />
+            <span>I understand this is only a timer for my sitting with AI. It is not medical advice, not a diagnosis, and not a replacement for my firm’s AI policy.</span>
+          </label>
+          <label class="fuss-mins-row">
+            <span>Minutes</span>
+            <input id="fuss-mins" type="number" min="1" max="180" step="1" value="25" inputmode="numeric" />
+          </label>
+          <div class="fuss-actions">
+            <button type="button" class="fuss-btn fuss-btn-start" id="fuss-start" title="Start timer">Start timer</button>
+            <button type="button" class="fuss-btn fuss-btn-stop" id="fuss-stop" title="Stop timer">Stop timer</button>
+          </div>
+        </div>
+        <p class="fuss-status" id="fuss-status">Timer off.</p>
       </div>
-      <p class="fuss-status" id="fuss-status">Timer off.</p>
+      <div class="fuss-countdown" id="fuss-countdown" hidden aria-live="assertive">
+        <p class="fuss-countdown-num" id="fuss-countdown-num">3</p>
+        <p class="fuss-countdown-hint">Starting sitting…</p>
+      </div>
     </div>
   </div>
 
-  <!-- Circular BREAK TIME splash (FUSS disk + flashing BREAK TIME art) -->
+  <!-- Circular BREAK TIME splash only when the sitting timer expires -->
   <div id="fuss-break-layer" class="fuss-break-layer" hidden>
     <button type="button" class="fuss-break-disk" id="fuss-break-dismiss" title="Dismiss break - click to continue" aria-label="BREAK TIME - click to dismiss">
       <img class="fuss-break-art" src="assets/fuss-splash.png?v=1" alt="" draggable="false" />
@@ -158,6 +176,6 @@
     </button>
   </div>
 
-  <script src="app.js?v=gold69"></script>
+  <script src="app.js?v=gold70"></script>
 </body>
 </html>

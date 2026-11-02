@@ -3244,20 +3244,23 @@
     });
   });
 
-  /* ---- FUSS (For-User Session Switch): live panel + BREAK TIME disk ---- */
+  /* ---- FUSS (For-User Session Switch): popup + 3-2-1-0 + BREAK TIME disk ---- */
   const FUSS_KEY = "evalathan.fuss.v1";
-  const FUSS_MIN = 20;
-  const FUSS_MAX = 45;
+  const FUSS_MIN = 1;
+  const FUSS_MAX = 180;
   const FUSS_DEFAULT = 25;
   const FUSS_REMIND_EVERY = 15;
   let fussTick = null;
-  let fussLcdTick = null;
+  let fussCountTimer = null;
+  let fussCounting = false;
 
   function fussEls() {
     return {
       layer: document.getElementById("fuss-layer"),
       breakLayer: document.getElementById("fuss-break-layer"),
-      lcd: document.getElementById("fuss-lcd"),
+      setup: document.getElementById("fuss-setup"),
+      countdown: document.getElementById("fuss-countdown"),
+      countNum: document.getElementById("fuss-countdown-num"),
       mins: document.getElementById("fuss-mins"),
       ack: document.getElementById("fuss-ack"),
       start: document.getElementById("fuss-start"),
@@ -3315,14 +3318,16 @@
     else btn.classList.remove("is-armed");
   }
 
-  function fussPaintLcd(state) {
-    const lcd = fussEls().lcd;
-    if (!lcd) return;
-    if (state && state.on && state.started) {
-      lcd.textContent = fussFormatMs(fussRemainingMs(state));
-    } else {
-      lcd.textContent = fussFormatMs(fussClampMins(state && state.minutes) * 60 * 1000);
-    }
+  function fussShowSetup() {
+    const els = fussEls();
+    if (els.setup) els.setup.hidden = false;
+    if (els.countdown) els.countdown.hidden = true;
+  }
+
+  function fussShowCountdownView() {
+    const els = fussEls();
+    if (els.setup) els.setup.hidden = true;
+    if (els.countdown) els.countdown.hidden = false;
   }
 
   function fussHideBreak() {
@@ -3337,6 +3342,18 @@
     layer.classList.add("is-on");
   }
 
+  function fussClearTickers() {
+    if (fussTick) {
+      window.clearInterval(fussTick);
+      fussTick = null;
+    }
+    if (fussCountTimer) {
+      window.clearTimeout(fussCountTimer);
+      fussCountTimer = null;
+    }
+    fussCounting = false;
+  }
+
   function fussStopTimer(opts) {
     const keepAck = !(opts && opts.clearAck);
     const prev = fussRead();
@@ -3348,28 +3365,15 @@
       lastPing: 0,
     };
     fussWrite(next);
-    if (fussTick) {
-      window.clearInterval(fussTick);
-      fussTick = null;
-    }
-    if (fussLcdTick) {
-      window.clearInterval(fussLcdTick);
-      fussLcdTick = null;
-    }
+    fussClearTickers();
     fussSyncMascot(next);
-    fussPaintLcd(next);
+    fussShowSetup();
     fussSetStatus("Timer off.");
     return next;
   }
 
   function fussArm() {
     if (fussTick) window.clearInterval(fussTick);
-    if (fussLcdTick) window.clearInterval(fussLcdTick);
-    fussLcdTick = window.setInterval(function () {
-      const state = fussRead();
-      if (!state.on) return;
-      fussPaintLcd(state);
-    }, 250);
     fussTick = window.setInterval(function () {
       const state = fussRead();
       if (!state.on || !state.started) return;
@@ -3380,10 +3384,6 @@
       if (bucket > 0 && bucket !== state.lastPing) {
         state.lastPing = bucket;
         fussWrite(state);
-        fussSetStatus(
-          "About " + Math.max(1, Math.round(leftMin)) + " minutes left on this sitting.",
-          "is-on"
-        );
       }
       if (leftMs <= 0) {
         fussStopTimer({ clearAck: false });
@@ -3393,34 +3393,41 @@
     }, 1000);
   }
 
+  function fussStatusLine(state) {
+    if (!state || !state.on || !state.started) {
+      fussSetStatus("Timer off.");
+      return;
+    }
+    const left = fussFormatMs(fussRemainingMs(state));
+    fussSetStatus(
+      "Timer on - " +
+        fussClampMins(state.minutes) +
+        " min sitting. " +
+        left +
+        " left.",
+      "is-on"
+    );
+  }
+
   function fussOpenPanel() {
     const els = fussEls();
-    if (!els.layer) return;
+    if (!els.layer || fussCounting) return;
     const state = fussRead();
+    fussShowSetup();
     if (els.mins) els.mins.value = String(fussClampMins(state.minutes || FUSS_DEFAULT));
     if (els.ack) els.ack.checked = !!state.ack;
-    fussPaintLcd(state);
-    if (state.on) {
-      fussSetStatus("Timer on - sitting in progress.", "is-on");
-    } else {
-      fussSetStatus("Timer off.");
-    }
+    fussStatusLine(state);
     els.layer.hidden = false;
   }
 
   function fussClosePanel() {
+    if (fussCounting) return;
     const layer = fussEls().layer;
     if (layer) layer.hidden = true;
+    fussShowSetup();
   }
 
-  function fussStartFromPanel() {
-    const els = fussEls();
-    if (!els.ack || !els.ack.checked) {
-      fussSetStatus("Tick the box first. FUSS is a timer, not medical advice.", "is-warn");
-      return;
-    }
-    const minutes = fussClampMins(els.mins ? els.mins.value : FUSS_DEFAULT);
-    if (els.mins) els.mins.value = String(minutes);
+  function fussBeginSitting(minutes) {
     const next = {
       ack: true,
       on: true,
@@ -3430,9 +3437,40 @@
     };
     fussWrite(next);
     fussSyncMascot(next);
-    fussPaintLcd(next);
-    fussSetStatus("Timer on - " + minutes + " minutes. Every " + FUSS_REMIND_EVERY + " minutes you will see time left.", "is-on");
     fussArm();
+    fussShowSetup();
+    fussClosePanel();
+  }
+
+  function fussStartFromPanel() {
+    const els = fussEls();
+    if (fussCounting) return;
+    if (!els.ack || !els.ack.checked) {
+      fussSetStatus("Tick the box first. FUSS is a timer, not medical advice.", "is-warn");
+      return;
+    }
+    const minutes = fussClampMins(els.mins ? els.mins.value : FUSS_DEFAULT);
+    if (els.mins) els.mins.value = String(minutes);
+    fussHideBreak();
+    fussCounting = true;
+    fussShowCountdownView();
+    let n = 3;
+    if (els.countNum) els.countNum.textContent = String(n);
+    function step() {
+      if (n <= 0) {
+        if (els.countNum) els.countNum.textContent = "0";
+        fussCountTimer = window.setTimeout(function () {
+          fussCounting = false;
+          fussCountTimer = null;
+          fussBeginSitting(minutes);
+        }, 450);
+        return;
+      }
+      if (els.countNum) els.countNum.textContent = String(n);
+      n -= 1;
+      fussCountTimer = window.setTimeout(step, 1000);
+    }
+    step();
   }
 
   function bindFuss(root) {
@@ -3468,12 +3506,15 @@
     if (els.stop) {
       els.stop.addEventListener("click", function (e) {
         e.preventDefault();
+        if (fussCounting) {
+          fussClearTickers();
+          fussShowSetup();
+        }
         fussStopTimer({ clearAck: false });
         const live = fussRead();
         if (els.ack) live.ack = !!els.ack.checked;
         if (els.mins) live.minutes = fussClampMins(els.mins.value);
         fussWrite(live);
-        fussPaintLcd(live);
         fussHideBreak();
         fussSetStatus("Timer stopped.");
       });
@@ -3488,7 +3529,6 @@
       state.minutes = fussClampMins(raw);
       if (els.mins) els.mins.value = String(state.minutes);
       fussWrite(state);
-      fussPaintLcd(state);
     }
     if (els.mins) {
       els.mins.addEventListener("change", function () {
@@ -3497,42 +3537,9 @@
       els.mins.addEventListener("blur", function () {
         fussApplyMinutes(els.mins.value);
       });
-      els.mins.addEventListener("keydown", function (e) {
-        if (e.key === "Enter") {
-          e.preventDefault();
-          fussApplyMinutes(els.mins.value);
-          els.mins.blur();
-        }
-      });
-    }
-    const minsUp = document.getElementById("fuss-mins-up");
-    const minsDown = document.getElementById("fuss-mins-down");
-    if (minsUp) {
-      minsUp.addEventListener("click", function (e) {
-        e.preventDefault();
-        const cur = fussClampMins(els.mins ? els.mins.value : FUSS_DEFAULT);
-        fussApplyMinutes(cur + 1);
-      });
-    }
-    if (minsDown) {
-      minsDown.addEventListener("click", function (e) {
-        e.preventDefault();
-        const cur = fussClampMins(els.mins ? els.mins.value : FUSS_DEFAULT);
-        fussApplyMinutes(cur - 1);
-      });
     }
     if (els.ack) {
       els.ack.addEventListener("change", function () {
-        const state = fussRead();
-        state.ack = !!els.ack.checked;
-        fussWrite(state);
-      });
-    }
-    const ackText = document.getElementById("fuss-ack-text");
-    if (ackText && els.ack) {
-      ackText.addEventListener("click", function (e) {
-        e.preventDefault();
-        els.ack.checked = !els.ack.checked;
         const state = fussRead();
         state.ack = !!els.ack.checked;
         fussWrite(state);
@@ -3560,7 +3567,6 @@
     if (boot.on && boot.started && fussRemainingMs(boot) > 0) {
       fussArm();
       fussSyncMascot(boot);
-      fussPaintLcd(boot);
     } else if (boot.on) {
       fussStopTimer({ clearAck: false });
       fussShowBreak();
