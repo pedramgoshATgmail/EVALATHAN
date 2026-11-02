@@ -576,7 +576,7 @@ button { cursor: pointer; border: 0; background: none; }
 }
 .engine-sub a, .engine-sub span {
   font-family: var(--mono);
-  font-size: 0.82rem; /* was 0.7rem; +1 size */
+  font-size: 0.94rem; /* was 0.82rem; +1 size again (evalers only) */
   color: var(--text-muted);
   text-decoration: none;
   padding: 0.08rem 0;
@@ -608,8 +608,8 @@ button { cursor: pointer; border: 0; background: none; }
   box-shadow: none;
 }
 .mascot-wrap .mascot {
-  width: 101px; /* was 92px; +10% */
-  height: 101px;
+  width: 102px; /* was 92px; +11% across desk installs */
+  height: 102px;
   object-fit: contain;
   /* PNGs are already circular with alpha - radius/ring chrome draws a white halo */
   border: 0;
