@@ -22,6 +22,8 @@
     { id: "evalathan", phrases: ["EVALATHAN", "Evalathan"] },
     { id: "hydra", phrases: ["HYDRA", "Hydra"] },
     { id: "dehydrus", phrases: ["DEHYDRUS", "Dehydrus"] },
+    { id: "benchrex", phrases: ["BENCHREX", "Benchrex"] },
+    { id: "biasrex", phrases: ["BIASREX", "Biasrex"] },
     { id: "archly", phrases: ["Archly"] },
     { id: "chorely", phrases: ["Chorely"] },
     { id: "codely", phrases: ["Codely"] },
@@ -501,6 +503,13 @@
       .replace(/"/g, "&quot;");
   }
 
+  const ENGINE_BLURB_HREF = {
+    "Hydra engine": "hydra",
+    "Dehydrus engine": "dehydrus",
+    "Benchrex engine": "benchrex",
+    "Biasrex engine": "biasrex",
+  };
+
   function formatBlurbs(text, splash) {
     const rawLines = String(text).split("\n");
     let htmlOut = "";
@@ -512,7 +521,19 @@
       }
       let html = escapeHtml(line).replace(
         /(Hydra engine|Dehydrus engine|Benchrex engine|Biasrex engine)/g,
-        '<span class="blurb-engine">$1</span>'
+        function (match) {
+          const id = ENGINE_BLURB_HREF[match];
+          const name = match.split(" ")[0];
+          return (
+            '<a class="blurb-engine" href="' +
+            escapeHtml(anchor(id)) +
+            '" target="_blank" rel="noopener noreferrer" title="' +
+            escapeHtml(name) +
+            ' - glossary">' +
+            match +
+            "</a>"
+          );
+        }
       );
       htmlOut += '<span class="blurb-line">' + html + "</span>";
       if (splash && contentIdx === 0) {

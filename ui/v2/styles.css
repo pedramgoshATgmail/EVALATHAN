@@ -382,10 +382,19 @@ button { cursor: pointer; border: 0; background: none; }
 .blurbs .blurb-gap-sm {
   height: 1.15em; /* one blank line between Hydra blurbs */
 }
-.blurbs .blurb-engine {
+.blurbs .blurb-engine,
+.blurbs a.blurb-engine {
   color: var(--accent) !important;
   font-weight: 500;
   opacity: 1 !important;
+  text-decoration: none;
+}
+.blurbs a.blurb-engine:visited,
+.blurbs a.blurb-engine:hover,
+.blurbs a.blurb-engine:active,
+.blurbs a.blurb-engine:focus {
+  color: var(--accent) !important;
+  text-decoration: underline;
 }
 
 .slotbox {

@@ -77,6 +77,36 @@ The other conductor. Hydra watches software. Dehydrus watches locked physical wo
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
 
+<a id="benchrex" name="benchrex"></a>
+<h2>Benchrex</h2>
+
+Benchrex (Benchmark + rex) is the routing conductor for deprecation / cite-fitness cells. He is teased in the local desk (ten cells: Saturly, Contamly, Skewly, Annotly, Obsoletely, Assumly, Driftly, plus deferred Assessly, Reportly, Notifyly). He is not one of Hydra's sixteen and not one of Dehydrus's eight. Cells stay deferred until the deprecation room is wired.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+The bench-deprecation conductor. He asks whether a claimed benchmark is still fit to cite. Not wired in the default local install yet.
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Desk route id `benchrex`. Ten cells are named in the UI; seven criterion cells are the first wave. A blank is not a fail and not a zero. Benchrex does not fold cells into one number.
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+
+<a id="biasrex" name="biasrex"></a>
+<h2>Biasrex</h2>
+
+Biasrex (Bias + rex) is the routing conductor for bias-gate cells. He is teased in the local desk (six cells: Filterly, Meaningly, Hastely, Memoryly, plus deferred Confirmly and Automately). He is not one of Hydra's sixteen and not one of Dehydrus's eight. Cells stay deferred until the bias room is wired.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+The bias-gate conductor. He asks whether bias artifacts and pacing gates are present. Not wired in the default local install yet.
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Desk route id `biasrex`. Six cells are named in the UI. A blank is not a fail and not a zero. Biasrex does not fold cells into one number.
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+
 <a id="archly" name="archly"></a>
 <h2><img src="assets/glossary/archly.png" alt="Archly" height="25"></h2>
 
