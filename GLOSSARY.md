@@ -2,7 +2,7 @@
 
 <big><big><mark><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/5453dc0fecad399e38ec07b7df196a1f59ed4e48/docs/glossary.html">Search the glossary</a></mark></big></big>. This page is the glossary, with its lettering and images, and the search slot is on the same page. Type a letter and the matching entries appear. Choosing a word moves to that entry in zero latency.
 
-[Evalathan](#evalathan) is one evaluation harness. [Hydra](#hydra) is the conductor for sixteen software evalers. [Dehydrus](#dehydrus) is the conductor for eight [LuDaTs](#ludats) evalers under [PRETRUWs](#pretruws). [LuDaTs](#ludats) methodology framework is a subset of [PRETRUWs](#pretruws). Scoring and benching entries use Score Constitution plus Simplespeak and Techspeak. Definition-only entries skip Score Constitution and keep Simplespeak and Techspeak.
+[Evalathan](#evalathan) is one evaluation harness. [Hydra](#hydra) is the conductor for sixteen software evalers. [Dehydrus](#dehydrus) is the conductor for eight [LuDaTs](#ludats) evalers under [PRETRUWs](#pretruws). [LuDaTs](#ludats) methodology framework is a subset of [PRETRUWs](#pretruws). [Benchrex](#benchrex) is the conductor for ten deprecation / cite-fitness evalers. [Biasrex](#biasrex) is the conductor for six bias-gate evalers under the [Cognitive Bias Codex](#cognitive-bias-codex) lineage. Scoring and benching entries use Score Constitution plus Simplespeak and Techspeak. Definition-only entries skip Score Constitution and keep Simplespeak and Techspeak.
 
 <img src="assets/glossary/score-constitution-dot.png" alt="Score Constitution." height="14"> What is counted, whether that count is a yes-or-no pass, and the three endings a cell can have. Measured means the file or the code was there and a result was written. Claim means a sentence is on disk and this run did not re-check it. Blank means the needed record is missing. A blank is not a fail and not a zero.
 
@@ -20,7 +20,7 @@ The life-cycle gate on each evaler (G0 through G12) is the station's place in th
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-Evalathan (portmanteau of <i>Evaluation</i> and <i>Leviathan</i>) is one evaluation harness. It is not a seventeenth Hydra score and not a ninth Dehydrus score. [Hydra](#hydra) writes sixteen software cells, in this order: Devly, Archly, Codely, Refactorly, Mixly, Runly, Levi, Menschly, Tokely, Pressly, Triadly, Chorely, [Trajectly](#trajectly), Warrantly, Domly, Stackly. [Dehydrus](#dehydrus) writes eight [LuDaTs](#ludats) (Limited-universe Data Test sets) cells under [PRETRUWs](#pretruws), in this order: [Copernly](#copernly), [Keplerly](#keplerly), [Galileoly](#galileoly), [Darwinly](#darwinly), [Mendly](#mendly), [Einsteinly](#einsteinly), [CurCuriely](#curcuriely), [Newtonly](#newtonly). The two rooms stay apart. A blank is not a fail and not a zero. Evalathan does not fold the twenty-four cells into one number, and it does not award a state-of-the-art stamp. The Hydra PRD (Product Requirements Document) line and the Dehydrus [HabTwin](#habtwin) filename line are utilities, not extra evalers.
+Evalathan (portmanteau of <i>Evaluation</i> and <i>Leviathan</i>) is one evaluation harness. It is not a seventeenth Hydra score and not a ninth Dehydrus score. [Hydra](#hydra) writes sixteen software cells, in this order: Devly, Archly, Codely, Refactorly, Mixly, Runly, Levi, Menschly, Tokely, Pressly, Triadly, Chorely, [Trajectly](#trajectly), Warrantly, Domly, Stackly. [Dehydrus](#dehydrus) writes eight [LuDaTs](#ludats) (Limited-universe Data Test sets) cells under [PRETRUWs](#pretruws), in this order: [Copernly](#copernly), [Keplerly](#keplerly), [Galileoly](#galileoly), [Darwinly](#darwinly), [Mendly](#mendly), [Einsteinly](#einsteinly), [CurCuriely](#curcuriely), [Newtonly](#newtonly). [Benchrex](#benchrex) writes ten deprecation cells. [Biasrex](#biasrex) writes six bias-gate cells. The rooms stay apart. A blank is not a fail and not a zero. Evalathan does not fold the rooms into one number, and it does not award a state-of-the-art stamp. The Hydra PRD (Product Requirements Document) line and the Dehydrus [HabTwin](#habtwin) filename line are utilities, not extra evalers.
 
 <p align="center"><img src="assets/evalathan-logo.png" alt="Evalathan" width="325"></p>
 <p align="center"><i>One harness. Two conductors. It does not add a score.</i></p>
@@ -80,33 +80,326 @@ The other conductor. Hydra watches software. Dehydrus watches locked physical wo
 <a id="benchrex" name="benchrex"></a>
 <h2>Benchrex</h2>
 
-Benchrex (Benchmark + rex) is the routing conductor for deprecation / cite-fitness cells. He is teased in the local desk (ten cells: Saturly, Contamly, Skewly, Annotly, Obsoletely, Assumly, Driftly, plus deferred Assessly, Reportly, Notifyly). He is not one of Hydra's sixteen and not one of Dehydrus's eight. Cells stay deferred until the deprecation room is wired.
+<h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
+
+Benchrex (Benchmark + rex) is the routing conductor for deprecation / cite-fitness cells. He calls ten evalers and writes each report beside the others. He counts how many ran, how many passed their own gate, and how many are deferred. He does not turn a blank into a zero, and he does not fold the ten into one number. He is not a seventeenth Hydra score and not a ninth Dehydrus score. The criterion set follows <a href="https://arxiv.org/abs/2507.06434">Deprecating Benchmarks: Criteria and Framework</a> (Ayrton San Joaquin, Rokas Gipiškis, Leon Staufer, Ariel Gil; TAIG @ ICML 2025; arXiv:2507.06434; also <a href="https://aistandardslab.org/deprecating-benchmarks-criteria-and-framework/">AI Standards Lab</a>). Illustrations for Benchrex and his evalers ship when the card art lands; the desk names are live now.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
-The bench-deprecation conductor. He asks whether a claimed benchmark is still fit to cite. Not wired in the default local install yet.
+The bench-deprecation conductor. Hydra grades software. Dehydrus grades locked physical worlds. Benchrex asks whether a claimed benchmark is still fit to cite. A missing Deprecard-style pack stays blank - not a fail and not a zero.
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Desk route id `benchrex`. Ten cells are named in the UI; seven criterion cells are the first wave. A blank is not a fail and not a zero. Benchrex does not fold cells into one number.
+Desk route id <code>benchrex</code>. Ten cells, in this order: <a href="#saturly">Saturly</a>, <a href="#contamly">Contamly</a>, <a href="#skewly">Skewly</a>, <a href="#annotly">Annotly</a>, <a href="#obsoletely">Obsoletely</a>, <a href="#assumly">Assumly</a>, <a href="#driftly">Driftly</a>, <a href="#assessly">Assessly</a>, <a href="#reportly">Reportly</a>, <a href="#notifyly">Notifyly</a>. The first seven map 1:1 to the paper's soft criteria (saturation, contamination, statistical bias, high annotation error, task obsolescence, invalidated assumptions, semantic drift). The last three map the paper's assessment - reporting - notification process. Soft heuristics, not hard cutoffs. Rooms stay unmerged.
+
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
-
 <a id="biasrex" name="biasrex"></a>
 <h2>Biasrex</h2>
 
-Biasrex (Bias + rex) is the routing conductor for bias-gate cells. He is teased in the local desk (six cells: Filterly, Meaningly, Hastely, Memoryly, plus deferred Confirmly and Automately). He is not one of Hydra's sixteen and not one of Dehydrus's eight. Cells stay deferred until the bias room is wired.
+<h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
+
+Biasrex (Bias + rex) is the routing conductor for decision-quality / cognitive-bias gate cells. He calls six evalers and writes each report beside the others. He counts how many ran, how many passed their own gate, and how many are deferred. He does not turn a blank into a zero, and he does not fold the six into one number. He is not a seventeenth Hydra score, not a ninth Dehydrus score, and not an eleventh Benchrex score. The room is a curated subset of the Cognitive Bias Codex tradition (Buster Benson's four problems; John Manoogian III poster; <a href="https://en.wikipedia.org/wiki/Cognitive_bias">Wikipedia: Cognitive bias</a>; <a href="https://bias.wiki/">bias.wiki</a>) - never one evaler per Codex leaf. Illustrations ship when the card art lands.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
-The bias-gate conductor. He asks whether bias artifacts and pacing gates are present. Not wired in the default local install yet.
+The bias-gate conductor. He does not grade ~180 named biases. He grades six runnable gates built from the Codex's four problems (filter / meaning / haste / memory) plus confirmation and automation trust. A missing mitigation artifact stays blank.
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Desk route id `biasrex`. Six cells are named in the UI. A blank is not a fail and not a zero. Biasrex does not fold cells into one number.
+Desk route id <code>biasrex</code>. Six cells, in this order: <a href="#filterly">Filterly</a>, <a href="#meaningly">Meaningly</a>, <a href="#hastely">Hastely</a>, <a href="#memoryly">Memoryly</a>, <a href="#confirmly">Confirmly</a>, <a href="#automately">Automately</a>. See also <a href="#cognitive-bias-codex">Cognitive Bias Codex</a>. Matching a psych pattern is not proof the product 'has' the bias (PsyAgentBench warning). No composite bias score.
+
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+<a id="cognitive-bias-codex" name="cognitive-bias-codex"></a>
+<h2>Cognitive Bias Codex</h2>
 
+<h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
+
+Definition-only. The Cognitive Bias Codex rearranges Wikipedia's long cognitive-bias inventory into four evolutionary problems (Buster Benson), drawn as a radial poster (John Manoogian III). bias.wiki is an interactive explorer of that map. Evalathan does not import ~175-188 leaves as evalers. <a href="#biasrex">Biasrex</a> keeps six curated cells.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+A teaching map of many named biases, not a ready-made test harness. Too much information - filter. Not enough meaning - fill stories. Need to act fast - jump. What to remember - compress. Those four problems become Filterly, Meaningly, Hastely, and Memoryly.
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Primary references: <a href="https://en.wikipedia.org/wiki/Cognitive_bias">Wikipedia Cognitive bias</a>; <a href="https://en.wikipedia.org/wiki/List_of_cognitive_biases">List of cognitive biases</a>; Benson four-problem cheat sheet; UNC SOG Codex poster; <a href="https://bias.wiki/">bias.wiki</a>. Dimara et al. 2020 (~154 biases / 7 tasks) is the better test-design taxonomy. Malberg et al. ACL 2025 curates ~30 LLM bias tests - evidence that serious work does not ship 180 cells. Confirmly and Automately add confirmation bias and automation bias gates with interactive falsification in mind.
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+<a id="saturly" name="saturly"></a>
+<h2>Saturly</h2>
+
+<h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
+
+Checks whether a cited benchmark is saturated - scores near a ceiling so further gains lose discrimination. Looks for flat curves, near-perfect leaderboards, or explicit saturation notes. Pass = saturation evidence is documented or ruled out with a method note. Fail = cite claims SOTA without addressing saturation. Blank = no benchmark claim pack.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+Asks: is this bench still hard enough to tell models apart?
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Maps paper criterion <b>Saturation</b>. Soft heuristic. A blank is not a fail and not a zero.
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+<a id="contamly" name="contamly"></a>
+<h2>Contamly</h2>
+
+<h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
+
+Checks contamination / leakage risk on a claimed score - train-test overlap, memorization signals, or missing holdout honesty. Pass = contamination stance is stated with evidence or a holdout method. Fail = public score presented as generalization with no leakage discussion. Blank = no score pack.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+Asks: did the model see the test?
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Maps paper criterion <b>Contamination</b>. Method-agnostic on public vs private holdouts (paper footnote 3).
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+<a id="skewly" name="skewly"></a>
+<h2>Skewly</h2>
+
+<h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
+
+Checks statistical bias / class or label imbalance that a model could exploit without the claimed capability. Pass = balance or stratified metrics are shown. Fail = overall accuracy hides a broken minority class. Blank = no distribution note.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+Asks: is the score riding an uneven label stack?
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Maps paper criterion <b>Statistical bias</b>.
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+<a id="annotly" name="annotly"></a>
+<h2>Annotly</h2>
+
+<h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
+
+Checks high annotation / label error evidence behind the number (human or auto labelers). Pass = error audit or quarantine note exists. Fail = cite ignores known label-error reports. Blank = no annotation quality record.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+Asks: are the labels clean enough to trust the grade?
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Maps paper criterion <b>High annotation error rate</b>.
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+<a id="obsoletely" name="obsoletely"></a>
+<h2>Obsoletely</h2>
+
+<h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
+
+Checks task obsolescence - whether the benchmark task still matches the capability being claimed. Pass = relevance argument is on disk. Fail = obsolete task sold as current skill. Blank = no task-relevance note.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+Asks: is this still the right exam for what you claim?
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Maps paper criterion <b>Task obsolescence</b>.
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+<a id="assumly" name="assumly"></a>
+<h2>Assumly</h2>
+
+<h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
+
+Checks invalidated design assumptions (for example a no-tool exam used to grade a tool-using agent). Pass = assumptions vs current use are stated. Fail = old assumptions silently reused. Blank = no assumption note.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+Asks: did the ground rules change under the score?
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Maps paper criterion <b>Invalidated assumptions</b>.
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+<a id="driftly" name="driftly"></a>
+<h2>Driftly</h2>
+
+<h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
+
+Checks semantic / cultural / language drift since the claimed result - labels or meanings that aged. Pass = drift review or refresh date exists. Fail = stale meanings treated as fixed. Blank = no drift pack.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+Asks: do the words on the bench still mean what they meant?
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Maps paper criterion <b>Semantic drift</b>.
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+<a id="assessly" name="assessly"></a>
+<h2>Assessly</h2>
+
+<h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
+
+Process cell. Checks whether a project or governance actor ran a deprecation assessment against the soft criteria (Deprecard-shaped evidence pack). Pass = assessment artifact exists. Fail = deprecation claimed with no assessment. Blank = process not started. Not wired as a live simulator in the default install yet.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+Asks: did anyone actually assess whether to deprecate?
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Maps the paper's <b>assessment</b> phase. Soft gate.
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+<a id="reportly" name="reportly"></a>
+<h2>Reportly</h2>
+
+<h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
+
+Process cell. Checks whether assessment findings were reported in a durable, citable form (Deprecard / changelog / advisory). Pass = report artifact exists. Fail = silent deprecation talk. Blank = no report. Not wired as a live simulator in the default install yet.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+Asks: was the deprecation decision written down where others can find it?
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Maps the paper's <b>reporting</b> phase.
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+<a id="notifyly" name="notifyly"></a>
+<h2>Notifyly</h2>
+
+<h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
+
+Process cell. Checks whether users and dependents were notified (partial update vs full retire; third-party path when creators will not act). Pass = notification channel or advisory exists. Fail = users left on a dead cite. Blank = no notify pack. Not wired as a live simulator in the default install yet.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+Asks: did the people still citing this bench get told?
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Maps the paper's <b>notification</b> phase, including governance-list paths.
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+<a id="filterly" name="filterly"></a>
+<h2>Filterly</h2>
+
+<h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
+
+Grades attention / selection / availability hygiene in eval design and agent pipelines (Benson problem: too much information). Looks for cherry-pick guards, sampling notes, or filter-bias tests. Pass = mitigation artifact or explicit non-claim. Fail = leaderboard cherry-pick with no filter note. Blank = no pack.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+Too much noise - did you filter fairly?
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Codex quadrant <b>Too much information</b>. Related biases include availability and selective attention families - not one leaf per name.
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+<a id="meaningly" name="meaningly"></a>
+<h2>Meaningly</h2>
+
+<h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
+
+Grades story-filling vs evidence (Benson problem: not enough meaning). Looks for narrative claims backed by artifacts (Warrantly-adjacent). Pass = claims cite inspectable evidence. Fail = stereotype or story without a source. Blank = no claim pack.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+Not enough facts - did you invent a neat story?
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Codex quadrant <b>Not enough meaning</b>. Framing / stereotype / illusory-correlation families.
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+<a id="hastely" name="hastely"></a>
+<h2>Hastely</h2>
+
+<h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
+
+Grades overconfidence, sunk-cost, and irreversible-action gates in agent loops (Benson problem: need to act fast). Pass = stop / review gates or haste tests exist. Fail = always-act loops with no brake. Blank = no trajectory pack.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+Need to move now - did you skip the brake?
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Codex quadrant <b>Need to act fast</b>. Overconfidence / sunk-cost families.
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+<a id="memoryly" name="memoryly"></a>
+<h2>Memoryly</h2>
+
+<h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
+
+Grades continued influence of old scores, stale memory, and deprecated cites (Benson problem: what should we remember?). Pass = memory refresh / deprecation link exists. Fail = obsolete scores kept as live truth. Blank = no memory policy.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+What stuck in memory - is it still true?
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Codex quadrant <b>What should we remember?</b>. Continued-influence / stale-belief families. Pairs with Benchrex deprecation cells.
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+<a id="confirmly" name="confirmly"></a>
+<h2>Confirmly</h2>
+
+<h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
+
+Grades confirmation-bias gates - seeking only agreeing evidence. Looks for adversarial / falsification prompts or red-team notes. Pass = disconfirming check exists. Fail = only confirming samples. Blank = no confirm protocol. Interactive falsification preferred over keyword scans. Not fully wired in the default install yet.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+Did you only look for yes?
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Named after <a href="https://en.wikipedia.org/wiki/Confirmation_bias">confirmation bias</a>. Optional Biasrex process-style cell with a hard protocol bar.
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+<a id="automately" name="automately"></a>
+<h2>Automately</h2>
+
+<h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
+
+Grades automation bias / tool-trust - over-trusting model or tool output without a human or second check. Pass = escalation / verify step exists. Fail = blind tool accept. Blank = no trust policy. Not fully wired in the default install yet.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+Did the tool get a free pass?
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Named after <a href="https://en.wikipedia.org/wiki/Automation_bias">automation bias</a>. Pairs with agent-tool traces (Trajectly-adjacent), not a Hydra seventeenth score.
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
 <a id="archly" name="archly"></a>
 <h2><img src="assets/glossary/archly.png" alt="Archly" height="25"></h2>
 
@@ -334,7 +627,7 @@ Any tree with Python source gets a local microbench: 200,000 integer steps, repo
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-Aggregates findings from the other 15 evaluators into a clean report matrix. Explicitly prohibits flattening heterogeneous measurements into a misleading single 0–100 score. Preserves Pass, Fail, and Deferred states as independent data points.
+Aggregates findings from the other 15 evaluators into a clean report matrix. Explicitly prohibits flattening heterogeneous measurements into a misleading single 0-100 score. Preserves Pass, Fail, and Deferred states as independent data points.
 
 <p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/5453dc0fecad399e38ec07b7df196a1f59ed4e48/docs/glossary.html#xl-stackly"><img src="assets/glossary/cards/stackly-revised.jpg" alt="Stackly shows the full status matrix, not one fake score." width="541"></a></p>
 
@@ -459,7 +752,7 @@ JSON may be a list of objects with a `claim` key, or an object with `claims` or 
 
 The published card is 4Uvals v1.2. First-order means the people who ran that sitting scored it themselves; [Levi](#levi) only prints the mean and gate already on the card. Gate result: PASS. Mean: 3.4 out of 4. Nine of the ten checks are Solid or Strong.
 
-Each check uses a 1–4 scale: 4 Strong, 3 Solid, 2 Emerging, 1 Weak. U5 (retell the work) is Emerging because it was named on the card and not measured. Emerging stays Emerging. It is not rewritten as a fail and not rewritten as zero.
+Each check uses a 1-4 scale: 4 Strong, 3 Solid, 2 Emerging, 1 Weak. U5 (retell the work) is Emerging because it was named on the card and not measured. Emerging stays Emerging. It is not rewritten as a fail and not rewritten as zero.
 
 A freeze - the choice to pause the session - is optional on purpose. An adult can leave it off. It is not a lock built for a child.
 
@@ -473,11 +766,11 @@ Sixteen published usability and health standards sit under the card as analogs (
 
 On the published card the answer is PASS: nine of ten checks are Solid or Strong, and the average is 3.4 out of 4. One check - retelling the work - was listed but not measured, so it stays Emerging.
 
-NASA-TLX (NASA Task Load Index - a short form for how hard a task felt) on this card is one educated user scoring 9 out of 100, in the low band 0–24. That is one person's load score. It is not a NASA certificate. The 4Uvals card itself is not an ISO, IEEE, IEC, W3C, FDA, or NASA certificate.
+NASA-TLX (NASA Task Load Index - a short form for how hard a task felt) on this card is one educated user scoring 9 out of 100, in the low band 0-24. That is one person's load score. It is not a NASA certificate. The 4Uvals card itself is not an ISO, IEEE, IEC, W3C, FDA, or NASA certificate.
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Stamp on the card: 4Uvals v1.2. Ten checks, U1–U10. First-order means the operator scored the sitting. The pass rule on this card is a mean of at least 3.2 and at least 8 of 10 checks Solid or Strong. This card clears both: mean 3.4, and 9 of 10. [ISO/IEC 42001](https://www.iso.org/standard/81230.html) is named beside the sitting as the firm-level wrapper (U4). It is not the sitting grade.
+Stamp on the card: 4Uvals v1.2. Ten checks, U1-U10. First-order means the operator scored the sitting. The pass rule on this card is a mean of at least 3.2 and at least 8 of 10 checks Solid or Strong. This card clears both: mean 3.4, and 9 of 10. [ISO/IEC 42001](https://www.iso.org/standard/81230.html) is named beside the sitting as the firm-level wrapper (U4). It is not the sitting grade.
 
 | ID | Check | Score | Label |
 | :--- | :--- | ---: | :--- |
@@ -513,7 +806,7 @@ The housed sixteen are analogs. An analog is a side-by-side comparison with a pu
 | 15 | [SUS](https://en.wikipedia.org/wiki/System_usability_scale) (System Usability Scale) and [UEQ+](https://www.ueq-online.org/) (User Experience Questionnaire Plus) | 2 Emerging |
 | 16 | [CVS-Q](https://pubmed.ncbi.nlm.nih.gov/25744132/) (Computer Vision Syndrome Questionnaire) | 1 Weak |
 
-H14 on the card is the NASA-TLX row: one educated user, overall 9 out of 100, low band 0–24. SUS and UEQ+ are named. Their item scores are not on the card, so none are printed here. CVS-Q was not administered. None of these sixteen is a certificate.
+H14 on the card is the NASA-TLX row: one educated user, overall 9 out of 100, low band 0-24. SUS and UEQ+ are named. Their item scores are not on the card, so none are printed here. CVS-Q was not administered. None of these sixteen is a certificate.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -560,7 +853,7 @@ Proposed Deglove Rate (DR), 0 to 100. Not computed in v0.3. DR estimates how muc
 - **C Churn-pain.** Files that change often and are also complex. [Codely](#codely) sees branching. [Refactorly](#refactorly) sees churn.
 - **L Liveness.** 1 if the system is still in production and paying for itself, else closer to 0. Deglove assumes a lasting program, not a dead folder.
 
-Bands: 0–20 ordinary refactor. 21–40 staged module-by-module. 41–60 peel candidate. 61–80 deglove. 81–100 replace, do not refactor. The formula borrows the shape of the Oman–Hagemeister Maintainability Index (MI) (1992), McCabe cyclomatic complexity, and SQALE (Software Quality Assessment based on Lifecycle Expectations) technical-debt ratio. It is not those scores, and it is not folded into Hydra.
+Bands: 0-20 ordinary refactor. 21-40 staged module-by-module. 41-60 peel candidate. 61-80 deglove. 81-100 replace, do not refactor. The formula borrows the shape of the Oman-Hagemeister Maintainability Index (MI) (1992), McCabe cyclomatic complexity, and SQALE (Software Quality Assessment based on Lifecycle Expectations) technical-debt ratio. It is not those scores, and it is not folded into Hydra.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>

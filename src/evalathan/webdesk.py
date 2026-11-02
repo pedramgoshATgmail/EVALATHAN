@@ -204,7 +204,7 @@ def open_desk(port: int = PORT, open_window: bool = True) -> int:
     try:
         from evalathan import __version__ as ver
     except Exception:  # noqa: BLE001
-        ver = "0.3.1"
+        ver = "0.3.2"
     # Keep or start the centered FUSS "launching..." splash until the desk window opens.
     spawn_launch_splash()
     httpd = None
