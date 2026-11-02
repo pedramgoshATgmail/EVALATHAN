@@ -12,8 +12,8 @@ ASSETS = Path(
 BLACK_UI = ROOT / "ui" / "v2" / "assets" / "biasrex-logo.png"
 # Full-transparent emblem for white / light backgrounds (and glossary card).
 SRC_WHITE = ASSETS / "BIASREX_full_trans_FINAL-5a2453cd-5d2d-491d-b336-32a8e3bbe07d.png"
-# Grey theme: darken from black UI so midtone mean matches Benchrex/Dehydrus (~63-66).
-GREY_FACTOR = 0.50
+# Grey theme: copy of white-screen logo, darkened to peer engine grey midtones (~63-66).
+GREY_FACTOR = 0.38
 
 
 def fit_to_black_canvas(src: Path, target_w: int, target_h: int) -> Image.Image:
@@ -30,11 +30,11 @@ def fit_to_black_canvas(src: Path, target_w: int, target_h: int) -> Image.Image:
     return fitted
 
 
-def grey_from_black(black: Image.Image, factor: float = GREY_FACTOR) -> Image.Image:
-    """Same geometry as black UI; luminance matched to peer engine grey logos."""
-    gray = ImageOps.grayscale(black)
+def grey_from_white(white: Image.Image, factor: float = GREY_FACTOR) -> Image.Image:
+    """Grey-mode art = white-screen emblem, luminance matched to Benchrex/Dehydrus greys."""
+    gray = ImageOps.grayscale(white)
     g = Image.eval(gray, lambda p: int(p * factor))
-    a = black.split()[-1]
+    a = white.split()[-1]
     return Image.merge("RGBA", (g, g, g, a))
 
 
@@ -45,7 +45,7 @@ def main() -> None:
         raise SystemExit(f"unexpected black UI size {target_w}x{target_h}")
 
     white = fit_to_black_canvas(SRC_WHITE, target_w, target_h)
-    grey = grey_from_black(black)
+    grey = grey_from_white(white)
 
     card_path = ROOT / "assets" / "glossary" / "cards" / "biasrex.png"
     white_png = ROOT / "ui" / "v2" / "assets" / "biasrex-logo-white.png"
