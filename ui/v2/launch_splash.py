@@ -181,11 +181,52 @@ def _logo_path() -> Path | None:
     return None
 
 
-def _load_logo_fill(path: Path, target: int):
+def _keyed_splash_png(path: Path, target: int, key_rgb: tuple[int, int, int]) -> Path:
+    """Flatten logo onto the transparent-key RGB so Tk never paints alpha as black.
+
+    Tk PhotoImage treats PNG transparency as black. That fringe is invisible on a
+    dark desktop and noisy on white (glossary, browser, light wallpaper). Bake the
+    outside of the circle to the same key used by -transparentcolor.
+    """
+    try:
+        from PIL import Image, ImageDraw
+    except ImportError:
+        return path
+
+    im = Image.open(path).convert("RGBA")
+    w, h = im.size
+    side = max(w, h, 1)
+    if side != target:
+        # Prefer crisp fill of the circular window.
+        scale = target / float(side)
+        nw = max(1, int(round(w * scale)))
+        nh = max(1, int(round(h * scale)))
+        im = im.resize((nw, nh), Image.Resampling.LANCZOS)
+        w, h = im.size
+    canvas = Image.new("RGBA", (target, target), (*key_rgb, 255))
+    ox = (target - w) // 2
+    oy = (target - h) // 2
+    canvas.paste(im, (ox, oy), im)
+    mask = Image.new("L", (target, target), 0)
+    ImageDraw.Draw(mask).ellipse((0, 0, target - 1, target - 1), fill=255)
+    keyed = Image.new("RGBA", (target, target), (*key_rgb, 255))
+    keyed.paste(canvas, (0, 0), mask)
+    out = state_dir() / "fuss-splash-keyed.png"
+    keyed.convert("RGB").save(out, format="PNG")
+    return out
+
+
+def _load_logo_fill(path: Path, target: int, key_rgb: tuple[int, int, int] = (1, 2, 3)):
     """Return (photo_image, diameter). Logo fills the circular window."""
     import tkinter as tk
 
-    raw = tk.PhotoImage(file=str(path))
+    load_path = path
+    # Always prefer a keyed RGB bake when Pillow is present (fixes white-bg fringe).
+    keyed = _keyed_splash_png(path, target, key_rgb)
+    if keyed.is_file():
+        load_path = keyed
+
+    raw = tk.PhotoImage(file=str(load_path))
     w, h = int(raw.width()), int(raw.height())
     if w <= 0 or h <= 0:
         return raw, target
@@ -236,11 +277,14 @@ def run_splash() -> int:
         pass
 
     # Transparent corners outside the circular region (Windows).
+    # Key must match the RGB bake outside the logo circle - never leave PNG alpha
+    # for Tk to paint as black (that fringe only shows on light backgrounds).
     key = "#010203"
+    key_rgb = (1, 2, 3)
     root.configure(bg=key)
 
     try:
-        logo, size = _load_logo_fill(logo_path, TARGET_DIAMETER)
+        logo, size = _load_logo_fill(logo_path, TARGET_DIAMETER, key_rgb)
     except Exception:  # noqa: BLE001
         clear_pid()
         try:
