@@ -306,14 +306,21 @@ def _draw_caption(base, phase: int, supersample: int = 1):
     word = "launching"
     try:
         wb = draw.textbbox((0, 0), word, font=font)
+        db = draw.textbbox((0, 0), ".", font=font_dots)
         word_w = wb[2] - wb[0]
         word_h = wb[3] - wb[1]
+        word_mid = (wb[1] + wb[3]) / 2.0
+        dot_mid = (db[1] + db[3]) / 2.0
     except Exception:  # noqa: BLE001
         word_w, word_h = 110 * ss, 20 * ss
+        word_mid = word_h / 2.0
+        dot_mid = 5.0 * ss
     dots_w = 56 * ss
     total = word_w + 8 * ss + dots_w
     x0 = (size - total) // 2
     y = size // 2 - word_h // 2 - 2 * ss
+    # '.' sits low in its glyph box - raise so ink centers match the word midline.
+    dot_y = int(round(y + word_mid - dot_mid))
     draw.text((x0, y), word, fill=_caption_dot_rgba("active"), font=font)
     active = phase % 3
     for i in range(3):
@@ -324,7 +331,7 @@ def _draw_caption(base, phase: int, supersample: int = 1):
         else:
             color = _caption_dot_rgba("dim")
         draw.text(
-            (x0 + word_w + 8 * ss + i * 16 * ss, y - 6 * ss),
+            (x0 + word_w + 8 * ss + i * 16 * ss, dot_y),
             ".",
             fill=color,
             font=font_dots,
@@ -960,11 +967,13 @@ def _run_splash_tk(logo_path: Path) -> int:
     canvas.coords(label, word_right, cy)
     canvas.itemconfigure(label, anchor="e")
     dot_ids = []
+    # Larger '.' glyphs sit low - raise to the word midline (same as Pillow path).
+    dot_cy = cy - 7
     for i in range(3):
         dot_ids.append(
             canvas.create_text(
                 word_right + 2 + i * 14,
-                cy,
+                dot_cy,
                 text=".",
                 fill=ink_dim,
                 font=("Segoe UI", 32, "bold"),
