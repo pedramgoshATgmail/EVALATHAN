@@ -1,6 +1,6 @@
 <h1><img src="assets/glossary/title.png" alt="Evalathan glossary" height="33"></h1>
 
-<big><big><mark><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/ce76a56e249d1c4bac9ab23c42d45c3e23e14944/docs/glossary.html">Search the glossary</a></mark></big></big>. That page is the glossary, with its lettering and images, and the search slot is on the same page. Type a letter and the matching entries appear. Choosing a word moves to that entry.
+<big><big><mark><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/83a3ce37575203d6a7482e7d1ef7a526cd0c4ec4/docs/glossary.html">Search the glossary</a></mark></big></big>. That page is the glossary, with its lettering and images, and the search slot is on the same page. Type a letter and the matching entries appear. Choosing a word moves to that entry.
 
 [Evalathan](#evalathan) is one evaluation harness. [Hydra](#hydra) is the conductor for sixteen software evalers. [Dehydrus](#dehydrus) is the conductor for eight [LuDaTs](#ludats) evalers under [PRETRUWs](#pretruws). [LuDaTs](#ludats) methodology framework is a subset of [PRETRUWs](#pretruws). Each entry below has the same three parts.
 
