@@ -21,7 +21,7 @@ Hard-refresh (Ctrl+Shift+R) after pulls.
 
 ## Evaluate → memo
 
-**Evaluate** opens a processing popup (fading dots + per-evaler blurbs), then the same window becomes a short developer memo. **Full detailed memo** lists each evaler on its own line with the same glossary hyperlinks as the left rail. **Download** (orange) opens a print/PDF pack; **Save** (green) writes **latest run** and appends **saved runs** in localStorage (compares the same target against the prior saved twin).
+**Evaluate** opens a processing popup (fading dots + per-evaler blurbs), then the same window becomes a short developer memo. **Full detailed memo** lists each evaler on its own line with the same glossary hyperlinks as the left rail. **Download** (orange) writes a PDF straight to your Downloads folder (no print dialog; Mac/Windows). **Save** (green) writes **latest run** and appends **saved runs** in localStorage (compares the same target against the prior saved twin).
 
 ## Desktop icon
 

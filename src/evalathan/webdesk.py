@@ -99,6 +99,9 @@ class DeskHandler(SimpleHTTPRequestHandler):
             if path == "/api/runs":
                 self._save_runs()
                 return
+            if path == "/api/download-memo":
+                self._download_memo()
+                return
             self._send_json(404, {"ok": False, "error": "Unknown API route."})
         except ValueError as exc:
             self._send_json(400, {"ok": False, "error": str(exc) or "Bad request."})
@@ -112,6 +115,17 @@ class DeskHandler(SimpleHTTPRequestHandler):
             raise ValueError("Body must include a runSets array.")
         path = save_run_sets(run_sets)
         self._send_json(200, {"ok": True, "path": str(path), "count": len(run_sets)})
+
+    def _download_memo(self) -> None:
+        """Write memo PDF (or HTML fallback) straight to Downloads - no print dialog."""
+        from evalathan.memo_download import save_memo_download
+
+        data = self._read_json()
+        html = str(data.get("html") or "")
+        name = str(data.get("filename") or data.get("suggestedName") or "Evalathan-memo")
+        result = save_memo_download(html, name)
+        code = 200 if result.get("ok") else 500
+        self._send_json(code, result)
 
     def _evaluate(self) -> None:
         data = self._read_json()
@@ -184,6 +198,11 @@ def _open_desktop_window(url: str, title: str) -> bool:
                 return False
             webbrowser.open(target)
             return True
+
+        def save_memo_download(self, html: str, suggested_name: str = "Evalathan-memo") -> dict:
+            from evalathan.memo_download import save_memo_download as _save
+
+            return _save(html or "", suggested_name or "Evalathan-memo")
 
     icon = app_icon()
     kwargs = {

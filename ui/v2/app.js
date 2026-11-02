@@ -2545,7 +2545,7 @@
       '<div class="memo-deep" hidden></div>' +
       '<div class="memo-dock" hidden>' +
       '<div class="memo-dock-left">' +
-      '<button type="button" class="memo-btn memo-btn-download" title="Print / save as PDF">Download</button>' +
+      '<button type="button" class="memo-btn memo-btn-download" title="Download PDF to your Downloads folder">Download</button>' +
       '<button type="button" class="memo-btn memo-btn-save" title="Save as latest run">Save</button>' +
       '<button type="button" class="memo-btn memo-btn-delete" title="Delete this saved run" hidden>Delete</button>' +
       "</div>" +
@@ -2584,7 +2584,9 @@
       });
     });
     root.querySelector(".memo-btn-download").addEventListener("click", function () {
-      downloadMemoHost(host);
+      downloadMemoHost(host).catch(function () {
+        /* ignore */
+      });
     });
     root.querySelector(".memo-btn-compare").addEventListener("click", function () {
       paintCompareInto(host);
@@ -2868,8 +2870,7 @@
       .replace(/\sdata-gloss-href="[^"]*"/gi, "");
   }
 
-  function downloadMemoHost(host) {
-    if (!host || !host.run) return;
+  function buildMemoDownloadHtml(host) {
     const run = host.run;
     const short = displayTitle(run);
     const pack = host.comparePack;
@@ -2884,43 +2885,119 @@
     const heading = host.kind === "compare" ? "Evalathan compare" : "Evalathan memo";
     const detailLabel =
       host.kind === "compare" ? "Compare detail" : "Full detailed memo";
-    /* Brief + detail in one continuous print flow (no separate page break) */
-    const html =
-      "<!DOCTYPE html><html><head><meta charset=\"UTF-8\" /><title>" +
-      escapeHtml(heading + " - " + short) +
-      "</title><style>" +
-      "body{font-family:Segoe UI,Helvetica,Arial,sans-serif;max-width:720px;margin:28px auto;padding:0 18px;color:#111;}" +
-      "h1{font-size:20px;margin:0 0 6px} h2{font-size:16px;margin:18px 0 8px} h3{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#444;margin:14px 0 6px}" +
-      ".meta{color:#555;font-size:12px;margin:0 0 14px} a{color:#2f6fbf;text-decoration:none}" +
-      ".memo-block{page-break-inside:auto}" +
-      ".memo-detail-break{margin:28px 0 16px;padding-top:18px;border-top:1px solid #ccc}" +
-      ".memo-detail-break h2{margin:0 0 10px;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:#333}" +
-      "ul{padding-left:1.1rem} li{margin:0 0 8px;line-height:1.45}" +
-      "table{width:100%;border-collapse:collapse;font-size:12px} th,td{border:1px solid #ccc;padding:5px 6px;text-align:left}" +
-      ".memo-chip-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}" +
-      ".memo-chip{border:1px solid #ccc;border-radius:8px;padding:8px;display:block}" +
-      ".memo-chip strong{display:block;font-size:12px;margin-bottom:3px;color:#2f7a45}" +
-      ".memo-chip span{font-size:12px;color:#555}" +
-      ".nell-stack{display:flex;flex-direction:column;gap:12px}.nell-card{border:1px solid #ccc;border-radius:8px;padding:10px 12px;page-break-inside:avoid}" +
-      ".nell-card-head{display:flex;flex-wrap:wrap;gap:6px 10px;margin:0 0 6px;align-items:baseline}" +
-      ".nell-gate,.nell-status,.nell-score{font-size:10px;text-transform:uppercase;background:#eee;padding:2px 6px;border-radius:999px}" +
-      ".nell-blurb{margin:0 0 8px;font-size:14px;line-height:1.4}.nell-question{margin:0 0 6px;font-size:12px;color:#555}" +
-      ".nell-ev-heading{margin:0 0 4px;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#666}" +
-      ".nell-evidence{list-style:none;padding:0;margin:0}.nell-evidence li{margin:0 0 4px;font-size:12px}" +
-      ".nell-evidence code{font-size:11px;background:#f3f3f3;padding:1px 4px}.nell-more,.nell-empty{font-size:11px;color:#777}" +
-      "</style></head><body>" +
-      "<div class=\"memo-block\"><h1>" +
-      escapeHtml(heading) +
-      "</h1><div class=\"meta\">" +
-      escapeHtml((run.engine || "") + " · " + short + " · " + formatRailDate(run)) +
-      "</div>" +
-      simple +
-      '<div class="memo-detail-break"><h2>' +
-      escapeHtml(detailLabel) +
-      "</h2></div>" +
-      deep +
-      "</div>" +
-      "</body></html>";
+    return {
+      short: short,
+      filename:
+        "Evalathan-" +
+        (host.kind === "compare" ? "compare" : "memo") +
+        "-" +
+        String(short || "run").replace(/[^\w\-]+/g, "-").slice(0, 48),
+      html:
+        "<!DOCTYPE html><html><head><meta charset=\"UTF-8\" /><title>" +
+        escapeHtml(heading + " - " + short) +
+        "</title><style>" +
+        "body{font-family:Segoe UI,Helvetica,Arial,sans-serif;max-width:720px;margin:28px auto;padding:0 18px;color:#111;}" +
+        "h1{font-size:20px;margin:0 0 6px} h2{font-size:16px;margin:18px 0 8px} h3{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#444;margin:14px 0 6px}" +
+        ".meta{color:#555;font-size:12px;margin:0 0 14px} a{color:#2f6fbf;text-decoration:none}" +
+        ".memo-block{page-break-inside:auto}" +
+        ".memo-detail-break{margin:28px 0 16px;padding-top:18px;border-top:1px solid #ccc}" +
+        ".memo-detail-break h2{margin:0 0 10px;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:#333}" +
+        "ul{padding-left:1.1rem} li{margin:0 0 8px;line-height:1.45}" +
+        "table{width:100%;border-collapse:collapse;font-size:12px} th,td{border:1px solid #ccc;padding:5px 6px;text-align:left}" +
+        ".memo-chip-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}" +
+        ".memo-chip{border:1px solid #ccc;border-radius:8px;padding:8px;display:block}" +
+        ".memo-chip strong{display:block;font-size:12px;margin-bottom:3px;color:#2f7a45}" +
+        ".memo-chip span{font-size:12px;color:#555}" +
+        ".nell-stack{display:flex;flex-direction:column;gap:12px}.nell-card{border:1px solid #ccc;border-radius:8px;padding:10px 12px;page-break-inside:avoid}" +
+        ".nell-card-head{display:flex;flex-wrap:wrap;gap:6px 10px;margin:0 0 6px;align-items:baseline}" +
+        ".nell-gate,.nell-status,.nell-score{font-size:10px;text-transform:uppercase;background:#eee;padding:2px 6px;border-radius:999px}" +
+        ".nell-blurb{margin:0 0 8px;font-size:14px;line-height:1.4}.nell-question{margin:0 0 6px;font-size:12px;color:#555}" +
+        ".nell-ev-heading{margin:0 0 4px;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#666}" +
+        ".nell-evidence{list-style:none;padding:0;margin:0}.nell-evidence li{margin:0 0 4px;font-size:12px}" +
+        ".nell-evidence code{font-size:11px;background:#f3f3f3;padding:1px 4px}.nell-more,.nell-empty{font-size:11px;color:#777}" +
+        "</style></head><body>" +
+        "<div class=\"memo-block\"><h1>" +
+        escapeHtml(heading) +
+        "</h1><div class=\"meta\">" +
+        escapeHtml((run.engine || "") + " · " + short + " · " + formatRailDate(run)) +
+        "</div>" +
+        simple +
+        '<div class="memo-detail-break"><h2>' +
+        escapeHtml(detailLabel) +
+        "</h2></div>" +
+        deep +
+        "</div>" +
+        "</body></html>",
+    };
+  }
+
+  function flashDownloadBtn(host, label) {
+    const btn = host && host.root && host.root.querySelector(".memo-btn-download");
+    if (!btn) return;
+    const prev = btn.textContent;
+    btn.textContent = label;
+    window.setTimeout(function () {
+      btn.textContent = prev || "Download";
+    }, 2200);
+  }
+
+  async function downloadMemoHost(host) {
+    if (!host || !host.run) return;
+    const pack = buildMemoDownloadHtml(host);
+    const html = pack.html;
+    const filename = pack.filename;
+
+    /* Desktop desk: write PDF straight to Downloads (Mac print() is a no-op in WebView). */
+    try {
+      if (
+        window.pywebview &&
+        window.pywebview.api &&
+        typeof window.pywebview.api.save_memo_download === "function"
+      ) {
+        const res = await window.pywebview.api.save_memo_download(html, filename);
+        if (res && res.ok) {
+          flashDownloadBtn(host, res.kind === "pdf" ? "Saved PDF" : "Saved");
+          return;
+        }
+      }
+    } catch (err) {
+      /* fall through to HTTP API */
+    }
+
+    try {
+      const res = await fetch("/api/download-memo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ html: html, filename: filename }),
+      });
+      const data = await res.json();
+      if (data && data.ok) {
+        flashDownloadBtn(host, data.kind === "pdf" ? "Saved PDF" : "Saved");
+        return;
+      }
+    } catch (err) {
+      /* fall through to browser blob */
+    }
+
+    /* Browser FOSS fallback: direct file download (still no print dialog). */
+    try {
+      const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename + ".html";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.setTimeout(function () {
+        URL.revokeObjectURL(url);
+      }, 1000);
+      flashDownloadBtn(host, "Saved");
+      return;
+    } catch (err) {
+      /* last resort only */
+    }
+
     const frame = document.createElement("iframe");
     frame.setAttribute("aria-hidden", "true");
     frame.style.cssText = "position:fixed;right:0;bottom:0;width:0;height:0;border:0;opacity:0;";
