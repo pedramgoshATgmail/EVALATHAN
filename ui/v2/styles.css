@@ -1238,37 +1238,6 @@ html {
 .memo-btn-compare:hover { background: #002a8f; }
 .memo-btn:disabled { opacity: 0.55; cursor: default; }
 
-.memo-chip-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 0.55rem;
-  margin: 0.35rem 0 0.15rem;
-}
-.memo-chip {
-  background: #fff;
-  border: 1px solid #d0d0d0;
-  border-radius: 0.55rem;
-  padding: 0.55rem 0.65rem;
-  color: #222;
-  text-align: left;
-  cursor: pointer;
-}
-.memo-chip:hover { border-color: #0038b8; }
-.memo-chip strong {
-  display: block;
-  font-size: 0.78rem;
-  margin-bottom: 0.2rem;
-  color: #2f7a45;
-}
-.memo-chip.deferred strong { color: #888; }
-.memo-chip.measured strong { color: #2f6fbf; }
-.memo-chip.pass strong { color: #2f7a45; }
-.memo-chip span {
-  font-size: 0.845rem; /* was 0.72rem; +1 size (body under evaler titles) */
-  color: #666;
-  line-height: 1.3;
-  display: block;
-}
 .memo-compare-table {
   width: 100%;
   border-collapse: collapse;

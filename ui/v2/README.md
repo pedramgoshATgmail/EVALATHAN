@@ -21,7 +21,7 @@ Hard-refresh (Ctrl+Shift+R) after pulls.
 
 ## Evaluate → memo
 
-**Evaluate** opens a processing popup (fading dots + per-evaler blurbs), then the same window becomes a short developer memo. **Evaler blocks** on the brief show at most five short highlight sentences each; **Full detailed memo** keeps the full per-evaler read (cards, evidence, glossary links). **Download** (orange) writes a PDF straight to your Downloads folder (no print dialog; Mac/Windows). **Save** (green) writes **latest run** and appends **saved runs** in localStorage (compares the same target against the prior saved twin).
+**Evaluate** opens a processing popup (fading dots + per-evaler blurbs), then the same window becomes one consolidated brief memo (**What this means**, **Top gates**, then **Full details**). **Full details** keeps the per-evaler read (cards, evidence, glossary links). **Download** (orange) writes a PDF straight to your Downloads folder (no print dialog; Mac/Windows). **Save** (green) writes **latest run** and appends **saved runs** in localStorage (compares the same target against the prior saved twin).
 
 ## Desktop icon
 

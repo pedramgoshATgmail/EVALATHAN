@@ -1362,49 +1362,6 @@
     return String(text || "").replace(/\s+/g, " ").trim();
   }
 
-  /* Evaler blocks (brief chips): ≤5 short highlight sentences. Full prose stays in detail memo. */
-  const BRIEF_CHIP_MAX_SENTENCES = 5;
-  const BRIEF_CHIP_MAX_SENT_CHARS = 140;
-
-  function splitBriefSentences(text) {
-    const s = String(text || "");
-    const out = [];
-    let buf = "";
-    for (let i = 0; i < s.length; i++) {
-      const ch = s[i];
-      buf += ch;
-      if (ch !== "." && ch !== "!" && ch !== "?") continue;
-      const prev = i > 0 ? s[i - 1] : "";
-      const next = i + 1 < s.length ? s[i + 1] : "";
-      /* Keep decimals like 2.50 and ellipses together (no space after '.'). */
-      if (ch === "." && /\d/.test(prev) && /\d/.test(next)) continue;
-      if (ch === "." && next === ".") continue;
-      /* ". "/"! "/"? " (or end) starts a new sentence - including ones that begin with a digit. */
-      if (next && !/\s/.test(next)) continue;
-      const piece = buf.trim();
-      if (piece) out.push(piece);
-      buf = "";
-    }
-    const tail = buf.trim();
-    if (tail) out.push(tail);
-    return out;
-  }
-
-  function briefChipBlurb(text) {
-    let s = nellCleanProse(nellStripPathWall(String(text || ""), null));
-    if (!s) return "";
-    const sentences = splitBriefSentences(s);
-    if (!sentences.length) return s;
-    return sentences
-      .slice(0, BRIEF_CHIP_MAX_SENTENCES)
-      .map(function (sent) {
-        if (sent.length <= BRIEF_CHIP_MAX_SENT_CHARS) return sent;
-        const cut = sent.slice(0, BRIEF_CHIP_MAX_SENT_CHARS - 1).replace(/\s+\S*$/, "");
-        return (cut || sent.slice(0, BRIEF_CHIP_MAX_SENT_CHARS - 1)).replace(/[.,;:]+$/, "") + "…";
-      })
-      .join(" ");
-  }
-
   function nellEvidenceItems(rawList) {
     const items = [];
     (rawList || []).forEach(function (raw) {
@@ -1663,35 +1620,6 @@
     return run;
   }
 
-  function writeMemoChipGrid(run) {
-    return (
-      '<div class="memo-chip-grid">' +
-      (run.cells || [])
-        .map(function (c) {
-          const chip =
-            briefChipBlurb(c.blurb || c.detail || "") ||
-            "No brief highlight from this evaler.";
-          return (
-            '<button type="button" class="memo-chip ' +
-            escapeHtml(c.status || "deferred") +
-            '" data-gloss-href="' +
-            escapeHtml(c.href || GLOSS_MD) +
-            '" title="' +
-            escapeHtml(c.name) +
-            ' - glossary">' +
-            "<strong>" +
-            escapeHtml(c.name) +
-            "</strong><span>" +
-            linkGlossaryTerms(escapeHtml(chip)) +
-            (c.score != null ? " · " + c.score : "") +
-            "</span></button>"
-          );
-        })
-        .join("") +
-      "</div>"
-    );
-  }
-
   function writeSimpleMemo(run) {
     const pass = run.cells.filter((c) => c.status === "pass" || c.passed === true).length;
     const deferred = run.cells.filter((c) => c.status === "deferred").length;
@@ -1765,7 +1693,7 @@
           .map((c) => c.name + " " + c.score)
           .join(" · ") || "None";
     return (
-      '<p class="memo-kicker">Brief - each evaler block keeps at most five short highlight sentences. Open Full detailed memo for the full per-evaler read.</p>' +
+      '<p class="memo-kicker">Brief memo - What this means and Top gates. Open Full details for the per-evaler read.</p>' +
       "<h2>" +
       memoProductTitleHtml(run) +
       "</h2>" +
@@ -1784,10 +1712,7 @@
       '<div class="memo-section"><h3>Top gates</h3><p>' +
       linkGlossaryTerms(escapeHtml(topGates)) +
       "</p></div>" +
-      '<div class="memo-section"><h3>Evaler blocks</h3>' +
-      writeMemoChipGrid(run) +
-      "</div>" +
-      '<p class="complete-intel-line"><button type="button" class="complete-intel-link memo-open-deep">Full detailed memo</button></p>'
+      '<p class="complete-intel-line"><button type="button" class="complete-intel-link memo-open-deep">Full details</button></p>'
     );
   }
 
@@ -1795,7 +1720,7 @@
     const cards = (run.cells || []).map(writeNellCard).join("");
     return (
       '<button type="button" class="memo-back memo-back-simple">← Back to brief</button>' +
-      '<p class="memo-kicker">Full detailed memo - Nell rewrite: titled cards, short blurbs, evidence listed (not path walls). Glossary links match the left rail.</p>' +
+      '<p class="memo-kicker">Full details - Nell rewrite: titled cards, short blurbs, evidence listed (not path walls). Glossary links match the left rail.</p>' +
       "<h2>" +
       escapeHtml(run.engine) +
       " detail · " +
@@ -2930,7 +2855,7 @@
         : stripInteractiveHtml(run.memoDeep || writeDeepMemo(run));
     const heading = host.kind === "compare" ? "Evalathan compare" : "Evalathan memo";
     const detailLabel =
-      host.kind === "compare" ? "Compare detail" : "Full detailed memo";
+      host.kind === "compare" ? "Compare detail" : "Full details";
     return {
       short: short,
       filename:
@@ -2950,11 +2875,7 @@
         ".memo-detail-break h2{margin:0 0 10px;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:#333}" +
         "ul{padding-left:1.1rem} li{margin:0 0 8px;line-height:1.45}" +
         "table{width:100%;border-collapse:collapse;font-size:12px} th,td{border:1px solid #ccc;padding:5px 6px;text-align:left}" +
-        ".memo-chip-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}" +
-        ".memo-chip{border:1px solid #ccc;border-radius:8px;padding:8px;display:block}" +
-        ".memo-chip strong{display:block;font-size:12px;margin-bottom:3px;color:#2f7a45}" +
-        ".memo-chip span{font-size:12px;color:#555}" +
-        ".nell-stack{display:flex;flex-direction:column;gap:12px}.nell-card{border:1px solid #ccc;border-radius:8px;padding:10px 12px;page-break-inside:avoid}" +
+      ".nell-stack{display:flex;flex-direction:column;gap:12px}.nell-card{border:1px solid #ccc;border-radius:8px;padding:10px 12px;page-break-inside:avoid}" +
         ".nell-card-head{display:flex;flex-wrap:wrap;gap:6px 10px;margin:0 0 6px;align-items:baseline}" +
         ".nell-gate,.nell-status,.nell-score{font-size:10px;text-transform:uppercase;background:#eee;padding:2px 6px;border-radius:999px}" +
         ".nell-blurb{margin:0 0 8px;font-size:14px;line-height:1.4}.nell-question{margin:0 0 6px;font-size:12px;color:#555}" +
