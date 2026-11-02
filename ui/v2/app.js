@@ -2482,7 +2482,9 @@
       saveMemoHost(host);
     });
     root.querySelector(".memo-btn-delete").addEventListener("click", function () {
-      deleteMemoHost(host);
+      askDeleteConfirm(function () {
+        deleteMemoHost(host);
+      });
     });
     root.querySelector(".memo-btn-download").addEventListener("click", function () {
       downloadMemoHost(host);
@@ -2695,6 +2697,50 @@
       copy.engine + " · " + displayTitle(copy);
   }
 
+  let confirmPending = null;
+
+  function closeDeleteConfirm() {
+    const layer = document.getElementById("confirm-layer");
+    if (layer) layer.hidden = true;
+    confirmPending = null;
+  }
+
+  function askDeleteConfirm(onConfirm) {
+    const layer = document.getElementById("confirm-layer");
+    if (!layer) {
+      if (window.confirm("Are you sure you want to delete?")) onConfirm();
+      return;
+    }
+    confirmPending = onConfirm;
+    layer.hidden = false;
+    const ok = document.getElementById("confirm-ok");
+    if (ok) ok.focus();
+  }
+
+  function wireDeleteConfirm() {
+    const layer = document.getElementById("confirm-layer");
+    if (!layer || layer.dataset.wired === "1") return;
+    layer.dataset.wired = "1";
+    document.getElementById("confirm-cancel").addEventListener("click", function () {
+      closeDeleteConfirm();
+    });
+    document.getElementById("confirm-ok").addEventListener("click", function () {
+      const fn = confirmPending;
+      closeDeleteConfirm();
+      if (typeof fn === "function") fn();
+    });
+    layer.addEventListener("click", function (ev) {
+      if (ev.target === layer) closeDeleteConfirm();
+    });
+    document.addEventListener("keydown", function (ev) {
+      if (layer.hidden) return;
+      if (ev.key === "Escape") {
+        ev.preventDefault();
+        closeDeleteConfirm();
+      }
+    });
+  }
+
   function deleteMemoHost(host) {
     if (!host || !host.run || !host.run.savedAt || host.kind === "compare") return;
     const id = host.run.id;
@@ -2798,6 +2844,8 @@
       }, 1000);
     }, 250);
   }
+
+  wireDeleteConfirm();
 
   document.getElementById("btn-toggle-engines").addEventListener("click", (e) => {
     e.preventDefault();

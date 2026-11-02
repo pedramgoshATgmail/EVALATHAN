@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=gold52" />
+  <link rel="stylesheet" href="styles.css?v=gold53" />
   <link rel="preload" as="image" href="assets/evalathan-dragon.webp?v=5" type="image/webp" />
   <link rel="preload" as="image" href="assets/hydra-logo.webp?v=5" type="image/webp" />
   <link rel="preload" as="image" href="assets/dehydrus-logo.webp?v=5" type="image/webp" />
@@ -113,6 +113,17 @@
   <!-- Multi-memo stack: each saved/eval run can open its own window -->
   <div id="memo-layer" class="memo-layer" hidden></div>
 
-  <script src="app.js?v=gold52"></script>
+  <!-- Delete confirm (little centered window) -->
+  <div id="confirm-layer" class="confirm-layer" hidden>
+    <div class="confirm-card" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+      <p class="confirm-title" id="confirm-title">Are you sure you want to delete?</p>
+      <div class="confirm-actions">
+        <button type="button" class="confirm-btn confirm-btn-cancel" id="confirm-cancel">Cancel</button>
+        <button type="button" class="confirm-btn confirm-btn-delete" id="confirm-ok">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js?v=gold53"></script>
 </body>
 </html>

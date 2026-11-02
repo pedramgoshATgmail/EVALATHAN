@@ -215,18 +215,19 @@ def run_splash() -> int:
     ink_dim = "#6a6a6a"
     cx = size // 2
     cy = size // 2
+    # +30% vs prior 12 / 16 pt caption.
     label = canvas.create_text(
         cx,
         cy,
         text="launching",
         fill=ink,
-        font=("Segoe UI", 12, "bold"),
+        font=("Segoe UI", 16, "bold"),
         anchor="e",
     )
     # Nudge the word+dots so the whole caption is centered as a group.
     bbox = canvas.bbox(label)
-    word_w = (bbox[2] - bbox[0]) if bbox else 70
-    dots_w = 28
+    word_w = (bbox[2] - bbox[0]) if bbox else 90
+    dots_w = 36
     total_w = word_w + 4 + dots_w
     word_right = cx - total_w // 2 + word_w
     canvas.coords(label, word_right, cy)
@@ -235,11 +236,11 @@ def run_splash() -> int:
     for i in range(3):
         dot_ids.append(
             canvas.create_text(
-                word_right + 2 + i * 9,
+                word_right + 2 + i * 12,
                 cy,
                 text=".",
                 fill=ink_dim,
-                font=("Segoe UI", 16, "bold"),
+                font=("Segoe UI", 21, "bold"),
                 anchor="w",
             )
         )

@@ -1139,6 +1139,62 @@ html {
 }
 .memo-btn-delete { background: #c8102e; } /* Canadian flag red */
 .memo-btn-delete:hover { background: #a00d25; }
+
+/* Little centered confirm window (delete) */
+.confirm-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  pointer-events: auto;
+}
+.confirm-layer[hidden] { display: none !important; }
+.confirm-card {
+  width: min(320px, 90vw);
+  padding: 1.25rem 1.35rem 1.15rem;
+  border-radius: 0.65rem;
+  background: #f7f7f7;
+  border: 1px solid #d0d0d0;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+  text-align: center;
+}
+.confirm-title {
+  margin: 0 0 1.05rem;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #222;
+}
+.confirm-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.65rem;
+}
+.confirm-btn {
+  height: 2.05rem;
+  padding: 0 1.1rem;
+  border-radius: 999px;
+  border: 0;
+  font-family: var(--font);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+.confirm-btn-cancel {
+  background: #e4e4e4;
+  color: #222;
+}
+.confirm-btn-cancel:hover { background: #d4d4d4; }
+.confirm-btn-delete {
+  background: #c8102e;
+  color: #fff;
+}
+.confirm-btn-delete:hover { background: #a00d25; }
 .memo-btn-compare { background: #0038b8; } /* Israel flag blue */
 .memo-btn-compare:hover { background: #002a8f; }
 .memo-btn:disabled { opacity: 0.55; cursor: default; }
