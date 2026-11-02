@@ -12,6 +12,7 @@ license = "Apache-2.0"
 authors = [{ name = "Evalathan" }]
 dependencies = [
   "pywebview>=5.0",
+  "pillow>=10.0",
 ]
 
 [project.optional-dependencies]

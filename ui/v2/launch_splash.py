@@ -156,8 +156,12 @@ def request_close() -> None:
     clear_pid()
 
 
+def _assets_dir() -> Path:
+    return Path(__file__).resolve().parent / "assets"
+
+
 def _logo_path() -> Path | None:
-    assets = Path(__file__).resolve().parent / "assets"
+    assets = _assets_dir()
     for name in ("fuss-splash.png", "fuss.png"):
         candidate = assets / name
         if candidate.is_file():
@@ -165,11 +169,39 @@ def _logo_path() -> Path | None:
     return None
 
 
+def _prebaked_bgra_frames(size: int) -> list[bytes] | None:
+    """Ship premultiplied BGRA frames so ASAP splash needs no Pillow."""
+    assets = _assets_dir()
+    expected = size * size * 4
+    frames: list[bytes] = []
+    for phase in range(3):
+        path = assets / f"fuss-splash-p{phase}.bgra"
+        if not path.is_file():
+            return None
+        data = path.read_bytes()
+        if len(data) != expected:
+            return None
+        frames.append(data)
+    return frames
+
+
 def _build_base_rgba(path: Path, size: int):
-    """Logo on a soft-edged circular alpha matte (clean on white and black)."""
+    """Logo on a soft-edged circular alpha matte (clean on white and black).
+
+    Soft AA must sit on brand orange RGB. If the rim samples the old key-black
+    fill (1,2,3), premultiplied alpha paints a dark halo on light desktops.
+    """
     from PIL import Image, ImageDraw, ImageFilter
 
+    key_rgb = {(0, 0, 0), (1, 2, 3)}
     im = Image.open(path).convert("RGBA")
+    px = im.load()
+    w0, h0 = im.size
+    for y in range(h0):
+        for x in range(w0):
+            r, g, b, a = px[x, y]
+            if (r, g, b) in key_rgb or a < 8:
+                px[x, y] = (0, 0, 0, 0)
     w, h = im.size
     side = max(w, h, 1)
     if side != size:
@@ -179,15 +211,14 @@ def _build_base_rgba(path: Path, size: int):
             Image.Resampling.LANCZOS,
         )
         w, h = im.size
-    canvas = Image.new("RGBA", (size, size), (0, 0, 0, 0))
-    canvas.paste(im, ((size - w) // 2, (size - h) // 2), im)
-
-    # Soft circular alpha: blur a hard disk so the rim blends into any desktop.
+    # Opaque orange underlay so the blurred alpha rim never samples key-black.
+    fill = (232, 135, 30, 255)
+    solid = Image.new("RGBA", (size, size), fill)
+    solid.paste(im, ((size - w) // 2, (size - h) // 2), im)
     disk = Image.new("L", (size, size), 0)
     ImageDraw.Draw(disk).ellipse((1, 1, size - 2, size - 2), fill=255)
-    soft = disk.filter(ImageFilter.GaussianBlur(radius=1.25))
-
-    r, g, b, _a = canvas.split()
+    soft = disk.filter(ImageFilter.GaussianBlur(radius=1.6))
+    r, g, b, _a = solid.split()
     return Image.merge("RGBA", (r, g, b, soft))
 
 
@@ -244,19 +275,41 @@ def _rgba_to_premultiplied_bgra(im) -> bytes:
     return bytes(pixels)
 
 
+def _load_layered_frames(logo_path: Path, size: int) -> list[bytes] | None:
+    """Prefer prebaked BGRA; else build with Pillow when available."""
+    prebaked = _prebaked_bgra_frames(size)
+    if prebaked is not None:
+        return prebaked
+    try:
+        base = _build_base_rgba(logo_path, size)
+        return [
+            _rgba_to_premultiplied_bgra(_draw_caption(base, phase)) for phase in range(3)
+        ]
+    except Exception:  # noqa: BLE001
+        return None
+
+
 def _run_splash_layered_win32(logo_path: Path) -> bool:
     """Per-pixel alpha splash. True if shown; False to fall back to Tk."""
     import ctypes
     from ctypes import wintypes
 
-    try:
-        from PIL import Image  # noqa: F401
-    except ImportError:
-        return False
-
     user32 = ctypes.windll.user32
     gdi32 = ctypes.windll.gdi32
     kernel32 = ctypes.windll.kernel32
+
+    # 64-bit Windows: LRESULT/WPARAM/LPARAM are pointer-sized. Using c_long
+    # overflows in DefWindowProcW and silently kills the layered path.
+    LRESULT = ctypes.c_ssize_t
+    user32.DefWindowProcW.argtypes = [
+        wintypes.HWND,
+        ctypes.c_uint,
+        wintypes.WPARAM,
+        wintypes.LPARAM,
+    ]
+    user32.DefWindowProcW.restype = LRESULT
+    user32.CreateWindowExW.restype = wintypes.HWND
+    user32.UpdateLayeredWindow.restype = wintypes.BOOL
 
     class POINT(ctypes.Structure):
         _fields_ = [("x", ctypes.c_long), ("y", ctypes.c_long)]
@@ -291,7 +344,7 @@ def _run_splash_layered_win32(logo_path: Path) -> bool:
         _fields_ = [("bmiHeader", BITMAPINFOHEADER), ("bmiColors", wintypes.DWORD * 3)]
 
     WndProcType = ctypes.WINFUNCTYPE(
-        ctypes.c_long, wintypes.HWND, ctypes.c_uint, wintypes.WPARAM, wintypes.LPARAM
+        LRESULT, wintypes.HWND, ctypes.c_uint, wintypes.WPARAM, wintypes.LPARAM
     )
 
     class WNDCLASS(ctypes.Structure):
@@ -328,9 +381,8 @@ def _run_splash_layered_win32(logo_path: Path) -> bool:
     PM_REMOVE = 0x0001
 
     size = TARGET_DIAMETER
-    try:
-        base = _build_base_rgba(logo_path, size)
-    except Exception:  # noqa: BLE001
+    frames = _load_layered_frames(logo_path, size)
+    if not frames:
         return False
 
     def _wnd_proc(hwnd, msg, wparam, lparam):
@@ -423,8 +475,7 @@ def _run_splash_layered_win32(logo_path: Path) -> bool:
     last_dot = 0.0
     ok_paint = False
 
-    def paint(frame_im) -> bool:
-        data = _rgba_to_premultiplied_bgra(frame_im)
+    def paint(data: bytes) -> bool:
         ctypes.memmove(bits, data, len(data))
         return bool(
             user32.UpdateLayeredWindow(
@@ -441,7 +492,7 @@ def _run_splash_layered_win32(logo_path: Path) -> bool:
         )
 
     try:
-        ok_paint = paint(_draw_caption(base, phase))
+        ok_paint = paint(frames[phase % len(frames)])
         if not ok_paint:
             return False
 
@@ -458,7 +509,7 @@ def _run_splash_layered_win32(logo_path: Path) -> bool:
             if (now - last_dot) * 1000 >= DOT_MS:
                 phase += 1
                 last_dot = now
-                paint(_draw_caption(base, phase))
+                paint(frames[phase % len(frames)])
             time.sleep(POLL_MS / 1000.0)
     finally:
         gdi32.SelectObject(hdc_mem, old)

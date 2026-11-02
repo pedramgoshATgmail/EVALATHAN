@@ -68,6 +68,11 @@ def test_keyed_splash_png_uses_transparent_key(tmp_path: Path, monkeypatch) -> N
 
 def test_build_base_rgba_has_transparent_corners() -> None:
     """Layered splash matte must be clear outside the circle (no black fringe)."""
+    pytest = __import__("pytest")
+    try:
+        __import__("PIL")
+    except ImportError:
+        pytest.skip("Pillow not installed")
     mod, ui_script = _load_ui_splash_module()
     src = ui_script.parent / "assets" / "fuss-splash.png"
     im = mod._build_base_rgba(src, 220)
@@ -75,3 +80,13 @@ def test_build_base_rgba_has_transparent_corners() -> None:
     assert im.getpixel((0, 0))[3] == 0
     assert im.getpixel((110, 110))[3] > 200
     assert im.getpixel((110, 110))[0] > 150
+
+
+def test_prebaked_bgra_frames_shipped() -> None:
+    mod, _ui = _load_ui_splash_module()
+    frames = mod._prebaked_bgra_frames(220)
+    assert frames is not None
+    assert len(frames) == 3
+    assert all(len(f) == 220 * 220 * 4 for f in frames)
+    # Corner byte alpha (BGRA) must be 0 - fully clear outside the circle.
+    assert frames[0][3] == 0
