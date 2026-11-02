@@ -3,26 +3,116 @@
     "https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/cde53cbc5d66c631b88d202acd5f56bee9c23b26/docs/glossary.html";
   const GLOSS_MD = "https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/GLOSSARY.md";
   const anchor = (id) => GLOSS_MD + "#user-content-" + id;
-  /* Auto-link glossary product terms in memo prose (same target pattern as evaler names). */
-  const GLOSS_AUTO_LINKS = [
-    { re: /\bSASPIANT\b/g, id: "saspiant", title: "SASPIANT - glossary" },
+  /*
+   * Auto-link Evalathan glossary terms in memo prose (same GitHub #user-content-* targets
+   * as the left-rail evaler names). Distinctive labels only - skip generic words like Agent.
+   */
+  const GLOSS_AUTO_RAW = [
+    { id: "saspiant", phrases: ["SASPIANT"] },
+    { id: "m3", phrases: ["M3 Triad", "M3"] },
+    { id: "selfbelt", phrases: ["SELFBELT"] },
+    { id: "fuss", phrases: ["FUSS"] },
+    { id: "pretruws", phrases: ["PRETRUWs", "PRETRUW"] },
+    { id: "ludats", phrases: ["LuDaTs"] },
+    { id: "habtwin", phrases: ["HabTwin"] },
+    { id: "braidware", phrases: ["Braidware"] },
+    { id: "deglove", phrases: ["Deglove"] },
+    { id: "reductoholism", phrases: ["Reductoholism", "reductoholistic"] },
+    { id: "4uvals", phrases: ["4Uvals"] },
+    { id: "evalathan", phrases: ["EVALATHAN", "Evalathan"] },
+    { id: "hydra", phrases: ["HYDRA", "Hydra"] },
+    { id: "dehydrus", phrases: ["DEHYDRUS", "Dehydrus"] },
+    { id: "archly", phrases: ["Archly"] },
+    { id: "chorely", phrases: ["Chorely"] },
+    { id: "codely", phrases: ["Codely"] },
+    { id: "devly", phrases: ["Devly"] },
+    { id: "domly", phrases: ["Domly"] },
+    { id: "levi", phrases: ["Levi"] },
+    { id: "menschly", phrases: ["Menschly"] },
+    { id: "mixly", phrases: ["Mixly"] },
+    { id: "pressly", phrases: ["Pressly"] },
+    { id: "refactorly", phrases: ["Refactorly"] },
+    { id: "runly", phrases: ["Runly"] },
+    { id: "stackly", phrases: ["Stackly"] },
+    { id: "tokely", phrases: ["Tokely"] },
+    { id: "trajectly", phrases: ["Trajectly"] },
+    { id: "triadly", phrases: ["Triadly"] },
+    { id: "warrantly", phrases: ["Warrantly"] },
+    { id: "copernly", phrases: ["Copernly"] },
+    { id: "keplerly", phrases: ["Keplerly"] },
+    { id: "galileoly", phrases: ["Galileoly"] },
+    { id: "darwinly", phrases: ["Darwinly"] },
+    { id: "mendly", phrases: ["Mendly"] },
+    { id: "einsteinly", phrases: ["Einsteinly"] },
+    { id: "curcuriely", phrases: ["CurCuriely"] },
+    { id: "newtonly", phrases: ["Newtonly"] },
+    { id: "ludats-mode-unification", phrases: ["Mode Unification"] },
+    { id: "ludats-mode-pair", phrases: ["Mode Pair"] },
+    { id: "ludats-mode-a", phrases: ["Mode A"] },
+    { id: "ludats-mode-b", phrases: ["Mode B"] },
+    { id: "ludats-mode-c", phrases: ["Mode C"] },
+    { id: "ludats-mode-d", phrases: ["Mode D"] },
+    { id: "ludats-mode-e", phrases: ["Mode E"] },
+    { id: "ludats-mode-f", phrases: ["Mode F"] },
+    { id: "swe-bench-pro", phrases: ["SWE-bench Pro"] },
+    { id: "swe-bench", phrases: ["SWE-bench"] },
+    { id: "deepswe", phrases: ["DeepSWE"] },
+    { id: "prdbench", phrases: ["PRDBench"] },
+    { id: "wildbench", phrases: ["WildBench"] },
+    { id: "ragas", phrases: ["Ragas"] },
   ];
-  function linkGlossaryTerms(escapedText) {
-    let out = String(escapedText || "");
-    GLOSS_AUTO_LINKS.forEach(function (term) {
-      out = out.replace(term.re, function (matched) {
-        return (
-          '<a href="' +
-          escapeHtml(anchor(term.id)) +
-          '" target="_blank" rel="noopener noreferrer" title="' +
-          escapeHtml(term.title) +
-          '">' +
-          matched +
-          "</a>"
-        );
+  function escapeRegExp(s) {
+    return String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+  const GLOSS_AUTO_LINKS = (function () {
+    const rows = [];
+    GLOSS_AUTO_RAW.forEach(function (row) {
+      (row.phrases || []).forEach(function (phrase) {
+        rows.push({
+          id: row.id,
+          title: phrase + " - glossary",
+          phrase: phrase,
+          re: new RegExp("\\b" + escapeRegExp(phrase) + "\\b", "g"),
+        });
       });
     });
-    return out;
+    rows.sort(function (a, b) {
+      return b.phrase.length - a.phrase.length;
+    });
+    return rows;
+  })();
+  function linkGlossaryTerms(escapedText) {
+    let out = String(escapedText || "");
+    /* Skip spans already inside an <a>...</a> by splitting on tags. */
+    const parts = out.split(/(<[^>]+>)/g);
+    let inAnchor = false;
+    for (let i = 0; i < parts.length; i += 1) {
+      const part = parts[i];
+      if (!part) continue;
+      if (part.charAt(0) === "<") {
+        const lower = part.toLowerCase();
+        if (lower.indexOf("<a ") === 0 || lower === "<a>") inAnchor = true;
+        if (lower.indexOf("</a>") === 0) inAnchor = false;
+        continue;
+      }
+      if (inAnchor) continue;
+      let text = part;
+      GLOSS_AUTO_LINKS.forEach(function (term) {
+        text = text.replace(term.re, function (matched) {
+          return (
+            '<a href="' +
+            escapeHtml(anchor(term.id)) +
+            '" target="_blank" rel="noopener noreferrer" title="' +
+            escapeHtml(term.title) +
+            '">' +
+            matched +
+            "</a>"
+          );
+        });
+      });
+      parts[i] = text;
+    }
+    return parts.join("");
   }
   const app = document.getElementById("app-screen");
 
@@ -1280,7 +1370,7 @@
       scoreBit +
       "</header>" +
       (n.question
-        ? '<p class="nell-question">' + escapeHtml(n.question) + "</p>"
+        ? '<p class="nell-question">' + linkGlossaryTerms(escapeHtml(n.question)) + "</p>"
         : "") +
       '<p class="nell-blurb">' +
       linkGlossaryTerms(escapeHtml(n.blurb)) +
@@ -1472,7 +1562,7 @@
       "</span></div>" +
       deltaHtml +
       '<div class="memo-section"><h3>What this means</h3><p>' +
-      means +
+      linkGlossaryTerms(means) +
       "</p></div>" +
       '<div class="memo-section"><h3>Top gates</h3><p>' +
       linkGlossaryTerms(escapeHtml(topGates)) +

@@ -375,10 +375,27 @@ The golden rule of any workshop: "Cheap, Fast, or Good - pick two." Triadly veri
 
 <img src="assets/glossary/m3-triad.jpg" alt="M3 Triad. Mc is min cost, Me is max efficiency, Mi is max impact. The six orders run from a cheap interceptor drone to a NASA rocket and a Patriot missile." width="100%">
 
-Mc (Min Cost) · Me (Max Efficiency/speed) · Mi (Max Impact/quality); order = priority left-to-right. Six orders: McMeMi cheap interceptor drone; McMiMe Shahed-style; MeMcMi ambulance drone; MeMiMc fighter scramble; MiMcMe SEISMO MVP target, impact then cost; MiMeMc NASA rocket and Patriot missile, impact then speed.
+[M3](#user-content-m3) is the Engineering Priority Triad Triadly reads. Mc (Min Cost) · Me (Max Efficiency/speed) · Mi (Max Impact/quality); order = priority left-to-right. Six orders: McMeMi cheap interceptor drone; McMiMe Shahed-style; MeMcMi ambulance drone; MeMiMc fighter scramble; MiMcMe SEISMO MVP target, impact then cost; MiMeMc NASA rocket and Patriot missile, impact then speed.
 
-The accepted compact orders are `mcmemi`, `mcmime`, `memcmi`, `memimc`, `mimcme`, and `mimemc`, read from the README and from markdown, JSON, and text. The scan looks for those codes with spaces removed. It does not treat the word M3, by itself, as an order.
+The accepted compact orders are `mcmemi`, `mcmime`, `memcmi`, `memimc`, `mimcme`, and `mimemc`, read from the README and from markdown, JSON, and text. The scan looks for those codes with spaces removed. It does not treat the word M3, by itself, as an order. Full M3 write-up: [M3](#user-content-m3).
 
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+
+<a id="m3" name="m3"></a>
+<h2>M3</h2>
+
+M3 (Engineering Priority Triad) is the Cost / Efficiency / Impact order [Triadly](#user-content-triadly) looks for. Mc = Min Cost, Me = Max Efficiency (speed), Mi = Max Impact (quality). A declared left-to-right order is evidence. The bare word M3 is not an order by itself. M3 is not a seventeenth Hydra score.
+
+<p align="center"><img src="assets/glossary/m3-triad.jpg" alt="M3 Triad. Mc is min cost, Me is max efficiency, Mi is max impact. The six orders run from a cheap interceptor drone to a NASA rocket and a Patriot missile." width="541"></p>
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+Cheap, fast, or excellent - write down which comes first before you build. M3 is that written order. Triadly checks whether the tree actually declared one.
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Compact orders Triadly accepts (spaces stripped): `mcmemi`, `mcmime`, `memcmi`, `memimc`, `mimcme`, `mimemc`. Sources: README and markdown / JSON / text in the tree. Related: [Triadly](#user-content-triadly).
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
 

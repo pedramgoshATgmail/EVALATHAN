@@ -10,7 +10,7 @@ Plain version history. Dates are the day each version landed on `main` (git comm
 | **v0.3.0** | **2026-10-31** | PRETRUWs room. Dehydrus conducts eight LuDaTs evalers (Copernly … Newtonly). HabTwin named, not scored yet. Still opens the Tk Hydra window by default. |
 | **v0.3.1** | **2026-11-02** | `ui/v2` desk wired to real `prepare()` + `conduct()`. Install blocks hard-reset an existing folder to published `main`. Still opened in a system browser. |
 | **v0.3.2** | **2026-11-19** | **Local desktop app.** Desktop **Evalathan** icon (red dragon) + `Desktop/Evalathan/` launcher folder. Desk opens in a native window from files on this PC - not “visit a 127 page.” |
-| **v0.3.3** | **2026-11-19** | **Nell rewrite** on Hydra detail memo: titled cards, short blurbs, evidence as a short labeled list (no path walls). |
+| **v0.3.3** | **2026-11-19** | **Nell rewrite** on Hydra detail memo: titled cards, short blurbs, evidence as a short labeled list (no path walls). Glossary auto-links for **SASPIANT**, **M3**, Hydra/LuDaTs evalers, and other distinctive glossary terms in memo prose. |
 
 ## One-line each
 
@@ -33,7 +33,7 @@ Adds Dehydrus + eight LuDaTs worlds under PRETRUWs. Hydra’s sixteen stay sixte
 Local install folder + Desktop dragon icon. Click the icon to open the Evalathan window on this computer.
 
 ### 2026-11-19 - v0.3.3 (current)
-Nell rewrite for the full detailed memo. Each evaler is a card: title + gate + status, one readable blurb, then a short Evidence list (paths truncated, capped). No more comma-glued path walls.
+Nell rewrite for the full detailed memo. Each evaler is a card: title + gate + status, one readable blurb, then a short Evidence list (paths truncated, capped). No more comma-glued path walls. Memo prose auto-links glossary names (SASPIANT, M3, Archly…Newtonly, LuDaTs, PRETRUWs, and the rest of the distinctive Evalathan glossary set) to `GLOSSARY.md#user-content-…`.
 
 ## Next (not shipped)
 
