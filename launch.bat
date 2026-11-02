@@ -89,6 +89,8 @@ echo Starting Evalathan v0.3.2 local desk window...
 echo Look for the Evalathan icon on your Desktop ^(and Desktop\Evalathan\^).
 echo Keep this console open while the desk is running, or use the Desktop icon next time.
 echo.
+REM Drop splash before open_desk so the Update now popup is visible on Windows.
+if exist "%~dp0ui\v2\launch_splash.py" "%VENVPY%" "%~dp0ui\v2\launch_splash.py" --close >nul 2>&1
 "%VENVPY%" -c "from evalathan.webdesk import open_desk; raise SystemExit(open_desk())"
 set "EC=%ERRORLEVEL%"
 if exist "%~dp0ui\v2\launch_splash.py" "%VENVPY%" "%~dp0ui\v2\launch_splash.py" --close >nul 2>&1

@@ -28,11 +28,10 @@ if not exist ".venv\Scripts\python.exe" (
   exit /b %ERRORLEVEL%
 )
 
-REM Splash file may have refreshed with main - keep one instance up.
-call :start_splash
-
 set "VENVPY=%~dp0.venv\Scripts\python.exe"
 "%VENVPY%" -m pip install -e "%~dp0." >nul 2>&1
+REM Drop splash before open_desk so the Update now popup is visible on Windows.
+call :stop_splash
 echo Opening Evalathan local desk...
 "%VENVPY%" -c "from evalathan.webdesk import open_desk; raise SystemExit(open_desk())"
 set "EC=%ERRORLEVEL%"

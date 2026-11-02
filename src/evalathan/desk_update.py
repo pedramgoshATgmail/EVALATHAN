@@ -131,84 +131,83 @@ def apply_published_main(repo: Path) -> tuple[bool, str]:
     return True, _short(after.stdout)
 
 
-def _ask_user(status: UpdateStatus) -> bool:
-    """Return True if the user chose Update now."""
+def _log(msg: str) -> None:
     try:
-        import tkinter as tk
-        from tkinter import ttk
-    except Exception:  # noqa: BLE001
-        return True  # no GUI - apply so published main still wins
+        from evalathan.desk_store import state_dir
 
-    decision = {"update": False}
-    root = tk.Tk()
-    root.title("EVALATHAN update")
-    root.attributes("-topmost", True)
-    root.resizable(False, False)
-    try:
-        root.configure(bg="#111111")
+        path = state_dir() / "update.log"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with path.open("a", encoding="utf-8") as fh:
+            fh.write(msg.rstrip() + "\n")
     except Exception:  # noqa: BLE001
         pass
 
-    frame = ttk.Frame(root, padding=18)
-    frame.grid(row=0, column=0, sticky="nsew")
+
+def _close_splash_for_dialog() -> None:
+    """Windows Desktop starts splash before open_desk - drop it so the popup is visible."""
+    try:
+        from evalathan.launch_splash import request_close
+
+        request_close()
+    except Exception:  # noqa: BLE001
+        pass
+
+
+def _ask_user(status: UpdateStatus) -> bool:
+    """Return True if the user chose Update now."""
+    _close_splash_for_dialog()
     msg = (
         "A newer Evalathan desk is on GitHub.\n\n"
         f"This PC:  {_short(status.local) or '?'}\n"
         f"Published: {_short(status.remote) or '?'}\n\n"
         "Update now so Windows and Mac desks match main?"
     )
-    label = ttk.Label(frame, text=msg, justify="left")
-    label.grid(row=0, column=0, columnspan=2, sticky="w", pady=(0, 14))
+    # messagebox is modal and reliable on Windows (custom ttk can sit under splash).
+    try:
+        import tkinter as tk
+        from tkinter import messagebox
 
-    def on_update() -> None:
-        decision["update"] = True
+        root = tk.Tk()
+        root.withdraw()
+        try:
+            root.attributes("-topmost", True)
+        except Exception:  # noqa: BLE001
+            pass
+        root.update_idletasks()
+        yes = messagebox.askyesno(
+            "EVALATHAN update",
+            msg,
+            parent=root,
+            icon="question",
+        )
         root.destroy()
-
-    def on_skip() -> None:
-        decision["update"] = False
-        root.destroy()
-
-    btn_update = ttk.Button(frame, text="Update now", command=on_update)
-    btn_skip = ttk.Button(frame, text="Not now", command=on_skip)
-    btn_update.grid(row=1, column=0, padx=(0, 8), sticky="ew")
-    btn_skip.grid(row=1, column=1, sticky="ew")
-    root.protocol("WM_DELETE_WINDOW", on_skip)
-    root.update_idletasks()
-    w, h = root.winfo_reqwidth(), root.winfo_reqheight()
-    x = max(40, (root.winfo_screenwidth() - w) // 2)
-    y = max(40, (root.winfo_screenheight() - h) // 3)
-    root.geometry(f"+{x}+{y}")
-    root.lift()
-    root.focus_force()
-    root.mainloop()
-    return bool(decision["update"])
+        _log(f"askyesno behind={status.behind} choice={'update' if yes else 'skip'}")
+        return bool(yes)
+    except Exception as exc:  # noqa: BLE001
+        _log(f"askyesno failed: {exc}")
+        return True  # no GUI - apply so published main still wins
 
 
 def _show_done(sha: str) -> None:
+    _close_splash_for_dialog()
     try:
         import tkinter as tk
-        from tkinter import ttk
+        from tkinter import messagebox
+
+        root = tk.Tk()
+        root.withdraw()
+        try:
+            root.attributes("-topmost", True)
+        except Exception:  # noqa: BLE001
+            pass
+        messagebox.showinfo(
+            "EVALATHAN",
+            f"Updated to {_short(sha) or 'published main'}.\nRestarting the desk…",
+            parent=root,
+        )
+        root.destroy()
     except Exception:  # noqa: BLE001
         return
-    root = tk.Tk()
-    root.title("EVALATHAN")
-    root.attributes("-topmost", True)
-    root.resizable(False, False)
-    frame = ttk.Frame(root, padding=18)
-    frame.grid(row=0, column=0)
-    ttk.Label(
-        frame,
-        text=f"Updated to {_short(sha) or 'published main'}.\nRestarting the desk…",
-        justify="left",
-    ).grid(row=0, column=0, pady=(0, 12))
-    ttk.Button(frame, text="OK", command=root.destroy).grid(row=1, column=0)
-    root.after(2200, root.destroy)
-    root.update_idletasks()
-    w, h = root.winfo_reqwidth(), root.winfo_reqheight()
-    x = max(40, (root.winfo_screenwidth() - w) // 2)
-    y = max(40, (root.winfo_screenheight() - h) // 3)
-    root.geometry(f"+{x}+{y}")
-    root.mainloop()
 
 
 def _reexec_desk() -> None:
@@ -257,6 +256,10 @@ def ensure_published_main(*, interactive: bool = True) -> None:
         _migrate_legacy_desktop_launcher(root)
 
     status = check_for_update(fetch=True)
+    _log(
+        f"check repo={status.repo} local={_short(status.local)} "
+        f"remote={_short(status.remote)} behind={status.behind} err={status.error!r}"
+    )
     if status.error or not status.behind:
         return
 
