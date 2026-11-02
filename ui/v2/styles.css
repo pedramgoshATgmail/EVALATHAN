@@ -61,7 +61,8 @@
   --chip: #2a2a2a;
   --pass: #9ccc9c;
   --deferred: #aaa;
-  --logo-art-filter: grayscale(1) brightness(1.08) contrast(1.05);
+  /* Same grey wash for Evalathan / Hydra / Dehydrus / Benchrex art */
+  --logo-art-filter: grayscale(1) brightness(0.95) contrast(1.12);
 }
 
 * { box-sizing: border-box; }
@@ -192,17 +193,24 @@ button { cursor: pointer; border: 0; background: none; }
   padding: 0.5rem 0.5rem 1rem;
 }
 .splash-art-slot {
-  width: min(168px, 38vw);
-  height: min(168px, 38vw);
+  --art-scale: 1;
+  width: calc(min(168px, 38vw) * var(--art-scale));
+  height: calc(min(168px, 38vw) * var(--art-scale));
   display: flex;
   align-items: center;
   justify-content: center;
 }
+.splash-art-slot.art-hydra { --art-scale: 1.06; }
+.splash-art-slot.art-dehydrus { --art-scale: 1.10; }
+.splash-art-slot.art-benchrex { --art-scale: 1.15; }
 .splash-art {
   width: 100%;
   height: 100%;
   object-fit: contain;
   display: block;
+  filter: var(--logo-art-filter);
+}
+[data-theme="grey"] .splash-art {
   filter: var(--logo-art-filter);
 }
 .splash-art.is-blank {
@@ -231,7 +239,7 @@ button { cursor: pointer; border: 0; background: none; }
   max-width: 40rem;
   margin: 0.35rem 0 0;
   font-family: var(--mono);
-  font-size: 0.8rem;
+  font-size: 0.696rem; /* was 0.8rem, -13% */
   line-height: 1.55;
   color: var(--text);
   white-space: pre-line;
@@ -431,8 +439,9 @@ button { cursor: pointer; border: 0; background: none; }
   text-align: left;
   color: var(--accent);
   font-family: var(--mono);
-  font-size: 0.85rem;
+  font-size: 0.595rem; /* was 0.85rem, -30% */
   letter-spacing: 0.04em;
+  text-transform: lowercase;
   margin: 0.35rem 0;
 }
 .rail-head em { font-style: normal; color: var(--text-muted); }
@@ -446,13 +455,19 @@ button { cursor: pointer; border: 0; background: none; }
 }
 .past-list li {
   font-family: var(--mono);
-  font-size: 0.74rem;
+  font-size: 0.518rem; /* was 0.74rem, -30% with past runs */
   line-height: 1.35;
   color: var(--text-soft);
   border: 1px solid var(--line);
   border-radius: 0.4rem;
   padding: 0.45rem 0.55rem;
   background: var(--bg-surface);
+}
+.past-list li.is-empty {
+  border: 0;
+  background: transparent;
+  padding: 0.15rem 0.1rem;
+  color: var(--text-muted);
 }
 .past-list li button {
   display: block;

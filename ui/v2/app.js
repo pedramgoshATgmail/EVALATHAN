@@ -188,10 +188,15 @@
   function renderHero() {
     const title = document.getElementById("splash-title");
     const art = document.getElementById("splash-art");
+    const slot = document.querySelector(".splash-art-slot");
     const blurbs = document.getElementById("blurbs");
     const view = userPickedEngine ? engine(activeId) : SPLASH;
+    const artKey = userPickedEngine ? activeId : "evalathan";
     title.textContent = view.label;
     blurbs.textContent = view.blurbs;
+    if (slot) {
+      slot.className = "splash-art-slot art-" + artKey;
+    }
     if (view.art) {
       art.src = view.art;
       art.alt = view.label;
@@ -212,6 +217,7 @@
     list.innerHTML = "";
     if (!rows.length) {
       const li = document.createElement("li");
+      li.className = "is-empty";
       li.textContent = "No past evaluation runs yet.";
       list.appendChild(li);
       return;
