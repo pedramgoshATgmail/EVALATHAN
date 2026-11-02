@@ -198,13 +198,23 @@
       .replace(/"/g, "&quot;");
   }
 
-  function formatBlurbs(text) {
-    return escapeHtml(text)
-      .replace(
-        /(Hydra engine|Dehydrus engine|Benchrex engine|Biasrex engine)/g,
-        '<span class="blurb-engine">$1</span>'
-      )
-      .replace(/\n/g, "<br>");
+  function formatBlurbs(text, splash) {
+    const lines = String(text).split("\n");
+    return lines
+      .map((line) => {
+        let html = escapeHtml(line).replace(
+          /(Hydra engine|Dehydrus engine|Benchrex engine|Biasrex engine)/g,
+          '<span class="blurb-engine">$1</span>'
+        );
+        if (
+          splash &&
+          (line.indexOf("Dehydrus engine") === 0 || line.indexOf("Benchrex engine") === 0)
+        ) {
+          html = '<span class="blurb-dim">' + html + "</span>";
+        }
+        return html;
+      })
+      .join("<br>");
   }
 
   function artSrc(view) {
@@ -219,16 +229,19 @@
     const blurbs = document.getElementById("blurbs");
     const plg = document.getElementById("plg-tag");
     const repo = document.getElementById("repo-link");
+    const stage = document.getElementById("page-stage");
     const view = userPickedEngine ? engine(activeId) : SPLASH;
     const artKey = userPickedEngine ? activeId : "evalathan";
     const src = artSrc(view);
+    const onSplash = !userPickedEngine;
     title.textContent = view.label;
-    blurbs.innerHTML = formatBlurbs(view.blurbs);
+    blurbs.innerHTML = formatBlurbs(view.blurbs, onSplash);
     if (slot) {
       slot.className = "splash-art-slot art-" + artKey;
     }
-    if (plg) plg.classList.toggle("is-hidden", userPickedEngine);
-    if (repo) repo.classList.toggle("is-hidden", userPickedEngine);
+    if (stage) stage.classList.toggle("is-splash", onSplash);
+    if (plg) plg.classList.toggle("is-hidden", !onSplash);
+    if (repo) repo.classList.toggle("is-hidden", !onSplash);
     if (src) {
       art.src = src;
       art.alt = view.label;
