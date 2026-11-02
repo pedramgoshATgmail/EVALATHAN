@@ -12,7 +12,8 @@ Plain version history. Dates are the day each version landed on `main` (git comm
 | **v0.3.2** | **11/20/26** | Benchrex and Biasrex glossary rooms in Hydra/Dehydrus depth. Benchrex ten cells (seven paper criteria + Assessly / Reportly / Notifyly) credit San Joaquin, Gipiškis, Staufer, Gil (*Deprecating Benchmarks*, arXiv:2507.06434). Biasrex six cells from the Cognitive Bias Codex four problems plus Confirmly / Automately. Ed Slop card art for all ten Benchrex and all six Biasrex evalers. Conductors still not live-wired in the default desk. |
 | **v0.3.3** | **11/20/26** | Desk memo eye-comfort palette under [**4Uvals** (Ultimate User-User-User evaluations)](GLOSSARY.md#user-content-4uvals) + [**Menschly** (limited-use / well-being evaler)](GLOSSARY.md#user-content-menschly) policy: memo sheet `#FFF4E5`, evaler bevel cards `#E8F3E8`, body text `#2B2B2B` (hyperlinks stay blue). Same mandate covers FUSS (For-User Session Switch) Irish-orange controls and Prickly accent hues. See one-line detail below. |
 | **v0.3.4** | **11/21/26** | [**PRICKLY**](GLOSSARY.md#user-content-prickly) desk live (no Coming soon): FUSS-simple picker → profile → timed True/False (Developer L&R + [**JaPoP**](GLOSSARY.md#user-content-japop) L&R) or JaPoP Static timestamped-comms heuristic. Soft 3-week / 6-month duration guidance only. Glossary entries for PRICKLY + JaPoP. |
-| **v0.3.5** | **11/21/26** (current) | PRICKLY Developer L&R wires 3000-item True/False banks (12 roles × 5 levels × 10 × 5 packs V1-V5) with local pack rotation; final FUSS + PRICKLY circular logos on desk, glossary, and README; memo/FUSS/PRICKLY palette polish; scalable PRICKLY popup + Irish-green circular countdown twin of FUSS. |
+| **v0.3.5** | **11/21/26** | PRICKLY Developer L&R wires 3000-item True/False banks (12 roles × 5 levels × 10 × 5 packs V1-V5) with local pack rotation; final FUSS + PRICKLY circular logos on desk, glossary, and README; memo/FUSS/PRICKLY palette polish; scalable PRICKLY popup + Irish-green circular countdown twin of FUSS. |
+| **v0.3.6** | **11/21/26** (current) | Desk copy/UI: PRICKLY/FUSS italic title tags, drop "sit" language, PRICKLY RESULTS rail matches history latest-run chips, Nell (agent) rewrite label; mint panel colors kept. |
 
 ## One-line each
 
@@ -37,8 +38,11 @@ Glossary + desk names for Benchrex (10) and Biasrex (6) match Hydra/Dehydrus wri
 ### 11/21/26 - v0.3.4
 **PRICKLY + JaPoP on the desk.** `#btn-prickly` opens a FUSS-simple panel (`ui/v2/prickly.js`): pick Developer L&R, JaPoP L&R, or JaPoP Static; collect who-is-sitting; run True/False banks or paste dated lines for a reciprocity/span heuristic. Soft duration note (~3 weeks provisional, ~6 months stronger) on the upload surface - not a hard 2-year gate. Blank/undated uploads defer. Glossary: [PRICKLY](GLOSSARY.md#user-content-prickly), [JaPoP](GLOSSARY.md#user-content-japop) (Just-a-Professional-or-Partnerable; formerly ToP).
 
-### 11/21/26 - v0.3.5 (current)
+### 11/21/26 - v0.3.5
 **PRICKLY banks + final logos.** Developer L&R loads [prickly-dev-banks-variants.json](ui/v2/assets/prickly-dev-banks-variants.json) (3000 True/False items; rotates packs V1-V5). Final circular FUSS and PRICKLY logos on the desk rail, glossary, and README. Memo / FUSS / PRICKLY shared palette; PRICKLY countdown matches FUSS circular splash in Irish-flag green.
+
+### 11/21/26 - v0.3.6 (current)
+**Desk GUI polish.** Centered italic PRICKLY/FUSS title tags; replace user-facing "sit" copy; PRICKLY RESULTS list uses the same latest-run chip structure as history; Full details kicker says Nell (agent) rewrite. Panel wash stays mint (`#D1E6DE`).
 
 ### 11/20/26 - v0.3.3
 **Memo eye-comfort palette ([4Uvals](GLOSSARY.md#user-content-4uvals) / [Menschly](GLOSSARY.md#user-content-menschly) mandate).** Sheet/bevel placements: warm cream #FFF4E5 on the memo background, soft green #E8F3E8 on evaler rectangles (swapped from the first cut). Brief and detail memos on the local desk (`ui/v2`) use three fixed hues chosen for long technical reading on a computer desktop, not for brand decoration:

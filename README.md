@@ -14,7 +14,7 @@ Evalathan houses 4 routing engines: [Hydra](GLOSSARY.md#user-content-hydra), [De
 
 Currently, only Hydra is operational. Hydra is a [conductor](https://opensource.microsoft.com/blog/2026/05/14/conductor-deterministic-orchestration-for-multi-agent-ai-workflows/) of her 16 evalers: like the person at the front of an orchestra who cues each player, she calls sixteen specialized checkers. Evalathan calls those checkers evalers (short for evaluators). Each evaler reports against its own life-cycle gate.
 
-**v0.3.5** (current) ships [PRICKLY](GLOSSARY.md#user-content-prickly) on the desk with 3000-item Developer L&R banks, [JaPoP](GLOSSARY.md#user-content-japop), and final FUSS/PRICKLY logos. Earlier: **v0.3.2** added full glossary sections for [Benchrex](GLOSSARY.md#user-content-benchrex) and [Biasrex](GLOSSARY.md#user-content-biasrex).
+**v0.3.6** (current) ships [PRICKLY](GLOSSARY.md#user-content-prickly) on the desk with 3000-item Developer L&R banks, [JaPoP](GLOSSARY.md#user-content-japop), and final FUSS/PRICKLY logos. Earlier: **v0.3.2** added full glossary sections for [Benchrex](GLOSSARY.md#user-content-benchrex) and [Biasrex](GLOSSARY.md#user-content-biasrex).
 
 After download (below) as a local desktop [GUI](https://en.wikipedia.org/wiki/Graphical_user_interface), Evalathan runs locally as a native desktop app - files live in `evalathan-program` - while an Evalathan icon sits on your Desktop.
 

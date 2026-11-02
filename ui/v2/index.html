@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=gold106" />
+  <link rel="stylesheet" href="styles.css?v=gold108" />
   <link rel="preload" as="image" href="assets/evalathan-dragon.webp?v=5" type="image/webp" />
   <link rel="preload" as="image" href="assets/hydra-logo.webp?v=5" type="image/webp" />
   <link rel="preload" as="image" href="assets/dehydrus-logo.webp?v=5" type="image/webp" />
@@ -37,10 +37,10 @@
           </button>
           <nav class="engine-stack" id="engine-stack" aria-label="Router engines"></nav>
           <div class="mascots">
-            <button type="button" class="mascot-wrap" id="btn-prickly" title="PRICKLY - Live and Realtime sittings plus JaPoP (Just-a-Professional-or-Partnerable)" aria-label="PRICKLY - open test picker">
+            <button type="button" class="mascot-wrap" id="btn-prickly" title="PRICKLY - test yourself &amp; potential partners" aria-label="PRICKLY - open test picker">
               <img class="mascot" src="assets/prickly.png?v=final1" alt="PRICKLY" draggable="false" />
             </button>
-            <button type="button" class="mascot-wrap" id="btn-fuss" title="FUSS - For-User Session Switch (utility timer, not an agent)" aria-label="FUSS - For-User Session Switch">
+            <button type="button" class="mascot-wrap" id="btn-fuss" title="FUSS - you aint rabbithol'n on my watch!" aria-label="FUSS - For-User Session Switch">
               <img class="mascot" src="assets/fuss.png?v=final1" alt="FUSS" draggable="false" />
             </button>
           </div>
@@ -51,8 +51,8 @@
             <button type="button" class="section-label" id="btn-selfbelt" title="Open SELFBELT glossary entry">SELFBELT</button>
           </div>
           <div class="slide-section prickly-results-section" id="prickly-results-section">
-            <button type="button" class="section-label rail-head-prickly" id="btn-prickly-results" title="PRICKLY RESULTS - saved sittings on this device">PRICKLY RESULTS</button>
-            <ul class="past-list past-list-saved" id="prickly-results-list" aria-label="Saved PRICKLY results">
+            <button type="button" class="section-label rail-head-prickly" id="btn-prickly-results" title="PRICKLY RESULTS - saved results on this device">PRICKLY RESULTS</button>
+            <ul class="past-list past-list-latest" id="prickly-results-list" aria-label="Saved PRICKLY results">
               <li class="is-empty">No saved PRICKLY results yet.</li>
             </ul>
           </div>
@@ -137,29 +137,28 @@
       <button type="button" class="fuss-close" id="fuss-close" title="Close FUSS">×</button>
       <div class="fuss-setup" id="fuss-setup">
         <h2 id="fuss-panel-title" class="fuss-title">
-          <span class="fuss-title-session">Session timer</span>
-          <span class="fuss-title-dash"> - </span>
           <a class="fuss-title-fuss" href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/GLOSSARY.md#user-content-fuss" target="_blank" rel="noopener noreferrer" title="FUSS - For-User Session Switch (glossary)">FUSS</a>
         </h2>
+        <p class="fuss-title-tag">you aint rabbithol'n on my watch!</p>
         <p class="fuss-lead">
           FUSS stands for For-User Session Switch. FUSS is a utility timer, not an agent.
-          You use it to time your sitting with AI. It is not medical advice.
+          You use it to time your session with AI. It is not medical advice.
         </p>
         <ol class="fuss-steps">
           <li>Tick the box to confirm you are only setting a timer.</li>
           <li>Choose a duration in minutes (5 to 45; 25 is typical).</li>
           <li>Press <strong>Start timer</strong>.</li>
-          <li>The popup counts 3-2-1-0, then closes while the sitting runs.</li>
+          <li>The popup counts 3-2-1-0, then closes while the timer runs.</li>
           <li>Press <strong>Stop timer</strong> if you finish early.</li>
         </ol>
         <div class="fuss-controls">
           <label class="fuss-ack-row">
             <input id="fuss-ack" type="checkbox" />
-            <span>I understand this is only a timer for my sitting with AI. It is not medical advice, not a diagnosis, and not a replacement for my firm’s AI policy.</span>
+            <span>I understand this is only a timer for my session with AI. It is not medical advice, not a diagnosis, and not a replacement for my firm’s AI policy.</span>
           </label>
           <div class="fuss-mins-row">
             <span class="fuss-mins-label">Minutes</span>
-            <div class="fuss-mins-dial" role="group" aria-label="Sitting length in minutes">
+            <div class="fuss-mins-dial" role="group" aria-label="Session length in minutes">
               <button type="button" class="fuss-mins-step" id="fuss-mins-down" title="Decrease minutes" aria-label="Decrease minutes">-</button>
               <input id="fuss-mins" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="3" value="25" autocomplete="off" aria-label="Minutes" />
               <button type="button" class="fuss-mins-step" id="fuss-mins-up" title="Increase minutes" aria-label="Increase minutes">+</button>
@@ -175,7 +174,7 @@
       </div>
       <div class="fuss-countdown" id="fuss-countdown" hidden aria-live="assertive">
         <p class="fuss-countdown-num" id="fuss-countdown-num">3</p>
-        <p class="fuss-countdown-hint">Starting sitting…</p>
+        <p class="fuss-countdown-hint">Starting…</p>
       </div>
     </div>
   </div>
@@ -194,7 +193,8 @@
 
       <div id="prickly-home">
         <h2 id="prickly-panel-title" class="prickly-title">PRICKLY</h2>
-        <p class="prickly-lead">Pick what you want to sit.</p>
+        <p class="prickly-title-tag">test yourself &amp; potential partners</p>
+        <p class="prickly-lead">Pick a test.</p>
         <div class="prickly-choices">
           <button type="button" class="prickly-choice" data-prickly-test="dev-lr" title="Developer Live and Realtime Questionnaire">
             <strong>Developer L&amp;R <span class="prickly-paren">(Live &amp; Realtime Questionnaire)</span></strong>
@@ -214,7 +214,7 @@
       <div id="prickly-dev-profile" hidden>
         <button type="button" class="prickly-back" id="prickly-dev-back">← Back</button>
         <h2 class="prickly-title">Developer L&amp;R</h2>
-        <p class="prickly-lead">Choose what kind of developer is sitting. Each kind loads its own questionnaire.</p>
+        <p class="prickly-lead">Choose the developer kind. Each one loads its own questionnaire.</p>
         <div class="prickly-form prickly-form-dev">
           <label class="prickly-span-2">Kind of developer
             <select id="prickly-dev-kind">
@@ -273,7 +273,7 @@
 
       <div id="prickly-profile" hidden>
         <button type="button" class="prickly-back" id="prickly-back-home">← Back</button>
-        <h2 id="prickly-profile-title" class="prickly-title">Who is sitting?</h2>
+        <h2 id="prickly-profile-title" class="prickly-title">Who is this for?</h2>
         <p id="prickly-profile-hint" class="prickly-lead"></p>
         <div class="prickly-form">
           <label>Your role

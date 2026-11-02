@@ -342,8 +342,10 @@
       list.appendChild(li);
       return;
     }
-    saved.forEach(function (res) {
+    saved.forEach(function (res, idx) {
       const li = document.createElement("li");
+      /* Same structure as history latest run: newest gets the faint chip */
+      if (idx === 0) li.className = "is-latest";
       const b = document.createElement("button");
       b.type = "button";
       b.className = "run-entry-btn";
@@ -560,7 +562,7 @@
       } else {
         hint.innerHTML =
           "JaPoP (Just-a-Professional-or-Partnerable) is a Live & Realtime (L&R) questionnaire to assess whether the person you are considering as a co-founder or partner is suitable - or whether they are mainly a professional who is not fit for equal partnership. " +
-          '<span class="prickly-hint-cta">Answer who you are below, then sit a timed True/False. Each Next Level Test gets harder.</span>';
+          '<span class="prickly-hint-cta">Answer who you are below, then take a timed True/False. Each Next Level Test gets harder.</span>';
       }
     }
     const nextLabel = $("prickly-profile-next");
@@ -665,7 +667,7 @@
 
   function bandCopy(band) {
     if (band === "strong") {
-      return "Strong read. Most answers matched the key. Keep watching real behavior over time - a sitting is not a permanent stamp.";
+      return "Strong read. Most answers matched the key. Keep watching real behavior over time - one run is not a permanent stamp.";
     }
     if (band === "solid") {
       return "Solid read. You caught many of the traps, with a few misses. Review the misses before you trust a hire or partner call.";
@@ -853,7 +855,7 @@
       lean: lean,
       score: score,
       summary:
-        "Uploads received on this device. File names and notes are stored with this sitting. Full automatic scoring from PDF and audio contents is not wired yet.",
+        "Uploads received on this device. File names and notes are stored with this result. Full automatic scoring from PDF and audio contents is not wired yet.",
       bullets: bullets,
       slots: slots,
     };
@@ -982,7 +984,7 @@
     bullets.push(
       "Compared " +
         peers.length +
-        " saved sitting(s)" +
+        " saved result(s)" +
         (isDev
           ? " across " + kindCount + " Dev L&R expertise area(s). Cross-area compare is allowed - Technical Architect vs Data Engineer is valid."
           : " in the same JaPoP / Static family.") +
@@ -1003,7 +1005,7 @@
       bullets.push(
         "Agentic read - strongest expertise on file: <strong>" +
           escapeHtml(kindLabel(top.kind)) +
-          "</strong> (best sit Level " +
+          "</strong> (best result Level " +
           (top.sit.level || 1) +
           ", " +
           (top.sit.percent != null ? top.sit.percent + "%" : "-") +
@@ -1046,7 +1048,7 @@
         bullets.push(why);
       }
       bullets.push(
-        "Expertise ranking (best sit each): " +
+        "Expertise ranking (best result each): " +
           ranked
             .map(function (x, i) {
               return (
@@ -1079,10 +1081,10 @@
         if (sameLevel) {
           bullets.push(
             d === 0
-              ? "Objective: score tied the prior saved sit at the same level."
+              ? "Objective: score tied the prior saved result at the same level."
               : "Objective: score " +
                   (d > 0 ? "rose " + d : "fell " + Math.abs(d)) +
-                  " points vs the prior saved sit at Level " +
+                  " points vs the prior saved result at Level " +
                   (newest.level || 1) +
                   "."
           );
@@ -1098,7 +1100,7 @@
       }
       if (kindCount < 2 && isDev) {
         bullets.push(
-          "Tip: save sits in other Dev L&R kinds (e.g. Data Engineer and Technical Architect) to unlock cross-expertise ranking."
+          "Tip: save results in other Dev L&R kinds (e.g. Data Engineer and Technical Architect) to unlock cross-expertise ranking."
         );
       }
     }
@@ -1106,7 +1108,7 @@
     bullets.push(
       "Coverage: " +
         peers.length +
-        " saved sit(s)" +
+        " saved result(s)" +
         (isDev
           ? " · kinds: " +
             Object.keys(kinds)
@@ -1179,8 +1181,8 @@
       '<p class="prickly-result-kicker">Compare table</p>' +
       '<p class="prickly-result-sub">' +
       (pack.crossExpertise
-        ? "All saved Dev L&R sits (any expertise), oldest to newest. Focus row is the sitting you opened."
-        : "Saved sits in this family, oldest to newest. Focus row is the sitting you opened.") +
+        ? "All saved Dev L&R results (any expertise), oldest to newest. Focus row is the result you opened."
+        : "Saved results in this family, oldest to newest. Focus row is the result you opened.") +
       "</p>" +
       '<table class="prickly-compare-table"><thead><tr>' +
       "<th>When</th>" +
@@ -1317,7 +1319,7 @@
       "</p>" +
       "</div>" +
       '<div class="prickly-result-block">' +
-      "<p class=\"prickly-result-kicker\">Sitting details</p>" +
+      "<p class=\"prickly-result-kicker\">Result details</p>" +
       "<p>Time on the clock: " +
       secs +
       " seconds.</p>" +

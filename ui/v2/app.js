@@ -1484,7 +1484,7 @@
     });
   }
 
-  /* Nell (comms rewrite): turn Hydra dumps into titled cards humans can read. */
+  /* Nell (agent) rewrite: turn Hydra dumps into titled cards humans can read. */
   function looksLikePath(token) {
     const t = String(token || "").trim();
     if (!t) return false;
@@ -1878,7 +1878,7 @@
       .join("");
     return (
       '<button type="button" class="memo-back memo-back-simple">← Back to brief</button>' +
-      '<p class="memo-kicker">Full details - Nell rewrite: titled cards, short blurbs, evidence listed (not path walls). Glossary links match the left rail.</p>' +
+      '<p class="memo-kicker">Full details - Nell (agent) rewrite: titled cards, short blurbs, evidence listed (not path walls). Glossary links match the left rail.</p>' +
       "<h2>" +
       escapeHtml(run.engine) +
       " detail · " +
@@ -3401,7 +3401,7 @@
       if (els.layer && !els.layer.hidden) fussStatusLine(state);
       if (leftMs <= 0) {
         fussStopTimer({ clearAck: false });
-        fussSetStatus("Sitting ended. Take a break.");
+        fussSetStatus("Session ended. Take a break.");
         fussShowBreak();
       }
     }, 250);
@@ -3429,7 +3429,7 @@
     fussSetStatus(
       "Timer on - " +
         fussClampMins(state.minutes) +
-        " min sitting. " +
+        " min session. " +
         left +
         " left.",
       "is-on"

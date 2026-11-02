@@ -15,7 +15,8 @@ See [BUILDLOG.md](../BUILDLOG.md). Short form:
 - **v0.3.2** (2026-11-20): Benchrex (10) + Biasrex (6) glossary rooms at Hydra/Dehydrus depth; paper + Codex credits; illustrations pending; not live-wired yet.
 - **v0.3.3** (2026-11-20): Desk memo eye-comfort palette `#FFF4E5` / `#E8F3E8` / `#2B2B2B` under [4Uvals](../GLOSSARY.md#user-content-4uvals) + [Menschly](../GLOSSARY.md#user-content-menschly); FUSS and Prickly button hues documented the same way (see root BUILDLOG one-line).
 - **v0.3.4** (2026-11-21): [PRICKLY](../GLOSSARY.md#user-content-prickly) desk live + [JaPoP](../GLOSSARY.md#user-content-japop) L&R/Static (True/False banks, soft 3wk/6mo duration guidance).
-- **v0.3.5** (2026-11-21, current): PRICKLY Developer L&R 3000-item banks (12×5×10×5 packs), final FUSS/PRICKLY logos, desk palette + circular Irish-green countdown.
+- **v0.3.5** (2026-11-21): PRICKLY Developer L&R 3000-item banks (12×5×10×5 packs), final FUSS/PRICKLY logos, desk palette + circular Irish-green countdown.
+- **v0.3.6** (2026-11-21, current): PRICKLY/FUSS title tags + sit-language cleanup; PRICKLY RESULTS rail = history latest-run chips; Nell (agent) rewrite label.
 
 PRETRUWs (PREdiscovery TRuncated-Universes and Worlds) is the 4IR paradigm. LuDaTs (Limited-universe Data Test sets) is the methodology framework under it. Dehydrus conducts the eight LuDaTs brands. HabTwin is not one of those eight.
 
