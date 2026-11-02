@@ -1,34 +1,19 @@
-"""Bake Biasrex emblem into glossary card + UI logo assets (black / white / grey)."""
+"""Bake Biasrex emblem into glossary card + UI logo assets (black / white / grey).
+
+Source is already 630x655 RGBA (same as UI lock). Copy exactly for glossary +
+black + white; derive grey from white for the grey theme.
+"""
 from pathlib import Path
 
 from PIL import Image, ImageOps
 
 ROOT = Path(__file__).resolve().parents[1]
-
-# Black UI emblem (size/placement lock).
+SRC = ROOT / "assets" / "BIASREX_full_trans_FINAL.png"
 BLACK_UI = ROOT / "ui" / "v2" / "assets" / "biasrex-logo.png"
-# Full-transparent emblem for white / light backgrounds (and glossary card).
-SRC_WHITE = ROOT / "assets" / "BIASREX_full_trans_FINAL.png"
-# Grey theme: copy of white-screen logo, darkened to peer engine grey midtones (~63-66).
 GREY_FACTOR = 0.38
 
 
-def fit_to_black_canvas(src: Path, target_w: int, target_h: int) -> Image.Image:
-    """Scale the full source frame into the black UI canvas; do not tight-crop alpha."""
-    im = Image.open(src).convert("RGBA")
-    fitted = Image.new("RGBA", (target_w, target_h), (0, 0, 0, 0))
-    scale = min(target_w / im.width, target_h / im.height)
-    nw = int(round(im.width * scale))
-    nh = int(round(im.height * scale))
-    resized = im.resize((nw, nh), Image.Resampling.LANCZOS)
-    ox = (target_w - nw) // 2
-    oy = (target_h - nh) // 2
-    fitted.paste(resized, (ox, oy), resized)
-    return fitted
-
-
 def grey_from_white(white: Image.Image, factor: float = GREY_FACTOR) -> Image.Image:
-    """Grey-mode art = white-screen emblem, luminance matched to Benchrex/Dehydrus greys."""
     gray = ImageOps.grayscale(white)
     g = Image.eval(gray, lambda p: int(p * factor))
     a = white.split()[-1]
@@ -36,29 +21,37 @@ def grey_from_white(white: Image.Image, factor: float = GREY_FACTOR) -> Image.Im
 
 
 def main() -> None:
-    black = Image.open(BLACK_UI).convert("RGBA")
-    target_w, target_h = black.size
-    if (target_w, target_h) != (630, 655):
-        raise SystemExit(f"unexpected black UI size {target_w}x{target_h}")
+    src = Image.open(SRC).convert("RGBA")
+    if src.size != (630, 655):
+        raise SystemExit(f"unexpected source size {src.size}; expected 630x655")
 
-    white = fit_to_black_canvas(SRC_WHITE, target_w, target_h)
+    # Keep black UI canvas size lock (must match prior splash slot).
+    black_ref = Image.open(BLACK_UI).convert("RGBA")
+    if black_ref.size != (630, 655):
+        raise SystemExit(f"unexpected black UI size {black_ref.size}")
+
+    white = src.copy()
+    black = src.copy()
     grey = grey_from_white(white)
 
-    card_path = ROOT / "assets" / "glossary" / "cards" / "biasrex.png"
-    white_png = ROOT / "ui" / "v2" / "assets" / "biasrex-logo-white.png"
-    white_webp = ROOT / "ui" / "v2" / "assets" / "biasrex-logo-white.webp"
-    grey_png = ROOT / "ui" / "v2" / "assets" / "biasrex-logo-grey.png"
-    grey_webp = ROOT / "ui" / "v2" / "assets" / "biasrex-logo-grey.webp"
+    outs = {
+        ROOT / "assets" / "glossary" / "cards" / "biasrex.png": white,
+        ROOT / "ui" / "v2" / "assets" / "biasrex-logo-white.png": white,
+        ROOT / "ui" / "v2" / "assets" / "biasrex-logo.png": black,
+        ROOT / "ui" / "v2" / "assets" / "biasrex-logo-grey.png": grey,
+    }
+    webps = {
+        ROOT / "ui" / "v2" / "assets" / "biasrex-logo-white.webp": white,
+        ROOT / "ui" / "v2" / "assets" / "biasrex-logo.webp": black,
+        ROOT / "ui" / "v2" / "assets" / "biasrex-logo-grey.webp": grey,
+    }
 
-    white.save(card_path, "PNG", optimize=True)
-    white.save(white_png, "PNG", optimize=True)
-    white.save(white_webp, "WEBP", quality=90, method=6)
-    grey.save(grey_png, "PNG", optimize=True)
-    grey.save(grey_webp, "WEBP", quality=90, method=6)
-
-    for p in (card_path, white_png, white_webp, grey_png, grey_webp):
-        im = Image.open(p)
-        print(p.relative_to(ROOT), im.size, im.mode, p.stat().st_size)
+    for path, im in outs.items():
+        im.save(path, "PNG", optimize=True)
+        print(path.relative_to(ROOT), im.size, path.stat().st_size)
+    for path, im in webps.items():
+        im.save(path, "WEBP", quality=90, method=6)
+        print(path.relative_to(ROOT), im.size, path.stat().st_size)
 
 
 if __name__ == "__main__":
