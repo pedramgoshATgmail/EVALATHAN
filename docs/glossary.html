@@ -1541,7 +1541,9 @@
     window.addEventListener("scroll", () => { if (!list.hidden) placeList(); }, true);
     function jumpToHash() {
       if (location.hash.length < 2) return;
-      const el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      let id = decodeURIComponent(location.hash.slice(1));
+      if (id.indexOf("xl-") === 0) id = id.slice(3);
+      const el = document.getElementById(id);
       if (el) el.scrollIntoView({ block: "start" });
     }
     jumpToHash();
@@ -1652,6 +1654,33 @@
       if (box && box.classList.contains("is-open")) closeXl(true);
       else restoreHome();
     });
+    function cardForId(id) {
+      if (!id) return null;
+      try {
+        return document.querySelector('a.ludats-evaler-xl[href="#' + id + '"]');
+      } catch (err) {
+        return null;
+      }
+    }
+    function landingId() {
+      if (!location.hash || location.hash.length < 2) return null;
+      const h = decodeURIComponent(location.hash.slice(1));
+      if (h.indexOf("xl-") === 0) return h.slice(3);
+      return null;
+    }
+    function openFromLanding() {
+      const id = landingId();
+      const a = cardForId(id);
+      if (!a) return;
+      try {
+        const url = new URL(window.location.href);
+        url.hash = id;
+        history.replaceState(history.state, "", url.href);
+      } catch (err) {}
+      openXl(xlSrc(a), a);
+    }
+    if (document.readyState === "complete") openFromLanding();
+    else window.addEventListener("load", openFromLanding);
     }
   </script>
   <script>
