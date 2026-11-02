@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="black">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EVALATHAN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    (function () {
+      var t = localStorage.getItem("evalathan_theme");
+      if (t !== "black" && t !== "white" && t !== "grey") t = "black";
+      document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
+</head>
+<body>
+  <div class="app">
+    <aside class="left" id="left">
+      <nav class="engines" id="engines"></nav>
+      <div class="mascots">
+        <img src="assets/prickly.png" alt="PRICKLY" title="PRICKLY" />
+        <img src="assets/fuss.png" alt="FUSS" title="FUSS - For-User Session Switch" />
+      </div>
+      <div class="left-foot">
+        <button type="button" class="rail-link" id="btn-gloss" title="Open Evalathan glossary">GLOSS</button>
+        <button type="button" class="rail-link" id="btn-selfbelt" title="Open SELFBELT glossary entry">SELFBELT</button>
+        <div class="theme-row" role="group" aria-label="Color theme">
+          <button type="button" class="theme-btn" data-theme-set="white" title="White">☀</button>
+          <button type="button" class="theme-btn" data-theme-set="grey" title="Grey">◐</button>
+          <button type="button" class="theme-btn" data-theme-set="black" title="Black">☾</button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="center">
+      <header class="center-top">
+        <span class="mark-evals">evals</span>
+        <span class="mark-history">history</span>
+      </header>
+      <div class="hero" id="hero">
+        <img class="hero-mark theme-black" src="assets/evalathan-black.png" alt="EVALATHAN" />
+        <img class="hero-mark theme-light" src="assets/evalathan-white.png" alt="EVALATHAN" />
+        <img class="hero-dragon" src="assets/evalathan-dragon.png" alt="" />
+        <img class="hero-engine" id="hero-engine" src="assets/hydra-logo.png" alt="" hidden />
+        <p class="blurbs" id="blurbs"></p>
+      </div>
+      <section class="slotbox" aria-label="Evaluate target">
+        <p class="slot-label">Paste a GitHub link, or a folder on this PC. Then press Evaluate.</p>
+        <div class="slot-row">
+          <input id="target-input" type="text" spellcheck="false" autocomplete="off" placeholder="" />
+          <input id="folder-picker" type="file" webkitdirectory directory multiple hidden />
+          <button type="button" id="btn-browse">Browse folder</button>
+          <button type="button" id="btn-eval" class="primary">Evaluate</button>
+        </div>
+      </section>
+      <section class="results" id="results" aria-live="polite"></section>
+    </main>
+
+    <aside class="right">
+      <button type="button" class="new-eval" id="btn-new">New eval</button>
+      <input class="right-search" type="search" placeholder="Search" aria-label="Search past runs" id="past-search" />
+      <button type="button" class="past-head" title="Past evaluation runs">PAST RUNS <em id="past-count">(0)</em></button>
+      <ul class="past-list" id="past-list"></ul>
+    </aside>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
