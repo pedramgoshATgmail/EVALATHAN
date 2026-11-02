@@ -13,8 +13,8 @@ import sys
 import time
 from pathlib import Path
 
-DIAMETER = 220
-LOGO_PX = 92
+# Target circle size; logo is scaled to fill it (Pillow) or the circle matches the logo.
+TARGET_DIAMETER = 220
 MAX_SECONDS = 180
 POLL_MS = 120
 DOT_MS = 380
@@ -120,21 +120,37 @@ def _apply_circle_region(root, size: int) -> None:
         pass
 
 
-def _load_logo(path: Path, size: int):
+def _logo_path() -> Path | None:
+    assets = Path(__file__).resolve().parent / "assets"
+    # Pre-sized splash art fills the circle exactly; fall back to the GUI logo.
+    for name in ("fuss-splash.png", "fuss.png"):
+        candidate = assets / name
+        if candidate.is_file():
+            return candidate
+    return None
+
+
+def _load_logo_fill(path: Path, target: int):
+    """Return (photo_image, diameter). Logo fills the circular window."""
     import tkinter as tk
 
     raw = tk.PhotoImage(file=str(path))
     w, h = int(raw.width()), int(raw.height())
     if w <= 0 or h <= 0:
-        return raw
-    if w > size or h > size:
-        factor = max(1, int(round(max(w / size, h / size))))
-        return raw.subsample(factor, factor)
-    if w < size and h < size:
-        factor = max(1, int(size // max(w, h)))
+        return raw, target
+    side = max(w, h)
+    if side == target:
+        return raw, target
+    if side < target:
+        factor = max(1, target // side)
         if factor > 1:
-            return raw.zoom(factor, factor)
-    return raw
+            raw = raw.zoom(factor, factor)
+    elif side > target:
+        factor = max(1, int(round(side / float(target))))
+        if factor > 1:
+            raw = raw.subsample(factor, factor)
+    diameter = max(int(raw.width()), int(raw.height()))
+    return raw, diameter
 
 
 def run_splash() -> int:
@@ -146,8 +162,8 @@ def run_splash() -> int:
     except ImportError:
         return 0
 
-    logo_path = Path(__file__).resolve().parent / "assets" / "fuss.png"
-    if not logo_path.is_file():
+    logo_path = _logo_path()
+    if logo_path is None:
         return 0
 
     mark_running()
@@ -161,34 +177,12 @@ def run_splash() -> int:
     except tk.TclError:
         pass
 
-    bg = "#141414"
-    fg = "#e8e8e8"
-    muted = "#6e6e6e"
-    root.configure(bg=bg)
-
-    size = DIAMETER
-    canvas = tk.Canvas(
-        root,
-        width=size,
-        height=size,
-        bg=bg,
-        highlightthickness=0,
-        bd=0,
-    )
-    canvas.pack(fill="both", expand=True)
-    pad = 3
-    canvas.create_oval(
-        pad,
-        pad,
-        size - pad,
-        size - pad,
-        fill=bg,
-        outline="#2c2c2c",
-        width=2,
-    )
+    # Transparent corners outside the circular region (Windows).
+    key = "#010203"
+    root.configure(bg=key)
 
     try:
-        logo = _load_logo(logo_path, LOGO_PX)
+        logo, size = _load_logo_fill(logo_path, TARGET_DIAMETER)
     except Exception:  # noqa: BLE001
         clear_markers()
         try:
@@ -197,28 +191,55 @@ def run_splash() -> int:
             pass
         return 0
     root._logo = logo  # keep PhotoImage alive
-    canvas.create_image(size // 2, int(size * 0.38), image=logo, anchor="center")
 
-    caption_y = int(size * 0.72)
-    label = canvas.create_text(
-        size // 2 - 18,
-        caption_y,
-        text="launching",
-        fill=fg,
-        font=("Segoe UI", 11),
-        anchor="center",
+    canvas = tk.Canvas(
+        root,
+        width=size,
+        height=size,
+        bg=key,
+        highlightthickness=0,
+        bd=0,
     )
+    canvas.pack(fill="both", expand=True)
+    try:
+        root.attributes("-transparentcolor", key)
+    except tk.TclError:
+        pass
+
+    # Logo fills the circle; circular window clips the square image.
+    canvas.create_image(size // 2, size // 2, image=logo, anchor="center")
+
+    # Black "launching..." with animated dots, centered on the logo.
+    ink = "#000000"
+    ink_mid = "#3a3a3a"
+    ink_dim = "#6a6a6a"
+    cx = size // 2
+    cy = size // 2
+    label = canvas.create_text(
+        cx,
+        cy,
+        text="launching",
+        fill=ink,
+        font=("Segoe UI", 12, "bold"),
+        anchor="e",
+    )
+    # Nudge the word+dots so the whole caption is centered as a group.
     bbox = canvas.bbox(label)
-    word_right = bbox[2] if bbox else (size // 2 + 20)
+    word_w = (bbox[2] - bbox[0]) if bbox else 70
+    dots_w = 28
+    total_w = word_w + 4 + dots_w
+    word_right = cx - total_w // 2 + word_w
+    canvas.coords(label, word_right, cy)
+    canvas.itemconfigure(label, anchor="e")
     dot_ids = []
     for i in range(3):
         dot_ids.append(
             canvas.create_text(
                 word_right + 2 + i * 9,
-                caption_y,
+                cy,
                 text=".",
-                fill=muted,
-                font=("Segoe UI", 14, "bold"),
+                fill=ink_dim,
+                font=("Segoe UI", 16, "bold"),
                 anchor="w",
             )
         )
@@ -238,13 +259,12 @@ def run_splash() -> int:
             return
         active = phase["i"] % 3
         for i, dot_id in enumerate(dot_ids):
-            # Active dot bright; previous still soft; others muted - fade cycle.
             if i == active:
-                color = fg
+                color = ink
             elif i == (active - 1) % 3:
-                color = "#a0a0a0"
+                color = ink_mid
             else:
-                color = muted
+                color = ink_dim
             canvas.itemconfigure(dot_id, fill=color)
         phase["i"] += 1
         root.after(DOT_MS, _tick_dots)

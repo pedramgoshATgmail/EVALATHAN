@@ -25,3 +25,4 @@ def test_splash_script_points_at_ui_file() -> None:
     assert path.name == "launch_splash.py"
     assert path.parent.name == "v2"
     assert (path.parent / "assets" / "fuss.png").is_file()
+    assert (path.parent / "assets" / "fuss-splash.png").is_file()
