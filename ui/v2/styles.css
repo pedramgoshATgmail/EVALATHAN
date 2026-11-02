@@ -366,7 +366,7 @@ button { cursor: pointer; border: 0; background: none; }
   max-width: 40rem;
   margin: 0;
   font-family: var(--mono);
-  font-size: clamp(0.95rem, 1.65vh, 1.09rem); /* +2 sizes */
+  font-size: clamp(0.825rem, 1.525vh, 0.965rem); /* was +2; -1 size */
   line-height: 1.7;
   color: var(--text);
   text-align: center;
@@ -599,7 +599,7 @@ button { cursor: pointer; border: 0; background: none; }
   width: 100%;
   text-align: left;
   font-family: var(--font);
-  font-size: 0.72rem;
+  font-size: 0.845rem; /* was 0.72rem; +1 size (GLOSS / SELFBELT) */
   letter-spacing: 0.14em;
   color: var(--link-blue);
   padding: 0.3rem 0.1rem;
