@@ -192,6 +192,8 @@ Each name opens its glossary entry. An entry has the same three parts as the Hyd
 
 ### Biasrex (six)
 
+<p align="center"><img src="assets/glossary/cards/biasrex.png" alt="Biasrex" width="280"></p>
+
 | Evaler | What it does |
 | :--- | :--- |
 | [Filterly](GLOSSARY.md#user-content-filterly) | Grades attention / selection / availability hygiene when there is too much information (cherry-pick guards, sampling notes). |

@@ -4,14 +4,11 @@ from pathlib import Path
 from PIL import Image, ImageOps
 
 ROOT = Path(__file__).resolve().parents[1]
-ASSETS = Path(
-    r"C:\Users\admin\.cursor\projects\c-Users-admin-Desktop-Altnoble-Clients-AckmanZiff-AZ-Agent-CHARLIE-07-14-2026-az-signal-engine-main\assets"
-)
 
 # Black UI emblem (size/placement lock).
 BLACK_UI = ROOT / "ui" / "v2" / "assets" / "biasrex-logo.png"
 # Full-transparent emblem for white / light backgrounds (and glossary card).
-SRC_WHITE = ASSETS / "BIASREX_full_trans_FINAL-5a2453cd-5d2d-491d-b336-32a8e3bbe07d.png"
+SRC_WHITE = ROOT / "assets" / "BIASREX_full_trans_FINAL.png"
 # Grey theme: copy of white-screen logo, darkened to peer engine grey midtones (~63-66).
 GREY_FACTOR = 0.38
 
