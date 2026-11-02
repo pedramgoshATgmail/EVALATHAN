@@ -718,71 +718,25 @@ When the simulator does run, the agent is handed only the already-available sky 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
 
-<a id="curcuriely" name="curcuriely"></a>
-<h2>CurCuriely</h2>
+<a id="keplerly" name="keplerly"></a>
+<h2>Keplerly</h2>
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-This evaler is based on Marie Skłodowska-Curie and Pierre Curie, the pair who discovered that some matter gives off rays that belong to the atom, and who isolated two new elements from pitchblende. The double Cur in the name is because both of them had to be in the room. CurCuriely (code LuDaTs-CC) is a Dehydrus world under [LuDaTs](#ludats) (Limited-universe Data Test sets). It runs [Mode Pair](#ludats-mode-pair). It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The cell stays deferred until a sealed 1897 pair-world file is in the tree. A blank is not a fail and not a zero.
+This evaler is based on Kepler, the astronomer who discovered that planets travel in ellipses and sweep equal areas in equal times. Keplerly (LuDaTs-K) is a Dehydrus world. It runs [Mode B](#ludats-mode-b). It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The cell stays deferred until a sealed Mars-table world is in the tree. A blank is not a fail and not a zero.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
-This evaler is based on Marie Curie and Pierre Curie, who together, after long shared labor, showed that the rays were a property of the atom and pulled two new elements out of pitchblende. The exam uses [Mode Pair](#ludats-mode-pair): two biography clocks, and two agents - an LLM (Large Language Model) and its own co-LLM partner - who must work the same locked 1897 lab and may challenge each other's notes. One agent reciting the later textbook title is not Gold (the structural prize that wins this world, not a sports rank). Gold is joint. A solo run stays deferred. Pierre's 1906 death and Marie's 1911 solo Nobel are after this room.
+This evaler is based on Kepler, the astronomer who discovered that planets travel in ellipses, not perfect circles. The exam uses [Mode B](#ludats-mode-b): Tycho's Mars table, better numbers, same kind of naked-eye instrument. This is not Copernly's quiz. The freeze sits at 1608 / 1618, around [*Astronomia nova*](https://en.wikipedia.org/wiki/Astronomia_nova) (1609) and [*Harmonices mundi*](https://en.wikipedia.org/wiki/Harmonices_Mundi) (1619). Drawing the ellipse and the equal-area rule from the table is Gold (the structural prize that wins this world, not a sports rank). Naming "Kepler's laws" later is not Gold.
 
-<p align="center"><a href="assets/glossary/cards/curcuriely-card-20261101-xl.png"><img src="assets/glossary/cards/curcuriely-card-20261101.png" alt="CurCuriely is the pair room. Two clocks, two agents, joint Gold." width="703"></a></p>
-<p align="center"><i>If ChatGPT AND Claude were around in our time, both of them trained on all the data up to 1897 A.D., would they together pull two new elements from pitchblende and say the rays belong to the atom - or would they not be able to make such discoveries on their own and even reject such discoveries?</i></p>
-
-<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
-
-Dehydrus calls CurCuriely and locks [Mode Pair](#ludats-mode-pair). World clock T is 1897, before the 1898 isolation notes. Biography clocks A1 and A2 are Marie and Pierre at that year, in the same shed, with Becquerel's 1896 uranium rays already on the table. Two agents are required. They may divide the work, and they may adversarially peer-review each other. A solo run stays deferred; that wait is part of the method, not a fail. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does, v0.3 looks for a sealed LuDaTs-CC world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.
-
-When the simulator does run, both agents get the 1897 corpus only. The next step is to isolate two new-element property cards from pitchblende and to state that the rays belong to the atom, not to a chemical compound. One agent cannot take Gold alone. The 1903 Nobel write-up, the 1911 chemistry prize, and later nuclear models are leakage. The string "radioactivity" without the atomic-property claim is not Gold. Card: [exams/ludats/ludats-cc-curie.yaml](exams/ludats/ludats-cc-curie.yaml).
-
-
-<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
-
-<a id="darwinly" name="darwinly"></a>
-<h2>Darwinly</h2>
-
-<h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
-
-This evaler is based on Darwin, the naturalist who discovered that living forms change through descent with modification. Darwinly (LuDaTs-D) is a required Dehydrus world. It runs [Mode D](#ludats-mode-d). It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The cell stays deferred until a sealed 1858 field world is in the tree. A blank is not a fail and not a zero.
-
-<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
-
-This evaler is based on Darwin, the naturalist who discovered that living forms change through descent with modification and a selection that can accumulate. The exam uses [Mode D](#ludats-mode-d): years of walking, breeding, and notes, not one night and not the finch cartoon. The book [*On the Origin of Species*](https://en.wikipedia.org/wiki/On_the_Origin_of_Species) is 1859, so the freeze is 1858. Descent with a selection that can accumulate is Gold (the structural prize that wins this world, not a sports rank). Saying the later word "evolution" is not Gold. Genetics after 1858 is locked out of the room.
-
-<p align="center"><a href="assets/glossary/cards/darwinly-card-20261101-xl.png"><img src="assets/glossary/cards/darwinly-card-20261101.png" alt="Darwinly accumulates years of field notes. Descent with modification, not the finch cartoon." width="703"></a></p>
-<p align="center"><i>If AI was around in my time, after years of walking, breeding, and notes, would it see descent with modification - or reject my theory of evolution?</i></p>
+<p align="center"><a href="assets/glossary/cards/keplerly-card-20261101t-xl.png"><img src="assets/glossary/cards/keplerly-card-20261101t.png" alt="Keplerly draws the ellipse and equal areas from Tycho's Mars table. Same instrument class." width="703"></a></p>
+<p align="center"><i>If AI was around in my time, sitting with Tycho's Mars table and the same kind of eye as mine, would it throw out perfect circles and draw the ellipse - or keep the circles because a new glass had not been invented yet?</i></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Dehydrus calls Darwinly and locks [Mode D](#ludats-mode-d). World clock T is 1858, before [*On the Origin of Species*](https://en.wikipedia.org/wiki/On_the_Origin_of_Species) (1859). Biography clock A is what Darwin could have reached at that year: field notes, breeding, correspondence, not later genetics. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does, v0.3 looks for a sealed LuDaTs-D world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.
+Dehydrus calls Keplerly and locks [Mode B](#ludats-mode-b). World clocks are 1608 / 1618, beside [*Astronomia nova*](https://en.wikipedia.org/wiki/Astronomia_nova) (1609) and [*Harmonices mundi*](https://en.wikipedia.org/wiki/Harmonices_Mundi) (1619). Biography clock A is Kepler working Tycho's Mars table with the same instrument class, not a telescope. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does, v0.3 looks for a sealed LuDaTs-K world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.
 
-When the simulator does run, the agent must accumulate a long field record and then state descent with modification plus a selection mechanism that can accumulate. The finch cartoon as an 1835 eureka is leakage. Genetics after 1858 is leakage. The string "evolution" is not Gold. Card: [exams/ludats/ludats-d-darwin.yaml](exams/ludats/ludats-d-darwin.yaml).
-
-
-<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
-
-<a id="einsteinly" name="einsteinly"></a>
-<h2>Einsteinly</h2>
-
-<h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
-
-This evaler is based on Einstein, the physicist who discovered the field equations of general relativity. Einsteinly (LuDaTs-E) is a Dehydrus world, General Relativity only. It runs [Mode F](#ludats-mode-f). 1905 is a different freeze and is not this exam. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. A blank is not a fail and not a zero.
-
-<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
-
-This evaler is based on Einstein, the physicist who discovered the field equations of general relativity. The exam uses [Mode F](#ludats-mode-f): Mercury's leftover motion is a clue Newton's gravity cannot eat, then a new field in 1914-1915. The 1919 eclipse is a check after the theory, not a hint before it. That later check is not Gold (the structural prize that wins this world, not a sports rank) if it leaks in as a hint. Photoelectric work, Brownian motion, and 1905 special relativity belong to other rooms.
-
-<p align="center"><a href="assets/glossary/cards/einsteinly-card-xl.png"><img src="assets/glossary/cards/einsteinly-card.png" alt="Einsteinly writes the field equations from Mercury's leftover. The 1919 eclipse is after the theory." width="703"></a></p>
-<p align="center"><i>If AI was around in my time, with only Mercury's leftover wobble and not the later eclipse plates, would it write the new General Relativity and E=MC on its own based on all the knowlege at that time?</i></p>
-
-<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
-
-Dehydrus calls Einsteinly and locks [Mode F](#ludats-mode-f). World clock T is 1914 (field equations November 1915). This is not 1905. Biography clock A is Einstein at that year, working from the Mercury leftover, not from 1919 plates. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does, v0.3 looks for a sealed LuDaTs-E world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.
-
-When the simulator does run, the first step is the anomaly the old law cannot eat. The next step is to write field equations whose weak-field limit recovers Newton, and that account for Mercury's perihelion. Light deflection is checked only after that theory is submitted. 1919 eclipse plates before submission are leakage and fail the run. The string "general relativity" is not Gold. Photoelectric / Brownian / 1905 special relativity are not this exam. Card: [exams/ludats/ludats-e-einstein-gr.yaml](exams/ludats/ludats-e-einstein-gr.yaml).
+When the simulator does run, the first step is to read the sharper Mars table. The next step is to replace the circle with an elliptical orbit and with equal areas in equal times. Using a telescope is the wrong instrument class and is not [Mode B](#ludats-mode-b). Naming Kepler's laws without drawing them from the table is not Gold. Card: [exams/ludats/ludats-k-kepler.yaml](exams/ludats/ludats-k-kepler.yaml).
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -810,25 +764,48 @@ When the simulator does run, the first step is the new optic: Jupiter has satell
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
 
-<a id="keplerly" name="keplerly"></a>
-<h2>Keplerly</h2>
+<a id="newtonly" name="newtonly"></a>
+<h2>Newtonly</h2>
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-This evaler is based on Kepler, the astronomer who discovered that planets travel in ellipses and sweep equal areas in equal times. Keplerly (LuDaTs-K) is a Dehydrus world. It runs [Mode B](#ludats-mode-b). It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The cell stays deferred until a sealed Mars-table world is in the tree. A blank is not a fail and not a zero.
+This evaler is based on Newton, the mathematician who discovered that one inverse-square law of gravitation governs both the heavens and the earth. Newtonly (LuDaTs-N) sits on the full Dehydrus desk and is deferred to v2. It runs [Mode Unification](#ludats-mode-unification). It waits until [Keplerly](#keplerly) and [Galileoly](#galileoly) both show a sealed world. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. A blank is not a fail and not a zero.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
-This evaler is based on Kepler, the astronomer who discovered that planets travel in ellipses, not perfect circles. The exam uses [Mode B](#ludats-mode-b): Tycho's Mars table, better numbers, same kind of naked-eye instrument. This is not Copernly's quiz. The freeze sits at 1608 / 1618, around [*Astronomia nova*](https://en.wikipedia.org/wiki/Astronomia_nova) (1609) and [*Harmonices mundi*](https://en.wikipedia.org/wiki/Harmonices_Mundi) (1619). Drawing the ellipse and the equal-area rule from the table is Gold (the structural prize that wins this world, not a sports rank). Naming "Kepler's laws" later is not Gold.
+This evaler is based on Newton, the mathematician who discovered that one inverse-square law of gravitation governs both the heavens and the earth. The exam uses [Mode Unification](#ludats-mode-unification): it unites Kepler's sky with Galileo's ground. The apple story is folklore and is not the exam. The freeze is 1686, the year before the [*Principia*](https://en.wikipedia.org/wiki/Philosophi%C3%A6_Naturalis_Principia_Mathematica) (1687). One inverse-square law for heavens and earth is Gold (the structural prize that wins this world, not a sports rank).
 
-<p align="center"><a href="assets/glossary/cards/keplerly-card-20261101t-xl.png"><img src="assets/glossary/cards/keplerly-card-20261101t.png" alt="Keplerly draws the ellipse and equal areas from Tycho's Mars table. Same instrument class." width="703"></a></p>
-<p align="center"><i>If AI was around in my time, sitting with Tycho's Mars table and the same kind of eye as mine, would it throw out perfect circles and draw the ellipse - or keep the circles because a new glass had not been invented yet?</i></p>
+<p align="center"><a href="assets/glossary/cards/newtonly-card-xl.png"><img src="assets/glossary/cards/newtonly-card.png" alt="Newtonly waits for Keplerly and Galileoly, then unites sky and ground under one law." width="703"></a></p>
+<p align="center"><i>Kepler mapped the sky. Galileo mapped falling things on Earth. If AI had both these knowleges, would it join them under one law and prove something called Gravity, as well as Method of Fluxons (what became Calculus)?</i></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Dehydrus calls Keplerly and locks [Mode B](#ludats-mode-b). World clocks are 1608 / 1618, beside [*Astronomia nova*](https://en.wikipedia.org/wiki/Astronomia_nova) (1609) and [*Harmonices mundi*](https://en.wikipedia.org/wiki/Harmonices_Mundi) (1619). Biography clock A is Kepler working Tycho's Mars table with the same instrument class, not a telescope. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does, v0.3 looks for a sealed LuDaTs-K world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.
+Dehydrus calls Newtonly and locks [Mode Unification](#ludats-mode-unification). The first step is a gate: [Keplerly](#keplerly) and [Galileoly](#galileoly) must both already show a sealed, measured world. If either is missing, Newtonly stays deferred to v2. That wait is part of the method, not a fail. World clock T is 1686, before the [*Principia*](https://en.wikipedia.org/wiki/Philosophi%C3%A6_Naturalis_Principia_Mathematica) (1687). Biography clock A is Newton at that year. The apple story is not a catalyst.
 
-When the simulator does run, the first step is to read the sharper Mars table. The next step is to replace the circle with an elliptical orbit and with equal areas in equal times. Using a telescope is the wrong instrument class and is not [Mode B](#ludats-mode-b). Naming Kepler's laws without drawing them from the table is not Gold. Card: [exams/ludats/ludats-k-kepler.yaml](exams/ludats/ludats-k-kepler.yaml).
+If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If the gate is open and a sealed LuDaTs-N file is present, v0.3 names the file. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. When the simulator does run, the work is inverse-square universal gravitation: celestial and terrestrial the same law. The apple story is not Gold. Do not run Newtonly as v1 Gold before Keplerly and Galileoly both have sealed worlds. Card: [exams/ludats/ludats-n-newton.yaml](exams/ludats/ludats-n-newton.yaml).
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+
+<a id="darwinly" name="darwinly"></a>
+<h2>Darwinly</h2>
+
+<h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
+
+This evaler is based on Darwin, the naturalist who discovered that living forms change through descent with modification. Darwinly (LuDaTs-D) is a required Dehydrus world. It runs [Mode D](#ludats-mode-d). It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The cell stays deferred until a sealed 1858 field world is in the tree. A blank is not a fail and not a zero.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+This evaler is based on Darwin, the naturalist who discovered that living forms change through descent with modification and a selection that can accumulate. The exam uses [Mode D](#ludats-mode-d): years of walking, breeding, and notes, not one night and not the finch cartoon. The book [*On the Origin of Species*](https://en.wikipedia.org/wiki/On_the_Origin_of_Species) is 1859, so the freeze is 1858. Descent with a selection that can accumulate is Gold (the structural prize that wins this world, not a sports rank). Saying the later word "evolution" is not Gold. Genetics after 1858 is locked out of the room.
+
+<p align="center"><a href="assets/glossary/cards/darwinly-card-20261101-xl.png"><img src="assets/glossary/cards/darwinly-card-20261101.png" alt="Darwinly accumulates years of field notes. Descent with modification, not the finch cartoon." width="703"></a></p>
+<p align="center"><i>If AI was around in my time, after years of walking, breeding, and notes, would it see descent with modification - or reject my theory of evolution?</i></p>
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Dehydrus calls Darwinly and locks [Mode D](#ludats-mode-d). World clock T is 1858, before [*On the Origin of Species*](https://en.wikipedia.org/wiki/On_the_Origin_of_Species) (1859). Biography clock A is what Darwin could have reached at that year: field notes, breeding, correspondence, not later genetics. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does, v0.3 looks for a sealed LuDaTs-D world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.
+
+When the simulator does run, the agent must accumulate a long field record and then state descent with modification plus a selection mechanism that can accumulate. The finch cartoon as an 1835 eureka is leakage. Genetics after 1858 is leakage. The string "evolution" is not Gold. Card: [exams/ludats/ludats-d-darwin.yaml](exams/ludats/ludats-d-darwin.yaml).
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -856,25 +833,48 @@ When the simulator does run, the first step is to group the 1868 set periodicall
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
 
-<a id="newtonly" name="newtonly"></a>
-<h2>Newtonly</h2>
+<a id="curcuriely" name="curcuriely"></a>
+<h2>CurCuriely</h2>
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-This evaler is based on Newton, the mathematician who discovered that one inverse-square law of gravitation governs both the heavens and the earth. Newtonly (LuDaTs-N) sits on the full Dehydrus desk and is deferred to v2. It runs [Mode Unification](#ludats-mode-unification). It waits until [Keplerly](#keplerly) and [Galileoly](#galileoly) both show a sealed world. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. A blank is not a fail and not a zero.
+This evaler is based on Marie Skłodowska-Curie and Pierre Curie, the pair who discovered that some matter gives off rays that belong to the atom, and who isolated two new elements from pitchblende. The double Cur in the name is because both of them had to be in the room. CurCuriely (code LuDaTs-CC) is a Dehydrus world under [LuDaTs](#ludats) (Limited-universe Data Test sets). It runs [Mode Pair](#ludats-mode-pair). It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The cell stays deferred until a sealed 1897 pair-world file is in the tree. A blank is not a fail and not a zero.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
-This evaler is based on Newton, the mathematician who discovered that one inverse-square law of gravitation governs both the heavens and the earth. The exam uses [Mode Unification](#ludats-mode-unification): it unites Kepler's sky with Galileo's ground. The apple story is folklore and is not the exam. The freeze is 1686, the year before the [*Principia*](https://en.wikipedia.org/wiki/Philosophi%C3%A6_Naturalis_Principia_Mathematica) (1687). One inverse-square law for heavens and earth is Gold (the structural prize that wins this world, not a sports rank).
+This evaler is based on Marie Curie and Pierre Curie, who together, after long shared labor, showed that the rays were a property of the atom and pulled two new elements out of pitchblende. The exam uses [Mode Pair](#ludats-mode-pair): two biography clocks, and two agents - an LLM (Large Language Model) and its own co-LLM partner - who must work the same locked 1897 lab and may challenge each other's notes. One agent reciting the later textbook title is not Gold (the structural prize that wins this world, not a sports rank). Gold is joint. A solo run stays deferred. Pierre's 1906 death and Marie's 1911 solo Nobel are after this room.
 
-<p align="center"><a href="assets/glossary/cards/newtonly-card-xl.png"><img src="assets/glossary/cards/newtonly-card.png" alt="Newtonly waits for Keplerly and Galileoly, then unites sky and ground under one law." width="703"></a></p>
-<p align="center"><i>Kepler mapped the sky. Galileo mapped falling things on Earth. If AI had both these knowleges, would it join them under one law and prove something called Gravity, as well as Method of Fluxons (what became Calculus)?</i></p>
+<p align="center"><a href="assets/glossary/cards/curcuriely-card-20261101-xl.png"><img src="assets/glossary/cards/curcuriely-card-20261101.png" alt="CurCuriely is the pair room. Two clocks, two agents, joint Gold." width="703"></a></p>
+<p align="center"><i>If ChatGPT AND Claude were around in our time, both of them trained on all the data up to 1897 A.D., would they together pull two new elements from pitchblende and say the rays belong to the atom - or would they not be able to make such discoveries on their own and even reject such discoveries?</i></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Dehydrus calls Newtonly and locks [Mode Unification](#ludats-mode-unification). The first step is a gate: [Keplerly](#keplerly) and [Galileoly](#galileoly) must both already show a sealed, measured world. If either is missing, Newtonly stays deferred to v2. That wait is part of the method, not a fail. World clock T is 1686, before the [*Principia*](https://en.wikipedia.org/wiki/Philosophi%C3%A6_Naturalis_Principia_Mathematica) (1687). Biography clock A is Newton at that year. The apple story is not a catalyst.
+Dehydrus calls CurCuriely and locks [Mode Pair](#ludats-mode-pair). World clock T is 1897, before the 1898 isolation notes. Biography clocks A1 and A2 are Marie and Pierre at that year, in the same shed, with Becquerel's 1896 uranium rays already on the table. Two agents are required. They may divide the work, and they may adversarially peer-review each other. A solo run stays deferred; that wait is part of the method, not a fail. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does, v0.3 looks for a sealed LuDaTs-CC world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.
 
-If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If the gate is open and a sealed LuDaTs-N file is present, v0.3 names the file. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. When the simulator does run, the work is inverse-square universal gravitation: celestial and terrestrial the same law. The apple story is not Gold. Do not run Newtonly as v1 Gold before Keplerly and Galileoly both have sealed worlds. Card: [exams/ludats/ludats-n-newton.yaml](exams/ludats/ludats-n-newton.yaml).
+When the simulator does run, both agents get the 1897 corpus only. The next step is to isolate two new-element property cards from pitchblende and to state that the rays belong to the atom, not to a chemical compound. One agent cannot take Gold alone. The 1903 Nobel write-up, the 1911 chemistry prize, and later nuclear models are leakage. The string "radioactivity" without the atomic-property claim is not Gold. Card: [exams/ludats/ludats-cc-curie.yaml](exams/ludats/ludats-cc-curie.yaml).
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+
+<a id="einsteinly" name="einsteinly"></a>
+<h2>Einsteinly</h2>
+
+<h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
+
+This evaler is based on Einstein, the physicist who discovered the field equations of general relativity. Einsteinly (LuDaTs-E) is a Dehydrus world, General Relativity only. It runs [Mode F](#ludats-mode-f). 1905 is a different freeze and is not this exam. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. A blank is not a fail and not a zero.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+This evaler is based on Einstein, the physicist who discovered the field equations of general relativity. The exam uses [Mode F](#ludats-mode-f): Mercury's leftover motion is a clue Newton's gravity cannot eat, then a new field in 1914-1915. The 1919 eclipse is a check after the theory, not a hint before it. That later check is not Gold (the structural prize that wins this world, not a sports rank) if it leaks in as a hint. Photoelectric work, Brownian motion, and 1905 special relativity belong to other rooms.
+
+<p align="center"><a href="assets/glossary/cards/einsteinly-card-xl.png"><img src="assets/glossary/cards/einsteinly-card.png" alt="Einsteinly writes the field equations from Mercury's leftover. The 1919 eclipse is after the theory." width="703"></a></p>
+<p align="center"><i>If AI was around in my time, with only Mercury's leftover wobble and not the later eclipse plates, would it write the new General Relativity and E=MC on its own based on all the knowlege at that time?</i></p>
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Dehydrus calls Einsteinly and locks [Mode F](#ludats-mode-f). World clock T is 1914 (field equations November 1915). This is not 1905. Biography clock A is Einstein at that year, working from the Mercury leftover, not from 1919 plates. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does, v0.3 looks for a sealed LuDaTs-E world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.
+
+When the simulator does run, the first step is the anomaly the old law cannot eat. The next step is to write field equations whose weak-field limit recovers Newton, and that account for Mercury's perihelion. Light deflection is checked only after that theory is submitted. 1919 eclipse plates before submission are leakage and fail the run. The string "general relativity" is not Gold. Photoelectric / Brownian / 1905 special relativity are not this exam. Card: [exams/ludats/ludats-e-einstein-gr.yaml](exams/ludats/ludats-e-einstein-gr.yaml).
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
