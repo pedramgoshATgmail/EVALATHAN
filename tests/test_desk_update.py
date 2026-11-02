@@ -59,7 +59,9 @@ def test_ensure_applies_when_behind_noninteractive(tmp_path: Path, monkeypatch) 
         with patch(
             "evalathan.desk_update.apply_published_main", return_value=(True, "bbbbbbb")
         ) as apply:
-            with patch("evalathan.desk_update._reexec_desk") as reexec:
-                ensure_published_main(interactive=False)
-                apply.assert_called_once_with(tmp_path)
-                reexec.assert_called_once()
+            with patch("evalathan.desk_update._spawn_fuss_splash") as splash:
+                with patch("evalathan.desk_update._reexec_desk") as reexec:
+                    ensure_published_main(interactive=False)
+                    splash.assert_called_once()
+                    apply.assert_called_once_with(tmp_path)
+                    reexec.assert_called_once()

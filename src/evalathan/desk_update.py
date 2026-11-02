@@ -153,71 +153,194 @@ def _close_splash_for_dialog() -> None:
         pass
 
 
-def _ask_user(status: UpdateStatus) -> bool:
-    """Return True if the user chose Update now."""
-    _close_splash_for_dialog()
-    msg = (
-        "A newer Evalathan desk is on GitHub.\n\n"
-        f"This PC:  {_short(status.local) or '?'}\n"
-        f"Published: {_short(status.remote) or '?'}\n\n"
-        "Update now so Windows and Mac desks match main?"
-    )
-    # messagebox is modal and reliable on Windows (custom ttk can sit under splash).
+def _spawn_fuss_splash() -> None:
+    """Show the FUSS circular launching splash immediately after Update now."""
     try:
-        import tkinter as tk
-        from tkinter import messagebox
+        from evalathan.launch_splash import clear_stop, spawn_if_needed
 
-        root = tk.Tk()
-        root.withdraw()
-        try:
-            root.attributes("-topmost", True)
-        except Exception:  # noqa: BLE001
-            pass
-        root.update_idletasks()
-        yes = messagebox.askyesno(
-            "EVALATHAN update",
-            msg,
-            parent=root,
-            icon="question",
-        )
-        root.destroy()
-        _log(f"askyesno behind={status.behind} choice={'update' if yes else 'skip'}")
-        return bool(yes)
-    except Exception as exc:  # noqa: BLE001
-        _log(f"askyesno failed: {exc}")
-        return True  # no GUI - apply so published main still wins
-
-
-def _show_done(sha: str) -> None:
-    _close_splash_for_dialog()
-    try:
-        import tkinter as tk
-        from tkinter import messagebox
-
-        root = tk.Tk()
-        root.withdraw()
-        try:
-            root.attributes("-topmost", True)
-        except Exception:  # noqa: BLE001
-            pass
-        messagebox.showinfo(
-            "EVALATHAN",
-            f"Updated to {_short(sha) or 'published main'}.\nRestarting the desk…",
-            parent=root,
-        )
-        root.destroy()
+        clear_stop()
+        spawn_if_needed()
     except Exception:  # noqa: BLE001
-        return
+        pass
+
+
+def _ask_user(status: UpdateStatus) -> bool:
+    """Polished Update now / Not now card. Return True if the user chose Update now."""
+    _close_splash_for_dialog()
+    try:
+        import tkinter as tk
+    except Exception as exc:  # noqa: BLE001
+        _log(f"ask_user no tkinter: {exc}")
+        return True
+
+    decision = {"update": False}
+    bg = "#0c0c0c"
+    card = "#161616"
+    line = "#2a2a2a"
+    text = "#f2f3f4"
+    muted = "#9a9a9a"
+    accent = "#d8e04a"
+    blue = "#7eb8ff"
+
+    root = tk.Tk()
+    root.title("EVALATHAN")
+    root.configure(bg=bg)
+    root.resizable(False, False)
+    try:
+        root.attributes("-topmost", True)
+    except Exception:  # noqa: BLE001
+        pass
+    root.overrideredirect(False)
+
+    shell = tk.Frame(root, bg=line, padx=1, pady=1)
+    shell.pack(fill="both", expand=True)
+    body = tk.Frame(shell, bg=card, padx=28, pady=24)
+    body.pack(fill="both", expand=True)
+
+    tk.Label(
+        body,
+        text="EVALATHAN",
+        bg=card,
+        fg=accent,
+        font=("Segoe UI", 11, "bold"),
+        anchor="w",
+    ).pack(fill="x")
+    tk.Label(
+        body,
+        text="Desk update available",
+        bg=card,
+        fg=text,
+        font=("Segoe UI", 16, "bold"),
+        anchor="w",
+        pady=(8, 0),
+    ).pack(fill="x")
+    tk.Label(
+        body,
+        text=(
+            "Published main has a newer desk than this PC.\n"
+            "Update now to match Windows and Mac installs."
+        ),
+        bg=card,
+        fg=muted,
+        font=("Segoe UI", 10),
+        justify="left",
+        anchor="w",
+        pady=(10, 0),
+    ).pack(fill="x")
+
+    meta = tk.Frame(body, bg=card, pady=14)
+    meta.pack(fill="x")
+    tk.Label(
+        meta,
+        text=f"This PC   {_short(status.local) or '?'}",
+        bg=card,
+        fg=muted,
+        font=("Consolas", 9),
+        anchor="w",
+    ).pack(fill="x")
+    tk.Label(
+        meta,
+        text=f"GitHub    {_short(status.remote) or '?'}",
+        bg=card,
+        fg=blue,
+        font=("Consolas", 9),
+        anchor="w",
+    ).pack(fill="x")
+
+    actions = tk.Frame(body, bg=card)
+    actions.pack(fill="x", pady=(6, 0))
+
+    def on_update() -> None:
+        decision["update"] = True
+        root.destroy()
+
+    def on_skip() -> None:
+        decision["update"] = False
+        root.destroy()
+
+    skip = tk.Button(
+        actions,
+        text="Not now",
+        command=on_skip,
+        bg="#222",
+        fg=text,
+        activebackground="#333",
+        activeforeground=text,
+        relief="flat",
+        bd=0,
+        padx=18,
+        pady=10,
+        font=("Segoe UI", 10),
+        cursor="hand2",
+    )
+    skip.pack(side="right")
+
+    update = tk.Button(
+        actions,
+        text="Update now",
+        command=on_update,
+        bg=accent,
+        fg="#111",
+        activebackground="#e8f05a",
+        activeforeground="#111",
+        relief="flat",
+        bd=0,
+        padx=18,
+        pady=10,
+        font=("Segoe UI", 10, "bold"),
+        cursor="hand2",
+    )
+    update.pack(side="right", padx=(0, 10))
+
+    root.protocol("WM_DELETE_WINDOW", on_skip)
+    root.update_idletasks()
+    w, h = max(420, root.winfo_reqwidth()), root.winfo_reqheight()
+    x = max(40, (root.winfo_screenwidth() - w) // 2)
+    y = max(40, (root.winfo_screenheight() - h) // 3)
+    root.geometry(f"{w}x{h}+{x}+{y}")
+    root.lift()
+    root.focus_force()
+    try:
+        update.focus_set()
+    except Exception:  # noqa: BLE001
+        pass
+    root.mainloop()
+    _log(f"ask_user behind={status.behind} choice={'update' if decision['update'] else 'skip'}")
+    return bool(decision["update"])
 
 
 def _reexec_desk() -> None:
-    """Replace this process with a fresh open_desk so new ui/v2 loads."""
+    """Start a fresh open_desk (FUSS splash already up) and exit this process."""
     os.environ["EVALATHAN_RELAUNCHED"] = "1"
     os.environ["EVALATHAN_SKIP_UPDATE"] = "1"  # already on main; skip second popup
     code = (
         "from evalathan.webdesk import open_desk; raise SystemExit(open_desk())"
     )
-    os.execv(sys.executable, [sys.executable, "-c", code])
+    env = os.environ.copy()
+    kwargs: dict = {
+        "args": [sys.executable, "-c", code],
+        "env": env,
+        "stdin": subprocess.DEVNULL,
+        "close_fds": True,
+    }
+    if sys.platform == "win32":
+        # Detach so the Desktop .bat parent can exit without killing the new desk.
+        kwargs["creationflags"] = (
+            getattr(subprocess, "CREATE_NEW_PROCESS_GROUP", 0x00000200)
+            | getattr(subprocess, "DETACHED_PROCESS", 0x00000008)
+        )
+        kwargs["stdout"] = subprocess.DEVNULL
+        kwargs["stderr"] = subprocess.DEVNULL
+    else:
+        kwargs["start_new_session"] = True
+    try:
+        subprocess.Popen(**kwargs)
+        _log("reexec: spawned fresh open_desk")
+    except OSError as exc:
+        _log(f"reexec Popen failed ({exc}); trying execv")
+        os.execv(sys.executable, [sys.executable, "-c", code])
+        return
+    raise SystemExit(0)
 
 
 def _migrate_legacy_desktop_launcher(repo: Path) -> None:
@@ -266,13 +389,18 @@ def ensure_published_main(*, interactive: bool = True) -> None:
     if interactive and not _ask_user(status):
         return
 
+    # Agree -> FUSS circle immediately, then pull + relaunch desk (no second OK).
+    _spawn_fuss_splash()
     ok, detail = apply_published_main(status.repo)
     if not ok:
+        _log(f"apply failed: {detail}")
         print(f"Evalathan update failed: {detail}", flush=True)
         return
-    if interactive:
-        _show_done(detail if len(detail) <= 12 else status.remote)
+    _log(f"apply ok: {detail}")
     try:
         _reexec_desk()
+    except SystemExit:
+        raise
     except OSError as exc:
+        _log(f"reexec failed: {exc}")
         print(f"Evalathan updated but could not restart: {exc}", flush=True)
