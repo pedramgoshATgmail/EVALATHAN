@@ -34,3 +34,51 @@ def test_search_index_matches_glossary_anchors() -> None:
     assert "hrefFor" in html
     assert "curcuriely" in indexed
     assert "ludats-mode-pair" in indexed
+    hydra = (
+        "archly",
+        "chorely",
+        "codely",
+        "devly",
+        "domly",
+        "levi",
+        "menschly",
+        "mixly",
+        "pressly",
+        "refactorly",
+        "runly",
+        "stackly",
+        "tokely",
+        "trajectly",
+        "triadly",
+        "warrantly",
+    )
+    ludats = (
+        "copernly",
+        "keplerly",
+        "galileoly",
+        "newtonly",
+        "darwinly",
+        "mendly",
+        "curcuriely",
+        "einsteinly",
+    )
+    for brand in hydra + ludats:
+        assert any(
+            "ludats-evaler-xl" in m.group(0)
+            for m in re.finditer(
+                r"<a[^>]+href=\"[^\"]*" + re.escape(brand) + r"[^\"]*\"[^>]*>",
+                html,
+            )
+        ), brand
+    card_links = re.findall(
+        r"<a([^>]*href=\"[^\"]*glossary/cards/[^\"]+\"[^>]*)>",
+        html,
+    )
+    assert card_links
+    for attrs in card_links:
+        assert "ludats-evaler-xl" in attrs
+    assert 'id="ludats-xl-close"' in html
+    assert "__evalathanCloseLudatsXl" in html
+    assert "evalathanXlHome" in html
+    assert "addEventListener(\"click\"" in html
+    assert ", true);" in html
