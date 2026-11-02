@@ -3,20 +3,31 @@
 SEISMO-style overlay rails. **Splash = both sides closed.** Corner words open the sliders.
 
 - Top-left **evals** (lime mono) → left engines rail (HYDRA / DEHYDRUS / BENCHREX / BIASREX wordmark headers)
-- Top-right **history** (lime mono) → right PAST RUNS rail
+- Top-right **history** (lime mono) → right **latest run** + **saved runs** rail
 
 Splash brand stack (matches PDF ref): red dragon mark → **EVALATHAN** title → rule → three mono blurbs → pill upload. No blue Hydra art on the splash.
 
 ## Open in a browser
 
 ```bat
-cd ui\v2
-python -m http.server 8787
+python ui\v2\serve.py
 ```
 
 http://127.0.0.1:8787/
 
 Hard-refresh (Ctrl+Shift+R) after pulls.
+
+## Evaluate → memo
+
+**Evaluate** opens a processing popup (fading dots + per-evaler blurbs), then the same window becomes a short developer memo. **Full detailed memo** lists each evaler on its own line with the same glossary hyperlinks as the left rail. **Download** (orange) opens a print/PDF pack; **Save** (green) writes **latest run** and appends **saved runs** in localStorage (compares the same target against the prior saved twin).
+
+## Desktop icon
+
+```powershell
+powershell -ExecutionPolicy Bypass -File ui\v2\install_desktop_shortcut.ps1
+```
+
+Creates `Evalathan (Hydra GUI).lnk` on the Desktop using `assets/favicon.ico`.
 
 ## Themes
 

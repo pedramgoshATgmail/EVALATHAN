@@ -4,10 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>EVALATHAN</title>
+  <link rel="icon" href="assets/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="assets/favicon-32.png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="assets/favicon-192.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=gold9" />
+  <link rel="stylesheet" href="styles.css?v=gold39" />
+  <link rel="preload" as="image" href="assets/evalathan-dragon.webp?v=5" type="image/webp" />
+  <link rel="preload" as="image" href="assets/hydra-logo.webp?v=5" type="image/webp" />
+  <link rel="preload" as="image" href="assets/dehydrus-logo.webp?v=5" type="image/webp" />
+  <link rel="preload" as="image" href="assets/benchrex-logo.webp?v=5" type="image/webp" />
   <script>
     (function () {
       var t = localStorage.getItem("evalathan_theme");
@@ -27,8 +34,8 @@
           </button>
           <nav class="engine-stack" id="engine-stack" aria-label="Router engines"></nav>
           <div class="mascots">
-            <img src="assets/prickly.png" alt="PRICKLY" title="PRICKLY" />
-            <img src="assets/fuss.png" alt="FUSS" title="FUSS - For-User Session Switch" />
+            <img class="mascot is-soon" src="assets/prickly.png" alt="PRICKLY" title="Coming soon" />
+            <img class="mascot is-soon" src="assets/fuss.png" alt="FUSS" title="Coming soon" />
           </div>
           <div class="slide-section">
             <button type="button" class="section-label" id="btn-gloss" title="Open Evalathan glossary">GLOSS</button>
@@ -53,7 +60,7 @@
           </button>
         </div>
         <div class="head-right">
-          <button type="button" class="corner-toggle runs-corner" id="btn-toggle-runs" aria-expanded="false" title="history - open past runs">
+          <button type="button" class="corner-toggle runs-corner" id="btn-toggle-runs" aria-expanded="false" title="history - open latest run and saved runs">
             <span class="corner-label">history</span>
           </button>
         </div>
@@ -65,7 +72,7 @@
             <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/GLOSSARY.md#user-content-product-led-growth" target="_blank" rel="noopener noreferrer" title="Product-led growth (PLG) - glossary">Making your PLG more efficient, robust, and user-friendly!</a>
           </p>
           <div class="splash-art-slot art-evalathan">
-            <img class="splash-art" id="splash-art" src="assets/evalathan-dragon.png" alt="" />
+            <img class="splash-art" id="splash-art" src="assets/evalathan-dragon.webp?v=5" alt="EVALATHAN" decoding="async" fetchpriority="high" />
           </div>
           <h1 class="splash-title" id="splash-title">EVALATHAN</h1>
           <hr class="splash-rule" />
@@ -92,15 +99,14 @@
     <!-- RIGHT SLIDER - closed on splash; opens on history -->
     <aside class="runs-rail" id="runs-rail" aria-hidden="true">
       <div class="runs-inner">
-        <div class="rail-scroll">
-          <button type="button" class="rail-head" title="Past evaluation runs">
-            <span>past runs <em id="past-count">(0)</em></span>
-          </button>
-          <ul class="past-list" id="past-list"></ul>
-        </div>
+        <div class="rail-scroll" id="rail-scroll"></div>
       </div>
     </aside>
   </div>
-  <script src="app.js?v=gold9"></script>
+
+  <!-- Multi-memo stack: each saved/eval run can open its own window -->
+  <div id="memo-layer" class="memo-layer" hidden></div>
+
+  <script src="app.js?v=gold39"></script>
 </body>
 </html>

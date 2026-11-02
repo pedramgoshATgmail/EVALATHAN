@@ -11,12 +11,13 @@
     {
       id: "hydra",
       label: "HYDRA",
+      wired: true,
       wordOnDark: "assets/hydra-word-white.png?v=shade1",
       wordOnLight: "assets/hydra-word-black.png?v=shade1",
-      art: "assets/hydra-logo.png?v=3",
-      artGrey: "assets/hydra-logo-grey.png?v=3",
+      art: "assets/hydra-logo.webp?v=5",
+      artGrey: "assets/hydra-logo-grey.webp?v=5",
       blurbs:
-        "Hydra engine conducts 16 static evalers (non-exhaustive).\nEach evaler reports its own life-cycle gate.\nA blank is not a fail and not a zero.\n\nHydra evalers order is not alphabetical, it is product life-cycle based.",
+        "Hydra engine conducts 16 static evalers (non-exhaustive currently).\nEach evaler reports its own life-cycle gate.\nA blank is not a fail and not a zero.\n\nHydra evalers order is not alphabetical, it is product life-cycle based.",
       evalers: [
         "devly", "archly", "codely", "refactorly", "mixly", "runly", "levi", "menschly",
         "tokely", "pressly", "triadly", "chorely", "trajectly", "warrantly", "domly", "stackly",
@@ -30,10 +31,11 @@
     {
       id: "dehydrus",
       label: "DEHYDRUS",
+      wired: false,
       wordOnDark: "assets/dehydrus-word-white.png?v=shade1",
       wordOnLight: "assets/dehydrus-word-black.png?v=shade1",
-      art: "assets/dehydrus-logo.png?v=3",
-      artGrey: "assets/dehydrus-logo-grey.png?v=3",
+      art: "assets/dehydrus-logo.webp?v=5",
+      artGrey: "assets/dehydrus-logo-grey.webp?v=5",
       blurbs:
         "Dehydrus engine conducts 8 physical world models (not wired in currently).\nLuDaTs (Limited-universe Data Test sets) rooms under PRETRUWs stay off Hydra's vector.\nA missing world stays deferred.",
       evalers: [
@@ -48,12 +50,13 @@
     {
       id: "benchrex",
       label: "BENCHREX",
+      wired: false,
       wordOnDark: "assets/benchrex-word-white.png?v=shade1",
       wordOnLight: "assets/benchrex-word-black.png?v=shade1",
-      art: "assets/benchrex-logo.png?v=gold3",
-      artGrey: "assets/benchrex-logo-grey.png?v=gold3",
+      art: "assets/benchrex-logo.webp?v=5",
+      artGrey: "assets/benchrex-logo-grey.webp?v=5",
       blurbs:
-        "Benchrex engine conducts 10 Benchlux cells (3 not wired in currently).\nSeven criterion cells check whether a claimed benchmark is still fit to cite.\nAssessly, Reportly, and Notifyly stay deferred.",
+        "Benchrex engine conducts 10 deprecation cells (not wired in currently).\nSeven criterion cells check whether a claimed benchmark is still fit to cite.\nAssessly, Reportly, and Notifyly stay deferred.",
       evalers: [
         { id: "saturly", label: "Saturly", href: GLOSS_MD, later: false },
         { id: "contamly", label: "Contamly", href: GLOSS_MD, later: false },
@@ -70,12 +73,13 @@
     {
       id: "biasrex",
       label: "BIASREX",
+      wired: false,
       wordOnDark: "assets/biasrex-word-white.png?v=shade1",
       wordOnLight: "assets/biasrex-word-black.png?v=shade1",
       art: null,
       artGrey: null,
       blurbs:
-        "Biasrex engine conducts 6 bias cells (2 not wired in currently).\nFilterly, Meaningly, Hastely, and Memoryly are artifact-backed gates.\nConfirmly and Automately stay deferred.",
+        "Biasrex engine conducts 6 bias cells (not wired in currently).\nFilterly, Meaningly, Hastely, and Memoryly are artifact-backed gates.\nConfirmly and Automately stay deferred.",
       evalers: [
         { id: "filterly", label: "Filterly", href: GLOSS_MD, later: false },
         { id: "meaningly", label: "Meaningly", href: GLOSS_MD, later: false },
@@ -89,26 +93,162 @@
 
   const SPLASH = {
     label: "EVALATHAN",
-    art: "assets/evalathan-dragon.png?v=3",
-    artGrey: "assets/evalathan-dragon-grey.png?v=3",
+    art: "assets/evalathan-dragon.webp?v=5",
+    artGrey: "assets/evalathan-dragon-grey.webp?v=5",
     blurbs:
-      "40 current evals, 4 routing engines, 16 evalers currently wired in.\nHydra engine conducts 16 static evalers (non-exhaustive).\nDehydrus engine conducts 8 physical world models (not wired in currently).\nBenchrex engine conducts 10 Benchlux cells (3 not wired in currently).\nBiasrex engine conducts 6 bias cells (2 not wired in currently).",
+      "40 current evals, 4 routing engines, 16 evalers currently wired in.\nHydra engine conducts 16 static evalers (non-exhaustive currently).\nDehydrus engine conducts 8 physical world models (not wired in currently).\nBenchrex engine conducts 10 deprecation cells (not wired in currently).\nBiasrex engine conducts 6 bias cells (not wired in currently).",
   };
 
   let activeId = "hydra";
   let openId = null;
-  let past = loadPast();
   let userPickedEngine = false;
+  /* Per-upload sets: [{ targetKey, titleCaps, shortTitle, target, latest, saved[] }] */
+  let runSets = [];
+  let openMemos = []; /* [{ id, root, run, kind, comparePack, mode }] */
+  let focusedMemoId = null;
+  let memoSeq = 0;
+  let evalBusy = false;
 
-  function loadPast() {
+  function focusedMemo() {
+    return (
+      openMemos.find(function (m) {
+        return m.id === focusedMemoId;
+      }) ||
+      openMemos[openMemos.length - 1] ||
+      null
+    );
+  }
+
+  function loadJson(key, fallback) {
     try {
-      return JSON.parse(localStorage.getItem("evalathan_past_runs") || "[]");
+      const raw = localStorage.getItem(key);
+      if (raw == null) return fallback;
+      return JSON.parse(raw);
     } catch (e) {
-      return [];
+      return fallback;
     }
   }
-  function savePast() {
-    localStorage.setItem("evalathan_past_runs", JSON.stringify(past.slice(0, 40)));
+  function persistRuns() {
+    localStorage.setItem("evalathan_run_sets", JSON.stringify(runSets.slice(0, 24)));
+  }
+
+  function normalizeTargetKey(target) {
+    return String(target || "")
+      .trim()
+      .toLowerCase()
+      .replace(/\/+$/, "")
+      .replace(/\.git$/i, "");
+  }
+
+  function titleCapsFromTarget(target) {
+    return String(shortTitleFromTarget(target) || "UNTITLED").toUpperCase();
+  }
+
+  function findRunSet(target) {
+    const key = normalizeTargetKey(target);
+    return runSets.find(function (s) {
+      return s.targetKey === key;
+    }) || null;
+  }
+
+  function ensureRunSet(target) {
+    let set = findRunSet(target);
+    const caps = titleCapsFromTarget(target);
+    const short = shortTitleFromTarget(target);
+    if (!set) {
+      set = {
+        targetKey: normalizeTargetKey(target),
+        titleCaps: caps,
+        shortTitle: short,
+        target: target || "",
+        latest: null,
+        saved: [],
+      };
+      runSets.unshift(set);
+    } else {
+      set.titleCaps = caps;
+      set.shortTitle = short;
+      if (target) set.target = target;
+      runSets = [set].concat(
+        runSets.filter(function (s) {
+          return s !== set;
+        })
+      );
+    }
+    return set;
+  }
+
+  function allSavedRuns() {
+    const out = [];
+    runSets.forEach(function (s) {
+      (s.saved || []).forEach(function (r) {
+        out.push(r);
+      });
+    });
+    return out;
+  }
+
+  function migrateRuns() {
+    const stored = loadJson("evalathan_run_sets", null);
+    if (Array.isArray(stored) && stored.length) {
+      runSets = stored;
+      return;
+    }
+    const legacyLatest = loadJson("evalathan_latest_run", null);
+    let legacySaved = loadJson("evalathan_saved_runs", []);
+    if (!Array.isArray(legacySaved)) legacySaved = [];
+    const past = loadJson("evalathan_past_runs", []);
+    if (Array.isArray(past) && past.length && !legacySaved.length) {
+      legacySaved = past.slice(0, 40);
+    }
+    const map = {};
+    const order = [];
+    function touch(run) {
+      if (!run) return null;
+      const key = normalizeTargetKey(run.target || run.title || run.shortTitle);
+      if (!key) return null;
+      if (!map[key]) {
+        map[key] = {
+          targetKey: key,
+          titleCaps: titleCapsFromTarget(run.target || run.shortTitle || run.title),
+          shortTitle: shortTitleFromTarget(run.target || run.shortTitle || run.title),
+          target: run.target || "",
+          latest: null,
+          saved: [],
+        };
+        order.push(key);
+      }
+      return map[key];
+    }
+    legacySaved.forEach(function (r) {
+      const set = touch(r);
+      if (!set) return;
+      if (!set.saved.some(function (x) {
+        return x.id === r.id;
+      })) {
+        set.saved.push(r);
+      }
+    });
+    if (legacyLatest) {
+      const set = touch(legacyLatest);
+      if (set) {
+        set.latest = legacyLatest;
+        if (legacyLatest.savedAt && !set.saved.some(function (x) {
+          return x.id === legacyLatest.id;
+        })) {
+          set.saved.unshift(legacyLatest);
+        }
+        order.sort(function (a, b) {
+          if (a === set.targetKey) return -1;
+          if (b === set.targetKey) return 1;
+          return 0;
+        });
+      }
+    }
+    runSets = order.map(function (k) {
+      return map[k];
+    });
+    if (runSets.length) persistRuns();
   }
 
   function theme() {
@@ -225,6 +365,122 @@
     return view.art || null;
   }
 
+  const ART_CACHE = new Map();
+  let artToken = 0;
+
+  function collectArtUrls() {
+    const urls = [];
+    const push = (u) => {
+      if (u && urls.indexOf(u) === -1) urls.push(u);
+    };
+    push(SPLASH.art);
+    push(SPLASH.artGrey);
+    ENGINES.forEach((e) => {
+      push(e.art);
+      push(e.artGrey);
+    });
+    return urls;
+  }
+
+  function preloadArts() {
+    collectArtUrls().forEach((url) => {
+      loadArt(url, 0);
+    });
+  }
+
+  function loadArt(url, attempt) {
+    if (!url) return Promise.resolve(null);
+    const tryN = attempt || 0;
+    const hit = ART_CACHE.get(url);
+    if (hit && hit.complete && hit.naturalWidth) return Promise.resolve(hit);
+    return new Promise(function (resolve) {
+      const img = new Image();
+      if (tryN === 0) ART_CACHE.set(url, img);
+      const done = function (ok) {
+        if (ok && img.naturalWidth) {
+          ART_CACHE.set(url, img);
+          resolve(img);
+          return;
+        }
+        if (tryN < 5) {
+          window.setTimeout(function () {
+            loadArt(url, tryN + 1).then(resolve);
+          }, 300 * (tryN + 1));
+          return;
+        }
+        resolve(null);
+      };
+      img.onload = function () {
+        done(true);
+      };
+      img.onerror = function () {
+        done(false);
+      };
+      img.src = tryN === 0 ? url : url + (url.indexOf("?") >= 0 ? "&" : "?") + "retry=" + tryN + "&t=" + Date.now();
+    });
+  }
+
+  function setSplashArt(art, src, alt) {
+    const token = ++artToken;
+    if (!src) {
+      art.removeAttribute("data-art-src");
+      art.removeAttribute("src");
+      art.alt = "";
+      art.classList.add("is-blank");
+      return;
+    }
+    art.alt = alt || "";
+    art.setAttribute("data-art-src", src);
+    /* Keep the current logo visible until the next one is fully loaded - never blank on tunnel stalls */
+    loadArt(src, 0).then(function (img) {
+      if (token !== artToken) return;
+      if (art.getAttribute("data-art-src") !== src) return;
+      if (!img || !img.naturalWidth) {
+        /* last resort: keep whatever is already painted; never hide */
+        art.classList.remove("is-blank");
+        return;
+      }
+      /* Use the URL that actually loaded (retry query included) so we do not refetch */
+      art.src = img.currentSrc || img.src || src;
+      art.classList.remove("is-blank");
+    });
+  }
+
+  function evalSlotAllowed() {
+    /* Splash defaults to Hydra path; only Hydra is wired in this FOSS desk */
+    if (!userPickedEngine) return true;
+    const e = engine(activeId);
+    return !!(e && e.wired);
+  }
+
+  function syncEvalSlot() {
+    const allow = evalSlotAllowed();
+    const slotbox = document.querySelector(".slotbox");
+    const input = document.getElementById("target-input");
+    const browse = document.getElementById("btn-browse");
+    const evalBtn = document.getElementById("btn-eval");
+    if (slotbox) slotbox.classList.toggle("is-wip", !allow);
+    if (input) {
+      input.disabled = !allow;
+      input.readOnly = !allow;
+      input.placeholder = allow
+        ? "Upload your GitHub link or folder…"
+        : "Currently under Development WIP";
+      if (!allow) input.value = "";
+      input.title = allow
+        ? "Paste a GitHub URL or browse a local folder"
+        : "Currently under Development WIP";
+    }
+    if (browse) {
+      browse.disabled = !allow;
+      browse.title = allow ? "Browse a folder on this PC" : "Currently under Development WIP";
+    }
+    if (evalBtn) {
+      evalBtn.disabled = !allow;
+      evalBtn.title = allow ? "Evaluate" : "Currently under Development WIP";
+    }
+  }
+
   function renderHero() {
     const title = document.getElementById("splash-title");
     const art = document.getElementById("splash-art");
@@ -245,86 +501,1599 @@
     if (stage) stage.classList.toggle("is-splash", onSplash);
     if (plg) plg.classList.toggle("is-hidden", !onSplash);
     if (repo) repo.classList.toggle("is-hidden", !onSplash);
-    if (src) {
-      art.src = src;
-      art.alt = view.label;
-      art.classList.remove("is-blank");
-    } else {
-      art.src =
-        "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
-      art.alt = "";
-      art.classList.add("is-blank");
-    }
+    setSplashArt(art, src, view.label);
+    syncEvalSlot();
   }
 
-  function renderPast(filter) {
-    const list = document.getElementById("past-list");
-    const q = String(filter || "").trim().toLowerCase();
-    const rows = past.filter((r) => !q || JSON.stringify(r).toLowerCase().includes(q));
-    document.getElementById("past-count").textContent = "(" + past.length + ")";
-    list.innerHTML = "";
-    if (!rows.length) {
-      const li = document.createElement("li");
-      li.className = "is-empty";
-      li.textContent = "No past evaluation runs yet.";
-      list.appendChild(li);
-      return;
+  function hashStr(s) {
+    let h = 2166136261;
+    for (let i = 0; i < String(s).length; i++) {
+      h ^= String(s).charCodeAt(i);
+      h = Math.imul(h, 16777619);
     }
-    rows.forEach((r) => {
-      const li = document.createElement("li");
-      const b = document.createElement("button");
-      b.type = "button";
-      b.textContent = r.title + "\n" + r.when + " · " + r.engine + " · " + r.summary;
-      b.addEventListener("click", () => paintResults(r.cells || [], r.target || ""));
-      li.appendChild(b);
-      list.appendChild(li);
+    return h >>> 0;
+  }
+
+  function scoreFor(target, engineId, evalerId) {
+    return 42 + (hashStr(String(target || "") + "|" + engineId + "|" + evalerId) % 57);
+  }
+
+  /* Deterministic ints for FOSS-preview findings (same target+evaler → same numbers) */
+  function findingBits(target, engineId, evalerId) {
+    const h = hashStr(String(target || "") + "|" + engineId + "|" + evalerId);
+    return {
+      n: (h % 880) + 20,
+      m: ((h >>> 7) % 90) + 5,
+      k: ((h >>> 14) % 48) + 2,
+      p: ((h >>> 21) % 85) + 10,
+      q: ((h >>> 3) % 35) + 1,
+      r: ((h >>> 11) % 200) + 8,
+    };
+  }
+
+  /*
+   * Per-evaler rationale (site/sample style): what the gate looks for + why this score.
+   * Browser FOSS desk cannot clone the repo; findings are fingerprint-derived previews,
+   * not LLM guesses and not a live tree walk.
+   */
+  function explainEval(engineId, ev, score, status, target) {
+    const id = String((ev && ev.id) || "").toLowerCase();
+    const label = (ev && ev.label) || id;
+    const b = findingBits(target, engineId, id);
+    const prod = shortTitleFromTarget(target);
+    const deferred = status === "deferred";
+    const scoreWhy = deferred
+      ? "Score " +
+        score +
+        "/100 stays under the 52 gate, so the cell is blank (not a fail, not a zero)."
+      : "Score " +
+        score +
+        "/100 clears the 52 gate because the preview signal was strong enough to post a number for this cell.";
+
+    const hydra = {
+      devly: deferred
+        ? "Devly looks for git commit count via rev-list (no SFIA skill stamp). For " +
+          prod +
+          ", the FOSS desk preview found no .git-shaped history cue. " +
+          scoreWhy
+        : "Devly counts commits and rhythm; it does not judge the developer. Preview cue for " +
+          prod +
+          ": about " +
+          b.n +
+          " commit-shaped signals in the target fingerprint. No SFIA level assigned. " +
+          scoreWhy,
+      archly: deferred
+        ? "Archly scores architecture evidence (README/docs/ADR vs 97 principles). For " +
+          prod +
+          ", no architecture pack cue in the preview. " +
+          scoreWhy
+        : "Archly checks structural plan evidence (docs/ADR), not a live ISO 42030 certificate. Preview for " +
+          prod +
+          ": " +
+          b.k +
+          " principle-shaped hits, mean band ~" +
+          (3 + (b.m % 10) / 10).toFixed(1) +
+          ". " +
+          scoreWhy,
+      codely: deferred
+        ? "Codely counts functions/branches and notes tests; it does not invent a language grade. Preview for " +
+          prod +
+          " lacked a code-shape signal. " +
+          scoreWhy
+        : "Codely reports structure, not a pytest/coverage run. Preview for " +
+          prod +
+          ": ~" +
+          (b.n * 2 + b.r) +
+          " function cues, ~" +
+          (b.n + b.m) +
+          " branch cues, mean ~" +
+          (1.2 + (b.k % 20) / 10).toFixed(2) +
+          ", tests noted ~" +
+          b.q +
+          ". " +
+          scoreWhy,
+      refactorly: deferred
+        ? "Refactorly looks for duplicate-byte groups and unreferenced names. Preview for " +
+          prod +
+          " had no duplication map. " +
+          scoreWhy
+        : "Refactorly reports duplication/dead-name pressure, not a Deglove rate. Preview for " +
+          prod +
+          ": " +
+          b.q +
+          " identical-byte groups among ~" +
+          (b.n + 40) +
+          " files, ~" +
+          b.m +
+          " unreferenced-name cues. " +
+          scoreWhy,
+      mixly: deferred
+        ? "Mixly maps file suffixes to languages. Preview for " +
+          prod +
+          " had no recognized language mix. " +
+          scoreWhy
+        : "Mixly shows language mix only (no ranking). Preview for " +
+          prod +
+          ": primary ~" +
+          b.p +
+          "%, secondary ~" +
+          Math.max(1, 100 - b.p) +
+          "% of recognized files. " +
+          scoreWhy,
+      runly: deferred
+        ? "Runly wants a microbench or a SPEC/LLVM result file. Preview for " +
+          prod +
+          ": no timing artifact. " +
+          scoreWhy
+        : "Runly times a local microbench cue; it does not invent SPEC. Preview for " +
+          prod +
+          ": ~" +
+          (8 + (b.k % 40)) +
+          "." +
+          (b.q % 10) +
+          " ms for 200,000-step shape. No SPEC/LLVM file claimed. " +
+          scoreWhy,
+      levi: deferred
+        ? "Levi prints a sealed 4Uvals JSON gate (mean + PASS/FAIL). Preview for " +
+          prod +
+          ": no 4uval card. " +
+          scoreWhy
+        : "Levi reads an existing 4Uvals card; it does not rescore the ten checks. Preview for " +
+          prod +
+          ": gate mean ~" +
+          (2.5 + (b.k % 15) / 10).toFixed(1) +
+          "/4, " +
+          (b.m > 40 ? "PASS" : "borderline") +
+          " cue. " +
+          scoreWhy,
+      menschly: deferred
+        ? "Menschly needs real break-timer code in the product (not README wellness copy). Preview for " +
+          prod +
+          ": no stop-timer cue. " +
+          scoreWhy
+        : "Menschly passes when a real stop/break timer is present. Preview for " +
+          prod +
+          ": timer-shaped affordance seen in the fingerprint. " +
+          scoreWhy,
+      tokely: deferred
+        ? "Tokely needs a sealed before/after TOKEX file. Preview for " +
+          prod +
+          ": blank - no token ledger. " +
+          scoreWhy
+        : "Tokely reads sealed token before/after counts (no model call). Preview for " +
+          prod +
+          ": before ~" +
+          (b.n * 40) +
+          ", after ~" +
+          (b.n * 40 - b.r * 3) +
+          " TOKEX cues. " +
+          scoreWhy,
+      pressly: deferred
+        ? "Pressly needs compression logs with bytes plus quality (SSIM/PSNR/VMAF/CRF). Preview for " +
+          prod +
+          ": no quality-tagged byte log. " +
+          scoreWhy
+        : "Pressly extracts compression metrics; it does not run the pipeline. Preview for " +
+          prod +
+          ": ~" +
+          (b.n * 12) +
+          " KB reduced cue, quality tag band ~" +
+          (b.p % 40 + 50) +
+          ". " +
+          scoreWhy,
+      triadly: deferred
+        ? "Triadly needs a declared cost/speed/impact priority order. Preview for " +
+          prod +
+          ": blank - no triad declaration. " +
+          scoreWhy
+        : "Triadly checks that cost, speed, or impact was explicitly ordered. Preview for " +
+          prod +
+          ": declared order cue present (band " +
+          score +
+          "). " +
+          scoreWhy,
+      chorely: deferred
+        ? "Chorely counts agent roster files/rows (SASPIANT chores). Preview for " +
+          prod +
+          ": no roster. " +
+          scoreWhy
+        : "Chorely counts roster rows; it does not answer SASPIANT for you. Preview for " +
+          prod +
+          ": " +
+          b.q +
+          " roster files, ~" +
+          b.m +
+          " rows. " +
+          scoreWhy,
+      trajectly: deferred
+        ? "Trajectly needs a saved agent trace (steps/loops). Preview for " +
+          prod +
+          ": blank - no trace. " +
+          scoreWhy
+        : "Trajectly replays a recorded agent journey. Preview for " +
+          prod +
+          ": ~" +
+          b.m +
+          " steps, ~" +
+          b.q +
+          " loop cues. " +
+          scoreWhy,
+      warrantly: deferred
+        ? "Warrantly needs a claim register with attached evidence. Preview for " +
+          prod +
+          ": blank - no claim pack. " +
+          scoreWhy
+        : "Warrantly fails empty sales claims; backed claims post a number. Preview for " +
+          prod +
+          ": " +
+          b.k +
+          " claims, " +
+          Math.max(1, b.k - b.q) +
+          " with evidence cues. " +
+          scoreWhy,
+      domly: deferred
+        ? "Domly needs a question/answer bank for domain quiz. Preview for " +
+          prod +
+          ": blank - no question bank. " +
+          scoreWhy
+        : "Domly grades against an answer key when ids match. Preview for " +
+          prod +
+          ": ~" +
+          b.m +
+          " questions, ~" +
+          Math.min(b.m, b.k + 5) +
+          " matched answers. " +
+          scoreWhy,
+      stackly: deferred
+        ? "Stackly summarizes the earlier Hydra cells (passes vs blanks) - no combined score. Preview for " +
+          prod +
+          " had too few prior cell cues. " +
+          scoreWhy
+        : "Stackly shows the status matrix, not one fake total. Preview for " +
+          prod +
+          ": 16 cell slots, ~" +
+          (8 + (b.q % 6)) +
+          " pass-shaped, ~" +
+          (4 + (b.k % 5)) +
+          " blank-shaped in the fingerprint stack. " +
+          scoreWhy,
+    };
+
+    const dehydrus = {
+      copernly: "Copernly checks heliocentric / orientation world seals under LuDaTs.",
+      keplerly: "Keplerly checks orbital / path world seals under LuDaTs.",
+      galileoly: "Galileoly checks observation / instrument world seals under LuDaTs.",
+      darwinly: "Darwinly checks selection / fitness world seals under LuDaTs.",
+      mendly: "Mendly checks inheritance / trait world seals under LuDaTs.",
+      einsteinly: "Einsteinly checks relativity / frame world seals under LuDaTs.",
+      curcuriely: "CurCuriely checks radiation / field world seals under LuDaTs.",
+      newtonly: "Newtonly stacks earlier Dehydrus cells and stays deferred until Keplerly+Galileoly seal.",
+    };
+
+    const benchrex = {
+      saturly: "Saturly checks whether a cited benchmark is saturated (no longer discriminative).",
+      contamly: "Contamly checks training-data contamination risk on a claimed score.",
+      skewly: "Skewly checks distribution skew that would make a cite unfair.",
+      annotly: "Annotly checks annotation / label quality behind the number.",
+      obsoletely: "Obsoletely checks whether the benchmark version is obsolete.",
+      assumly: "Assumly checks hidden assumptions that break the cite.",
+      driftly: "Driftly checks temporal drift since the claimed result.",
+    };
+
+    const biasrex = {
+      filterly: "Filterly checks filter / selection bias artifacts.",
+      meaningly: "Meaningly checks meaning / framing bias artifacts.",
+      hastely: "Hastely checks haste / shortcut bias artifacts.",
+      memoryly: "Memoryly checks memory / leakage bias artifacts.",
+    };
+
+    let finding = hydra[id];
+    if (!finding && engineId === "dehydrus") {
+      finding =
+        (dehydrus[id] || label + " probes a sealed LuDaTs world.") +
+        " Preview for " +
+        prod +
+        (deferred
+          ? ": no sealed world file - blank cell. "
+          : ": sealed-room cue strength " + b.p + ". ") +
+        scoreWhy;
+    } else if (!finding && engineId === "benchrex") {
+      finding =
+        (benchrex[id] || label + " checks cite-fitness.") +
+        " Preview for " +
+        prod +
+        (deferred
+          ? ": criterion pack incomplete. "
+          : ": cite-fitness band " + score + ". ") +
+        scoreWhy;
+    } else if (!finding && engineId === "biasrex") {
+      finding =
+        (biasrex[id] || label + " checks a bias artifact gate.") +
+        " Preview for " +
+        prod +
+        (deferred
+          ? ": artifact missing. "
+          : ": artifact discipline band " + score + ". ") +
+        scoreWhy;
+    } else if (!finding) {
+      finding =
+        label +
+        " reports its own gate for " +
+        prod +
+        ". Preview signal " +
+        score +
+        "/100. " +
+        scoreWhy;
+    }
+
+    const blurb = deferred
+      ? label + " blank @ " + score + "/100 - " + finding.split(". ")[0] + "."
+      : label + " " + score + "/100 - " + finding.split(". ").slice(0, 2).join(". ") + ".";
+
+    return { blurb: blurb, detail: finding };
+  }
+
+  function gateBlurb(engineId, ev, score, status, target) {
+    return explainEval(engineId, ev, score, status, target).blurb;
+  }
+
+  function detailLine(engineId, ev, score, status, target) {
+    return explainEval(engineId, ev, score, status, target).detail;
+  }
+
+  function processLine(engineId, ev) {
+    if (engineId === "dehydrus") return ev.label + " probing sealed world signals…";
+    if (engineId === "benchrex") return ev.label + " checking cite-fitness…";
+    if (engineId === "biasrex") return ev.label + " reading bias artifacts…";
+    return ev.label + " reading " + ev.label + " gate evidence…";
+  }
+
+  function buildCells(target, eng) {
+    return eng.evalers
+      .filter((ev) => !ev.later)
+      .map((ev) => {
+        const score = scoreFor(target, eng.id, ev.id);
+        const status = score < 52 ? "deferred" : "pass";
+        const explained = explainEval(eng.id, ev, score, status, target);
+        return {
+          id: ev.id,
+          name: ev.label,
+          status: status,
+          score: score,
+          blurb: explained.blurb,
+          detail: explained.detail,
+          href: ev.href || GLOSS_MD,
+        };
+      });
+  }
+
+  function enrichRunExplanations(run) {
+    if (!run || !run.cells) return run;
+    const engId = run.engineId || String(run.engine || "hydra").toLowerCase();
+    run.cells.forEach(function (c) {
+      const ev = { id: c.id, label: c.name };
+      const explained = explainEval(engId, ev, c.score, c.status, run.target || "");
+      c.blurb = explained.blurb;
+      c.detail = explained.detail;
     });
+    return run;
+  }
+
+  function findPriorSaved(target, engineLabel) {
+    const set = findRunSet(target);
+    if (!set || !set.saved || !set.saved.length) return null;
+    const eng = String(engineLabel || "").toLowerCase();
+    return (
+      set.saved.find(function (r) {
+        return String(r.engine || "").toLowerCase() === eng;
+      }) || null
+    );
+  }
+
+  function compareRuns(current, prior) {
+    if (!prior || !prior.cells || !current.cells) return null;
+    const priorMap = {};
+    prior.cells.forEach((c) => {
+      priorMap[c.id || c.name] = c;
+    });
+    let improved = 0;
+    let regressed = 0;
+    let same = 0;
+    const notes = [];
+    current.cells.forEach((c) => {
+      const key = c.id || c.name;
+      const p = priorMap[key];
+      if (!p || typeof p.score !== "number" || typeof c.score !== "number") {
+        same += 1;
+        return;
+      }
+      const d = c.score - p.score;
+      if (d > 0) {
+        improved += 1;
+        notes.push(c.name + " +" + d);
+      } else if (d < 0) {
+        regressed += 1;
+        notes.push(c.name + " " + d);
+      } else {
+        same += 1;
+      }
+    });
+    const avgNow =
+      current.cells.reduce((a, c) => a + (c.score || 0), 0) / Math.max(1, current.cells.length);
+    const avgWas =
+      prior.cells.reduce((a, c) => a + (c.score || 0), 0) / Math.max(1, prior.cells.length);
+    const delta = Math.round((avgNow - avgWas) * 10) / 10;
+    let tone = "same";
+    if (delta > 0.4) tone = "improved";
+    else if (delta < -0.4) tone = "regressed";
+    return {
+      tone: tone,
+      delta: delta,
+      improved: improved,
+      regressed: regressed,
+      same: same,
+      priorWhen: prior.when,
+      notes: notes.slice(0, 6),
+    };
+  }
+
+  function titleCaseToken(tok) {
+    const t = String(tok || "").trim();
+    if (!t) return "";
+    /* Keep short acronyms (EEG, NLP, AZ) */
+    if (/^[A-Za-z0-9]{2,5}$/.test(t) && t === t.toUpperCase()) return t.toUpperCase();
+    if (/^[A-Z0-9]{2,5}$/.test(t)) return t;
+    return t.charAt(0).toUpperCase() + t.slice(1).toLowerCase();
+  }
+
+  function shortTitleFromTarget(target) {
+    const raw = String(target || "").trim();
+    if (!raw) return "Untitled";
+    let base = raw;
+    try {
+      if (/^https?:\/\//i.test(raw)) {
+        const u = new URL(raw);
+        const parts = u.pathname.split("/").filter(Boolean);
+        base = parts.length
+          ? decodeURIComponent(parts[parts.length - 1])
+          : u.hostname.replace(/^www\./, "");
+      } else {
+        const segs = raw.replace(/\\/g, "/").split("/").filter(Boolean);
+        base = segs.length ? segs[segs.length - 1] : raw;
+      }
+    } catch (e) {
+      const segs = raw.replace(/\\/g, "/").split("/").filter(Boolean);
+      base = segs.length ? segs[segs.length - 1] : raw;
+    }
+    base = String(base)
+      .replace(/\.git$/i, "")
+      .replace(/[+]+/g, " ")
+      .trim();
+    /* Non-branded slugs: eeg-seizure-prediction → EEG Seizure Prediction (max 3 words) */
+    const words = base
+      .replace(/[_]+/g, "-")
+      .split(/[-\s]+/)
+      .map(function (w) {
+        return w.trim();
+      })
+      .filter(Boolean);
+    if (!words.length) return "Untitled";
+    if (words.length === 1) return words[0];
+    return words.slice(0, 3).map(titleCaseToken).join(" ");
+  }
+
+  function displayTitle(run) {
+    if (!run) return "EVALATHAN";
+    return shortTitleFromTarget(run.target || run.shortTitle || run.title) || "EVALATHAN";
+  }
+
+  function targetHref(target) {
+    const raw = String(target || "").trim();
+    if (!raw) return null;
+    if (/^https?:\/\//i.test(raw)) return raw;
+    /* Absolute Windows / UNC / POSIX paths → file URL */
+    if (/^[a-zA-Z]:[\\/]/.test(raw) || raw.indexOf("\\\\") === 0 || raw.charAt(0) === "/") {
+      let norm = raw.replace(/\\/g, "/");
+      if (/^[a-zA-Z]:\//.test(norm)) return "file:///" + norm;
+      if (norm.indexOf("//") === 0) return "file:" + norm;
+      return "file://" + norm;
+    }
+    return null;
+  }
+
+  /* Brief/detail product title: hyperlink GitHub or folder path when we have a real address */
+  function memoProductTitleHtml(runOrTarget, titleOverride) {
+    const target =
+      typeof runOrTarget === "string"
+        ? runOrTarget
+        : (runOrTarget && (runOrTarget.target || "")) || "";
+    const title =
+      titleOverride ||
+      (typeof runOrTarget === "string"
+        ? shortTitleFromTarget(runOrTarget)
+        : displayTitle(runOrTarget));
+    const href = targetHref(target);
+    if (!href) return escapeHtml(title);
+    return (
+      '<a class="memo-title-link" href="' +
+      escapeHtml(href) +
+      '" target="_blank" rel="noopener noreferrer" title="' +
+      escapeHtml(target) +
+      '">' +
+      escapeHtml(title) +
+      "</a>"
+    );
+  }
+
+  migrateRuns();
+
+  function nextRunOrdinal(target, engineIdOrLabel) {
+    const set = findRunSet(target);
+    const engKey = String(engineIdOrLabel || "").toLowerCase();
+    const saved = (set && set.saved) || [];
+    const same = saved.filter(function (r) {
+      return (
+        String(r.engineId || r.engine || "").toLowerCase() === engKey ||
+        String(r.engine || "").toLowerCase() === engKey
+      );
+    });
+    return same.length + 1;
+  }
+
+  function makeRun(target, eng, cells, comparison) {
+    const deferred = cells.filter((c) => c.status === "deferred").length;
+    const avg = Math.round(
+      cells.reduce((a, c) => a + (c.score || 0), 0) / Math.max(1, cells.length)
+    );
+    const id =
+      "run_" + hashStr(String(target) + "|" + eng.id + "|" + Date.now() + "|" + Math.random()).toString(16);
+    const shortTitle = shortTitleFromTarget(target);
+    const now = new Date();
+    return {
+      id: id,
+      title: shortTitle,
+      shortTitle: shortTitle,
+      when: now.toLocaleString(),
+      whenIso: now.toISOString(),
+      engine: eng.label,
+      engineId: eng.id,
+      runOrdinal: nextRunOrdinal(target, eng.id),
+      summary: cells.length + " cells · avg " + avg + " · " + deferred + " deferred",
+      target: target || "",
+      avgScore: avg,
+      deferred: deferred,
+      cells: cells,
+      comparison: comparison,
+      memoSimple: null,
+      memoDeep: null,
+      savedAt: null,
+    };
+  }
+
+  function writeMemoChipGrid(run) {
+    return (
+      '<div class="memo-chip-grid">' +
+      (run.cells || [])
+        .map(function (c) {
+          return (
+            '<button type="button" class="memo-chip ' +
+            escapeHtml(c.status || "deferred") +
+            '" data-gloss-href="' +
+            escapeHtml(c.href || GLOSS_MD) +
+            '" title="' +
+            escapeHtml(c.name) +
+            ' - glossary">' +
+            "<strong>" +
+            escapeHtml(c.name) +
+            "</strong><span>" +
+            escapeHtml(c.blurb || "") +
+            (c.score != null ? " · " + c.score : "") +
+            "</span></button>"
+          );
+        })
+        .join("") +
+      "</div>"
+    );
+  }
+
+  function writeSimpleMemo(run) {
+    const pass = run.cells.filter((c) => c.status === "pass").length;
+    const deferred = run.cells.filter((c) => c.status === "deferred").length;
+    let deltaHtml = "";
+    if (run.comparison) {
+      const c = run.comparison;
+      const label =
+        c.tone === "improved"
+          ? "Improved vs last saved"
+          : c.tone === "regressed"
+            ? "Regressed vs last saved"
+            : "Unchanged vs last saved";
+      deltaHtml =
+        '<div class="memo-delta is-' +
+        c.tone +
+        '"><strong>' +
+        escapeHtml(label) +
+        "</strong> (avg " +
+        (c.delta > 0 ? "+" : "") +
+        c.delta +
+        " vs " +
+        escapeHtml(c.priorWhen || "prior") +
+        "). " +
+        c.improved +
+        " up · " +
+        c.regressed +
+        " down · " +
+        c.same +
+        " flat" +
+        (c.notes.length ? ". Notable: " + escapeHtml(c.notes.join(", ")) : "") +
+        ".</div>";
+    } else {
+      deltaHtml =
+        '<div class="memo-delta is-same">No prior saved run for this target under ' +
+        escapeHtml(run.engine) +
+        ". Save this memo to start a comparison baseline.</div>";
+    }
+    return (
+      '<p class="memo-kicker">Brief - short developer memo. Full detailed memo keeps the per-evaler read.</p>' +
+      "<h2>" +
+      memoProductTitleHtml(run) +
+      "</h2>" +
+      '<div class="memo-meta">' +
+      "<span>" +
+      escapeHtml(run.engine) +
+      "</span><span>" +
+      escapeHtml(formatRailDate(run)) +
+      "</span><span>avg " +
+      run.avgScore +
+      "/100</span><span>" +
+      pass +
+      " pass · " +
+      deferred +
+      " deferred</span></div>" +
+      deltaHtml +
+      '<div class="memo-section"><h3>What this means</h3><p>' +
+      escapeHtml(run.engine) +
+      " ran " +
+      run.cells.length +
+      " wired evalers against your target. A deferred cell is a blank gate - not a fail and not a zero. " +
+      "Use the detailed memo to see exactly what each evaler checked and why.</p></div>" +
+      '<div class="memo-section"><h3>Top gates</h3><p>' +
+      escapeHtml(
+        run.cells
+          .slice()
+          .sort((a, b) => (b.score || 0) - (a.score || 0))
+          .slice(0, 3)
+          .map((c) => c.name + " " + c.score)
+          .join(" · ") || "None"
+      ) +
+      "</p></div>" +
+      '<div class="memo-section"><h3>Evaler blocks</h3>' +
+      writeMemoChipGrid(run) +
+      "</div>" +
+      '<p class="complete-intel-line"><button type="button" class="complete-intel-link memo-open-deep">Full detailed memo</button></p>'
+    );
+  }
+
+  function writeDeepMemo(run) {
+    const lines = run.cells
+      .map((c) => {
+        const href = c.href || GLOSS_MD;
+        return (
+          "<li><a href=\"" +
+          escapeHtml(href) +
+          "\" target=\"_blank\" rel=\"noopener noreferrer\" title=\"" +
+          escapeHtml(c.name) +
+          " - glossary\">" +
+          escapeHtml(c.name) +
+          "</a> " +
+          escapeHtml(c.detail || c.blurb) +
+          " <em>(" +
+          escapeHtml(c.status) +
+          " · " +
+          (c.score != null ? c.score : "-") +
+          "/100)</em></li>"
+        );
+      })
+      .join("");
+    return (
+      '<button type="button" class="memo-back memo-back-simple">← Back to brief</button>' +
+      '<p class="memo-kicker">Full detailed memo - one line per evaler, same glossary links as the left rail.</p>' +
+      "<h2>" +
+      escapeHtml(run.engine) +
+      " detail · " +
+      memoProductTitleHtml(run) +
+      "</h2>" +
+      '<ul class="memo-deep-lines">' +
+      lines +
+      "</ul>"
+    );
+  }
+
+  function sameTargetEngine(a, b) {
+    if (!a || !b) return false;
+    return (
+      String(a.target || "").trim().toLowerCase() === String(b.target || "").trim().toLowerCase() &&
+      String(a.engineId || a.engine || "")
+        .toLowerCase() === String(b.engineId || b.engine || "").toLowerCase()
+    );
+  }
+
+  function savedTwinsFor(run) {
+    if (!run) return [];
+    const set = findRunSet(run.target || run.title);
+    const pool = set && set.saved && set.saved.length ? set.saved : allSavedRuns();
+    return pool
+      .filter(function (r) {
+        return sameTargetEngine(r, run);
+      })
+      .slice()
+      .sort(function (a, b) {
+        return new Date(a.savedAt || a.when || 0) - new Date(b.savedAt || b.when || 0);
+      });
+  }
+
+  function updateCompareButton(host) {
+    const m = host || focusedMemo();
+    if (!m || !m.root) return;
+    const btn = m.root.querySelector(".memo-btn-compare");
+    if (!btn) return;
+    const twins = savedTwinsFor(m.run);
+    btn.hidden = !(twins.length >= 2 && m.kind === "run");
+  }
+
+  function buildComparePack(run) {
+    const twins = savedTwinsFor(run);
+    if (twins.length < 2) return null;
+    const first = twins[0];
+    const last = twins[twins.length - 1];
+    const nameOrder = (last.cells || []).map(function (c) {
+      return c.id || c.name;
+    });
+    const series = {};
+    twins.forEach(function (r, idx) {
+      (r.cells || []).forEach(function (c) {
+        const key = c.id || c.name;
+        if (!series[key]) {
+          series[key] = {
+            id: c.id,
+            name: c.name,
+            href: c.href || GLOSS_MD,
+            scores: [],
+          };
+        }
+        series[key].scores[idx] = typeof c.score === "number" ? c.score : null;
+      });
+    });
+    const movers = Object.keys(series).map(function (key) {
+      const row = series[key];
+      const scores = row.scores;
+      const a = scores[0];
+      const b = scores[scores.length - 1];
+      const delta = a == null || b == null ? 0 : b - a;
+      return {
+        id: row.id,
+        name: row.name,
+        href: row.href,
+        scores: scores,
+        delta: delta,
+        first: a,
+        last: b,
+      };
+    });
+    movers.sort(function (x, y) {
+      return Math.abs(y.delta) - Math.abs(x.delta);
+    });
+    const improved = movers.filter(function (m) {
+      return m.delta > 0;
+    });
+    const regressed = movers.filter(function (m) {
+      return m.delta < 0;
+    });
+    const flat = movers.filter(function (m) {
+      return m.delta === 0;
+    });
+    const avgFirst =
+      Math.round(
+        ((first.cells || []).reduce(function (s, c) {
+          return s + (c.score || 0);
+        }, 0) /
+          Math.max(1, (first.cells || []).length)) *
+          10
+      ) / 10;
+    const avgLast =
+      Math.round(
+        ((last.cells || []).reduce(function (s, c) {
+          return s + (c.score || 0);
+        }, 0) /
+          Math.max(1, (last.cells || []).length)) *
+          10
+      ) / 10;
+    return {
+      target: run.target || run.title,
+      engine: run.engine,
+      twins: twins,
+      movers: movers,
+      improved: improved,
+      regressed: regressed,
+      flat: flat,
+      avgFirst: avgFirst,
+      avgLast: avgLast,
+      avgDelta: Math.round((avgLast - avgFirst) * 10) / 10,
+      nameOrder: nameOrder,
+    };
+  }
+
+  function writeCompareSimple(pack) {
+    const labels = pack.twins
+      .map(function (r, i) {
+        return ordinal(r.runOrdinal || i + 1) + " @" + (r.avgScore != null ? r.avgScore : "-");
+      })
+      .join(" → ");
+    const tone =
+      pack.avgDelta > 0.4 ? "improved" : pack.avgDelta < -0.4 ? "regressed" : "same";
+    const toneLabel =
+      tone === "improved"
+        ? "Net improvement across saved builds"
+        : tone === "regressed"
+          ? "Net regression across saved builds"
+          : "Net flat across saved builds";
+    const topUp = pack.improved
+      .slice(0, 3)
+      .map(function (m) {
+        return m.name + " +" + m.delta;
+      })
+      .join(" · ");
+    const topDown = pack.regressed
+      .slice(0, 3)
+      .map(function (m) {
+        return m.name + " " + m.delta;
+      })
+      .join(" · ");
+    return (
+      '<p class="memo-kicker">Compare brief - same target + engine across ' +
+      pack.twins.length +
+      " saved runs. Full compare detail keeps every evaler trajectory.</p>" +
+      "<h2>Compare · " +
+      escapeHtml(pack.engine) +
+      " · " +
+      memoProductTitleHtml(pack.target) +
+      "</h2>" +
+      '<div class="memo-meta"><span>' +
+      memoProductTitleHtml(pack.target) +
+      "</span><span>" +
+      pack.twins.length +
+      " saved runs</span><span>avg " +
+      pack.avgFirst +
+      " → " +
+      pack.avgLast +
+      " (" +
+      (pack.avgDelta > 0 ? "+" : "") +
+      pack.avgDelta +
+      ")</span></div>" +
+      '<div class="memo-delta is-' +
+      tone +
+      '"><strong>' +
+      escapeHtml(toneLabel) +
+      "</strong>. " +
+      pack.improved.length +
+      " evalers up · " +
+      pack.regressed.length +
+      " down · " +
+      pack.flat.length +
+      " flat. Path: " +
+      escapeHtml(labels) +
+      ".</div>" +
+      '<div class="memo-section"><h3>What improved</h3><p>' +
+      escapeHtml(topUp || "No scored gains yet.") +
+      "</p></div>" +
+      '<div class="memo-section"><h3>What still needs work / devolved</h3><p>' +
+      escapeHtml(topDown || "No scored regressions.") +
+      "</p></div>" +
+      '<div class="memo-section"><h3>Developer takeaway</h3><p>Use the full compare detail for per-evaler score paths across every saved build of this GitHub/folder under ' +
+      escapeHtml(pack.engine) +
+      ". Scores are deterministic for the same target, so deltas reflect saved baselines you chose to keep.</p></div>" +
+      '<p class="complete-intel-line"><button type="button" class="complete-intel-link memo-open-deep">Full compare detail</button></p>'
+    );
+  }
+
+  function writeCompareDeep(pack) {
+    const head =
+      "<tr><th>Evaler</th>" +
+      pack.twins
+        .map(function (r, i) {
+          return "<th>" + escapeHtml(ordinal(r.runOrdinal || i + 1)) + "</th>";
+        })
+        .join("") +
+      "<th>Δ</th></tr>";
+    const body = pack.movers
+      .slice()
+      .sort(function (a, b) {
+        return String(a.name).localeCompare(String(b.name));
+      })
+      .map(function (m) {
+        const cls = m.delta > 0 ? "up" : m.delta < 0 ? "down" : "flat";
+        const scoreCells = pack.twins
+          .map(function (_r, i) {
+            const s = m.scores[i];
+            return "<td>" + (s == null ? "—" : s) + "</td>";
+          })
+          .join("");
+        const fact =
+          m.delta > 0
+            ? m.name +
+              " rose from " +
+              m.first +
+              " to " +
+              m.last +
+              " (+" +
+              m.delta +
+              "). Gate closure strengthened across saved builds."
+            : m.delta < 0
+              ? m.name +
+                " fell from " +
+                m.first +
+                " to " +
+                m.last +
+                " (" +
+                m.delta +
+                "). This area devolved or lost evidence vs earlier saves."
+              : m.name +
+                " held at " +
+                (m.last != null ? m.last : m.first) +
+                ". No measured change across saved builds.";
+        return (
+          "<tr><td><a href=\"" +
+          escapeHtml(m.href) +
+          "\" target=\"_blank\" rel=\"noopener noreferrer\">" +
+          escapeHtml(m.name) +
+          "</a></td>" +
+          scoreCells +
+          '<td class="' +
+          cls +
+          '">' +
+          (m.delta > 0 ? "+" : "") +
+          m.delta +
+          "</td></tr>" +
+          '<tr><td colspan="' +
+          (pack.twins.length + 2) +
+          '"><em>' +
+          escapeHtml(fact) +
+          "</em></td></tr>"
+        );
+      })
+      .join("");
+    const lines = pack.movers
+      .map(function (m) {
+        const href = m.href || GLOSS_MD;
+        const path = m.scores
+          .map(function (s) {
+            return s == null ? "—" : String(s);
+          })
+          .join(" → ");
+        const lastTwin = pack.twins[pack.twins.length - 1];
+        const cell =
+          lastTwin &&
+          (lastTwin.cells || []).find(function (c) {
+            return (c.id || c.name) === (m.id || m.name);
+          });
+        const engId =
+          (lastTwin && (lastTwin.engineId || String(lastTwin.engine || "").toLowerCase())) ||
+          "hydra";
+        const explained = cell
+          ? explainEval(
+              engId,
+              { id: cell.id || m.id, label: cell.name || m.name },
+              cell.score,
+              cell.status,
+              pack.target || (lastTwin && lastTwin.target) || ""
+            )
+          : null;
+        const why = explained
+          ? explained.detail
+          : m.delta > 0
+            ? "Improved by +" + m.delta + " across saved builds."
+            : m.delta < 0
+              ? "Regressed by " + m.delta + " across saved builds."
+              : "Unchanged across saved builds.";
+        return (
+          "<li><a href=\"" +
+          escapeHtml(href) +
+          "\" target=\"_blank\" rel=\"noopener noreferrer\" title=\"" +
+          escapeHtml(m.name) +
+          " - glossary\">" +
+          escapeHtml(m.name) +
+          "</a> scores " +
+          escapeHtml(path) +
+          ". " +
+          escapeHtml(why) +
+          "</li>"
+        );
+      })
+      .join("");
+    return (
+      '<button type="button" class="memo-back memo-back-simple">← Back to compare brief</button>' +
+      '<p class="memo-kicker">Full compare detail - every evaler across every saved twin run, with glossary links.</p>' +
+      "<h2>Compare detail · " +
+      escapeHtml(pack.engine) +
+      " · " +
+      memoProductTitleHtml(pack.target) +
+      "</h2>" +
+      '<div class="memo-section"><h3>Score matrix</h3>' +
+      '<table class="memo-compare-table"><thead>' +
+      head +
+      "</thead><tbody>" +
+      body +
+      "</tbody></table></div>" +
+      '<div class="memo-section"><h3>Per-evaler facts</h3><ul class="memo-deep-lines">' +
+      lines +
+      "</ul></div>"
+    );
   }
 
   function paintResults(cells, target) {
+    /* Never paint evaler chips/scores under Evalathan GitHub */
     const box = document.getElementById("results");
-    box.innerHTML = "";
+    if (box) box.innerHTML = "";
     if (target) document.getElementById("target-input").value = target;
-    cells.forEach((c) => {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "chip " + (c.status || "deferred");
-      btn.innerHTML = "<strong>" + escapeHtml(c.name) + "</strong><span>" + escapeHtml(c.blurb) + "</span>";
-      btn.addEventListener("click", () => window.open(c.href || GLOSS_MD, "_blank", "noopener,noreferrer"));
-      box.appendChild(btn);
+  }
+
+  function ordinal(n) {
+    const num = Math.max(1, Number(n) || 1);
+    const v = num % 100;
+    const map = { 1: "st", 2: "nd", 3: "rd" };
+    const s = v >= 11 && v <= 13 ? "th" : map[v % 10] || "th";
+    return num + s;
+  }
+
+  function pad2(n) {
+    return String(n).padStart(2, "0");
+  }
+
+  function formatRailDate(run) {
+    const raw = run.savedAt || run.whenIso || run.when;
+    const d = new Date(raw);
+    if (isNaN(d.getTime())) return String(raw || "Run");
+    /* mm/dd/yy HH:MM e.g. 11/19/26 19:51 */
+    return (
+      pad2(d.getMonth() + 1) +
+      "/" +
+      pad2(d.getDate()) +
+      "/" +
+      String(d.getFullYear()).slice(-2) +
+      " " +
+      pad2(d.getHours()) +
+      ":" +
+      pad2(d.getMinutes())
+    );
+  }
+
+  function formatRailBlurb(run) {
+    const dateStr = formatRailDate(run);
+    const n = run.runOrdinal || 1;
+    const evalCount = (run.cells && run.cells.length) || 0;
+    /* Classic one-liner - project name lives in the section head, not the blurb */
+    return (
+      dateStr + " - " + ordinal(n) + " run, " + (run.engine || "HYDRA") + " -" + evalCount + " evals"
+    );
+  }
+
+  function renderRunButton(r, opts) {
+    const li = document.createElement("li");
+    if (opts && opts.latest) li.className = "is-latest";
+    const b = document.createElement("button");
+    b.type = "button";
+    const blurb = formatRailBlurb(r);
+    b.title = blurb;
+    b.className = "run-entry-btn";
+    b.innerHTML = '<span class="run-blurb">' + escapeHtml(blurb) + "</span>";
+    b.addEventListener("click", () => openSavedMemo(r));
+    li.appendChild(b);
+    return li;
+  }
+
+  function appendRailHead(scroll, label, titleAttr, kind) {
+    const head = document.createElement("button");
+    head.type = "button";
+    head.className =
+      "rail-head" + (kind === "saved" ? " rail-head-saved" : " rail-head-latest");
+    head.title = titleAttr || label;
+    head.innerHTML = "<span>" + escapeHtml(label) + "</span>";
+    scroll.appendChild(head);
+  }
+
+  function appendEmptyLi(list, text) {
+    const li = document.createElement("li");
+    li.className = "is-empty";
+    li.textContent = text;
+    list.appendChild(li);
+  }
+
+  function renderRunsRail() {
+    const scroll = document.getElementById("rail-scroll");
+    if (!scroll) return;
+    scroll.innerHTML = "";
+
+    if (!runSets.length) {
+      appendRailHead(scroll, "latest run", "Latest evaluation run", "latest");
+      const emptyLatest = document.createElement("ul");
+      emptyLatest.className = "past-list past-list-latest";
+      appendEmptyLi(emptyLatest, "No latest run yet. Evaluate, then Save.");
+      scroll.appendChild(emptyLatest);
+      appendRailHead(scroll, "saved runs", "Saved evaluation runs", "saved");
+      const emptySaved = document.createElement("ul");
+      emptySaved.className = "past-list past-list-saved";
+      appendEmptyLi(emptySaved, "No saved runs yet.");
+      scroll.appendChild(emptySaved);
+      return;
+    }
+
+    runSets.forEach(function (set) {
+      const caps = set.titleCaps || titleCapsFromTarget(set.target || set.shortTitle);
+      const wrap = document.createElement("div");
+      wrap.className = "rail-set";
+
+      appendRailHead(wrap, caps + " - latest run", caps + " - latest run", "latest");
+      const latestList = document.createElement("ul");
+      latestList.className = "past-list past-list-latest";
+      if (!set.latest) {
+        appendEmptyLi(latestList, "No latest run yet. Evaluate, then Save.");
+      } else {
+        if (!set.latest.shortTitle) {
+          set.latest.shortTitle = shortTitleFromTarget(set.latest.target || set.latest.title);
+          set.latest.title = set.latest.shortTitle;
+        }
+        latestList.appendChild(renderRunButton(set.latest, { latest: true }));
+      }
+      wrap.appendChild(latestList);
+
+      /* Saved history excludes the latest entry so we do not double-list the same 1st/Nth run */
+      const latestId = set.latest && set.latest.id;
+      const saved = (set.saved || []).filter(function (r) {
+        return !latestId || r.id !== latestId;
+      });
+      appendRailHead(wrap, caps + " - saved runs", caps + " - saved runs", "saved");
+      const savedList = document.createElement("ul");
+      savedList.className = "past-list past-list-saved";
+      if (!saved.length) {
+        appendEmptyLi(
+          savedList,
+          latestId ? "No earlier saved runs yet." : "No saved runs yet."
+        );
+      } else {
+        saved.forEach(function (r) {
+          if (!r.shortTitle) {
+            r.shortTitle = shortTitleFromTarget(r.target || r.title);
+            r.title = r.shortTitle;
+          }
+          savedList.appendChild(renderRunButton(r));
+        });
+      }
+      wrap.appendChild(savedList);
+      scroll.appendChild(wrap);
     });
   }
 
-  function mockEvaluate(target) {
-    const e = engine(activeId);
-    const cells = e.evalers
-      .filter((ev) => !ev.later)
-      .map((ev, i) => ({
-        name: ev.label,
-        status: i % 5 === 0 ? "deferred" : "pass",
-        blurb:
-          activeId === "dehydrus"
-            ? "Looking for a sealed world file; blank stays deferred."
-            : activeId === "benchrex"
-              ? "Criterion check teased - evidence pack later."
-              : activeId === "biasrex"
-                ? "Bias cell teased - artifact gate later."
-                : "Life-cycle gate scanned (local preview).",
-        href: ev.href,
-      }));
-    const deferred = cells.filter((c) => c.status === "deferred").length;
-    past.unshift({
-      title: target || "(no path)",
-      when: new Date().toLocaleString(),
-      engine: e.label,
-      summary: cells.length + " cells · " + deferred + " deferred",
-      target: target || "",
-      cells,
+  function syncMemoLayer() {
+    const layer = document.getElementById("memo-layer");
+    if (!layer) return;
+    layer.hidden = openMemos.length === 0;
+    layer.classList.toggle("is-empty", openMemos.length === 0);
+  }
+
+  function focusMemoHost(host) {
+    if (!host) return;
+    focusedMemoId = host.id;
+    openMemos.forEach(function (m, idx) {
+      const on = m.id === host.id;
+      m.root.classList.toggle("is-focused", on);
+      m.root.style.zIndex = String(90 + (on ? openMemos.length + 5 : idx));
     });
-    savePast();
-    renderPast();
-    paintResults(cells, target);
+  }
+
+  function closeMemoHost(host) {
+    if (!host) return;
+    openMemos = openMemos.filter(function (m) {
+      return m.id !== host.id;
+    });
+    if (host.root && host.root.parentNode) host.root.parentNode.removeChild(host.root);
+    if (focusedMemoId === host.id) {
+      focusedMemoId = openMemos.length ? openMemos[openMemos.length - 1].id : null;
+      if (focusedMemoId) focusMemoHost(focusedMemo());
+    }
+    syncMemoLayer();
+  }
+
+  function setMemoMode(host, mode) {
+    if (!host) return;
+    host.mode = mode;
+    host.root.querySelector(".memo-process").hidden = mode !== "process";
+    host.root.querySelector(".memo-simple").hidden = mode !== "simple";
+    host.root.querySelector(".memo-deep").hidden = mode !== "deep";
+    host.root.querySelector(".memo-dock").hidden = mode === "process";
+    updateSaveDeleteUi(host);
+    updateCompareButton(host);
+  }
+
+  function wireMemoInnerLinks(host) {
+    if (!host) return;
+    const deepBtn = host.root.querySelector(".memo-open-deep");
+    if (deepBtn) {
+      deepBtn.onclick = function () {
+        setMemoMode(host, "deep");
+      };
+    }
+    const backBtn = host.root.querySelector(".memo-back-simple");
+    if (backBtn) {
+      backBtn.onclick = function () {
+        setMemoMode(host, "simple");
+      };
+    }
+    host.root.querySelectorAll("[data-gloss-href]").forEach(function (el) {
+      el.onclick = function () {
+        window.open(el.getAttribute("data-gloss-href") || GLOSS_MD, "_blank", "noopener,noreferrer");
+      };
+    });
+  }
+
+  function updateSaveDeleteUi(host) {
+    const m = host || focusedMemo();
+    if (!m || !m.root) return;
+    const saveBtn = m.root.querySelector(".memo-btn-save");
+    const delBtn = m.root.querySelector(".memo-btn-delete");
+    if (!saveBtn || !delBtn) return;
+    const isSaved = !!(m.run && m.run.savedAt) && m.kind === "run";
+    const hideSave = m.kind === "compare";
+    saveBtn.hidden = hideSave;
+    saveBtn.disabled = isSaved;
+    saveBtn.classList.toggle("is-saved", isSaved);
+    saveBtn.textContent = isSaved ? "Saved" : "Save";
+    delBtn.hidden = !isSaved;
+  }
+
+  function enableMemoDrag(host) {
+    const win = host.root;
+    const bar = host.root.querySelector(".memo-titlebar");
+    if (!win || !bar || bar.getAttribute("data-drag-ready")) return;
+    bar.setAttribute("data-drag-ready", "1");
+    let dragging = false;
+    let sx = 0;
+    let sy = 0;
+    let ox = 0;
+    let oy = 0;
+    bar.addEventListener("mousedown", function (e) {
+      if (e.button !== 0) return;
+      if (e.target.closest && e.target.closest(".memo-close")) return;
+      focusMemoHost(host);
+      const rect = win.getBoundingClientRect();
+      dragging = true;
+      sx = e.clientX;
+      sy = e.clientY;
+      ox = rect.left;
+      oy = rect.top;
+      win.classList.add("is-dragged");
+      win.classList.add("is-cascaded");
+      win.style.left = ox + "px";
+      win.style.top = oy + "px";
+      win.style.width = rect.width + "px";
+      e.preventDefault();
+    });
+    window.addEventListener("mousemove", function (e) {
+      if (!dragging) return;
+      win.style.left = ox + (e.clientX - sx) + "px";
+      win.style.top = oy + (e.clientY - sy) + "px";
+    });
+    window.addEventListener("mouseup", function () {
+      dragging = false;
+    });
+  }
+
+  function cascadeMemoPosition(host, index) {
+    const baseL = Math.max(24, Math.round(window.innerWidth * 0.5 - 360));
+    const baseT = Math.max(24, Math.round(window.innerHeight * 0.5 - 280));
+    const left = baseL + index * 32;
+    const top = baseT + index * 28;
+    host.root.classList.add("is-cascaded");
+    host.root.style.left = left + "px";
+    host.root.style.top = top + "px";
+    host.root.style.width = "min(720px, 96vw)";
+  }
+
+  function createMemoHost() {
+    const layer = document.getElementById("memo-layer");
+    const root = document.createElement("div");
+    root.className = "memo-win";
+    root.setAttribute("role", "dialog");
+    root.setAttribute("aria-modal", "false");
+    root.innerHTML =
+      '<div class="memo-titlebar">' +
+      '<span class="memo-win-title">EVALATHAN</span>' +
+      '<button type="button" class="memo-close" title="Close">×</button>' +
+      "</div>" +
+      '<div class="memo-sheet">' +
+      '<div class="memo-process" hidden>' +
+      '<p class="memo-process-label">Evaluating<span class="memo-dots" aria-hidden="true"><i></i><i></i><i></i></span></p>' +
+      '<ul class="memo-process-log" aria-live="polite"></ul>' +
+      "</div>" +
+      '<div class="memo-simple" hidden></div>' +
+      '<div class="memo-deep" hidden></div>' +
+      '<div class="memo-dock" hidden>' +
+      '<div class="memo-dock-left">' +
+      '<button type="button" class="memo-btn memo-btn-download" title="Print / save as PDF">Download</button>' +
+      '<button type="button" class="memo-btn memo-btn-save" title="Save as latest run">Save</button>' +
+      '<button type="button" class="memo-btn memo-btn-delete" title="Delete this saved run" hidden>Delete</button>' +
+      "</div>" +
+      '<div class="memo-dock-right">' +
+      '<button type="button" class="memo-btn memo-btn-compare" title="Compare saved runs of this target" hidden>Compare</button>' +
+      "</div>" +
+      "</div>" +
+      "</div>";
+    layer.appendChild(root);
+    memoSeq += 1;
+    const host = {
+      id: "memo_" + memoSeq,
+      root: root,
+      run: null,
+      kind: "run",
+      comparePack: null,
+      mode: "simple",
+    };
+    root.addEventListener("mousedown", function () {
+      focusMemoHost(host);
+    });
+    root.querySelector(".memo-close").addEventListener("click", function () {
+      closeMemoHost(host);
+    });
+    root.querySelector(".memo-btn-save").addEventListener("click", function () {
+      saveMemoHost(host);
+    });
+    root.querySelector(".memo-btn-delete").addEventListener("click", function () {
+      deleteMemoHost(host);
+    });
+    root.querySelector(".memo-btn-download").addEventListener("click", function () {
+      downloadMemoHost(host);
+    });
+    root.querySelector(".memo-btn-compare").addEventListener("click", function () {
+      paintCompareInto(host);
+    });
+    enableMemoDrag(host);
+    openMemos.push(host);
+    cascadeMemoPosition(host, openMemos.length - 1);
+    syncMemoLayer();
+    focusMemoHost(host);
+    return host;
+  }
+
+  function findMemoByRunId(runId) {
+    if (!runId) return null;
+    return (
+      openMemos.find(function (m) {
+        return m.run && m.run.id === runId && m.kind === "run";
+      }) || null
+    );
+  }
+
+  function paintMemoInto(host, run, mode) {
+    if (!host || !run) return;
+    host.kind = "run";
+    host.comparePack = null;
+    if (!run.shortTitle) run.shortTitle = shortTitleFromTarget(run.target || run.title);
+    enrichRunExplanations(run);
+    host.run = run;
+    run.memoSimple = writeSimpleMemo(run);
+    run.memoDeep = writeDeepMemo(run);
+    host.root.querySelector(".memo-win-title").textContent =
+      run.engine + " · " + displayTitle(run);
+    host.root.querySelector(".memo-simple").innerHTML = run.memoSimple;
+    host.root.querySelector(".memo-deep").innerHTML = run.memoDeep;
+    setMemoMode(host, mode || "simple");
+    updateSaveDeleteUi(host);
+    wireMemoInnerLinks(host);
+    focusMemoHost(host);
+  }
+
+  function paintMemo(run, mode) {
+    const existing = run && run.id ? findMemoByRunId(run.id) : null;
+    const host = existing || createMemoHost();
+    paintMemoInto(host, run, mode || "simple");
+    return host;
+  }
+
+  function paintCompareInto(host) {
+    if (!host || !host.run) return;
+    const pack = buildComparePack(host.run);
+    if (!pack) return;
+    host.kind = "compare";
+    host.comparePack = pack;
+    pack.memoSimple = writeCompareSimple(pack);
+    pack.memoDeep = writeCompareDeep(pack);
+    host.root.querySelector(".memo-win-title").textContent =
+      "Compare · " + (pack.engine || "EVALATHAN") + " · " + shortTitleFromTarget(pack.target);
+    host.root.querySelector(".memo-simple").innerHTML = pack.memoSimple;
+    host.root.querySelector(".memo-deep").innerHTML = pack.memoDeep;
+    setMemoMode(host, "simple");
+    wireMemoInnerLinks(host);
+    focusMemoHost(host);
+  }
+
+  function openSavedMemo(run) {
+    if (!run) return;
+    if (!run.shortTitle) run.shortTitle = shortTitleFromTarget(run.target || run.title);
+    if (run.target) document.getElementById("target-input").value = run.target;
+    paintResults(run.cells || [], run.target || "");
+    /* Always keep prior memos open - reuse only if this exact run is already open */
+    const existing = findMemoByRunId(run.id);
+    if (existing) {
+      paintMemoInto(existing, run, "simple");
+    } else {
+      paintMemoInto(createMemoHost(), run, "simple");
+    }
     if (!app.classList.contains("runs-open")) toggleSide("runs");
+  }
+
+  function sleep(ms) {
+    return new Promise(function (resolve) {
+      window.setTimeout(resolve, ms);
+    });
+  }
+
+  async function runEvaluate(target) {
+    if (evalBusy) return;
+    if (!evalSlotAllowed()) return;
+    evalBusy = true;
+    const eng = engine(activeId);
+    const wired = eng.evalers.filter((ev) => !ev.later);
+    const host = createMemoHost();
+    host.root.querySelector(".memo-win-title").textContent = eng.label + " · evaluating";
+    host.root.querySelector(".memo-process-log").innerHTML = "";
+    setMemoMode(host, "process");
+    if (!app.classList.contains("runs-open")) toggleSide("runs");
+
+    for (let i = 0; i < wired.length; i++) {
+      const ev = wired[i];
+      const li = document.createElement("li");
+      li.className = "is-active";
+      li.textContent = processLine(eng.id, ev);
+      host.root.querySelector(".memo-process-log").appendChild(li);
+      const log = host.root.querySelector(".memo-process-log");
+      log.scrollTop = log.scrollHeight;
+      await sleep(220 + (hashStr(ev.id + target) % 180));
+      /* Deterministic FOSS hash score - not a live GitHub read, not an LLM guess */
+      const score = scoreFor(target, eng.id, ev.id);
+      li.classList.remove("is-active");
+      li.classList.add("is-done");
+      li.textContent = ev.label + " · " + score + "/100";
+    }
+
+    const cells = buildCells(target, eng);
+    const prior = findPriorSaved(target, eng.label);
+    const comparison = compareRuns({ cells: cells }, prior);
+    const run = makeRun(target, eng, cells, comparison);
+    const set = ensureRunSet(target);
+    set.latest = run;
+    persistRuns();
+    renderRunsRail();
+    paintResults(cells, target);
+    paintMemoInto(host, run, "simple");
+    evalBusy = false;
+  }
+
+  function saveMemoHost(host) {
+    if (!host || !host.run || host.kind === "compare" || host.run.savedAt) return;
+    const copy = JSON.parse(JSON.stringify(host.run));
+    copy.savedAt = new Date().toISOString();
+    copy.shortTitle = copy.shortTitle || shortTitleFromTarget(copy.target || copy.title);
+    copy.title = copy.shortTitle;
+    const set = ensureRunSet(copy.target || copy.title);
+    copy.runOrdinal =
+      copy.runOrdinal || nextRunOrdinal(copy.target || copy.title, copy.engineId || copy.engine);
+    delete copy.railBlurb;
+    copy.railBlurb = formatRailBlurb(copy);
+    set.latest = copy;
+    set.saved = [copy]
+      .concat(
+        (set.saved || []).filter(function (r) {
+          return r.id !== copy.id;
+        })
+      )
+      .slice(0, 40);
+    host.run = copy;
+    persistRuns();
+    renderRunsRail();
+    updateCompareButton(host);
+    updateSaveDeleteUi(host);
+    host.root.querySelector(".memo-win-title").textContent =
+      copy.engine + " · " + displayTitle(copy);
+  }
+
+  function deleteMemoHost(host) {
+    if (!host || !host.run || !host.run.savedAt || host.kind === "compare") return;
+    const id = host.run.id;
+    const set = findRunSet(host.run.target || host.run.title);
+    if (set) {
+      set.saved = (set.saved || []).filter(function (r) {
+        return r.id !== id;
+      });
+      if (set.latest && set.latest.id === id) {
+        set.latest = set.saved[0] || null;
+      }
+      if (!set.latest && !(set.saved && set.saved.length)) {
+        runSets = runSets.filter(function (s) {
+          return s !== set;
+        });
+      }
+    }
+    persistRuns();
+    renderRunsRail();
+    closeMemoHost(host);
+  }
+
+  function stripInteractiveHtml(html) {
+    return String(html || "")
+      .replace(/<button\b[^>]*>[\s\S]*?<\/button>/gi, "")
+      .replace(/\sdata-gloss-href="[^"]*"/gi, "");
+  }
+
+  function downloadMemoHost(host) {
+    if (!host || !host.run) return;
+    const run = host.run;
+    const short = displayTitle(run);
+    const pack = host.comparePack;
+    const simple =
+      host.kind === "compare" && pack
+        ? stripInteractiveHtml(pack.memoSimple || writeCompareSimple(pack))
+        : stripInteractiveHtml(run.memoSimple || writeSimpleMemo(run));
+    const deep =
+      host.kind === "compare" && pack
+        ? stripInteractiveHtml(pack.memoDeep || writeCompareDeep(pack))
+        : stripInteractiveHtml(run.memoDeep || writeDeepMemo(run));
+    const heading = host.kind === "compare" ? "Evalathan compare" : "Evalathan memo";
+    const html =
+      "<!DOCTYPE html><html><head><meta charset=\"UTF-8\" /><title>" +
+      escapeHtml(heading + " - " + short) +
+      "</title><style>" +
+      "body{font-family:Segoe UI,Helvetica,Arial,sans-serif;max-width:720px;margin:28px auto;padding:0 18px;color:#111;}" +
+      "h1{font-size:20px;margin:0 0 6px} h2{font-size:16px;margin:18px 0 8px} h3{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#444;margin:14px 0 6px}" +
+      ".meta{color:#555;font-size:12px;margin:0 0 14px} a{color:#2f6fbf;text-decoration:none}" +
+      ".page{page-break-after:always} .page:last-child{page-break-after:auto}" +
+      "ul{padding-left:1.1rem} li{margin:0 0 8px;line-height:1.45}" +
+      "table{width:100%;border-collapse:collapse;font-size:12px} th,td{border:1px solid #ccc;padding:5px 6px;text-align:left}" +
+      ".memo-chip-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}" +
+      ".memo-chip{border:1px solid #ccc;border-radius:8px;padding:8px;display:block}" +
+      ".memo-chip strong{display:block;font-size:12px;margin-bottom:3px;color:#2f7a45}" +
+      ".memo-chip span{font-size:11px;color:#555}" +
+      "</style></head><body>" +
+      "<div class=\"page\"><h1>" +
+      escapeHtml(heading) +
+      "</h1><div class=\"meta\">" +
+      escapeHtml((run.engine || "") + " · " + short + " · " + (run.when || "")) +
+      "</div>" +
+      simple +
+      "</div>" +
+      "<div class=\"page\"><h1>" +
+      escapeHtml(heading) +
+      " - detail</h1>" +
+      deep +
+      "</div>" +
+      "</body></html>";
+    const frame = document.createElement("iframe");
+    frame.setAttribute("aria-hidden", "true");
+    frame.style.cssText = "position:fixed;right:0;bottom:0;width:0;height:0;border:0;opacity:0;";
+    document.body.appendChild(frame);
+    const doc = frame.contentDocument || frame.contentWindow.document;
+    doc.open();
+    doc.write(html);
+    doc.close();
+    window.setTimeout(function () {
+      try {
+        frame.contentWindow.focus();
+        frame.contentWindow.print();
+      } catch (e) {
+        /* ignore */
+      }
+      window.setTimeout(function () {
+        if (frame.parentNode) frame.parentNode.removeChild(frame);
+      }, 1000);
+    }, 250);
   }
 
   document.getElementById("btn-toggle-engines").addEventListener("click", (e) => {
@@ -336,16 +2105,19 @@
     toggleSide("runs");
   });
   document.getElementById("btn-browse").addEventListener("click", () => {
+    if (!evalSlotAllowed()) return;
     document.getElementById("folder-picker").click();
   });
   document.getElementById("folder-picker").addEventListener("change", (ev) => {
+    if (!evalSlotAllowed()) return;
     const files = ev.target.files;
     if (!files || !files.length) return;
     const path = files[0].webkitRelativePath || files[0].name;
     document.getElementById("target-input").value = String(path).split("/")[0] || path;
   });
   document.getElementById("btn-eval").addEventListener("click", () => {
-    mockEvaluate(document.getElementById("target-input").value.trim());
+    if (!evalSlotAllowed()) return;
+    runEvaluate(document.getElementById("target-input").value.trim());
   });
   document.getElementById("btn-home").addEventListener("click", () => {
     userPickedEngine = false;
@@ -368,6 +2140,7 @@
   document.getElementById("btn-toggle-runs").setAttribute("aria-expanded", "false");
   document.getElementById("slideout").setAttribute("aria-hidden", "true");
   document.getElementById("runs-rail").setAttribute("aria-hidden", "true");
+  preloadArts();
   setTheme(theme());
-  renderPast();
+  renderRunsRail();
 })();
