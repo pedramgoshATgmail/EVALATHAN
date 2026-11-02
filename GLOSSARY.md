@@ -679,7 +679,12 @@ A locked room from a past year. The exam has to work with what that year could s
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Manifesto direction: *Until Artificial Intelligence Independently Eurekas on its own*, after [Adaptive Software Development](https://en.wikipedia.org/wiki/Adaptive_software_development) ([Jim Highsmith, 1997: messy, exciting, and anxiety-ridden; second world = unpredictable, nonlinear, fast](https://web.archive.org/web/20171004140236/http://www.adaptivesd.com/articles/messy.htm)). [PRETRUWs](#pretruws) states a third world: multi-predictable, bilinear and supralinear, hyperfast / instancy-nearest, and polydeterminism. Paradigm [PRETRUWs](#pretruws) holds the [LuDaTs](#ludats) methodology framework. Each brand is one method. [Braidware](#braidware) is agentics, software, and hardware as one unit. LLM (Large Language Model) and RAG (Retrieval-Augmented Generation) stacks are plugins, not extra Hydra cells.
+PRETRUWs Manifesto to be released between January and March 2027, by Pedram Goshtasbpour (staged for select peer review by Jim Highsmith and associates).
+
+Manifesto direction: 'Until Artificial Intelligence Independently Eurekas on its own...'. Pedram Goshtasbpour will release that follow-up paper and put it up for peer review in early 2027, thirty years after Jim Highsmith's [Messy, Exciting, and Anxiety-Ridden: Adaptive Software Development](https://web.archive.org/web/20171004140236/http://www.adaptivesd.com/articles/messy.htm) (American Programmer, 1997; also [Adaptive Software Development](https://en.wikipedia.org/wiki/Adaptive_software_development)).
+
+Highsmith's second world was unpredictable, nonlinear, and fast. Pedram's PRETRUWs paradigm states a third world: multi-predictable; bilinear and/or supralinear; hyperfast / instancy-nearest; polydeterminism (as opposed to simple binary nondeterminism vs determinism (post-quantum computing based)); and [Braidware](#braidware) - agentics, software, and hardware as one unit. LLM (Large Language Model) and RAG (Retrieval-Augmented Generation) stacks are plugins, not extra Hydra cells.
+PRETRUWs paradigm holds the [LuDaTs](#ludats) methodology framework. Each of the current 8 [LuDaTs](#ludats) evalers are one method.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
