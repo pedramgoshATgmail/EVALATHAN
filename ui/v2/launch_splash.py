@@ -29,7 +29,7 @@ from pathlib import Path
 TARGET_DIAMETER = 220
 MAX_SECONDS = 180
 POLL_MS = 120
-DOT_MS = 380
+DOT_MS = 420  # whole-caption fade pulse (launching...)
 
 
 def state_dir() -> Path:
@@ -282,42 +282,34 @@ def _caption_fonts(supersample: int = 1):
     return ImageFont.load_default(), ImageFont.load_default()
 
 
+def _caption_fade_rgba(phase: int) -> tuple[int, int, int, int]:
+    """Dark green 'launching...' with whole-string fade pulse (3 baked frames)."""
+    # Dark green base; alpha steps make the full word+ellipsis flash/fade together.
+    r, g, b = 11, 92, 46  # #0B5C2E
+    alphas = (255, 150, 72)
+    return (r, g, b, alphas[phase % 3])
+
+
 def _draw_caption(base, phase: int, supersample: int = 1):
-    """Return a copy of base with centered black 'launching' + animated dots."""
+    """Return a copy of base with centered dark-green fading 'launching...'."""
     from PIL import ImageDraw
 
     frame = base.copy()
     draw = ImageDraw.Draw(frame)
     size = frame.size[0]
     ss = max(1, int(supersample))
-    font, font_dots = _caption_fonts(ss)
+    font, _font_dots = _caption_fonts(ss)
 
-    word = "launching"
+    word = "launching..."
     try:
         wb = draw.textbbox((0, 0), word, font=font)
         word_w = wb[2] - wb[0]
         word_h = wb[3] - wb[1]
     except Exception:  # noqa: BLE001
-        word_w, word_h = 110 * ss, 20 * ss
-    dots_w = 48 * ss
-    total = word_w + 6 * ss + dots_w
-    x0 = (size - total) // 2
+        word_w, word_h = 150 * ss, 20 * ss
+    x0 = (size - word_w) // 2
     y = size // 2 - word_h // 2 - 2 * ss
-    draw.text((x0, y), word, fill=(0, 0, 0, 255), font=font)
-    active = phase % 3
-    for i in range(3):
-        if i == active:
-            color = (0, 0, 0, 255)
-        elif i == (active - 1) % 3:
-            color = (58, 58, 58, 255)
-        else:
-            color = (106, 106, 106, 255)
-        draw.text(
-            (x0 + word_w + 6 * ss + i * 14 * ss, y - 4 * ss),
-            ".",
-            fill=color,
-            font=font_dots,
-        )
+    draw.text((x0, y), word, fill=_caption_fade_rgba(phase), font=font)
     return frame
 
 def _rgba_to_premultiplied_bgra(im) -> bytes:
@@ -927,38 +919,18 @@ def _run_splash_tk(logo_path: Path) -> int:
         pass
 
     canvas.create_image(size // 2, size // 2, image=logo, anchor="center")
-    ink = "#000000"
-    ink_mid = "#3a3a3a"
-    ink_dim = "#6a6a6a"
+    # Tk cannot do true alpha; pulse dark-green → mid → soft green for the whole string.
+    fade_fills = ("#0B5C2E", "#3D8A5C", "#7AAD8E")
     cx = size // 2
     cy = size // 2
     label = canvas.create_text(
         cx,
         cy,
-        text="launching",
-        fill=ink,
+        text="launching...",
+        fill=fade_fills[0],
         font=("Segoe UI", 20, "bold"),
-        anchor="e",
+        anchor="center",
     )
-    bbox = canvas.bbox(label)
-    word_w = (bbox[2] - bbox[0]) if bbox else 110
-    dots_w = 42
-    total_w = word_w + 4 + dots_w
-    word_right = cx - total_w // 2 + word_w
-    canvas.coords(label, word_right, cy)
-    canvas.itemconfigure(label, anchor="e")
-    dot_ids = []
-    for i in range(3):
-        dot_ids.append(
-            canvas.create_text(
-                word_right + 2 + i * 14,
-                cy,
-                text=".",
-                fill=ink_dim,
-                font=("Segoe UI", 25, "bold"),
-                anchor="w",
-            )
-        )
 
     root.update_idletasks()
     sw = root.winfo_screenwidth()
@@ -975,15 +947,7 @@ def _run_splash_tk(logo_path: Path) -> int:
     def _tick_dots() -> None:
         if not root.winfo_exists():
             return
-        active = phase["i"] % 3
-        for i, dot_id in enumerate(dot_ids):
-            if i == active:
-                color = ink
-            elif i == (active - 1) % 3:
-                color = ink_mid
-            else:
-                color = ink_dim
-            canvas.itemconfigure(dot_id, fill=color)
+        canvas.itemconfigure(label, fill=fade_fills[phase["i"] % 3])
         phase["i"] += 1
         root.after(DOT_MS, _tick_dots)
 
