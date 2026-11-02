@@ -66,6 +66,8 @@ if not defined SPY for /f "delims=" %%P in ('where python 2^>nul') do (
   if not defined SPY set "SPY=%%P"
 )
 if not defined SPY goto :eof
+REM Intentional start: clear prior stop so a fresh splash may paint.
+if exist "%USERPROFILE%\.evalathan\splash.stop" del /q "%USERPROFILE%\.evalathan\splash.stop" >nul 2>&1
 start "" "%SPY%" "%~dp0ui\v2\launch_splash.py"
 goto :eof
 

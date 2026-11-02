@@ -68,6 +68,7 @@ call "%~dp0.venv\Scripts\activate.bat"
 
 REM FUSS launching splash while pip / desk startup runs.
 if exist "%~dp0ui\v2\launch_splash.py" (
+  if exist "%USERPROFILE%\.evalathan\splash.stop" del /q "%USERPROFILE%\.evalathan\splash.stop" >nul 2>&1
   if exist "%~dp0.venv\Scripts\pythonw.exe" (
     start "" "%~dp0.venv\Scripts\pythonw.exe" "%~dp0ui\v2\launch_splash.py"
   ) else (

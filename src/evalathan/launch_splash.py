@@ -66,9 +66,58 @@ def already_running() -> bool:
     return _pid_alive(pid)
 
 
+def _kill_pid(pid: int) -> None:
+    if pid <= 0:
+        return
+    if sys.platform == "win32":
+        import ctypes
+
+        PROCESS_TERMINATE = 0x0001
+        handle = ctypes.windll.kernel32.OpenProcess(PROCESS_TERMINATE, False, pid)
+        if handle:
+            try:
+                ctypes.windll.kernel32.TerminateProcess(handle, 1)
+            finally:
+                ctypes.windll.kernel32.CloseHandle(handle)
+        return
+    try:
+        os.kill(pid, 15)
+    except OSError:
+        try:
+            os.kill(pid, 9)
+        except OSError:
+            pass
+
+
+def clear_stop() -> None:
+    path = stop_path()
+    try:
+        if path.is_file():
+            path.unlink()
+    except OSError:
+        pass
+
+
 def request_close() -> None:
-    """Ask the splash process to exit (desk window is about to show)."""
+    """Ask the splash to exit and terminate its PID if still alive."""
     stop_path().write_text("1", encoding="utf-8")
+    path = pid_path()
+    if not path.is_file():
+        return
+    try:
+        pid = int(path.read_text(encoding="utf-8").strip())
+    except (OSError, ValueError):
+        try:
+            path.unlink()
+        except OSError:
+            pass
+        return
+    _kill_pid(pid)
+    try:
+        if path.is_file():
+            path.unlink()
+    except OSError:
+        pass
 
 
 def spawn_if_needed() -> bool:
@@ -78,25 +127,18 @@ def spawn_if_needed() -> bool:
     script = splash_script()
     if not script.is_file():
         return False
-    env = os.environ.copy()
-    # Clear a stale stop flag so a fresh splash can stay up.
-    stop = stop_path()
-    if stop.is_file():
-        try:
-            stop.unlink()
-        except OSError:
-            pass
+    # Intentional start: clear a prior stop so the new splash is allowed to paint.
+    clear_stop()
     kwargs: dict = {
         "args": [sys.executable, str(script)],
         "cwd": str(script.parent.parent.parent),
-        "env": env,
+        "env": os.environ.copy(),
         "stdin": subprocess.DEVNULL,
         "stdout": subprocess.DEVNULL,
         "stderr": subprocess.DEVNULL,
         "close_fds": True,
     }
     if sys.platform == "win32":
-        # No console flash; detach from the launcher console.
         kwargs["creationflags"] = (
             getattr(subprocess, "CREATE_NO_WINDOW", 0x08000000)
             | getattr(subprocess, "DETACHED_PROCESS", 0x00000008)

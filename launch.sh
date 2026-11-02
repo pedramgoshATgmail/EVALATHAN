@@ -13,6 +13,8 @@ start_fuss_splash() {
     py="$(command -v python3)"
   fi
   [ -n "$py" ] || return 0
+  # Intentional start: clear prior stop so a fresh splash may paint.
+  rm -f "${HOME}/.evalathan/splash.stop" 2>/dev/null || true
   "$py" ui/v2/launch_splash.py >/dev/null 2>&1 &
   disown $! 2>/dev/null || true
 }

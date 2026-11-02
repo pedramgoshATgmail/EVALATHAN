@@ -3,7 +3,15 @@
 Run as a standalone process from Evalathan.bat / launch.bat / launch.sh:
   pythonw ui/v2/launch_splash.py
 
-Closes when ~/.evalathan/splash.stop appears, or after a safety timeout.
+Closes when ~/.evalathan/splash.stop appears, when the recorded PID is killed,
+or after a safety timeout.
+
+Lifecycle (avoids a stuck splash after a second CMD/PowerShell install):
+- Intentional start clears splash.stop, then launches this script.
+- This process writes splash.pid only (it never clears splash.stop).
+- If splash.stop already exists, exit immediately (desk is up / closing).
+- On exit, clear splash.pid but leave splash.stop so a late sibling aborts.
+- --close writes splash.stop and terminates the recorded PID.
 """
 
 from __future__ import annotations
@@ -79,26 +87,69 @@ def already_running() -> bool:
 
 
 def mark_running() -> None:
-    stop = stop_path()
-    if stop.is_file():
-        try:
-            stop.unlink()
-        except OSError:
-            pass
+    """Record this PID only. Never clear splash.stop (late starts must see it)."""
     pid_path().write_text(str(os.getpid()), encoding="utf-8")
 
 
+def clear_pid() -> None:
+    path = pid_path()
+    try:
+        if path.is_file():
+            path.unlink()
+    except OSError:
+        pass
+
+
+def clear_stop() -> None:
+    path = stop_path()
+    try:
+        if path.is_file():
+            path.unlink()
+    except OSError:
+        pass
+
+
 def clear_markers() -> None:
-    for path in (pid_path(), stop_path()):
+    """Back-compat name: drop the PID marker only; leave stop for late siblings."""
+    clear_pid()
+
+
+def _kill_pid(pid: int) -> None:
+    if pid <= 0 or pid == os.getpid():
+        return
+    if sys.platform == "win32":
+        import ctypes
+
+        PROCESS_TERMINATE = 0x0001
+        handle = ctypes.windll.kernel32.OpenProcess(PROCESS_TERMINATE, False, pid)
+        if handle:
+            try:
+                ctypes.windll.kernel32.TerminateProcess(handle, 1)
+            finally:
+                ctypes.windll.kernel32.CloseHandle(handle)
+        return
+    try:
+        os.kill(pid, 15)
+    except OSError:
         try:
-            if path.is_file():
-                path.unlink()
+            os.kill(pid, 9)
         except OSError:
             pass
 
 
 def request_close() -> None:
+    """Signal stop and terminate any recorded splash PID (stuck overlay fix)."""
     stop_path().write_text("1", encoding="utf-8")
+    path = pid_path()
+    if not path.is_file():
+        return
+    try:
+        pid = int(path.read_text(encoding="utf-8").strip())
+    except (OSError, ValueError):
+        clear_pid()
+        return
+    _kill_pid(pid)
+    clear_pid()
 
 
 def _apply_circle_region(root, size: int) -> None:
@@ -154,6 +205,9 @@ def _load_logo_fill(path: Path, target: int):
 
 
 def run_splash() -> int:
+    # Desk already signaled ready, or a prior close left the stop flag - do not paint.
+    if stop_path().is_file():
+        return 0
     if already_running():
         return 0
 
@@ -167,6 +221,10 @@ def run_splash() -> int:
         return 0
 
     mark_running()
+    if stop_path().is_file():
+        clear_pid()
+        return 0
+
     started = time.monotonic()
 
     root = tk.Tk()
@@ -184,13 +242,22 @@ def run_splash() -> int:
     try:
         logo, size = _load_logo_fill(logo_path, TARGET_DIAMETER)
     except Exception:  # noqa: BLE001
-        clear_markers()
+        clear_pid()
         try:
             root.destroy()
         except tk.TclError:
             pass
         return 0
     root._logo = logo  # keep PhotoImage alive
+
+    # Stop may have arrived while we loaded art - abort before showing.
+    if stop_path().is_file():
+        clear_pid()
+        try:
+            root.destroy()
+        except tk.TclError:
+            pass
+        return 0
 
     canvas = tk.Canvas(
         root,
@@ -278,12 +345,12 @@ def run_splash() -> int:
                 root.destroy()
             except tk.TclError:
                 pass
-            clear_markers()
+            clear_pid()
             return
         root.after(POLL_MS, _poll)
 
     def _on_close() -> None:
-        clear_markers()
+        clear_pid()
         try:
             root.destroy()
         except tk.TclError:
@@ -295,7 +362,7 @@ def run_splash() -> int:
     try:
         root.mainloop()
     finally:
-        clear_markers()
+        clear_pid()
     return 0
 
 
@@ -306,6 +373,9 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if argv and argv[0] in {"--check", "check"}:
         return 0 if already_running() else 1
+    if argv and argv[0] in {"--clear-stop", "clear-stop"}:
+        clear_stop()
+        return 0
     return run_splash()
 
 
