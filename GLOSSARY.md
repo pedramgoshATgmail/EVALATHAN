@@ -477,11 +477,11 @@ H14 on the card is the NASA-TLX row: one educated user, overall 9 out of 100, lo
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
-Braidware is the post-4IR (Fourth Industrial Revolution) term that refers to agentics, software and hardware as a single consolidated unit (often sandboxed). It is the 4IR progression of [Wearables](https://en.wikipedia.org/wiki/Wearable_technology) (wearable technology - body-worn devices with sensors, connectivity, and software).
+Braidware is the post-4IR (Fourth Industrial Revolution) term that refers to agentics, software and hardware as a single consolidated unit (often sandboxed). It is the 4IR progression of [Wearables](https://en.wikipedia.org/wiki/Wearable_technology) (wearable technology - body-worn devices with sensors, connectivity, and software). The hardware side often includes on-device small processing units - chips that think on the gadget itself, not only in a far-away cloud.
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Braidware is the post-4IR (Fourth Industrial Revolution) braid of three strands: agentics, a software engine, and (when it exists) hardware. That is the unit of spend-time, not Industry 3.0's software-versus-hardware split. [Wearables](https://en.wikipedia.org/wiki/Wearable_technology) put sensing and apps on the body; Braidware is the 4IR neologism for the next step - the three strands as one unit, not a watch-or-glasses add-on alone.
+Braidware is the post-4IR (Fourth Industrial Revolution) braid of three strands: agentics, a software engine, and (when it exists) hardware. That is the unit of spend-time, not Industry 3.0's software-versus-hardware split. [Wearables](https://en.wikipedia.org/wiki/Wearable_technology) put sensing and apps on the body; Braidware is the 4IR neologism for the next step - the three strands as one unit, not a watch-or-glasses add-on alone. When the braid runs models locally, that is [Edge AI](https://www.ibm.com/think/topics/edge-ai) (on-device AI - inference on the gadget or near it, not only in the cloud). When sensors and actuators join a connected mesh, [IoT](https://en.wikipedia.org/wiki/Internet_of_things) (Internet of Things - networked physical devices) applies too; Edge AI is commonly deployed on IoT and wearable nodes.
 
 Headless MCP (Model Context Protocol) and CLI (command-line interface) work stay in the braid.
 
