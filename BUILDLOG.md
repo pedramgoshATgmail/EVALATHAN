@@ -1,4 +1,4 @@
-# Evalathan BUILDLOG
+﻿# Evalathan BUILDLOG
 
 Plain version history. Dates are the day each version landed on `main` (git commit date). Newest is at the bottom.
 
@@ -9,7 +9,8 @@ Plain version history. Dates are the day each version landed on `main` (git comm
 | **v0.2 window** | **10/26/26** | Tk Hydra GUI. Paste a GitHub link or pick a folder. `launch.bat` for Windows clones. |
 | **v0.3.0** | **10/31/26** | PRETRUWs room. Dehydrus conducts eight LuDaTs evalers (Copernly … Newtonly). HabTwin named, not scored yet. Still opens the Tk Hydra window by default. |
 | **v0.3.1** | **11/02/26** | Browser/`ui/v2` desk wired to real `prepare()` + `conduct()`. Install blocks hard-reset an existing folder to published `main`. Local desktop window + Desktop Evalathan icon. Nell rewrite on detail memos (cards + evidence, no path walls). Glossary auto-links (SASPIANT, M3, evalers, …). Saved runs persist on disk under `~/.evalathan/`. Desktop icon shows a centered FUSS launching splash (animated dots) until the desk window opens. |
-| **v0.3.2** | **11/20/26** (current) | Benchrex and Biasrex glossary rooms in Hydra/Dehydrus depth. Benchrex ten cells (seven paper criteria + Assessly / Reportly / Notifyly) credit San Joaquin, Gipiškis, Staufer, Gil (*Deprecating Benchmarks*, arXiv:2507.06434). Biasrex six cells from the Cognitive Bias Codex four problems plus Confirmly / Automately. Ed Slop card art for all ten Benchrex and all six Biasrex evalers. Conductors still not live-wired in the default desk. |
+| **v0.3.2** | **11/20/26** | Benchrex and Biasrex glossary rooms in Hydra/Dehydrus depth. Benchrex ten cells (seven paper criteria + Assessly / Reportly / Notifyly) credit San Joaquin, Gipiškis, Staufer, Gil (*Deprecating Benchmarks*, arXiv:2507.06434). Biasrex six cells from the Cognitive Bias Codex four problems plus Confirmly / Automately. Ed Slop card art for all ten Benchrex and all six Biasrex evalers. Conductors still not live-wired in the default desk. |
+| **v0.3.3** | **11/20/26** (current) | Desk memo eye-comfort palette under **4Uvals** (Ultimate User-User-User evaluations) + **Menschly** (limited-use / well-being evaler) policy: memo sheet `#E8F3E8`, evaler bevel cards `#FFF4E5`, body text `#2B2B2B` (hyperlinks stay blue). Same mandate covers FUSS (For-User Session Switch) Irish-orange controls and Prickly accent hues. See one-line detail below. |
 
 ## One-line each
 
@@ -28,8 +29,21 @@ Adds Dehydrus + eight LuDaTs worlds under PRETRUWs. Hydra’s sixteen stay sixte
 ### 11/02/26 - v0.3.1
 Default desk is local `ui/v2` (native window + Desktop dragon icon). Same Hydra sixteen, live evaluate path. Install blocks always replace an old clone with published `main`. Nell cards for detail memos. Glossary term auto-links. Saved runs survive restart via `~/.evalathan/run_sets.json`. Double-clicking the Desktop icon pops a centered FUSS logo splash with launching... and three fading dots until the desk window is ready.
 
-### 11/20/26 - v0.3.2 (current)
+### 11/20/26 - v0.3.2
 Glossary + desk names for Benchrex (10) and Biasrex (6) match Hydra/Dehydrus writing structure (Score Constitution / Simplespeak / Techspeak). Paper people and Codex lineage are cited. Ed Slop card art lands for all ten Benchrex and all six Biasrex evalers (Filterly, Meaningly, Hastely, Memoryly, Confirmly, Automately). Biasrex conductor emblem ships in glossary + desktop desk (same logo/title scale as Benchrex). Live `conduct()` for those rooms is still held.
+
+### 11/20/26 - v0.3.3 (current)
+**Memo eye-comfort palette (4Uvals / Menschly mandate).** Brief and detail memos on the local desk (`ui/v2`) use three fixed hues chosen for long technical reading on a computer desktop, not for brand decoration:
+
+| Surface | Hex | Role |
+| :--- | :--- | :--- |
+| Memo sheet background | `#E8F3E8` | Soft green wash - reduces glare vs pure white for long memo reads |
+| Evaler bevel rectangles (Nell cards) | `#FFF4E5` | Warm cream / amber sash - softer nested panels without harsh white-on-white |
+| Body font (non-link) | `#2B2B2B` | Near-black ink - high legibility without pure `#000` glare; hyperlinked words stay blue |
+
+**Why these two sheet hues.** Operator ask (desktop research cue): *[two safest color hues/shades for reading memos on computer desktop](https://www.google.com/search?q=two+safest+color+hues%2Fsahes+for+reading+memoms+on+computer+dekstop)*. Soft green and warm cream/ivory are the classic pair recommended for reduced eye strain on long on-screen reading (green calms glare; cream avoids harsh white contrast). Evalathan locks that pair as `#E8F3E8` + `#FFF4E5`, with `#2B2B2B` body text. Policy home: **4Uvals** U9 (well-being axis) and U6 (**FUSS** instrument), enforced in product spirit by **Menschly** - sourced from the SEISMO (AZ Signal Engine) pack `docs/evals/4UVALS.md` (sibling Cursor workspace) and mirrored in this repo's [4Uvals](GLOSSARY.md#user-content-4uvals) / [Menschly](GLOSSARY.md#user-content-menschly) glossary entries.
+
+**Buttons under the same mandate.** FUSS panel accents (`#c45c26` title / live counter, `#ff7900` Irish-flag orange Start / countdown disk) and Prickly desk accent (lime `--accent` / mascot rail) were meticulously selected the same way - readable at a glance, not neon-on-white, so session controls stay comfortable during long sittings. PDF download HTML for memos mirrors the same three memo hexes.
 
 ## Next (not shipped)
 
@@ -39,3 +53,4 @@ Glossary + desk names for Benchrex (10) and Biasrex (6) match Hydra/Dehydrus wri
 | v0.5 | Later Hydra-side interpersonal exam family (held). |
 
 Roadmap detail that is not a ship date lives in [docs/BUILDLOG.md](docs/BUILDLOG.md).
+

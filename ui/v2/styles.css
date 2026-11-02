@@ -931,8 +931,8 @@ html {
   flex: 1 1 auto;
   min-height: 0;
   overflow: auto;
-  background: #f7f7f5;
-  color: #111;
+  background: #e8f3e8; /* soft green - long-memo eye comfort (4Uvals / Menschly) */
+  color: #2b2b2b;
   padding: 1.15rem 1.25rem 1rem;
   font-family: var(--font);
   font-size: 0.92rem;
@@ -975,7 +975,7 @@ html {
   margin: 0.35rem 0 0.85rem;
   font-family: var(--mono);
   font-size: 0.95rem;
-  color: #222;
+  color: #2b2b2b;
 }
 .memo-dots {
   display: inline-flex;
@@ -1006,22 +1006,27 @@ html {
   gap: 0.45rem;
   font-family: var(--mono);
   font-size: 0.78rem;
-  color: #333;
+  color: #2b2b2b;
 }
 .memo-process-log li {
   opacity: 0;
   transform: translateY(4px);
   animation: memo-line-in 0.35s forwards ease-out;
 }
-.memo-process-log li.is-done { color: #1a1a1a; }
+.memo-process-log li.is-done { color: #2b2b2b; }
 .memo-process-log li.is-active { color: #0b5; font-weight: 500; }
 @keyframes memo-line-in {
   to { opacity: 1; transform: translateY(0); }
+}
+.memo-simple,
+.memo-deep {
+  color: #2b2b2b;
 }
 .memo-simple h2,
 .memo-deep h2 {
   margin: 0 0 0.55rem;
   font-size: 1.05rem;
+  color: #2b2b2b;
   font-weight: 600;
   letter-spacing: 0.02em;
 }
@@ -1037,7 +1042,7 @@ html {
   margin: 0 0 0.85rem;
   font-family: var(--mono);
   font-size: 0.72rem;
-  color: #666;
+  color: #2b2b2b;
 }
 .memo-section {
   margin: 0 0 0.95rem;
@@ -1047,7 +1052,7 @@ html {
   font-size: 0.78rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #444;
+  color: #2b2b2b;
 }
 .memo-section p {
   margin: 0 0 0.45rem;
@@ -1060,7 +1065,7 @@ html {
   margin: 0 0 0.85rem;
   font-family: var(--mono);
   font-size: 0.72rem;
-  color: #555;
+  color: #2b2b2b;
 }
 .memo-delta {
   border-left: 3px solid #c47a12;
@@ -1111,10 +1116,11 @@ html {
   margin: 0.35rem 0 0;
 }
 .nell-card {
-  border: 1px solid #d8dde6;
+  border: 1px solid #e6d7c2;
   border-radius: 10px;
   padding: 0.75rem 0.85rem 0.85rem;
-  background: #fafbfd;
+  background: #fff4e5; /* warm cream evaler bevel - long-memo eye comfort */
+  color: #2b2b2b;
 }
 .nell-card-head {
   display: flex;
@@ -1137,7 +1143,7 @@ html {
   font-size: 0.68rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #555;
+  color: #2b2b2b;
   background: #eef1f6;
   border-radius: 999px;
   padding: 0.15rem 0.5rem;
@@ -1146,14 +1152,14 @@ html {
 .nell-question {
   margin: 0 0 0.4rem;
   font-size: 0.905rem; /* was 0.78rem; +1 size */
-  color: #555;
+  color: #2b2b2b;
   line-height: 1.35;
 }
 .nell-blurb {
   margin: 0 0 0.55rem;
   font-size: 1.025rem; /* was 0.9rem; +1 size */
   line-height: 1.45;
-  color: #1a1a1a;
+  color: #2b2b2b;
 }
 /* Same faint rectangle language as .past-list li.is-latest */
 .nell-ev-box {
@@ -1168,11 +1174,11 @@ html {
   font-size: 0.8rem; /* was 0.68rem; +1 size */
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #bf0a30; /* US flag red (Old Glory Red) */
+  color: #2b2b2b;
   font-weight: 600;
 }
 .memo-evidence-word {
-  color: #bf0a30; /* US flag red (Old Glory Red) */
+  color: #2b2b2b;
   font-weight: 600;
   font-size: 1.125em; /* +1 size vs surrounding prose */
 }
@@ -1187,11 +1193,11 @@ html {
 .nell-evidence li {
   font-size: 0.905rem; /* was 0.78rem; +1 size */
   line-height: 1.35;
-  color: #333;
+  color: #2b2b2b;
 }
 .nell-ev-title {
   font-weight: 600;
-  color: #444;
+  color: #2b2b2b;
   margin-right: 0.25rem;
 }
 .nell-evidence code {
@@ -1206,7 +1212,7 @@ html {
 .nell-more {
   margin: 0.25rem 0 0;
   font-size: 0.845rem; /* was 0.72rem; +1 size */
-  color: #777;
+  color: #2b2b2b;
 }
 .memo-back {
   margin: 0 0 0.75rem;

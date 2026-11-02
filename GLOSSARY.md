@@ -815,10 +815,12 @@ Sixteen published usability and health standards sit under the card as analogs (
 On the published card the answer is PASS: nine of ten checks are Solid or Strong, and the average is 3.4 out of 4. One check - retelling the work - was listed but not measured, so it stays Emerging.
 
 NASA-TLX (NASA Task Load Index - a short form for how hard a task felt) on this card is one educated user scoring 9 out of 100, in the low band 0-24. That is one person's load score. It is not a NASA certificate. The 4Uvals card itself is not an ISO, IEEE, IEC, W3C, FDA, or NASA certificate.
+Factual desk example (Evalathan local memo UI): under the same 4Uvals + [Menschly](#menschly) mandate, brief and detail memos use soft green sheet `#E8F3E8`, warm cream evaler bevels `#FFF4E5`, and body text `#2B2B2B` (links stay blue) so long technical reads stay easier on the eyes. [FUSS](#fuss) and Prickly control hues follow the same eye-comfort pick.
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
 Stamp on the card: 4Uvals v1.2. Ten checks, U1-U10. First-order means the operator scored the sitting. The pass rule on this card is a mean of at least 3.2 and at least 8 of 10 checks Solid or Strong. This card clears both: mean 3.4, and 9 of 10. [ISO/IEC 42001](https://www.iso.org/standard/81230.html) is named beside the sitting as the firm-level wrapper (U4). It is not the sitting grade.
+**Factual UX example - desk memo palette (4Uvals / Menschly mandate).** The Evalathan `ui/v2` memo sheet (brief + Nell detail) locks three hexes for long technical reading on a computer desktop: background `#E8F3E8` (soft green), evaler bevel cards `#FFF4E5` (warm cream), non-link body `#2B2B2B`. Hyperlinks stay blue. Operator research cue that guided the two sheet hues: [two safest color hues/shades for reading memos on computer desktop](https://www.google.com/search?q=two+safest+color+hues%2Fsahes+for+reading+memoms+on+computer+dekstop) - soft green + warm cream/ivory as the classic low-strain pair. Policy spine: U9 well-being + U6 FUSS, product spirit [Menschly](#menschly); source pack SEISMO (AZ Signal Engine) `docs/evals/4UVALS.md`. FUSS Irish-orange controls (`#c45c26` / `#ff7900`) and Prickly lime accent were meticulously selected the same way. Shipped note: [BUILDLOG.md](BUILDLOG.md) v0.3.3.
 
 | ID | Check | Score | Label |
 | :--- | :--- | ---: | :--- |

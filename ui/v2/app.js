@@ -3052,23 +3052,23 @@
         "<!DOCTYPE html><html><head><meta charset=\"UTF-8\" /><title>" +
         escapeHtml(heading + " - " + short) +
         "</title><style>" +
-        "body{font-family:Segoe UI,Helvetica,Arial,sans-serif;max-width:720px;margin:28px auto;padding:0 18px;color:#111;}" +
-        "h1{font-size:20px;margin:0 0 6px} h2{font-size:16px;margin:18px 0 8px} h3{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#444;margin:14px 0 6px}" +
-        ".meta{color:#555;font-size:12px;margin:0 0 14px} a{color:#2f6fbf;text-decoration:none}" +
+        "body{font-family:Segoe UI,Helvetica,Arial,sans-serif;max-width:720px;margin:28px auto;padding:0 18px;color:#2b2b2b;background:#e8f3e8;}" +
+        "h1{font-size:20px;margin:0 0 6px;color:#2b2b2b} h2{font-size:16px;margin:18px 0 8px;color:#2b2b2b} h3{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#2b2b2b;margin:14px 0 6px}" +
+        ".meta{color:#2b2b2b;font-size:12px;margin:0 0 14px} a{color:#2f6fbf;text-decoration:none}" +
         ".memo-block{page-break-inside:auto}" +
         ".memo-detail-break{margin:28px 0 16px;padding-top:18px;border-top:1px solid #ccc}" +
-        ".memo-detail-break h2{margin:0 0 10px;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:#333}" +
+        ".memo-detail-break h2{margin:0 0 10px;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:#2b2b2b}" +
         "ul{padding-left:1.1rem} li{margin:0 0 8px;line-height:1.45}" +
         "table{width:100%;border-collapse:collapse;font-size:12px} th,td{border:1px solid #ccc;padding:5px 6px;text-align:left}" +
-      ".nell-stack{display:flex;flex-direction:column;gap:12px}.nell-card{border:1px solid #ccc;border-radius:8px;padding:10px 12px;page-break-inside:avoid}" +
+      ".nell-stack{display:flex;flex-direction:column;gap:12px}.nell-card{border:1px solid #e6d7c2;border-radius:8px;padding:10px 12px;page-break-inside:avoid;background:#fff4e5;color:#2b2b2b}" +
         ".nell-card-head{display:flex;flex-wrap:wrap;gap:6px 10px;margin:0 0 6px;align-items:baseline}" +
         ".nell-gate,.nell-status,.nell-score{font-size:10px;text-transform:uppercase;background:#eee;padding:2px 6px;border-radius:999px}" +
-        ".nell-blurb{margin:0 0 8px;font-size:14px;line-height:1.4}.nell-question{margin:0 0 6px;font-size:12px;color:#555}" +
+        ".nell-blurb{margin:0 0 8px;font-size:14px;line-height:1.4;color:#2b2b2b}.nell-question{margin:0 0 6px;font-size:12px;color:#2b2b2b}" +
         ".nell-ev-box{border:1px solid #b8c46a;border-radius:6px;padding:6px 8px;margin:4px 0 0}" +
-        ".nell-ev-heading{margin:0 0 4px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#bf0a30}" +
-        ".memo-evidence-word{color:#bf0a30;font-weight:600;font-size:1.125em}" +
+        ".nell-ev-heading{margin:0 0 4px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#2b2b2b}" +
+        ".memo-evidence-word{color:#2b2b2b;font-weight:600;font-size:1.125em}" +
         ".nell-evidence{list-style:none;padding:0;margin:0}.nell-evidence li{margin:0 0 4px;font-size:12px}" +
-        ".nell-evidence code{font-size:11px;background:#f3f3f3;padding:1px 4px}.nell-more,.nell-empty{font-size:11px;color:#777}" +
+        ".nell-evidence code{font-size:11px;background:#f3f3f3;padding:1px 4px}.nell-more,.nell-empty{font-size:11px;color:#2b2b2b}" +
         "</style></head><body>" +
         "<div class=\"memo-block\"><h1>" +
         escapeHtml(heading) +
