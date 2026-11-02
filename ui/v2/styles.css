@@ -588,12 +588,17 @@ button { cursor: pointer; border: 0; background: none; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.7rem;
-  margin: 0.85rem 0 0.15rem; /* sit closer above GLOSS */
+  /* Equal free space above/below FUSS so it sits halfway between Prickly and GLOSS */
+  gap: 0.425rem;
+  margin: 0.85rem 0 0.425rem;
 }
 #btn-fuss {
   align-self: flex-start;
   margin-left: 0.1rem; /* screen-left toward GLOSS column */
+}
+#btn-fuss .mascot {
+  width: 121px; /* 115px + 5% */
+  height: 121px;
 }
 .mascot-wrap {
   position: relative;
@@ -612,7 +617,7 @@ button { cursor: pointer; border: 0; background: none; }
   box-shadow: none;
 }
 .mascot-wrap .mascot {
-  width: 115px; /* was 102px; +13% again */
+  width: 115px; /* default; FUSS overrides via #btn-fuss .mascot */
   height: 115px;
   object-fit: contain;
   /* PNGs are already circular with alpha - radius/ring chrome draws a white halo */
