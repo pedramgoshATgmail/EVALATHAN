@@ -253,15 +253,19 @@ def _caption_fonts(supersample: int = 1):
     from PIL import ImageFont
 
     ss = max(1, int(supersample))
-    # +3 point sizes vs the original 21 / 28 so Mac/Windows caption reads clearly.
-    word_pt = 24 * ss
-    dots_pt = 31 * ss
+    # +4 pt vs original 21/28 (was +3); prefer Bold so the caption reads thicker on Win+Mac.
+    word_pt = 25 * ss
+    dots_pt = 32 * ss
     candidates = (
+        "segoeuib.ttf",  # Segoe UI Bold (Windows)
+        "SegoeUI-Bold.ttf",
+        "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
+        "/Library/Fonts/Arial Bold.ttf",
+        "Arial Bold.ttf",
+        "arialbd.ttf",
         "segoeui.ttf",
         "SegoeUI.ttf",
-        "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
         "/System/Library/Fonts/Supplemental/Arial.ttf",
-        "/Library/Fonts/Arial Bold.ttf",
         "/Library/Fonts/Arial.ttf",
         "/System/Library/Fonts/Helvetica.ttc",
         "Arial.ttf",
@@ -933,7 +937,7 @@ def _run_splash_tk(logo_path: Path) -> int:
         cy,
         text="launching",
         fill=ink,
-        font=("Segoe UI", 19, "bold"),
+        font=("Segoe UI", 20, "bold"),
         anchor="e",
     )
     bbox = canvas.bbox(label)
@@ -951,7 +955,7 @@ def _run_splash_tk(logo_path: Path) -> int:
                 cy,
                 text=".",
                 fill=ink_dim,
-                font=("Segoe UI", 24, "bold"),
+                font=("Segoe UI", 25, "bold"),
                 anchor="w",
             )
         )
