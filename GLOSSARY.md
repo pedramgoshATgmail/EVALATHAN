@@ -1,6 +1,6 @@
 <h1><img src="assets/glossary/title.png" alt="Evalathan glossary" height="33"></h1>
 
-<big><big><mark><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html">Search the glossary</a></mark></big></big>. This page is the glossary, with its lettering and images, and the search slot is on the same page. Type a letter and the matching entries appear. Choosing a word moves to that entry in zero latency.
+<big><big><mark><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html">Search the glossary</a></mark></big></big>. This page is the glossary, with its lettering and images, and the search slot is on the same page. Type a letter and the matching entries appear. Choosing a word moves to that entry in zero latency.
 
 [Evalathan](#evalathan) is one evaluation harness: a local platform that runs many separate checks and writes each result beside the others, instead of hiding everything behind one opaque number. It houses four routing engines - [Hydra](#hydra), [Dehydrus](#dehydrus), [Benchrex](#benchrex), and [Biasrex](#biasrex). Each engine conducts a set of evalers (current total: forty). Currently only Hydra is operational. Hydra is the conductor for sixteen software evalers. [Dehydrus](#dehydrus) is the conductor for eight [LuDaTs](#ludats) evalers under [PRETRUWs](#pretruws). [LuDaTs](#ludats) methodology framework is a subset of [PRETRUWs](#pretruws). [Benchrex](#benchrex) is the conductor for ten deprecation / cite-fitness evalers. [Biasrex](#biasrex) is the conductor for six bias-gate evalers under the [Cognitive Bias Codex](#cognitive-bias-codex) lineage. Scoring and benching entries use Score Constitution plus Simplespeak and Techspeak. Definition-only entries skip Score Constitution and keep Simplespeak and Techspeak.
 
@@ -151,7 +151,7 @@ Primary references: <a href="https://commons.wikimedia.org/wiki/File:Cognitive_b
 
 Checks whether a cited benchmark is saturated - scores near a ceiling so further gains lose discrimination. Looks for flat curves, near-perfect leaderboards, or explicit saturation notes. Pass = saturation evidence is documented or ruled out with a method note. Fail = cite claims SOTA without addressing saturation. Blank = no benchmark claim pack.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-saturly"><img src="assets/glossary/cards/saturly-card.jpg" alt="Hmm... are these all the same difficulty? Can this harder one still tell them apart?" width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-saturly"><img src="assets/glossary/cards/saturly-card.jpg" alt="Hmm... are these all the same difficulty? Can this harder one still tell them apart?" width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -170,7 +170,7 @@ Maps paper criterion <b>Saturation</b> in <a href="https://arxiv.org/abs/2507.06
 
 Checks contamination / leakage risk on a claimed score - train-test overlap, memorization signals, or missing holdout honesty. Pass = contamination stance is stated with evidence or a holdout method. Fail = public score presented as generalization with no leakage discussion. Blank = no score pack.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-contamly"><img src="assets/glossary/cards/contamly-card.jpg" alt="did the model see the test?" width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-contamly"><img src="assets/glossary/cards/contamly-card.jpg" alt="did the model see the test?" width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -189,7 +189,7 @@ Maps paper criterion <b>Contamination</b> in <a href="https://arxiv.org/abs/2507
 
 Checks statistical bias / class or label imbalance that a model could exploit without the claimed capability. Pass = balance or stratified metrics are shown. Fail = overall accuracy hides a broken minority class. Blank = no distribution note.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-skewly"><img src="assets/glossary/cards/skewly-card.jpg" alt="is the score riding an uneven label stack?" width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-skewly"><img src="assets/glossary/cards/skewly-card.jpg" alt="is the score riding an uneven label stack?" width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -208,7 +208,7 @@ Maps paper criterion <b>Statistical bias</b> in <a href="https://arxiv.org/abs/2
 
 Checks high annotation / label error evidence behind the number (human or auto labelers). Pass = error audit or quarantine note exists. Fail = cite ignores known label-error reports. Blank = no annotation quality record.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-annotly"><img src="assets/glossary/cards/annotly-card.jpg" alt="are the labels clean enough to trust the grade?" width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-annotly"><img src="assets/glossary/cards/annotly-card.jpg" alt="are the labels clean enough to trust the grade?" width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -227,7 +227,7 @@ Maps paper criterion <b>High annotation error rate</b> in <a href="https://arxiv
 
 Checks task obsolescence - whether the benchmark task still matches the capability being claimed. Pass = relevance argument is on disk. Fail = obsolete task sold as current skill. Blank = no task-relevance note.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-obsoletely"><img src="assets/glossary/cards/obsoletely-card.png" alt="is this still the right exam for what you claim?" width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-obsoletely"><img src="assets/glossary/cards/obsoletely-card.png" alt="is this still the right exam for what you claim?" width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -246,7 +246,7 @@ Maps paper criterion <b>Task obsolescence</b> in <a href="https://arxiv.org/abs/
 
 Checks invalidated design assumptions (for example a no-tool exam used to grade a tool-using agent). Pass = assumptions vs current use are stated. Fail = old assumptions silently reused. Blank = no assumption note.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-assumly"><img src="assets/glossary/cards/assumly-card.jpg" alt="Asks: did the ground rules change under the score?" width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-assumly"><img src="assets/glossary/cards/assumly-card.jpg" alt="Asks: did the ground rules change under the score?" width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -265,7 +265,7 @@ Maps paper criterion <b>Invalidated assumptions</b> in <a href="https://arxiv.or
 
 Checks semantic / cultural / language drift since the claimed result - labels or meanings that aged. Pass = drift review or refresh date exists. Fail = stale meanings treated as fixed. Blank = no drift pack.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-driftly"><img src="assets/glossary/cards/driftly-card.jpg" alt="do the words on the bench still mean what they meant?" width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-driftly"><img src="assets/glossary/cards/driftly-card.jpg" alt="do the words on the bench still mean what they meant?" width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -284,7 +284,7 @@ Maps paper criterion <b>Semantic drift</b> in <a href="https://arxiv.org/abs/250
 
 Process evaler. Checks whether a project or governance actor ran a deprecation assessment against the soft criteria (Deprecard-shaped evidence pack). Pass = assessment artifact exists. Fail = deprecation claimed with no assessment. Blank = process not started. Not wired as a live simulator in the default install yet.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-assessly"><img src="assets/glossary/cards/assessly-card.jpg" alt="Asks: did anyone actually assess whether to deprecate?" width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-assessly"><img src="assets/glossary/cards/assessly-card.jpg" alt="Asks: did anyone actually assess whether to deprecate?" width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -303,7 +303,7 @@ Maps the <a href="https://arxiv.org/abs/2507.06434">paper's <b>assessment</b></a
 
 Process evaler. Checks whether assessment findings were reported in a durable, citable form (Deprecard / changelog / advisory). Pass = report artifact exists. Fail = silent deprecation talk. Blank = no report. Not wired as a live simulator in the default install yet.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-reportly"><img src="assets/glossary/cards/reportly-card.jpg" alt="was the deprecation decision written down where others can find it?" width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-reportly"><img src="assets/glossary/cards/reportly-card.jpg" alt="was the deprecation decision written down where others can find it?" width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -322,7 +322,7 @@ Maps the paper's <b>reporting</b> phase in <a href="https://arxiv.org/abs/2507.0
 
 Process evaler. Checks whether users and dependents were notified (partial update vs full retire; third-party path when creators will not act). Pass = notification channel or advisory exists. Fail = users left on a dead cite. Blank = no notify pack. Not wired as a live simulator in the default install yet.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-notifyly"><img src="assets/glossary/cards/notifyly-card.jpg" alt="did the people still citing this bench get notified?" width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-notifyly"><img src="assets/glossary/cards/notifyly-card.jpg" alt="did the people still citing this bench get notified?" width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -341,7 +341,7 @@ Maps the paper's <b>notification</b> phase in <a href="https://arxiv.org/abs/250
 
 Grades attention / selection / availability hygiene in eval design and agent pipelines (Benson problem: too much information). Looks for cherry-pick guards, sampling notes, or filter-bias tests. Pass = mitigation artifact or explicit non-claim. Fail = leaderboard cherry-pick with no filter note. Blank = no pack.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-filterly"><img src="assets/glossary/cards/filterly-card.jpg" alt="Asks: too much noise, did you filter fairly?" width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-filterly"><img src="assets/glossary/cards/filterly-card.jpg" alt="Asks: too much noise, did you filter fairly?" width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -360,7 +360,7 @@ Maps Buster Benson's Codex problem <b>Too much information</b> (<a href="https:/
 
 Grades story-filling vs evidence (Benson problem: not enough meaning). Looks for narrative claims backed by artifacts (Warrantly-adjacent). Pass = claims cite inspectable evidence. Fail = stereotype or story without a source. Blank = no claim pack.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-meaningly"><img src="assets/glossary/cards/meaningly-card.jpg" alt="Asks: not enough facts, did you invent a neat story?" width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-meaningly"><img src="assets/glossary/cards/meaningly-card.jpg" alt="Asks: not enough facts, did you invent a neat story?" width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -379,7 +379,7 @@ Maps Benson's Codex problem <b>Not enough meaning</b> (cheat sheet; <a href="htt
 
 Grades overconfidence, sunk-cost, and irreversible-action gates in agent loops (Benson problem: need to act fast). Pass = stop / review gates or haste tests exist. Fail = always-act loops with no brake. Blank = no trajectory pack.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-hastely"><img src="assets/glossary/cards/hastely-card.jpg" alt="Asks: need to move now, did you skip the brake?" width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-hastely"><img src="assets/glossary/cards/hastely-card.jpg" alt="Asks: need to move now, did you skip the brake?" width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -398,7 +398,7 @@ Maps Benson's Codex problem <b>Need to act fast</b> (cheat sheet; <a href="https
 
 Grades continued influence of old scores, stale memory, and deprecated cites (Benson problem: what should we remember?). Pass = memory refresh / deprecation link exists. Fail = obsolete scores kept as live truth. Blank = no memory policy.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-memoryly"><img src="assets/glossary/cards/memoryly-card.jpg" alt="what stuck in memory, is it still true?" width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-memoryly"><img src="assets/glossary/cards/memoryly-card.jpg" alt="what stuck in memory, is it still true?" width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -417,7 +417,7 @@ Maps Benson's Codex problem <b>What should we remember?</b> (cheat sheet; <a hre
 
 Grades confirmation-bias gates - seeking only agreeing evidence. Looks for adversarial / falsification prompts or red-team notes. Pass = disconfirming check exists. Fail = only confirming samples. Blank = no confirm protocol. Interactive falsification preferred over keyword scans. Not fully wired in the default install yet.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-confirmly"><img src="assets/glossary/cards/confirmly-card.jpg" alt="did you only look for yes?" width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-confirmly"><img src="assets/glossary/cards/confirmly-card.jpg" alt="did you only look for yes?" width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -436,7 +436,7 @@ Named after <a href="https://en.wikipedia.org/wiki/Confirmation_bias">confirmati
 
 Grades automation bias / tool-trust - over-trusting model or tool output without a human or second check. Pass = escalation / verify step exists. Fail = blind tool accept. Blank = no trust policy. Not fully wired in the default install yet.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-automately"><img src="assets/glossary/cards/automately-card.jpg" alt="Hmmm... Check before Trust?" width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-automately"><img src="assets/glossary/cards/automately-card.jpg" alt="Hmmm... Check before Trust?" width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -455,7 +455,7 @@ Named after <a href="https://en.wikipedia.org/wiki/Automation_bias">automation b
 
 Scans root and documentation directories for dedicated architectural manifests (e.g., ARCHITECTURE.md, /docs/architecture, C4 models, or ADR logs). Returns Pass if an architectural document exists, Fail if absent, and Deferred if docs are unparsable. It does not grade whether the architecture itself is optimal.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-archly"><img src="assets/glossary/cards/archly-revised.jpg" alt="The plans exist. That is all I require." width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-archly"><img src="assets/glossary/cards/archly-revised.jpg" alt="The plans exist. That is all I require." width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -477,7 +477,7 @@ The scan reads the README and markdown under `docs`, `doc`, `architecture`, or `
 
 Parses agent orchestrator configurations (e.g., YAML/JSON agent rosters) to tally registered agent identities, designated system prompts, and tool authorizations. Identifies unassigned workers or overlapping, ambiguous responsibilities.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-chorely"><img src="assets/glossary/cards/chorely-revised.jpg" alt="Mapping tasks. AI agents. Pass, fail, and deferred." width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-chorely"><img src="assets/glossary/cards/chorely-revised.jpg" alt="Mapping tasks. AI agents. Pass, fail, and deferred." width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -497,7 +497,7 @@ Roster files are `agent_registry.md`, `agents.md`, `agentic_registry.md`, or any
 
 Parses supported Abstract Syntax Trees (ASTs) to compute cyclomatic and decision complexity points (counting if, elif, switch/match, for, while branches). Files in unsupported languages remain Blank/Deferred (which does not count as a pass or zero).
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-codely"><img src="assets/glossary/cards/codely-revised.jpg" alt="Codely counts the forks and turns in the code." width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-codely"><img src="assets/glossary/cards/codely-revised.jpg" alt="Codely counts the forks and turns in the code." width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -517,7 +517,7 @@ The Python pack walks the syntax tree and counts `if`, `for`, `while`, `except`,
 
 Scans the repository's .git tree. Counts total historical commits, change intervals, and branch merges. Requires a valid local git history; repositories without git metadata return a Deferred status. This is an objective measurement of repository activity, not an assessment of developer ability or code quality.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-devly"><img src="assets/glossary/cards/devly-card.jpg" alt="Devly counts commits, branches and rhythm, and does not judge the developer." width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-devly"><img src="assets/glossary/cards/devly-card.jpg" alt="Devly counts commits, branches and rhythm, and does not judge the developer." width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -537,7 +537,7 @@ The scan runs `git rev-list --count HEAD` when a `.git` folder is present and wr
 
 Evaluates project-supplied question-and-answer manifests. Computes the coverage ratio and exact match/similarity score against a validated golden dataset. Distinct from generic unit tests - focuses on domain/subject-matter accuracy.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-domly"><img src="assets/glossary/cards/domly-revised.jpg" alt="Domly quizzes the app on its subject and grades it against an answer key." width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-domly"><img src="assets/glossary/cards/domly-revised.jpg" alt="Domly quizzes the app on its subject and grades it against an answer key." width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -557,7 +557,7 @@ JSON or YAML files whose names contain `question` or `answer` are read. Question
 
 Scans for structured usability audit records, heuristic evaluations, or accessibility scorecards (e.g., WCAG compliance logs, UX benchmark JSONs). Marketing sentences or vague promises of "great UX" in a README yield no score.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-levi"><img src="assets/glossary/cards/levi-revised.jpg" alt="Real usability evidence, not a great UX promise." width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-levi"><img src="assets/glossary/cards/levi-revised.jpg" alt="Real usability evidence, not a great UX promise." width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -577,7 +577,7 @@ The file must be JSON whose family or brand contains `4uval`, with a `gate` obje
 
 Inspects client-facing components for actual code-level pacing controls, break intervals, or integrated session switches (such as the repository's fuss/ module). General wellness advice written in markdown does not count as an implementation.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-menschly"><img src="assets/glossary/cards/menschly-revised.jpg" alt="Menschly wants real break-timer code, not wellness advice in a README." width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-menschly"><img src="assets/glossary/cards/menschly-revised.jpg" alt="Menschly wants real break-timer code, not wellness advice in a README." width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -597,7 +597,7 @@ A Python function named `bind_fuss` or `bindfuss`, or an assignment to `session_
 
 Scans the project tree, aggregates Source Lines of Code (SLOC) by file extension, and calculates the exact percentage distribution across languages while ignoring third-party vendor directories (e.g., node_modules/, site-packages/). Reports pure data without prescribing stack changes.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-mixly"><img src="assets/glossary/cards/mixly-card.jpg" alt="Mixly shows exactly what languages the project is made of." width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-mixly"><img src="assets/glossary/cards/mixly-card.jpg" alt="Mixly shows exactly what languages the project is made of." width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -617,7 +617,7 @@ Suffixes map to a language name: Python, JavaScript, TypeScript, C, C++, Rust, G
 
 Extracts metrics from existing compression logs, specifically recording raw byte reduction alongside objective image/video quality scores (e.g., SSIM, PSNR, VMAF, or CRF values). Pressly does not execute the compression pipelines during the evaluation scan.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-pressly"><img src="assets/glossary/cards/pressly-revised.jpg" alt="Pressly reads compression logs to confirm things got smaller without losing quality." width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-pressly"><img src="assets/glossary/cards/pressly-revised.jpg" alt="Pressly reads compression logs to confirm things got smaller without losing quality." width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -637,7 +637,7 @@ Logs, text, JSON, and markdown are scanned for `ssim`, `vmaf`, or `bytes`/`size`
 
 Analyzes token-similarity and line duplication across files, cross-references internal function/class call graphs for orphaned/dead declarations, and tallies git change frequency per file. Flags files with high churn-to-complexity ratios as refactoring liabilities.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-refactorly"><img src="assets/glossary/cards/refactorly-revised.jpg" alt="Duplicates, a hotspot, and dead code." width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-refactorly"><img src="assets/glossary/cards/refactorly-revised.jpg" alt="Duplicates, a hotspot, and dead code." width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -657,7 +657,7 @@ Identical-byte groups are SHA-256 matches among files between 1 and 200,000 byte
 
 Measures wall-clock execution time for defined micro-benchmark routines or parses valid, pre-computed benchmark artifacts (e.g., pytest-benchmark JSON output). Defers execution if no executable targets or saved logs are present in the target directory.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-runly"><img src="assets/glossary/cards/runly-revised.jpg" alt="Runly times the code for real instead of trusting the brochure." width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-runly"><img src="assets/glossary/cards/runly-revised.jpg" alt="Runly times the code for real instead of trusting the brochure." width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -677,7 +677,7 @@ Any tree with Python source gets a local microbench: 200,000 integer steps, repo
 
 Aggregates findings from the other 15 evaluators into a clean report matrix. Explicitly prohibits flattening heterogeneous measurements into a misleading single 0-100 score. Preserves Pass, Fail, and Deferred states as independent data points.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-stackly"><img src="assets/glossary/cards/stackly-revised.jpg" alt="Stackly shows the full status matrix, not one fake score." width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-stackly"><img src="assets/glossary/cards/stackly-revised.jpg" alt="Stackly shows the full status matrix, not one fake score." width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -697,7 +697,7 @@ A detailed medical blood panel instead of a single 1-to-10 wellness score. It te
 
 Ingests structured LLM transaction logs containing baseline and optimized token usage pairs. Calculates the net token delta (Tokens before - Tokens after). If token records are not saved in the target path, the evaler is marked Deferred rather than zero.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-tokely"><img src="assets/glossary/cards/tokely-revised.jpg" alt="Tokely measures tokens before and after you optimized." width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-tokely"><img src="assets/glossary/cards/tokely-revised.jpg" alt="Tokely measures tokens before and after you optimized." width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -716,7 +716,7 @@ JSON may use `before` and `after`, or `total_tokex` and `tokex_this_run`, includ
 
 Analyzes sequential execution logs of agentic tasks. Counts total steps taken, tool call frequencies, backtracking loops, and final task resolution states. Disregards third-party leaderboard claims that lack inspectable raw trace files.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-trajectly"><img src="assets/glossary/cards/trajectly-revised.jpg" alt="Trajectly replays an agent's recorded journey, steps, loops and all." width="541"></a></p>  
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-trajectly"><img src="assets/glossary/cards/trajectly-revised.jpg" alt="Trajectly replays an agent's recorded journey, steps, loops and all." width="541"></a></p>  
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -736,7 +736,7 @@ File names containing `trace`, `trajectory`, or `passk` are read. JSONL lines th
 
 Validates the presence of an explicit Engineering Priority Triad declaration that orders Cost, Speed/Latency, and Impact. Evaluates whether the team has officially declared which compromise comes first when system constraints collide.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-triadly"><img src="assets/glossary/cards/triadly-revised.jpg" alt="Triadly checks which matters first: cost, speed or impact." width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-triadly"><img src="assets/glossary/cards/triadly-revised.jpg" alt="Triadly checks which matters first: cost, speed or impact." width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -777,7 +777,7 @@ Compact orders Triadly accepts (spaces stripped): `mcmemi`, `mcmime`, `memcmi`, 
 
 Cross-references listed performance claims and product assertions against linked source code, test seeds, external dataset URLs, or academic citations. Claims without verifiable backing artifacts fail the check.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-warrantly"><img src="assets/glossary/cards/warrantly-revised.jpg" alt="Warrantly: claims need evidence attached, and unbacked ones fail." width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-warrantly"><img src="assets/glossary/cards/warrantly-revised.jpg" alt="Warrantly: claims need evidence attached, and unbacked ones fail." width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -806,7 +806,7 @@ A freeze - the choice to pause the session - is optional on purpose. An adult ca
 
 Sixteen published usability and health standards sit under the card as analogs (comparisons only). They are not mixed into the ten checks and they are not averaged into the 3.4 mean.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-4uvals"><img src="assets/glossary/cards/4uvals-card-20261106.jpg" alt="4Uvals infographic: Ultimate User-User-User Evaluations. Did this AI session put the person using it first? v1.2 PASS, mean 3.4 of 4, U5 Emerging, NASA-TLX 9 of 100." width="703"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-4uvals"><img src="assets/glossary/cards/4uvals-card-20261106.jpg" alt="4Uvals infographic: Ultimate User-User-User Evaluations. Did this AI session put the person using it first? v1.2 PASS, mean 3.4 of 4, U5 Emerging, NASA-TLX 9 of 100." width="703"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -867,7 +867,7 @@ H14 on the card is the NASA-TLX row: one educated user, overall 9 out of 100, lo
 
 Braidware is the post-4IR (Fourth Industrial Revolution) term that refers to agentics, software and hardware as a single consolidated unit (often sandboxed). It is the 4IR progression of [Wearables](https://en.wikipedia.org/wiki/Wearable_technology) (wearable technology - body-worn devices with sensors, connectivity, and software). The hardware side often includes on-device small processing units - chips that think on the gadget itself, not only in a far-away cloud.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-braidware"><img src="assets/glossary/cards/braidware-card-20261117.jpg" alt="Braidware: agentics, software engine, and hardware as one braid. Wearables progression, Edge AI, IoT, and examples from Superbrain to Muse Charm." width="703"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-braidware"><img src="assets/glossary/cards/braidware-card-20261117.jpg" alt="Braidware: agentics, software engine, and hardware as one braid. Wearables progression, Edge AI, IoT, and examples from Superbrain to Muse Charm." width="703"></a></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
@@ -913,7 +913,7 @@ SELFBELT is the seatbelt write-up for people who sit with software, including AI
 
 SELFBELT is not one of the sixteen evalers and it does not add a seventeenth score. Menschly is the evaler that can see a timer. The PDF is the explanation a developer can read and, if they choose, ship beside their own software.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-selfbelt"><img src="assets/glossary/cards/selfbelt-narco-20261102.png" alt="AI Narco thesis: AIholism, Ainxiety, Aidoicy, and Airrogance." width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-selfbelt"><img src="assets/glossary/cards/selfbelt-narco-20261102.png" alt="AI Narco thesis: AIholism, Ainxiety, Aidoicy, and Airrogance." width="541"></a></p>
 <p align="center"><i>A car is not dangerous because steel is evil. It's dangerous because it covers miles in <a href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/docs/SELFBELT.md">minutes</a>.</i></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
@@ -981,7 +981,7 @@ Copy the `fuss` folder into a web page or a desktop web view. The same files run
 
 Product-led growth (PLG) is a business strategy in which the product itself drives customer acquisition, adoption, retention, and revenue growth. Instead of relying primarily on salespeople to convince customers to buy, a PLG company lets users experience the product's value directly, often through a free tier, free trial, or self-service onboarding. The key principle is: make the product demonstrate its own value before asking the customer to commit. This entry is the definition. It is not an evaler.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-plg-funnel"><img src="assets/glossary/plg-funnel.png" alt="How product-led growth works: 1 Acquire, 2 Activate, 3 Retain, 4 Expand." width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-plg-funnel"><img src="assets/glossary/plg-funnel.png" alt="How product-led growth works: 1 Acquire, 2 Activate, 3 Retain, 4 Expand." width="541"></a></p>
 
 PLG is not one of the sixteen evalers and it does not add a seventeenth score. A folder scan cannot see who discovered the product, who reached a useful outcome, who kept it in their work, or who paid. Those facts stay off the report.
 
@@ -997,7 +997,7 @@ Figma: Designers collaborate in the product, naturally encouraging colleagues an
 
 A sales team can still close a large account. PLG does not eliminate enterprise sales. Many successful companies combine product-led adoption with sales-led enterprise expansion.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-plg-companies"><img src="assets/glossary/plg-companies.png" alt="Company names stacked by year, from LogMeIn in 2012 to a much taller column in 2020." width="920"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-plg-companies"><img src="assets/glossary/plg-companies.png" alt="Company names stacked by year, from LogMeIn in 2012 to a much taller column in 2020." width="920"></a></p>
 <p align="right"><sub>Source: ProductLed</sub></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
@@ -1029,7 +1029,7 @@ Reductoholism is a portmanteau of [reductionism](https://en.wikipedia.org/wiki/R
 
 To understand a system, you need both moves. Reductionism takes the clock apart and studies the gears. Holism watches the whole clock keep time - something no single gear can do alone. Reductoholism says use both: learn the parts, then see how they work together as one system. Move between the small scale and the big picture until the picture is complete.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-reductoholism"><img src="assets/glossary/cards/reductoholism-card-20261102.jpg" alt="Reductoholism: reductionism studies the parts, holism sees the whole, and both together give a deeper understanding." width="541"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-reductoholism"><img src="assets/glossary/cards/reductoholism-card-20261102.jpg" alt="Reductoholism: reductionism studies the parts, holism sees the whole, and both together give a deeper understanding." width="541"></a></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
@@ -1076,7 +1076,7 @@ PRETRUWs is that sealed-room idea for AI. Truncated means the later universe is 
 
 PRETRUWs is the museum building. [LuDaTs](#ludats) are the separate galleries inside it (Galileo's gallery is not Darwin's). [Dehydrus](#dehydrus) is the guard who walks each gallery and writes what happened. A missing gallery is blank - not a fail and not a zero.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-pretruws"><img src="assets/glossary/cards/pretruws-card-20261101s.png" alt="PRETRUWs is a locked room from a past year. Eight worlds, two clocks, later facts actually gone." width="703"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-pretruws"><img src="assets/glossary/cards/pretruws-card-20261101s.png" alt="PRETRUWs is a locked room from a past year. Eight worlds, two clocks, later facts actually gone." width="703"></a></p>
 <p align="center"><i>If AI was locked in a past century or age, with only what that century could see and know, would it still form new discoveries the way humans have - and even create or recite the later textbooks?</i></p>
 <p align="center"><i>Saying "pretend it is 1610" is not a world or universe. The later facts and eureka discoveries have to actually not exist at all. The 1610 LLM would only be trained on all the data until 1610 - and nothing more.</i></p>
 
@@ -1156,7 +1156,7 @@ Join two earlier worlds under one law. [Newtonly](#newtonly) runs [Mode Unificat
 
 This evaler is based on Copernicus, the astronomer who discovered that the known planets go around the Sun, not around the Earth. Copernly (code LuDaTs-C) is a Dehydrus world under [LuDaTs](#ludats) (Limited-universe Data Test sets). It runs [Mode A](#ludats-mode-a). It is not a Hydra evaler. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The evaler stays deferred until a sealed 1542 world file is in the tree. A blank is not a fail and not a zero.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-copernly"><img src="assets/glossary/cards/copernly-card-20261101t.png" alt="Copernly rebuilds the old sky numbers as a sun-centered model. No new telescope. Mode A only." width="703"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-copernly"><img src="assets/glossary/cards/copernly-card-20261101t.png" alt="Copernly rebuilds the old sky numbers as a sun-centered model. No new telescope. Mode A only." width="703"></a></p>
 <p align="center"><i>If AI was around in my time, with only the old sky numbers everyone already had and no new telescope, would it still put the Earth among the planets - or keep the Earth in the middle because that is what ALL the books said?</i></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
@@ -1180,7 +1180,7 @@ When the simulator does run, the agent is handed only the already-available sky 
 
 This evaler is based on Kepler, the astronomer who discovered that planets travel in ellipses and sweep equal areas in equal times. Keplerly (LuDaTs-K) is a Dehydrus world. It runs [Mode B](#ludats-mode-b). It is not a Hydra evaler. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The evaler stays deferred until a sealed Mars-table world is in the tree. A blank is not a fail and not a zero.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-keplerly"><img src="assets/glossary/cards/keplerly-card-20261101t.png" alt="Keplerly draws the ellipse and equal areas from Tycho's Mars table. Same instrument class." width="703"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-keplerly"><img src="assets/glossary/cards/keplerly-card-20261101t.png" alt="Keplerly draws the ellipse and equal areas from Tycho's Mars table. Same instrument class." width="703"></a></p>
 <p align="center"><i>For thousands of years, everyone assumed planets moved in perfect circles. 
 
 <p align="center"><i>Kepler looked at the data, and saw a tiny mismatch, and dared to say the circles were wrong.</i></p> 
@@ -1208,7 +1208,7 @@ When the simulator does run, the first step is to read the sharper Mars table. T
 
 This evaler is based on Galileo, the scientist who discovered Jupiter's moons, the phases of Venus, and the regular motion of falling bodies. Galileoly (LuDaTs-G) is a required physical-world flagship under Dehydrus. It runs [Mode C](#ludats-mode-c). It is not a Hydra evaler. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The evaler stays deferred until a sealed optic-and-kinematics world is in the tree. A blank is not a fail and not a zero.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-galileoly"><img src="assets/glossary/cards/galileoly-card-20261101.png" alt="Galileoly uses a new optic and a bench on earth. Moons, phases, and the incline law." width="703"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-galileoly"><img src="assets/glossary/cards/galileoly-card-20261101.png" alt="Galileoly uses a new optic and a bench on earth. Moons, phases, and the incline law." width="703"></a></p>
 <p align="center"><i>If AI was around in my time, would it reject or confirm what I saw through my new telescope - moons, phases, a rough Moon, falling bodies - which even the Catholic church would not accept?</i></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
@@ -1232,7 +1232,7 @@ When the simulator does run, the first step is the new optic: Jupiter has satell
 
 This evaler is based on Newton, the mathematician who discovered that one inverse-square law of gravitation governs both the heavens and the earth. Newtonly (LuDaTs-N) sits on the full Dehydrus desk and is deferred to v2. It runs [Mode Unification](#ludats-mode-unification). It waits until [Keplerly](#keplerly) and [Galileoly](#galileoly) both show a sealed world. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. A blank is not a fail and not a zero.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-newtonly"><img src="assets/glossary/cards/newtonly-card.png" alt="Newtonly waits for Keplerly and Galileoly, then unites sky and ground under one law." width="703"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-newtonly"><img src="assets/glossary/cards/newtonly-card.png" alt="Newtonly waits for Keplerly and Galileoly, then unites sky and ground under one law." width="703"></a></p>
 <p align="center"><i>Kepler mapped the sky. Galileo mapped falling things on Earth. If AI had both these knowleges, would it join them under one law and prove something called Gravity, as well as Method of Fluxons (what became Calculus)?</i></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
@@ -1256,7 +1256,7 @@ If the folder does not claim a discovery or physical-world exam, the evaler stay
 
 This evaler is based on Darwin, the naturalist who discovered that living forms change through descent with modification. Darwinly (LuDaTs-D) is a required Dehydrus world. It runs [Mode D](#ludats-mode-d). It is not a Hydra evaler. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The evaler stays deferred until a sealed 1858 field world is in the tree. A blank is not a fail and not a zero.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-darwinly"><img src="assets/glossary/cards/darwinly-card-20261101.png" alt="Darwinly accumulates years of field notes. Descent with modification, not the finch cartoon." width="703"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-darwinly"><img src="assets/glossary/cards/darwinly-card-20261101.png" alt="Darwinly accumulates years of field notes. Descent with modification, not the finch cartoon." width="703"></a></p>
 <p align="center"><i>If AI was around in my time, after years of walking, breeding, and notes, would it see <a href="https://en.wikipedia.org/wiki/Common_descent">descent with modification</a> - or reject my theory of evolution?</i></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
@@ -1280,7 +1280,7 @@ When the simulator does run, the agent must accumulate a long field record and t
 
 This evaler is based on Mendeleev, the scientist who gave the world the elements table. Mendly (LuDaTs-M) is a Dehydrus world. It runs [Mode E](#ludats-mode-e). It is not a Hydra evaler. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The later names of the missing cards stay hidden. A blank is not a fail and not a zero.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-mendly"><img src="assets/glossary/cards/mendly-card-20261101.png" alt="Mendly leaves right-shaped holes in the 1868 table. Later names stay hidden." width="703"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-mendly"><img src="assets/glossary/cards/mendly-card-20261101.png" alt="Mendly leaves right-shaped holes in the 1868 table. Later names stay hidden." width="703"></a></p>
 <p align="center"><i>If AI only knew the elements discovered up to 1868 A.D., would it (independently) infer that some elements were still undiscovered and leave room for them - or even work to discover them through its artificial 'intelligence'?</i></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
@@ -1304,7 +1304,7 @@ When the simulator does run, the first step is to group the 1868 set periodicall
 
 This evaler is based on Marie Skłodowska-Curie and Pierre Curie, the pair who discovered that some matter gives off rays that belong to the atom, and who isolated two new elements from pitchblende. The double Cur in the name is because both of them had to be in the room. CurCuriely (code LuDaTs-CC) is a Dehydrus world under [LuDaTs](#ludats) (Limited-universe Data Test sets). It runs [Mode Pair](#ludats-mode-pair). It is not a Hydra evaler. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The evaler stays deferred until a sealed 1897 pair-world file is in the tree. A blank is not a fail and not a zero.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-curcuriely"><img src="assets/glossary/cards/curcuriely-card-20261101.png" alt="CurCuriely is the pair room. Two clocks, two agents, joint Gold." width="703"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-curcuriely"><img src="assets/glossary/cards/curcuriely-card-20261101.png" alt="CurCuriely is the pair room. Two clocks, two agents, joint Gold." width="703"></a></p>
 <p align="center"><i>If ChatGPT AND Claude were around in our time, both of them trained on all the data up to 1897 A.D., would they together pull two new elements from pitchblende and say the rays belong to the atom - or would they not be able to make such discoveries on their own and even reject such discoveries?</i></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
@@ -1328,7 +1328,7 @@ When the simulator does run, both agents get the 1897 corpus only. The next step
 
 This evaler is based on Einstein, the physicist who discovered the field equations of general relativity. Einsteinly (LuDaTs-E) is a Dehydrus world, General Relativity only. It runs [Mode F](#ludats-mode-f). 1905 is a different freeze and is not this exam. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. A blank is not a fail and not a zero.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-einsteinly"><img src="assets/glossary/cards/einsteinly-card.png" alt="Einsteinly writes the field equations from Mercury's leftover. The 1919 eclipse is after the theory." width="703"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-einsteinly"><img src="assets/glossary/cards/einsteinly-card.png" alt="Einsteinly writes the field equations from Mercury's leftover. The 1919 eclipse is after the theory." width="703"></a></p>
 <p align="center"><i>If AI was around in my time, with only <a href="https://www.reddit.com/r/explainlikeimfive/comments/auz33s/eli5_how_did_einsteins_theory_explained_the_orbit/">Mercury's leftover wobble</a> and not the later eclipse plates, would it write the new General Relativity and E=MC on its own based on all the knowlege at that time?</i></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
@@ -1523,7 +1523,7 @@ In every gallery the shelves hold only what that year and that discoverer could 
 
 [Dehydrus](#dehydrus) is the guard who walks each gallery and writes what happened. Ace one gallery and you still have seven others. A blank gallery is not a fail and not a zero.
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-ludats"><img src="assets/glossary/cards/ludats-card-20261101s.png" alt="LuDaTs is eight locked worlds. Each brand is one method, not one astronomy quiz." width="703"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-ludats"><img src="assets/glossary/cards/ludats-card-20261101s.png" alt="LuDaTs is eight locked worlds. Each brand is one method, not one astronomy quiz." width="703"></a></p>
 <p align="center"><i>PRETRUWs locks the year and era. LuDaTs is the eight different rooms inside that lock - eight methods, not one science quiz.</i></p>
 <p align="center"><i>If AI aces one locked year (for example, Galileoly), that is one room, will it also ace the other locked years and eras (i.e. Newtonly, CurCurie, Eisteinly).</i></p>
 
@@ -1546,7 +1546,7 @@ In every gallery the shelves hold only what that year and that discoverer could 
 
 [HabTwin](#habtwin) (Habit Twin) is a later exam for a digital twin: a stand-in that is supposed to act like one real person or one real machine. It is not one of Hydra's sixteen software evalers, and it is not a [Trajectly](#trajectly) exam. In v0.3 Dehydrus only looks for a lab file. If none is there, it prints `No HabTwin lab trace`. It does not invent a score. A blank is not a fail and not a zero. Spec: [docs/HabTwin.md](docs/HabTwin.md).
 
-<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/724cf70648bcc26b2dcab3d7ec5b69a15cc68a2e/docs/glossary.html#xl-habtwin"><img src="assets/glossary/cards/habtwin-card.png" alt="HabTwin asks whether a stand-in predicts the real person or machine, in a lab, more than once." width="703"></a></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/84b6d965db58b0437213ac8544d3d11faad2e0ce/docs/glossary.html#xl-habtwin"><img src="assets/glossary/cards/habtwin-card.png" alt="HabTwin asks whether a stand-in predicts the real person or machine, in a lab, more than once." width="703"></a></p>
 <p align="center"><i>Guessing my passwords correctly is not the prize; the prize is encoding the habits and idiosyncracies that went into secretly making my passwords.</i></p>
 <p align="center"><i>If AI made a copy of me, would that copy still sound like me tomorrow, or only like "people in general"?</i></p>
 <p align="center"><i>Copy me once and you have a sketch. Copy me again and still be right - that is a twin.</i></p>
