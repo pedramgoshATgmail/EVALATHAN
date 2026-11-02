@@ -206,12 +206,6 @@
           /(Hydra engine|Dehydrus engine|Benchrex engine|Biasrex engine)/g,
           '<span class="blurb-engine">$1</span>'
         );
-        if (
-          splash &&
-          (line.indexOf("Dehydrus engine") === 0 || line.indexOf("Benchrex engine") === 0)
-        ) {
-          html = '<span class="blurb-dim">' + html + "</span>";
-        }
         const gap =
           splash && i === 0
             ? '<span class="blurb-gap" aria-hidden="true"></span>'
