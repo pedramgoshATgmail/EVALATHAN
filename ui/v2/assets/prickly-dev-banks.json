@@ -1,0 +1,3570 @@
+{
+  "version": 4,
+  "format": "true_false",
+  "maxLevel": 5,
+  "note": "Five progressive levels per developer kind. Each Next Level Test must use a harder bank, never reshuffle the same level.",
+  "levelMeta": {
+    "1": {
+      "title": "Level 1 - Foundations",
+      "blurb": "Clear basics. Spot obvious false comfort."
+    },
+    "2": {
+      "title": "Level 2 - Trade-offs",
+      "blurb": "Two good-looking options; only one is sound."
+    },
+    "3": {
+      "title": "Level 3 - Failure modes",
+      "blurb": "What breaks under load, time, or bad incentives."
+    },
+    "4": {
+      "title": "Level 4 - Precedents & traps",
+      "blurb": "Industry-familiar traps dressed as best practice."
+    },
+    "5": {
+      "title": "Level 5 - Edge judgment",
+      "blurb": "Subtle cases where polite process still fails the user."
+    }
+  },
+  "roles": {
+    "programmer": {
+      "label": "Programmer",
+      "levels": {
+        "1": {
+          "title": "Level 1 - Foundations",
+          "blurb": "Clear basics. Spot obvious false comfort.",
+          "items": [
+            {
+              "id": "PG1",
+              "text": "If the code runs without crashing, that alone proves it is ready for paying users.",
+              "answer": false
+            },
+            {
+              "id": "PG2",
+              "text": "A bug that only shows up once a week is still worth tracking down before a release.",
+              "answer": true
+            },
+            {
+              "id": "PG3",
+              "text": "Copying a stack-overflow snippet into production without reading it is fine if tests pass later.",
+              "answer": false
+            },
+            {
+              "id": "PG4",
+              "text": "Clear names for variables and functions help the next person (including future you) understand the code.",
+              "answer": true
+            },
+            {
+              "id": "PG5",
+              "text": "If a feature works on your laptop, it will automatically work the same way on a customer's machine.",
+              "answer": false
+            },
+            {
+              "id": "PG6",
+              "text": "Writing down what a tricky function is supposed to do can save more time than jumping straight into edits.",
+              "answer": true
+            },
+            {
+              "id": "PG7",
+              "text": "Deleting unused code is riskier than leaving dead code forever, so dead code should never be removed.",
+              "answer": false
+            },
+            {
+              "id": "PG8",
+              "text": "A failing test that used to pass is a signal to investigate, not a signal to delete the test.",
+              "answer": true
+            },
+            {
+              "id": "PG9",
+              "text": "Shipping a half-finished feature behind a flag can be safer than shipping it fully wired for everyone.",
+              "answer": true
+            },
+            {
+              "id": "PG10",
+              "text": "If a change is small, reviewing it is optional even when it touches money or passwords.",
+              "answer": false
+            },
+            {
+              "id": "PG11",
+              "text": "Logging errors with enough context to reproduce them is part of writing maintainable software.",
+              "answer": true
+            },
+            {
+              "id": "PG12",
+              "text": "More lines of code always means higher quality.",
+              "answer": false
+            }
+          ]
+        },
+        "2": {
+          "title": "Level 2 - Trade-offs",
+          "blurb": "Two good-looking options; only one is sound.",
+          "items": [
+            {
+              "id": "PGL2-01",
+              "text": "If a hotfix works in production, skipping a regression check on the related path is justified by urgency forever.",
+              "answer": false
+            },
+            {
+              "id": "PGL2-02",
+              "text": "Preferring a boring, readable fix over a clever one-liner is often the stronger long-term call.",
+              "answer": true
+            },
+            {
+              "id": "PGL2-03",
+              "text": "When two bugs appear related, fixing only the one in the ticket is always enough.",
+              "answer": false
+            },
+            {
+              "id": "PGL2-04",
+              "text": "A failing CI check you do not understand should block merge until it is explained or fixed.",
+              "answer": true
+            },
+            {
+              "id": "PGL2-05",
+              "text": "Commenting out assertions to get green builds is a valid definition of done.",
+              "answer": false
+            },
+            {
+              "id": "PGL2-06",
+              "text": "Reproducing a bug with the smallest input before editing code usually saves time.",
+              "answer": true
+            },
+            {
+              "id": "PGL2-07",
+              "text": "If the type checker is quiet, runtime null cases can be ignored.",
+              "answer": false
+            },
+            {
+              "id": "PGL2-08",
+              "text": "Naming a function for what it returns (or does) beats naming it for how it used to work.",
+              "answer": true
+            },
+            {
+              "id": "PGL2-09",
+              "text": "Copying credentials into a local script for speed is fine if you delete the file later someday.",
+              "answer": false
+            },
+            {
+              "id": "PGL2-10",
+              "text": "A pull request that explains the risk of the change helps reviewers catch what tests miss.",
+              "answer": true
+            }
+          ]
+        },
+        "3": {
+          "title": "Level 3 - Failure modes",
+          "blurb": "What breaks under load, time, or bad incentives.",
+          "items": [
+            {
+              "id": "PGL3-01",
+              "text": "A race that only appears under load can still be a release blocker even if local runs look clean.",
+              "answer": true
+            },
+            {
+              "id": "PGL3-02",
+              "text": "If retries hide intermittent failures, the underlying flake can be treated as solved.",
+              "answer": false
+            },
+            {
+              "id": "PGL3-03",
+              "text": "Logging enough context to rebuild the failing input is part of making production debuggable.",
+              "answer": true
+            },
+            {
+              "id": "PGL3-04",
+              "text": "Swallowing exceptions to keep the UI calm is always better than surfacing a clear error.",
+              "answer": false
+            },
+            {
+              "id": "PGL3-05",
+              "text": "Idempotent handlers reduce pain when a message or request is delivered twice.",
+              "answer": true
+            },
+            {
+              "id": "PGL3-06",
+              "text": "Time-dependent bugs that only fail near midnight UTC are not real bugs.",
+              "answer": false
+            },
+            {
+              "id": "PGL3-07",
+              "text": "Feature flags that never get cleaned up become a complexity tax on every future change.",
+              "answer": true
+            },
+            {
+              "id": "PGL3-08",
+              "text": "If the happy path is covered, permission and empty-state paths can wait indefinitely.",
+              "answer": false
+            },
+            {
+              "id": "PGL3-09",
+              "text": "Pinning dependency versions you actually tested reduces surprise breaks from floating ranges.",
+              "answer": true
+            },
+            {
+              "id": "PGL3-10",
+              "text": "A green deploy means user-visible correctness is guaranteed across all regions.",
+              "answer": false
+            }
+          ]
+        },
+        "4": {
+          "title": "Level 4 - Precedents & traps",
+          "blurb": "Industry-familiar traps dressed as best practice.",
+          "items": [
+            {
+              "id": "PGL4-01",
+              "text": "Precedent trap: many outages start with a small config change that skipped the same review as code.",
+              "answer": true
+            },
+            {
+              "id": "PGL4-02",
+              "text": "If staging data is fake and tiny, a green staging run fully proves production scale behavior.",
+              "answer": false
+            },
+            {
+              "id": "PGL4-03",
+              "text": "Hotfixes that bypass tests should still get a follow-up that restores the safety net.",
+              "answer": true
+            },
+            {
+              "id": "PGL4-04",
+              "text": "Deleting a flaky test is better than quarantining it with an owner and a fix date.",
+              "answer": false
+            },
+            {
+              "id": "PGL4-05",
+              "text": "Shared mutable globals that work in a single-threaded mental model often fail under concurrency.",
+              "answer": true
+            },
+            {
+              "id": "PGL4-06",
+              "text": "If the ticket says P0, skipping a second pair of eyes on auth code is the professional norm.",
+              "answer": false
+            },
+            {
+              "id": "PGL4-07",
+              "text": "Writing down the rollback steps before a risky migrate is cheaper than inventing them mid-incident.",
+              "answer": true
+            },
+            {
+              "id": "PGL4-08",
+              "text": "A library upgrade that only changes a patch version can never affect behavior.",
+              "answer": false
+            },
+            {
+              "id": "PGL4-09",
+              "text": "When logs contradict the user's report, both can be true until you reconcile clocks and versions.",
+              "answer": true
+            },
+            {
+              "id": "PGL4-10",
+              "text": "Ship-first-fix-later is a sustainable strategy for money-moving code.",
+              "answer": false
+            }
+          ]
+        },
+        "5": {
+          "title": "Level 5 - Edge judgment",
+          "blurb": "Subtle cases where polite process still fails the user.",
+          "items": [
+            {
+              "id": "PGL5-01",
+              "text": "A change that is locally correct can still be wrong if it violates an unstated multi-service contract.",
+              "answer": true
+            },
+            {
+              "id": "PGL5-02",
+              "text": "If peers praise cleverness, that alone outweighs maintainability for production code.",
+              "answer": false
+            },
+            {
+              "id": "PGL5-03",
+              "text": "Silent data repair jobs can hide corruption until the repair itself fails.",
+              "answer": true
+            },
+            {
+              "id": "PGL5-04",
+              "text": "When two fixes both pass tests, picking the one that reduces future branching cost is often wiser.",
+              "answer": true
+            },
+            {
+              "id": "PGL5-05",
+              "text": "Observability debt is optional if the team is small enough to SSH into boxes.",
+              "answer": false
+            },
+            {
+              "id": "PGL5-06",
+              "text": "A partial outage that only hits 2% of users can still deserve the same rigor as a total outage.",
+              "answer": true
+            },
+            {
+              "id": "PGL5-07",
+              "text": "If a workaround is temporary, leaving no ticket or expiry makes it permanent by default.",
+              "answer": true
+            },
+            {
+              "id": "PGL5-08",
+              "text": "Correctness under cancellation (user hits stop) is irrelevant for request handlers.",
+              "answer": false
+            },
+            {
+              "id": "PGL5-09",
+              "text": "When requirements conflict, making the conflict explicit beats silently favoring the loudest stakeholder.",
+              "answer": true
+            },
+            {
+              "id": "PGL5-10",
+              "text": "Once code is merged, questioning the design in review notes is too late to ever matter.",
+              "answer": false
+            }
+          ]
+        }
+      }
+    },
+    "software_engineer": {
+      "label": "Software Engineer",
+      "levels": {
+        "1": {
+          "title": "Level 1 - Foundations",
+          "blurb": "Clear basics. Spot obvious false comfort.",
+          "items": [
+            {
+              "id": "SE1",
+              "text": "A design that is hard to change later can cost more than the time saved by shipping it quickly today.",
+              "answer": true
+            },
+            {
+              "id": "SE2",
+              "text": "If an API has no documented failure modes, callers can safely assume it never fails.",
+              "answer": false
+            },
+            {
+              "id": "SE3",
+              "text": "Ownership of a service includes knowing how to roll back a bad deploy.",
+              "answer": true
+            },
+            {
+              "id": "SE4",
+              "text": "Adding a new dependency has no long-term cost if it solves today's ticket.",
+              "answer": false
+            },
+            {
+              "id": "SE5",
+              "text": "A pull request description that explains why the change exists helps reviewers judge risk.",
+              "answer": true
+            },
+            {
+              "id": "SE6",
+              "text": "If production looks fine in one region, multi-region behavior can be assumed identical.",
+              "answer": false
+            },
+            {
+              "id": "SE7",
+              "text": "Feature flags and gradual rollout are tools for reducing blast radius, not only for marketing experiments.",
+              "answer": true
+            },
+            {
+              "id": "SE8",
+              "text": "Skipping monitoring for a new endpoint is fine because users will email if anything breaks.",
+              "answer": false
+            },
+            {
+              "id": "SE9",
+              "text": "Race conditions can appear only under load, so a quiet local run does not prove concurrency is safe.",
+              "answer": true
+            },
+            {
+              "id": "SE10",
+              "text": "Backwards-compatible API changes matter less than shipping the new field name you prefer.",
+              "answer": false
+            },
+            {
+              "id": "SE11",
+              "text": "Incident write-ups that name the trigger and the fix help the team avoid the same failure.",
+              "answer": true
+            },
+            {
+              "id": "SE12",
+              "text": "Technical debt is always a personal failure of the last engineer who touched the file.",
+              "answer": false
+            }
+          ]
+        },
+        "2": {
+          "title": "Level 2 - Trade-offs",
+          "blurb": "Two good-looking options; only one is sound.",
+          "items": [
+            {
+              "id": "SEL2-01",
+              "text": "Shipping a dual-write 'just for a week' without a delete plan usually becomes permanent complexity.",
+              "answer": true
+            },
+            {
+              "id": "SEL2-02",
+              "text": "If the p50 latency looks great, a brutal p99 can still make the product feel broken for many users.",
+              "answer": true
+            },
+            {
+              "id": "SEL2-03",
+              "text": "Choosing eventual consistency without saying who resolves conflicts is a complete data design.",
+              "answer": false
+            },
+            {
+              "id": "SEL2-04",
+              "text": "A canary that only watches CPU can miss a correctness bug that burns a slice of users.",
+              "answer": true
+            },
+            {
+              "id": "SEL2-05",
+              "text": "When a library is popular on GitHub, skipping a threat review of its update path is fine.",
+              "answer": false
+            },
+            {
+              "id": "SEL2-06",
+              "text": "Contract tests between services catch breakages that unit tests inside one repo miss.",
+              "answer": true
+            },
+            {
+              "id": "SEL2-07",
+              "text": "If the ticket is small, expanding the blast radius of a shared module needs no extra caution.",
+              "answer": false
+            },
+            {
+              "id": "SEL2-08",
+              "text": "Naming the SLO and the error budget before a reliability push keeps trade-offs honest.",
+              "answer": true
+            },
+            {
+              "id": "SEL2-09",
+              "text": "A manual runbook step that only one person can perform is a hidden single point of failure.",
+              "answer": true
+            },
+            {
+              "id": "SEL2-10",
+              "text": "Green unit tests prove the deploy is safe across every region and traffic shape.",
+              "answer": false
+            }
+          ]
+        },
+        "3": {
+          "title": "Level 3 - Failure modes",
+          "blurb": "What breaks under load, time, or bad incentives.",
+          "items": [
+            {
+              "id": "SEL3-01",
+              "text": "A timeout shorter than a dependency's p99 will create false failures under ordinary load.",
+              "answer": true
+            },
+            {
+              "id": "SEL3-02",
+              "text": "Unbounded retries against a sick dependency can amplify into a self-inflicted outage.",
+              "answer": true
+            },
+            {
+              "id": "SEL3-03",
+              "text": "Caching without a clear invalidation story can serve wrong data longer than the bug that wrote it.",
+              "answer": true
+            },
+            {
+              "id": "SEL3-04",
+              "text": "A circuit breaker that opens forever with no recovery path is still a complete resilience design.",
+              "answer": false
+            },
+            {
+              "id": "SEL3-05",
+              "text": "Schema migrations that lock large tables can be correct SQL and still take production down.",
+              "answer": true
+            },
+            {
+              "id": "SEL3-06",
+              "text": "If the happy-path SLA is green, error-budget burn on a minority path can be ignored.",
+              "answer": false
+            },
+            {
+              "id": "SEL3-07",
+              "text": "Dual-writing to two stores without reconciliation often creates silent divergence.",
+              "answer": true
+            },
+            {
+              "id": "SEL3-08",
+              "text": "Load tests that only use perfect synthetic data fully predict messy real traffic.",
+              "answer": false
+            },
+            {
+              "id": "SEL3-09",
+              "text": "Runbooks that name the first three checks beat tribal knowledge during pages.",
+              "answer": true
+            },
+            {
+              "id": "SEL3-10",
+              "text": "A blue/green deploy with no smoke checks is as safe as one with smoke checks.",
+              "answer": false
+            }
+          ]
+        },
+        "4": {
+          "title": "Level 4 - Precedents & traps",
+          "blurb": "Industry-familiar traps dressed as best practice.",
+          "items": [
+            {
+              "id": "SEL4-01",
+              "text": "Precedent: many postmortems cite a config flag flipped without the same review as code.",
+              "answer": true
+            },
+            {
+              "id": "SEL4-02",
+              "text": "If on-call is quiet for a month, removing alerts is the right reliability strategy.",
+              "answer": false
+            },
+            {
+              "id": "SEL4-03",
+              "text": "Capacity planning needs real usage signals, not only the day-one estimate.",
+              "answer": true
+            },
+            {
+              "id": "SEL4-04",
+              "text": "Shared databases across unrelated teams always reduce coordination forever.",
+              "answer": false
+            },
+            {
+              "id": "SEL4-05",
+              "text": "A breaking API change with no deprecation window taxes every unknown client.",
+              "answer": true
+            },
+            {
+              "id": "SEL4-06",
+              "text": "If the vendor SLA is 99.99%, your product SLA can ignore your own retry and queue design.",
+              "answer": false
+            },
+            {
+              "id": "SEL4-07",
+              "text": "Shadow traffic (dark launch) can reveal behavioral diffs that staging never showed.",
+              "answer": true
+            },
+            {
+              "id": "SEL4-08",
+              "text": "Blame-first incident reviews improve long-term system safety more than blameless ones.",
+              "answer": false
+            },
+            {
+              "id": "SEL4-09",
+              "text": "Gradual percentage rollouts catch classes of bugs that unit tests miss.",
+              "answer": true
+            },
+            {
+              "id": "SEL4-10",
+              "text": "If staging shares production credentials, that is a convenience worth keeping.",
+              "answer": false
+            }
+          ]
+        },
+        "5": {
+          "title": "Level 5 - Edge judgment",
+          "blurb": "Subtle cases where polite process still fails the user.",
+          "items": [
+            {
+              "id": "SEL5-01",
+              "text": "A change can pass every test and still violate a multi-team ownership boundary that users depend on.",
+              "answer": true
+            },
+            {
+              "id": "SEL5-02",
+              "text": "Optimizing average latency while ignoring a toxic tail can still ruin a subset of users.",
+              "answer": true
+            },
+            {
+              "id": "SEL5-03",
+              "text": "If leadership wants a date, silently cutting safety checks is the professional way to hit it.",
+              "answer": false
+            },
+            {
+              "id": "SEL5-04",
+              "text": "Making failure modes visible in the API often beats returning a vague 500 forever.",
+              "answer": true
+            },
+            {
+              "id": "SEL5-05",
+              "text": "A successful migration with no rollback rehearsal is proven disaster-ready.",
+              "answer": false
+            },
+            {
+              "id": "SEL5-06",
+              "text": "When two services disagree about a fact, the system needs an ownership rule, not hope.",
+              "answer": true
+            },
+            {
+              "id": "SEL5-07",
+              "text": "Quiet deletes of deprecated fields without consumer checks are safe if the field felt unused.",
+              "answer": false
+            },
+            {
+              "id": "SEL5-08",
+              "text": "Error budgets exist to trade speed and safety explicitly, not to shame individuals.",
+              "answer": true
+            },
+            {
+              "id": "SEL5-09",
+              "text": "If a dependency is cheap, coupling your critical path to it has no strategic cost.",
+              "answer": false
+            },
+            {
+              "id": "SEL5-10",
+              "text": "The hardest engineering judgment is sometimes refusing a path the org cannot operate.",
+              "answer": true
+            }
+          ]
+        }
+      }
+    },
+    "technical_architect": {
+      "label": "Technical Architect",
+      "levels": {
+        "1": {
+          "title": "Level 1 - Foundations",
+          "blurb": "Clear basics. Spot obvious false comfort.",
+          "items": [
+            {
+              "id": "TA1",
+              "text": "Choosing a stack only because it is trendy is enough if the team likes the brand name.",
+              "answer": false
+            },
+            {
+              "id": "TA2",
+              "text": "An architecture diagram that names trust boundaries helps people reason about security and failure.",
+              "answer": true
+            },
+            {
+              "id": "TA3",
+              "text": "Every new product should start as a mesh of twenty microservices on day one.",
+              "answer": false
+            },
+            {
+              "id": "TA4",
+              "text": "Non-functional needs (latency, durability, cost) belong in the design conversation, not only after launch pain.",
+              "answer": true
+            },
+            {
+              "id": "TA5",
+              "text": "A single shared database for all teams always reduces coordination cost forever.",
+              "answer": false
+            },
+            {
+              "id": "TA6",
+              "text": "Explicit module boundaries make it clearer who can change what without surprising others.",
+              "answer": true
+            },
+            {
+              "id": "TA7",
+              "text": "If two systems need the same data, duplicating writes with no ownership story is a safe default.",
+              "answer": false
+            },
+            {
+              "id": "TA8",
+              "text": "Documenting why an option was rejected can stop the team from re-litigating the same choice next quarter.",
+              "answer": true
+            },
+            {
+              "id": "TA9",
+              "text": "Vendor lock-in is never a risk if the first year invoice looks cheap.",
+              "answer": false
+            },
+            {
+              "id": "TA10",
+              "text": "A reference architecture should match the team's actual skills and ops capacity, not only an ideal paper design.",
+              "answer": true
+            },
+            {
+              "id": "TA11",
+              "text": "Adding a message queue always improves reliability even when nobody owns poison messages.",
+              "answer": false
+            },
+            {
+              "id": "TA12",
+              "text": "Security reviews should happen before sensitive data paths go live, not only after a breach.",
+              "answer": true
+            }
+          ]
+        },
+        "2": {
+          "title": "Level 2 - Trade-offs",
+          "blurb": "Two good-looking options; only one is sound.",
+          "items": [
+            {
+              "id": "TAL2-01",
+              "text": "In architecture, a shortcut that hides risk from the next team is still a complete handoff.",
+              "answer": false
+            },
+            {
+              "id": "TAL2-02",
+              "text": "Writing the trade-off (what you gain vs what you defer) is part of sound architecture judgment.",
+              "answer": true
+            },
+            {
+              "id": "TAL2-03",
+              "text": "If a checklist is green, rare failure modes in architecture can be assumed impossible.",
+              "answer": false
+            },
+            {
+              "id": "TAL2-04",
+              "text": "Clear ownership of interfaces reduces finger-pointing when architecture breaks in production.",
+              "answer": true
+            },
+            {
+              "id": "TAL2-05",
+              "text": "Copying a fashionable pattern into architecture without matching ops capacity is always wise.",
+              "answer": false
+            },
+            {
+              "id": "TAL2-06",
+              "text": "Documenting why an option was rejected helps later architecture debates stay short.",
+              "answer": true
+            },
+            {
+              "id": "TAL2-07",
+              "text": "If the demo path works, empty, error, and permission paths in architecture can wait forever.",
+              "answer": false
+            },
+            {
+              "id": "TAL2-08",
+              "text": "A rollback story belongs in the architecture plan before a risky cutover.",
+              "answer": true
+            },
+            {
+              "id": "TAL2-09",
+              "text": "Vendor lock-in is never a risk in architecture if year-one pricing looks cheap.",
+              "answer": false
+            },
+            {
+              "id": "TAL2-10",
+              "text": "Measuring what users actually experience beats vanity metrics in architecture.",
+              "answer": true
+            }
+          ]
+        },
+        "3": {
+          "title": "Level 3 - Failure modes",
+          "blurb": "What breaks under load, time, or bad incentives.",
+          "items": [
+            {
+              "id": "TAL3-01",
+              "text": "Under load, a architecture design that only worked in a quiet lab can still fail users.",
+              "answer": true
+            },
+            {
+              "id": "TAL3-02",
+              "text": "Retries without bounds can turn a sick dependency into a architecture self-outage.",
+              "answer": true
+            },
+            {
+              "id": "TAL3-03",
+              "text": "If alerts are noisy, deleting them is better than fixing the architecture signal.",
+              "answer": false
+            },
+            {
+              "id": "TAL3-04",
+              "text": "Silent data repair in architecture can hide corruption until the repair fails.",
+              "answer": true
+            },
+            {
+              "id": "TAL3-05",
+              "text": "A single green sample proves every dirty real-world case in architecture.",
+              "answer": false
+            },
+            {
+              "id": "TAL3-06",
+              "text": "Idempotent operations reduce pain when architecture work is replayed.",
+              "answer": true
+            },
+            {
+              "id": "TAL3-07",
+              "text": "Skipping monitoring for a new architecture path is fine because users will email.",
+              "answer": false
+            },
+            {
+              "id": "TAL3-08",
+              "text": "Partial outages that hit a minority still deserve serious architecture response.",
+              "answer": true
+            },
+            {
+              "id": "TAL3-09",
+              "text": "If staging is tiny and fake, it fully predicts production architecture behavior.",
+              "answer": false
+            },
+            {
+              "id": "TAL3-10",
+              "text": "Runbooks that name first checks beat tribal knowledge during architecture pages.",
+              "answer": true
+            }
+          ]
+        },
+        "4": {
+          "title": "Level 4 - Precedents & traps",
+          "blurb": "Industry-familiar traps dressed as best practice.",
+          "items": [
+            {
+              "id": "TAL4-01",
+              "text": "Precedent trap: many architecture incidents start with a config change that skipped review.",
+              "answer": true
+            },
+            {
+              "id": "TAL4-02",
+              "text": "Shared credentials across environments are a convenience worth keeping in architecture.",
+              "answer": false
+            },
+            {
+              "id": "TAL4-03",
+              "text": "A deprecation window protects unknown consumers when architecture contracts change.",
+              "answer": true
+            },
+            {
+              "id": "TAL4-04",
+              "text": "If last year's audit was clean, new architecture surfaces need no fresh review.",
+              "answer": false
+            },
+            {
+              "id": "TAL4-05",
+              "text": "Postmortems that name trigger and fix improve future architecture decisions.",
+              "answer": true
+            },
+            {
+              "id": "TAL4-06",
+              "text": "Shipping without a rollback rehearsal still proves architecture disaster readiness.",
+              "answer": false
+            },
+            {
+              "id": "TAL4-07",
+              "text": "Gradual rollout catches classes of architecture bugs unit tests miss.",
+              "answer": true
+            },
+            {
+              "id": "TAL4-08",
+              "text": "If a vendor SLA is high, your own architecture design can ignore queues and retries.",
+              "answer": false
+            },
+            {
+              "id": "TAL4-09",
+              "text": "Least privilege reduces blast radius when a architecture credential leaks.",
+              "answer": true
+            },
+            {
+              "id": "TAL4-10",
+              "text": "Busyness without ownership is a reliable architecture partner-to-production substitute.",
+              "answer": false
+            }
+          ]
+        },
+        "5": {
+          "title": "Level 5 - Edge judgment",
+          "blurb": "Subtle cases where polite process still fails the user.",
+          "items": [
+            {
+              "id": "TAL5-01",
+              "text": "A architecture change can pass every check and still violate an unstated multi-team contract.",
+              "answer": true
+            },
+            {
+              "id": "TAL5-02",
+              "text": "Optimizing averages while ignoring a toxic tail can still harm a subset of users in architecture.",
+              "answer": true
+            },
+            {
+              "id": "TAL5-03",
+              "text": "Hitting a date by silently cutting safety in architecture is the professional default.",
+              "answer": false
+            },
+            {
+              "id": "TAL5-04",
+              "text": "Making failure modes explicit often beats opaque errors in architecture interfaces.",
+              "answer": true
+            },
+            {
+              "id": "TAL5-05",
+              "text": "When two systems disagree about a fact, architecture needs an ownership rule, not hope.",
+              "answer": true
+            },
+            {
+              "id": "TAL5-06",
+              "text": "Temporary workarounds in architecture with no expiry become permanent by default.",
+              "answer": true
+            },
+            {
+              "id": "TAL5-07",
+              "text": "If peers praise novelty, that alone outweighs operability in architecture.",
+              "answer": false
+            },
+            {
+              "id": "TAL5-08",
+              "text": "The hardest architecture judgment is sometimes refusing a path the org cannot run.",
+              "answer": true
+            },
+            {
+              "id": "TAL5-09",
+              "text": "Quiet deletes of deprecated architecture fields without consumer checks are always safe.",
+              "answer": false
+            },
+            {
+              "id": "TAL5-10",
+              "text": "Error budgets (or explicit risk trade-offs) belong in architecture conversations, not only blame.",
+              "answer": true
+            }
+          ]
+        }
+      }
+    },
+    "solutions_architect": {
+      "label": "Solutions Architect",
+      "levels": {
+        "1": {
+          "title": "Level 1 - Foundations",
+          "blurb": "Clear basics. Spot obvious false comfort.",
+          "items": [
+            {
+              "id": "SA1",
+              "text": "The customer's stated deadline is the only constraint that matters when proposing a design.",
+              "answer": false
+            },
+            {
+              "id": "SA2",
+              "text": "Mapping current workflows before proposing tools reduces the chance of solving the wrong problem.",
+              "answer": true
+            },
+            {
+              "id": "SA3",
+              "text": "A slide deck of product logos is a complete integration plan.",
+              "answer": false
+            },
+            {
+              "id": "SA4",
+              "text": "Trade-offs (cost vs speed vs control) should be written so the buyer can choose knowingly.",
+              "answer": true
+            },
+            {
+              "id": "SA5",
+              "text": "If a SaaS checklist matches most boxes, custom edge cases can be ignored until go-live week.",
+              "answer": false
+            },
+            {
+              "id": "SA6",
+              "text": "Success criteria agreed up front make it clearer whether the solution later worked.",
+              "answer": true
+            },
+            {
+              "id": "SA7",
+              "text": "Handing a customer an architecture they cannot operate is still a win if the proposal looked advanced.",
+              "answer": false
+            },
+            {
+              "id": "SA8",
+              "text": "Data residency and access rules belong in the solution design when personal data is involved.",
+              "answer": true
+            },
+            {
+              "id": "SA9",
+              "text": "Migration plans can skip rollback steps if the cutover window is short.",
+              "answer": false
+            },
+            {
+              "id": "SA10",
+              "text": "Naming owners for each interface (who supports what) reduces finger-pointing after launch.",
+              "answer": true
+            },
+            {
+              "id": "SA11",
+              "text": "Proof-of-concepts that never match production constraints are still enough to close a large deal without caveats.",
+              "answer": false
+            },
+            {
+              "id": "SA12",
+              "text": "Listening for constraints the customer has not said out loud (ops staffing, budget caps) is part of the job.",
+              "answer": true
+            }
+          ]
+        },
+        "2": {
+          "title": "Level 2 - Trade-offs",
+          "blurb": "Two good-looking options; only one is sound.",
+          "items": [
+            {
+              "id": "SAL2-01",
+              "text": "In customer solution design, a shortcut that hides risk from the next team is still a complete handoff.",
+              "answer": false
+            },
+            {
+              "id": "SAL2-02",
+              "text": "Writing the trade-off (what you gain vs what you defer) is part of sound customer solution design judgment.",
+              "answer": true
+            },
+            {
+              "id": "SAL2-03",
+              "text": "If a checklist is green, rare failure modes in customer solution design can be assumed impossible.",
+              "answer": false
+            },
+            {
+              "id": "SAL2-04",
+              "text": "Clear ownership of interfaces reduces finger-pointing when customer solution design breaks in production.",
+              "answer": true
+            },
+            {
+              "id": "SAL2-05",
+              "text": "Copying a fashionable pattern into customer solution design without matching ops capacity is always wise.",
+              "answer": false
+            },
+            {
+              "id": "SAL2-06",
+              "text": "Documenting why an option was rejected helps later customer solution design debates stay short.",
+              "answer": true
+            },
+            {
+              "id": "SAL2-07",
+              "text": "If the demo path works, empty, error, and permission paths in customer solution design can wait forever.",
+              "answer": false
+            },
+            {
+              "id": "SAL2-08",
+              "text": "A rollback story belongs in the customer solution design plan before a risky cutover.",
+              "answer": true
+            },
+            {
+              "id": "SAL2-09",
+              "text": "Vendor lock-in is never a risk in customer solution design if year-one pricing looks cheap.",
+              "answer": false
+            },
+            {
+              "id": "SAL2-10",
+              "text": "Measuring what users actually experience beats vanity metrics in customer solution design.",
+              "answer": true
+            }
+          ]
+        },
+        "3": {
+          "title": "Level 3 - Failure modes",
+          "blurb": "What breaks under load, time, or bad incentives.",
+          "items": [
+            {
+              "id": "SAL3-01",
+              "text": "Under load, a customer solution design design that only worked in a quiet lab can still fail users.",
+              "answer": true
+            },
+            {
+              "id": "SAL3-02",
+              "text": "Retries without bounds can turn a sick dependency into a customer solution design self-outage.",
+              "answer": true
+            },
+            {
+              "id": "SAL3-03",
+              "text": "If alerts are noisy, deleting them is better than fixing the customer solution design signal.",
+              "answer": false
+            },
+            {
+              "id": "SAL3-04",
+              "text": "Silent data repair in customer solution design can hide corruption until the repair fails.",
+              "answer": true
+            },
+            {
+              "id": "SAL3-05",
+              "text": "A single green sample proves every dirty real-world case in customer solution design.",
+              "answer": false
+            },
+            {
+              "id": "SAL3-06",
+              "text": "Idempotent operations reduce pain when customer solution design work is replayed.",
+              "answer": true
+            },
+            {
+              "id": "SAL3-07",
+              "text": "Skipping monitoring for a new customer solution design path is fine because users will email.",
+              "answer": false
+            },
+            {
+              "id": "SAL3-08",
+              "text": "Partial outages that hit a minority still deserve serious customer solution design response.",
+              "answer": true
+            },
+            {
+              "id": "SAL3-09",
+              "text": "If staging is tiny and fake, it fully predicts production customer solution design behavior.",
+              "answer": false
+            },
+            {
+              "id": "SAL3-10",
+              "text": "Runbooks that name first checks beat tribal knowledge during customer solution design pages.",
+              "answer": true
+            }
+          ]
+        },
+        "4": {
+          "title": "Level 4 - Precedents & traps",
+          "blurb": "Industry-familiar traps dressed as best practice.",
+          "items": [
+            {
+              "id": "SAL4-01",
+              "text": "Precedent trap: many customer solution design incidents start with a config change that skipped review.",
+              "answer": true
+            },
+            {
+              "id": "SAL4-02",
+              "text": "Shared credentials across environments are a convenience worth keeping in customer solution design.",
+              "answer": false
+            },
+            {
+              "id": "SAL4-03",
+              "text": "A deprecation window protects unknown consumers when customer solution design contracts change.",
+              "answer": true
+            },
+            {
+              "id": "SAL4-04",
+              "text": "If last year's audit was clean, new customer solution design surfaces need no fresh review.",
+              "answer": false
+            },
+            {
+              "id": "SAL4-05",
+              "text": "Postmortems that name trigger and fix improve future customer solution design decisions.",
+              "answer": true
+            },
+            {
+              "id": "SAL4-06",
+              "text": "Shipping without a rollback rehearsal still proves customer solution design disaster readiness.",
+              "answer": false
+            },
+            {
+              "id": "SAL4-07",
+              "text": "Gradual rollout catches classes of customer solution design bugs unit tests miss.",
+              "answer": true
+            },
+            {
+              "id": "SAL4-08",
+              "text": "If a vendor SLA is high, your own customer solution design design can ignore queues and retries.",
+              "answer": false
+            },
+            {
+              "id": "SAL4-09",
+              "text": "Least privilege reduces blast radius when a customer solution design credential leaks.",
+              "answer": true
+            },
+            {
+              "id": "SAL4-10",
+              "text": "Busyness without ownership is a reliable customer solution design partner-to-production substitute.",
+              "answer": false
+            }
+          ]
+        },
+        "5": {
+          "title": "Level 5 - Edge judgment",
+          "blurb": "Subtle cases where polite process still fails the user.",
+          "items": [
+            {
+              "id": "SAL5-01",
+              "text": "A customer solution design change can pass every check and still violate an unstated multi-team contract.",
+              "answer": true
+            },
+            {
+              "id": "SAL5-02",
+              "text": "Optimizing averages while ignoring a toxic tail can still harm a subset of users in customer solution design.",
+              "answer": true
+            },
+            {
+              "id": "SAL5-03",
+              "text": "Hitting a date by silently cutting safety in customer solution design is the professional default.",
+              "answer": false
+            },
+            {
+              "id": "SAL5-04",
+              "text": "Making failure modes explicit often beats opaque errors in customer solution design interfaces.",
+              "answer": true
+            },
+            {
+              "id": "SAL5-05",
+              "text": "When two systems disagree about a fact, customer solution design needs an ownership rule, not hope.",
+              "answer": true
+            },
+            {
+              "id": "SAL5-06",
+              "text": "Temporary workarounds in customer solution design with no expiry become permanent by default.",
+              "answer": true
+            },
+            {
+              "id": "SAL5-07",
+              "text": "If peers praise novelty, that alone outweighs operability in customer solution design.",
+              "answer": false
+            },
+            {
+              "id": "SAL5-08",
+              "text": "The hardest customer solution design judgment is sometimes refusing a path the org cannot run.",
+              "answer": true
+            },
+            {
+              "id": "SAL5-09",
+              "text": "Quiet deletes of deprecated customer solution design fields without consumer checks are always safe.",
+              "answer": false
+            },
+            {
+              "id": "SAL5-10",
+              "text": "Error budgets (or explicit risk trade-offs) belong in customer solution design conversations, not only blame.",
+              "answer": true
+            }
+          ]
+        }
+      }
+    },
+    "data_engineer": {
+      "label": "Data Engineer",
+      "levels": {
+        "1": {
+          "title": "Level 1 - Foundations",
+          "blurb": "Clear basics. Spot obvious false comfort.",
+          "items": [
+            {
+              "id": "DE1",
+              "text": "If a pipeline job is green, the numbers in the warehouse are automatically trustworthy.",
+              "answer": false
+            },
+            {
+              "id": "DE2",
+              "text": "Recording when and how a dataset was produced helps people trust downstream reports.",
+              "answer": true
+            },
+            {
+              "id": "DE3",
+              "text": "Schema changes can be pushed to production without telling consumers if the column name looks obvious.",
+              "answer": false
+            },
+            {
+              "id": "DE4",
+              "text": "Late or missing source files should raise alerts, not silently produce empty dashboards.",
+              "answer": true
+            },
+            {
+              "id": "DE5",
+              "text": "PII can sit in a shared scratch table if only the data team has the password today.",
+              "answer": false
+            },
+            {
+              "id": "DE6",
+              "text": "Idempotent loads (safe to re-run) reduce pain when a job has to be replayed.",
+              "answer": true
+            },
+            {
+              "id": "DE7",
+              "text": "One successful sample row proves a transform handles every dirty real-world case.",
+              "answer": false
+            },
+            {
+              "id": "DE8",
+              "text": "Partitioning and retention rules matter when tables grow for years.",
+              "answer": true
+            },
+            {
+              "id": "DE9",
+              "text": "Business definitions of a metric can stay verbal forever if the SQL is clever enough.",
+              "answer": false
+            },
+            {
+              "id": "DE10",
+              "text": "Backfills need the same validation care as daily loads.",
+              "answer": true
+            },
+            {
+              "id": "DE11",
+              "text": "Deleting a column nobody used last week is always safe without checking lineage.",
+              "answer": false
+            },
+            {
+              "id": "DE12",
+              "text": "Freshness SLAs (how late data may be) should be agreed with the people who read the reports.",
+              "answer": true
+            }
+          ]
+        },
+        "2": {
+          "title": "Level 2 - Trade-offs",
+          "blurb": "Two good-looking options; only one is sound.",
+          "items": [
+            {
+              "id": "DEL2-01",
+              "text": "In data pipelines, a shortcut that hides risk from the next team is still a complete handoff.",
+              "answer": false
+            },
+            {
+              "id": "DEL2-02",
+              "text": "Writing the trade-off (what you gain vs what you defer) is part of sound data pipelines judgment.",
+              "answer": true
+            },
+            {
+              "id": "DEL2-03",
+              "text": "If a checklist is green, rare failure modes in data pipelines can be assumed impossible.",
+              "answer": false
+            },
+            {
+              "id": "DEL2-04",
+              "text": "Clear ownership of interfaces reduces finger-pointing when data pipelines breaks in production.",
+              "answer": true
+            },
+            {
+              "id": "DEL2-05",
+              "text": "Copying a fashionable pattern into data pipelines without matching ops capacity is always wise.",
+              "answer": false
+            },
+            {
+              "id": "DEL2-06",
+              "text": "Documenting why an option was rejected helps later data pipelines debates stay short.",
+              "answer": true
+            },
+            {
+              "id": "DEL2-07",
+              "text": "If the demo path works, empty, error, and permission paths in data pipelines can wait forever.",
+              "answer": false
+            },
+            {
+              "id": "DEL2-08",
+              "text": "A rollback story belongs in the data pipelines plan before a risky cutover.",
+              "answer": true
+            },
+            {
+              "id": "DEL2-09",
+              "text": "Vendor lock-in is never a risk in data pipelines if year-one pricing looks cheap.",
+              "answer": false
+            },
+            {
+              "id": "DEL2-10",
+              "text": "Measuring what users actually experience beats vanity metrics in data pipelines.",
+              "answer": true
+            }
+          ]
+        },
+        "3": {
+          "title": "Level 3 - Failure modes",
+          "blurb": "What breaks under load, time, or bad incentives.",
+          "items": [
+            {
+              "id": "DEL3-01",
+              "text": "Under load, a data pipelines design that only worked in a quiet lab can still fail users.",
+              "answer": true
+            },
+            {
+              "id": "DEL3-02",
+              "text": "Retries without bounds can turn a sick dependency into a data pipelines self-outage.",
+              "answer": true
+            },
+            {
+              "id": "DEL3-03",
+              "text": "If alerts are noisy, deleting them is better than fixing the data pipelines signal.",
+              "answer": false
+            },
+            {
+              "id": "DEL3-04",
+              "text": "Silent data repair in data pipelines can hide corruption until the repair fails.",
+              "answer": true
+            },
+            {
+              "id": "DEL3-05",
+              "text": "A single green sample proves every dirty real-world case in data pipelines.",
+              "answer": false
+            },
+            {
+              "id": "DEL3-06",
+              "text": "Idempotent operations reduce pain when data pipelines work is replayed.",
+              "answer": true
+            },
+            {
+              "id": "DEL3-07",
+              "text": "Skipping monitoring for a new data pipelines path is fine because users will email.",
+              "answer": false
+            },
+            {
+              "id": "DEL3-08",
+              "text": "Partial outages that hit a minority still deserve serious data pipelines response.",
+              "answer": true
+            },
+            {
+              "id": "DEL3-09",
+              "text": "If staging is tiny and fake, it fully predicts production data pipelines behavior.",
+              "answer": false
+            },
+            {
+              "id": "DEL3-10",
+              "text": "Runbooks that name first checks beat tribal knowledge during data pipelines pages.",
+              "answer": true
+            }
+          ]
+        },
+        "4": {
+          "title": "Level 4 - Precedents & traps",
+          "blurb": "Industry-familiar traps dressed as best practice.",
+          "items": [
+            {
+              "id": "DEL4-01",
+              "text": "Precedent trap: many data pipelines incidents start with a config change that skipped review.",
+              "answer": true
+            },
+            {
+              "id": "DEL4-02",
+              "text": "Shared credentials across environments are a convenience worth keeping in data pipelines.",
+              "answer": false
+            },
+            {
+              "id": "DEL4-03",
+              "text": "A deprecation window protects unknown consumers when data pipelines contracts change.",
+              "answer": true
+            },
+            {
+              "id": "DEL4-04",
+              "text": "If last year's audit was clean, new data pipelines surfaces need no fresh review.",
+              "answer": false
+            },
+            {
+              "id": "DEL4-05",
+              "text": "Postmortems that name trigger and fix improve future data pipelines decisions.",
+              "answer": true
+            },
+            {
+              "id": "DEL4-06",
+              "text": "Shipping without a rollback rehearsal still proves data pipelines disaster readiness.",
+              "answer": false
+            },
+            {
+              "id": "DEL4-07",
+              "text": "Gradual rollout catches classes of data pipelines bugs unit tests miss.",
+              "answer": true
+            },
+            {
+              "id": "DEL4-08",
+              "text": "If a vendor SLA is high, your own data pipelines design can ignore queues and retries.",
+              "answer": false
+            },
+            {
+              "id": "DEL4-09",
+              "text": "Least privilege reduces blast radius when a data pipelines credential leaks.",
+              "answer": true
+            },
+            {
+              "id": "DEL4-10",
+              "text": "Busyness without ownership is a reliable data pipelines partner-to-production substitute.",
+              "answer": false
+            }
+          ]
+        },
+        "5": {
+          "title": "Level 5 - Edge judgment",
+          "blurb": "Subtle cases where polite process still fails the user.",
+          "items": [
+            {
+              "id": "DEL5-01",
+              "text": "A data pipelines change can pass every check and still violate an unstated multi-team contract.",
+              "answer": true
+            },
+            {
+              "id": "DEL5-02",
+              "text": "Optimizing averages while ignoring a toxic tail can still harm a subset of users in data pipelines.",
+              "answer": true
+            },
+            {
+              "id": "DEL5-03",
+              "text": "Hitting a date by silently cutting safety in data pipelines is the professional default.",
+              "answer": false
+            },
+            {
+              "id": "DEL5-04",
+              "text": "Making failure modes explicit often beats opaque errors in data pipelines interfaces.",
+              "answer": true
+            },
+            {
+              "id": "DEL5-05",
+              "text": "When two systems disagree about a fact, data pipelines needs an ownership rule, not hope.",
+              "answer": true
+            },
+            {
+              "id": "DEL5-06",
+              "text": "Temporary workarounds in data pipelines with no expiry become permanent by default.",
+              "answer": true
+            },
+            {
+              "id": "DEL5-07",
+              "text": "If peers praise novelty, that alone outweighs operability in data pipelines.",
+              "answer": false
+            },
+            {
+              "id": "DEL5-08",
+              "text": "The hardest data pipelines judgment is sometimes refusing a path the org cannot run.",
+              "answer": true
+            },
+            {
+              "id": "DEL5-09",
+              "text": "Quiet deletes of deprecated data pipelines fields without consumer checks are always safe.",
+              "answer": false
+            },
+            {
+              "id": "DEL5-10",
+              "text": "Error budgets (or explicit risk trade-offs) belong in data pipelines conversations, not only blame.",
+              "answer": true
+            }
+          ]
+        }
+      }
+    },
+    "devops": {
+      "label": "DevOps / Platform",
+      "levels": {
+        "1": {
+          "title": "Level 1 - Foundations",
+          "blurb": "Clear basics. Spot obvious false comfort.",
+          "items": [
+            {
+              "id": "DO1",
+              "text": "Manual snowflake servers with no recorded setup are fine if one person remembers the steps.",
+              "answer": false
+            },
+            {
+              "id": "DO2",
+              "text": "Infrastructure as code makes rebuilds and reviews more repeatable.",
+              "answer": true
+            },
+            {
+              "id": "DO3",
+              "text": "Secrets in chat logs or committed files are acceptable if the channel is private.",
+              "answer": false
+            },
+            {
+              "id": "DO4",
+              "text": "Health checks and auto-restart policies reduce time-to-recover when a process dies.",
+              "answer": true
+            },
+            {
+              "id": "DO5",
+              "text": "If deploy is green, user-facing correctness can be skipped as someone else's problem.",
+              "answer": false
+            },
+            {
+              "id": "DO6",
+              "text": "Access should follow least privilege, not shared root for convenience.",
+              "answer": true
+            },
+            {
+              "id": "DO7",
+              "text": "Backups that have never been restored are proven disaster-ready.",
+              "answer": false
+            },
+            {
+              "id": "DO8",
+              "text": "Change windows and rollback plans belong in the deploy checklist for risky releases.",
+              "answer": true
+            },
+            {
+              "id": "DO9",
+              "text": "Turning off alerts because they are noisy is better than fixing the noisy rules.",
+              "answer": false
+            },
+            {
+              "id": "DO10",
+              "text": "Capacity planning needs real usage signals, not only the day-one estimate.",
+              "answer": true
+            },
+            {
+              "id": "DO11",
+              "text": "Production and staging can share credentials if staging is rarely used.",
+              "answer": false
+            },
+            {
+              "id": "DO12",
+              "text": "Runbooks that say what to do at 2am help more than tribal knowledge alone.",
+              "answer": true
+            }
+          ]
+        },
+        "2": {
+          "title": "Level 2 - Trade-offs",
+          "blurb": "Two good-looking options; only one is sound.",
+          "items": [
+            {
+              "id": "DOL2-01",
+              "text": "In platform and deploy, a shortcut that hides risk from the next team is still a complete handoff.",
+              "answer": false
+            },
+            {
+              "id": "DOL2-02",
+              "text": "Writing the trade-off (what you gain vs what you defer) is part of sound platform and deploy judgment.",
+              "answer": true
+            },
+            {
+              "id": "DOL2-03",
+              "text": "If a checklist is green, rare failure modes in platform and deploy can be assumed impossible.",
+              "answer": false
+            },
+            {
+              "id": "DOL2-04",
+              "text": "Clear ownership of interfaces reduces finger-pointing when platform and deploy breaks in production.",
+              "answer": true
+            },
+            {
+              "id": "DOL2-05",
+              "text": "Copying a fashionable pattern into platform and deploy without matching ops capacity is always wise.",
+              "answer": false
+            },
+            {
+              "id": "DOL2-06",
+              "text": "Documenting why an option was rejected helps later platform and deploy debates stay short.",
+              "answer": true
+            },
+            {
+              "id": "DOL2-07",
+              "text": "If the demo path works, empty, error, and permission paths in platform and deploy can wait forever.",
+              "answer": false
+            },
+            {
+              "id": "DOL2-08",
+              "text": "A rollback story belongs in the platform and deploy plan before a risky cutover.",
+              "answer": true
+            },
+            {
+              "id": "DOL2-09",
+              "text": "Vendor lock-in is never a risk in platform and deploy if year-one pricing looks cheap.",
+              "answer": false
+            },
+            {
+              "id": "DOL2-10",
+              "text": "Measuring what users actually experience beats vanity metrics in platform and deploy.",
+              "answer": true
+            }
+          ]
+        },
+        "3": {
+          "title": "Level 3 - Failure modes",
+          "blurb": "What breaks under load, time, or bad incentives.",
+          "items": [
+            {
+              "id": "DOL3-01",
+              "text": "Under load, a platform and deploy design that only worked in a quiet lab can still fail users.",
+              "answer": true
+            },
+            {
+              "id": "DOL3-02",
+              "text": "Retries without bounds can turn a sick dependency into a platform and deploy self-outage.",
+              "answer": true
+            },
+            {
+              "id": "DOL3-03",
+              "text": "If alerts are noisy, deleting them is better than fixing the platform and deploy signal.",
+              "answer": false
+            },
+            {
+              "id": "DOL3-04",
+              "text": "Silent data repair in platform and deploy can hide corruption until the repair fails.",
+              "answer": true
+            },
+            {
+              "id": "DOL3-05",
+              "text": "A single green sample proves every dirty real-world case in platform and deploy.",
+              "answer": false
+            },
+            {
+              "id": "DOL3-06",
+              "text": "Idempotent operations reduce pain when platform and deploy work is replayed.",
+              "answer": true
+            },
+            {
+              "id": "DOL3-07",
+              "text": "Skipping monitoring for a new platform and deploy path is fine because users will email.",
+              "answer": false
+            },
+            {
+              "id": "DOL3-08",
+              "text": "Partial outages that hit a minority still deserve serious platform and deploy response.",
+              "answer": true
+            },
+            {
+              "id": "DOL3-09",
+              "text": "If staging is tiny and fake, it fully predicts production platform and deploy behavior.",
+              "answer": false
+            },
+            {
+              "id": "DOL3-10",
+              "text": "Runbooks that name first checks beat tribal knowledge during platform and deploy pages.",
+              "answer": true
+            }
+          ]
+        },
+        "4": {
+          "title": "Level 4 - Precedents & traps",
+          "blurb": "Industry-familiar traps dressed as best practice.",
+          "items": [
+            {
+              "id": "DOL4-01",
+              "text": "Precedent trap: many platform and deploy incidents start with a config change that skipped review.",
+              "answer": true
+            },
+            {
+              "id": "DOL4-02",
+              "text": "Shared credentials across environments are a convenience worth keeping in platform and deploy.",
+              "answer": false
+            },
+            {
+              "id": "DOL4-03",
+              "text": "A deprecation window protects unknown consumers when platform and deploy contracts change.",
+              "answer": true
+            },
+            {
+              "id": "DOL4-04",
+              "text": "If last year's audit was clean, new platform and deploy surfaces need no fresh review.",
+              "answer": false
+            },
+            {
+              "id": "DOL4-05",
+              "text": "Postmortems that name trigger and fix improve future platform and deploy decisions.",
+              "answer": true
+            },
+            {
+              "id": "DOL4-06",
+              "text": "Shipping without a rollback rehearsal still proves platform and deploy disaster readiness.",
+              "answer": false
+            },
+            {
+              "id": "DOL4-07",
+              "text": "Gradual rollout catches classes of platform and deploy bugs unit tests miss.",
+              "answer": true
+            },
+            {
+              "id": "DOL4-08",
+              "text": "If a vendor SLA is high, your own platform and deploy design can ignore queues and retries.",
+              "answer": false
+            },
+            {
+              "id": "DOL4-09",
+              "text": "Least privilege reduces blast radius when a platform and deploy credential leaks.",
+              "answer": true
+            },
+            {
+              "id": "DOL4-10",
+              "text": "Busyness without ownership is a reliable platform and deploy partner-to-production substitute.",
+              "answer": false
+            }
+          ]
+        },
+        "5": {
+          "title": "Level 5 - Edge judgment",
+          "blurb": "Subtle cases where polite process still fails the user.",
+          "items": [
+            {
+              "id": "DOL5-01",
+              "text": "A platform and deploy change can pass every check and still violate an unstated multi-team contract.",
+              "answer": true
+            },
+            {
+              "id": "DOL5-02",
+              "text": "Optimizing averages while ignoring a toxic tail can still harm a subset of users in platform and deploy.",
+              "answer": true
+            },
+            {
+              "id": "DOL5-03",
+              "text": "Hitting a date by silently cutting safety in platform and deploy is the professional default.",
+              "answer": false
+            },
+            {
+              "id": "DOL5-04",
+              "text": "Making failure modes explicit often beats opaque errors in platform and deploy interfaces.",
+              "answer": true
+            },
+            {
+              "id": "DOL5-05",
+              "text": "When two systems disagree about a fact, platform and deploy needs an ownership rule, not hope.",
+              "answer": true
+            },
+            {
+              "id": "DOL5-06",
+              "text": "Temporary workarounds in platform and deploy with no expiry become permanent by default.",
+              "answer": true
+            },
+            {
+              "id": "DOL5-07",
+              "text": "If peers praise novelty, that alone outweighs operability in platform and deploy.",
+              "answer": false
+            },
+            {
+              "id": "DOL5-08",
+              "text": "The hardest platform and deploy judgment is sometimes refusing a path the org cannot run.",
+              "answer": true
+            },
+            {
+              "id": "DOL5-09",
+              "text": "Quiet deletes of deprecated platform and deploy fields without consumer checks are always safe.",
+              "answer": false
+            },
+            {
+              "id": "DOL5-10",
+              "text": "Error budgets (or explicit risk trade-offs) belong in platform and deploy conversations, not only blame.",
+              "answer": true
+            }
+          ]
+        }
+      }
+    },
+    "principal_architect": {
+      "label": "Principal Architect",
+      "levels": {
+        "1": {
+          "title": "Level 1 - Foundations",
+          "blurb": "Clear basics. Spot obvious false comfort.",
+          "items": [
+            {
+              "id": "PA1",
+              "text": "A principal architect should prefer a pattern that only they understand if it ships this sprint.",
+              "answer": false
+            },
+            {
+              "id": "PA2",
+              "text": "Writing decision records that name rejected options helps future teams avoid re-litigating the same choice.",
+              "answer": true
+            },
+            {
+              "id": "PA3",
+              "text": "Scaling to microservices on day one is always the principal-level default for a five-person team.",
+              "answer": false
+            },
+            {
+              "id": "PA4",
+              "text": "Cross-team contracts (APIs, events, ownership) belong in the design before code multiplies around them.",
+              "answer": true
+            },
+            {
+              "id": "PA5",
+              "text": "If a vendor deck looks modern, skipping a failure-mode review is acceptable for a platform bet.",
+              "answer": false
+            },
+            {
+              "id": "PA6",
+              "text": "Principal judgment includes saying no to complexity the org cannot operate.",
+              "answer": true
+            },
+            {
+              "id": "PA7",
+              "text": "A single shared mutable store for all domains always reduces long-term coordination cost.",
+              "answer": false
+            },
+            {
+              "id": "PA8",
+              "text": "Security and privacy boundaries should be drawn before sensitive paths go live.",
+              "answer": true
+            },
+            {
+              "id": "PA9",
+              "text": "Copying a FAANG reference architecture without matching ops capacity is sound principal practice.",
+              "answer": false
+            },
+            {
+              "id": "PA10",
+              "text": "Clear module seams make change safer when many teams touch the same product.",
+              "answer": true
+            },
+            {
+              "id": "PA11",
+              "text": "Technical strategy that ignores cost of change is incomplete.",
+              "answer": true
+            },
+            {
+              "id": "PA12",
+              "text": "If the code compiles, the architecture is proven.",
+              "answer": false
+            }
+          ]
+        },
+        "2": {
+          "title": "Level 2 - Trade-offs",
+          "blurb": "Two good-looking options; only one is sound.",
+          "items": [
+            {
+              "id": "PAL2-01",
+              "text": "In principal-level architecture, a shortcut that hides risk from the next team is still a complete handoff.",
+              "answer": false
+            },
+            {
+              "id": "PAL2-02",
+              "text": "Writing the trade-off (what you gain vs what you defer) is part of sound principal-level architecture judgment.",
+              "answer": true
+            },
+            {
+              "id": "PAL2-03",
+              "text": "If a checklist is green, rare failure modes in principal-level architecture can be assumed impossible.",
+              "answer": false
+            },
+            {
+              "id": "PAL2-04",
+              "text": "Clear ownership of interfaces reduces finger-pointing when principal-level architecture breaks in production.",
+              "answer": true
+            },
+            {
+              "id": "PAL2-05",
+              "text": "Copying a fashionable pattern into principal-level architecture without matching ops capacity is always wise.",
+              "answer": false
+            },
+            {
+              "id": "PAL2-06",
+              "text": "Documenting why an option was rejected helps later principal-level architecture debates stay short.",
+              "answer": true
+            },
+            {
+              "id": "PAL2-07",
+              "text": "If the demo path works, empty, error, and permission paths in principal-level architecture can wait forever.",
+              "answer": false
+            },
+            {
+              "id": "PAL2-08",
+              "text": "A rollback story belongs in the principal-level architecture plan before a risky cutover.",
+              "answer": true
+            },
+            {
+              "id": "PAL2-09",
+              "text": "Vendor lock-in is never a risk in principal-level architecture if year-one pricing looks cheap.",
+              "answer": false
+            },
+            {
+              "id": "PAL2-10",
+              "text": "Measuring what users actually experience beats vanity metrics in principal-level architecture.",
+              "answer": true
+            }
+          ]
+        },
+        "3": {
+          "title": "Level 3 - Failure modes",
+          "blurb": "What breaks under load, time, or bad incentives.",
+          "items": [
+            {
+              "id": "PAL3-01",
+              "text": "Under load, a principal-level architecture design that only worked in a quiet lab can still fail users.",
+              "answer": true
+            },
+            {
+              "id": "PAL3-02",
+              "text": "Retries without bounds can turn a sick dependency into a principal-level architecture self-outage.",
+              "answer": true
+            },
+            {
+              "id": "PAL3-03",
+              "text": "If alerts are noisy, deleting them is better than fixing the principal-level architecture signal.",
+              "answer": false
+            },
+            {
+              "id": "PAL3-04",
+              "text": "Silent data repair in principal-level architecture can hide corruption until the repair fails.",
+              "answer": true
+            },
+            {
+              "id": "PAL3-05",
+              "text": "A single green sample proves every dirty real-world case in principal-level architecture.",
+              "answer": false
+            },
+            {
+              "id": "PAL3-06",
+              "text": "Idempotent operations reduce pain when principal-level architecture work is replayed.",
+              "answer": true
+            },
+            {
+              "id": "PAL3-07",
+              "text": "Skipping monitoring for a new principal-level architecture path is fine because users will email.",
+              "answer": false
+            },
+            {
+              "id": "PAL3-08",
+              "text": "Partial outages that hit a minority still deserve serious principal-level architecture response.",
+              "answer": true
+            },
+            {
+              "id": "PAL3-09",
+              "text": "If staging is tiny and fake, it fully predicts production principal-level architecture behavior.",
+              "answer": false
+            },
+            {
+              "id": "PAL3-10",
+              "text": "Runbooks that name first checks beat tribal knowledge during principal-level architecture pages.",
+              "answer": true
+            }
+          ]
+        },
+        "4": {
+          "title": "Level 4 - Precedents & traps",
+          "blurb": "Industry-familiar traps dressed as best practice.",
+          "items": [
+            {
+              "id": "PAL4-01",
+              "text": "Precedent trap: many principal-level architecture incidents start with a config change that skipped review.",
+              "answer": true
+            },
+            {
+              "id": "PAL4-02",
+              "text": "Shared credentials across environments are a convenience worth keeping in principal-level architecture.",
+              "answer": false
+            },
+            {
+              "id": "PAL4-03",
+              "text": "A deprecation window protects unknown consumers when principal-level architecture contracts change.",
+              "answer": true
+            },
+            {
+              "id": "PAL4-04",
+              "text": "If last year's audit was clean, new principal-level architecture surfaces need no fresh review.",
+              "answer": false
+            },
+            {
+              "id": "PAL4-05",
+              "text": "Postmortems that name trigger and fix improve future principal-level architecture decisions.",
+              "answer": true
+            },
+            {
+              "id": "PAL4-06",
+              "text": "Shipping without a rollback rehearsal still proves principal-level architecture disaster readiness.",
+              "answer": false
+            },
+            {
+              "id": "PAL4-07",
+              "text": "Gradual rollout catches classes of principal-level architecture bugs unit tests miss.",
+              "answer": true
+            },
+            {
+              "id": "PAL4-08",
+              "text": "If a vendor SLA is high, your own principal-level architecture design can ignore queues and retries.",
+              "answer": false
+            },
+            {
+              "id": "PAL4-09",
+              "text": "Least privilege reduces blast radius when a principal-level architecture credential leaks.",
+              "answer": true
+            },
+            {
+              "id": "PAL4-10",
+              "text": "Busyness without ownership is a reliable principal-level architecture partner-to-production substitute.",
+              "answer": false
+            }
+          ]
+        },
+        "5": {
+          "title": "Level 5 - Edge judgment",
+          "blurb": "Subtle cases where polite process still fails the user.",
+          "items": [
+            {
+              "id": "PAL5-01",
+              "text": "A principal-level architecture change can pass every check and still violate an unstated multi-team contract.",
+              "answer": true
+            },
+            {
+              "id": "PAL5-02",
+              "text": "Optimizing averages while ignoring a toxic tail can still harm a subset of users in principal-level architecture.",
+              "answer": true
+            },
+            {
+              "id": "PAL5-03",
+              "text": "Hitting a date by silently cutting safety in principal-level architecture is the professional default.",
+              "answer": false
+            },
+            {
+              "id": "PAL5-04",
+              "text": "Making failure modes explicit often beats opaque errors in principal-level architecture interfaces.",
+              "answer": true
+            },
+            {
+              "id": "PAL5-05",
+              "text": "When two systems disagree about a fact, principal-level architecture needs an ownership rule, not hope.",
+              "answer": true
+            },
+            {
+              "id": "PAL5-06",
+              "text": "Temporary workarounds in principal-level architecture with no expiry become permanent by default.",
+              "answer": true
+            },
+            {
+              "id": "PAL5-07",
+              "text": "If peers praise novelty, that alone outweighs operability in principal-level architecture.",
+              "answer": false
+            },
+            {
+              "id": "PAL5-08",
+              "text": "The hardest principal-level architecture judgment is sometimes refusing a path the org cannot run.",
+              "answer": true
+            },
+            {
+              "id": "PAL5-09",
+              "text": "Quiet deletes of deprecated principal-level architecture fields without consumer checks are always safe.",
+              "answer": false
+            },
+            {
+              "id": "PAL5-10",
+              "text": "Error budgets (or explicit risk trade-offs) belong in principal-level architecture conversations, not only blame.",
+              "answer": true
+            }
+          ]
+        }
+      }
+    },
+    "llm_evals_engineer": {
+      "label": "LLM Evals Engineer",
+      "levels": {
+        "1": {
+          "title": "Level 1 - Foundations",
+          "blurb": "Clear basics. Spot obvious false comfort.",
+          "items": [
+            {
+              "id": "LE1",
+              "text": "Using the same questions to tune prompts and to report the final score gives an unbiased view of new questions.",
+              "answer": false
+            },
+            {
+              "id": "LE2",
+              "text": "A blank eval cell (no evidence) should stay deferred - not scored as a fail and not as a zero.",
+              "answer": true
+            },
+            {
+              "id": "LE3",
+              "text": "Leaderboard percent alone is enough evidence without inspectable traces or held-out sets.",
+              "answer": false
+            },
+            {
+              "id": "LE4",
+              "text": "Contamination risk rises when training or prompt tuning saw the test items.",
+              "answer": true
+            },
+            {
+              "id": "LE5",
+              "text": "If the model answers correctly once, path quality and tool loops can be ignored.",
+              "answer": false
+            },
+            {
+              "id": "LE6",
+              "text": "Recording which tools were called and in what order helps judge agentic runs.",
+              "answer": true
+            },
+            {
+              "id": "LE7",
+              "text": "A domain score is only meaningful relative to the reference set it was computed against.",
+              "answer": true
+            },
+            {
+              "id": "LE8",
+              "text": "Replacing a hard item with an easier one mid-benchmark is fine if the headline number improves.",
+              "answer": false
+            },
+            {
+              "id": "LE9",
+              "text": "Deferred and missing evidence should be visible in the report, not papered over with averages.",
+              "answer": true
+            },
+            {
+              "id": "LE10",
+              "text": "Self-reported feel-smarter impressions are a gold eval metric over dated, comparable runs.",
+              "answer": false
+            },
+            {
+              "id": "LE11",
+              "text": "Held-out slices reduce the chance you are grading memorization.",
+              "answer": true
+            },
+            {
+              "id": "LE12",
+              "text": "If two models tie on accuracy, then cost, latency, and failure modes are irrelevant.",
+              "answer": false
+            }
+          ]
+        },
+        "2": {
+          "title": "Level 2 - Trade-offs",
+          "blurb": "Two good-looking options; only one is sound.",
+          "items": [
+            {
+              "id": "LEL2-01",
+              "text": "In LLM evaluation, a shortcut that hides risk from the next team is still a complete handoff.",
+              "answer": false
+            },
+            {
+              "id": "LEL2-02",
+              "text": "Writing the trade-off (what you gain vs what you defer) is part of sound LLM evaluation judgment.",
+              "answer": true
+            },
+            {
+              "id": "LEL2-03",
+              "text": "If a checklist is green, rare failure modes in LLM evaluation can be assumed impossible.",
+              "answer": false
+            },
+            {
+              "id": "LEL2-04",
+              "text": "Clear ownership of interfaces reduces finger-pointing when LLM evaluation breaks in production.",
+              "answer": true
+            },
+            {
+              "id": "LEL2-05",
+              "text": "Copying a fashionable pattern into LLM evaluation without matching ops capacity is always wise.",
+              "answer": false
+            },
+            {
+              "id": "LEL2-06",
+              "text": "Documenting why an option was rejected helps later LLM evaluation debates stay short.",
+              "answer": true
+            },
+            {
+              "id": "LEL2-07",
+              "text": "If the demo path works, empty, error, and permission paths in LLM evaluation can wait forever.",
+              "answer": false
+            },
+            {
+              "id": "LEL2-08",
+              "text": "A rollback story belongs in the LLM evaluation plan before a risky cutover.",
+              "answer": true
+            },
+            {
+              "id": "LEL2-09",
+              "text": "Vendor lock-in is never a risk in LLM evaluation if year-one pricing looks cheap.",
+              "answer": false
+            },
+            {
+              "id": "LEL2-10",
+              "text": "Measuring what users actually experience beats vanity metrics in LLM evaluation.",
+              "answer": true
+            }
+          ]
+        },
+        "3": {
+          "title": "Level 3 - Failure modes",
+          "blurb": "What breaks under load, time, or bad incentives.",
+          "items": [
+            {
+              "id": "LEL3-01",
+              "text": "Under load, a LLM evaluation design that only worked in a quiet lab can still fail users.",
+              "answer": true
+            },
+            {
+              "id": "LEL3-02",
+              "text": "Retries without bounds can turn a sick dependency into a LLM evaluation self-outage.",
+              "answer": true
+            },
+            {
+              "id": "LEL3-03",
+              "text": "If alerts are noisy, deleting them is better than fixing the LLM evaluation signal.",
+              "answer": false
+            },
+            {
+              "id": "LEL3-04",
+              "text": "Silent data repair in LLM evaluation can hide corruption until the repair fails.",
+              "answer": true
+            },
+            {
+              "id": "LEL3-05",
+              "text": "A single green sample proves every dirty real-world case in LLM evaluation.",
+              "answer": false
+            },
+            {
+              "id": "LEL3-06",
+              "text": "Idempotent operations reduce pain when LLM evaluation work is replayed.",
+              "answer": true
+            },
+            {
+              "id": "LEL3-07",
+              "text": "Skipping monitoring for a new LLM evaluation path is fine because users will email.",
+              "answer": false
+            },
+            {
+              "id": "LEL3-08",
+              "text": "Partial outages that hit a minority still deserve serious LLM evaluation response.",
+              "answer": true
+            },
+            {
+              "id": "LEL3-09",
+              "text": "If staging is tiny and fake, it fully predicts production LLM evaluation behavior.",
+              "answer": false
+            },
+            {
+              "id": "LEL3-10",
+              "text": "Runbooks that name first checks beat tribal knowledge during LLM evaluation pages.",
+              "answer": true
+            }
+          ]
+        },
+        "4": {
+          "title": "Level 4 - Precedents & traps",
+          "blurb": "Industry-familiar traps dressed as best practice.",
+          "items": [
+            {
+              "id": "LEL4-01",
+              "text": "Precedent trap: many LLM evaluation incidents start with a config change that skipped review.",
+              "answer": true
+            },
+            {
+              "id": "LEL4-02",
+              "text": "Shared credentials across environments are a convenience worth keeping in LLM evaluation.",
+              "answer": false
+            },
+            {
+              "id": "LEL4-03",
+              "text": "A deprecation window protects unknown consumers when LLM evaluation contracts change.",
+              "answer": true
+            },
+            {
+              "id": "LEL4-04",
+              "text": "If last year's audit was clean, new LLM evaluation surfaces need no fresh review.",
+              "answer": false
+            },
+            {
+              "id": "LEL4-05",
+              "text": "Postmortems that name trigger and fix improve future LLM evaluation decisions.",
+              "answer": true
+            },
+            {
+              "id": "LEL4-06",
+              "text": "Shipping without a rollback rehearsal still proves LLM evaluation disaster readiness.",
+              "answer": false
+            },
+            {
+              "id": "LEL4-07",
+              "text": "Gradual rollout catches classes of LLM evaluation bugs unit tests miss.",
+              "answer": true
+            },
+            {
+              "id": "LEL4-08",
+              "text": "If a vendor SLA is high, your own LLM evaluation design can ignore queues and retries.",
+              "answer": false
+            },
+            {
+              "id": "LEL4-09",
+              "text": "Least privilege reduces blast radius when a LLM evaluation credential leaks.",
+              "answer": true
+            },
+            {
+              "id": "LEL4-10",
+              "text": "Busyness without ownership is a reliable LLM evaluation partner-to-production substitute.",
+              "answer": false
+            }
+          ]
+        },
+        "5": {
+          "title": "Level 5 - Edge judgment",
+          "blurb": "Subtle cases where polite process still fails the user.",
+          "items": [
+            {
+              "id": "LEL5-01",
+              "text": "A LLM evaluation change can pass every check and still violate an unstated multi-team contract.",
+              "answer": true
+            },
+            {
+              "id": "LEL5-02",
+              "text": "Optimizing averages while ignoring a toxic tail can still harm a subset of users in LLM evaluation.",
+              "answer": true
+            },
+            {
+              "id": "LEL5-03",
+              "text": "Hitting a date by silently cutting safety in LLM evaluation is the professional default.",
+              "answer": false
+            },
+            {
+              "id": "LEL5-04",
+              "text": "Making failure modes explicit often beats opaque errors in LLM evaluation interfaces.",
+              "answer": true
+            },
+            {
+              "id": "LEL5-05",
+              "text": "When two systems disagree about a fact, LLM evaluation needs an ownership rule, not hope.",
+              "answer": true
+            },
+            {
+              "id": "LEL5-06",
+              "text": "Temporary workarounds in LLM evaluation with no expiry become permanent by default.",
+              "answer": true
+            },
+            {
+              "id": "LEL5-07",
+              "text": "If peers praise novelty, that alone outweighs operability in LLM evaluation.",
+              "answer": false
+            },
+            {
+              "id": "LEL5-08",
+              "text": "The hardest LLM evaluation judgment is sometimes refusing a path the org cannot run.",
+              "answer": true
+            },
+            {
+              "id": "LEL5-09",
+              "text": "Quiet deletes of deprecated LLM evaluation fields without consumer checks are always safe.",
+              "answer": false
+            },
+            {
+              "id": "LEL5-10",
+              "text": "Error budgets (or explicit risk trade-offs) belong in LLM evaluation conversations, not only blame.",
+              "answer": true
+            }
+          ]
+        }
+      }
+    },
+    "ml_engineer": {
+      "label": "ML Engineer",
+      "levels": {
+        "1": {
+          "title": "Level 1 - Foundations",
+          "blurb": "Clear basics. Spot obvious false comfort.",
+          "items": [
+            {
+              "id": "ML1",
+              "text": "A single lucky validation score proves the model will hold in production.",
+              "answer": false
+            },
+            {
+              "id": "ML2",
+              "text": "Tracking training data versions and feature definitions helps explain later drift.",
+              "answer": true
+            },
+            {
+              "id": "ML3",
+              "text": "Label noise can be ignored if the model loss looks smooth.",
+              "answer": false
+            },
+            {
+              "id": "ML4",
+              "text": "Offline metrics should be checked against a slice that matches the real traffic mix.",
+              "answer": true
+            },
+            {
+              "id": "ML5",
+              "text": "Shipping without a rollback path for a model change is fine if the demo looked good.",
+              "answer": false
+            },
+            {
+              "id": "ML6",
+              "text": "Feature leakage can inflate offline scores while hurting live users.",
+              "answer": true
+            },
+            {
+              "id": "ML7",
+              "text": "If accuracy is high, fairness and failure cases on rare groups can be skipped.",
+              "answer": false
+            },
+            {
+              "id": "ML8",
+              "text": "Monitoring prediction drift and input drift is part of owning an ML service.",
+              "answer": true
+            },
+            {
+              "id": "ML9",
+              "text": "Retraining on yesterday's production labels without checking for feedback loops is always safe.",
+              "answer": false
+            },
+            {
+              "id": "ML10",
+              "text": "Documenting train/serve skew reduces silent production bugs.",
+              "answer": true
+            },
+            {
+              "id": "ML11",
+              "text": "A bigger model always beats a smaller one for every product constraint.",
+              "answer": false
+            },
+            {
+              "id": "ML12",
+              "text": "Human review of hard errors can catch issues metrics miss.",
+              "answer": true
+            }
+          ]
+        },
+        "2": {
+          "title": "Level 2 - Trade-offs",
+          "blurb": "Two good-looking options; only one is sound.",
+          "items": [
+            {
+              "id": "MLL2-01",
+              "text": "In ML systems, a shortcut that hides risk from the next team is still a complete handoff.",
+              "answer": false
+            },
+            {
+              "id": "MLL2-02",
+              "text": "Writing the trade-off (what you gain vs what you defer) is part of sound ML systems judgment.",
+              "answer": true
+            },
+            {
+              "id": "MLL2-03",
+              "text": "If a checklist is green, rare failure modes in ML systems can be assumed impossible.",
+              "answer": false
+            },
+            {
+              "id": "MLL2-04",
+              "text": "Clear ownership of interfaces reduces finger-pointing when ML systems breaks in production.",
+              "answer": true
+            },
+            {
+              "id": "MLL2-05",
+              "text": "Copying a fashionable pattern into ML systems without matching ops capacity is always wise.",
+              "answer": false
+            },
+            {
+              "id": "MLL2-06",
+              "text": "Documenting why an option was rejected helps later ML systems debates stay short.",
+              "answer": true
+            },
+            {
+              "id": "MLL2-07",
+              "text": "If the demo path works, empty, error, and permission paths in ML systems can wait forever.",
+              "answer": false
+            },
+            {
+              "id": "MLL2-08",
+              "text": "A rollback story belongs in the ML systems plan before a risky cutover.",
+              "answer": true
+            },
+            {
+              "id": "MLL2-09",
+              "text": "Vendor lock-in is never a risk in ML systems if year-one pricing looks cheap.",
+              "answer": false
+            },
+            {
+              "id": "MLL2-10",
+              "text": "Measuring what users actually experience beats vanity metrics in ML systems.",
+              "answer": true
+            }
+          ]
+        },
+        "3": {
+          "title": "Level 3 - Failure modes",
+          "blurb": "What breaks under load, time, or bad incentives.",
+          "items": [
+            {
+              "id": "MLL3-01",
+              "text": "Under load, a ML systems design that only worked in a quiet lab can still fail users.",
+              "answer": true
+            },
+            {
+              "id": "MLL3-02",
+              "text": "Retries without bounds can turn a sick dependency into a ML systems self-outage.",
+              "answer": true
+            },
+            {
+              "id": "MLL3-03",
+              "text": "If alerts are noisy, deleting them is better than fixing the ML systems signal.",
+              "answer": false
+            },
+            {
+              "id": "MLL3-04",
+              "text": "Silent data repair in ML systems can hide corruption until the repair fails.",
+              "answer": true
+            },
+            {
+              "id": "MLL3-05",
+              "text": "A single green sample proves every dirty real-world case in ML systems.",
+              "answer": false
+            },
+            {
+              "id": "MLL3-06",
+              "text": "Idempotent operations reduce pain when ML systems work is replayed.",
+              "answer": true
+            },
+            {
+              "id": "MLL3-07",
+              "text": "Skipping monitoring for a new ML systems path is fine because users will email.",
+              "answer": false
+            },
+            {
+              "id": "MLL3-08",
+              "text": "Partial outages that hit a minority still deserve serious ML systems response.",
+              "answer": true
+            },
+            {
+              "id": "MLL3-09",
+              "text": "If staging is tiny and fake, it fully predicts production ML systems behavior.",
+              "answer": false
+            },
+            {
+              "id": "MLL3-10",
+              "text": "Runbooks that name first checks beat tribal knowledge during ML systems pages.",
+              "answer": true
+            }
+          ]
+        },
+        "4": {
+          "title": "Level 4 - Precedents & traps",
+          "blurb": "Industry-familiar traps dressed as best practice.",
+          "items": [
+            {
+              "id": "MLL4-01",
+              "text": "Precedent trap: many ML systems incidents start with a config change that skipped review.",
+              "answer": true
+            },
+            {
+              "id": "MLL4-02",
+              "text": "Shared credentials across environments are a convenience worth keeping in ML systems.",
+              "answer": false
+            },
+            {
+              "id": "MLL4-03",
+              "text": "A deprecation window protects unknown consumers when ML systems contracts change.",
+              "answer": true
+            },
+            {
+              "id": "MLL4-04",
+              "text": "If last year's audit was clean, new ML systems surfaces need no fresh review.",
+              "answer": false
+            },
+            {
+              "id": "MLL4-05",
+              "text": "Postmortems that name trigger and fix improve future ML systems decisions.",
+              "answer": true
+            },
+            {
+              "id": "MLL4-06",
+              "text": "Shipping without a rollback rehearsal still proves ML systems disaster readiness.",
+              "answer": false
+            },
+            {
+              "id": "MLL4-07",
+              "text": "Gradual rollout catches classes of ML systems bugs unit tests miss.",
+              "answer": true
+            },
+            {
+              "id": "MLL4-08",
+              "text": "If a vendor SLA is high, your own ML systems design can ignore queues and retries.",
+              "answer": false
+            },
+            {
+              "id": "MLL4-09",
+              "text": "Least privilege reduces blast radius when a ML systems credential leaks.",
+              "answer": true
+            },
+            {
+              "id": "MLL4-10",
+              "text": "Busyness without ownership is a reliable ML systems partner-to-production substitute.",
+              "answer": false
+            }
+          ]
+        },
+        "5": {
+          "title": "Level 5 - Edge judgment",
+          "blurb": "Subtle cases where polite process still fails the user.",
+          "items": [
+            {
+              "id": "MLL5-01",
+              "text": "A ML systems change can pass every check and still violate an unstated multi-team contract.",
+              "answer": true
+            },
+            {
+              "id": "MLL5-02",
+              "text": "Optimizing averages while ignoring a toxic tail can still harm a subset of users in ML systems.",
+              "answer": true
+            },
+            {
+              "id": "MLL5-03",
+              "text": "Hitting a date by silently cutting safety in ML systems is the professional default.",
+              "answer": false
+            },
+            {
+              "id": "MLL5-04",
+              "text": "Making failure modes explicit often beats opaque errors in ML systems interfaces.",
+              "answer": true
+            },
+            {
+              "id": "MLL5-05",
+              "text": "When two systems disagree about a fact, ML systems needs an ownership rule, not hope.",
+              "answer": true
+            },
+            {
+              "id": "MLL5-06",
+              "text": "Temporary workarounds in ML systems with no expiry become permanent by default.",
+              "answer": true
+            },
+            {
+              "id": "MLL5-07",
+              "text": "If peers praise novelty, that alone outweighs operability in ML systems.",
+              "answer": false
+            },
+            {
+              "id": "MLL5-08",
+              "text": "The hardest ML systems judgment is sometimes refusing a path the org cannot run.",
+              "answer": true
+            },
+            {
+              "id": "MLL5-09",
+              "text": "Quiet deletes of deprecated ML systems fields without consumer checks are always safe.",
+              "answer": false
+            },
+            {
+              "id": "MLL5-10",
+              "text": "Error budgets (or explicit risk trade-offs) belong in ML systems conversations, not only blame.",
+              "answer": true
+            }
+          ]
+        }
+      }
+    },
+    "frontend_engineer": {
+      "label": "Frontend Engineer",
+      "levels": {
+        "1": {
+          "title": "Level 1 - Foundations",
+          "blurb": "Clear basics. Spot obvious false comfort.",
+          "items": [
+            {
+              "id": "FE1",
+              "text": "If it looks fine on your laptop screen, accessibility and keyboard paths can wait forever.",
+              "answer": false
+            },
+            {
+              "id": "FE2",
+              "text": "Loading states and empty states are part of the product, not optional polish.",
+              "answer": true
+            },
+            {
+              "id": "FE3",
+              "text": "Hard-coding secrets into the browser bundle is acceptable for speed.",
+              "answer": false
+            },
+            {
+              "id": "FE4",
+              "text": "Measuring Core Web Vitals (or similar) helps catch regressions users feel.",
+              "answer": true
+            },
+            {
+              "id": "FE5",
+              "text": "Ignoring error boundaries is fine because users will refresh.",
+              "answer": false
+            },
+            {
+              "id": "FE6",
+              "text": "Clear component ownership reduces surprise when many people edit the UI.",
+              "answer": true
+            },
+            {
+              "id": "FE7",
+              "text": "Dark-theme-only testing is enough for color contrast.",
+              "answer": false
+            },
+            {
+              "id": "FE8",
+              "text": "Optimistic UI still needs a truthful failure path when the server rejects the write.",
+              "answer": true
+            },
+            {
+              "id": "FE9",
+              "text": "Shipping without checking mobile widths is fine for a desktop-first app used on phones.",
+              "answer": false
+            },
+            {
+              "id": "FE10",
+              "text": "Predictable focus order helps people who do not use a mouse.",
+              "answer": true
+            },
+            {
+              "id": "FE11",
+              "text": "Client-side validation alone is enough security for money moves.",
+              "answer": false
+            },
+            {
+              "id": "FE12",
+              "text": "Reproducing a UI bug with a short written step list speeds fixes.",
+              "answer": true
+            }
+          ]
+        },
+        "2": {
+          "title": "Level 2 - Trade-offs",
+          "blurb": "Two good-looking options; only one is sound.",
+          "items": [
+            {
+              "id": "FEL2-01",
+              "text": "In frontend product, a shortcut that hides risk from the next team is still a complete handoff.",
+              "answer": false
+            },
+            {
+              "id": "FEL2-02",
+              "text": "Writing the trade-off (what you gain vs what you defer) is part of sound frontend product judgment.",
+              "answer": true
+            },
+            {
+              "id": "FEL2-03",
+              "text": "If a checklist is green, rare failure modes in frontend product can be assumed impossible.",
+              "answer": false
+            },
+            {
+              "id": "FEL2-04",
+              "text": "Clear ownership of interfaces reduces finger-pointing when frontend product breaks in production.",
+              "answer": true
+            },
+            {
+              "id": "FEL2-05",
+              "text": "Copying a fashionable pattern into frontend product without matching ops capacity is always wise.",
+              "answer": false
+            },
+            {
+              "id": "FEL2-06",
+              "text": "Documenting why an option was rejected helps later frontend product debates stay short.",
+              "answer": true
+            },
+            {
+              "id": "FEL2-07",
+              "text": "If the demo path works, empty, error, and permission paths in frontend product can wait forever.",
+              "answer": false
+            },
+            {
+              "id": "FEL2-08",
+              "text": "A rollback story belongs in the frontend product plan before a risky cutover.",
+              "answer": true
+            },
+            {
+              "id": "FEL2-09",
+              "text": "Vendor lock-in is never a risk in frontend product if year-one pricing looks cheap.",
+              "answer": false
+            },
+            {
+              "id": "FEL2-10",
+              "text": "Measuring what users actually experience beats vanity metrics in frontend product.",
+              "answer": true
+            }
+          ]
+        },
+        "3": {
+          "title": "Level 3 - Failure modes",
+          "blurb": "What breaks under load, time, or bad incentives.",
+          "items": [
+            {
+              "id": "FEL3-01",
+              "text": "Under load, a frontend product design that only worked in a quiet lab can still fail users.",
+              "answer": true
+            },
+            {
+              "id": "FEL3-02",
+              "text": "Retries without bounds can turn a sick dependency into a frontend product self-outage.",
+              "answer": true
+            },
+            {
+              "id": "FEL3-03",
+              "text": "If alerts are noisy, deleting them is better than fixing the frontend product signal.",
+              "answer": false
+            },
+            {
+              "id": "FEL3-04",
+              "text": "Silent data repair in frontend product can hide corruption until the repair fails.",
+              "answer": true
+            },
+            {
+              "id": "FEL3-05",
+              "text": "A single green sample proves every dirty real-world case in frontend product.",
+              "answer": false
+            },
+            {
+              "id": "FEL3-06",
+              "text": "Idempotent operations reduce pain when frontend product work is replayed.",
+              "answer": true
+            },
+            {
+              "id": "FEL3-07",
+              "text": "Skipping monitoring for a new frontend product path is fine because users will email.",
+              "answer": false
+            },
+            {
+              "id": "FEL3-08",
+              "text": "Partial outages that hit a minority still deserve serious frontend product response.",
+              "answer": true
+            },
+            {
+              "id": "FEL3-09",
+              "text": "If staging is tiny and fake, it fully predicts production frontend product behavior.",
+              "answer": false
+            },
+            {
+              "id": "FEL3-10",
+              "text": "Runbooks that name first checks beat tribal knowledge during frontend product pages.",
+              "answer": true
+            }
+          ]
+        },
+        "4": {
+          "title": "Level 4 - Precedents & traps",
+          "blurb": "Industry-familiar traps dressed as best practice.",
+          "items": [
+            {
+              "id": "FEL4-01",
+              "text": "Precedent trap: many frontend product incidents start with a config change that skipped review.",
+              "answer": true
+            },
+            {
+              "id": "FEL4-02",
+              "text": "Shared credentials across environments are a convenience worth keeping in frontend product.",
+              "answer": false
+            },
+            {
+              "id": "FEL4-03",
+              "text": "A deprecation window protects unknown consumers when frontend product contracts change.",
+              "answer": true
+            },
+            {
+              "id": "FEL4-04",
+              "text": "If last year's audit was clean, new frontend product surfaces need no fresh review.",
+              "answer": false
+            },
+            {
+              "id": "FEL4-05",
+              "text": "Postmortems that name trigger and fix improve future frontend product decisions.",
+              "answer": true
+            },
+            {
+              "id": "FEL4-06",
+              "text": "Shipping without a rollback rehearsal still proves frontend product disaster readiness.",
+              "answer": false
+            },
+            {
+              "id": "FEL4-07",
+              "text": "Gradual rollout catches classes of frontend product bugs unit tests miss.",
+              "answer": true
+            },
+            {
+              "id": "FEL4-08",
+              "text": "If a vendor SLA is high, your own frontend product design can ignore queues and retries.",
+              "answer": false
+            },
+            {
+              "id": "FEL4-09",
+              "text": "Least privilege reduces blast radius when a frontend product credential leaks.",
+              "answer": true
+            },
+            {
+              "id": "FEL4-10",
+              "text": "Busyness without ownership is a reliable frontend product partner-to-production substitute.",
+              "answer": false
+            }
+          ]
+        },
+        "5": {
+          "title": "Level 5 - Edge judgment",
+          "blurb": "Subtle cases where polite process still fails the user.",
+          "items": [
+            {
+              "id": "FEL5-01",
+              "text": "A frontend product change can pass every check and still violate an unstated multi-team contract.",
+              "answer": true
+            },
+            {
+              "id": "FEL5-02",
+              "text": "Optimizing averages while ignoring a toxic tail can still harm a subset of users in frontend product.",
+              "answer": true
+            },
+            {
+              "id": "FEL5-03",
+              "text": "Hitting a date by silently cutting safety in frontend product is the professional default.",
+              "answer": false
+            },
+            {
+              "id": "FEL5-04",
+              "text": "Making failure modes explicit often beats opaque errors in frontend product interfaces.",
+              "answer": true
+            },
+            {
+              "id": "FEL5-05",
+              "text": "When two systems disagree about a fact, frontend product needs an ownership rule, not hope.",
+              "answer": true
+            },
+            {
+              "id": "FEL5-06",
+              "text": "Temporary workarounds in frontend product with no expiry become permanent by default.",
+              "answer": true
+            },
+            {
+              "id": "FEL5-07",
+              "text": "If peers praise novelty, that alone outweighs operability in frontend product.",
+              "answer": false
+            },
+            {
+              "id": "FEL5-08",
+              "text": "The hardest frontend product judgment is sometimes refusing a path the org cannot run.",
+              "answer": true
+            },
+            {
+              "id": "FEL5-09",
+              "text": "Quiet deletes of deprecated frontend product fields without consumer checks are always safe.",
+              "answer": false
+            },
+            {
+              "id": "FEL5-10",
+              "text": "Error budgets (or explicit risk trade-offs) belong in frontend product conversations, not only blame.",
+              "answer": true
+            }
+          ]
+        }
+      }
+    },
+    "security_engineer": {
+      "label": "Security Engineer",
+      "levels": {
+        "1": {
+          "title": "Level 1 - Foundations",
+          "blurb": "Clear basics. Spot obvious false comfort.",
+          "items": [
+            {
+              "id": "SX1",
+              "text": "Shared root credentials in chat are fine if the channel is private.",
+              "answer": false
+            },
+            {
+              "id": "SX2",
+              "text": "Least privilege and short-lived credentials reduce blast radius when something leaks.",
+              "answer": true
+            },
+            {
+              "id": "SX3",
+              "text": "Security review can wait until after personal data paths are live.",
+              "answer": false
+            },
+            {
+              "id": "SX4",
+              "text": "Threat modeling before a design lands is cheaper than patching after a breach story.",
+              "answer": true
+            },
+            {
+              "id": "SX5",
+              "text": "Turning off noisy alerts without fixing the rules is a solid long-term control.",
+              "answer": false
+            },
+            {
+              "id": "SX6",
+              "text": "Logging access to sensitive actions helps investigation after an incident.",
+              "answer": true
+            },
+            {
+              "id": "SX7",
+              "text": "Security through obscurity alone is enough if the repo is private.",
+              "answer": false
+            },
+            {
+              "id": "SX8",
+              "text": "Dependency and secret scanning catch classes of mistakes humans miss under time pressure.",
+              "answer": true
+            },
+            {
+              "id": "SX9",
+              "text": "Production and staging can share the same secrets if staging is rarely used.",
+              "answer": false
+            },
+            {
+              "id": "SX10",
+              "text": "Incident response runbooks beat tribal knowledge at 2am.",
+              "answer": true
+            },
+            {
+              "id": "SX11",
+              "text": "If pen-test found nothing last year, new features need no review.",
+              "answer": false
+            },
+            {
+              "id": "SX12",
+              "text": "Clear ownership for patching critical CVEs matters as much as finding them.",
+              "answer": true
+            }
+          ]
+        },
+        "2": {
+          "title": "Level 2 - Trade-offs",
+          "blurb": "Two good-looking options; only one is sound.",
+          "items": [
+            {
+              "id": "SXL2-01",
+              "text": "In security controls, a shortcut that hides risk from the next team is still a complete handoff.",
+              "answer": false
+            },
+            {
+              "id": "SXL2-02",
+              "text": "Writing the trade-off (what you gain vs what you defer) is part of sound security controls judgment.",
+              "answer": true
+            },
+            {
+              "id": "SXL2-03",
+              "text": "If a checklist is green, rare failure modes in security controls can be assumed impossible.",
+              "answer": false
+            },
+            {
+              "id": "SXL2-04",
+              "text": "Clear ownership of interfaces reduces finger-pointing when security controls breaks in production.",
+              "answer": true
+            },
+            {
+              "id": "SXL2-05",
+              "text": "Copying a fashionable pattern into security controls without matching ops capacity is always wise.",
+              "answer": false
+            },
+            {
+              "id": "SXL2-06",
+              "text": "Documenting why an option was rejected helps later security controls debates stay short.",
+              "answer": true
+            },
+            {
+              "id": "SXL2-07",
+              "text": "If the demo path works, empty, error, and permission paths in security controls can wait forever.",
+              "answer": false
+            },
+            {
+              "id": "SXL2-08",
+              "text": "A rollback story belongs in the security controls plan before a risky cutover.",
+              "answer": true
+            },
+            {
+              "id": "SXL2-09",
+              "text": "Vendor lock-in is never a risk in security controls if year-one pricing looks cheap.",
+              "answer": false
+            },
+            {
+              "id": "SXL2-10",
+              "text": "Measuring what users actually experience beats vanity metrics in security controls.",
+              "answer": true
+            }
+          ]
+        },
+        "3": {
+          "title": "Level 3 - Failure modes",
+          "blurb": "What breaks under load, time, or bad incentives.",
+          "items": [
+            {
+              "id": "SXL3-01",
+              "text": "Under load, a security controls design that only worked in a quiet lab can still fail users.",
+              "answer": true
+            },
+            {
+              "id": "SXL3-02",
+              "text": "Retries without bounds can turn a sick dependency into a security controls self-outage.",
+              "answer": true
+            },
+            {
+              "id": "SXL3-03",
+              "text": "If alerts are noisy, deleting them is better than fixing the security controls signal.",
+              "answer": false
+            },
+            {
+              "id": "SXL3-04",
+              "text": "Silent data repair in security controls can hide corruption until the repair fails.",
+              "answer": true
+            },
+            {
+              "id": "SXL3-05",
+              "text": "A single green sample proves every dirty real-world case in security controls.",
+              "answer": false
+            },
+            {
+              "id": "SXL3-06",
+              "text": "Idempotent operations reduce pain when security controls work is replayed.",
+              "answer": true
+            },
+            {
+              "id": "SXL3-07",
+              "text": "Skipping monitoring for a new security controls path is fine because users will email.",
+              "answer": false
+            },
+            {
+              "id": "SXL3-08",
+              "text": "Partial outages that hit a minority still deserve serious security controls response.",
+              "answer": true
+            },
+            {
+              "id": "SXL3-09",
+              "text": "If staging is tiny and fake, it fully predicts production security controls behavior.",
+              "answer": false
+            },
+            {
+              "id": "SXL3-10",
+              "text": "Runbooks that name first checks beat tribal knowledge during security controls pages.",
+              "answer": true
+            }
+          ]
+        },
+        "4": {
+          "title": "Level 4 - Precedents & traps",
+          "blurb": "Industry-familiar traps dressed as best practice.",
+          "items": [
+            {
+              "id": "SXL4-01",
+              "text": "Precedent trap: many security controls incidents start with a config change that skipped review.",
+              "answer": true
+            },
+            {
+              "id": "SXL4-02",
+              "text": "Shared credentials across environments are a convenience worth keeping in security controls.",
+              "answer": false
+            },
+            {
+              "id": "SXL4-03",
+              "text": "A deprecation window protects unknown consumers when security controls contracts change.",
+              "answer": true
+            },
+            {
+              "id": "SXL4-04",
+              "text": "If last year's audit was clean, new security controls surfaces need no fresh review.",
+              "answer": false
+            },
+            {
+              "id": "SXL4-05",
+              "text": "Postmortems that name trigger and fix improve future security controls decisions.",
+              "answer": true
+            },
+            {
+              "id": "SXL4-06",
+              "text": "Shipping without a rollback rehearsal still proves security controls disaster readiness.",
+              "answer": false
+            },
+            {
+              "id": "SXL4-07",
+              "text": "Gradual rollout catches classes of security controls bugs unit tests miss.",
+              "answer": true
+            },
+            {
+              "id": "SXL4-08",
+              "text": "If a vendor SLA is high, your own security controls design can ignore queues and retries.",
+              "answer": false
+            },
+            {
+              "id": "SXL4-09",
+              "text": "Least privilege reduces blast radius when a security controls credential leaks.",
+              "answer": true
+            },
+            {
+              "id": "SXL4-10",
+              "text": "Busyness without ownership is a reliable security controls partner-to-production substitute.",
+              "answer": false
+            }
+          ]
+        },
+        "5": {
+          "title": "Level 5 - Edge judgment",
+          "blurb": "Subtle cases where polite process still fails the user.",
+          "items": [
+            {
+              "id": "SXL5-01",
+              "text": "A security controls change can pass every check and still violate an unstated multi-team contract.",
+              "answer": true
+            },
+            {
+              "id": "SXL5-02",
+              "text": "Optimizing averages while ignoring a toxic tail can still harm a subset of users in security controls.",
+              "answer": true
+            },
+            {
+              "id": "SXL5-03",
+              "text": "Hitting a date by silently cutting safety in security controls is the professional default.",
+              "answer": false
+            },
+            {
+              "id": "SXL5-04",
+              "text": "Making failure modes explicit often beats opaque errors in security controls interfaces.",
+              "answer": true
+            },
+            {
+              "id": "SXL5-05",
+              "text": "When two systems disagree about a fact, security controls needs an ownership rule, not hope.",
+              "answer": true
+            },
+            {
+              "id": "SXL5-06",
+              "text": "Temporary workarounds in security controls with no expiry become permanent by default.",
+              "answer": true
+            },
+            {
+              "id": "SXL5-07",
+              "text": "If peers praise novelty, that alone outweighs operability in security controls.",
+              "answer": false
+            },
+            {
+              "id": "SXL5-08",
+              "text": "The hardest security controls judgment is sometimes refusing a path the org cannot run.",
+              "answer": true
+            },
+            {
+              "id": "SXL5-09",
+              "text": "Quiet deletes of deprecated security controls fields without consumer checks are always safe.",
+              "answer": false
+            },
+            {
+              "id": "SXL5-10",
+              "text": "Error budgets (or explicit risk trade-offs) belong in security controls conversations, not only blame.",
+              "answer": true
+            }
+          ]
+        }
+      }
+    },
+    "qa_engineer": {
+      "label": "QA / Test Engineer",
+      "levels": {
+        "1": {
+          "title": "Level 1 - Foundations",
+          "blurb": "Clear basics. Spot obvious false comfort.",
+          "items": [
+            {
+              "id": "QA1",
+              "text": "Deleting a failing test is the fastest correct fix when a release is due.",
+              "answer": false
+            },
+            {
+              "id": "QA2",
+              "text": "A failing test that used to pass is a signal to investigate the product or the test.",
+              "answer": true
+            },
+            {
+              "id": "QA3",
+              "text": "Manual exploratory testing can still find issues automation missed.",
+              "answer": true
+            },
+            {
+              "id": "QA4",
+              "text": "If happy-path tests pass, edge cases and permissions can be ignored.",
+              "answer": false
+            },
+            {
+              "id": "QA5",
+              "text": "Clear bug reports with steps, expected, and actual save engineering time.",
+              "answer": true
+            },
+            {
+              "id": "QA6",
+              "text": "Flaky tests should be ignored forever rather than quarantined and fixed.",
+              "answer": false
+            },
+            {
+              "id": "QA7",
+              "text": "Risk-based testing focuses effort where failure hurts users most.",
+              "answer": true
+            },
+            {
+              "id": "QA8",
+              "text": "Environments that differ wildly from production make green results less trustworthy.",
+              "answer": true
+            },
+            {
+              "id": "QA9",
+              "text": "Coverage percent alone proves the product is safe to ship.",
+              "answer": false
+            },
+            {
+              "id": "QA10",
+              "text": "Regression packs should grow when bugs escape to users.",
+              "answer": true
+            },
+            {
+              "id": "QA11",
+              "text": "Skipping repro steps is fine if the severity label is large enough.",
+              "answer": false
+            },
+            {
+              "id": "QA12",
+              "text": "Pairing with developers on hard failures often shortens time-to-fix.",
+              "answer": true
+            }
+          ]
+        },
+        "2": {
+          "title": "Level 2 - Trade-offs",
+          "blurb": "Two good-looking options; only one is sound.",
+          "items": [
+            {
+              "id": "QAL2-01",
+              "text": "In quality and testing, a shortcut that hides risk from the next team is still a complete handoff.",
+              "answer": false
+            },
+            {
+              "id": "QAL2-02",
+              "text": "Writing the trade-off (what you gain vs what you defer) is part of sound quality and testing judgment.",
+              "answer": true
+            },
+            {
+              "id": "QAL2-03",
+              "text": "If a checklist is green, rare failure modes in quality and testing can be assumed impossible.",
+              "answer": false
+            },
+            {
+              "id": "QAL2-04",
+              "text": "Clear ownership of interfaces reduces finger-pointing when quality and testing breaks in production.",
+              "answer": true
+            },
+            {
+              "id": "QAL2-05",
+              "text": "Copying a fashionable pattern into quality and testing without matching ops capacity is always wise.",
+              "answer": false
+            },
+            {
+              "id": "QAL2-06",
+              "text": "Documenting why an option was rejected helps later quality and testing debates stay short.",
+              "answer": true
+            },
+            {
+              "id": "QAL2-07",
+              "text": "If the demo path works, empty, error, and permission paths in quality and testing can wait forever.",
+              "answer": false
+            },
+            {
+              "id": "QAL2-08",
+              "text": "A rollback story belongs in the quality and testing plan before a risky cutover.",
+              "answer": true
+            },
+            {
+              "id": "QAL2-09",
+              "text": "Vendor lock-in is never a risk in quality and testing if year-one pricing looks cheap.",
+              "answer": false
+            },
+            {
+              "id": "QAL2-10",
+              "text": "Measuring what users actually experience beats vanity metrics in quality and testing.",
+              "answer": true
+            }
+          ]
+        },
+        "3": {
+          "title": "Level 3 - Failure modes",
+          "blurb": "What breaks under load, time, or bad incentives.",
+          "items": [
+            {
+              "id": "QAL3-01",
+              "text": "Under load, a quality and testing design that only worked in a quiet lab can still fail users.",
+              "answer": true
+            },
+            {
+              "id": "QAL3-02",
+              "text": "Retries without bounds can turn a sick dependency into a quality and testing self-outage.",
+              "answer": true
+            },
+            {
+              "id": "QAL3-03",
+              "text": "If alerts are noisy, deleting them is better than fixing the quality and testing signal.",
+              "answer": false
+            },
+            {
+              "id": "QAL3-04",
+              "text": "Silent data repair in quality and testing can hide corruption until the repair fails.",
+              "answer": true
+            },
+            {
+              "id": "QAL3-05",
+              "text": "A single green sample proves every dirty real-world case in quality and testing.",
+              "answer": false
+            },
+            {
+              "id": "QAL3-06",
+              "text": "Idempotent operations reduce pain when quality and testing work is replayed.",
+              "answer": true
+            },
+            {
+              "id": "QAL3-07",
+              "text": "Skipping monitoring for a new quality and testing path is fine because users will email.",
+              "answer": false
+            },
+            {
+              "id": "QAL3-08",
+              "text": "Partial outages that hit a minority still deserve serious quality and testing response.",
+              "answer": true
+            },
+            {
+              "id": "QAL3-09",
+              "text": "If staging is tiny and fake, it fully predicts production quality and testing behavior.",
+              "answer": false
+            },
+            {
+              "id": "QAL3-10",
+              "text": "Runbooks that name first checks beat tribal knowledge during quality and testing pages.",
+              "answer": true
+            }
+          ]
+        },
+        "4": {
+          "title": "Level 4 - Precedents & traps",
+          "blurb": "Industry-familiar traps dressed as best practice.",
+          "items": [
+            {
+              "id": "QAL4-01",
+              "text": "Precedent trap: many quality and testing incidents start with a config change that skipped review.",
+              "answer": true
+            },
+            {
+              "id": "QAL4-02",
+              "text": "Shared credentials across environments are a convenience worth keeping in quality and testing.",
+              "answer": false
+            },
+            {
+              "id": "QAL4-03",
+              "text": "A deprecation window protects unknown consumers when quality and testing contracts change.",
+              "answer": true
+            },
+            {
+              "id": "QAL4-04",
+              "text": "If last year's audit was clean, new quality and testing surfaces need no fresh review.",
+              "answer": false
+            },
+            {
+              "id": "QAL4-05",
+              "text": "Postmortems that name trigger and fix improve future quality and testing decisions.",
+              "answer": true
+            },
+            {
+              "id": "QAL4-06",
+              "text": "Shipping without a rollback rehearsal still proves quality and testing disaster readiness.",
+              "answer": false
+            },
+            {
+              "id": "QAL4-07",
+              "text": "Gradual rollout catches classes of quality and testing bugs unit tests miss.",
+              "answer": true
+            },
+            {
+              "id": "QAL4-08",
+              "text": "If a vendor SLA is high, your own quality and testing design can ignore queues and retries.",
+              "answer": false
+            },
+            {
+              "id": "QAL4-09",
+              "text": "Least privilege reduces blast radius when a quality and testing credential leaks.",
+              "answer": true
+            },
+            {
+              "id": "QAL4-10",
+              "text": "Busyness without ownership is a reliable quality and testing partner-to-production substitute.",
+              "answer": false
+            }
+          ]
+        },
+        "5": {
+          "title": "Level 5 - Edge judgment",
+          "blurb": "Subtle cases where polite process still fails the user.",
+          "items": [
+            {
+              "id": "QAL5-01",
+              "text": "A quality and testing change can pass every check and still violate an unstated multi-team contract.",
+              "answer": true
+            },
+            {
+              "id": "QAL5-02",
+              "text": "Optimizing averages while ignoring a toxic tail can still harm a subset of users in quality and testing.",
+              "answer": true
+            },
+            {
+              "id": "QAL5-03",
+              "text": "Hitting a date by silently cutting safety in quality and testing is the professional default.",
+              "answer": false
+            },
+            {
+              "id": "QAL5-04",
+              "text": "Making failure modes explicit often beats opaque errors in quality and testing interfaces.",
+              "answer": true
+            },
+            {
+              "id": "QAL5-05",
+              "text": "When two systems disagree about a fact, quality and testing needs an ownership rule, not hope.",
+              "answer": true
+            },
+            {
+              "id": "QAL5-06",
+              "text": "Temporary workarounds in quality and testing with no expiry become permanent by default.",
+              "answer": true
+            },
+            {
+              "id": "QAL5-07",
+              "text": "If peers praise novelty, that alone outweighs operability in quality and testing.",
+              "answer": false
+            },
+            {
+              "id": "QAL5-08",
+              "text": "The hardest quality and testing judgment is sometimes refusing a path the org cannot run.",
+              "answer": true
+            },
+            {
+              "id": "QAL5-09",
+              "text": "Quiet deletes of deprecated quality and testing fields without consumer checks are always safe.",
+              "answer": false
+            },
+            {
+              "id": "QAL5-10",
+              "text": "Error budgets (or explicit risk trade-offs) belong in quality and testing conversations, not only blame.",
+              "answer": true
+            }
+          ]
+        }
+      }
+    }
+  }
+}

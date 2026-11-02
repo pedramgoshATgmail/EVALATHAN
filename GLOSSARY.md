@@ -969,13 +969,15 @@ Copy the `fuss` folder into a web page or a desktop web view. The same files run
 
 PRICKLY is the Evalathan desk rail for timed judgment sittings and for [JaPoP](#japop) (Just-a-Professional-or-Partnerable). It is not one of the sixteen Hydra evalers and it does not add a seventeenth score. The local desk opens it like [FUSS](#fuss): pick a test, say who is sitting, then run a timed True/False bank or a static timestamped-comms read.
 
+<p align="center"><img src="assets/prickly-logo.png" alt="PRICKLY" width="280"></p>
+
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
-Click PRICKLY. Choose Developer L&R, JaPoP L&R, or JaPoP Static. Answer who you are. For L&R, True or False against a short bank. For Static, paste dated lines and get a soft partner-leaning / tool-leaning comment. A blank upload is deferred - not a fail and not a zero.
+Click PRICKLY. Choose Developer L&R, JaPoP L&R, or JaPoP Static. Answer who you are. For Developer L&R, True or False against a curated bank (twelve specializations, five difficulty levels, ten questions each, with five rotatable packs so a repeat sitting is not the same set). For JaPoP L&R, a timed True/False on partnerability. For Static, upload dated emails, texts, and audio notes for a soft partner-leaning / tool-leaning comment. A blank upload is deferred - not a fail and not a zero.
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Desk files: [ui/v2/prickly.js](ui/v2/prickly.js), banks under `ui/v2/assets/prickly-dev-tf-bank.json` and `ui/v2/assets/japop-lr-tf-bank.json`. Answers stay in `localStorage` key `evalathan.prickly.v1`. True/False replaced five-point Likert so shades do not blur. Soft duration copy on Static (~3 weeks provisional, ~6 months stronger) cites multi-month assessment lags in relationship-satisfaction meta-analysis (Buhler et al., 2021; 6-month minimum lag) - guidance only, not a hard gate. Post-score ask-anything chat is roadmap, not wired.
+Desk files: [ui/v2/prickly.js](ui/v2/prickly.js), Developer banks in [ui/v2/assets/prickly-dev-banks-variants.json](ui/v2/assets/prickly-dev-banks-variants.json) (3000 True/False items: 12 roles × 5 levels × 10 × 5 packs V1-V5), JaPoP levels in `ui/v2/assets/japop-lr-levels.json`. Answers and pack rotation stay in `localStorage` keys `evalathan.prickly.v1` and `evalathan.prickly.devVariantRot.v1`. Soft duration copy on Static (~3 weeks provisional, ~6 months stronger) cites multi-month assessment lags in relationship-satisfaction meta-analysis (Buhler et al., 2021; 6-month minimum lag) - guidance only, not a hard gate. Related: [JaPoP](#japop), [FUSS](#fuss).
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>

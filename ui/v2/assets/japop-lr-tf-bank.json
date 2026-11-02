@@ -1,57 +1,93 @@
 {
-  "version": 1,
+  "version": 2,
   "format": "true_false",
   "name": "JaPoP L&R",
+  "note": "Scenario judgment on partner vs professional/tool lean. Avoid product-meta stems. Roughly balanced True/False.",
   "items": [
     {
       "id": "JP1",
-      "text": "A person who only replies when you initiate every thread is showing initiative but not proactiveness.",
-      "answer": true
-    },
-    {
-      "id": "JP2",
-      "text": "Equal partnerability can be proven by self-belief alone, without timestamped two-way communication.",
+      "text": "Someone who always answers within an hour, but never starts a thread or brings a next step, is already showing full partner-level proactiveness.",
       "answer": false
     },
     {
+      "id": "JP2",
+      "text": "Replying carefully when asked can show integrity and reliability without proving they will volunteer risk or agenda on their own.",
+      "answer": true
+    },
+    {
       "id": "JP3",
-      "text": "Proactiveness means the person volunteers ideas, risks, or next steps without being tapped.",
+      "text": "If the other person only ever sends 'sounds good' or 'thanks' after your long proposals, that pattern leans more tool-like than partner-like.",
       "answer": true
     },
     {
       "id": "JP4",
-      "text": "A long silence after months of thank-you-only replies is evidence that should be weighed on the partner-to-tool scale.",
-      "answer": true
+      "text": "A warm friendship of many years is enough evidence that two people will share decision load equally in a company.",
+      "answer": false
     },
     {
       "id": "JP5",
-      "text": "If someone always does the work only after you assign it, they are already at the top of the partner scale.",
+      "text": "When one person invents every idea and the other only executes after being assigned, the second person is still at the top of the partner scale.",
       "answer": false
     },
     {
       "id": "JP6",
-      "text": "Initiative without proactiveness can still show integrity when tapped - that is different from full partnerability.",
+      "text": "Proactiveness here means bringing an idea, risk, or next step without waiting to be tapped - not merely answering faster than usual.",
       "answer": true
     },
     {
       "id": "JP7",
-      "text": "Uploading undated screenshots without timestamps is enough for a gold JaPoP static score.",
+      "text": "A three-week burst of daily chat followed by six months of silence is stronger partner evidence than a quieter but steady six-month back-and-forth.",
       "answer": false
     },
     {
       "id": "JP8",
-      "text": "A blank communications folder is not a fail and not a zero; it is deferred evidence.",
+      "text": "Division of labor can be uneven in skills (one codes, one sells) and still be partnerable if both sides initiate and carry decisions in their lane.",
       "answer": true
     },
     {
       "id": "JP9",
-      "text": "Myers-Briggs or OCEAN results should be treated as the gold medal over dated message counts.",
-      "answer": false
+      "text": "If you always have to chase them to get a reply, and they never chase you with an open loop, the chase pattern itself is a partnerability signal.",
+      "answer": true
     },
     {
       "id": "JP10",
-      "text": "Division of labor can be qualitative; partnerability still requires reciprocal, dated engagement - not one-sided push.",
+      "text": "Saying 'I am a partner type' in a coffee chat outweighs months of one-sided emails where only you follow up.",
+      "answer": false
+    },
+    {
+      "id": "JP11",
+      "text": "Someone who pushes back with a dated counter-proposal is closer to partner behavior than someone who always agrees and then goes quiet.",
       "answer": true
+    },
+    {
+      "id": "JP12",
+      "text": "Family relation (siblings, spouses) automatically places both people high on the partner scale for a business venture.",
+      "answer": false
+    },
+    {
+      "id": "JP13",
+      "text": "A person who only works when you assign tasks may still be a strong professional hire - that is not the same claim as equal partnerability.",
+      "answer": true
+    },
+    {
+      "id": "JP14",
+      "text": "If both sides start threads, reopen stale topics, and propose next steps over months, that reciprocity weighs more than a single inspiring pep talk.",
+      "answer": true
+    },
+    {
+      "id": "JP15",
+      "text": "Ghosting after early enthusiasm should be ignored if their personality test said they are collaborative.",
+      "answer": false
+    },
+    {
+      "id": "JP16",
+      "text": "Initiative (answering when tapped) without volunteering next moves can still be honest professional behavior - it just is not full partner lean.",
+      "answer": true
+    },
+    {
+      "id": "JP17",
+      "text": "Hard work on assigned tasks for a year proves equal partnerability even if they never propose direction or reopen a stalled decision.",
+      "answer": false
     }
   ]
 }

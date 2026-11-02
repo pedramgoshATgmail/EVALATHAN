@@ -14,7 +14,7 @@ Evalathan houses 4 routing engines: [Hydra](GLOSSARY.md#user-content-hydra), [De
 
 Currently, only Hydra is operational. Hydra is a [conductor](https://opensource.microsoft.com/blog/2026/05/14/conductor-deterministic-orchestration-for-multi-agent-ai-workflows/) of her 16 evalers: like the person at the front of an orchestra who cues each player, she calls sixteen specialized checkers. Evalathan calls those checkers evalers (short for evaluators). Each evaler reports against its own life-cycle gate.
 
-**v0.3.2** (current) adds full glossary sections for [Benchrex](GLOSSARY.md#user-content-benchrex) and [Biasrex](GLOSSARY.md#user-content-biasrex).
+**v0.3.5** (current) ships [PRICKLY](GLOSSARY.md#user-content-prickly) on the desk with 3000-item Developer L&R banks, [JaPoP](GLOSSARY.md#user-content-japop), and final FUSS/PRICKLY logos. Earlier: **v0.3.2** added full glossary sections for [Benchrex](GLOSSARY.md#user-content-benchrex) and [Biasrex](GLOSSARY.md#user-content-biasrex).
 
 After download (below) as a local desktop [GUI](https://en.wikipedia.org/wiki/Graphical_user_interface), Evalathan runs locally as a native desktop app - files live in `evalathan-program` - while an Evalathan icon sits on your Desktop.
 
@@ -103,13 +103,19 @@ EVALATHAN evaluates a project by passing a local directory path (`evalathan scan
 
 Dehydrus's eight LuDaTs evalers sit in their own room. They are listed under [What v0.3 runs](#what-v03-runs-dehydrus-evalers-are-not-wired-in-yet). Benchrex and Biasrex are listed under [What v0.3.2 runs](#what-v032-runs-benchrex-and-biasrex-evalers-are-not-wired-in-yet). They are not a seventeenth Hydra score.
 
-### Unique Features: SELFBELT, FUSS, and PRETRUWs
+### Unique Features: SELFBELT, FUSS, PRICKLY, and PRETRUWs
 
 A standout aspect of EVALATHAN platform is its integration of developer and user wellness into the evaluation criteria:
 
 [SELFBELT](GLOSSARY.md#user-content-selfbelt) / SELFBELTING: A methodology documented in docs/SELFBELT.md addressing developer fatigue and extended screen time.
 
 [FUSS](GLOSSARY.md#user-content-fuss) (For-User Session Switch): A modular front-end/desktop widget inside the repository (fuss/) that developers can embed into software to enforce scheduled rest breaks.
+
+<p align="center"><img src="fuss/fuss-logo.png" alt="FUSS" width="160"></p>
+
+[PRICKLY](GLOSSARY.md#user-content-prickly): Timed judgment sittings on the Evalathan desk - Developer Live & Realtime (L&R) with twelve specializations and five difficulty levels (rotating 3000-item True/False banks), plus [JaPoP](GLOSSARY.md#user-content-japop) (Just-a-Professional-or-Partnerable) L&R and Static paper-trail uploads. Not a seventeenth Hydra score. Opens like FUSS: pick a test, say who is sitting, sit or upload.
+
+<p align="center"><img src="assets/prickly-logo.png" alt="PRICKLY" width="160"></p>
 
 [Menschly](GLOSSARY.md#user-content-menschly): The evaluator specifically tasked with verifying whether a codebase incorporates real session limiters/timers rather than just vague README promises.
 
@@ -209,7 +215,7 @@ Locked-Year Honesty: PRETRUWs / LuDaTs refuse a prompt that only says "pretend i
 
 Clean Packaging: Structured as a modern Python package (pyproject.toml, src/evalathan, tests/), with CLI support and JSON export options for pipeline integration. `evalathan` opens Hydra. `evalathan dehydrus` opens Dehydrus.
 
-Attention to Ergonomics/Ethics: Bringing developer wellness (FUSS/SELFBELT) into code grading is novel and addresses a real blind spot in typical CI/CD quality gates.
+Attention to Ergonomics/Ethics: Bringing developer wellness (FUSS/SELFBELT) into code grading is novel and addresses a real blind spot in typical CI/CD quality gates. PRICKLY adds timed judgment sittings and JaPoP partnerability reads on the same desk.
 
 ## Current Limitations & Areas for Growth
 
@@ -234,6 +240,14 @@ DevOps & Community Infrastructure: The repository would benefit from automated G
 ## FUSS
 
 [FUSS](fuss/README.md) (For-User Session Switch) is a small panel. The logo sits in the center. It asks whether to time this sitting, then lets a person set minutes, reminder spacing, days, and an optional end date. Copy the `fuss` folder into a web page or a desktop web view. The same files run on Windows and Mac. FUSS is optional. A sentence that merely names it is not a timer.
+
+<p align="center"><img src="fuss/fuss-logo.png" alt="FUSS" width="200"></p>
+
+## PRICKLY
+
+[PRICKLY](GLOSSARY.md#user-content-prickly) is the desk rail for timed True/False judgment sittings and for [JaPoP](GLOSSARY.md#user-content-japop) (Just-a-Professional-or-Partnerable). Developer L&R covers twelve specializations across five levels with five rotatable question packs (3000 items). JaPoP adds partnerability L&R plus a Static dated-comms upload. It is not one of the sixteen Hydra evalers. Desk code: [ui/v2/prickly.js](ui/v2/prickly.js).
+
+<p align="center"><img src="assets/prickly-logo.png" alt="PRICKLY" width="200"></p>
 
 ## [Ed Slop](GLOSSARY.md#user-content-ed-slop)
 

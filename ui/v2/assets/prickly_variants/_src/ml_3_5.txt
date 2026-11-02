@@ -1,0 +1,183 @@
+# 3
+## Train-serve skew
+T A feature computed with different code in the training pipeline and the serving path can silently degrade production quality.
+F If unit tests pass on the training code, serving-time features are guaranteed to match.
+T Logging the exact feature values served with each prediction makes skew detectable later.
+F Skew only happens when the model code changes, never when upstream data producers change.
+T A categorical value unseen in training needs an explicit fallback, or serving may fail or misbehave quietly.
+## Data and concept drift
+T Input distributions can stay stable while the relationship between inputs and the label changes.
+F If feature distributions have not drifted, model performance cannot have degraded.
+T Monitoring only input statistics can miss concept drift; delayed labels are needed to confirm it.
+F Drift always shows up as a sudden step change that an alert will catch.
+T A seasonal pattern can look like drift unless the monitoring baseline accounts for the calendar.
+## Feedback loops
+T A recommender that trains on clicks it caused can reinforce its own earlier choices.
+F Training on production logs is always unbiased because the logs record real user behavior.
+T Holding out a small random exploration slice helps measure what the model would have missed.
+F A loop where model output decides which cases get labeled has no effect on later model quality.
+T A predictive policing style model that sends patrols where it predicts crime can inflate its own evidence.
+## Silent pipeline failures
+T A upstream schema change that turns a column into all nulls can pass through a pipeline with no error.
+F A pipeline that completes without exceptions has produced correct features.
+T Data quality checks on row counts, null rates, and ranges catch failures that exceptions do not.
+F Imputing missing values with zeros is always a safe fallback when a feature source goes down.
+T A model can keep emitting confident predictions on garbage inputs unless inputs are validated.
+## Subgroup performance
+T A strong overall metric can hide poor performance on a small but important subgroup.
+F If the overall error rate is low, the error rate for every subgroup is low too.
+T Evaluating slices defined before looking at results guards against cherry-picking favorable ones.
+F Subgroups with few examples can be ignored because their metrics are noisy.
+T A model can be well calibrated overall and poorly calibrated for one population.
+## Retraining pipeline decay
+T A scheduled retraining job that fails silently leaves a stale model in production while dashboards stay green.
+F If the retraining job ran, the new model is better than the old one.
+T Alerting on model age and last successful training run catches a pipeline that has stopped.
+F Retraining on only the most recent week of data is always safe because recent data is most relevant.
+T A rare event dropping out of the recent window can make a retrained model forget how to handle it.
+## Load and resource limits
+T A GPU memory limit can cause failures only at large batch sizes or long inputs that testing never covered.
+F Autoscaling on CPU utilization is enough to protect a GPU-bound model server.
+T A cold model loading from storage can cause a latency spike when a new replica receives traffic.
+F A load test with uniform small inputs represents the real distribution of request sizes.
+T Queue buildup under load can make users see timeouts even when the model itself is fast.
+## Dependency and environment fragility
+T An unpinned library upgrade can change numerical behavior and shift predictions without any code change on your side.
+F A model saved with one framework version always loads and behaves identically on any later version.
+T Packaging the model with its preprocessing makes it harder for the two to drift apart.
+F If a model loads without error, its outputs are unchanged.
+T A container rebuilt later from unpinned dependencies is not the same artifact you tested.
+## Adversarial and abusive inputs
+T Users who learn what a model rewards may craft inputs to game it.
+F Input validation is unnecessary for a model because it only outputs a prediction.
+T Rate limiting and anomaly checks reduce the risk of model extraction through repeated queries.
+F A spam filter's accuracy stays stable once spammers know how it works.
+T Out-of-range inputs should be rejected or flagged rather than scored as if they were normal.
+## Metric gaming
+T When a team is rewarded for a single metric, it can improve the number without improving the outcome.
+F A metric that was a good proxy at launch remains a good proxy as the system optimizes against it.
+T Pairing a primary metric with guardrail metrics makes one-sided optimization easier to spot.
+F Optimizing click-through rate always aligns with user satisfaction.
+T A proxy label such as watch time can drift away from what the user actually values.
+# 4
+## Benchmark wins
+T A state-of-the-art score on a public benchmark does not show that the model works on your data.
+F A benchmark whose test set is public and widely used cannot be contaminated by training data.
+T Benchmark leakage into pretraining corpora can inflate scores for large models.
+F A model that tops a leaderboard should replace a production model without internal evaluation.
+T A gain of 0.2 points on a benchmark can be within run-to-run noise.
+## Leaderboard overfitting
+T Repeated submissions to a leaderboard can fit the public test split and fail on the private one.
+F A competition-winning pipeline is a good production design because it was tuned hardest.
+T Giant stacked ensembles that win competitions are often too costly to serve and maintain.
+F Competition data is cleaned the same way as real production data.
+T A shake-up between public and private leaderboards is a warning about overfitting to the public split.
+## Bigger is better
+T Doubling model size can give a small gain that does not justify several times the serving cost.
+F Scaling laws guarantee a bigger model will beat a smaller one on any task.
+T A small fine-tuned model can beat a large general one on a narrow, well-defined task.
+F Latency and cost are secondary concerns once a larger model improves accuracy.
+T A larger model may memorize and leak training data more readily.
+## AUC as universal score
+T A high ROC AUC can coexist with poor precision at the operating point on a rare-class problem.
+F ROC AUC is the best metric for every classification problem.
+T AUC measures ranking quality, not whether predicted probabilities are calibrated.
+F Two models with equal AUC will behave the same at a fixed review capacity.
+T Precision-recall curves often show differences that ROC curves hide on imbalanced data.
+## Fairness through unawareness
+T Removing a protected attribute does not remove bias when other features act as proxies for it.
+F Dropping the race column makes a model free of racial disparity.
+T Measuring outcomes by group is needed to detect disparity, which requires knowing group membership.
+F A fairness metric satisfied on one definition is satisfied on every other definition.
+T Different fairness definitions can be mathematically incompatible, so the choice needs justification.
+## Experiment peeking
+T Stopping an A/B test the first time it looks significant inflates the false positive rate.
+F A p-value below 0.05 at any point during an experiment proves the effect.
+T Pre-registering the sample size or using sequential methods addresses repeated looks at results.
+F Running many metrics and reporting the one that moved is a valid analysis.
+T A novelty effect can make early experiment results look better than the lasting impact.
+## Ensembles
+T An ensemble of highly correlated models gives little benefit over a single model.
+F Averaging more models always improves production results enough to justify the cost.
+T An ensemble multiplies serving cost, latency, and the number of things that can break.
+F An ensemble's failure modes are the same as any single member's.
+T Diverse errors among members are what make an ensemble useful.
+## Explanation methods
+T Feature attribution scores describe what the model used, not what causes the outcome in the world.
+F A SHAP value showing a feature matters proves that changing that feature would change the real outcome.
+T Explanations can be unstable under small input changes, which limits how far they can be trusted.
+F A saliency map that looks sensible confirms the model reasons the way a human does.
+T An explanation that satisfies a stakeholder is not evidence that the model is correct.
+## More data
+T Adding more of the same biased data does not fix the bias.
+F More data always improves a model, whatever its quality or relevance.
+T Targeted collection of examples from failing slices is often more valuable than bulk collection.
+F Scraped data is safe to train on because it is publicly accessible.
+T Data with unclear provenance can create legal and reproducibility risk.
+## Notebook to production
+T A notebook that produced a good result is not a deployable system until it is made repeatable and tested.
+F Wrapping a notebook in a scheduler is production-ready without tests or monitoring.
+T Hidden notebook state, such as cells run out of order, can make results impossible to reproduce.
+F Production ML code needs no code review because the model is validated by metrics.
+T Moving research code to production usually requires separating data access, features, training, and serving.
+# 5
+## Known subgroup gap
+T Shipping with a documented subgroup gap and a mitigation plan can be defensible; shipping while hiding it is not.
+F If the gap is small in percentage points, no disclosure to affected stakeholders is needed.
+T Who bears the cost of the errors matters as much as how large the error rate is.
+F A subgroup gap is acceptable whenever the overall metric meets the launch target.
+T Pausing a launch for one subgroup can be right when the harm to that group is severe and hard to reverse.
+## Unexplained lift
+T An unexplained jump in a metric after a pipeline change is a reason to investigate before celebrating.
+F A metric improvement is always real, since a bug would more likely lower it.
+T Checking for label leakage or a changed evaluation set is a sensible first step on a surprising gain.
+F If the gain is very large, it should be reported right away to build confidence.
+T Accepting a result you cannot explain makes later regressions harder to diagnose.
+## Rollback or fix forward
+T Rolling back a model is usually faster and safer than debugging live when users are being harmed.
+F Rollback should be avoided because it signals failure, so fixing forward is the better default.
+T Keeping the previous model version deployable makes rollback an actual option rather than a hope.
+F A rollback restores the previous behavior exactly, including any state the model changed in the meantime.
+T If downstream systems have consumed the bad predictions, the rollback also needs a cleanup plan.
+## Calibration
+T A model can rank cases well and still produce probabilities that cannot be read as real frequencies.
+F A calibrated probability of 0.7 means the model is 70% accurate overall.
+T Calibration drifts when the base rate in production differs from training.
+F Calibration matters only to people who display probabilities to users.
+T Downstream decisions that multiply a probability by a cost depend on calibration, not just on ranking.
+## Delayed labels
+T When labels arrive weeks late, current quality has to be estimated with proxies and flagged as uncertain.
+F With delayed labels, dashboards that show last week's accuracy represent today's model.
+T Reporting the label delay alongside a quality metric prevents false reassurance.
+F Waiting for complete labels before any monitoring is the safest approach.
+T Early indicators such as prediction distribution shifts can act as a warning before labels arrive.
+## Human override
+T A human reviewer who sees the model score first may anchor on it and add less independent judgment.
+F Putting a human in the loop makes an unreliable model safe.
+T Tracking how often reviewers override the model and how often they are right gives useful quality signal.
+F Reviewers should be pressured to follow the model to keep throughput high.
+T A reviewer with no practical ability to override a model is not an effective safeguard.
+## Explaining a decision
+T Telling a person only that the algorithm decided is not an explanation they can act on.
+F A list of the top three model features is a complete reason for denying a person a service.
+T A useful explanation includes what could change the outcome, when that is feasible and honest.
+F An explanation can be invented after the fact as long as it sounds plausible.
+T Providing a path to human appeal matters when the decision significantly affects the person.
+## Deadline and suspicious evaluation
+T A surprisingly good evaluation close to a deadline deserves a leakage check, not a launch announcement.
+F If the evaluation script passed review last month, it needs no re-check after the data source changed.
+T Saying the result is unverified is better than reporting a number you suspect is inflated.
+F Pressure from leadership is a valid reason to skip a held-out evaluation.
+T A rushed launch with a rollback plan is still unsafe if you have no way to measure harm.
+## Silent model swap
+T Changing the model behind an endpoint without notice can break downstream consumers who depend on score behavior.
+F If the API schema is unchanged, replacing the model behind it is invisible to clients.
+T Versioning model outputs and announcing changes lets consumers re-tune their thresholds.
+F Consumers who set fixed thresholds on a score need no warning when its distribution shifts.
+T Shadow deployment lets you compare a new model's outputs to the old one before switching.
+## Deprecating a dependent model
+T Retiring a model that other teams rely on needs notice, a migration path, and a date, not only a technical decision.
+F An old model with low traffic can be shut off without telling anyone since usage is low.
+T Low traffic on a model can hide that a small number of critical processes depend on it.
+F Deleting the old model's artifacts immediately after cutover is good hygiene.
+T Keeping an archived, reproducible version supports later audits and incident analysis.

@@ -1,0 +1,122 @@
+# 1
+## Train/test split
+T Evaluating a model on the same rows it was trained on tells you how well it memorized, not how well it will generalize.
+F A random 80/20 split guarantees the test score reflects production performance, whatever the data source.
+T A held-out test set is only trustworthy if it is not used to make repeated tuning decisions.
+F If training accuracy is 99%, the model is ready to ship, because training accuracy is the most direct measure of learning.
+T For time-ordered data, a random shuffle split can make the test set look easier than the real future.
+## Overfitting
+T Training loss falling while validation loss rises is a standard sign of overfitting.
+F Adding more parameters to a model always narrows the gap between training and validation error.
+T Early stopping on a validation metric is a legitimate way to limit overfitting.
+F Overfitting only happens with deep neural networks; linear models cannot overfit.
+T Collecting more representative data is often a stronger fix for overfitting than adding regularization alone.
+## Accuracy on imbalanced data
+T A classifier that always predicts the majority class can score 99% accuracy on data with 1% positives while being useless.
+F Accuracy is the right headline metric for fraud detection because executives find it easy to read.
+T Precision and recall at a chosen threshold describe a rare-class detector better than overall accuracy.
+F Rebalancing the test set to 50/50 gives a fair estimate of production precision when real positives are rare.
+T The cost of a false negative versus a false positive should drive metric choice, not convention.
+## Data leakage
+T A feature recorded only after the outcome occurs can inflate offline metrics and then fail in production.
+F Fitting a scaler on the full dataset before splitting is harmless because scaling does not use labels.
+T Duplicate rows appearing in both train and test sets can overstate generalization.
+F A feature almost perfectly correlated with the label is good news and should be kept without questions.
+T Target encoding computed on the whole dataset before cross-validation leaks label information into the validation folds.
+## Baselines
+T A simple baseline such as a majority-class or last-value predictor shows whether a complex model adds any value.
+F Reporting a model's F1 score with no baseline is enough for a go or no-go decision.
+T A logistic regression that nearly matches a deep model is a reason to question the added complexity.
+F Baselines matter only in academic papers, not in product work.
+T A rule already running in production is a legitimate baseline for a new model to beat.
+## Feature scaling
+T Distance-based methods such as k-nearest neighbors are sensitive to feature scale.
+F Tree-based models require standardized features to train correctly.
+T Scaling statistics learned on training data must be reused unchanged at inference time.
+F Normalizing each request using that request's own mean is equivalent to using training statistics.
+T Gradient-based training often converges more reliably when inputs are on comparable scales.
+## Reproducibility
+T Setting a random seed alone does not guarantee identical results if data order, library versions, or hardware nondeterminism differ.
+F A run you cannot reproduce is acceptable as long as the final metric looked good once.
+T Logging the code commit, data snapshot, and config with each experiment makes later differences explainable.
+F Saving only the final model file is enough to audit how it was produced.
+T Reporting a metric averaged over several seeds is more informative than quoting the best seed.
+## Validation vs test sets
+T Validation data guides tuning decisions; test data is reserved for a final unbiased estimate.
+F Choosing the best of 50 hyperparameter configurations by test score still yields an unbiased test estimate.
+T Cross-validation helps when data is scarce, but it does not replace a final untouched test set.
+F Validation and test sets may be the same set whenever a deadline is tight.
+T A test set reused across many iterations gradually yields optimistic scores.
+## Label quality
+T Noisy labels set a ceiling on measurable quality, even for a perfect model.
+F Disagreement among annotators is a nuisance that belongs out of the evaluation report.
+T Spot-checking a random sample of labels is a cheap way to find systematic annotation errors.
+F A model trained on another model's predictions as labels can be scored against those same labels to prove accuracy.
+T Ambiguous labeling guidelines can produce labels that look consistent and are still wrong.
+## Inference latency basics
+T Average latency can look fine while the 99th percentile latency ruins the user experience.
+F Model accuracy is the only property that matters for a model on a live request path.
+T Batching requests can raise throughput while increasing the latency of each individual request.
+F Benchmarking with one request at a time on a laptop predicts production behavior under load.
+T Model size affects memory footprint and cold-start time, not just accuracy.
+# 2
+## Model complexity
+T A more flexible model can lower bias but raise variance, so more capacity is not free.
+F When two models score equally on validation, the one with more parameters is the safer choice.
+T A simpler model with slightly lower accuracy can be the better choice when it is easier to debug and monitor.
+F Regularization strength should be set to whatever minimizes training loss.
+T With a small dataset, a high-capacity model needs stronger justification than a regularized simple one.
+## Threshold choice
+T Moving a classification threshold trades precision against recall without retraining the model.
+F A threshold of 0.5 is the correct default for every classifier regardless of class balance.
+T The right operating threshold depends on downstream cost, such as reviewer capacity or harm of a missed case.
+F Raising a threshold to improve precision costs nothing because the model is the same.
+T Comparing two models at a single threshold can hide that one dominates across the whole precision-recall curve.
+## Batch vs online inference
+T Precomputing predictions in batch is cheaper and simpler when the inputs change slowly and the lookup is by key.
+F Online inference is always better because fresher predictions are always worth the added cost.
+T Online serving adds latency budgets, scaling, and feature-freshness concerns that batch scoring avoids.
+F Batch predictions never go stale because they were computed with the same model.
+T A hybrid design can batch the expensive embedding step and run a light online ranker on top.
+## Retraining cadence
+T Retraining on a fixed schedule is simple but may waste compute or still be too slow after an abrupt shift.
+F Retraining as often as possible is always safer because the model is always newest.
+T Triggering retraining from monitored drift or quality signals can be more efficient than a calendar schedule.
+F Automatic retraining removes the need to evaluate the new model before it replaces the old one.
+T Each retraining run changes the model, so the pipeline needs its own regression checks.
+## Interpretability vs accuracy
+T In a regulated lending setting, a slightly less accurate but explainable model can be the sounder choice.
+F A black-box model is acceptable anywhere as long as its offline accuracy is higher.
+T Post-hoc explanations of a complex model are approximations and do not replace an inherently interpretable model.
+F Interpretable models are always less accurate than neural networks on tabular data.
+T The audience for an explanation (regulator, user, engineer) should shape which explanation method you choose.
+## Feature store vs ad hoc features
+T A shared feature definition reduces training-serving mismatch compared with each team reimplementing it.
+F A feature store removes the need to think about point-in-time correctness.
+T Ad hoc notebook features are fast to explore but costly to reproduce at serving time.
+F Centralizing all features in one store is always worth the overhead, even for a single prototype.
+T Feature ownership and versioning matter as much as storage when many models share a feature.
+## Compression and quantization
+T Quantizing a model can cut latency and memory with a small accuracy cost that must be measured, not assumed.
+F A quantized model needs no re-evaluation if the original model passed its tests.
+T Distillation can transfer much of a large model's behavior to a smaller one, but not necessarily in the rare cases.
+F Smaller models are always faster on every hardware target.
+T Average accuracy after compression can hide a drop on a specific slice of users.
+## Labeling vs modeling effort
+T When error analysis shows mislabeled examples dominate the failures, better labels may beat a bigger model.
+F Spending on a larger architecture is always a better use of budget than relabeling.
+T Active learning can reduce labeling cost by choosing which examples are most informative to label.
+F Labeling more of the easiest examples is the most efficient way to improve a model's hard cases.
+T A small, carefully audited gold set can be worth more than a large noisy one for evaluation.
+## Offline vs online metrics
+T A model that improves offline AUC may not improve the product metric once it meets real users.
+F If offline and online metrics disagree, the online experiment is probably broken and should be ignored.
+T Online experiments are slower and riskier but test the actual objective, including user behavior.
+F Offline metrics are useless and should not be tracked.
+T Interference between users or items can make a naive A/B comparison misleading.
+## Pretrained vs from scratch
+T Fine-tuning a pretrained model usually needs far less data than training from scratch on a similar task.
+F A pretrained model's license and training data provenance are irrelevant if it performs well.
+T A hosted API model trades control and data residency for speed of delivery.
+F Using a pretrained model removes the need to evaluate it on your own data.
+T Fine-tuning can erode general behavior the base model had, so regression checks are needed.

@@ -1,0 +1,288 @@
+{
+  "version": 2,
+  "format": "true_false",
+  "name": "JaPoP L&R levels",
+  "maxLevel": 5,
+  "levels": {
+    "1": {
+      "title": "Level 1 - Partner signals",
+      "blurb": "Basics: reply vs volunteer, friendship vs shared load.",
+      "items": [
+        {
+          "id": "L1-01",
+          "text": "Someone who always answers within an hour, but never starts a thread or brings a next step, is already showing full partner-level proactiveness.",
+          "answer": false
+        },
+        {
+          "id": "L1-02",
+          "text": "Replying carefully when asked can show integrity without proving they will volunteer risk or agenda on their own.",
+          "answer": true
+        },
+        {
+          "id": "L1-03",
+          "text": "If the other person only ever sends 'sounds good' or 'thanks' after your long proposals, that pattern leans more tool-like than partner-like.",
+          "answer": true
+        },
+        {
+          "id": "L1-04",
+          "text": "A warm friendship of many years is enough evidence that two people will share decision load equally in a company.",
+          "answer": false
+        },
+        {
+          "id": "L1-05",
+          "text": "When one person invents every idea and the other only executes after being assigned, the second person is still at the top of the partner scale.",
+          "answer": false
+        },
+        {
+          "id": "L1-06",
+          "text": "Proactiveness means bringing an idea, risk, or next step without waiting to be tapped - not merely answering faster.",
+          "answer": true
+        },
+        {
+          "id": "L1-07",
+          "text": "Saying 'I am a partner type' in a coffee chat outweighs months of one-sided emails where only you follow up.",
+          "answer": false
+        },
+        {
+          "id": "L1-08",
+          "text": "Division of labor can be uneven in skills and still be partnerable if both sides initiate and carry decisions in their lane.",
+          "answer": true
+        },
+        {
+          "id": "L1-09",
+          "text": "Family relation automatically places both people high on the partner scale for a business venture.",
+          "answer": false
+        },
+        {
+          "id": "L1-10",
+          "text": "If both sides start threads and propose next steps over months, that reciprocity weighs more than a single pep talk.",
+          "answer": true
+        }
+      ]
+    },
+    "2": {
+      "title": "Level 2 - Pattern traps",
+      "blurb": "Harder: burst vs steady, chase patterns, and false gold from personality labels.",
+      "items": [
+        {
+          "id": "L2-01",
+          "text": "A three-week burst of daily chat followed by six months of silence is stronger partner evidence than a quieter but steady six-month back-and-forth.",
+          "answer": false
+        },
+        {
+          "id": "L2-02",
+          "text": "If you always chase replies and they never reopen an open loop, the chase pattern itself is evidence on the partner-to-tool scale.",
+          "answer": true
+        },
+        {
+          "id": "L2-03",
+          "text": "Ghosting after early enthusiasm should be ignored if a personality quiz once labeled them collaborative.",
+          "answer": false
+        },
+        {
+          "id": "L2-04",
+          "text": "Someone who pushes back with a dated counter-proposal is closer to partner behavior than someone who always agrees and then goes quiet.",
+          "answer": true
+        },
+        {
+          "id": "L2-05",
+          "text": "Hard work on assigned tasks for a year proves equal partnerability even if they never propose direction.",
+          "answer": false
+        },
+        {
+          "id": "L2-06",
+          "text": "A person who only works when assigned may still be a strong professional hire - that is not the same claim as equal partnerability.",
+          "answer": true
+        },
+        {
+          "id": "L2-07",
+          "text": "One inspiring weekend workshop outweighs a year of one-sided follow-ups when judging partner lean.",
+          "answer": false
+        },
+        {
+          "id": "L2-08",
+          "text": "When both people restart stalled topics without being asked, that habit is a stronger partner signal than polite availability alone.",
+          "answer": true
+        },
+        {
+          "id": "L2-09",
+          "text": "If dated messages show only thank-you replies for months, treating that as full partner is justified by goodwill.",
+          "answer": false
+        },
+        {
+          "id": "L2-10",
+          "text": "Initiative when tapped, without volunteering next moves, can still be honest professional behavior without being full partner lean.",
+          "answer": true
+        }
+      ]
+    },
+    "3": {
+      "title": "Level 3 - Decision load & risk",
+      "blurb": "Who carries hard calls, downside, and repair - not just cheerleading.",
+      "items": [
+        {
+          "id": "L3-01",
+          "text": "If only one person ever names the downside risk, and the other only cheers the upside, the cheerleading is still equal decision load.",
+          "answer": false
+        },
+        {
+          "id": "L3-02",
+          "text": "A partner-leaning pattern includes bringing bad news early, not only celebrating wins.",
+          "answer": true
+        },
+        {
+          "id": "L3-03",
+          "text": "Deferring every hard call to you because you are the visionary is a classic partner-equality marker.",
+          "answer": false
+        },
+        {
+          "id": "L3-04",
+          "text": "Asking for a clear next owner and a dated check-in after a messy meeting is closer to partner behavior than waiting for you to chase.",
+          "answer": true
+        },
+        {
+          "id": "L3-05",
+          "text": "If they only engage when money is about to change hands, that still proves day-to-day partnerability.",
+          "answer": false
+        },
+        {
+          "id": "L3-06",
+          "text": "Shared calendars and written next steps after calls reduce the chance that one side silently drops the ball.",
+          "answer": true
+        },
+        {
+          "id": "L3-07",
+          "text": "Saying you decide on every fork is the same as co-owning the outcome.",
+          "answer": false
+        },
+        {
+          "id": "L3-08",
+          "text": "When they propose a disagree-and-commit path with a review date, that is stronger than endless polite agreement.",
+          "answer": true
+        },
+        {
+          "id": "L3-09",
+          "text": "If they rewrite history of who agreed to what, dated messages matter more than memory of the coffee chat.",
+          "answer": true
+        },
+        {
+          "id": "L3-10",
+          "text": "Equal equity paperwork alone proves equal day-to-day partner behavior in the message record.",
+          "answer": false
+        }
+      ]
+    },
+    "4": {
+      "title": "Level 4 - Founder precedents",
+      "blurb": "Traps from common co-founder and partner failure modes.",
+      "items": [
+        {
+          "id": "L4-01",
+          "text": "In many failed co-founder stories, one side kept being busy for the company while never initiating strategy - busyness alone should still score as partner gold.",
+          "answer": false
+        },
+        {
+          "id": "L4-02",
+          "text": "A pattern of only critiquing your ideas without offering an alternative is closer to spectator behavior than partner behavior.",
+          "answer": true
+        },
+        {
+          "id": "L4-03",
+          "text": "If they disappear during fundraising stress but return when the round closes, that timing is irrelevant to partner lean.",
+          "answer": false
+        },
+        {
+          "id": "L4-04",
+          "text": "Repair after a conflict (named issue, plan, dated follow-through) is a stronger partner signal than never arguing.",
+          "answer": true
+        },
+        {
+          "id": "L4-05",
+          "text": "Using family loyalty as a substitute for written next steps is a reliable way to prove equal partnerability.",
+          "answer": false
+        },
+        {
+          "id": "L4-06",
+          "text": "When they bring an outside expert or note to help a stuck decision, that can be partner-leaning if they stay in the ownership loop.",
+          "answer": true
+        },
+        {
+          "id": "L4-07",
+          "text": "If every yes arrives after you threaten to walk away, that still counts as free, steady partner initiative.",
+          "answer": false
+        },
+        {
+          "id": "L4-08",
+          "text": "Precedent: teams that keep a shared written decision log tend to argue less about who promised what months later.",
+          "answer": true
+        },
+        {
+          "id": "L4-09",
+          "text": "A long silence after you asked for a clear no is the same as a clear no.",
+          "answer": false
+        },
+        {
+          "id": "L4-10",
+          "text": "Partnerability cares whether both sides reopen hard topics; professionalism alone can be one-sided and still look polite.",
+          "answer": true
+        }
+      ]
+    },
+    "5": {
+      "title": "Level 5 - Wisdom edge cases",
+      "blurb": "Subtle cases where manners and partner lean diverge.",
+      "items": [
+        {
+          "id": "L5-01",
+          "text": "Someone can be loyal, kind, and skilled as a contractor and still sit on the tool side of the partner scale.",
+          "answer": true
+        },
+        {
+          "id": "L5-02",
+          "text": "If they always wait for your emotional weather before stating a preference, that proves they share agenda ownership.",
+          "answer": false
+        },
+        {
+          "id": "L5-03",
+          "text": "Wisdom check: evidence of partner lean is cumulative dated behavior, not a single heroic weekend.",
+          "answer": true
+        },
+        {
+          "id": "L5-04",
+          "text": "When they protect the venture's reputation in public but never carry private ops load, public praise equals private partnerability.",
+          "answer": false
+        },
+        {
+          "id": "L5-05",
+          "text": "A clear, early I cannot own this lane is more partner-honest than a soft yes that later becomes silence.",
+          "answer": true
+        },
+        {
+          "id": "L5-06",
+          "text": "If they only initiate when the idea flatters them, ignore that filter when scoring partner lean.",
+          "answer": false
+        },
+        {
+          "id": "L5-07",
+          "text": "Precedent wisdom: unequal talk time in meetings is less important than unequal follow-through after the meeting.",
+          "answer": true
+        },
+        {
+          "id": "L5-08",
+          "text": "Treating we will figure it out with no owner and no date as a closed decision is sound partner practice.",
+          "answer": false
+        },
+        {
+          "id": "L5-09",
+          "text": "If dated records show they raised constraints you missed, that dissent can be partner-leaning even when uncomfortable.",
+          "answer": true
+        },
+        {
+          "id": "L5-10",
+          "text": "After five levels of strong scores, you should stop watching future behavior because the past forever locks partner status.",
+          "answer": false
+        }
+      ]
+    }
+  }
+}

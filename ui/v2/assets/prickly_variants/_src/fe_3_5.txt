@@ -1,0 +1,183 @@
+# 3
+## Layout shift
+T Content that loads late and pushes other content down can make users click the wrong target.
+F Layout shift only affects visual polish and has no effect on usability.
+T Reserving space for ads, images, and embeds reduces cumulative layout shift.
+F A web font swap cannot cause visible layout movement.
+T Injecting a banner above existing content after load is a common cause of unexpected shift.
+## Memory leaks
+T An event listener added on mount and never removed can keep retained objects alive after the component is gone.
+F Single-page apps cannot leak memory because the browser cleans up on navigation.
+T A timer or subscription that continues after unmount can update state that no longer exists.
+F A leak that takes hours to show up is not worth testing for.
+T Long-lived sessions such as dashboards are where small leaks become visible problems.
+## Race conditions in requests
+T If a slow earlier request resolves after a later one, the screen can show results for the wrong query.
+F Requests sent in order always return in order.
+T Cancelling or ignoring outdated requests prevents stale responses from overwriting newer state.
+F Debouncing a search input removes any possibility of out-of-order responses.
+T A double submit of a form can create two records if the server and client both lack protection.
+## Stale closures and state
+T A callback that captured an old value can act on outdated state in an asynchronous handler.
+F State updates in a framework are always applied immediately and synchronously.
+T Using a functional update avoids relying on a possibly stale value when the next state depends on the previous one.
+F Mutating an object in state and calling set with the same reference reliably triggers a re-render.
+T A dependency array that omits a used value can leave an effect running with stale data.
+## Hydration mismatch
+T Rendering different content on server and client, such as the current time, can cause hydration warnings or flicker.
+F Hydration mismatches are harmless because the client simply repaints.
+T Reading browser-only values like window width during server render can break or mismatch output.
+F A page that hydrates is immediately interactive for all users.
+T Interactive elements may not respond until JavaScript has loaded and hydrated them.
+## Third-party scripts
+T A slow third-party script can block rendering or delay interaction even if your own code is fast.
+F Loading analytics scripts synchronously in the head has no effect on page speed.
+T A third-party tag manager can add behavior to your page that your team did not review.
+F If a vendor's script fails to load, the page will always continue to work normally.
+T Loading nonessential scripts after the main content reduces their impact on early rendering.
+## Focus on navigation
+T In a single-page app, route changes may leave focus on a removed element, disorienting keyboard and screen reader users.
+F Updating the URL and content on route change is fully accessible without any announcement.
+T Moving focus to the new page heading after a route change helps assistive technology users.
+F Page titles do not need to change when the route changes in a single-page app.
+T Closing a modal should return focus to the element that opened it.
+## Large lists
+T Rendering ten thousand DOM nodes at once can make scrolling and interaction sluggish.
+F Virtualized lists never cause problems for find-in-page or screen readers.
+T A list that works with 50 test items may degrade badly with real production data volumes.
+F Hiding rows with CSS removes their cost from the DOM and layout.
+T Sorting or filtering large lists on the main thread can freeze input.
+## Unreliable networks
+T A UI that assumes every request succeeds will break for users on poor or intermittent connections.
+F Testing on a fast office network shows how the app behaves for users in the field.
+T Retrying a non-idempotent request automatically can duplicate side effects.
+F A timeout of several minutes is a user-friendly default for a failed request.
+T Preserving a user's unsent input after a failure prevents lost work.
+## Browser storage
+T localStorage can be unavailable or full, for example in private modes, so reads and writes need handling.
+F Data in localStorage is private and safe for storing authentication tokens.
+T Stored data from an old app version can be incompatible with new code and cause startup errors.
+F localStorage is a reliable place for data you cannot afford to lose.
+T Sensitive data kept in browser storage can be read by any script running on the page.
+# 4
+## Lighthouse perfection
+T A perfect Lighthouse score in a lab run does not show good experience for real users on varied devices.
+F Passing automated accessibility checks proves a page is accessible.
+T Automated tools catch only a portion of accessibility problems, so manual testing is still needed.
+F Optimizing the page for the exact tests a tool runs is the same as optimizing for users.
+T Field data from real users can disagree with synthetic lab measurements.
+## ARIA overuse
+T The first rule of ARIA is to use a native element with the needed semantics when one exists.
+F Adding aria-label to every element makes a page more accessible.
+T Incorrect ARIA can make an interface worse for screen reader users than no ARIA.
+F A role of button on a div gives it keyboard behavior automatically.
+T ARIA changes how elements are announced but does not add behavior such as focus or key handling.
+## Accessibility later
+T Retrofitting accessibility into a finished interface is usually more costly than designing it in.
+F Accessibility is an optional polish step that can be postponed indefinitely after launch.
+T Accessibility failures can create legal exposure and exclude real customers.
+F A small share of users with disabilities means accessibility has little business effect.
+T Including accessibility in the definition of done keeps it from being deferred.
+## Dark patterns
+T A consent banner that makes declining much harder than accepting is a manipulative pattern, even if it technically offers a choice.
+F A countdown timer that resets on each visit is a legitimate way to convey genuine scarcity.
+T Pre-checked boxes for add-ons can lead users to pay for things they did not choose.
+F If conversion rises after a design change, the design change is good for users.
+T A cancel flow that is far harder than the signup flow can harm trust and attract regulatory attention.
+## Works in my browser
+T A site that works in one major browser may break in another due to differing support for features.
+F If every developer on the team uses the same browser, cross-browser testing is unnecessary.
+T Feature detection is more robust than inspecting the user agent string.
+F Polyfills can fully replicate any missing browser capability.
+T Testing on a real mobile device can reveal issues that desktop emulation does not.
+## Effects for everything
+T Using an effect to synchronize derived state often adds extra renders and bugs compared with computing it during render.
+F Fetching data in every component's effect is the recommended way to structure data loading.
+T Effects are best suited for synchronizing with external systems, not for transforming data for rendering.
+F A chain of effects that set state to trigger other effects is a clean pattern.
+T Moving data fetching to a dedicated layer can reduce duplicate requests and waterfalls.
+## Rewrite in new framework
+T Rewriting a working app in a new framework can take longer than expected and reintroduce old bugs.
+F Migrating to the newest framework is the best way to fix performance problems.
+T Incremental migration lets teams deliver value while reducing the risk of a big-bang cutover.
+F Framework choice matters more to performance than the amount of code and data you ship.
+T Before a rewrite, identify the specific problems and check whether a smaller change addresses them.
+## Skeleton screens
+T Skeleton screens can make waiting feel shorter but do not make slow data arrive faster.
+F A skeleton screen is a substitute for fixing a slow API response.
+T Skeletons that look nothing like the final layout can cause a layout jump when content arrives.
+F Skeleton screens need no accessible announcement of loading status.
+T An indefinite skeleton with no error fallback hides a failed request from the user.
+## Premature global state
+T Adopting a global state library before shared state exists can add indirection with little benefit.
+F Any application with more than three components needs a global store.
+T Server data, such as fetched lists, is often better handled with a caching layer than hand-copied into a store.
+F Duplicating server data into a client store keeps it more consistent.
+T Passing props through a few levels is sometimes simpler than introducing a new state mechanism.
+## Performance budgets
+T A performance budget is only useful if a build or review fails when it is exceeded.
+F Core Web Vitals scores from one test machine are enough to set a budget.
+T Budgets help prevent slow gradual growth in bundle size from many small additions.
+F Page weight does not matter once users are on high-speed connections.
+T Real-user monitoring shows how performance varies by device and region.
+# 5
+## Reduced motion
+T Large parallax or auto-playing animations can cause discomfort or nausea for some users.
+F Respecting the reduced motion preference means removing all transitions, including helpful ones.
+T Replacing sliding motion with a simple fade can honor reduced motion while keeping feedback.
+F A user's system motion preference is a suggestion that designers can safely ignore.
+T Motion that conveys essential information still needs a non-motion alternative.
+## Screen reader announcements
+T A live region can announce a change such as a form error that would otherwise be silent to a screen reader.
+F Marking every update as an assertive live region is a good way to keep users informed.
+T Announcing every keystroke or small update can overwhelm a screen reader user.
+F A visual toast notification is automatically announced by assistive technology.
+T Testing with an actual screen reader catches problems that code review does not.
+## Internationalization
+T Text in other languages can be much longer than English and break fixed-width layouts.
+F Concatenating translated fragments to form sentences works across all languages.
+T Right-to-left languages need layout mirroring, not just translated text.
+F Date and number formats can be hard-coded to the developer's locale.
+T Storing user-visible strings outside the code makes translation and review easier.
+## Low-end devices
+T A page that is smooth on a developer's high-end laptop may be unusable on a low-cost phone.
+F Throttling CPU in testing is unnecessary because users upgrade their phones regularly.
+T Long main-thread tasks delay input response, which users experience as lag.
+F Performance of your median user is accurately captured by your own test devices.
+T Shipping less JavaScript helps most on the devices that are least capable.
+## Design vs accessibility conflict
+T When a visual design fails contrast, the response should be to propose an accessible alternative, not to silently ship it.
+F A designer's approved mockup overrides accessibility concerns raised by the engineer.
+T Documenting an accessibility exception with an owner and a fix date is better than ignoring it.
+F A minor contrast failure on a primary call-to-action is acceptable if the brand color requires it.
+T Early collaboration with design avoids expensive late-stage accessibility conflicts.
+## Auto-advancing content
+T An auto-advancing carousel can move on before some users finish reading it.
+F An autoplay carousel is acceptable without a pause control if the slides are short.
+T Users should be able to pause, stop, or hide moving content that starts automatically.
+F High click-through on a carousel's first slide shows that auto-advance is working well.
+T Controls that appear only on hover are unreachable for many keyboard and touch users.
+## Modal dialogs
+T A modal should trap focus while open and restore it to the trigger when closed.
+F Allowing the page behind a modal to remain tabbable is a harmless detail.
+T Escape should normally close a dismissible dialog.
+F A modal that cannot be closed by keyboard is acceptable if the mouse close button works.
+T Opening a modal for something that could be inline content can hurt navigation and increase complexity.
+## Session timeouts
+T A session that expires while a user fills a long form can erase their work without warning.
+F Silently logging users out for security reasons needs no warning or recovery option.
+T Warning users before timeout and allowing extension helps people who need more time.
+F Time limits are not an accessibility issue.
+T Saving form progress can reduce the impact of a timeout.
+## Error copy
+T An error message that blames the user or uses internal jargon makes recovery harder.
+F A generic message such as Something went wrong is enough for every failure.
+T Preserving what the user already entered when showing an error respects their effort.
+F Showing the raw server stack trace helps users solve their own problem.
+T Error messages should be announced and placed near the field they refer to.
+## Unmeasured shortcuts
+T A shortcut taken to meet a deadline should be recorded as debt with an owner, or it becomes permanent.
+F Temporary workarounds in UI code are typically cleaned up without any tracking.
+T Shipping with a known accessibility issue and a dated remediation plan differs from shipping and forgetting it.
+F Telling stakeholders everything is fine is safer than disclosing a known usability problem.
+T The users most hurt by a shortcut are often those least likely to complain about it.

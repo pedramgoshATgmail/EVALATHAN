@@ -2974,6 +2974,8 @@
     const ok = document.getElementById("confirm-ok");
     if (ok) ok.focus();
   }
+  /* PRICKLY (and other desk modules) reuse the same centered delete confirm. */
+  window.askEvalathanDeleteConfirm = askDeleteConfirm;
 
   function wireDeleteConfirm() {
     const layer = document.getElementById("confirm-layer");

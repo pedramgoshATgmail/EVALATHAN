@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=gold92" />
+  <link rel="stylesheet" href="styles.css?v=gold106" />
   <link rel="preload" as="image" href="assets/evalathan-dragon.webp?v=5" type="image/webp" />
   <link rel="preload" as="image" href="assets/hydra-logo.webp?v=5" type="image/webp" />
   <link rel="preload" as="image" href="assets/dehydrus-logo.webp?v=5" type="image/webp" />
@@ -38,10 +38,10 @@
           <nav class="engine-stack" id="engine-stack" aria-label="Router engines"></nav>
           <div class="mascots">
             <button type="button" class="mascot-wrap" id="btn-prickly" title="PRICKLY - Live and Realtime sittings plus JaPoP (Just-a-Professional-or-Partnerable)" aria-label="PRICKLY - open test picker">
-              <img class="mascot" src="assets/prickly.png" alt="PRICKLY" draggable="false" />
+              <img class="mascot" src="assets/prickly.png?v=final1" alt="PRICKLY" draggable="false" />
             </button>
             <button type="button" class="mascot-wrap" id="btn-fuss" title="FUSS - For-User Session Switch (utility timer, not an agent)" aria-label="FUSS - For-User Session Switch">
-              <img class="mascot" src="assets/fuss.png" alt="FUSS" draggable="false" />
+              <img class="mascot" src="assets/fuss.png?v=final1" alt="FUSS" draggable="false" />
             </button>
           </div>
           <div class="slide-section">
@@ -49,6 +49,12 @@
           </div>
           <div class="slide-section">
             <button type="button" class="section-label" id="btn-selfbelt" title="Open SELFBELT glossary entry">SELFBELT</button>
+          </div>
+          <div class="slide-section prickly-results-section" id="prickly-results-section">
+            <button type="button" class="section-label rail-head-prickly" id="btn-prickly-results" title="PRICKLY RESULTS - saved sittings on this device">PRICKLY RESULTS</button>
+            <ul class="past-list past-list-saved" id="prickly-results-list" aria-label="Saved PRICKLY results">
+              <li class="is-empty">No saved PRICKLY results yet.</li>
+            </ul>
           </div>
         </div>
         <div class="theme-toggle" role="group" aria-label="Color theme">
@@ -174,28 +180,95 @@
     </div>
   </div>
 
-  <!-- PRICKLY centered popup (FUSS-simple: pick test → profile → sit / upload) -->
+  <!-- PRICKLY scalable popup window -->
   <div id="prickly-layer" class="prickly-layer" hidden>
-    <div class="prickly-panel" role="dialog" aria-modal="true" aria-labelledby="prickly-panel-title">
-      <button type="button" class="prickly-close" id="prickly-close" title="Close PRICKLY">×</button>
+    <div class="prickly-panel" id="prickly-panel" role="dialog" aria-modal="true" aria-labelledby="prickly-panel-title">
+      <div class="prickly-chrome" id="prickly-chrome" title="Drag to move">
+        <span class="prickly-chrome-title">PRICKLY</span>
+        <div class="prickly-chrome-controls">
+          <button type="button" class="prickly-chrome-btn" id="prickly-max" title="Maximize / restore">▢</button>
+          <button type="button" class="prickly-chrome-btn" id="prickly-close" title="Close PRICKLY">×</button>
+        </div>
+      </div>
+      <div class="prickly-panel-body">
 
       <div id="prickly-home">
         <h2 id="prickly-panel-title" class="prickly-title">PRICKLY</h2>
-        <p class="prickly-lead">Pick what you want to sit. Everything here is timed or evidence-based - not a hire cut.</p>
+        <p class="prickly-lead">Pick what you want to sit.</p>
         <div class="prickly-choices">
-          <button type="button" class="prickly-choice" data-prickly-test="dev-lr" title="Developer Live and Realtime True/False sitting">
-            <strong>Developer L&amp;R</strong>
-            <span>Timed True / False from the Prickly bank (judgment, not the folder).</span>
+          <button type="button" class="prickly-choice" data-prickly-test="dev-lr" title="Developer Live and Realtime Questionnaire">
+            <strong>Developer L&amp;R <span class="prickly-paren">(Live &amp; Realtime Questionnaire)</span></strong>
+            <span>Timed True / False matched to the kind of developer you are.</span>
           </button>
-          <button type="button" class="prickly-choice" data-prickly-test="japop-lr" title="JaPoP Live and Realtime">
-            <strong>JaPoP L&amp;R</strong>
-            <span>Just-a-Professional-or-Partnerable - timed True / False on initiative vs proactiveness.</span>
+          <button type="button" class="prickly-choice" data-prickly-test="japop-lr" title="JaPoP Live and Realtime Questionnaire">
+            <strong>JaPoP L&amp;R <span class="prickly-paren">(Live &amp; Realtime Questionnaire)</span></strong>
+            <span>Just-a-Professional-or-Partnerable - timed True / False on partner lean.</span>
           </button>
-          <button type="button" class="prickly-choice" data-prickly-test="japop-static" title="JaPoP Static timestamped comms">
+          <button type="button" class="prickly-choice" data-prickly-test="japop-static" title="JaPoP Static uploads">
             <strong>JaPoP Static</strong>
-            <span>Upload / paste timestamped emails or texts. Soft window: ~3 weeks provisional, ~6 months stronger.</span>
+            <span>Upload emails, texts, and audio of your discussions with dates and notes.</span>
           </button>
         </div>
+      </div>
+
+      <div id="prickly-dev-profile" hidden>
+        <button type="button" class="prickly-back" id="prickly-dev-back">← Back</button>
+        <h2 class="prickly-title">Developer L&amp;R</h2>
+        <p class="prickly-lead">Choose what kind of developer is sitting. Each kind loads its own questionnaire.</p>
+        <div class="prickly-form prickly-form-dev">
+          <label class="prickly-span-2">Kind of developer
+            <select id="prickly-dev-kind">
+              <option value="programmer">Programmer</option>
+              <option value="software_engineer" selected>Software Engineer</option>
+              <option value="frontend_engineer">Frontend Engineer</option>
+              <option value="ml_engineer">ML Engineer</option>
+              <option value="llm_evals_engineer">LLM Evals Engineer</option>
+              <option value="data_engineer">Data Engineer</option>
+              <option value="devops">DevOps / Platform</option>
+              <option value="security_engineer">Security Engineer</option>
+              <option value="qa_engineer">QA / Test Engineer</option>
+              <option value="technical_architect">Technical Architect</option>
+              <option value="principal_architect">Principal Architect</option>
+              <option value="solutions_architect">Solutions Architect</option>
+            </select>
+          </label>
+          <label>Years of experience
+            <select id="prickly-dev-exp">
+              <option value="0-2">0-2 years</option>
+              <option value="3-7" selected>3-7 years</option>
+              <option value="8-15">8-15 years</option>
+              <option value="16plus">16+ years</option>
+            </select>
+          </label>
+          <label>Age band
+            <select id="prickly-dev-age">
+              <option value="lt25">Under 25</option>
+              <option value="25-34" selected>25-34</option>
+              <option value="35-49">35-49</option>
+              <option value="50plus">50+</option>
+            </select>
+          </label>
+          <label>Primary stack / domain
+            <input id="prickly-dev-stack" type="text" placeholder="e.g. backend Python, data pipelines, cloud" autocomplete="off" />
+          </label>
+          <label>Company / work setting
+            <select id="prickly-dev-setting">
+              <option value="startup">Startup</option>
+              <option value="product">Product company</option>
+              <option value="engineering_firm">Engineering firm</option>
+              <option value="agency">Agency / consulting</option>
+              <option value="enterprise">Enterprise</option>
+              <option value="research_lab">Research lab</option>
+              <option value="open_source">Open source / foundation</option>
+              <option value="government">Government</option>
+              <option value="nonprofit">Nonprofit</option>
+              <option value="education">Education</option>
+              <option value="freelance">Freelance</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+        </div>
+        <button type="button" class="prickly-btn" id="prickly-dev-next">Continue to timed test</button>
       </div>
 
       <div id="prickly-profile" hidden>
@@ -203,11 +276,11 @@
         <h2 id="prickly-profile-title" class="prickly-title">Who is sitting?</h2>
         <p id="prickly-profile-hint" class="prickly-lead"></p>
         <div class="prickly-form">
-          <label>Role / lens
+          <label>Your role
             <select id="prickly-role">
-              <option value="developer">Developer / engineer</option>
               <option value="founder">Founder / co-founder</option>
               <option value="operator">Operator / partner candidate</option>
+              <option value="professional">Professional assessing a peer</option>
               <option value="other">Other</option>
             </select>
           </label>
@@ -234,32 +307,32 @@
               <option value="na">Not a company context</option>
             </select>
           </label>
-          <label>How you met (JaPoP)
+          <label>How you met
             <select id="prickly-howmet">
-              <option value="na">N/A</option>
               <option value="friend">Friend</option>
               <option value="family">Family</option>
               <option value="school">School</option>
               <option value="work">Work</option>
               <option value="coffee">Just met / coffee</option>
+              <option value="na">N/A</option>
             </select>
           </label>
-          <label>Relation (JaPoP)
+          <label>Relation
             <select id="prickly-relation">
-              <option value="na">N/A</option>
               <option value="none">No family relation</option>
               <option value="spouses">Spouses / partners</option>
               <option value="parent-child">Parent / child</option>
               <option value="siblings">Siblings</option>
+              <option value="na">N/A</option>
             </select>
           </label>
-          <label>How long known (JaPoP)
+          <label>How long known
             <select id="prickly-known">
-              <option value="na">N/A</option>
               <option value="lt3m">&lt; 3 months</option>
               <option value="3-12m">3-12 months</option>
               <option value="1-3y">1-3 years</option>
               <option value="3yplus">3+ years</option>
+              <option value="na">N/A</option>
             </select>
           </label>
         </div>
@@ -285,27 +358,93 @@
 
       <div id="prickly-static" hidden>
         <button type="button" class="prickly-back" id="prickly-back-profile">← Back</button>
-        <h2 class="prickly-title">JaPoP Static - timestamped comms</h2>
-        <p class="prickly-lead">Paste dated lines only. One line each. Keep it plain.</p>
-        <p class="prickly-example">Example: <code>2026-03-01 | from: alex | we should try X</code></p>
-        <p id="prickly-duration-note" class="prickly-soft"></p>
-        <label class="prickly-block-label">Your label in the file (from:)
-          <input id="prickly-self-label" type="text" value="me" autocomplete="off" />
-        </label>
-        <label class="prickly-block-label">Comms
-          <textarea id="prickly-comms" rows="10" placeholder="2026-01-15 | from: me | idea…&#10;2026-01-16 | from: pat | thanks&#10;…"></textarea>
-        </label>
-        <button type="button" class="prickly-btn" id="prickly-static-run">Score upload</button>
+        <h2 class="prickly-title">JaPoP Static - show the paper trail</h2>
+        <p class="prickly-lead">Upload real dated exchanges. The goal is simple: see partner-like initiative over time - not only polite replies.</p>
+        <ol id="prickly-upload-guide" class="prickly-upload-guide">
+          <li>Upload a PDF of all email exchange screengrabs and make sure their time and date are included.</li>
+          <li>Same with texts (and WhatsApp) - PDF with timestamps visible.</li>
+          <li>Any audio records of your discussions - and make sure you clarify who is speaking in an accompanying note.</li>
+        </ol>
+
+        <div class="prickly-upload-slot">
+          <div class="prickly-upload-row">
+            <label class="prickly-upload-file">Email PDFs
+              <span class="prickly-upload-hint">PDF of email exchange screengrabs - time and date must be visible.</span>
+              <input id="prickly-up-email" type="file" accept=".pdf,application/pdf,image/*" multiple />
+            </label>
+            <label class="prickly-upload-notes">Notes / details
+              <textarea id="prickly-note-email" rows="5" placeholder="Whose inboxes, date range, and what the thread was about…"></textarea>
+            </label>
+          </div>
+        </div>
+
+        <div class="prickly-upload-slot">
+          <div class="prickly-upload-row">
+            <label class="prickly-upload-file">Texts / WhatsApp PDFs
+              <span class="prickly-upload-hint">Same idea for texts and WhatsApp - PDF with timestamps visible.</span>
+              <input id="prickly-up-texts" type="file" accept=".pdf,application/pdf,image/*" multiple />
+            </label>
+            <label class="prickly-upload-notes">Notes / details
+              <textarea id="prickly-note-texts" rows="5" placeholder="Who the chats are between, apps used, and the context of the texts…"></textarea>
+            </label>
+          </div>
+        </div>
+
+        <div class="prickly-upload-slot">
+          <div class="prickly-upload-row">
+            <label class="prickly-upload-file">Audio recordings
+              <span class="prickly-upload-hint">Discussion audio - say who is speaking in the notes box.</span>
+              <input id="prickly-up-audio" type="file" accept="audio/*,.m4a,.mp3,.wav,.ogg" multiple />
+            </label>
+            <label class="prickly-upload-notes">Notes / details
+              <textarea id="prickly-note-audio" rows="5" placeholder="Who is talking on each file, roles, and when it was recorded…"></textarea>
+            </label>
+          </div>
+        </div>
+
+        <div class="prickly-upload-slot">
+          <div class="prickly-upload-row">
+            <label class="prickly-upload-file">Other
+              <span class="prickly-upload-hint">Anything else dated that shows initiative over time.</span>
+              <input id="prickly-up-other" type="file" multiple />
+            </label>
+            <label class="prickly-upload-notes">Notes / details
+              <textarea id="prickly-note-other" rows="5" placeholder="What this file is, why it belongs here, and any dates…"></textarea>
+            </label>
+          </div>
+        </div>
+
+        <button type="button" class="prickly-btn" id="prickly-static-run">Submit uploads</button>
       </div>
 
       <div id="prickly-result" hidden>
         <h2 id="prickly-result-title" class="prickly-title">Result</h2>
         <div id="prickly-result-body" class="prickly-result-body"></div>
-        <div class="prickly-result-actions">
-          <button type="button" class="prickly-btn" id="prickly-again">Start over</button>
-          <button type="button" class="prickly-btn prickly-btn-secondary" id="prickly-another">Another test</button>
+        <div class="prickly-result-dock">
+          <div class="prickly-dock-left">
+            <button type="button" class="prickly-btn" id="prickly-save" title="Save this result under PRICKLY RESULTS on the left rail">Save</button>
+          </div>
+          <div class="prickly-dock-right">
+            <button type="button" class="prickly-btn prickly-btn-compare" id="prickly-compare" title="Compare saved PRICKLY results across expertise areas" hidden>Compare</button>
+          </div>
         </div>
+        <div class="prickly-result-actions">
+          <button type="button" class="prickly-btn prickly-btn-secondary" id="prickly-again" title="Back to PRICKLY home">Start over</button>
+          <button type="button" class="prickly-btn prickly-btn-delete" id="prickly-delete" title="Delete this saved PRICKLY result" hidden>Delete</button>
+          <button type="button" class="prickly-btn prickly-btn-next" id="prickly-another" title="Take Next Level Test - harder questionnaire">Take Next Level Test</button>
+        </div>
+        <p id="prickly-save-status" class="prickly-save-status" hidden></p>
       </div>
+
+      </div><!-- /.prickly-panel-body -->
+      <div class="prickly-resize prickly-resize-n" data-dir="n"></div>
+      <div class="prickly-resize prickly-resize-s" data-dir="s"></div>
+      <div class="prickly-resize prickly-resize-e" data-dir="e"></div>
+      <div class="prickly-resize prickly-resize-w" data-dir="w"></div>
+      <div class="prickly-resize prickly-resize-ne" data-dir="ne"></div>
+      <div class="prickly-resize prickly-resize-nw" data-dir="nw"></div>
+      <div class="prickly-resize prickly-resize-se" data-dir="se" title="Resize"></div>
+      <div class="prickly-resize prickly-resize-sw" data-dir="sw"></div>
     </div>
   </div>
 
@@ -320,7 +459,7 @@
     </div>
   </div>
 
-  <script src="app.js?v=gold92"></script>
-  <script src="prickly.js?v=1"></script>
+  <script src="app.js?v=gold96"></script>
+  <script src="prickly.js?v=15"></script>
 </body>
 </html>

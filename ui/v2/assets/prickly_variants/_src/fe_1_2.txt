@@ -1,0 +1,122 @@
+# 1
+## Semantic HTML
+T A native button element gives keyboard activation and screen reader semantics that a styled div does not provide by default.
+F Using headings only to make text bigger is fine because screen readers read the visual style.
+T A single page should normally have a meaningful heading structure that reflects its content hierarchy.
+F A div with a click handler is equivalent to a link for users who navigate by keyboard.
+T Landmarks such as main and nav let assistive technology users jump between page regions.
+## Alternative text
+T An informative image needs alternative text that conveys its purpose, not just a filename.
+F Every image should get alt text describing exactly how it looks, including decorative flourishes.
+T A purely decorative image should have an empty alt attribute so screen readers skip it.
+F A missing alt attribute and an empty alt attribute are treated the same by assistive technology.
+T Text embedded in an image needs its content repeated in the alternative text or nearby text.
+## Keyboard and focus
+T Every interactive control should be reachable and operable with the keyboard alone.
+F Removing the focus outline is fine for visual polish because mouse users do not need it.
+T Focus order should follow a logical reading order, which usually follows DOM order.
+F A positive tabindex value on several elements is a reliable way to control tab order.
+T A visible focus indicator helps keyboard users know where they are on the page.
+## Color contrast
+T Text with insufficient contrast against its background can be unreadable for people with low vision.
+F Color alone is enough to show that a form field has an error.
+T Light gray placeholder text on white often fails contrast guidance.
+F If a design passes in a screenshot on your monitor, it passes for every user.
+T Contrast requirements apply to meaningful interface boundaries such as input borders, not only to text.
+## Image loading
+T Serving a 4000 pixel image into a 300 pixel slot wastes bandwidth and slows loading.
+F Lazy loading should be applied to the hero image that is visible on first paint.
+T Specifying image width and height lets the browser reserve space before the image loads.
+F Image format and compression have little effect on page speed compared with JavaScript.
+T Responsive image sources let the browser pick an appropriately sized file for the device.
+## Form labels
+T Each form input needs a programmatically associated label, not just nearby text.
+F Placeholder text is a sufficient replacement for a label since it describes the field.
+T Clicking a properly associated label focuses its input, which enlarges the effective target.
+F Required fields need no indication other than a red asterisk with no text explanation.
+T Group related controls such as radio buttons with a fieldset and legend.
+## Responsive layout
+T Without a viewport meta tag, mobile browsers may render a page at desktop width and scale it down.
+F Testing on one phone size is enough to show the layout works on small screens.
+T Touch targets that are too small or close together cause mis-taps for many users.
+F Disabling zoom is a fine way to keep a design intact on mobile.
+T Content should reflow at narrow widths without requiring horizontal scrolling for reading text.
+## State placement
+T State used by only one component is usually best kept local to that component.
+F Putting all state in a single global store is always the cleanest architecture.
+T Derived values should usually be computed from existing state rather than stored as separate state.
+F Storing the same data in two places makes it easier to keep consistent.
+T State that must survive a refresh or be shareable can belong in the URL.
+## Input validation
+T Client-side validation improves user experience but cannot be relied on for security.
+F If the form checks input in the browser, the server does not need to check it again.
+T Validation messages should tell the user what is wrong and how to fix it.
+F Validating only on submit is always better than giving any feedback while the user types.
+T Trimming and normalizing input can prevent confusing failures for values such as email addresses.
+## Loading and error states
+T A request that fails silently leaves the user unsure whether their action worked.
+F A loading spinner with no timeout is a complete handling of slow requests.
+T An error message should say what happened and offer a retry or next step where possible.
+F Showing an empty list and showing a failed load are the same situation from the user's point of view.
+T Disabling a submit button during submission helps prevent accidental duplicate requests.
+# 2
+## Rendering strategy
+T Server-side rendering can improve first paint for content pages but adds server load and hydration cost.
+F Client-side rendering is always faster because the server does less work.
+T Static generation suits content that changes rarely, but is a poor fit for highly personalized pages.
+F Server rendering removes the need to care about JavaScript bundle size.
+T An interactive dashboard behind login may gain little from server rendering for search engines.
+## Bundle size vs convenience
+T Importing a whole utility library for one function can add significant weight to the bundle.
+F Bundle size matters only for slow connections and can be ignored for most users.
+T Code splitting by route delays loading code the user may never need.
+F Tree shaking removes unused code from any library regardless of how it is written.
+T A dependency that saves a day of work can still be a poor trade if it adds heavy runtime cost.
+## Memoization
+T Memoizing a cheap computation can cost more than it saves.
+F Wrapping every component in memo is a safe way to improve performance.
+T Profiling should tell you where re-rendering is actually costly before you add memoization.
+F A memoized component never re-renders when its parent does.
+T An unstable object or function prop can defeat memoization of the child component.
+## Controlled vs uncontrolled forms
+T Controlled inputs re-render on each keystroke, which can matter in very large forms.
+F Uncontrolled inputs cannot be validated or read by the application.
+T Controlled inputs make it easier to keep the interface and application state in sync.
+F A form library is always unnecessary because forms are simple.
+T Large multi-step forms often benefit from clear ownership of where each field's value lives.
+## Styling approach
+T Runtime CSS-in-JS can add cost on the main thread compared with static stylesheets.
+F Global CSS is always safer than scoped styles because it is simpler.
+T Scoped styles reduce accidental collisions but can make cross-cutting design changes harder.
+F Utility classes eliminate the need for a design system.
+T Consistent design tokens help keep colors and spacing coherent across components.
+## Cache vs freshness
+T Caching API responses on the client improves speed but risks showing outdated data.
+F Cached data is acceptable in all cases because the user can refresh the page.
+T Stale-while-revalidate shows quick content and updates it, but the user may briefly see old values.
+F A cache key that ignores query parameters is safe as long as the endpoint is the same.
+T Data such as account balances may need stricter freshness than a list of blog posts.
+## Component library vs custom
+T An established accessible component library saves effort but may constrain design and increase bundle size.
+F A custom-built dropdown is accessible by default if it looks like a native one.
+T Building accessible custom widgets requires attention to keyboard behavior, roles, and focus.
+F A component library guarantees an accessible final product.
+T Customizing a library heavily can cost more than building the few components you need.
+## Optimistic UI
+T Optimistic updates make an app feel responsive but need a plan for rolling back when the server rejects the change.
+F Optimistic updates are suitable for every action, including payments.
+T Showing a success state before server confirmation can mislead users if failure is not handled.
+F An optimistic update removes the need to handle network errors.
+T Low-risk, reversible actions such as liking a post are better candidates for optimistic updates.
+## Pagination vs infinite scroll
+T Infinite scroll can make footer content unreachable and make it hard to return to a position.
+F Infinite scroll is always more engaging and therefore always better.
+T Pagination gives users a sense of location and supports linking to a page of results.
+F Virtualizing a list removes the need to think about how users find a specific item.
+T Keyboard and screen reader users may struggle with content that loads and shifts as they navigate.
+## Validation location
+T Server validation is the source of truth, and client validation is a convenience layer.
+F Duplicating validation rules in client and server code never causes inconsistency problems.
+T Sharing a validation schema between client and server reduces rules drifting apart.
+F Validating on blur always annoys users and should never be used.
+T Immediate feedback on a field the user has not finished typing can feel like an error before it is one.
