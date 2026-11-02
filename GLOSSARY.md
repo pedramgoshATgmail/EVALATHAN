@@ -114,6 +114,9 @@ Desk route id <code>benchrex</code>. Ten evalers, in this order: <a href="#satur
 
 Biasrex (Bias + rex) is the routing conductor for decision-quality / cognitive-bias gate evalers. He calls six evalers and writes each report beside the others. He counts how many ran, how many passed their own gate, and how many are deferred. He does not turn a blank into a zero, and he does not fold the six into one number. He is not a seventeenth Hydra score, not a ninth Dehydrus score, and not an eleventh Benchrex score. The room is a curated subset of the Cognitive Bias Codex tradition (Buster Benson's four problems; John Manoogian III poster; <a href="https://en.wikipedia.org/wiki/Cognitive_bias">Wikipedia: Cognitive bias</a>; <a href="https://bias.wiki/">bias.wiki</a>) - never one evaler per Codex leaf. Evaler card art is Ed Slop (Educational Slop). Live conduct() for Biasrex is still held.
 
+<p align="center"><img src="assets/glossary/cards/biasrex.png" alt="Biasrex" width="400"></p>
+<p align="center"><i>He calls the six. He does not add a score.</i></p>
+
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
 The bias-gate conductor. He does not grade ~180 named biases. He grades six runnable gates built from the Codex's four problems (filter / meaning / haste / memory) plus confirmation and automation trust. A missing mitigation artifact stays blank.
