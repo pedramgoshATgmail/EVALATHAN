@@ -1,6 +1,6 @@
 import pytest
 
-from evalathan.desk import add_heading, checkout_name, classify, prepare
+from evalathan.desk import add_heading, checkout_name, classify, clone_url, prepare
 
 
 def test_blank_paste_is_refused() -> None:
@@ -12,6 +12,17 @@ def test_github_link_is_not_a_folder() -> None:
     kind, url = classify("https://github.com/python/cpython.git")
     assert kind == "github"
     assert checkout_name(url) == "python__cpython"
+
+
+def test_clone_url_strips_tree_and_blob_paths() -> None:
+    assert (
+        clone_url("https://github.com/python/cpython/tree/main/Lib")
+        == "https://github.com/python/cpython.git"
+    )
+    assert (
+        clone_url("https://github.com/python/cpython/blob/main/README.rst")
+        == "https://github.com/python/cpython.git"
+    )
 
 
 def test_local_folder_is_used_as_itself(tmp_path) -> None:

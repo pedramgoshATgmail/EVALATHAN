@@ -33,6 +33,18 @@ def checkout_name(url: str) -> str:
     return f"{owner}__{repo}"
 
 
+def clone_url(url: str) -> str:
+    """Normalize pasted GitHub URLs to a cloneable repo root (drop /tree/, /blob/, …)."""
+    match = _GITHUB.match(url.strip().strip('"'))
+    if not match:
+        raise ValueError("That is not a github.com link to a repository.")
+    owner = match.group("owner")
+    repo = match.group("repo")
+    if owner in {".", ".."} or repo in {".", ".."}:
+        raise ValueError("That GitHub link is not a repository.")
+    return f"https://github.com/{owner}/{repo}.git"
+
+
 def prepare(text: str, scans: Path | None = None) -> tuple[Path, str]:
     """Turn a pasted link or folder into a directory Hydra can read."""
     kind, raw = classify(text)
@@ -46,23 +58,29 @@ def prepare(text: str, scans: Path | None = None) -> tuple[Path, str]:
     dest = root / checkout_name(raw)
     if (dest / ".git").is_dir():
         return dest, f"Using the copy already downloaded at {dest}"
+    repo_url = clone_url(raw)
     try:
+        # Shallow clone keeps Mac/Windows evaluates fast; Hydra only needs the tree.
         subprocess.run(
-            ["git", "clone", raw, str(dest)],
+            ["git", "clone", "--depth", "1", repo_url, str(dest)],
             check=True,
             capture_output=True,
             text=True,
+            timeout=600,
         )
     except FileNotFoundError as exc:
         raise ValueError(
             "Git is not installed, so a GitHub link cannot be downloaded. "
-            "Paste a folder on this PC, or install Git for Windows."
+            "Paste a folder on this PC, or install Git (Xcode CLT on Mac, or git-scm.com)."
+        ) from exc
+    except subprocess.TimeoutExpired as exc:
+        raise ValueError(
+            "Git clone timed out after 10 minutes. Try a smaller repo or paste a local folder."
         ) from exc
     except subprocess.CalledProcessError as exc:
         detail = (exc.stderr or exc.stdout or "").strip()
         raise ValueError(detail or "Git could not download that repository.") from exc
     return dest, f"Downloaded to {dest}"
-
 
 def add_heading(frame, root) -> None:
     """HYDRA at the left. The mark sits at the top-right corner."""

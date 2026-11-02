@@ -3,6 +3,31 @@
     "https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/b714e3541783766d11d45fe79413be565da56182/docs/glossary.html";
   const GLOSS_MD = "https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/GLOSSARY.md";
   const anchor = (id) => GLOSS_MD + "#user-content-" + id;
+
+  /** Open glossary / external URLs outside the pywebview desk (Mac window.open is often a no-op). */
+  function openExternal(url) {
+    const href = String(url || "").trim();
+    if (!href) return;
+    try {
+      if (
+        window.pywebview &&
+        window.pywebview.api &&
+        typeof window.pywebview.api.open_external === "function"
+      ) {
+        window.pywebview.api.open_external(href);
+        return;
+      }
+    } catch (err) {
+      /* fall through */
+    }
+    const a = document.createElement("a");
+    a.href = href;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
   /*
    * Auto-link Evalathan glossary terms in memo prose (same GitHub #user-content-* targets
    * as the left-rail evaler names). Distinctive labels only - skip generic words like Agent.
@@ -2274,7 +2299,7 @@
     }
     host.root.querySelectorAll("[data-gloss-href]").forEach(function (el) {
       el.onclick = function () {
-        window.open(el.getAttribute("data-gloss-href") || GLOSS_MD, "_blank", "noopener,noreferrer");
+        openExternal(el.getAttribute("data-gloss-href") || GLOSS_MD);
       };
     });
   }
@@ -2961,10 +2986,10 @@
     renderHero();
   });
   document.getElementById("btn-gloss").addEventListener("click", () => {
-    window.open(GLOSS_SEARCH, "_blank", "noopener,noreferrer");
+    openExternal(GLOSS_SEARCH);
   });
   document.getElementById("btn-selfbelt").addEventListener("click", () => {
-    window.open(anchor("selfbelt"), "_blank", "noopener,noreferrer");
+    openExternal(anchor("selfbelt"));
   });
   document.querySelectorAll(".theme-btn").forEach((b) => {
     b.addEventListener("click", () => setTheme(b.getAttribute("data-theme-set")));

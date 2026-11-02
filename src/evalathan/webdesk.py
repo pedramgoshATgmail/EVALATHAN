@@ -1,4 +1,4 @@
-﻿"""Local Hydra desk: ui/v2 files on this PC, shown in an Evalathan desktop window."""
+"""Local Hydra desk: ui/v2 files on this PC, shown in an Evalathan desktop window."""
 
 from __future__ import annotations
 
@@ -164,10 +164,27 @@ def start_server(port: int = PORT) -> ThreadingHTTPServer:
 def _open_desktop_window(url: str, title: str) -> bool:
     """Show the local desk in a native window with the Evalathan title (no browser chrome)."""
     try:
+        import webbrowser
+
         import webview
     except ImportError:
         close_launch_splash()
         return False
+
+    class DeskBridge:
+        """JS bridge so GLOSS / SELFBELT / glossary links open in the real browser.
+
+        On macOS, window.open() from the desk WebView is often a no-op. target=_blank
+        links need OPEN_EXTERNAL_LINKS_IN_BROWSER; this bridge covers button clicks too.
+        """
+
+        def open_external(self, href: str) -> bool:
+            target = (href or "").strip()
+            if not target:
+                return False
+            webbrowser.open(target)
+            return True
+
     icon = app_icon()
     kwargs = {
         "title": title,
@@ -175,16 +192,30 @@ def _open_desktop_window(url: str, title: str) -> bool:
         "width": 1440,
         "height": 900,
         "min_size": (960, 640),
+        "js_api": DeskBridge(),
     }
     # Drop the FUSS launching splash once the real desk window is ready.
     close_launch_splash()
+    try:
+        webview.settings["OPEN_EXTERNAL_LINKS_IN_BROWSER"] = True
+    except Exception:  # noqa: BLE001
+        pass
     try:
         if icon is not None:
             webview.create_window(**kwargs, icon=str(icon))
         else:
             webview.create_window(**kwargs)
     except TypeError:
-        webview.create_window(**kwargs)
+        kwargs.pop("js_api", None)
+        try:
+            if icon is not None:
+                webview.create_window(**kwargs, icon=str(icon))
+            else:
+                webview.create_window(**kwargs)
+        except TypeError:
+            webview.create_window(
+                title=title, url=url, width=1440, height=900, min_size=(960, 640)
+            )
     # private_mode=True (pywebview default on some builds) wipes localStorage on close.
     storage = state_dir() / "webview"
     storage.mkdir(parents=True, exist_ok=True)
@@ -196,7 +227,6 @@ def _open_desktop_window(url: str, title: str) -> bool:
         except TypeError:
             webview.start()
     return True
-
 
 def open_desk(port: int = PORT, open_window: bool = True) -> int:
     """Serve ui/v2 from this PC and open the Evalathan desktop window."""

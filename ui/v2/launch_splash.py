@@ -577,7 +577,7 @@ def _apply_circle_region(root, size: int) -> None:
 def _keyed_splash_png(path: Path, target: int, key_rgb: tuple[int, int, int]) -> Path:
     """Flatten logo onto the transparent-key RGB so Tk never paints alpha as black."""
     try:
-        from PIL import Image, ImageDraw
+        from PIL import Image
     except ImportError:
         return path
 
@@ -588,6 +588,26 @@ def _keyed_splash_png(path: Path, target: int, key_rgb: tuple[int, int, int]) ->
     out = state_dir() / "fuss-splash-keyed.png"
     keyed.convert("RGB").save(out, format="PNG")
     return out
+
+
+def _rgba_splash_frame_pngs(logo_path: Path, size: int) -> list[Path] | None:
+    """Write three real-alpha PNG frames (Mac Tk uses systemTransparent + PNG alpha)."""
+    try:
+        from PIL import Image
+    except ImportError:
+        return None
+    try:
+        base = _build_base_rgba(logo_path, size, supersample=8)
+        out_dir = state_dir()
+        paths: list[Path] = []
+        for phase in range(3):
+            frame = _draw_caption(base, phase)
+            path = out_dir / f"fuss-splash-rgba-p{phase}.png"
+            frame.save(path, format="PNG")
+            paths.append(path)
+        return paths
+    except Exception:  # noqa: BLE001
+        return None
 
 
 def _load_logo_fill(path: Path, target: int, key_rgb: tuple[int, int, int] = (1, 2, 3)):
@@ -618,8 +638,115 @@ def _load_logo_fill(path: Path, target: int, key_rgb: tuple[int, int, int] = (1,
     return raw, diameter
 
 
+def _run_splash_tk_mac(logo_path: Path) -> bool:
+    """Per-pixel alpha circle on macOS (no black square chrome)."""
+    try:
+        import tkinter as tk
+    except ImportError:
+        return False
+
+    frames = _rgba_splash_frame_pngs(logo_path, TARGET_DIAMETER)
+    if not frames:
+        return False
+
+    size = TARGET_DIAMETER
+    root = tk.Tk()
+    root.title("EVALATHAN")
+    root.overrideredirect(True)
+    try:
+        root.attributes("-topmost", True)
+    except tk.TclError:
+        pass
+    # Aqua Tk: transparent window chrome; PNG alpha paints the circle only.
+    try:
+        root.attributes("-transparent", True)
+        root.configure(bg="systemTransparent")
+    except tk.TclError:
+        try:
+            root.destroy()
+        except tk.TclError:
+            pass
+        return False
+
+    photos = []
+    try:
+        # ImageTk keeps PNG alpha; plain tk.PhotoImage often paints clear as black on Mac.
+        from PIL import Image, ImageTk
+
+        for path in frames:
+            photos.append(ImageTk.PhotoImage(Image.open(path)))
+    except Exception:  # noqa: BLE001
+        try:
+            root.destroy()
+        except tk.TclError:
+            pass
+        return False
+    root._photos = photos
+
+    if stop_path().is_file():
+        try:
+            root.destroy()
+        except tk.TclError:
+            pass
+        return False
+
+    canvas = tk.Canvas(
+        root,
+        width=size,
+        height=size,
+        bg="systemTransparent",
+        highlightthickness=0,
+        bd=0,
+    )
+    canvas.pack(fill="both", expand=True)
+    img_id = canvas.create_image(size // 2, size // 2, image=photos[0], anchor="center")
+
+    root.update_idletasks()
+    sw = root.winfo_screenwidth()
+    sh = root.winfo_screenheight()
+    x = max(0, (sw - size) // 2)
+    y = max(0, (sh - size) // 2)
+    root.geometry(f"{size}x{size}+{x}+{y}")
+
+    phase = {"i": 0}
+    started = time.monotonic()
+
+    def _tick_dots() -> None:
+        if not root.winfo_exists():
+            return
+        phase["i"] = (phase["i"] + 1) % len(photos)
+        canvas.itemconfigure(img_id, image=photos[phase["i"]])
+        root.after(DOT_MS, _tick_dots)
+
+    def _poll() -> None:
+        if not root.winfo_exists():
+            return
+        if stop_path().is_file() or (time.monotonic() - started) > MAX_SECONDS:
+            try:
+                root.destroy()
+            except tk.TclError:
+                pass
+            return
+        root.after(POLL_MS, _poll)
+
+    def _on_close() -> None:
+        try:
+            root.destroy()
+        except tk.TclError:
+            pass
+
+    root.protocol("WM_DELETE_WINDOW", _on_close)
+    root.after(DOT_MS, _tick_dots)
+    root.after(POLL_MS, _poll)
+    try:
+        root.mainloop()
+    finally:
+        pass
+    return True
+
+
 def _run_splash_tk(logo_path: Path) -> int:
-    """Fallback splash (color-key). Used when layered Win32 path is unavailable."""
+    """Fallback splash (color-key). Used when layered / Mac transparent path is unavailable."""
     try:
         import tkinter as tk
     except ImportError:
@@ -708,7 +835,7 @@ def _run_splash_tk(logo_path: Path) -> int:
     y = max(0, (sh - size) // 2)
     root.geometry(f"{size}x{size}+{x}+{y}")
     # Do not SetWindowRgn - hard elliptic regions stair-step on every background.
-    # Color-key alone is the Tk fallback; layered Win32 path is preferred.
+    # Color-key alone is the Tk fallback; layered Win32 / Mac transparent is preferred.
 
     phase = {"i": 0}
     started = time.monotonic()
@@ -775,6 +902,12 @@ def run_splash() -> int:
         if sys.platform == "win32":
             try:
                 if _run_splash_layered_win32(logo_path):
+                    return 0
+            except Exception:  # noqa: BLE001 - never block desk launch
+                pass
+        elif sys.platform == "darwin":
+            try:
+                if _run_splash_tk_mac(logo_path):
                     return 0
             except Exception:  # noqa: BLE001 - never block desk launch
                 pass

@@ -148,7 +148,7 @@ echo "Installing the Evalathan Desktop launcher..."
 bash "$(dirname "$0")/install_desktop_app.sh" || true
 echo
 echo "Starting Evalathan v0.3.2 local desk window..."
-echo "Look for Evalathan.command on your Desktop (and Desktop/Evalathan/)."
+echo "Look for Evalathan.app on your Desktop (dragon icon), or Evalathan.command as a fallback."
 echo "Keep this terminal open while the desk is running, or use the Desktop launcher next time."
 echo
 exec python -c "from evalathan.webdesk import open_desk; raise SystemExit(open_desk())"
