@@ -1118,6 +1118,14 @@ html {
   line-height: 1.45;
   color: #1a1a1a;
 }
+/* Same faint rectangle language as .past-list li.is-latest */
+.nell-ev-box {
+  border: 1px solid var(--latest-chip-border);
+  border-radius: 0.4rem;
+  padding: 0.45rem 0.55rem 0.5rem;
+  background: transparent;
+  margin: 0.15rem 0 0;
+}
 .nell-ev-heading {
   margin: 0 0 0.3rem;
   font-size: 0.8rem; /* was 0.68rem; +1 size */

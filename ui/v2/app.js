@@ -1695,8 +1695,10 @@
       '<p class="nell-blurb">' +
       linkMemoProse(escapeHtml(n.blurb), run) +
       "</p>" +
+      '<div class="nell-ev-box">' +
       '<h4 class="nell-ev-heading"><span class="memo-evidence-word">Evidence</span></h4>' +
       renderNellEvidence(n.evidence, run) +
+      "</div>" +
       "</article>"
     );
   }
@@ -3062,6 +3064,7 @@
         ".nell-card-head{display:flex;flex-wrap:wrap;gap:6px 10px;margin:0 0 6px;align-items:baseline}" +
         ".nell-gate,.nell-status,.nell-score{font-size:10px;text-transform:uppercase;background:#eee;padding:2px 6px;border-radius:999px}" +
         ".nell-blurb{margin:0 0 8px;font-size:14px;line-height:1.4}.nell-question{margin:0 0 6px;font-size:12px;color:#555}" +
+        ".nell-ev-box{border:1px solid #b8c46a;border-radius:6px;padding:6px 8px;margin:4px 0 0}" +
         ".nell-ev-heading{margin:0 0 4px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#bf0a30}" +
         ".memo-evidence-word{color:#bf0a30;font-weight:600;font-size:1.125em}" +
         ".nell-evidence{list-style:none;padding:0;margin:0}.nell-evidence li{margin:0 0 4px;font-size:12px}" +
