@@ -1,19 +1,19 @@
 """Bake Biasrex emblem into glossary card + UI logo assets (black / white / grey)."""
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageOps
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = Path(
     r"C:\Users\admin\.cursor\projects\c-Users-admin-Desktop-Altnoble-Clients-AckmanZiff-AZ-Agent-CHARLIE-07-14-2026-az-signal-engine-main\assets"
 )
 
-# Black UI emblem (size/placement lock). White/grey uploads must match this canvas.
+# Black UI emblem (size/placement lock).
 BLACK_UI = ROOT / "ui" / "v2" / "assets" / "biasrex-logo.png"
 # Full-transparent emblem for white / light backgrounds (and glossary card).
 SRC_WHITE = ASSETS / "BIASREX_full_trans_FINAL-5a2453cd-5d2d-491d-b336-32a8e3bbe07d.png"
-# Grey-theme match (same geometry as black UI).
-SRC_GREY = ASSETS / "BIASREX_GREY_MATCH-ababca29-7d11-47c2-a699-873c51da3d9a.png"
+# Grey theme: darken from black UI so midtone mean matches Benchrex/Dehydrus (~63-66).
+GREY_FACTOR = 0.50
 
 
 def fit_to_black_canvas(src: Path, target_w: int, target_h: int) -> Image.Image:
@@ -30,13 +30,22 @@ def fit_to_black_canvas(src: Path, target_w: int, target_h: int) -> Image.Image:
     return fitted
 
 
+def grey_from_black(black: Image.Image, factor: float = GREY_FACTOR) -> Image.Image:
+    """Same geometry as black UI; luminance matched to peer engine grey logos."""
+    gray = ImageOps.grayscale(black)
+    g = Image.eval(gray, lambda p: int(p * factor))
+    a = black.split()[-1]
+    return Image.merge("RGBA", (g, g, g, a))
+
+
 def main() -> None:
-    target_w, target_h = Image.open(BLACK_UI).size
+    black = Image.open(BLACK_UI).convert("RGBA")
+    target_w, target_h = black.size
     if (target_w, target_h) != (630, 655):
         raise SystemExit(f"unexpected black UI size {target_w}x{target_h}")
 
     white = fit_to_black_canvas(SRC_WHITE, target_w, target_h)
-    grey = fit_to_black_canvas(SRC_GREY, target_w, target_h)
+    grey = grey_from_black(black)
 
     card_path = ROOT / "assets" / "glossary" / "cards" / "biasrex.png"
     white_png = ROOT / "ui" / "v2" / "assets" / "biasrex-logo-white.png"
