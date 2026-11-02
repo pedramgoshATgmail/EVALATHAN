@@ -23,6 +23,8 @@ Hard-refresh (Ctrl+Shift+R) after pulls.
 
 **Evaluate** opens a processing popup (fading dots + per-evaler blurbs), then the same window becomes one consolidated brief memo (**What this means**, **Top gates**, then **Full details**). Memo text is selectable for copy/paste. Prose auto-links glossary rooms, ISO/IEEE/NASA/AWS/SFIA/et al to their official sites (same URLs as the glossary), and file paths (`.py`, `.json`, …) to GitHub or local files. **Full details** keeps the per-evaler read (cards, Evidence headings in US-flag red, glossary links). **Download** (orange) writes a PDF straight to your Downloads folder (no print dialog; Mac/Windows). **Save** (green) writes **latest run** and appends **saved runs** in localStorage (compares the same target against the prior saved twin).
 
+**FUSS** (For-User Session Switch) on the left rail opens the session-timer GUI: tick the disclaimer, set 20-45 minutes (25 typical), **Start** / **Stop**. While armed, the LCD counts down. When time is up, a circular FUSS disk appears center-screen with the BREAK TIME banner flashing on/off (click or Esc to dismiss). FUSS is a utility timer, not an agent.
+
 ## Desktop icon
 
 ```powershell

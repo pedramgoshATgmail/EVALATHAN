@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=gold67" />
+  <link rel="stylesheet" href="styles.css?v=gold68" />
   <link rel="preload" as="image" href="assets/evalathan-dragon.webp?v=5" type="image/webp" />
   <link rel="preload" as="image" href="assets/hydra-logo.webp?v=5" type="image/webp" />
   <link rel="preload" as="image" href="assets/dehydrus-logo.webp?v=5" type="image/webp" />
@@ -39,9 +39,8 @@
               <img class="mascot" src="assets/prickly.png" alt="PRICKLY" draggable="false" />
               <span class="mascot-soon-blurb" hidden>Coming soon</span>
             </button>
-            <button type="button" class="mascot-wrap is-soon" title="Coming soon" aria-label="FUSS - Coming soon">
+            <button type="button" class="mascot-wrap" id="btn-fuss" title="FUSS - For-User Session Switch (utility timer, not an agent)" aria-label="FUSS - For-User Session Switch">
               <img class="mascot" src="assets/fuss.png" alt="FUSS" draggable="false" />
-              <span class="mascot-soon-blurb" hidden>Coming soon</span>
             </button>
           </div>
           <div class="slide-section">
@@ -125,6 +124,37 @@
     </div>
   </div>
 
-  <script src="app.js?v=gold67"></script>
+  <!-- FUSS (For-User Session Switch) panel - GUI art with live controls -->
+  <div id="fuss-layer" class="fuss-layer" hidden>
+    <div class="fuss-panel" role="dialog" aria-modal="true" aria-labelledby="fuss-panel-title">
+      <button type="button" class="fuss-close" id="fuss-close" title="Close FUSS">×</button>
+      <h2 id="fuss-panel-title" class="visually-hidden">FUSS session timer</h2>
+      <div class="fuss-art-wrap">
+        <img class="fuss-art" src="assets/fuss-panel-gui.png?v=1" alt="FUSS session timer panel" draggable="false" />
+        <div class="fuss-lcd" id="fuss-lcd" aria-live="polite">25:00</div>
+        <button type="button" class="fuss-hit fuss-hit-start" id="fuss-start" title="Start timer" aria-label="Start timer"></button>
+        <button type="button" class="fuss-hit fuss-hit-stop" id="fuss-stop" title="Stop timer" aria-label="Stop timer"></button>
+        <label class="fuss-mins-wrap" title="Sitting length in minutes (20-45)">
+          <span class="visually-hidden">Minutes</span>
+          <input id="fuss-mins" type="number" min="20" max="45" step="1" value="25" inputmode="numeric" />
+        </label>
+        <label class="fuss-ack-wrap" title="Confirm FUSS is only a timer">
+          <input id="fuss-ack" type="checkbox" />
+          <span class="visually-hidden">I understand this is only a timer for my sitting with AI. It is not medical advice, not a diagnosis, and not a replacement for my firm's AI policy.</span>
+        </label>
+      </div>
+      <p class="fuss-status" id="fuss-status">Timer off.</p>
+    </div>
+  </div>
+
+  <!-- Circular BREAK TIME splash (FUSS disk + flashing BREAK TIME art) -->
+  <div id="fuss-break-layer" class="fuss-break-layer" hidden>
+    <button type="button" class="fuss-break-disk" id="fuss-break-dismiss" title="Dismiss break - click to continue" aria-label="BREAK TIME - click to dismiss">
+      <img class="fuss-break-art" src="assets/fuss-splash.png?v=1" alt="" draggable="false" />
+      <img class="fuss-break-banner" src="assets/fuss-breaktime.png?v=1" alt="BREAK TIME!" draggable="false" />
+    </button>
+  </div>
+
+  <script src="app.js?v=gold68"></script>
 </body>
 </html>

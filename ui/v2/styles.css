@@ -610,6 +610,13 @@ button { cursor: pointer; border: 0; background: none; }
   opacity: 0.55;
   filter: grayscale(0.35);
 }
+.mascot-wrap:not(.is-soon) .mascot {
+  opacity: 1;
+  filter: none;
+}
+.mascot-wrap.is-armed .mascot {
+  box-shadow: 0 0 0 2px #2f7a45;
+}
 .mascot-soon-blurb {
   position: absolute;
   left: 50%;
@@ -1237,6 +1244,234 @@ html {
   pointer-events: auto;
 }
 .confirm-layer[hidden] { display: none !important; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* FUSS session timer panel (GUI art + live hit targets) */
+.fuss-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 130;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.72);
+  pointer-events: auto;
+}
+.fuss-layer[hidden] { display: none !important; }
+.fuss-panel {
+  position: relative;
+  width: min(820px, 94vw);
+  padding: 0.55rem 0.55rem 0.65rem;
+  border-radius: 1.1rem;
+  background: #1a1a1a;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.55);
+}
+.fuss-close {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.55rem;
+  z-index: 3;
+  width: 1.8rem;
+  height: 1.8rem;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.fuss-close:hover { background: rgba(255, 255, 255, 0.28); }
+.fuss-art-wrap {
+  position: relative;
+  width: 100%;
+  line-height: 0;
+}
+.fuss-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.85rem;
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+}
+.fuss-lcd {
+  position: absolute;
+  left: 44.5%;
+  top: 9.5%;
+  width: 32%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  border-radius: 0.35rem;
+  background: #c4c8bb;
+  color: #1a1a1a;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: clamp(1.55rem, 4.6vw, 2.55rem);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  pointer-events: none;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.18);
+}
+.fuss-hit {
+  position: absolute;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 999px;
+}
+.fuss-hit:focus-visible {
+  outline: 2px solid #2f6fbf;
+  outline-offset: 2px;
+}
+.fuss-hit:hover {
+  box-shadow: inset 0 0 0 999px rgba(255, 255, 255, 0.08);
+}
+.fuss-hit:active {
+  box-shadow: inset 0 0 0 999px rgba(0, 0, 0, 0.12);
+}
+.fuss-hit-start {
+  left: 44%;
+  top: 39.2%;
+  width: 24%;
+  height: 11.5%;
+}
+.fuss-hit-stop {
+  left: 70%;
+  top: 40.5%;
+  width: 15.5%;
+  height: 11%;
+}
+.fuss-mins-wrap {
+  position: absolute;
+  left: 62%;
+  top: 57.5%;
+  width: 22%;
+  height: 11%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  cursor: text;
+}
+.fuss-mins-wrap input {
+  width: 100%;
+  height: 78%;
+  margin: 0;
+  border: 1px solid #c8c8c8;
+  border-radius: 0.35rem;
+  background: #fff;
+  color: #111;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: clamp(1rem, 2.4vw, 1.35rem);
+  font-weight: 500;
+  text-align: center;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+.fuss-ack-wrap {
+  position: absolute;
+  left: 5.8%;
+  top: 82%;
+  width: 4.2%;
+  height: 6.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  cursor: pointer;
+}
+.fuss-ack-wrap input {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin: 0;
+  accent-color: #2f7a45;
+  cursor: pointer;
+}
+.fuss-status {
+  margin: 0.45rem 0.35rem 0.1rem;
+  font-family: var(--font);
+  font-size: 0.88rem;
+  color: #e8e8e8;
+  line-height: 1.35;
+}
+.fuss-status.is-warn { color: #ffb4b4; }
+.fuss-status.is-on { color: #9fddb0; }
+
+/* Circular BREAK TIME overlay (launching-splash twin) */
+.fuss-break-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 140;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.55);
+  pointer-events: auto;
+}
+.fuss-break-layer[hidden] { display: none !important; }
+.fuss-break-disk {
+  position: relative;
+  width: min(320px, 72vw);
+  height: min(320px, 72vw);
+  border: 0;
+  padding: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  background: transparent;
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.45);
+}
+.fuss-break-art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.fuss-break-banner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 88%;
+  height: auto;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  object-fit: contain;
+  opacity: 1;
+  animation: fuss-break-flash 0.9s steps(1, end) infinite;
+}
+.fuss-break-layer.is-on .fuss-break-banner {
+  animation-play-state: running;
+}
+@keyframes fuss-break-flash {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
 .confirm-card {
   width: min(320px, 90vw);
   padding: 1.25rem 1.35rem 1.15rem;
