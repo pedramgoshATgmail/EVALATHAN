@@ -228,13 +228,14 @@ button { cursor: pointer; border: 0; background: none; }
   opacity: 0.85;
 }
 .blurbs {
-  max-width: 36rem;
+  max-width: 40rem;
   margin: 0.35rem 0 0;
   font-family: var(--mono);
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   line-height: 1.55;
   color: var(--text);
   white-space: pre-line;
+  text-align: center;
 }
 
 .page-lower {

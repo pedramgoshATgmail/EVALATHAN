@@ -15,7 +15,7 @@
       wordOnLight: "assets/hydra-word-black.png",
       art: "assets/hydra-logo.png",
       blurbs:
-        "Sixteen software evalers across the product life cycle.\nEach evaler reports its own gate.\nA blank is not a fail and not a zero.",
+        "Hydra engine conducts 16 static evalers (non-exhaustive).\nEach evaler reports its own life-cycle gate.\nA blank is not a fail and not a zero.",
       evalers: [
         "devly", "archly", "codely", "refactorly", "mixly", "runly", "levi", "menschly",
         "tokely", "pressly", "triadly", "chorely", "trajectly", "warrantly", "domly", "stackly",
@@ -33,7 +33,7 @@
       wordOnLight: "assets/dehydrus-word-black.png",
       art: "assets/dehydrus-logo.png",
       blurbs:
-        "Eight LuDaTs (Limited-universe Data Test sets) under PRETRUWs.\nPhysical world-model claims stay off Hydra's vector.\nA missing world stays deferred.",
+        "Dehydrus engine conducts 8 physical world models (not wired in currently).\nLuDaTs (Limited-universe Data Test sets) rooms under PRETRUWs stay off Hydra's vector.\nA missing world stays deferred.",
       evalers: [
         "copernly", "keplerly", "galileoly", "darwinly", "mendly", "einsteinly", "curcuriely", "newtonly",
       ].map((id) => ({
@@ -50,7 +50,7 @@
       wordOnLight: "assets/benchrex-word-black.png",
       art: null,
       blurbs:
-        "Benchlux checks whether a claimed benchmark is still fit to cite.\nSeven criterion cells in v1 - Saturly through Driftly.\nAssessly, Reportly, Notifyly stay deferred.",
+        "Benchrex engine conducts 10 Benchlux cells (3 not wired in currently).\nSeven criterion cells check whether a claimed benchmark is still fit to cite.\nAssessly, Reportly, and Notifyly stay deferred.",
       evalers: [
         { id: "saturly", label: "Saturly", href: GLOSS_MD, later: false },
         { id: "contamly", label: "Contamly", href: GLOSS_MD, later: false },
@@ -71,7 +71,7 @@
       wordOnLight: "assets/biasrex-word-black.png",
       art: null,
       blurbs:
-        "Four Benson-shaped bias cells for artifact-backed gates.\nFilterly, Meaningly, Hastely, Memoryly.\nConfirmly and Automately stay deferred.",
+        "Biasrex engine conducts 6 bias cells (2 not wired in currently).\nFilterly, Meaningly, Hastely, and Memoryly are artifact-backed gates.\nConfirmly and Automately stay deferred.",
       evalers: [
         { id: "filterly", label: "Filterly", href: GLOSS_MD, later: false },
         { id: "meaningly", label: "Meaningly", href: GLOSS_MD, later: false },
@@ -87,7 +87,7 @@
     label: "EVALATHAN",
     art: "assets/evalathan-dragon.png",
     blurbs:
-      "Paste a GitHub link or a folder on this PC.\nOpen evals for Hydra, Dehydrus, Benchrex, Biasrex.\nOpen history for past evaluation runs.",
+      "40 current evals, 4 routing engines.\nHydra engine conducts 16 static evalers (non-exhaustive).\nDehydrus engine conducts 8 physical world models (not wired in currently).\nBenchrex engine conducts 10 Benchlux cells (3 not wired in currently).\nBiasrex engine conducts 6 bias cells (2 not wired in currently).",
   };
 
   let activeId = "hydra";
