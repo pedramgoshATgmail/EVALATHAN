@@ -155,8 +155,9 @@
     return rows;
   })();
 
+  /* File paths in prose - not .md (avoids chewing GLOSSARY.md inside hrefs if a pass slips). */
   const FILE_PATH_RE =
-    /(?:[A-Za-z]:[\\/])?(?:[\w.-]+[\\/])*[\w.-]+\.(?:py|js|ts|tsx|jsx|json|jsonl|md|toml|yml|yaml|txt|html|css|go|rs|java|lock)\b/g;
+    /(?:[A-Za-z]:[\\/])?(?:[\w.-]+[\\/])*[\w.-]+\.(?:py|js|ts|tsx|jsx|json|jsonl|toml|yml|yaml|txt|html|css|go|rs|java|lock)\b/g;
 
   function githubBlobBase(target) {
     const t = String(target || "").trim();
@@ -184,9 +185,9 @@
     return "";
   }
 
-  function linkFilePaths(escapedText, run) {
-    let out = String(escapedText || "");
-    const parts = out.split(/(<[^>]+>)/g);
+  /* Only rewrite plain text nodes; never touch attributes inside existing <a> tags. */
+  function mapPlainTextSegments(html, fn) {
+    const parts = String(html || "").split(/(<[^>]+>)/g);
     let inAnchor = false;
     for (let i = 0; i < parts.length; i += 1) {
       const part = parts[i];
@@ -198,7 +199,14 @@
         continue;
       }
       if (inAnchor) continue;
-      parts[i] = part.replace(FILE_PATH_RE, function (matched) {
+      parts[i] = fn(part);
+    }
+    return parts.join("");
+  }
+
+  function linkFilePaths(escapedText, run) {
+    return mapPlainTextSegments(escapedText, function (text) {
+      return text.replace(FILE_PATH_RE, function (matched) {
         const href = memoFileHref(matched, run);
         if (!href) {
           return (
@@ -219,30 +227,17 @@
           "</a>"
         );
       });
-    }
-    return parts.join("");
+    });
   }
 
   function linkGlossaryTerms(escapedText) {
     let out = String(escapedText || "");
-    /* Skip spans already inside an <a>...</a> by splitting on tags. */
-    const parts = out.split(/(<[^>]+>)/g);
-    let inAnchor = false;
-    for (let i = 0; i < parts.length; i += 1) {
-      const part = parts[i];
-      if (!part) continue;
-      if (part.charAt(0) === "<") {
-        const lower = part.toLowerCase();
-        if (lower.indexOf("<a ") === 0 || lower === "<a>") inAnchor = true;
-        if (lower.indexOf("</a>") === 0) inAnchor = false;
-        continue;
-      }
-      if (inAnchor) continue;
-      let text = part;
-      GLOSS_AUTO_LINKS.forEach(function (term) {
-        text = text.replace(term.re, function (matched) {
+    /* One term at a time, then re-protect new <a> tags so EVALATHAN inside hrefs is not rematched. */
+    GLOSS_AUTO_LINKS.forEach(function (term) {
+      out = mapPlainTextSegments(out, function (text) {
+        return text.replace(term.re, function (matched) {
           return (
-            '<a href="' +
+            '<a class="memo-gloss-link" href="' +
             escapeHtml(anchor(term.id)) +
             '" target="_blank" rel="noopener noreferrer" title="' +
             escapeHtml(term.title) +
@@ -252,9 +247,8 @@
           );
         });
       });
-      parts[i] = text;
-    }
-    return parts.join("");
+    });
+    return out;
   }
 
   function linkMemoProse(escapedText, run) {
@@ -2390,27 +2384,35 @@
       };
     }
     host.root.querySelectorAll("[data-gloss-href]").forEach(function (el) {
-      el.onclick = function () {
+      el.onclick = function (ev) {
+        if (ev && ev.preventDefault) ev.preventDefault();
         openExternal(el.getAttribute("data-gloss-href") || GLOSS_MD);
       };
     });
-    /* Glossary + file links: open outside the desk WebView (Mac/Win). */
-    host.root.querySelectorAll(".memo-sheet a[href]").forEach(function (el) {
-      if (el.getAttribute("data-link-wired")) return;
-      el.setAttribute("data-link-wired", "1");
-      el.addEventListener("click", function (ev) {
-        const href = String(el.getAttribute("href") || "").trim();
-        if (!href || href.charAt(0) === "#") return;
-        if (
-          href.indexOf("http://") === 0 ||
-          href.indexOf("https://") === 0 ||
-          href.indexOf("file:") === 0
-        ) {
-          ev.preventDefault();
-          openExternal(href);
-        }
-      });
-    });
+    const sheet = host.root.querySelector(".memo-sheet");
+    if (sheet && !sheet.getAttribute("data-ext-link-wired")) {
+      sheet.setAttribute("data-ext-link-wired", "1");
+      /* Capture phase: glossary/file links always leave the desk WebView. */
+      sheet.addEventListener(
+        "click",
+        function (ev) {
+          const a = ev.target && ev.target.closest ? ev.target.closest("a[href]") : null;
+          if (!a || !sheet.contains(a)) return;
+          const href = String(a.getAttribute("href") || "").trim();
+          if (!href || href.charAt(0) === "#") return;
+          if (
+            href.indexOf("http://") === 0 ||
+            href.indexOf("https://") === 0 ||
+            href.indexOf("file:") === 0
+          ) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            openExternal(href);
+          }
+        },
+        true
+      );
+    }
   }
 
   function isRunSaved(run) {
