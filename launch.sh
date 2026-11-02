@@ -2,6 +2,34 @@
 set -e
 cd "$(dirname "$0")"
 
+start_fuss_splash() {
+  if [ ! -f ui/v2/launch_splash.py ]; then
+    return 0
+  fi
+  local py=""
+  if [ -x .venv/bin/python ]; then
+    py=".venv/bin/python"
+  elif command -v python3 >/dev/null 2>&1; then
+    py="$(command -v python3)"
+  fi
+  [ -n "$py" ] || return 0
+  "$py" ui/v2/launch_splash.py >/dev/null 2>&1 &
+  disown $! 2>/dev/null || true
+}
+
+stop_fuss_splash() {
+  if [ -f ui/v2/launch_splash.py ]; then
+    if [ -x .venv/bin/python ]; then
+      .venv/bin/python ui/v2/launch_splash.py --close >/dev/null 2>&1 || true
+    elif command -v python3 >/dev/null 2>&1; then
+      python3 ui/v2/launch_splash.py --close >/dev/null 2>&1 || true
+    fi
+  fi
+}
+
+trap stop_fuss_splash EXIT
+start_fuss_splash
+
 # Always take published main when this folder is a git clone (old Tk desk -> browser desk).
 if [ -d .git ] && command -v git >/dev/null 2>&1; then
   echo "Updating Evalathan to the published main tree..."
@@ -13,12 +41,16 @@ if [ -d .git ] && command -v git >/dev/null 2>&1; then
     if [ "$BEFORE" != "$AFTER" ] && [ -z "${EVALATHAN_RELAUNCHED:-}" ]; then
       echo "Update applied. Restarting launcher..."
       export EVALATHAN_RELAUNCHED=1
+      # Keep splash up across relaunch; do not stop it here.
+      trap - EXIT
       exec bash "$0" "$@"
     fi
   else
     echo "git fetch failed. Continuing with the files already on disk."
   fi
 fi
+# Splash script may have refreshed with main.
+start_fuss_splash
 
 if [ -x /opt/homebrew/bin/brew ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"

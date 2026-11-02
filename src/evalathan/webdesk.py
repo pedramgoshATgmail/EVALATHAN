@@ -11,6 +11,8 @@ from urllib.parse import urlparse
 from evalathan.desk import prepare
 from evalathan.desk_store import load_run_sets, runs_path, save_run_sets, state_dir
 from evalathan.hydra import conduct
+from evalathan.launch_splash import request_close as close_launch_splash
+from evalathan.launch_splash import spawn_if_needed as spawn_launch_splash
 
 PORT = 8787
 
@@ -164,6 +166,7 @@ def _open_desktop_window(url: str, title: str) -> bool:
     try:
         import webview
     except ImportError:
+        close_launch_splash()
         return False
     icon = app_icon()
     kwargs = {
@@ -173,6 +176,8 @@ def _open_desktop_window(url: str, title: str) -> bool:
         "height": 900,
         "min_size": (960, 640),
     }
+    # Drop the FUSS launching splash once the real desk window is ready.
+    close_launch_splash()
     try:
         if icon is not None:
             webview.create_window(**kwargs, icon=str(icon))
@@ -200,6 +205,8 @@ def open_desk(port: int = PORT, open_window: bool = True) -> int:
         from evalathan import __version__ as ver
     except Exception:  # noqa: BLE001
         ver = "0.3.1"
+    # Keep or start the centered FUSS "launching..." splash until the desk window opens.
+    spawn_launch_splash()
     httpd = None
     bound = port
     last_err: Exception | None = None
@@ -212,6 +219,7 @@ def open_desk(port: int = PORT, open_window: bool = True) -> int:
             last_err = exc
             continue
     if httpd is None:
+        close_launch_splash()
         raise RuntimeError(
             f"Could not bind a local desk port starting at {port}: {last_err}"
         ) from last_err
@@ -231,13 +239,16 @@ def open_desk(port: int = PORT, open_window: bool = True) -> int:
                     "Install tip: pywebview is required for the desktop window.",
                     flush=True,
                 )
+                close_launch_splash()
                 webbrowser.open(url)
                 thread.join()
         else:
+            close_launch_splash()
             thread.join()
     except KeyboardInterrupt:
         pass
     finally:
+        close_launch_splash()
         httpd.shutdown()
     return 0
 

@@ -11,7 +11,7 @@ See [BUILDLOG.md](../BUILDLOG.md). Short form:
 - **v0.2** (2026-10-16): Hydra sixteen on disk.
 - **v0.2 window** (2026-10-26): Tk Hydra GUI.
 - **v0.3.0** (2026-10-31): PRETRUWs + Dehydrus + eight LuDaTs evalers. Tk still default.
-- **v0.3.1** (2026-11-02, current): `ui/v2` local desk, hard-reset install, Desktop icon, Nell detail cards, glossary auto-links, disk-persisted saved runs.
+- **v0.3.1** (2026-11-02, current): `ui/v2` local desk, hard-reset install, Desktop icon, Nell detail cards, glossary auto-links, disk-persisted saved runs, FUSS launching splash on Desktop open.
 
 PRETRUWs (PREdiscovery TRuncated-Universes and Worlds) is the 4IR paradigm. LuDaTs (Limited-universe Data Test sets) is the methodology framework under it. Dehydrus conducts the eight LuDaTs brands. HabTwin is not one of those eight.
 

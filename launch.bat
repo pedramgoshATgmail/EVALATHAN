@@ -65,15 +65,27 @@ if not exist ".venv\Scripts\python.exe" (
 
 set "VENVPY=%~dp0.venv\Scripts\python.exe"
 call "%~dp0.venv\Scripts\activate.bat"
+
+REM FUSS launching splash while pip / desk startup runs.
+if exist "%~dp0ui\v2\launch_splash.py" (
+  if exist "%~dp0.venv\Scripts\pythonw.exe" (
+    start "" "%~dp0.venv\Scripts\pythonw.exe" "%~dp0ui\v2\launch_splash.py"
+  ) else (
+    start "" "%VENVPY%" "%~dp0ui\v2\launch_splash.py"
+  )
+)
+
 "%VENVPY%" -m pip install -U pip
 if errorlevel 1 (
   echo pip could not be updated.
+  if exist "%~dp0ui\v2\launch_splash.py" "%VENVPY%" "%~dp0ui\v2\launch_splash.py" --close >nul 2>&1
   pause
   exit /b 1
 )
 "%VENVPY%" -m pip install -e "%~dp0."
 if errorlevel 1 (
   echo Evalathan could not be installed.
+  if exist "%~dp0ui\v2\launch_splash.py" "%VENVPY%" "%~dp0ui\v2\launch_splash.py" --close >nul 2>&1
   pause
   exit /b 1
 )
@@ -91,5 +103,7 @@ echo Look for the Evalathan icon on your Desktop ^(and Desktop\Evalathan\^).
 echo Keep this console open while the desk is running, or use the Desktop icon next time.
 echo.
 "%VENVPY%" -c "from evalathan.webdesk import open_desk; raise SystemExit(open_desk())"
-if errorlevel 1 pause
-endlocal
+set "EC=%ERRORLEVEL%"
+if exist "%~dp0ui\v2\launch_splash.py" "%VENVPY%" "%~dp0ui\v2\launch_splash.py" --close >nul 2>&1
+if not "%EC%"=="0" pause
+exit /b %EC%
