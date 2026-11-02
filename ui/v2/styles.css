@@ -1811,6 +1811,10 @@ html {
   color: #1a5a1a;
   text-align: center;
 }
+.prickly-title-link {
+  color: #2f6fbf;
+  text-decoration: underline;
+}
 .prickly-title-tag {
   display: block;
   margin: 0 0 0.75rem;
