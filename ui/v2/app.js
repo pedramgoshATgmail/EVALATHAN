@@ -306,6 +306,12 @@
     document.getElementById("results").innerHTML = "";
   });
   document.getElementById("past-search").addEventListener("input", (e) => renderPast(e.target.value));
+  document.getElementById("btn-home").addEventListener("click", () => {
+    userPickedEngine = false;
+    openId = null;
+    renderEngines();
+    renderHero();
+  });
   document.getElementById("btn-gloss").addEventListener("click", () => {
     window.open(GLOSS_SEARCH, "_blank", "noopener,noreferrer");
   });

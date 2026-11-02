@@ -314,6 +314,18 @@ button { cursor: pointer; border: 0; background: none; }
 .chip.pass strong { color: var(--pass); }
 .chip.deferred strong { color: var(--deferred); }
 
+/* HOME above engines - same lime mono size as evals / history */
+.home-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.15rem 0.1rem 0.85rem;
+  margin: 0;
+}
+.home-btn .corner-label {
+  font-size: 0.95rem;
+}
+
 /* Left rail: four routing engines as wordmark headers */
 .engine-stack {
   display: flex;
