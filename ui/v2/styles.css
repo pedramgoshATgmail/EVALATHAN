@@ -608,8 +608,8 @@ button { cursor: pointer; border: 0; background: none; }
   box-shadow: none;
 }
 .mascot-wrap .mascot {
-  width: 102px; /* was 92px; +11% across desk installs */
-  height: 102px;
+  width: 115px; /* was 102px; +13% again */
+  height: 115px;
   object-fit: contain;
   /* PNGs are already circular with alpha - radius/ring chrome draws a white halo */
   border: 0;
