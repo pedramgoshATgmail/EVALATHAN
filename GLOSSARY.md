@@ -84,6 +84,9 @@ The other conductor. Hydra watches software. Dehydrus watches locked physical wo
 
 Benchrex (Benchmark + rex) is the routing conductor for deprecation / cite-fitness evalers. He calls ten evalers and writes each report beside the others. He counts how many ran, how many passed their own gate, and how many are deferred. He does not turn a blank into a zero, and he does not fold the ten into one number. He is not a seventeenth Hydra score and not a ninth Dehydrus score. The criterion set follows <a href="https://arxiv.org/abs/2507.06434">Deprecating Benchmarks: Criteria and Framework</a> (Ayrton San Joaquin, Rokas Gipiškis, Leon Staufer, Ariel Gil; TAIG @ ICML 2025; arXiv:2507.06434; also <a href="https://aistandardslab.org/deprecating-benchmarks-criteria-and-framework/">AI Standards Lab</a>). Evaler card art is Ed Slop (Educational Slop). The desk names are live; live conduct() for Benchrex is still held.
 
+<p align="center"><img src="assets/glossary/cards/benchrex.png" alt="Benchrex" width="400"></p>
+<p align="center"><i>He calls the ten. He does not add a score.</i></p>
+
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
 The bench-deprecation conductor. Hydra grades software. Dehydrus grades locked physical worlds. Benchrex asks whether a claimed benchmark is still fit to cite. A missing Deprecard-style pack stays blank - not a fail and not a zero.
