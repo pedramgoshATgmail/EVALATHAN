@@ -919,12 +919,19 @@ html {
   -webkit-user-select: text;
   user-select: text;
 }
-.memo-sheet a.memo-file-link {
+.memo-sheet a.memo-file-link,
+.memo-sheet a.memo-gloss-link,
+.memo-sheet a.memo-std-link {
   color: #2f6fbf;
   text-decoration: underline;
+  word-break: break-word;
+}
+.memo-sheet a.memo-file-link {
   word-break: break-all;
 }
-.memo-sheet a.memo-file-link:hover {
+.memo-sheet a.memo-file-link:hover,
+.memo-sheet a.memo-gloss-link:hover,
+.memo-sheet a.memo-std-link:hover {
   color: #1e5aa8;
 }
 .memo-process-label {
@@ -1116,7 +1123,11 @@ html {
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #666;
+  color: #bf0a30; /* US flag red (Old Glory Red) */
+  font-weight: 600;
+}
+.memo-evidence-word {
+  color: #bf0a30; /* US flag red (Old Glory Red) */
   font-weight: 600;
 }
 .nell-evidence {

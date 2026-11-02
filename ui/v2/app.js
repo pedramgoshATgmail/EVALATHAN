@@ -104,31 +104,42 @@
     { id: "prdbench", phrases: ["PRDBench"] },
     { id: "wildbench", phrases: ["WildBench"] },
     { id: "ragas", phrases: ["Ragas"] },
-    /* Standards / metrics → glossary rooms where they sit (Archly, Codely, Levi, …). */
-    { id: "archly", phrases: [
-      "ISO/IEC/IEEE 42030",
-      "ISO/IEC 25010",
-      "NASA Technology Readiness Level",
-      "NASA TRL",
-      "SEI ATAM",
-      "AWS Well-Architected",
-      "ATAM",
-    ] },
-    { id: "codely", phrases: ["ISO/IEC 5055"] },
-    { id: "levi", phrases: ["ISO/IEC 42001"] },
-    { id: "4uvals", phrases: ["NASA-TLX", "NASA TLX", "IEEE 7010-2020", "IEEE 7010"] },
-    { id: "devly", phrases: ["SFIA"] },
-    { id: "runly", phrases: ["SPEC CPU", "SPEC2017", "pyperformance"] },
-    { id: "prd", phrases: ["ISO/IEC/IEEE 29148", "IEEE 830", "PRD"] },
-    { id: "iso-23247", phrases: ["ISO/AWI 23247-8", "ISO 23247"] },
+    { id: "prd", phrases: ["PRD"] },
     { id: "vvuq", phrases: ["VVUQ"] },
+  ];
+  /*
+   * Standards / metrics → same official sites the glossary uses (not GLOSSARY.md rooms).
+   * href is the publisher page; id is only a fallback glossary room if href is missing.
+   */
+  const STANDARD_AUTO_RAW = [
+    { phrases: ["ISO/IEC/IEEE 42030"], href: "https://www.iso.org/standard/73436.html" },
+    { phrases: ["ISO/IEC 25010"], href: "https://www.iso.org/standard/78176.html" },
+    { phrases: ["ISO/IEC 5055"], href: "https://www.iso.org/standard/80623.html" },
+    { phrases: ["ISO/IEC 42001"], href: "https://www.iso.org/standard/81230.html" },
+    { phrases: ["ISO/IEC/IEEE 29148"], href: "https://www.iso.org/standard/45171.html" },
+    { phrases: ["ISO/AWI 23247-8"], href: "https://www.iso.org/standard/94858.html" },
+    { phrases: ["ISO 23247"], href: "https://www.iso.org/standard/75066.html" },
+    { phrases: ["IEEE 7010-2020", "IEEE 7010"], href: "https://standards.ieee.org/ieee/7010/7718/" },
+    { phrases: ["IEEE 830"], href: "https://standards.ieee.org/ieee/830/1222/" },
+    {
+      phrases: ["NASA Technology Readiness Level", "NASA TRL"],
+      href: "https://www.nasa.gov/directorates/somd/space-communications-navigation-program/technology-readiness-level/",
+    },
+    { phrases: ["NASA-TLX", "NASA TLX"], href: "https://ergosphere.com.au/tools-nasa-tlx.html" },
+    { phrases: ["SEI ATAM", "ATAM"], href: "https://en.wikipedia.org/wiki/Architecture_tradeoff_analysis_method" },
+    { phrases: ["AWS Well-Architected"], href: "https://aws.amazon.com/architecture/well-architected/" },
+    { phrases: ["SFIA"], href: "https://sfia-online.org/en/about-sfia" },
+    { phrases: ["SPEC CPU", "SPEC2017"], href: "https://www.spec.org/cpu2017/" },
+    { phrases: ["pyperformance"], href: "https://github.com/python/pyperformance" },
+    { phrases: ["WCAG 2.2"], href: "https://www.w3.org/TR/WCAG22/" },
+    { phrases: ["WCAG 2.1"], href: "https://www.w3.org/TR/WCAG21/" },
   ];
   function escapeRegExp(s) {
     return String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   }
-  const GLOSS_AUTO_LINKS = (function () {
+  function buildAutoLinkRows(rawRows, titleSuffix) {
     const rows = [];
-    GLOSS_AUTO_RAW.forEach(function (row) {
+    (rawRows || []).forEach(function (row) {
       (row.phrases || []).forEach(function (phrase) {
         /* Standards with '/' cannot use plain \b edges; use lookaround-ish class edges. */
         const edged =
@@ -142,13 +153,20 @@
           re = new RegExp(escapeRegExp(phrase), "g");
         }
         rows.push({
-          id: row.id,
-          title: phrase + " - glossary",
+          id: row.id || "",
+          href: row.href || "",
+          title: phrase + titleSuffix,
           phrase: phrase,
           re: re,
         });
       });
     });
+    return rows;
+  }
+  const GLOSS_AUTO_LINKS = (function () {
+    const rows = buildAutoLinkRows(GLOSS_AUTO_RAW, " - glossary").concat(
+      buildAutoLinkRows(STANDARD_AUTO_RAW, " - official site")
+    );
     rows.sort(function (a, b) {
       return b.phrase.length - a.phrase.length;
     });
@@ -230,15 +248,26 @@
     });
   }
 
+  function termHref(term) {
+    if (term && term.href) return term.href;
+    if (term && term.id) return anchor(term.id);
+    return "";
+  }
+
   function linkGlossaryTerms(escapedText) {
     let out = String(escapedText || "");
     /* One term at a time, then re-protect new <a> tags so EVALATHAN inside hrefs is not rematched. */
     GLOSS_AUTO_LINKS.forEach(function (term) {
+      const href = termHref(term);
+      if (!href) return;
       out = mapPlainTextSegments(out, function (text) {
         return text.replace(term.re, function (matched) {
+          const klass = term.href ? "memo-std-link" : "memo-gloss-link";
           return (
-            '<a class="memo-gloss-link" href="' +
-            escapeHtml(anchor(term.id)) +
+            '<a class="' +
+            klass +
+            '" href="' +
+            escapeHtml(href) +
             '" target="_blank" rel="noopener noreferrer" title="' +
             escapeHtml(term.title) +
             '">' +
@@ -251,8 +280,17 @@
     return out;
   }
 
+  /* Paint the label Evidence (any casing) US-flag red without touching mid-word hits. */
+  function markEvidenceWords(escapedText) {
+    return mapPlainTextSegments(String(escapedText || ""), function (text) {
+      return text.replace(/\bEvidence\b/gi, function (matched) {
+        return '<span class="memo-evidence-word">' + matched + "</span>";
+      });
+    });
+  }
+
   function linkMemoProse(escapedText, run) {
-    return linkFilePaths(linkGlossaryTerms(escapedText), run || null);
+    return markEvidenceWords(linkFilePaths(linkGlossaryTerms(escapedText), run || null));
   }
   const app = document.getElementById("app-screen");
 
@@ -1657,7 +1695,7 @@
       '<p class="nell-blurb">' +
       linkMemoProse(escapeHtml(n.blurb), run) +
       "</p>" +
-      '<h4 class="nell-ev-heading">Evidence</h4>' +
+      '<h4 class="nell-ev-heading"><span class="memo-evidence-word">Evidence</span></h4>' +
       renderNellEvidence(n.evidence, run) +
       "</article>"
     );
@@ -3024,7 +3062,8 @@
         ".nell-card-head{display:flex;flex-wrap:wrap;gap:6px 10px;margin:0 0 6px;align-items:baseline}" +
         ".nell-gate,.nell-status,.nell-score{font-size:10px;text-transform:uppercase;background:#eee;padding:2px 6px;border-radius:999px}" +
         ".nell-blurb{margin:0 0 8px;font-size:14px;line-height:1.4}.nell-question{margin:0 0 6px;font-size:12px;color:#555}" +
-        ".nell-ev-heading{margin:0 0 4px;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#666}" +
+        ".nell-ev-heading{margin:0 0 4px;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#bf0a30}" +
+        ".memo-evidence-word{color:#bf0a30;font-weight:600}" +
         ".nell-evidence{list-style:none;padding:0;margin:0}.nell-evidence li{margin:0 0 4px;font-size:12px}" +
         ".nell-evidence code{font-size:11px;background:#f3f3f3;padding:1px 4px}.nell-more,.nell-empty{font-size:11px;color:#777}" +
         "</style></head><body>" +
