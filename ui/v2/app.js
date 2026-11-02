@@ -1272,9 +1272,31 @@
     return String(c.status || "deferred");
   }
 
+  function nellStripPathWall(text, evidenceItems) {
+    let s = nellCleanProse(text);
+    if (!s) return "";
+    /* Drop trailing file-path dumps that old memos glued onto the summary. */
+    const pathHit = s.search(
+      /\s(?:[A-Za-z]:[\\/]|docs[\\/]|examples[\\/]|tests[\\/]|src[\\/]|sdks[\\/]|memanto[\\/]|integrations[\\/]|\.github[\\/])/i
+    );
+    if (pathHit > 40) s = s.slice(0, pathHit).trim();
+    if (evidenceItems && evidenceItems.length) {
+      evidenceItems.forEach(function (it) {
+        if (it.path) {
+          const esc = escapeRegExp(it.path.replace(/\//g, "[\\\\/]"));
+          s = s.replace(new RegExp("\\s*" + esc, "gi"), "");
+        }
+      });
+      s = s.replace(/\s{2,}/g, " ").trim();
+    }
+    return s;
+  }
+
   function nellRewriteCell(c) {
     const evidence = nellEvidenceItems(c.evidence || []);
-    let blurb = nellCleanProse(c.blurb || c.detail || "");
+    /* Prefer short summary; never show the old summary+paths wall as the blurb. */
+    let blurb = nellStripPathWall(c.blurb || "", evidence);
+    if (!blurb) blurb = nellStripPathWall(c.detail || "", evidence);
     if (!blurb && c.question) blurb = String(c.question);
     if (!blurb) blurb = "No prose summary from this evaler.";
     return {
