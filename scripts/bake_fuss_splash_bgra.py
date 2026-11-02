@@ -31,6 +31,7 @@ def main() -> int:
         print("missing", logo, file=sys.stderr)
         return 1
 
+    # Rebuild so caption font/size matches launch_splash._draw_caption (incl. Mac Arial).
     base = mod._build_base_rgba(logo, SIZE, supersample=8)
     for phase in range(3):
         frame = mod._draw_caption(base, phase)

@@ -66,10 +66,79 @@ if ! build_icns "$ICNS"; then
   fi
 fi
 
+# Finder-safe launcher: no Terminal required (mirrors Windows Evalathan.bat).
+# Logs to ~/.evalathan/launch.log; alerts via osascript on hard failure.
 cat > "${APP_BUNDLE}/Contents/MacOS/Evalathan" <<EOF
 #!/bin/bash
-cd "$REPO"
-exec bash "$REPO/launch.sh"
+# EVALATHAN desk opener for double-click from Finder (PATH + logging).
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:\$PATH"
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "\$(/opt/homebrew/bin/brew shellenv)" 2>/dev/null || true
+elif [ -x /usr/local/bin/brew ]; then
+  eval "\$(/usr/local/bin/brew shellenv)" 2>/dev/null || true
+fi
+
+REPO="$REPO"
+LOGDIR="\${HOME}/.evalathan"
+mkdir -p "\$LOGDIR"
+exec >>"\$LOGDIR/launch.log" 2>&1
+echo "---- \$(date) Evalathan.app start ----"
+cd "\$REPO" || {
+  osascript -e 'display alert "EVALATHAN" message "Program folder missing. Re-run the README Mac install block." as critical' >/dev/null 2>&1 || true
+  exit 1
+}
+
+start_splash() {
+  local py=""
+  if [ -x "\$REPO/.venv/bin/python" ]; then
+    py="\$REPO/.venv/bin/python"
+  elif command -v python3 >/dev/null 2>&1; then
+    py="\$(command -v python3)"
+  fi
+  [ -n "\$py" ] || return 0
+  [ -f "\$REPO/ui/v2/launch_splash.py" ] || return 0
+  rm -f "\$LOGDIR/splash.stop" 2>/dev/null || true
+  "\$py" "\$REPO/ui/v2/launch_splash.py" >/dev/null 2>&1 &
+  disown \$! 2>/dev/null || true
+}
+
+stop_splash() {
+  if [ -x "\$REPO/.venv/bin/python" ] && [ -f "\$REPO/ui/v2/launch_splash.py" ]; then
+    "\$REPO/.venv/bin/python" "\$REPO/ui/v2/launch_splash.py" --close >/dev/null 2>&1 || true
+  fi
+}
+
+# Fast path when the venv + desk files already exist (daily Desktop click).
+if [ -x "\$REPO/.venv/bin/python" ] && [ -f "\$REPO/ui/v2/index.html" ]; then
+  start_splash
+  # Keep published main current, but never block the desk on fetch failure.
+  if [ -d "\$REPO/.git" ] && command -v git >/dev/null 2>&1; then
+    git -C "\$REPO" fetch origin >/dev/null 2>&1 || true
+    git -C "\$REPO" checkout main >/dev/null 2>&1 || true
+    git -C "\$REPO" reset --hard origin/main >/dev/null 2>&1 || true
+    start_splash
+  fi
+  "\$REPO/.venv/bin/python" -m pip install -e "\$REPO" >/dev/null 2>&1 || true
+  echo "Opening desk via .venv"
+  "\$REPO/.venv/bin/python" -c "from evalathan.webdesk import open_desk; raise SystemExit(open_desk())"
+  EC=\$?
+  stop_splash
+  if [ "\$EC" -ne 0 ]; then
+    osascript -e "display alert \\"EVALATHAN\\" message \\"Desk failed to open (exit \$EC). See ~/.evalathan/launch.log\\" as critical" >/dev/null 2>&1 || true
+  fi
+  exit "\$EC"
+fi
+
+# First-time / incomplete install: full launch.sh (still no Terminal.app).
+echo "Falling back to launch.sh (venv or ui/v2 missing)"
+start_splash
+bash "\$REPO/launch.sh"
+EC=\$?
+stop_splash
+if [ "\$EC" -ne 0 ]; then
+  osascript -e "display alert \\"EVALATHAN\\" message \\"Setup/launch failed (exit \$EC). See ~/.evalathan/launch.log\\" as critical" >/dev/null 2>&1 || true
+fi
+exit "\$EC"
 EOF
 chmod +x "${APP_BUNDLE}/Contents/MacOS/Evalathan"
 
@@ -106,8 +175,9 @@ EOF
 rm -rf "${APPDIR}/Evalathan.app"
 cp -R "$APP_BUNDLE" "${APPDIR}/Evalathan.app"
 
-# Touch so Finder refreshes the icon badge.
+# Touch so Finder refreshes the icon badge; clear quarantine so double-click works.
 touch "$APP_BUNDLE" "${APPDIR}/Evalathan.app" 2>/dev/null || true
+xattr -dr com.apple.quarantine "$APP_BUNDLE" "${APPDIR}/Evalathan.app" 2>/dev/null || true
 
 cat > "${APPDIR}/README.txt" <<EOF
 EVALATHAN (local)
@@ -116,7 +186,9 @@ This folder is only a launcher. The program itself lives here:
 $REPO
 
 Double-click Evalathan.app on your Desktop (dragon icon).
+No Terminal window is required - same idea as the Windows Desktop icon.
 Evalathan.command is a Terminal fallback if the .app is blocked.
+Launch log: ~/.evalathan/launch.log
 Nothing is hosted on a public website.
 EOF
 

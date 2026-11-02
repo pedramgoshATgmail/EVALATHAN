@@ -101,7 +101,7 @@ EVALATHAN evaluates a project by passing a local directory path (`evalathan scan
 | AI Agents & LLM Observability | Tokely, Chorely, [Trajectly](GLOSSARY.md#user-content-trajectly), Domly, Warrantly | Tracks token delta/reduction metrics, maps multi-agent rosters and responsibilities, counts agent trace steps, tests domain-specific Q&A pairs, and audits whether factual claims link to verifiable evidence. |
 | Human Ergonomics & Reporting | Levi, Menschly, Stackly | Evaluates user-centric scorecards, checks for built-in user break timers, and produces an itemized report of completed vs. deferred checks. |
 
-Dehydrus's eight LuDaTs evalers sit in their own room. They are listed under [What v0.3 runs](#what-v03-runs). They are not a seventeenth Hydra score.
+Dehydrus's eight LuDaTs evalers sit in their own room. They are listed under [What v0.3 runs](#what-v03-runs-dehydrus-evalers-are-not-wired-in-yet). Benchrex and Biasrex are listed under [What v0.3.2 runs](#what-v032-runs-benchrex-and-biasrex-evalers-are-not-wired-in-yet). They are not a seventeenth Hydra score.
 
 ### Unique Features: SELFBELT, FUSS, and PRETRUWs
 
@@ -146,7 +146,7 @@ Each name opens its glossary entry. An entry has three parts: what is counted, s
 
 Levi reads a [4Uvals](GLOSSARY.md#user-content-4uvals) card when one is in the tree. 4Uvals (Ultimate User-User-User evaluations) is a 10-check list asking whether a session put the person first. The published card, v1.2, is a pass: 9 of 10 checks Solid or Strong, mean 3.4 out of 4.
 
-## What v0.3 runs
+## What v0.3 runs (Dehydrus evalers are not wired in yet)
 
 [Dehydrus](GLOSSARY.md#user-content-dehydrus) conducts eight [LuDaTs](GLOSSARY.md#user-content-ludats) evalers. He is not an eighteenth Hydra score. The default local install opens the Hydra **desktop desk** (`launch.bat` / `bash launch.sh`, then the Desktop Evalathan icon). The Dehydrus desk is a second command: `evalathan dehydrus`. A Dehydrus scan writes eight cells and a note about whether a [HabTwin](GLOSSARY.md#user-content-habtwin) lab file is in the folder. The report body starts with Evalathan v0.3.
 
@@ -164,6 +164,38 @@ Those eight cells are not fully wired into the install you get when you double-c
 | [Newtonly](GLOSSARY.md#user-content-newtonly) | Unites Kepler's sky with Galileo's ground under one inverse-square law. The apple story is not the method. [Mode Unification](GLOSSARY.md#user-content-ludats-mode-unification). Deferred to v2 until Keplerly and Galileoly are both sealed. |
 
 Each name opens its glossary entry. An entry has the same three parts as the Hydra table: what is counted, simplespeak, and techspeak. Spec: [docs/PRETRUWs.md](docs/PRETRUWs.md), [docs/LuDaTs.md](docs/LuDaTs.md). Cards: [exams/ludats/](exams/ludats/).
+
+## What v0.3.2 runs (Benchrex and Biasrex evalers are not wired in yet)
+
+[Benchrex](GLOSSARY.md#user-content-benchrex) conducts ten deprecation / cite-fitness evalers. [Biasrex](GLOSSARY.md#user-content-biasrex) conducts six bias-gate evalers. Neither is a seventeenth Hydra score or a ninth Dehydrus score. v0.3.2 ships full glossary rooms and Ed Slop card art for both conductors. Live `conduct()` for Benchrex and Biasrex is still held - the default desktop desk does not run those evalers yet. A deferred cell is not a fail and not a zero.
+
+### Benchrex (ten)
+
+| Evaler | What it does |
+| :--- | :--- |
+| [Saturly](GLOSSARY.md#user-content-saturly) | Checks whether a cited benchmark is saturated - scores near a ceiling so further gains lose discrimination. |
+| [Contamly](GLOSSARY.md#user-content-contamly) | Checks contamination / leakage risk on a claimed score - train-test overlap, memorization signals, or missing holdout honesty. |
+| [Skewly](GLOSSARY.md#user-content-skewly) | Checks statistical bias / class or label imbalance that a model could exploit without the claimed capability. |
+| [Annotly](GLOSSARY.md#user-content-annotly) | Checks high annotation / label error evidence behind the number (human or auto labelers). |
+| [Obsoletely](GLOSSARY.md#user-content-obsoletely) | Checks task obsolescence - whether the benchmark task still matches the capability being claimed. |
+| [Assumly](GLOSSARY.md#user-content-assumly) | Checks invalidated design assumptions (for example a no-tool exam used to grade a tool-using agent). |
+| [Driftly](GLOSSARY.md#user-content-driftly) | Checks semantic / cultural / language drift since the claimed result - labels or meanings that aged. |
+| [Assessly](GLOSSARY.md#user-content-assessly) | Process gate: whether a deprecation assessment against the soft criteria was actually run. |
+| [Reportly](GLOSSARY.md#user-content-reportly) | Process gate: whether assessment findings were reported in a durable, citable form. |
+| [Notifyly](GLOSSARY.md#user-content-notifyly) | Process gate: whether users and dependents were notified of a partial update or full retire. |
+
+### Biasrex (six)
+
+| Evaler | What it does |
+| :--- | :--- |
+| [Filterly](GLOSSARY.md#user-content-filterly) | Grades attention / selection / availability hygiene when there is too much information (cherry-pick guards, sampling notes). |
+| [Meaningly](GLOSSARY.md#user-content-meaningly) | Grades story-filling vs evidence when there is not enough meaning (claims must cite inspectable artifacts). |
+| [Hastely](GLOSSARY.md#user-content-hastely) | Grades overconfidence and irreversible-action gates when agents need to act fast (stop / review brakes). |
+| [Memoryly](GLOSSARY.md#user-content-memoryly) | Grades continued influence of old scores, stale memory, and deprecated cites. |
+| [Confirmly](GLOSSARY.md#user-content-confirmly) | Grades confirmation-bias gates - seeking only agreeing evidence (disconfirming / red-team checks). |
+| [Automately](GLOSSARY.md#user-content-automately) | Grades automation bias / tool-trust - over-trusting model or tool output without a second check. |
+
+Each name opens its glossary entry. An entry has the same three parts as the Hydra table: what is counted, simplespeak, and techspeak. Paper lineage for Benchrex: [Deprecating Benchmarks](https://arxiv.org/abs/2507.06434). Biasrex lineage: [Cognitive Bias Codex](GLOSSARY.md#user-content-cognitive-bias-codex).
 
 ## Key Strengths
 

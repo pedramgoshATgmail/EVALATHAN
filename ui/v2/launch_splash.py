@@ -248,20 +248,45 @@ def _build_base_rgba(path: Path, size: int, supersample: int = 8):
     return out
 
 
+def _caption_fonts(supersample: int = 1):
+    """TrueType fonts for 'launching' (Mac often lacks Segoe; default bitmap is tiny)."""
+    from PIL import ImageFont
+
+    ss = max(1, int(supersample))
+    # +3 point sizes vs the original 21 / 28 so Mac/Windows caption reads clearly.
+    word_pt = 24 * ss
+    dots_pt = 31 * ss
+    candidates = (
+        "segoeui.ttf",
+        "SegoeUI.ttf",
+        "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
+        "/System/Library/Fonts/Supplemental/Arial.ttf",
+        "/Library/Fonts/Arial Bold.ttf",
+        "/Library/Fonts/Arial.ttf",
+        "/System/Library/Fonts/Helvetica.ttc",
+        "Arial.ttf",
+        "Helvetica.ttc",
+    )
+    for name in candidates:
+        try:
+            return (
+                ImageFont.truetype(name, word_pt),
+                ImageFont.truetype(name, dots_pt),
+            )
+        except OSError:
+            continue
+    return ImageFont.load_default(), ImageFont.load_default()
+
+
 def _draw_caption(base, phase: int, supersample: int = 1):
     """Return a copy of base with centered black 'launching' + animated dots."""
-    from PIL import ImageDraw, ImageFont
+    from PIL import ImageDraw
 
     frame = base.copy()
     draw = ImageDraw.Draw(frame)
     size = frame.size[0]
     ss = max(1, int(supersample))
-    try:
-        font = ImageFont.truetype("segoeui.ttf", 21 * ss)
-        font_dots = ImageFont.truetype("segoeui.ttf", 28 * ss)
-    except OSError:
-        font = ImageFont.load_default()
-        font_dots = font
+    font, font_dots = _caption_fonts(ss)
 
     word = "launching"
     try:
@@ -269,8 +294,8 @@ def _draw_caption(base, phase: int, supersample: int = 1):
         word_w = wb[2] - wb[0]
         word_h = wb[3] - wb[1]
     except Exception:  # noqa: BLE001
-        word_w, word_h = 90 * ss, 16 * ss
-    dots_w = 40 * ss
+        word_w, word_h = 110 * ss, 20 * ss
+    dots_w = 48 * ss
     total = word_w + 6 * ss + dots_w
     x0 = (size - total) // 2
     y = size // 2 - word_h // 2 - 2 * ss
@@ -284,13 +309,12 @@ def _draw_caption(base, phase: int, supersample: int = 1):
         else:
             color = (106, 106, 106, 255)
         draw.text(
-            (x0 + word_w + 6 * ss + i * 12 * ss, y - 4 * ss),
+            (x0 + word_w + 6 * ss + i * 14 * ss, y - 4 * ss),
             ".",
             fill=color,
             font=font_dots,
         )
     return frame
-
 
 def _rgba_to_premultiplied_bgra(im) -> bytes:
     pixels = bytearray()
@@ -638,8 +662,115 @@ def _load_logo_fill(path: Path, target: int, key_rgb: tuple[int, int, int] = (1,
     return raw, diameter
 
 
+def _run_splash_cocoa(logo_path: Path) -> bool:
+    """True circular splash on macOS via AppKit (Tk still paints a square frame)."""
+    try:
+        from AppKit import (  # type: ignore[import-not-found]
+            NSApplication,
+            NSApplicationActivationPolicyAccessory,
+            NSBackingStoreBuffered,
+            NSBorderlessWindowMask,
+            NSColor,
+            NSFloatingWindowLevel,
+            NSImage,
+            NSImageView,
+            NSWindow,
+        )
+        from AppKit import NSScreen  # type: ignore[import-not-found]
+        from Foundation import NSMakeRect  # type: ignore[import-not-found]
+    except Exception:  # noqa: BLE001
+        return False
+
+    frames = _rgba_splash_frame_pngs(logo_path, TARGET_DIAMETER)
+    if not frames:
+        return False
+
+    size = float(TARGET_DIAMETER)
+    images = []
+    for path in frames:
+        img = NSImage.alloc().initWithContentsOfFile_(str(path))
+        if img is None:
+            return False
+        images.append(img)
+
+    if stop_path().is_file():
+        return False
+
+    app = NSApplication.sharedApplication()
+    try:
+        app.setActivationPolicy_(NSApplicationActivationPolicyAccessory)
+    except Exception:  # noqa: BLE001
+        pass
+
+    # Screen center in Cocoa coords (origin bottom-left).
+    screen = NSScreen.mainScreen()
+    if screen is not None:
+        frame = screen.frame()
+        x = (frame.size.width - size) / 2.0
+        y = (frame.size.height - size) / 2.0
+    else:
+        x, y = 200.0, 200.0
+
+    window = NSWindow.alloc().initWithContentRect_styleMask_backing_defer_(
+        NSMakeRect(x, y, size, size),
+        NSBorderlessWindowMask,
+        NSBackingStoreBuffered,
+        False,
+    )
+    window.setOpaque_(False)
+    window.setBackgroundColor_(NSColor.clearColor())
+    window.setHasShadow_(False)
+    window.setLevel_(NSFloatingWindowLevel)
+    window.setIgnoresMouseEvents_(True)
+
+    view = NSImageView.alloc().initWithFrame_(NSMakeRect(0, 0, size, size))
+    view.setImage_(images[0])
+    try:
+        view.setImageScaling_(2)  # NSImageScaleNone
+    except Exception:  # noqa: BLE001
+        pass
+    try:
+        view.setWantsLayer_(True)
+        view.layer().setBackgroundColor_(NSColor.clearColor().CGColor())
+    except Exception:  # noqa: BLE001
+        pass
+    window.setContentView_(view)
+    window.orderFrontRegardless()
+    phase = {"i": 0}
+    started = time.monotonic()
+    last_dot = time.monotonic()
+
+    # Pump Cocoa events until desk signals stop (same contract as Win32/Tk paths).
+    try:
+        from AppKit import NSDate, NSDefaultRunLoopMode  # type: ignore[import-not-found]
+
+        while True:
+            if stop_path().is_file() or (time.monotonic() - started) > MAX_SECONDS:
+                break
+            now = time.monotonic()
+            if (now - last_dot) * 1000 >= DOT_MS:
+                phase["i"] = (phase["i"] + 1) % len(images)
+                view.setImage_(images[phase["i"]])
+                last_dot = now
+            event = app.nextEventMatchingMask_untilDate_inMode_dequeue_(
+                0xFFFFFFFF,  # NSAnyEventMask
+                NSDate.dateWithTimeIntervalSinceNow_(POLL_MS / 1000.0),
+                NSDefaultRunLoopMode,
+                True,
+            )
+            if event is not None:
+                app.sendEvent_(event)
+    finally:
+        try:
+            window.orderOut_(None)
+            window.close()
+        except Exception:  # noqa: BLE001
+            pass
+    return True
+
+
 def _run_splash_tk_mac(logo_path: Path) -> bool:
-    """Per-pixel alpha circle on macOS (no black square chrome)."""
+    """Fallback Mac splash if Cocoa is unavailable."""
     try:
         import tkinter as tk
     except ImportError:
@@ -657,7 +788,6 @@ def _run_splash_tk_mac(logo_path: Path) -> bool:
         root.attributes("-topmost", True)
     except tk.TclError:
         pass
-    # Aqua Tk: transparent window chrome; PNG alpha paints the circle only.
     try:
         root.attributes("-transparent", True)
         root.configure(bg="systemTransparent")
@@ -670,7 +800,6 @@ def _run_splash_tk_mac(logo_path: Path) -> bool:
 
     photos = []
     try:
-        # ImageTk keeps PNG alpha; plain tk.PhotoImage often paints clear as black on Mac.
         from PIL import Image, ImageTk
 
         for path in frames:
@@ -744,7 +873,6 @@ def _run_splash_tk_mac(logo_path: Path) -> bool:
         pass
     return True
 
-
 def _run_splash_tk(logo_path: Path) -> int:
     """Fallback splash (color-key). Used when layered / Mac transparent path is unavailable."""
     try:
@@ -805,12 +933,12 @@ def _run_splash_tk(logo_path: Path) -> int:
         cy,
         text="launching",
         fill=ink,
-        font=("Segoe UI", 16, "bold"),
+        font=("Segoe UI", 19, "bold"),
         anchor="e",
     )
     bbox = canvas.bbox(label)
-    word_w = (bbox[2] - bbox[0]) if bbox else 90
-    dots_w = 36
+    word_w = (bbox[2] - bbox[0]) if bbox else 110
+    dots_w = 42
     total_w = word_w + 4 + dots_w
     word_right = cx - total_w // 2 + word_w
     canvas.coords(label, word_right, cy)
@@ -819,11 +947,11 @@ def _run_splash_tk(logo_path: Path) -> int:
     for i in range(3):
         dot_ids.append(
             canvas.create_text(
-                word_right + 2 + i * 12,
+                word_right + 2 + i * 14,
                 cy,
                 text=".",
                 fill=ink_dim,
-                font=("Segoe UI", 21, "bold"),
+                font=("Segoe UI", 24, "bold"),
                 anchor="w",
             )
         )
@@ -906,6 +1034,11 @@ def run_splash() -> int:
             except Exception:  # noqa: BLE001 - never block desk launch
                 pass
         elif sys.platform == "darwin":
+            try:
+                if _run_splash_cocoa(logo_path):
+                    return 0
+            except Exception:  # noqa: BLE001 - never block desk launch
+                pass
             try:
                 if _run_splash_tk_mac(logo_path):
                     return 0
