@@ -80,6 +80,10 @@ def test_build_base_rgba_has_transparent_corners() -> None:
     assert im.getpixel((0, 0))[3] == 0
     assert im.getpixel((110, 110))[3] > 200
     assert im.getpixel((110, 110))[0] > 150
+    # Soft rim must stay brand-orange, not near-black (source PNG color-key fringe).
+    rim = im.getpixel((110, 1))
+    assert rim[3] > 0
+    assert rim[0] > 150 and rim[2] < 80
 
 
 def test_prebaked_bgra_frames_shipped() -> None:

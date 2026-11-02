@@ -14,8 +14,8 @@ Lifecycle (avoids a stuck splash after a second CMD/PowerShell install):
 - --close writes splash.stop and terminates the recorded PID.
 
 On Windows the splash uses UpdateLayeredWindow (per-pixel alpha) so the circle
-edge stays clean on light and dark backgrounds. Tk color-key + SetWindowRgn is
-only a fallback (jagged / black fringe on white).
+edge stays clean on light and dark backgrounds. Tk color-key alone is the
+fallback (no SetWindowRgn - elliptic regions stair-step on every background).
 """
 
 from __future__ import annotations
@@ -185,69 +185,95 @@ def _prebaked_bgra_frames(size: int) -> list[bytes] | None:
     return frames
 
 
-def _build_base_rgba(path: Path, size: int):
-    """Logo on a soft-edged circular alpha matte (clean on white and black).
+def _logo_art_only(im):
+    """Keep cherries/FUSS (light art); drop key, orange disk, and dark fringe.
 
-    Soft AA must sit on brand orange RGB. If the rim samples the old key-black
-    fill (1,2,3), premultiplied alpha paints a dark halo on light desktops.
+    The shipped fuss-splash.png is a Tk color-key asset: outside is (1,2,3) with
+    near-black stair pixels at the circle rim. Pasting that rim into a layered
+    window paints the black outline on every background. Rebuild the orange disk
+    ourselves; only composite the light logo art.
     """
-    from PIL import Image, ImageDraw, ImageFilter
-
-    key_rgb = {(0, 0, 0), (1, 2, 3)}
-    im = Image.open(path).convert("RGBA")
     px = im.load()
     w0, h0 = im.size
     for y in range(h0):
         for x in range(w0):
             r, g, b, a = px[x, y]
-            if (r, g, b) in key_rgb or a < 8:
+            if a < 8:
                 px[x, y] = (0, 0, 0, 0)
-    w, h = im.size
-    side = max(w, h, 1)
-    if side != size:
-        scale = size / float(side)
-        im = im.resize(
-            (max(1, int(round(w * scale))), max(1, int(round(h * scale)))),
-            Image.Resampling.LANCZOS,
-        )
-        w, h = im.size
-    # Opaque orange underlay so the blurred alpha rim never samples key-black.
-    fill = (232, 135, 30, 255)
-    solid = Image.new("RGBA", (size, size), fill)
-    solid.paste(im, ((size - w) // 2, (size - h) // 2), im)
-    disk = Image.new("L", (size, size), 0)
-    ImageDraw.Draw(disk).ellipse((1, 1, size - 2, size - 2), fill=255)
-    soft = disk.filter(ImageFilter.GaussianBlur(radius=1.6))
-    r, g, b, _a = solid.split()
-    return Image.merge("RGBA", (r, g, b, soft))
+                continue
+            lum = (299 * r + 587 * g + 114 * b) // 1000
+            # White / near-white logo strokes only.
+            if lum >= 190 and min(r, g, b) >= 160:
+                continue
+            px[x, y] = (0, 0, 0, 0)
+    return im
 
 
-def _draw_caption(base, phase: int):
+def _build_base_rgba(path: Path, size: int, supersample: int = 8):
+    """Logo on a coverage-AA circular matte (clean on white and black).
+
+    Hard circle at Nx, BOX-downscale for true coverage AA. Orange RGB is solid
+    under a soft alpha matte so the rim never picks up the PNG color-key black.
+    """
+    from PIL import Image, ImageDraw
+
+    ss = max(1, int(supersample))
+    big = size * ss
+    fill_rgb = (232, 135, 30)
+
+    disk = Image.new("L", (big, big), 0)
+    pad = max(1, ss)
+    ImageDraw.Draw(disk).ellipse((pad, pad, big - pad - 1, big - pad - 1), fill=255)
+    # BOX = area average = coverage antialias. LANCZOS sharpens and stair-steps.
+    alpha = disk.resize((size, size), Image.Resampling.BOX)
+
+    out = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    pxo = out.load()
+    for y in range(size):
+        for x in range(size):
+            a = alpha.getpixel((x, y))
+            if a <= 0:
+                continue
+            pxo[x, y] = (fill_rgb[0], fill_rgb[1], fill_rgb[2], a)
+
+    art = _logo_art_only(Image.open(path).convert("RGBA"))
+    aw, ah = art.size
+    art_scale = size / float(max(aw, ah, 1))
+    art = art.resize(
+        (max(1, int(round(aw * art_scale))), max(1, int(round(ah * art_scale)))),
+        Image.Resampling.LANCZOS,
+    )
+    aw, ah = art.size
+    out.paste(art, ((size - aw) // 2, (size - ah) // 2), art)
+    return out
+
+
+def _draw_caption(base, phase: int, supersample: int = 1):
     """Return a copy of base with centered black 'launching' + animated dots."""
-    from PIL import Image, ImageDraw, ImageFont
+    from PIL import ImageDraw, ImageFont
 
     frame = base.copy()
     draw = ImageDraw.Draw(frame)
     size = frame.size[0]
+    ss = max(1, int(supersample))
     try:
-        font = ImageFont.truetype("segoeui.ttf", 21)
-        font_dots = ImageFont.truetype("segoeui.ttf", 28)
+        font = ImageFont.truetype("segoeui.ttf", 21 * ss)
+        font_dots = ImageFont.truetype("segoeui.ttf", 28 * ss)
     except OSError:
         font = ImageFont.load_default()
         font_dots = font
 
     word = "launching"
-    # Measure word and three dots as a group, then center.
     try:
         wb = draw.textbbox((0, 0), word, font=font)
         word_w = wb[2] - wb[0]
         word_h = wb[3] - wb[1]
     except Exception:  # noqa: BLE001
-        word_w, word_h = 90, 16
-    dots_w = 40
-    total = word_w + 6 + dots_w
+        word_w, word_h = 90 * ss, 16 * ss
+    dots_w = 40 * ss
+    total = word_w + 6 * ss + dots_w
     x0 = (size - total) // 2
-    y = size // 2 - word_h // 2 - 2
+    y = size // 2 - word_h // 2 - 2 * ss
     draw.text((x0, y), word, fill=(0, 0, 0, 255), font=font)
     active = phase % 3
     for i in range(3):
@@ -257,21 +283,29 @@ def _draw_caption(base, phase: int):
             color = (58, 58, 58, 255)
         else:
             color = (106, 106, 106, 255)
-        draw.text((x0 + word_w + 6 + i * 12, y - 4), ".", fill=color, font=font_dots)
+        draw.text(
+            (x0 + word_w + 6 * ss + i * 12 * ss, y - 4 * ss),
+            ".",
+            fill=color,
+            font=font_dots,
+        )
     return frame
 
 
 def _rgba_to_premultiplied_bgra(im) -> bytes:
     pixels = bytearray()
     for r, g, b, a in im.getdata():
-        pixels.extend(
-            (
-                (b * a) // 255,
-                (g * a) // 255,
-                (r * a) // 255,
-                a,
+        if a <= 0:
+            pixels.extend((0, 0, 0, 0))
+        else:
+            pixels.extend(
+                (
+                    (b * a) // 255,
+                    (g * a) // 255,
+                    (r * a) // 255,
+                    a,
+                )
             )
-        )
     return bytes(pixels)
 
 
@@ -281,7 +315,7 @@ def _load_layered_frames(logo_path: Path, size: int) -> list[bytes] | None:
     if prebaked is not None:
         return prebaked
     try:
-        base = _build_base_rgba(logo_path, size)
+        base = _build_base_rgba(logo_path, size, supersample=8)
         return [
             _rgba_to_premultiplied_bgra(_draw_caption(base, phase)) for phase in range(3)
         ]
@@ -547,23 +581,10 @@ def _keyed_splash_png(path: Path, target: int, key_rgb: tuple[int, int, int]) ->
     except ImportError:
         return path
 
-    im = Image.open(path).convert("RGBA")
-    w, h = im.size
-    side = max(w, h, 1)
-    if side != target:
-        scale = target / float(side)
-        nw = max(1, int(round(w * scale)))
-        nh = max(1, int(round(h * scale)))
-        im = im.resize((nw, nh), Image.Resampling.LANCZOS)
-        w, h = im.size
-    canvas = Image.new("RGBA", (target, target), (*key_rgb, 255))
-    ox = (target - w) // 2
-    oy = (target - h) // 2
-    canvas.paste(im, (ox, oy), im)
-    mask = Image.new("L", (target, target), 0)
-    ImageDraw.Draw(mask).ellipse((0, 0, target - 1, target - 1), fill=255)
+    # Same art extract + orange disk as layered; only then flatten onto the key.
+    rgba = _build_base_rgba(path, target, supersample=4)
     keyed = Image.new("RGBA", (target, target), (*key_rgb, 255))
-    keyed.paste(canvas, (0, 0), mask)
+    keyed.paste(rgba, (0, 0), rgba)
     out = state_dir() / "fuss-splash-keyed.png"
     keyed.convert("RGB").save(out, format="PNG")
     return out
@@ -686,7 +707,8 @@ def _run_splash_tk(logo_path: Path) -> int:
     x = max(0, (sw - size) // 2)
     y = max(0, (sh - size) // 2)
     root.geometry(f"{size}x{size}+{x}+{y}")
-    _apply_circle_region(root, size)
+    # Do not SetWindowRgn - hard elliptic regions stair-step on every background.
+    # Color-key alone is the Tk fallback; layered Win32 path is preferred.
 
     phase = {"i": 0}
     started = time.monotonic()
