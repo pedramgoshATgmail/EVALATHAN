@@ -485,7 +485,7 @@ Braidware is the post-4IR (Fourth Industrial Revolution) braid of three strands:
 
 Headless MCP (Model Context Protocol) and CLI (command-line interface) work stay in the braid.
 
-Good examples include: Meta/etc AI Ray Ban [glasses](https://en.wikipedia.org/wiki/Meta_smart_glasses) which bear their own [Edge AI](https://www.ibm.com/think/topics/edge-ai), [TinyML](https://en.wikipedia.org/wiki/TinyML), custom framing, cloud and software infusion; [Pamir Lapis One](https://pamir.ai): a dedicated Linux box where agentics, engine, and hardware sit as one unit (not a [1996-2011 PDA](https://en.wikipedia.org/wiki/Palm_(device_line)).); [Superbrain](https://7sense.ee/); and most recently (as at Nov 2 2026, [Meta's Muse](https://www.theguardian.com/fashion/2026/sep/26/charming-and-disarming-how-metas-technology-packed-muse-harnesses-the-power-of-cuteness) Charm).
+Good examples include: Meta/etc AI Ray Ban [glasses](https://en.wikipedia.org/wiki/Meta_smart_glasses) which bear their own [Edge AI](https://www.ibm.com/think/topics/edge-ai), [TinyML](https://en.wikipedia.org/wiki/TinyML), custom framing, cloud and software infusion; [Superbrain](https://7sense.ee/); [Pamir Lapis One](https://pamir.ai): a dedicated Linux box where agentics, engine, and hardware sit as one unit (not a [1996-2011 PDA](https://en.wikipedia.org/wiki/Palm_(device_line)).); and most recently (as at Nov 2 2026, [Meta's Muse](https://www.theguardian.com/fashion/2026/sep/26/charming-and-disarming-how-metas-technology-packed-muse-harnesses-the-power-of-cuteness) Charm).
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
