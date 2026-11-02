@@ -476,7 +476,7 @@ button { cursor: pointer; border: 0; background: none; }
   text-align: left;
   color: var(--accent);
   font-family: var(--mono);
-  font-size: 0.595rem; /* was 0.85rem, -30% */
+  font-size: 0.672rem; /* 0.595rem + 13% */
   letter-spacing: 0.04em;
   text-transform: lowercase;
   margin: 0.35rem 0;
@@ -492,7 +492,7 @@ button { cursor: pointer; border: 0; background: none; }
 }
 .past-list li {
   font-family: var(--mono);
-  font-size: 0.518rem; /* was 0.74rem, -30% with past runs */
+  font-size: 0.585rem; /* 0.518rem + 13% */
   line-height: 1.35;
   color: var(--text-soft);
   border: 1px solid var(--line);
