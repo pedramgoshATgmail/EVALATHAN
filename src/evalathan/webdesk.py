@@ -125,11 +125,33 @@ def start_server(port: int = PORT) -> ThreadingHTTPServer:
 
 def open_desk(port: int = PORT, open_browser: bool = True) -> int:
     """Replace the old Tk Hydra window: serve ui/v2 and run real Hydra evaluates."""
-    httpd = start_server(port)
-    url = f"http://127.0.0.1:{port}/"
+    root = ui_root()
+    try:
+        from evalathan import __version__ as ver
+    except Exception:  # noqa: BLE001
+        ver = "0.3.1"
+    httpd = None
+    bound = port
+    last_err: Exception | None = None
+    for candidate in range(port, port + 8):
+        try:
+            httpd = start_server(candidate)
+            bound = candidate
+            break
+        except OSError as exc:
+            last_err = exc
+            continue
+    if httpd is None:
+        raise RuntimeError(
+            f"Could not bind a local port starting at {port}: {last_err}"
+        ) from last_err
+    url = f"http://127.0.0.1:{bound}/"
     thread = threading.Thread(target=httpd.serve_forever, daemon=True)
     thread.start()
-    print(f"Evalathan desk (Hydra) on {url}", flush=True)
+    print(f"Evalathan v{ver} browser desk", flush=True)
+    print(f"UI: {root}", flush=True)
+    print(f"Open: {url}", flush=True)
+    print("This is the ui/v2 desk (not the old Tk HYDRA window).", flush=True)
     if open_browser:
         webbrowser.open(url)
     try:

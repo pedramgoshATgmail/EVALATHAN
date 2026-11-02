@@ -78,7 +78,19 @@ if [ ! -x .venv/bin/python ]; then
   "$BASE" -m venv .venv
 fi
 
+if [ ! -f ui/v2/index.html ]; then
+  echo "ui/v2 is missing. This checkout is too old or incomplete."
+  echo "Run: git pull"
+  echo "Expected commit: v0.3.1 browser desk (60b0687 or newer)."
+  exit 1
+fi
+
 . .venv/bin/activate
 python -m pip install -U pip
 python -m pip install -e .
-exec evalathan
+echo
+echo "Starting Evalathan v0.3.1 browser desk (not the old Tk HYDRA window)..."
+echo "Your browser should open http://127.0.0.1:8787/"
+echo "Keep this terminal open while you use the desk."
+echo
+exec python -c "from evalathan.webdesk import open_desk; raise SystemExit(open_desk())"

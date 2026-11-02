@@ -14,7 +14,7 @@ Evalathan grades a product across its life cycle. It is one [evaluation harness]
 
 **v0.3** shipped on Nov 1 2026 as a local runner. Hydra still runs those sixteen software checks. A second desk, [Dehydrus](GLOSSARY.md#user-content-dehydrus), runs eight more checks aimed at [physical world models](https://en.wikipedia.org/wiki/World_model_(artificial_intelligence)) and how they meet LLMs (Large Language Models). Those eight concrete rooms are [LuDaTs](GLOSSARY.md#user-content-ludats) (Limited-universe Data Test sets) methods. They sit under [PRETRUWs](GLOSSARY.md#user-content-pretruws) (PREdiscovery TRuncated-Universes and Worlds - the locked-past testing idea). LuDaTs does not award a state-of-the-art stamp yet. A deferred cell is not a "fail" and not a zero. Roadmap: [docs/BUILDLOG.md](docs/BUILDLOG.md).
 
-On Windows, clone the program, then run `launch.bat` inside that folder. On a Mac, run `bash launch.sh` in that same folder. Either one opens the Hydra window. If that folder already exists, skip the clone and run the launcher there. On Windows you can also double-click `launch.bat`. The Dehydrus window is `evalathan dehydrus`.
+On Windows, clone the program, then run `launch.bat` inside that folder. On a Mac, run `bash launch.sh` in that same folder. Either one opens the **v0.3.1 browser desk** at `http://127.0.0.1:8787/` (not the old Tk HYDRA window). If that folder already exists, run `git pull` there first, then the launcher. On Windows you can also double-click `launch.bat`. The Dehydrus window is still `evalathan dehydrus`.
 
 <p><img src="assets/readme/windows.png" alt="Windows" height="32" align="absmiddle"> <img src="assets/readme/command-prompt.png" alt="Command Prompt" height="32" align="absmiddle"> <strong>Command Prompt (Windows):</strong></p>
 
@@ -42,20 +42,11 @@ bash launch.sh
 
 <p><img src="assets/readme/mac.png" alt="Mac" height="43" align="absmiddle"> <img src="assets/readme/python.png" alt="Python" height="36" align="absmiddle"> If that Mac Python has no window library, install Python from <a href="https://www.python.org/downloads/macos/">https://www.python.org/downloads/macos/</a> and run <code>bash launch.sh</code> again. That installer includes the window library.</p>
 
-`launch.bat` moves into `evalathan-program`, then runs:
+`launch.bat` installs into `.venv`, then starts the browser desk (`evalathan.webdesk`). Keep the console open while you use it.
 
-```bat
-cd evalathan-program
-python -m venv .venv
-.venv\Scripts\activate.bat
-python -m pip install -U pip
-python -m pip install -e .
-evalathan
-```
+`cd evalathan-program` is required before `python -m pip install -e .`. The dot means the current folder. That folder must be the clone, because `pyproject.toml` is there. From a home folder, the dot is that home folder and pip stops. Python 3.10 or newer is required. Git is required to clone this program, and again when the desk evaluates a GitHub link (same download step as before). A folder already on the PC can be evaluated without cloning it.
 
-`cd evalathan-program` is required before `python -m pip install -e .`. The dot means the current folder. That folder must be the clone, because `pyproject.toml` is there. From a home folder, the dot is that home folder and pip stops. Python 3.10 or newer is required. Git is required to clone this program, and again when the window evaluates a GitHub link. A folder already on the PC can be evaluated without cloning it.
-
-The window takes a GitHub link or a folder. The same grade from Command Prompt, after `launch.bat` has been run once in the clone:
+The desk takes a GitHub link or a folder. The same grade from Command Prompt, after `launch.bat` has been run once in the clone:
 
 ```bat
 cd evalathan-program

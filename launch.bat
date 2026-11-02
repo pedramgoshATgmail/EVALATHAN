@@ -17,6 +17,14 @@ if not defined PYLAUNCH (
   exit /b 1
 )
 
+if not exist "ui\v2\index.html" (
+  echo ui\v2 is missing. This checkout is too old or incomplete.
+  echo Run: git pull
+  echo Expected commit: v0.3.1 browser desk ^(60b0687 or newer^).
+  pause
+  exit /b 1
+)
+
 if not exist ".venv\Scripts\python.exe" (
   %PYLAUNCH% -m venv .venv
   if errorlevel 1 (
@@ -26,20 +34,26 @@ if not exist ".venv\Scripts\python.exe" (
   )
 )
 
-call ".venv\Scripts\activate.bat"
-python -m pip install -U pip
+set "VENVPY=%~dp0.venv\Scripts\python.exe"
+call "%~dp0.venv\Scripts\activate.bat"
+"%VENVPY%" -m pip install -U pip
 if errorlevel 1 (
   echo pip could not be updated.
   pause
   exit /b 1
 )
-python -m pip install -e "%~dp0."
+"%VENVPY%" -m pip install -e "%~dp0."
 if errorlevel 1 (
   echo Evalathan could not be installed.
   pause
   exit /b 1
 )
 
-evalathan
+echo.
+echo Starting Evalathan v0.3.1 browser desk ^(not the old Tk HYDRA window^)...
+echo Your browser should open http://127.0.0.1:8787/
+echo Keep this window open while you use the desk.
+echo.
+"%VENVPY%" -c "from evalathan.webdesk import open_desk; raise SystemExit(open_desk())"
 if errorlevel 1 pause
 endlocal
