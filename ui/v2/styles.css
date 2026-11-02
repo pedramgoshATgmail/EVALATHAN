@@ -931,7 +931,7 @@ html {
   flex: 1 1 auto;
   min-height: 0;
   overflow: auto;
-  background: #e8f3e8; /* soft green - long-memo eye comfort (4Uvals / Menschly) */
+  background: #fff4e5; /* warm cream sheet - long-memo eye comfort (4Uvals / Menschly) */
   color: #2b2b2b;
   padding: 1.15rem 1.25rem 1rem;
   font-family: var(--font);
@@ -1116,10 +1116,10 @@ html {
   margin: 0.35rem 0 0;
 }
 .nell-card {
-  border: 1px solid #e6d7c2;
+  border: 1px solid #c5d9c5;
   border-radius: 10px;
   padding: 0.75rem 0.85rem 0.85rem;
-  background: #fff4e5; /* warm cream evaler bevel - long-memo eye comfort */
+  background: #e8f3e8; /* soft green evaler bevel - long-memo eye comfort */
   color: #2b2b2b;
 }
 .nell-card-head {

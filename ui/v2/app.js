@@ -3052,7 +3052,7 @@
         "<!DOCTYPE html><html><head><meta charset=\"UTF-8\" /><title>" +
         escapeHtml(heading + " - " + short) +
         "</title><style>" +
-        "body{font-family:Segoe UI,Helvetica,Arial,sans-serif;max-width:720px;margin:28px auto;padding:0 18px;color:#2b2b2b;background:#e8f3e8;}" +
+        "body{font-family:Segoe UI,Helvetica,Arial,sans-serif;max-width:720px;margin:28px auto;padding:0 18px;color:#2b2b2b;background:#fff4e5;}" +
         "h1{font-size:20px;margin:0 0 6px;color:#2b2b2b} h2{font-size:16px;margin:18px 0 8px;color:#2b2b2b} h3{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#2b2b2b;margin:14px 0 6px}" +
         ".meta{color:#2b2b2b;font-size:12px;margin:0 0 14px} a{color:#2f6fbf;text-decoration:none}" +
         ".memo-block{page-break-inside:auto}" +
@@ -3060,7 +3060,7 @@
         ".memo-detail-break h2{margin:0 0 10px;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:#2b2b2b}" +
         "ul{padding-left:1.1rem} li{margin:0 0 8px;line-height:1.45}" +
         "table{width:100%;border-collapse:collapse;font-size:12px} th,td{border:1px solid #ccc;padding:5px 6px;text-align:left}" +
-      ".nell-stack{display:flex;flex-direction:column;gap:12px}.nell-card{border:1px solid #e6d7c2;border-radius:8px;padding:10px 12px;page-break-inside:avoid;background:#fff4e5;color:#2b2b2b}" +
+      ".nell-stack{display:flex;flex-direction:column;gap:12px}.nell-card{border:1px solid #c5d9c5;border-radius:8px;padding:10px 12px;page-break-inside:avoid;background:#e8f3e8;color:#2b2b2b}" +
         ".nell-card-head{display:flex;flex-wrap:wrap;gap:6px 10px;margin:0 0 6px;align-items:baseline}" +
         ".nell-gate,.nell-status,.nell-score{font-size:10px;text-transform:uppercase;background:#eee;padding:2px 6px;border-radius:999px}" +
         ".nell-blurb{margin:0 0 8px;font-size:14px;line-height:1.4;color:#2b2b2b}.nell-question{margin:0 0 6px;font-size:12px;color:#2b2b2b}" +
