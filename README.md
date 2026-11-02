@@ -12,37 +12,64 @@ Evalathan grades a product across its life cycle. It is one [evaluation harness]
 
 [Hydra](GLOSSARY.md#user-content-hydra) is the [conductor](https://opensource.microsoft.com/blog/2026/05/14/conductor-deterministic-orchestration-for-multi-agent-ai-workflows/) for the software desk: like the person at the front of an orchestra who cues each player, she calls sixteen specialized checkers. Evalathan calls those checkers [evalers](https://en.wikipedia.org/wiki/Evaluation) (short for evaluators). Each evaler reports against its own life-cycle gate.
 
-**v0.3** shipped on Nov 1 2026 as a local runner. Hydra still runs those sixteen software checks. A second desk, [Dehydrus](GLOSSARY.md#user-content-dehydrus), runs eight more checks aimed at [physical world models](https://en.wikipedia.org/wiki/World_model_(artificial_intelligence)) and how they meet LLMs (Large Language Models). Those eight concrete rooms are [LuDaTs](GLOSSARY.md#user-content-ludats) (Limited-universe Data Test sets) methods. They sit under [PRETRUWs](GLOSSARY.md#user-content-pretruws) (PREdiscovery TRuncated-Universes and Worlds - the locked-past testing idea). LuDaTs does not award a state-of-the-art stamp yet. A deferred cell is not a "fail" and not a zero. Roadmap: [docs/BUILDLOG.md](docs/BUILDLOG.md).
+**v0.3** shipped on Nov 1 2026 as a local runner. **v0.3.1** shipped on Nov 19 2026: the default Hydra desk is now the browser UI at `http://127.0.0.1:8787/` (`ui/v2`), wired to the same sixteen-evaler `prepare()` + `conduct()` path - not the old Tk window, and not mock scores. Hydra still runs those sixteen software checks. A second desk, [Dehydrus](GLOSSARY.md#user-content-dehydrus), runs eight more checks aimed at [physical world models](https://en.wikipedia.org/wiki/World_model_(artificial_intelligence)) and how they meet LLMs (Large Language Models). Those eight concrete rooms are [LuDaTs](GLOSSARY.md#user-content-ludats) (Limited-universe Data Test sets) methods. They sit under [PRETRUWs](GLOSSARY.md#user-content-pretruws) (PREdiscovery TRuncated-Universes and Worlds - the locked-past testing idea). LuDaTs does not award a state-of-the-art stamp yet. A deferred cell is not a "fail" and not a zero. Roadmap: [docs/BUILDLOG.md](docs/BUILDLOG.md).
 
-On Windows, clone the program, then run `launch.bat` inside that folder. On a Mac, run `bash launch.sh` in that same folder. Either one opens the **v0.3.1 browser desk** at `http://127.0.0.1:8787/` (not the old Tk HYDRA window). If that folder already exists, run `git pull` there first, then the launcher. On Windows you can also double-click `launch.bat`. The Dehydrus window is still `evalathan dehydrus`.
+On Windows or Mac, use the blocks below. They **clone once**, or **update** if `evalathan-program` is already on disk (so you never hit `destination path already exists`). Then the launcher opens the **v0.3.1 browser desk** at `http://127.0.0.1:8787/` (not the old Tk HYDRA window). `launch.bat` / `launch.sh` also pull from GitHub each start when the folder is a git clone. On Windows you can also double-click `launch.bat` inside an already-updated folder. The Dehydrus window is still `evalathan dehydrus`.
 
 <p><img src="assets/readme/windows.png" alt="Windows" height="32" align="absmiddle"> <img src="assets/readme/command-prompt.png" alt="Command Prompt" height="32" align="absmiddle"> <strong>Command Prompt (Windows):</strong></p>
 
 ```bat
-git clone https://github.com/pedramgoshATgmail/EVALATHAN.git evalathan-program
-cd evalathan-program
+if exist evalathan-program (
+  cd evalathan-program
+  git fetch origin
+  git merge --ff-only origin/main
+) else (
+  git clone https://github.com/pedramgoshATgmail/EVALATHAN.git evalathan-program
+  cd evalathan-program
+)
 launch.bat
 ```
 
 <p><img src="assets/readme/windows.png" alt="Windows" height="32" align="absmiddle"> <img src="assets/readme/powershell.png" alt="PowerShell" height="32" align="absmiddle"> <strong>PowerShell (Windows)</strong> (the prompt starts with <code>PS</code>). <code>cd /d</code> works only in Command Prompt, so this block uses <code>Set-Location</code>:</p>
 
 ```powershell
-git clone https://github.com/pedramgoshATgmail/EVALATHAN.git evalathan-program
-Set-Location evalathan-program
+if (Test-Path evalathan-program) {
+  Set-Location evalathan-program
+  git fetch origin
+  git merge --ff-only origin/main
+} else {
+  git clone https://github.com/pedramgoshATgmail/EVALATHAN.git evalathan-program
+  Set-Location evalathan-program
+}
 .\launch.bat
 ```
 
 <p><img src="assets/readme/mac.png" alt="Mac" height="43" align="absmiddle"> <img src="assets/readme/terminal.png" alt="Terminal" height="45" align="absmiddle"> <strong>Terminal (Mac)</strong> (the prompt ends with <code>%</code>). <code>launch.bat</code> is the Windows file. On a Mac the file is <code>launch.sh</code>.</p>
 
 ```bash
-git clone https://github.com/pedramgoshATgmail/EVALATHAN.git evalathan-program
-cd evalathan-program
+if [ -d evalathan-program ]; then
+  cd evalathan-program
+  git fetch origin
+  git merge --ff-only origin/main
+else
+  git clone https://github.com/pedramgoshATgmail/EVALATHAN.git evalathan-program
+  cd evalathan-program
+fi
 bash launch.sh
+```
+
+If fast-forward is blocked (local edits), take the published tree exactly:
+
+```bat
+cd evalathan-program
+git fetch origin
+git reset --hard origin/main
+launch.bat
 ```
 
 <p><img src="assets/readme/mac.png" alt="Mac" height="43" align="absmiddle"> <img src="assets/readme/python.png" alt="Python" height="36" align="absmiddle"> If that Mac Python has no window library, install Python from <a href="https://www.python.org/downloads/macos/">https://www.python.org/downloads/macos/</a> and run <code>bash launch.sh</code> again. That installer includes the window library.</p>
 
-`launch.bat` installs into `.venv`, then starts the browser desk (`evalathan.webdesk`). Keep the console open while you use it.
+`launch.bat` pulls updates when it can, installs into `.venv`, then starts the browser desk (`evalathan.webdesk`). Keep the console open while you use it.
 
 `cd evalathan-program` is required before `python -m pip install -e .`. The dot means the current folder. That folder must be the clone, because `pyproject.toml` is there. From a home folder, the dot is that home folder and pip stops. Python 3.10 or newer is required. Git is required to clone this program, and again when the desk evaluates a GitHub link (same download step as before). A folder already on the PC can be evaluated without cloning it.
 
@@ -59,7 +86,7 @@ evalathan scan . --json report.json
 
 EVALATHAN is an open-source, [reductoholistic](GLOSSARY.md#user-content-reductoholism) evaluation harness designed to audit and score software projects, codebases, engines, agentic pipelines, compilers, and world models across their entire lifecycle.
 
-The tool is a local runner (v0.3) aimed at Product-led growth (PLG) and codebase verification. Rather than generating a single aggregated or opaque score, EVALATHAN uses two conductors. [Hydra](GLOSSARY.md#user-content-hydra) orchestrates sixteen software evaluators ("evalers") and writes a transparent status matrix. [Dehydrus](GLOSSARY.md#user-content-dehydrus) orchestrates eight [LuDaTs](GLOSSARY.md#user-content-ludats) (Limited-universe Data Test sets) evalers under [PRETRUWs](GLOSSARY.md#user-content-pretruws). LuDaTs is a subset of PRETRUWs. The two rooms do not share a vector, and they are not folded into one number.
+The tool is a local runner (v0.3.1) aimed at Product-led growth (PLG) and codebase verification. Rather than generating a single aggregated or opaque score, EVALATHAN uses two conductors. [Hydra](GLOSSARY.md#user-content-hydra) orchestrates sixteen software evaluators ("evalers") and writes a transparent status matrix. [Dehydrus](GLOSSARY.md#user-content-dehydrus) orchestrates eight [LuDaTs](GLOSSARY.md#user-content-ludats) (Limited-universe Data Test sets) evalers under [PRETRUWs](GLOSSARY.md#user-content-pretruws). LuDaTs is a subset of PRETRUWs. The two rooms do not share a vector, and they are not folded into one number.
 
 ## Architecture & The 16 Evaluators
 
@@ -119,7 +146,7 @@ Levi reads a [4Uvals](GLOSSARY.md#user-content-4uvals) card when one is in the t
 
 ## What v0.3 runs
 
-[Dehydrus](GLOSSARY.md#user-content-dehydrus) conducts eight [LuDaTs](GLOSSARY.md#user-content-ludats) evalers. He is not an eighteenth Hydra score. The default local install still opens Hydra (`launch.bat` / `bash launch.sh`). The Dehydrus desk is a second command: `evalathan dehydrus`. A Dehydrus scan writes eight cells and a note about whether a [HabTwin](GLOSSARY.md#user-content-habtwin) lab file is in the folder. The report body starts with Evalathan v0.3.
+[Dehydrus](GLOSSARY.md#user-content-dehydrus) conducts eight [LuDaTs](GLOSSARY.md#user-content-ludats) evalers. He is not an eighteenth Hydra score. The default local install opens the Hydra **browser desk** (`launch.bat` / `bash launch.sh` → `http://127.0.0.1:8787/`). The Dehydrus desk is a second command: `evalathan dehydrus`. A Dehydrus scan writes eight cells and a note about whether a [HabTwin](GLOSSARY.md#user-content-habtwin) lab file is in the folder. The report body starts with Evalathan v0.3.
 
 Those eight cells are not fully wired into the install you get when you double-click the launcher. v0.3 looks for a sealed world file and names it when one is in the tree. It does not run the locked-year simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. Until a sealed world is present, and until the simulator is the thing the local install runs, the cell stays deferred. A deferred cell is not a fail and not a zero. [Newtonly](GLOSSARY.md#user-content-newtonly) waits until [Keplerly](GLOSSARY.md#user-content-keplerly) and [Galileoly](GLOSSARY.md#user-content-galileoly) both show a sealed world.
 
@@ -152,7 +179,7 @@ Attention to Ergonomics/Ethics: Bringing developer wellness (FUSS/SELFBELT) into
 
 ## Current Limitations & Areas for Growth
 
-Early Stage (v0.3): The repository now has more than 150 commits and still has no public distribution (it is not on PyPI). Hydra is the window the launcher opens. Dehydrus is present as a second command.
+Early Stage (v0.3.1): The repository now has more than 150 commits and still has no public distribution (it is not on PyPI). The launcher opens the Hydra browser desk. Dehydrus is present as a second command.
 
 Dehydrus Not Fully Wired: The eight LuDaTs evalers ship as desk cells and exam cards. v0.3 names a sealed world file when one is in the tree. It does not yet run the locked-year simulator inside a default local install, and it does not award Gold from a filename. Missing worlds stay deferred. That wait is part of the method, not a fail.
 
