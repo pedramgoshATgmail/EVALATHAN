@@ -1440,8 +1440,18 @@ html {
 .fuss-btn-start:hover { background: #246338; }
 .fuss-btn-stop { background: #c45c4a; }
 .fuss-btn-stop:hover { background: #a84a3b; }
+.fuss-live {
+  margin: 0.85rem 0 0.25rem;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: #c45c26;
+  line-height: 1.1;
+}
+.fuss-live[hidden] { display: none !important; }
 .fuss-status {
-  margin: 0.75rem 0 0;
+  margin: 0.35rem 0 0;
   font-family: var(--font);
   font-size: 0.9rem;
   font-weight: 600;
@@ -1475,7 +1485,7 @@ html {
   color: #555;
 }
 
-/* Circular BREAK TIME overlay (launching-splash twin) */
+/* Circular BREAK TIME overlay (enlarged launching-splash twin) */
 .fuss-break-layer {
   position: fixed;
   inset: 0;
@@ -1483,35 +1493,43 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(0, 0, 0, 0.42);
   pointer-events: auto;
 }
 .fuss-break-layer[hidden] { display: none !important; }
+.fuss-break-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
 .fuss-break-disk {
   position: relative;
-  width: min(320px, 72vw);
-  height: min(320px, 72vw);
+  width: min(440px, 78vw);
+  height: min(440px, 78vw);
   border: 0;
   padding: 0;
+  margin: 0;
   border-radius: 50%;
   overflow: hidden;
-  cursor: pointer;
   background: transparent;
-  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.45);
+  box-shadow: none;
+  pointer-events: none;
 }
 .fuss-break-art {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 50%;
   pointer-events: none;
+  background: transparent;
 }
 .fuss-break-banner {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 88%;
+  width: 78%;
   height: auto;
   transform: translate(-50%, -50%);
   pointer-events: none;
@@ -1522,6 +1540,22 @@ html {
 .fuss-break-layer.is-on .fuss-break-banner {
   animation-play-state: running;
 }
+.fuss-break-stop {
+  min-width: 7.5rem;
+  height: 2.45rem;
+  padding: 0 1.35rem;
+  border: 0;
+  border-radius: 999px;
+  background: #c8102e;
+  color: #fff;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+}
+.fuss-break-stop:hover { background: #a00d25; }
 @keyframes fuss-break-flash {
   0%,
   49% {

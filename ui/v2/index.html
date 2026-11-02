@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=gold71" />
+  <link rel="stylesheet" href="styles.css?v=gold72" />
   <link rel="preload" as="image" href="assets/evalathan-dragon.webp?v=5" type="image/webp" />
   <link rel="preload" as="image" href="assets/hydra-logo.webp?v=5" type="image/webp" />
   <link rel="preload" as="image" href="assets/dehydrus-logo.webp?v=5" type="image/webp" />
@@ -163,6 +163,7 @@
             <button type="button" class="fuss-btn fuss-btn-stop" id="fuss-stop" title="Stop timer">Stop timer</button>
           </div>
         </div>
+        <p class="fuss-live" id="fuss-live" hidden aria-live="polite">00:00</p>
         <p class="fuss-status" id="fuss-status">Timer off.</p>
       </div>
       <div class="fuss-countdown" id="fuss-countdown" hidden aria-live="assertive">
@@ -172,14 +173,17 @@
     </div>
   </div>
 
-  <!-- Circular BREAK TIME splash only when the sitting timer expires -->
+  <!-- Circular BREAK TIME splash - stays until STOP -->
   <div id="fuss-break-layer" class="fuss-break-layer" hidden>
-    <button type="button" class="fuss-break-disk" id="fuss-break-dismiss" title="Dismiss break - click to continue" aria-label="BREAK TIME - click to dismiss">
-      <img class="fuss-break-art" src="assets/fuss-splash.png?v=1" alt="" draggable="false" />
-      <img class="fuss-break-banner" src="assets/fuss-breaktime.png?v=1" alt="BREAK TIME!" draggable="false" />
-    </button>
+    <div class="fuss-break-stack" role="dialog" aria-modal="true" aria-label="BREAK TIME">
+      <div class="fuss-break-disk" aria-hidden="true">
+        <img class="fuss-break-art" src="assets/fuss-break-disk.png?v=1" alt="" draggable="false" />
+        <img class="fuss-break-banner" src="assets/fuss-breaktime.png?v=1" alt="BREAK TIME!" draggable="false" />
+      </div>
+      <button type="button" class="fuss-break-stop" id="fuss-break-stop" title="Stop BREAK TIME flash">STOP</button>
+    </div>
   </div>
 
-  <script src="app.js?v=gold71"></script>
+  <script src="app.js?v=gold72"></script>
 </body>
 </html>

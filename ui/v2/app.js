@@ -3252,6 +3252,7 @@
   const FUSS_REMIND_EVERY = 15;
   let fussTick = null;
   let fussCountTimer = null;
+  let fussPanelTick = null;
   let fussCounting = false;
 
   function fussEls() {
@@ -3267,7 +3268,8 @@
       stop: document.getElementById("fuss-stop"),
       status: document.getElementById("fuss-status"),
       close: document.getElementById("fuss-close"),
-      dismiss: document.getElementById("fuss-break-dismiss"),
+      stopBreak: document.getElementById("fuss-break-stop"),
+      live: document.getElementById("fuss-live"),
       mascot: document.getElementById("btn-fuss"),
     };
   }
@@ -3336,10 +3338,12 @@
   }
 
   function fussShowBreak() {
-    const layer = fussEls().breakLayer;
-    if (!layer) return;
-    layer.hidden = false;
-    layer.classList.add("is-on");
+    const els = fussEls();
+    if (!els.breakLayer) return;
+    if (els.layer) els.layer.hidden = true;
+    fussStopPanelLive();
+    els.breakLayer.hidden = false;
+    els.breakLayer.classList.add("is-on");
   }
 
   function fussClearTickers() {
@@ -3352,6 +3356,7 @@
       fussCountTimer = null;
     }
     fussCounting = false;
+    fussStopPanelLive();
   }
 
   function fussStopTimer(opts) {
@@ -3378,22 +3383,36 @@
       const state = fussRead();
       if (!state.on || !state.started) return;
       const leftMs = fussRemainingMs(state);
-      const leftMin = leftMs / 60000;
       const elapsed = (Date.now() - Number(state.started)) / 60000;
       const bucket = Math.floor(elapsed / FUSS_REMIND_EVERY);
       if (bucket > 0 && bucket !== state.lastPing) {
         state.lastPing = bucket;
         fussWrite(state);
       }
+      const els = fussEls();
+      if (els.layer && !els.layer.hidden) fussStatusLine(state);
       if (leftMs <= 0) {
         fussStopTimer({ clearAck: false });
         fussSetStatus("Sitting ended. Take a break.");
         fussShowBreak();
       }
-    }, 1000);
+    }, 250);
+  }
+
+  function fussPaintLive(state) {
+    const live = fussEls().live;
+    if (!live) return;
+    if (state && state.on && state.started) {
+      live.hidden = false;
+      live.textContent = fussFormatMs(fussRemainingMs(state));
+    } else {
+      live.hidden = true;
+      live.textContent = "00:00";
+    }
   }
 
   function fussStatusLine(state) {
+    fussPaintLive(state);
     if (!state || !state.on || !state.started) {
       fussSetStatus("Timer off.");
       return;
@@ -3409,21 +3428,43 @@
     );
   }
 
+  function fussStopPanelLive() {
+    if (fussPanelTick) {
+      window.clearInterval(fussPanelTick);
+      fussPanelTick = null;
+    }
+  }
+
+  function fussStartPanelLive() {
+    fussStopPanelLive();
+    fussPanelTick = window.setInterval(function () {
+      const els = fussEls();
+      if (!els.layer || els.layer.hidden) return;
+      const state = fussRead();
+      if (state.on && state.started) fussStatusLine(state);
+    }, 250);
+  }
+
   function fussOpenPanel() {
     const els = fussEls();
     if (!els.layer || fussCounting) return;
+    if (els.breakLayer && !els.breakLayer.hidden) return;
     const state = fussRead();
     fussShowSetup();
     if (els.mins) els.mins.value = String(fussClampMins(state.minutes || FUSS_DEFAULT));
     if (els.ack) els.ack.checked = !!state.ack;
     fussStatusLine(state);
     els.layer.hidden = false;
+    fussStartPanelLive();
   }
 
   function fussClosePanel() {
     if (fussCounting) return;
+    const breakLayer = fussEls().breakLayer;
+    if (breakLayer && !breakLayer.hidden) return;
     const layer = fussEls().layer;
     if (layer) layer.hidden = true;
+    fussStopPanelLive();
     fussShowSetup();
   }
 
@@ -3575,24 +3616,31 @@
         fussWrite(state);
       });
     }
-    if (els.dismiss) {
-      els.dismiss.addEventListener("click", function () {
+    if (els.stopBreak) {
+      els.stopBreak.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
         fussHideBreak();
+        fussSetStatus("Break dismissed.");
       });
     }
     if (els.breakLayer) {
+      /* Backdrop / Esc must NOT dismiss - only STOP ends the flash. */
       els.breakLayer.addEventListener("click", function (e) {
-        if (e.target === els.breakLayer) fussHideBreak();
+        e.preventDefault();
+        e.stopPropagation();
       });
     }
     document.addEventListener("keydown", function (e) {
-      if (e.key !== "Escape") return;
       if (els.breakLayer && !els.breakLayer.hidden) {
-        fussHideBreak();
+        if (e.key === "Escape") {
+          e.preventDefault();
+          e.stopPropagation();
+        }
         return;
       }
-      if (els.layer && !els.layer.hidden) fussClosePanel();
-    });
+      if (e.key === "Escape" && els.layer && !els.layer.hidden) fussClosePanel();
+    }, true);
     const boot = fussRead();
     if (boot.on && boot.started && fussRemainingMs(boot) > 0) {
       fussArm();
