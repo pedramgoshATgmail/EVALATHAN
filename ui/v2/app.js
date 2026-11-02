@@ -367,7 +367,7 @@
       wordOnDark: "assets/biasrex-word-white.png?v=shade1",
       wordOnLight: "assets/biasrex-word-black.png?v=shade1",
       art: "assets/biasrex-logo.webp?v=12",
-      artGrey: "assets/biasrex-logo-grey.webp?v=11",
+      artGrey: "assets/biasrex-logo-grey.webp?v=13",
       artWhite: "assets/biasrex-logo-white.webp?v=11",
       blurbs:
         "Biasrex engine conducts 6 bias cells (not wired in currently).\nFilterly, Meaningly, Hastely, and Memoryly map the Codex four problems.\nConfirmly and Automately add confirmation and automation trust gates.",
