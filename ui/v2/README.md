@@ -1,4 +1,6 @@
-# Evalathan UI/UX v2
+# Evalathan UI/UX v2 (v0.3.1 desk)
+
+Replaces the old Tk Hydra window. **Evaluate** calls the same `prepare()` + Hydra `conduct()` path (sixteen real evalers). Dehydrus / Benchrex / Biasrex slots stay WIP.
 
 SEISMO-style overlay rails. **Splash = both sides closed.** Corner words open the sliders.
 

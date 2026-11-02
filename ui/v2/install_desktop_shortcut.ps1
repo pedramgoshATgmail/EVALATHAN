@@ -1,4 +1,4 @@
-# Creates a Desktop shortcut for Evalathan (Hydra GUI) with the red dragon icon.
+# Creates a Desktop shortcut for Evalathan (v0.3.1 desk) with the red dragon icon.
 # Run once after download. Does not push or commit anything.
 $ErrorActionPreference = "Stop"
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path
@@ -6,7 +6,7 @@ $repo = Split-Path -Parent (Split-Path -Parent $here)
 $icon = Join-Path $here "assets\favicon.ico"
 $bat = Join-Path $here "Evalathan.bat"
 $desktop = [Environment]::GetFolderPath("Desktop")
-$lnkPath = Join-Path $desktop "Evalathan (Hydra GUI).lnk"
+$lnkPath = Join-Path $desktop "Evalathan (v0.3.1 desk).lnk"
 
 @"
 @echo off

@@ -544,16 +544,45 @@ button { cursor: pointer; border: 0; background: none; }
   gap: 0.7rem;
   margin: 0.85rem 0 0.5rem;
 }
-.mascots img {
+.mascot-wrap {
+  position: relative;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.mascot-wrap .mascot {
   width: 92px;
   height: 92px;
   object-fit: contain;
   border-radius: 50%;
+  display: block;
 }
-.mascots img.is-soon {
+.mascot-wrap.is-soon .mascot {
   opacity: 0.55;
   filter: grayscale(0.35);
-  cursor: default;
+}
+.mascot-soon-blurb {
+  position: absolute;
+  left: 50%;
+  bottom: -0.15rem;
+  transform: translate(-50%, 100%);
+  margin-top: 0.25rem;
+  padding: 0.28rem 0.55rem;
+  border-radius: 0.35rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--line);
+  color: var(--text-soft);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  z-index: 5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+.mascot-soon-blurb[hidden] {
+  display: none !important;
 }
 
 .section-label {
@@ -716,7 +745,11 @@ html {
   top: 50%;
   transform: translate(-50%, -50%);
   width: min(720px, 96vw);
-  max-height: min(88vh, 920px);
+  height: min(88vh, 720px);
+  min-width: 320px;
+  min-height: 220px;
+  max-width: none;
+  max-height: none;
   display: flex;
   flex-direction: column;
   background: #1a1a1a;
@@ -735,12 +768,18 @@ html {
   transform: none;
   margin: 0;
 }
+.memo-win.is-maximized {
+  border-radius: 8px;
+}
+.memo-win.is-maximized .memo-resize {
+  display: none;
+}
 .memo-titlebar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  padding: 0.55rem 0.75rem;
+  padding: 0.45rem 0.55rem 0.45rem 0.75rem;
   background: #111;
   color: #ddd;
   font-family: var(--mono);
@@ -749,16 +788,61 @@ html {
   cursor: move;
   user-select: none;
   touch-action: none;
+  flex: 0 0 auto;
 }
+.memo-win-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.memo-win-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  flex: 0 0 auto;
+}
+.memo-win-btn {
+  width: 1.7rem;
+  height: 1.6rem;
+  border-radius: 0.3rem;
+  color: #ccc;
+  font-size: 0.85rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+.memo-win-btn:hover { background: #333; color: #fff; }
 .memo-close {
-  width: 1.6rem;
+  width: 1.7rem;
   height: 1.6rem;
   border-radius: 0.3rem;
   color: #ccc;
   font-size: 1.1rem;
   line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
-.memo-close:hover { background: #333; color: #fff; }
+.memo-close:hover { background: #a33; color: #fff; }
+.memo-resize {
+  position: absolute;
+  z-index: 5;
+  background: transparent;
+}
+.memo-resize-n { top: 0; left: 8px; right: 8px; height: 6px; cursor: ns-resize; }
+.memo-resize-s { bottom: 0; left: 8px; right: 8px; height: 6px; cursor: ns-resize; }
+.memo-resize-e { right: 0; top: 8px; bottom: 8px; width: 6px; cursor: ew-resize; }
+.memo-resize-w { left: 0; top: 8px; bottom: 8px; width: 6px; cursor: ew-resize; }
+.memo-resize-ne { top: 0; right: 0; width: 12px; height: 12px; cursor: nesw-resize; }
+.memo-resize-nw { top: 0; left: 0; width: 12px; height: 12px; cursor: nwse-resize; }
+.memo-resize-se { bottom: 0; right: 0; width: 14px; height: 14px; cursor: nwse-resize; }
+.memo-resize-sw { bottom: 0; left: 0; width: 12px; height: 12px; cursor: nesw-resize; }
 .memo-sheet {
   flex: 1 1 auto;
   min-height: 0;
@@ -943,12 +1027,13 @@ html {
 .memo-btn-download { background: #d97706; }
 .memo-btn-download:hover { background: #b45309; }
 .memo-btn-save { background: #2f7a45; }
-.memo-btn-save:hover { background: #246338; }
+.memo-btn-save:hover:not(:disabled):not(.is-saved) { background: #246338; }
 .memo-btn-save:disabled,
 .memo-btn-save.is-saved {
-  background: #9aa39a;
-  color: #eee;
+  background: #9aa39a !important;
+  color: #eee !important;
   cursor: default;
+  opacity: 0.7;
 }
 .memo-btn-delete { background: #c8102e; } /* Canadian flag red */
 .memo-btn-delete:hover { background: #a00d25; }
@@ -979,6 +1064,8 @@ html {
   color: #2f7a45;
 }
 .memo-chip.deferred strong { color: #888; }
+.memo-chip.measured strong { color: #2f6fbf; }
+.memo-chip.pass strong { color: #2f7a45; }
 .memo-chip span {
   font-size: 0.72rem;
   color: #666;

@@ -1,27 +1,16 @@
-"""Serve Evalathan UI v2 with correct WebP MIME (stdlib http.server alone maps .webp poorly)."""
+"""Serve Evalathan ui/v2 with the real Hydra evaluate API (same path as the old Tk desk)."""
 from __future__ import annotations
 
-import mimetypes
-from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
-PORT = 8787
+# Allow `python ui/v2/serve.py` from a checkout without install
+_ROOT = Path(__file__).resolve().parents[2]
+_SRC = _ROOT / "src"
+if _SRC.is_dir() and str(_SRC) not in sys.path:
+    sys.path.insert(0, str(_SRC))
 
-mimetypes.add_type("image/webp", ".webp")
-mimetypes.add_type("image/webp", ".WEBP")
-
-
-class Handler(SimpleHTTPRequestHandler):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, directory=str(ROOT), **kwargs)
-
-    def end_headers(self):
-        self.send_header("Cache-Control", "no-cache")
-        super().end_headers()
-
+from evalathan.webdesk import open_desk  # noqa: E402
 
 if __name__ == "__main__":
-    httpd = ThreadingHTTPServer(("0.0.0.0", PORT), Handler)
-    print(f"Evalathan ui/v2 on http://127.0.0.1:{PORT}/", flush=True)
-    httpd.serve_forever()
+    raise SystemExit(open_desk())

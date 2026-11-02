@@ -54,7 +54,7 @@ class Report:
     def to_dict(self) -> dict:
         return {
             "product": "Evalathan",
-            "version": "0.2.0",
+            "version": "0.3.1",
             "conductor": "Hydra",
             "root": self.root,
             "headline": self.headline(),

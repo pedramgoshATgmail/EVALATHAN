@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=gold39" />
+  <link rel="stylesheet" href="styles.css?v=gold44" />
   <link rel="preload" as="image" href="assets/evalathan-dragon.webp?v=5" type="image/webp" />
   <link rel="preload" as="image" href="assets/hydra-logo.webp?v=5" type="image/webp" />
   <link rel="preload" as="image" href="assets/dehydrus-logo.webp?v=5" type="image/webp" />
@@ -34,8 +34,14 @@
           </button>
           <nav class="engine-stack" id="engine-stack" aria-label="Router engines"></nav>
           <div class="mascots">
-            <img class="mascot is-soon" src="assets/prickly.png" alt="PRICKLY" title="Coming soon" />
-            <img class="mascot is-soon" src="assets/fuss.png" alt="FUSS" title="Coming soon" />
+            <button type="button" class="mascot-wrap is-soon" title="Coming soon" aria-label="PRICKLY - Coming soon">
+              <img class="mascot" src="assets/prickly.png" alt="PRICKLY" draggable="false" />
+              <span class="mascot-soon-blurb" hidden>Coming soon</span>
+            </button>
+            <button type="button" class="mascot-wrap is-soon" title="Coming soon" aria-label="FUSS - Coming soon">
+              <img class="mascot" src="assets/fuss.png" alt="FUSS" draggable="false" />
+              <span class="mascot-soon-blurb" hidden>Coming soon</span>
+            </button>
           </div>
           <div class="slide-section">
             <button type="button" class="section-label" id="btn-gloss" title="Open Evalathan glossary">GLOSS</button>
@@ -107,6 +113,6 @@
   <!-- Multi-memo stack: each saved/eval run can open its own window -->
   <div id="memo-layer" class="memo-layer" hidden></div>
 
-  <script src="app.js?v=gold39"></script>
+  <script src="app.js?v=gold44"></script>
 </body>
 </html>

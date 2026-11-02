@@ -867,18 +867,6 @@
       });
   }
 
-  function enrichRunExplanations(run) {
-    if (!run || !run.cells) return run;
-    const engId = run.engineId || String(run.engine || "hydra").toLowerCase();
-    run.cells.forEach(function (c) {
-      const ev = { id: c.id, label: c.name };
-      const explained = explainEval(engId, ev, c.score, c.status, run.target || "");
-      c.blurb = explained.blurb;
-      c.detail = explained.detail;
-    });
-    return run;
-  }
-
   function findPriorSaved(target, engineLabel) {
     const set = findRunSet(target);
     if (!set || !set.saved || !set.saved.length) return null;
@@ -900,32 +888,60 @@
     let regressed = 0;
     let same = 0;
     const notes = [];
+    let numeric = 0;
     current.cells.forEach((c) => {
       const key = c.id || c.name;
       const p = priorMap[key];
-      if (!p || typeof p.score !== "number" || typeof c.score !== "number") {
+      if (!p) {
         same += 1;
         return;
       }
-      const d = c.score - p.score;
-      if (d > 0) {
+      if (typeof p.score === "number" && typeof c.score === "number") {
+        numeric += 1;
+        const d = c.score - p.score;
+        if (d > 0) {
+          improved += 1;
+          notes.push(c.name + " +" + d);
+        } else if (d < 0) {
+          regressed += 1;
+          notes.push(c.name + " " + d);
+        } else {
+          same += 1;
+        }
+        return;
+      }
+      /* Hydra: compare deferred ↔ measured/passed */
+      const wasDef = p.status === "deferred";
+      const nowDef = c.status === "deferred";
+      if (wasDef && !nowDef) {
         improved += 1;
-        notes.push(c.name + " +" + d);
-      } else if (d < 0) {
+        notes.push(c.name + " now measured");
+      } else if (!wasDef && nowDef) {
         regressed += 1;
-        notes.push(c.name + " " + d);
+        notes.push(c.name + " now deferred");
+      } else if (p.passed !== true && c.passed === true) {
+        improved += 1;
+        notes.push(c.name + " now passed");
+      } else if (p.passed === true && c.passed !== true && !nowDef) {
+        regressed += 1;
+        notes.push(c.name + " lost pass");
       } else {
         same += 1;
       }
     });
-    const avgNow =
-      current.cells.reduce((a, c) => a + (c.score || 0), 0) / Math.max(1, current.cells.length);
-    const avgWas =
-      prior.cells.reduce((a, c) => a + (c.score || 0), 0) / Math.max(1, prior.cells.length);
-    const delta = Math.round((avgNow - avgWas) * 10) / 10;
+    let delta = 0;
+    if (numeric) {
+      const avgNow =
+        current.cells.reduce((a, c) => a + (c.score || 0), 0) / Math.max(1, current.cells.length);
+      const avgWas =
+        prior.cells.reduce((a, c) => a + (c.score || 0), 0) / Math.max(1, prior.cells.length);
+      delta = Math.round((avgNow - avgWas) * 10) / 10;
+    } else {
+      delta = improved - regressed;
+    }
     let tone = "same";
-    if (delta > 0.4) tone = "improved";
-    else if (delta < -0.4) tone = "regressed";
+    if (improved > regressed) tone = "improved";
+    else if (regressed > improved) tone = "regressed";
     return {
       tone: tone,
       delta: delta,
@@ -1040,15 +1056,64 @@
     return same.length + 1;
   }
 
-  function makeRun(target, eng, cells, comparison) {
+  function cellsFromHydraReport(report) {
+    return (report && report.cells ? report.cells : []).map(function (c) {
+      const agent = String(c.agent || "Evaler");
+      const id = agent.toLowerCase();
+      const deferred = String(c.status || "") === "deferred";
+      const measured = String(c.status || "") === "measured" || String(c.status || "") === "provisional";
+      const passed = c.passed === true;
+      let status = "deferred";
+      if (deferred) status = "deferred";
+      else if (passed) status = "pass";
+      else if (measured) status = "measured";
+      else status = "pass";
+      const evidence = Array.isArray(c.evidence) ? c.evidence : [];
+      const summary = String(c.summary || "");
+      const detailParts = [summary].concat(evidence).filter(Boolean);
+      return {
+        id: id,
+        name: agent,
+        gate: c.gate || "",
+        question: c.question || "",
+        status: status,
+        hydraStatus: c.status || "",
+        passed: c.passed,
+        score: null,
+        blurb: summary,
+        detail: detailParts.join(" "),
+        evidence: evidence,
+        href: anchor(id === "levi" ? "levi" : id),
+      };
+    });
+  }
+
+  function makeRun(target, eng, cells, comparison, extra) {
     const deferred = cells.filter((c) => c.status === "deferred").length;
-    const avg = Math.round(
-      cells.reduce((a, c) => a + (c.score || 0), 0) / Math.max(1, cells.length)
-    );
+    const measured = cells.filter((c) => c.status !== "deferred").length;
+    const passed = cells.filter((c) => c.passed === true).length;
+    const scored = cells.filter((c) => typeof c.score === "number");
+    const avg =
+      scored.length > 0
+        ? Math.round(scored.reduce((a, c) => a + c.score, 0) / scored.length)
+        : null;
     const id =
       "run_" + hashStr(String(target) + "|" + eng.id + "|" + Date.now() + "|" + Math.random()).toString(16);
     const shortTitle = shortTitleFromTarget(target);
     const now = new Date();
+    const hydra = !!(extra && extra.hydra);
+    const headline =
+      (extra && extra.headline) ||
+      (hydra
+        ? measured +
+          " of " +
+          cells.length +
+          " evalers ran. " +
+          passed +
+          " passed their own gate. " +
+          deferred +
+          " are deferred."
+        : cells.length + " cells · avg " + avg + " · " + deferred + " deferred");
     return {
       id: id,
       title: shortTitle,
@@ -1058,16 +1123,37 @@
       engine: eng.label,
       engineId: eng.id,
       runOrdinal: nextRunOrdinal(target, eng.id),
-      summary: cells.length + " cells · avg " + avg + " · " + deferred + " deferred",
+      summary: headline,
       target: target || "",
       avgScore: avg,
       deferred: deferred,
+      measured: measured,
+      passedCount: passed,
       cells: cells,
       comparison: comparison,
       memoSimple: null,
       memoDeep: null,
       savedAt: null,
+      hydra: hydra,
+      prd: (extra && extra.prd) || "",
+      note: (extra && extra.note) || "",
+      render: (extra && extra.render) || "",
+      folder: (extra && extra.folder) || "",
     };
+  }
+
+  function enrichRunExplanations(run) {
+    if (!run || !run.cells) return run;
+    /* Live Hydra cells already carry real summaries - do not overwrite with FOSS mocks */
+    if (run.hydra) return run;
+    const engId = run.engineId || String(run.engine || "hydra").toLowerCase();
+    run.cells.forEach(function (c) {
+      const ev = { id: c.id, label: c.name };
+      const explained = explainEval(engId, ev, c.score, c.status, run.target || "");
+      c.blurb = explained.blurb;
+      c.detail = explained.detail;
+    });
+    return run;
   }
 
   function writeMemoChipGrid(run) {
@@ -1097,8 +1183,13 @@
   }
 
   function writeSimpleMemo(run) {
-    const pass = run.cells.filter((c) => c.status === "pass").length;
+    const pass = run.cells.filter((c) => c.status === "pass" || c.passed === true).length;
     const deferred = run.cells.filter((c) => c.status === "deferred").length;
+    const measured = run.cells.filter((c) => c.status !== "deferred").length;
+    const metaScore =
+      run.hydra || run.avgScore == null
+        ? measured + " ran · " + pass + " passed · " + deferred + " deferred"
+        : "avg " + run.avgScore + "/100 · " + pass + " pass · " + deferred + " deferred";
     let deltaHtml = "";
     if (run.comparison) {
       const c = run.comparison;
@@ -1113,7 +1204,7 @@
         c.tone +
         '"><strong>' +
         escapeHtml(label) +
-        "</strong> (avg " +
+        "</strong> (" +
         (c.delta > 0 ? "+" : "") +
         c.delta +
         " vs " +
@@ -1133,6 +1224,36 @@
         escapeHtml(run.engine) +
         ". Save this memo to start a comparison baseline.</div>";
     }
+    const means = run.hydra
+      ? escapeHtml(run.engine) +
+        " conducted " +
+        run.cells.length +
+        " software evalers on this tree (same path as the classic Hydra desk). " +
+        escapeHtml(run.summary || "") +
+        (run.prd ? " " + escapeHtml(run.prd) + "." : "") +
+        (run.note ? " " + escapeHtml(run.note) : "") +
+        " A deferred cell is a blank gate - not a fail and not a zero."
+      : escapeHtml(run.engine) +
+        " ran " +
+        run.cells.length +
+        " wired evalers against your target. A deferred cell is a blank gate - not a fail and not a zero. " +
+        "Use the detailed memo to see exactly what each evaler checked and why.";
+    const topGates = run.hydra
+      ? run.cells
+          .filter(function (c) {
+            return c.status !== "deferred";
+          })
+          .slice(0, 3)
+          .map(function (c) {
+            return c.name + ": " + (c.blurb || c.detail || "").slice(0, 80);
+          })
+          .join(" · ") || "All cells deferred on this tree."
+      : run.cells
+          .slice()
+          .sort((a, b) => (b.score || 0) - (a.score || 0))
+          .slice(0, 3)
+          .map((c) => c.name + " " + c.score)
+          .join(" · ") || "None";
     return (
       '<p class="memo-kicker">Brief - short developer memo. Full detailed memo keeps the per-evaler read.</p>' +
       "<h2>" +
@@ -1143,29 +1264,15 @@
       escapeHtml(run.engine) +
       "</span><span>" +
       escapeHtml(formatRailDate(run)) +
-      "</span><span>avg " +
-      run.avgScore +
-      "/100</span><span>" +
-      pass +
-      " pass · " +
-      deferred +
-      " deferred</span></div>" +
+      "</span><span>" +
+      escapeHtml(metaScore) +
+      "</span></div>" +
       deltaHtml +
       '<div class="memo-section"><h3>What this means</h3><p>' +
-      escapeHtml(run.engine) +
-      " ran " +
-      run.cells.length +
-      " wired evalers against your target. A deferred cell is a blank gate - not a fail and not a zero. " +
-      "Use the detailed memo to see exactly what each evaler checked and why.</p></div>" +
+      means +
+      "</p></div>" +
       '<div class="memo-section"><h3>Top gates</h3><p>' +
-      escapeHtml(
-        run.cells
-          .slice()
-          .sort((a, b) => (b.score || 0) - (a.score || 0))
-          .slice(0, 3)
-          .map((c) => c.name + " " + c.score)
-          .join(" · ") || "None"
-      ) +
+      escapeHtml(topGates) +
       "</p></div>" +
       '<div class="memo-section"><h3>Evaler blocks</h3>' +
       writeMemoChipGrid(run) +
@@ -1188,10 +1295,10 @@
           "</a> " +
           escapeHtml(c.detail || c.blurb) +
           " <em>(" +
-          escapeHtml(c.status) +
-          " · " +
-          (c.score != null ? c.score : "-") +
-          "/100)</em></li>"
+          escapeHtml(c.hydraStatus || c.status) +
+          (c.passed === true ? " · passed" : "") +
+          (c.score != null ? " · " + c.score + "/100" : "") +
+          ")</em></li>"
         );
       })
       .join("");
@@ -1571,7 +1678,24 @@
     const dateStr = formatRailDate(run);
     const n = run.runOrdinal || 1;
     const evalCount = (run.cells && run.cells.length) || 0;
+    const deferred = run.deferred != null ? run.deferred : (run.cells || []).filter(function (c) {
+      return c.status === "deferred";
+    }).length;
     /* Classic one-liner - project name lives in the section head, not the blurb */
+    if (run.hydra) {
+      return (
+        dateStr +
+        " - " +
+        ordinal(n) +
+        " run, " +
+        (run.engine || "HYDRA") +
+        " -" +
+        evalCount +
+        " evals · " +
+        deferred +
+        " deferred"
+      );
+    }
     return (
       dateStr + " - " + ordinal(n) + " run, " + (run.engine || "HYDRA") + " -" + evalCount + " evals"
     );
@@ -1735,19 +1859,101 @@
     });
   }
 
+  function isRunSaved(run) {
+    if (!run) return false;
+    if (run.savedAt) return true;
+    const set = findRunSet(run.target || run.title || "");
+    if (!set) return false;
+    if (set.latest && set.latest.id === run.id && set.latest.savedAt) return true;
+    return (set.saved || []).some(function (r) {
+      return r && r.id === run.id && !!r.savedAt;
+    });
+  }
+
+  function resolveRunRecord(run) {
+    if (!run) return run;
+    const set = findRunSet(run.target || run.title || "");
+    if (!set) return run;
+    if (set.latest && set.latest.id === run.id) {
+      return set.latest;
+    }
+    const hit = (set.saved || []).find(function (r) {
+      return r && r.id === run.id;
+    });
+    return hit || run;
+  }
+
   function updateSaveDeleteUi(host) {
     const m = host || focusedMemo();
     if (!m || !m.root) return;
     const saveBtn = m.root.querySelector(".memo-btn-save");
     const delBtn = m.root.querySelector(".memo-btn-delete");
     if (!saveBtn || !delBtn) return;
-    const isSaved = !!(m.run && m.run.savedAt) && m.kind === "run";
+    if (m.run && isRunSaved(m.run) && !m.run.savedAt) {
+      const resolved = resolveRunRecord(m.run);
+      if (resolved && resolved.savedAt) {
+        m.run.savedAt = resolved.savedAt;
+        if (resolved.runOrdinal) m.run.runOrdinal = resolved.runOrdinal;
+      }
+    }
+    const isSaved = isRunSaved(m.run) && m.kind === "run";
     const hideSave = m.kind === "compare";
     saveBtn.hidden = hideSave;
     saveBtn.disabled = isSaved;
     saveBtn.classList.toggle("is-saved", isSaved);
     saveBtn.textContent = isSaved ? "Saved" : "Save";
+    saveBtn.title = isSaved ? "Already saved" : "Save as latest run";
     delBtn.hidden = !isSaved;
+  }
+
+  function syncMaxButton(host) {
+    const btn = host.root.querySelector(".memo-max");
+    if (!btn) return;
+    if (host.maximized) {
+      btn.title = "Exit full screen";
+      btn.setAttribute("aria-label", "Exit full screen");
+      btn.textContent = "❐";
+    } else {
+      btn.title = "Full screen";
+      btn.setAttribute("aria-label", "Full screen");
+      btn.textContent = "▢";
+    }
+  }
+
+  function toggleMemoMaximize(host) {
+    if (!host || !host.root) return;
+    const win = host.root;
+    focusMemoHost(host);
+    if (host.maximized) {
+      const r = host.restoreRect || {
+        left: 48,
+        top: 48,
+        width: Math.min(720, window.innerWidth - 48),
+        height: Math.min(720, window.innerHeight - 48),
+      };
+      win.classList.remove("is-maximized");
+      win.classList.add("is-cascaded", "is-dragged");
+      win.style.left = r.left + "px";
+      win.style.top = r.top + "px";
+      win.style.width = r.width + "px";
+      win.style.height = r.height + "px";
+      host.maximized = false;
+    } else {
+      const rect = win.getBoundingClientRect();
+      host.restoreRect = {
+        left: rect.left,
+        top: rect.top,
+        width: rect.width,
+        height: rect.height,
+      };
+      win.classList.add("is-maximized", "is-cascaded", "is-dragged");
+      win.style.left = "10px";
+      win.style.top = "10px";
+      win.style.width = Math.max(320, window.innerWidth - 20) + "px";
+      win.style.height = Math.max(220, window.innerHeight - 20) + "px";
+      host.maximized = true;
+    }
+    syncMaxButton(host);
   }
 
   function enableMemoDrag(host) {
@@ -1762,7 +1968,8 @@
     let oy = 0;
     bar.addEventListener("mousedown", function (e) {
       if (e.button !== 0) return;
-      if (e.target.closest && e.target.closest(".memo-close")) return;
+      if (e.target.closest && e.target.closest(".memo-win-controls")) return;
+      if (host.maximized) return;
       focusMemoHost(host);
       const rect = win.getBoundingClientRect();
       dragging = true;
@@ -1775,7 +1982,12 @@
       win.style.left = ox + "px";
       win.style.top = oy + "px";
       win.style.width = rect.width + "px";
+      win.style.height = rect.height + "px";
       e.preventDefault();
+    });
+    bar.addEventListener("dblclick", function (e) {
+      if (e.target.closest && e.target.closest(".memo-win-controls")) return;
+      toggleMemoMaximize(host);
     });
     window.addEventListener("mousemove", function (e) {
       if (!dragging) return;
@@ -1787,15 +1999,82 @@
     });
   }
 
+  function enableMemoResize(host) {
+    const win = host.root;
+    if (!win || win.getAttribute("data-resize-ready")) return;
+    win.setAttribute("data-resize-ready", "1");
+    const dirs = ["n", "s", "e", "w", "ne", "nw", "se", "sw"];
+    dirs.forEach(function (dir) {
+      const handle = document.createElement("div");
+      handle.className = "memo-resize memo-resize-" + dir;
+      handle.setAttribute("data-dir", dir);
+      handle.title = "Resize";
+      win.appendChild(handle);
+    });
+    let resizing = false;
+    let dir = "";
+    let sx = 0;
+    let sy = 0;
+    let start = null;
+    const minW = 320;
+    const minH = 220;
+    win.addEventListener("mousedown", function (e) {
+      const h = e.target.closest && e.target.closest(".memo-resize");
+      if (!h || host.maximized) return;
+      if (e.button !== 0) return;
+      focusMemoHost(host);
+      const rect = win.getBoundingClientRect();
+      resizing = true;
+      dir = h.getAttribute("data-dir") || "";
+      sx = e.clientX;
+      sy = e.clientY;
+      start = { left: rect.left, top: rect.top, width: rect.width, height: rect.height };
+      win.classList.add("is-dragged", "is-cascaded");
+      e.preventDefault();
+      e.stopPropagation();
+    });
+    window.addEventListener("mousemove", function (e) {
+      if (!resizing || !start) return;
+      const dx = e.clientX - sx;
+      const dy = e.clientY - sy;
+      let left = start.left;
+      let top = start.top;
+      let width = start.width;
+      let height = start.height;
+      if (dir.indexOf("e") >= 0) width = Math.max(minW, start.width + dx);
+      if (dir.indexOf("s") >= 0) height = Math.max(minH, start.height + dy);
+      if (dir.indexOf("w") >= 0) {
+        width = Math.max(minW, start.width - dx);
+        left = start.left + (start.width - width);
+      }
+      if (dir.indexOf("n") >= 0) {
+        height = Math.max(minH, start.height - dy);
+        top = start.top + (start.height - height);
+      }
+      win.style.left = left + "px";
+      win.style.top = top + "px";
+      win.style.width = width + "px";
+      win.style.height = height + "px";
+    });
+    window.addEventListener("mouseup", function () {
+      resizing = false;
+      dir = "";
+      start = null;
+    });
+  }
+
   function cascadeMemoPosition(host, index) {
-    const baseL = Math.max(24, Math.round(window.innerWidth * 0.5 - 360));
-    const baseT = Math.max(24, Math.round(window.innerHeight * 0.5 - 280));
+    const width = Math.min(720, Math.max(320, window.innerWidth - 48));
+    const height = Math.min(720, Math.max(280, Math.round(window.innerHeight * 0.82)));
+    const baseL = Math.max(24, Math.round(window.innerWidth * 0.5 - width / 2));
+    const baseT = Math.max(24, Math.round(window.innerHeight * 0.5 - height / 2));
     const left = baseL + index * 32;
     const top = baseT + index * 28;
     host.root.classList.add("is-cascaded");
     host.root.style.left = left + "px";
     host.root.style.top = top + "px";
-    host.root.style.width = "min(720px, 96vw)";
+    host.root.style.width = width + "px";
+    host.root.style.height = height + "px";
   }
 
   function createMemoHost() {
@@ -1807,7 +2086,10 @@
     root.innerHTML =
       '<div class="memo-titlebar">' +
       '<span class="memo-win-title">EVALATHAN</span>' +
-      '<button type="button" class="memo-close" title="Close">×</button>' +
+      '<div class="memo-win-controls">' +
+      '<button type="button" class="memo-win-btn memo-max" title="Full screen" aria-label="Full screen">▢</button>' +
+      '<button type="button" class="memo-close" title="Close" aria-label="Close">×</button>' +
+      "</div>" +
       "</div>" +
       '<div class="memo-sheet">' +
       '<div class="memo-process" hidden>' +
@@ -1836,12 +2118,17 @@
       kind: "run",
       comparePack: null,
       mode: "simple",
+      maximized: false,
+      restoreRect: null,
     };
     root.addEventListener("mousedown", function () {
       focusMemoHost(host);
     });
     root.querySelector(".memo-close").addEventListener("click", function () {
       closeMemoHost(host);
+    });
+    root.querySelector(".memo-max").addEventListener("click", function () {
+      toggleMemoMaximize(host);
     });
     root.querySelector(".memo-btn-save").addEventListener("click", function () {
       saveMemoHost(host);
@@ -1856,6 +2143,7 @@
       paintCompareInto(host);
     });
     enableMemoDrag(host);
+    enableMemoResize(host);
     openMemos.push(host);
     cascadeMemoPosition(host, openMemos.length - 1);
     syncMemoLayer();
@@ -1876,6 +2164,7 @@
     if (!host || !run) return;
     host.kind = "run";
     host.comparePack = null;
+    run = resolveRunRecord(run);
     if (!run.shortTitle) run.shortTitle = shortTitleFromTarget(run.target || run.title);
     enrichRunExplanations(run);
     host.run = run;
@@ -1939,46 +2228,99 @@
   async function runEvaluate(target) {
     if (evalBusy) return;
     if (!evalSlotAllowed()) return;
+    const trimmed = String(target || "").trim();
+    if (!trimmed) {
+      window.alert("Paste a GitHub link or a folder on this PC.");
+      return;
+    }
     evalBusy = true;
     const eng = engine(activeId);
-    const wired = eng.evalers.filter((ev) => !ev.later);
     const host = createMemoHost();
+    const logEl = host.root.querySelector(".memo-process-log");
     host.root.querySelector(".memo-win-title").textContent = eng.label + " · evaluating";
-    host.root.querySelector(".memo-process-log").innerHTML = "";
+    logEl.innerHTML = "";
     setMemoMode(host, "process");
     if (!app.classList.contains("runs-open")) toggleSide("runs");
 
-    for (let i = 0; i < wired.length; i++) {
-      const ev = wired[i];
+    function addProcessLine(text, cls) {
       const li = document.createElement("li");
-      li.className = "is-active";
-      li.textContent = processLine(eng.id, ev);
-      host.root.querySelector(".memo-process-log").appendChild(li);
-      const log = host.root.querySelector(".memo-process-log");
-      log.scrollTop = log.scrollHeight;
-      await sleep(220 + (hashStr(ev.id + target) % 180));
-      /* Deterministic FOSS hash score - not a live GitHub read, not an LLM guess */
-      const score = scoreFor(target, eng.id, ev.id);
-      li.classList.remove("is-active");
-      li.classList.add("is-done");
-      li.textContent = ev.label + " · " + score + "/100";
+      li.className = cls || "is-done";
+      li.textContent = text;
+      logEl.appendChild(li);
+      logEl.scrollTop = logEl.scrollHeight;
+      return li;
     }
 
-    const cells = buildCells(target, eng);
-    const prior = findPriorSaved(target, eng.label);
-    const comparison = compareRuns({ cells: cells }, prior);
-    const run = makeRun(target, eng, cells, comparison);
-    const set = ensureRunSet(target);
-    set.latest = run;
-    persistRuns();
-    renderRunsRail();
-    paintResults(cells, target);
-    paintMemoInto(host, run, "simple");
+    const waitLine = addProcessLine(
+      "Hydra preparing target (GitHub clone or local folder)…",
+      "is-active"
+    );
+
+    try {
+      const res = await fetch("/api/evaluate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ target: trimmed }),
+      });
+      let data = null;
+      try {
+        data = await res.json();
+      } catch (e) {
+        throw new Error("Evaluate API returned a non-JSON response.");
+      }
+      if (!res.ok || !data || !data.ok) {
+        throw new Error((data && data.error) || "Evaluate failed (" + res.status + ").");
+      }
+      waitLine.classList.remove("is-active");
+      waitLine.classList.add("is-done");
+      waitLine.textContent = data.note
+        ? data.note
+        : "Tree ready · " + (data.folder || trimmed);
+
+      const cells = cellsFromHydraReport(data.report || {});
+      for (let i = 0; i < cells.length; i++) {
+        const c = cells[i];
+        const mark =
+          c.status === "deferred"
+            ? "deferred"
+            : c.passed === true
+              ? "passed"
+              : c.hydraStatus || "measured";
+        addProcessLine(c.name + " · " + mark, "is-done");
+        await sleep(40);
+      }
+
+      const prior = findPriorSaved(trimmed, eng.label);
+      const comparison = compareRuns({ cells: cells }, prior);
+      const run = makeRun(trimmed, eng, cells, comparison, {
+        hydra: true,
+        headline: (data.report && data.report.headline) || "",
+        prd: (data.report && data.report.prd) || "",
+        note: data.note || "",
+        render: data.render || "",
+        folder: data.folder || "",
+      });
+      paintResults(cells, trimmed);
+      paintMemoInto(host, run, "simple");
+    } catch (err) {
+      waitLine.classList.remove("is-active");
+      waitLine.classList.add("is-done");
+      waitLine.textContent = String((err && err.message) || err || "Evaluate stopped.");
+      host.root.querySelector(".memo-win-title").textContent = eng.label + " · stopped";
+      host.root.querySelector(".memo-simple").innerHTML =
+        '<p class="memo-kicker">Evaluate stopped</p><h2>' +
+        escapeHtml(shortTitleFromTarget(trimmed)) +
+        "</h2><p>" +
+        escapeHtml(String((err && err.message) || err)) +
+        "</p>";
+      setMemoMode(host, "simple");
+      updateSaveDeleteUi(host);
+    }
     evalBusy = false;
   }
 
   function saveMemoHost(host) {
-    if (!host || !host.run || host.kind === "compare" || host.run.savedAt) return;
+    if (!host || !host.run || host.kind === "compare" || isRunSaved(host.run)) return;
     const copy = JSON.parse(JSON.stringify(host.run));
     copy.savedAt = new Date().toISOString();
     copy.shortTitle = copy.shortTitle || shortTitleFromTarget(copy.target || copy.title);
@@ -2030,6 +2372,8 @@
   function stripInteractiveHtml(html) {
     return String(html || "")
       .replace(/<button\b[^>]*>[\s\S]*?<\/button>/gi, "")
+      .replace(/<p class="complete-intel-line">[\s\S]*?<\/p>/gi, "")
+      .replace(/<p class="memo-kicker">[\s\S]*?<\/p>/gi, "")
       .replace(/\sdata-gloss-href="[^"]*"/gi, "");
   }
 
@@ -2047,6 +2391,9 @@
         ? stripInteractiveHtml(pack.memoDeep || writeCompareDeep(pack))
         : stripInteractiveHtml(run.memoDeep || writeDeepMemo(run));
     const heading = host.kind === "compare" ? "Evalathan compare" : "Evalathan memo";
+    const detailLabel =
+      host.kind === "compare" ? "Compare detail" : "Full detailed memo";
+    /* Brief + detail in one continuous print flow (no separate page break) */
     const html =
       "<!DOCTYPE html><html><head><meta charset=\"UTF-8\" /><title>" +
       escapeHtml(heading + " - " + short) +
@@ -2054,7 +2401,9 @@
       "body{font-family:Segoe UI,Helvetica,Arial,sans-serif;max-width:720px;margin:28px auto;padding:0 18px;color:#111;}" +
       "h1{font-size:20px;margin:0 0 6px} h2{font-size:16px;margin:18px 0 8px} h3{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#444;margin:14px 0 6px}" +
       ".meta{color:#555;font-size:12px;margin:0 0 14px} a{color:#2f6fbf;text-decoration:none}" +
-      ".page{page-break-after:always} .page:last-child{page-break-after:auto}" +
+      ".memo-block{page-break-inside:auto}" +
+      ".memo-detail-break{margin:28px 0 16px;padding-top:18px;border-top:1px solid #ccc}" +
+      ".memo-detail-break h2{margin:0 0 10px;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:#333}" +
       "ul{padding-left:1.1rem} li{margin:0 0 8px;line-height:1.45}" +
       "table{width:100%;border-collapse:collapse;font-size:12px} th,td{border:1px solid #ccc;padding:5px 6px;text-align:left}" +
       ".memo-chip-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}" +
@@ -2062,16 +2411,15 @@
       ".memo-chip strong{display:block;font-size:12px;margin-bottom:3px;color:#2f7a45}" +
       ".memo-chip span{font-size:11px;color:#555}" +
       "</style></head><body>" +
-      "<div class=\"page\"><h1>" +
+      "<div class=\"memo-block\"><h1>" +
       escapeHtml(heading) +
       "</h1><div class=\"meta\">" +
-      escapeHtml((run.engine || "") + " · " + short + " · " + (run.when || "")) +
+      escapeHtml((run.engine || "") + " · " + short + " · " + formatRailDate(run)) +
       "</div>" +
       simple +
-      "</div>" +
-      "<div class=\"page\"><h1>" +
-      escapeHtml(heading) +
-      " - detail</h1>" +
+      '<div class="memo-detail-break"><h2>' +
+      escapeHtml(detailLabel) +
+      "</h2></div>" +
       deep +
       "</div>" +
       "</body></html>";
@@ -2104,8 +2452,20 @@
     e.preventDefault();
     toggleSide("runs");
   });
-  document.getElementById("btn-browse").addEventListener("click", () => {
+  document.getElementById("btn-browse").addEventListener("click", async () => {
     if (!evalSlotAllowed()) return;
+    /* Prefer native folder dialog via local desk API (same machine as Hydra) */
+    try {
+      const res = await fetch("/api/pick-folder", { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" });
+      const data = await res.json();
+      if (data && data.ok && data.path) {
+        document.getElementById("target-input").value = data.path;
+        return;
+      }
+      if (data && data.cancelled) return;
+    } catch (e) {
+      /* fall through to browser folder picker */
+    }
     document.getElementById("folder-picker").click();
   });
   document.getElementById("folder-picker").addEventListener("change", (ev) => {
@@ -2133,6 +2493,24 @@
   });
   document.querySelectorAll(".theme-btn").forEach((b) => {
     b.addEventListener("click", () => setTheme(b.getAttribute("data-theme-set")));
+  });
+
+  /* FUSS / PRICKLY - click shows Coming soon blurb */
+  document.querySelectorAll(".mascot-wrap.is-soon").forEach(function (wrap) {
+    let hideTimer = null;
+    wrap.addEventListener("click", function (e) {
+      e.preventDefault();
+      const blurb = wrap.querySelector(".mascot-soon-blurb");
+      if (!blurb) return;
+      document.querySelectorAll(".mascot-soon-blurb").forEach(function (b) {
+        if (b !== blurb) b.hidden = true;
+      });
+      blurb.hidden = false;
+      if (hideTimer) window.clearTimeout(hideTimer);
+      hideTimer = window.setTimeout(function () {
+        blurb.hidden = true;
+      }, 2200);
+    });
   });
 
   app.classList.remove("engines-open", "runs-open");
