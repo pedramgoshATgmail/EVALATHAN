@@ -4,7 +4,7 @@
 
 [Evalathan](#evalathan) is one evaluation harness. [Hydra](#hydra) is the conductor for sixteen software evalers. [Dehydrus](#dehydrus) is the conductor for eight [LuDaTs](#ludats) evalers under [PRETRUWs](#pretruws). [LuDaTs](#ludats) methodology framework is a subset of [PRETRUWs](#pretruws). [Benchrex](#benchrex) is the conductor for ten deprecation / cite-fitness evalers. [Biasrex](#biasrex) is the conductor for six bias-gate evalers under the [Cognitive Bias Codex](#cognitive-bias-codex) lineage. Scoring and benching entries use Score Constitution plus Simplespeak and Techspeak. Definition-only entries skip Score Constitution and keep Simplespeak and Techspeak.
 
-<img src="assets/glossary/score-constitution-dot.png" alt="Score Constitution." height="14"> What is counted, whether that count is a yes-or-no pass, and the three endings a cell can have. Measured means the file or the code was there and a result was written. Claim means a sentence is on disk and this run did not re-check it. Blank means the needed record is missing. A blank is not a fail and not a zero.
+<img src="assets/glossary/score-constitution-dot.png" alt="Score Constitution." height="14"> What is counted, whether that count is a yes-or-no pass, and the three endings a evaler can have. Measured means the file or the code was there and a result was written. Claim means a sentence is on disk and this run did not re-check it. Blank means the needed record is missing. A blank is not a fail and not a zero.
 
 <img src="assets/glossary/simplespeak-dot.png" alt="Simplespeak." height="17"> Explanations in simple terms.
 
@@ -20,18 +20,18 @@ The life-cycle gate on each evaler (G0 through G12) is the station's place in th
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-Evalathan (portmanteau of <i>Evaluation</i> and <i>Leviathan</i>) is one evaluation harness. It is not a seventeenth Hydra score and not a ninth Dehydrus score. [Hydra](#hydra) writes sixteen software cells, in this order: Devly, Archly, Codely, Refactorly, Mixly, Runly, Levi, Menschly, Tokely, Pressly, Triadly, Chorely, [Trajectly](#trajectly), Warrantly, Domly, Stackly. [Dehydrus](#dehydrus) writes eight [LuDaTs](#ludats) (Limited-universe Data Test sets) cells under [PRETRUWs](#pretruws), in this order: [Copernly](#copernly), [Keplerly](#keplerly), [Galileoly](#galileoly), [Darwinly](#darwinly), [Mendly](#mendly), [Einsteinly](#einsteinly), [CurCuriely](#curcuriely), [Newtonly](#newtonly). [Benchrex](#benchrex) writes ten deprecation cells. [Biasrex](#biasrex) writes six bias-gate cells. The rooms stay apart. A blank is not a fail and not a zero. Evalathan does not fold the rooms into one number, and it does not award a state-of-the-art stamp. The Hydra PRD (Product Requirements Document) line and the Dehydrus [HabTwin](#habtwin) filename line are utilities, not extra evalers.
+Evalathan (portmanteau of <i>Evaluation</i> and <i>Leviathan</i>) is one evaluation harness. It is not a seventeenth Hydra score and not a ninth Dehydrus score. [Hydra](#hydra) writes sixteen software evalers, in this order: Devly, Archly, Codely, Refactorly, Mixly, Runly, Levi, Menschly, Tokely, Pressly, Triadly, Chorely, [Trajectly](#trajectly), Warrantly, Domly, Stackly. [Dehydrus](#dehydrus) writes eight [LuDaTs](#ludats) (Limited-universe Data Test sets) evalers under [PRETRUWs](#pretruws), in this order: [Copernly](#copernly), [Keplerly](#keplerly), [Galileoly](#galileoly), [Darwinly](#darwinly), [Mendly](#mendly), [Einsteinly](#einsteinly), [CurCuriely](#curcuriely), [Newtonly](#newtonly). [Benchrex](#benchrex) writes ten deprecation evalers. [Biasrex](#biasrex) writes six bias-gate evalers. The rooms stay apart. A blank is not a fail and not a zero. Evalathan does not fold the rooms into one number, and it does not award a state-of-the-art stamp. The Hydra PRD (Product Requirements Document) line and the Dehydrus [HabTwin](#habtwin) filename line are utilities, not extra evalers.
 
 <p align="center"><img src="assets/evalathan-logo.png" alt="Evalathan" width="325"></p>
 <p align="center"><i>One harness. Two conductors. It does not add a score.</i></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
-The house that holds two desks. Hydra walks the software life of a product. Dehydrus walks eight locked physical worlds. You do not get one grade for the house. You get two reports, each cell named, and a missing record stays missing.
+The house that holds two desks. Hydra walks the software life of a product. Dehydrus walks eight locked physical worlds. You do not get one grade for the house. You get two reports, each evaler named, and a missing record stays missing.
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Evalathan is the local runner and the saved product name on both reports. No arguments, or `desk`, opens the Hydra window (heading HYDRA). `evalathan dehydrus` opens the Dehydrus window (heading DEHYDRUS). A Hydra scan writes sixteen cells and a PRD presence line; the report body starts with Evalathan v0.2. A Dehydrus scan writes eight cells and a [HabTwin](#habtwin) filename line; the report body starts with Evalathan v0.3. Stackly accepts the earlier Hydra cells. [Newtonly](#newtonly) accepts the earlier Dehydrus cells and stays deferred until [Keplerly](#keplerly) and [Galileoly](#galileoly) both show a sealed world. If either room's count is wrong, or a name is repeated, that run stops. The rooms do not share a vector.
+Evalathan is the local runner and the saved product name on both reports. No arguments, or `desk`, opens the Hydra window (heading HYDRA). `evalathan dehydrus` opens the Dehydrus window (heading DEHYDRUS). A Hydra scan writes sixteen evalers and a PRD presence line; the report body starts with Evalathan v0.2. A Dehydrus scan writes eight evalers and a [HabTwin](#habtwin) filename line; the report body starts with Evalathan v0.3. Stackly accepts the earlier Hydra evalers. [Newtonly](#newtonly) accepts the earlier Dehydrus evalers and stays deferred until [Keplerly](#keplerly) and [Galileoly](#galileoly) both show a sealed world. If either room's count is wrong, or a name is repeated, that run stops. The rooms do not share a vector.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -52,7 +52,7 @@ The routing conductor. She points at each evaluator and writes down what it asse
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-`conduct` walks the sixteen evalers in order. Stackly is the one that receives the earlier cells, because that evaler accepts them. The headline of the report is how many ran, how many passed their own gate, and how many are deferred. The saved record names the conductor Hydra. If the count is not sixteen, or a name is repeated, the run stops. The window heading is HYDRA.
+`conduct` walks the sixteen evalers in order. Stackly is the one that receives the earlier evalers, because that evaler accepts them. The headline of the report is how many ran, how many passed their own gate, and how many are deferred. The saved record names the conductor Hydra. If the count is not sixteen, or a name is repeated, the run stops. The window heading is HYDRA.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -72,7 +72,7 @@ The other conductor. Hydra watches software. Dehydrus watches locked physical wo
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-`evalathan dehydrus` opens the desk. `evalathan dehydrus scan <path>` writes eight cells: [Copernly](#copernly), [Keplerly](#keplerly), [Galileoly](#galileoly), [Darwinly](#darwinly), [Mendly](#mendly), [Einsteinly](#einsteinly), [CurCuriely](#curcuriely), [Newtonly](#newtonly). [Newtonly](#newtonly) accepts the earlier cells and stays deferred until [Keplerly](#keplerly) and [Galileoly](#galileoly) both show a sealed world. The saved record names the conductor Dehydrus and the paradigm [PRETRUWs](#pretruws). If the count is not eight, or a name is repeated, the run stops. Dehydrus is a conductor (orchestration engine / router), not a utility and not one of the eight.
+`evalathan dehydrus` opens the desk. `evalathan dehydrus scan <path>` writes eight evalers: [Copernly](#copernly), [Keplerly](#keplerly), [Galileoly](#galileoly), [Darwinly](#darwinly), [Mendly](#mendly), [Einsteinly](#einsteinly), [CurCuriely](#curcuriely), [Newtonly](#newtonly). [Newtonly](#newtonly) accepts the earlier evalers and stays deferred until [Keplerly](#keplerly) and [Galileoly](#galileoly) both show a sealed world. The saved record names the conductor Dehydrus and the paradigm [PRETRUWs](#pretruws). If the count is not eight, or a name is repeated, the run stops. Dehydrus is a conductor (orchestration engine / router), not a utility and not one of the eight.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -82,7 +82,7 @@ The other conductor. Hydra watches software. Dehydrus watches locked physical wo
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-Benchrex (Benchmark + rex) is the routing conductor for deprecation / cite-fitness cells. He calls ten evalers and writes each report beside the others. He counts how many ran, how many passed their own gate, and how many are deferred. He does not turn a blank into a zero, and he does not fold the ten into one number. He is not a seventeenth Hydra score and not a ninth Dehydrus score. The criterion set follows <a href="https://arxiv.org/abs/2507.06434">Deprecating Benchmarks: Criteria and Framework</a> (Ayrton San Joaquin, Rokas Gipiškis, Leon Staufer, Ariel Gil; TAIG @ ICML 2025; arXiv:2507.06434; also <a href="https://aistandardslab.org/deprecating-benchmarks-criteria-and-framework/">AI Standards Lab</a>). Evaler card art is Ed Slop (Educational Slop). The desk names are live; live conduct() for Benchrex is still held.
+Benchrex (Benchmark + rex) is the routing conductor for deprecation / cite-fitness evalers. He calls ten evalers and writes each report beside the others. He counts how many ran, how many passed their own gate, and how many are deferred. He does not turn a blank into a zero, and he does not fold the ten into one number. He is not a seventeenth Hydra score and not a ninth Dehydrus score. The criterion set follows <a href="https://arxiv.org/abs/2507.06434">Deprecating Benchmarks: Criteria and Framework</a> (Ayrton San Joaquin, Rokas Gipiškis, Leon Staufer, Ariel Gil; TAIG @ ICML 2025; arXiv:2507.06434; also <a href="https://aistandardslab.org/deprecating-benchmarks-criteria-and-framework/">AI Standards Lab</a>). Evaler card art is Ed Slop (Educational Slop). The desk names are live; live conduct() for Benchrex is still held.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -90,7 +90,7 @@ The bench-deprecation conductor. Hydra grades software. Dehydrus grades locked p
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Desk route id <code>benchrex</code>. Ten cells, in this order: <a href="#saturly">Saturly</a>, <a href="#contamly">Contamly</a>, <a href="#skewly">Skewly</a>, <a href="#annotly">Annotly</a>, <a href="#obsoletely">Obsoletely</a>, <a href="#assumly">Assumly</a>, <a href="#driftly">Driftly</a>, <a href="#assessly">Assessly</a>, <a href="#reportly">Reportly</a>, <a href="#notifyly">Notifyly</a>. The first seven map 1:1 to the paper's soft criteria (saturation, contamination, statistical bias, high annotation error, task obsolescence, invalidated assumptions, semantic drift). The last three map the paper's assessment - reporting - notification process. Soft heuristics, not hard cutoffs. Rooms stay unmerged.
+Desk route id <code>benchrex</code>. Ten evalers, in this order: <a href="#saturly">Saturly</a>, <a href="#contamly">Contamly</a>, <a href="#skewly">Skewly</a>, <a href="#annotly">Annotly</a>, <a href="#obsoletely">Obsoletely</a>, <a href="#assumly">Assumly</a>, <a href="#driftly">Driftly</a>, <a href="#assessly">Assessly</a>, <a href="#reportly">Reportly</a>, <a href="#notifyly">Notifyly</a>. The first seven map 1:1 to the paper's soft criteria (saturation, contamination, statistical bias, high annotation error, task obsolescence, invalidated assumptions, semantic drift). The last three map the paper's assessment - reporting - notification process. Soft heuristics, not hard cutoffs. Rooms stay unmerged.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -99,7 +99,7 @@ Desk route id <code>benchrex</code>. Ten cells, in this order: <a href="#saturly
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-Biasrex (Bias + rex) is the routing conductor for decision-quality / cognitive-bias gate cells. He calls six evalers and writes each report beside the others. He counts how many ran, how many passed their own gate, and how many are deferred. He does not turn a blank into a zero, and he does not fold the six into one number. He is not a seventeenth Hydra score, not a ninth Dehydrus score, and not an eleventh Benchrex score. The room is a curated subset of the Cognitive Bias Codex tradition (Buster Benson's four problems; John Manoogian III poster; <a href="https://en.wikipedia.org/wiki/Cognitive_bias">Wikipedia: Cognitive bias</a>; <a href="https://bias.wiki/">bias.wiki</a>) - never one evaler per Codex leaf. Evaler card art is Ed Slop (Educational Slop). Live conduct() for Biasrex is still held.
+Biasrex (Bias + rex) is the routing conductor for decision-quality / cognitive-bias gate evalers. He calls six evalers and writes each report beside the others. He counts how many ran, how many passed their own gate, and how many are deferred. He does not turn a blank into a zero, and he does not fold the six into one number. He is not a seventeenth Hydra score, not a ninth Dehydrus score, and not an eleventh Benchrex score. The room is a curated subset of the Cognitive Bias Codex tradition (Buster Benson's four problems; John Manoogian III poster; <a href="https://en.wikipedia.org/wiki/Cognitive_bias">Wikipedia: Cognitive bias</a>; <a href="https://bias.wiki/">bias.wiki</a>) - never one evaler per Codex leaf. Evaler card art is Ed Slop (Educational Slop). Live conduct() for Biasrex is still held.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -107,7 +107,7 @@ The bias-gate conductor. He does not grade ~180 named biases. He grades six runn
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Desk route id <code>biasrex</code>. Six cells, in this order: <a href="#filterly">Filterly</a>, <a href="#meaningly">Meaningly</a>, <a href="#hastely">Hastely</a>, <a href="#memoryly">Memoryly</a>, <a href="#confirmly">Confirmly</a>, <a href="#automately">Automately</a>. See also <a href="#cognitive-bias-codex">Cognitive Bias Codex</a>. Matching a psych pattern is not proof the product 'has' the bias (PsyAgentBench warning). No composite bias score.
+Desk route id <code>biasrex</code>. Six evalers, in this order: <a href="#filterly">Filterly</a>, <a href="#meaningly">Meaningly</a>, <a href="#hastely">Hastely</a>, <a href="#memoryly">Memoryly</a>, <a href="#confirmly">Confirmly</a>, <a href="#automately">Automately</a>. See also <a href="#cognitive-bias-codex">Cognitive Bias Codex</a>. Matching a psych pattern is not proof the product 'has' the bias (PsyAgentBench warning). No composite bias score.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -116,7 +116,7 @@ Desk route id <code>biasrex</code>. Six cells, in this order: <a href="#filterly
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-Definition-only. The Cognitive Bias Codex rearranges Wikipedia's long cognitive-bias inventory into four evolutionary problems (Buster Benson), drawn as a radial poster (John Manoogian III). bias.wiki is an interactive explorer of that map. Evalathan does not import ~175-188 leaves as evalers. <a href="#biasrex">Biasrex</a> keeps six curated cells.
+Definition-only. The <a href="https://commons.wikimedia.org/wiki/File:Cognitive_bias_codex_en.svg">Cognitive Bias Codex</a> rearranges Wikipedia's long cognitive-bias inventory into four evolutionary problems (Buster Benson), drawn as a radial poster (John Manoogian III). bias.wiki is an interactive explorer of that map. Evalathan does not import ~175-188 leaves as evalers. <a href="#biasrex">Biasrex</a> keeps six curated evalers.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -124,7 +124,7 @@ A teaching map of many named biases, not a ready-made test harness. Too much inf
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Primary references: <a href="https://en.wikipedia.org/wiki/Cognitive_bias">Wikipedia Cognitive bias</a>; <a href="https://en.wikipedia.org/wiki/List_of_cognitive_biases">List of cognitive biases</a>; Benson four-problem cheat sheet; UNC SOG Codex poster; <a href="https://bias.wiki/">bias.wiki</a>. Dimara et al. 2020 (~154 biases / 7 tasks) is the better test-design taxonomy. Malberg et al. ACL 2025 curates ~30 LLM bias tests - evidence that serious work does not ship 180 cells. Confirmly and Automately add confirmation bias and automation bias gates with interactive falsification in mind.
+Primary references: <a href="https://commons.wikimedia.org/wiki/File:Cognitive_bias_codex_en.svg">Cognitive Bias Codex</a> (Wikimedia Commons SVG); <a href="https://en.wikipedia.org/wiki/Cognitive_bias">Wikipedia Cognitive bias</a>; <a href="https://en.wikipedia.org/wiki/List_of_cognitive_biases">List of cognitive biases</a>; Benson four-problem cheat sheet; UNC SOG Codex poster; <a href="https://bias.wiki/">bias.wiki</a>. Dimara et al. 2020 (~154 biases / 7 tasks) is the better test-design taxonomy. Malberg et al. ACL 2025 curates ~30 LLM bias tests - evidence that serious work does not ship 180 evalers. Confirmly and Automately add confirmation bias and automation bias gates with interactive falsification in mind.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -266,7 +266,7 @@ Maps paper criterion <b>Semantic drift</b>.
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-Process cell. Checks whether a project or governance actor ran a deprecation assessment against the soft criteria (Deprecard-shaped evidence pack). Pass = assessment artifact exists. Fail = deprecation claimed with no assessment. Blank = process not started. Not wired as a live simulator in the default install yet.
+Process evaler. Checks whether a project or governance actor ran a deprecation assessment against the soft criteria (Deprecard-shaped evidence pack). Pass = assessment artifact exists. Fail = deprecation claimed with no assessment. Blank = process not started. Not wired as a live simulator in the default install yet.
 
 <p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/edd5556d9b30759270192b310ccbd4be95d53200/docs/glossary.html#xl-assessly"><img src="assets/glossary/cards/assessly-card.jpg" alt="Asks: did anyone actually assess whether to deprecate?" width="541"></a></p>
 
@@ -276,7 +276,7 @@ Asks: did anyone actually assess whether to deprecate?
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Maps the paper's <b>assessment</b> phase. Soft gate.
+Maps the <a href="https://arxiv.org/abs/2507.06434">paper's <b>assessment</b></a> phase. Soft gate.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -285,7 +285,7 @@ Maps the paper's <b>assessment</b> phase. Soft gate.
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-Process cell. Checks whether assessment findings were reported in a durable, citable form (Deprecard / changelog / advisory). Pass = report artifact exists. Fail = silent deprecation talk. Blank = no report. Not wired as a live simulator in the default install yet.
+Process evaler. Checks whether assessment findings were reported in a durable, citable form (Deprecard / changelog / advisory). Pass = report artifact exists. Fail = silent deprecation talk. Blank = no report. Not wired as a live simulator in the default install yet.
 
 <p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/edd5556d9b30759270192b310ccbd4be95d53200/docs/glossary.html#xl-reportly"><img src="assets/glossary/cards/reportly-card.jpg" alt="was the deprecation decision written down where others can find it?" width="541"></a></p>
 
@@ -304,7 +304,7 @@ Maps the paper's <b>reporting</b> phase.
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-Process cell. Checks whether users and dependents were notified (partial update vs full retire; third-party path when creators will not act). Pass = notification channel or advisory exists. Fail = users left on a dead cite. Blank = no notify pack. Not wired as a live simulator in the default install yet.
+Process evaler. Checks whether users and dependents were notified (partial update vs full retire; third-party path when creators will not act). Pass = notification channel or advisory exists. Fail = users left on a dead cite. Blank = no notify pack. Not wired as a live simulator in the default install yet.
 
 <p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/edd5556d9b30759270192b310ccbd4be95d53200/docs/glossary.html#xl-notifyly"><img src="assets/glossary/cards/notifyly-card.jpg" alt="did the people still citing this bench get notified?" width="541"></a></p>
 
@@ -390,7 +390,7 @@ What stuck in memory - is it still true?
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Codex quadrant <b>What should we remember?</b>. Continued-influence / stale-belief families. Pairs with Benchrex deprecation cells.
+Codex quadrant <b>What should we remember?</b>. Continued-influence / stale-belief families. Pairs with Benchrex deprecation evalers.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -409,7 +409,7 @@ Did you only look for yes?
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Named after <a href="https://en.wikipedia.org/wiki/Confirmation_bias">confirmation bias</a>. Optional Biasrex process-style cell with a hard protocol bar.
+Named after <a href="https://en.wikipedia.org/wiki/Confirmation_bias">confirmation bias</a>. Optional Biasrex process-style evaler with a hard protocol bar.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -509,7 +509,7 @@ Think of it like a construction site logbook. It doesn't judge whether the archi
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-The scan runs `git rev-list --count HEAD` when a `.git` folder is present and writes that integer. `passed` stays empty. If there is no git history, the cell is blank. Skills Framework for the Information Age (SFIA, a job-skill scale for technology work) is named so that nobody reads a level into the commit count. Devly does not award an SFIA level. The public framework is at [sfia-online.org](https://sfia-online.org/en/about-sfia).
+The scan runs `git rev-list --count HEAD` when a `.git` folder is present and writes that integer. `passed` stays empty. If there is no git history, the evaler is blank. Skills Framework for the Information Age (SFIA, a job-skill scale for technology work) is named so that nobody reads a level into the commit count. Devly does not award an SFIA level. The public framework is at [sfia-online.org](https://sfia-online.org/en/about-sfia).
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -669,7 +669,7 @@ A detailed medical blood panel instead of a single 1-to-10 wellness score. It te
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-`ACCEPTS_PRIOR` is set, so Hydra passes the earlier cells in. `passed` stays empty on purpose. The headline of the report is the same vector: ran, passed, deferred.
+`ACCEPTS_PRIOR` is set, so Hydra passes the earlier evalers in. `passed` stays empty on purpose. The headline of the report is the same vector: ran, passed, deferred.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -679,7 +679,7 @@ A detailed medical blood panel instead of a single 1-to-10 wellness score. It te
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-Ingests structured LLM transaction logs containing baseline and optimized token usage pairs. Calculates the net token delta (Tokens before - Tokens after). If token records are not saved in the target path, the cell is marked Deferred rather than zero.
+Ingests structured LLM transaction logs containing baseline and optimized token usage pairs. Calculates the net token delta (Tokens before - Tokens after). If token records are not saved in the target path, the evaler is marked Deferred rather than zero.
 
 <p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/edd5556d9b30759270192b310ccbd4be95d53200/docs/glossary.html#xl-tokely"><img src="assets/glossary/cards/tokely-revised.jpg" alt="Tokely measures tokens before and after you optimized." width="541"></a></p>
 
@@ -924,7 +924,7 @@ A checklist question for AI chore charts. If the job is a fiddly specialist task
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-SASPIANT labels the decision Chorely's roster evidence is meant to support. A counted row is not a SASPIANT verdict. Deferred or blank Chorely cells leave SASPIANT unanswered. Related: [Chorely](#user-content-chorely), agent roster files under `agents/`.
+SASPIANT labels the decision Chorely's roster evidence is meant to support. A counted row is not a SASPIANT verdict. Deferred or blank Chorely evalers leave SASPIANT unanswered. Related: [Chorely](#user-content-chorely), agent roster files under `agents/`.
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
 
@@ -1066,13 +1066,13 @@ PRETRUWs is the museum building. [LuDaTs](#ludats) are the separate galleries in
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-**What it is.** PRETRUWs is the v0.3 4IR (Fourth Industrial Revolution) paradigm for Evalathan's physical-world room. A paradigm here means the rules of the exam universe: which year is locked, which later facts are forbidden, and what counts as a fair discovery. It does not print its own cell. The runnable methods under it are the eight [LuDaTs](#ludats) brands. [LuDaTs](#ludats) methodology framework is a subset of PRETRUWs - the galleries under the museum roof, not a second roof.
+**What it is.** PRETRUWs is the v0.3 4IR (Fourth Industrial Revolution) paradigm for Evalathan's physical-world room. A paradigm here means the rules of the exam universe: which year is locked, which later facts are forbidden, and what counts as a fair discovery. It does not print its own evaler. The runnable methods under it are the eight [LuDaTs](#ludats) brands. [LuDaTs](#ludats) methodology framework is a subset of PRETRUWs - the galleries under the museum roof, not a second roof.
 
 **How it differs from a prompt cutoff.** A line that says "pretend you are in 1610" while the model still holds post-1610 weights is a costume, not a truncated universe. PRETRUWs requires the later material to be actually unavailable (sealed world / truncated corpus), the way ExAnte (ACL 2026 / EACL) showed prompt cutoffs leak.
 
-**Who runs it.** [Dehydrus](#dehydrus) is the conductor. He writes eight [LuDaTs](#ludats) cells. He does not write eight "PRETRUWs scores." A missing world stays deferred.
+**Who runs it.** [Dehydrus](#dehydrus) is the conductor. He writes eight [LuDaTs](#ludats) evalers. He does not write eight "PRETRUWs scores." A missing world stays deferred.
 
-**Manifesto line.** Pedram Goshtasbpour plans a PRETRUWs manifesto (about January-March 2027) under the direction *Until Artificial Intelligence Independently Eurekas on its own...*, staged for select peer review with Jim Highsmith and associates - thirty years after Highsmith's [Messy, Exciting, and Anxiety-Ridden: Adaptive Software Development](https://web.archive.org/web/20171004140236/http://www.adaptivesd.com/articles/messy.htm) (American Programmer, 1997; also [Adaptive Software Development](https://en.wikipedia.org/wiki/Adaptive_software_development)). Highsmith's second world was "unpredictable, nonlinear, and fast." PRETRUWs states a third world: multi-predictable (not just unpredictable or multiverse; "our manmade dices may have 6 or 360 sides but they're still contrived 'sides'"); bilinear and/or supralinear (not just polar opposites, linear or nonlinear contrived 'sides'); hyperfast / instancy-nearest (the existence and unchanged semantics/meaning of the word "instant" can be assumed proof to velocities faster than that of light); polydeterminism (as opposed to simple binary nondeterminism vs determinism - post-quantum computing based); and [Braidware](#braidware) - agentics, software, and hardware as one unit. LLM (Large Language Model) and RAG (Retrieval-Augmented Generation) stacks are plugins inside a world, not extra Hydra cells.
+**Manifesto line.** Pedram Goshtasbpour plans a PRETRUWs manifesto (about January-March 2027) under the direction *Until Artificial Intelligence Independently Eurekas on its own...*, staged for select peer review with Jim Highsmith and associates - thirty years after Highsmith's [Messy, Exciting, and Anxiety-Ridden: Adaptive Software Development](https://web.archive.org/web/20171004140236/http://www.adaptivesd.com/articles/messy.htm) (American Programmer, 1997; also [Adaptive Software Development](https://en.wikipedia.org/wiki/Adaptive_software_development)). Highsmith's second world was "unpredictable, nonlinear, and fast." PRETRUWs states a third world: multi-predictable (not just unpredictable or multiverse; "our manmade dices may have 6 or 360 sides but they're still contrived 'sides'"); bilinear and/or supralinear (not just polar opposites, linear or nonlinear contrived 'sides'); hyperfast / instancy-nearest (the existence and unchanged semantics/meaning of the word "instant" can be assumed proof to velocities faster than that of light); polydeterminism (as opposed to simple binary nondeterminism vs determinism - post-quantum computing based); and [Braidware](#braidware) - agentics, software, and hardware as one unit. LLM (Large Language Model) and RAG (Retrieval-Augmented Generation) stacks are plugins inside a world, not extra Hydra evalers.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -1138,7 +1138,7 @@ Join two earlier worlds under one law. [Newtonly](#newtonly) runs [Mode Unificat
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-This evaler is based on Copernicus, the astronomer who discovered that the known planets go around the Sun, not around the Earth. Copernly (code LuDaTs-C) is a Dehydrus world under [LuDaTs](#ludats) (Limited-universe Data Test sets). It runs [Mode A](#ludats-mode-a). It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The cell stays deferred until a sealed 1542 world file is in the tree. A blank is not a fail and not a zero.
+This evaler is based on Copernicus, the astronomer who discovered that the known planets go around the Sun, not around the Earth. Copernly (code LuDaTs-C) is a Dehydrus world under [LuDaTs](#ludats) (Limited-universe Data Test sets). It runs [Mode A](#ludats-mode-a). It is not a Hydra evaler. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The evaler stays deferred until a sealed 1542 world file is in the tree. A blank is not a fail and not a zero.
 
 <p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/edd5556d9b30759270192b310ccbd4be95d53200/docs/glossary.html#xl-copernly"><img src="assets/glossary/cards/copernly-card-20261101t.png" alt="Copernly rebuilds the old sky numbers as a sun-centered model. No new telescope. Mode A only." width="703"></a></p>
 <p align="center"><i>If AI was around in my time, with only the old sky numbers everyone already had and no new telescope, would it still put the Earth among the planets - or keep the Earth in the middle because that is what ALL the books said?</i></p>
@@ -1150,7 +1150,7 @@ This evaler is based on Copernicus, the astronomer who discovered that the known
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Dehydrus calls Copernly and locks [Mode A](#ludats-mode-a). World clock T is 1542, before [*De revolutionibus orbium coelestium*](https://en.wikipedia.org/wiki/De_revolutionibus_orbium_coelestium) (1543). Biography clock A is what Copernicus could have reached at that year. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does claim one, v0.3 looks for a sealed LuDaTs-C world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.
+Dehydrus calls Copernly and locks [Mode A](#ludats-mode-a). World clock T is 1542, before [*De revolutionibus orbium coelestium*](https://en.wikipedia.org/wiki/De_revolutionibus_orbium_coelestium) (1543). Biography clock A is what Copernicus could have reached at that year. If the folder does not claim a discovery or physical-world exam, the evaler stays deferred. If it does claim one, v0.3 looks for a sealed LuDaTs-C world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.
 
 When the simulator does run, the agent is handed only the already-available sky archive. There is no new instrument. The next step is to rebuild the same numbers as a sun-centered kinematic model, with fewer epicycles than the Ptolemaic fit, and with Earth as a planet. Any observation after 1542 is leakage and fails the run. The string "heliocentrism" is not Gold. Card: [exams/ludats/ludats-c-copernicus.yaml](exams/ludats/ludats-c-copernicus.yaml).
 
@@ -1162,7 +1162,7 @@ When the simulator does run, the agent is handed only the already-available sky 
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-This evaler is based on Kepler, the astronomer who discovered that planets travel in ellipses and sweep equal areas in equal times. Keplerly (LuDaTs-K) is a Dehydrus world. It runs [Mode B](#ludats-mode-b). It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The cell stays deferred until a sealed Mars-table world is in the tree. A blank is not a fail and not a zero.
+This evaler is based on Kepler, the astronomer who discovered that planets travel in ellipses and sweep equal areas in equal times. Keplerly (LuDaTs-K) is a Dehydrus world. It runs [Mode B](#ludats-mode-b). It is not a Hydra evaler. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The evaler stays deferred until a sealed Mars-table world is in the tree. A blank is not a fail and not a zero.
 
 <p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/edd5556d9b30759270192b310ccbd4be95d53200/docs/glossary.html#xl-keplerly"><img src="assets/glossary/cards/keplerly-card-20261101t.png" alt="Keplerly draws the ellipse and equal areas from Tycho's Mars table. Same instrument class." width="703"></a></p>
 <p align="center"><i>For thousands of years, everyone assumed planets moved in perfect circles. 
@@ -1178,7 +1178,7 @@ This evaler is based on Kepler, the astronomer who discovered that planets trave
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Dehydrus calls Keplerly and locks [Mode B](#ludats-mode-b). World clocks are 1608 / 1618, beside [*Astronomia nova*](https://en.wikipedia.org/wiki/Astronomia_nova) (1609) and [*Harmonices mundi*](https://en.wikipedia.org/wiki/Harmonices_Mundi) (1619). Biography clock A is Kepler working Tycho's Mars table with the same instrument class, not a telescope. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does, v0.3 looks for a sealed LuDaTs-K world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.
+Dehydrus calls Keplerly and locks [Mode B](#ludats-mode-b). World clocks are 1608 / 1618, beside [*Astronomia nova*](https://en.wikipedia.org/wiki/Astronomia_nova) (1609) and [*Harmonices mundi*](https://en.wikipedia.org/wiki/Harmonices_Mundi) (1619). Biography clock A is Kepler working Tycho's Mars table with the same instrument class, not a telescope. If the folder does not claim a discovery or physical-world exam, the evaler stays deferred. If it does, v0.3 looks for a sealed LuDaTs-K world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.
 
 When the simulator does run, the first step is to read the sharper Mars table. The next step is to replace the circle with an elliptical orbit and with equal areas in equal times. Using a telescope is the wrong instrument class and is not [Mode B](#ludats-mode-b). Naming Kepler's laws without drawing them from the table is not Gold. Card: [exams/ludats/ludats-k-kepler.yaml](exams/ludats/ludats-k-kepler.yaml).
 
@@ -1190,7 +1190,7 @@ When the simulator does run, the first step is to read the sharper Mars table. T
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-This evaler is based on Galileo, the scientist who discovered Jupiter's moons, the phases of Venus, and the regular motion of falling bodies. Galileoly (LuDaTs-G) is a required physical-world flagship under Dehydrus. It runs [Mode C](#ludats-mode-c). It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The cell stays deferred until a sealed optic-and-kinematics world is in the tree. A blank is not a fail and not a zero.
+This evaler is based on Galileo, the scientist who discovered Jupiter's moons, the phases of Venus, and the regular motion of falling bodies. Galileoly (LuDaTs-G) is a required physical-world flagship under Dehydrus. It runs [Mode C](#ludats-mode-c). It is not a Hydra evaler. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The evaler stays deferred until a sealed optic-and-kinematics world is in the tree. A blank is not a fail and not a zero.
 
 <p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/edd5556d9b30759270192b310ccbd4be95d53200/docs/glossary.html#xl-galileoly"><img src="assets/glossary/cards/galileoly-card-20261101.png" alt="Galileoly uses a new optic and a bench on earth. Moons, phases, and the incline law." width="703"></a></p>
 <p align="center"><i>If AI was around in my time, would it reject or confirm what I saw through my new telescope - moons, phases, a rough Moon, falling bodies - which even the Catholic church would not accept?</i></p>
@@ -1202,7 +1202,7 @@ This evaler is based on Galileo, the scientist who discovered Jupiter's moons, t
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Dehydrus calls Galileoly and locks [Mode C](#ludats-mode-c). There are two clocks: 1608 for the optic, and 1637 for kinematics. Biography clock A is Galileo at those years, with the new sensor and the earth bench, not with a later textbook title. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does, v0.3 looks for a sealed LuDaTs-G world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.
+Dehydrus calls Galileoly and locks [Mode C](#ludats-mode-c). There are two clocks: 1608 for the optic, and 1637 for kinematics. Biography clock A is Galileo at those years, with the new sensor and the earth bench, not with a later textbook title. If the folder does not claim a discovery or physical-world exam, the evaler stays deferred. If it does, v0.3 looks for a sealed LuDaTs-G world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.
 
 When the simulator does run, the first step is the new optic: Jupiter has satellites, Venus shows phases, the lunar surface is irregular. The next step is the terrestrial experiment: a falling-body / incline law at T2. A knowledge-graph inversion that only flips a label is not Gold. The string "heliocentrism" is not Gold; that claim belongs to Copernly. Card: [exams/ludats/ludats-g-galileo.yaml](exams/ludats/ludats-g-galileo.yaml).
 
@@ -1228,7 +1228,7 @@ This evaler is based on Newton, the mathematician who discovered that one invers
 
 Dehydrus calls Newtonly and locks [Mode Unification](#ludats-mode-unification). The first step is a gate: [Keplerly](#keplerly) and [Galileoly](#galileoly) must both already show a sealed, measured world. If either is missing, Newtonly stays deferred to v2. That wait is part of the method, not a fail. World clock T is 1686, before the [*Principia*](https://en.wikipedia.org/wiki/Philosophi%C3%A6_Naturalis_Principia_Mathematica) (1687). Biography clock A is Newton at that year. The apple story is not a catalyst.
 
-If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If the gate is open and a sealed LuDaTs-N file is present, v0.3 names the file. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. When the simulator does run, the work is inverse-square universal gravitation: celestial and terrestrial the same law. The apple story is not Gold. Do not run Newtonly as v1 Gold before Keplerly and Galileoly both have sealed worlds. Card: [exams/ludats/ludats-n-newton.yaml](exams/ludats/ludats-n-newton.yaml).
+If the folder does not claim a discovery or physical-world exam, the evaler stays deferred. If the gate is open and a sealed LuDaTs-N file is present, v0.3 names the file. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. When the simulator does run, the work is inverse-square universal gravitation: celestial and terrestrial the same law. The apple story is not Gold. Do not run Newtonly as v1 Gold before Keplerly and Galileoly both have sealed worlds. Card: [exams/ludats/ludats-n-newton.yaml](exams/ludats/ludats-n-newton.yaml).
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -1238,7 +1238,7 @@ If the folder does not claim a discovery or physical-world exam, the cell stays 
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-This evaler is based on Darwin, the naturalist who discovered that living forms change through descent with modification. Darwinly (LuDaTs-D) is a required Dehydrus world. It runs [Mode D](#ludats-mode-d). It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The cell stays deferred until a sealed 1858 field world is in the tree. A blank is not a fail and not a zero.
+This evaler is based on Darwin, the naturalist who discovered that living forms change through descent with modification. Darwinly (LuDaTs-D) is a required Dehydrus world. It runs [Mode D](#ludats-mode-d). It is not a Hydra evaler. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The evaler stays deferred until a sealed 1858 field world is in the tree. A blank is not a fail and not a zero.
 
 <p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/edd5556d9b30759270192b310ccbd4be95d53200/docs/glossary.html#xl-darwinly"><img src="assets/glossary/cards/darwinly-card-20261101.png" alt="Darwinly accumulates years of field notes. Descent with modification, not the finch cartoon." width="703"></a></p>
 <p align="center"><i>If AI was around in my time, after years of walking, breeding, and notes, would it see <a href="https://en.wikipedia.org/wiki/Common_descent">descent with modification</a> - or reject my theory of evolution?</i></p>
@@ -1250,7 +1250,7 @@ This evaler is based on Darwin, the naturalist who discovered that living forms 
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Dehydrus calls Darwinly and locks [Mode D](#ludats-mode-d). World clock T is 1858, before [*On the Origin of Species*](https://en.wikipedia.org/wiki/On_the_Origin_of_Species) (1859). Biography clock A is what Darwin could have reached at that year: field notes, breeding, correspondence, not later genetics. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does, v0.3 looks for a sealed LuDaTs-D world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.
+Dehydrus calls Darwinly and locks [Mode D](#ludats-mode-d). World clock T is 1858, before [*On the Origin of Species*](https://en.wikipedia.org/wiki/On_the_Origin_of_Species) (1859). Biography clock A is what Darwin could have reached at that year: field notes, breeding, correspondence, not later genetics. If the folder does not claim a discovery or physical-world exam, the evaler stays deferred. If it does, v0.3 looks for a sealed LuDaTs-D world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.
 
 When the simulator does run, the agent must accumulate a long field record and then state descent with modification plus a selection mechanism that can accumulate. The finch cartoon as an 1835 eureka is leakage. Genetics after 1858 is leakage. The string "evolution" is not Gold. Card: [exams/ludats/ludats-d-darwin.yaml](exams/ludats/ludats-d-darwin.yaml).
 
@@ -1262,7 +1262,7 @@ When the simulator does run, the agent must accumulate a long field record and t
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-This evaler is based on Mendeleev, the scientist who gave the world the elements table. Mendly (LuDaTs-M) is a Dehydrus world. It runs [Mode E](#ludats-mode-e). It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The later names of the missing cards stay hidden. A blank is not a fail and not a zero.
+This evaler is based on Mendeleev, the scientist who gave the world the elements table. Mendly (LuDaTs-M) is a Dehydrus world. It runs [Mode E](#ludats-mode-e). It is not a Hydra evaler. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The later names of the missing cards stay hidden. A blank is not a fail and not a zero.
 
 <p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/edd5556d9b30759270192b310ccbd4be95d53200/docs/glossary.html#xl-mendly"><img src="assets/glossary/cards/mendly-card-20261101.png" alt="Mendly leaves right-shaped holes in the 1868 table. Later names stay hidden." width="703"></a></p>
 <p align="center"><i>If AI only knew the elements discovered up to 1868 A.D., would it (independently) infer that some elements were still undiscovered and leave room for them - or even work to discover them through its artificial 'intelligence'?</i></p>
@@ -1274,7 +1274,7 @@ This evaler is based on Mendeleev, the scientist who gave the world the elements
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Dehydrus calls Mendly and locks [Mode E](#ludats-mode-e). World clock T is 1868. Biography clock A is Mendeleev with the 1868 set. Gallium (1875) and germanium (1886) are hidden labels; those names must not appear in-world. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does, v0.3 looks for a sealed LuDaTs-M world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.
+Dehydrus calls Mendly and locks [Mode E](#ludats-mode-e). World clock T is 1868. Biography clock A is Mendeleev with the 1868 set. Gallium (1875) and germanium (1886) are hidden labels; those names must not appear in-world. If the folder does not claim a discovery or physical-world exam, the evaler stays deferred. If it does, v0.3 looks for a sealed LuDaTs-M world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.
 
 When the simulator does run, the first step is to group the 1868 set periodically. The next step is to leave eka-aluminium and eka-silicon property cards whose later filling is scored without those later names in the room. A modern periodic table is leakage. A slogan about a periodic table for AI is not Gold. Card: [exams/ludats/ludats-m-mendeleev.yaml](exams/ludats/ludats-m-mendeleev.yaml).
 
@@ -1286,7 +1286,7 @@ When the simulator does run, the first step is to group the 1868 set periodicall
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-This evaler is based on Marie Skłodowska-Curie and Pierre Curie, the pair who discovered that some matter gives off rays that belong to the atom, and who isolated two new elements from pitchblende. The double Cur in the name is because both of them had to be in the room. CurCuriely (code LuDaTs-CC) is a Dehydrus world under [LuDaTs](#ludats) (Limited-universe Data Test sets). It runs [Mode Pair](#ludats-mode-pair). It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The cell stays deferred until a sealed 1897 pair-world file is in the tree. A blank is not a fail and not a zero.
+This evaler is based on Marie Skłodowska-Curie and Pierre Curie, the pair who discovered that some matter gives off rays that belong to the atom, and who isolated two new elements from pitchblende. The double Cur in the name is because both of them had to be in the room. CurCuriely (code LuDaTs-CC) is a Dehydrus world under [LuDaTs](#ludats) (Limited-universe Data Test sets). It runs [Mode Pair](#ludats-mode-pair). It is not a Hydra evaler. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The evaler stays deferred until a sealed 1897 pair-world file is in the tree. A blank is not a fail and not a zero.
 
 <p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/edd5556d9b30759270192b310ccbd4be95d53200/docs/glossary.html#xl-curcuriely"><img src="assets/glossary/cards/curcuriely-card-20261101.png" alt="CurCuriely is the pair room. Two clocks, two agents, joint Gold." width="703"></a></p>
 <p align="center"><i>If ChatGPT AND Claude were around in our time, both of them trained on all the data up to 1897 A.D., would they together pull two new elements from pitchblende and say the rays belong to the atom - or would they not be able to make such discoveries on their own and even reject such discoveries?</i></p>
@@ -1298,7 +1298,7 @@ This evaler is based on Marie Curie and Pierre Curie, who together, after long s
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Dehydrus calls CurCuriely and locks [Mode Pair](#ludats-mode-pair). World clock T is 1897, before the 1898 isolation notes. Biography clocks A1 and A2 are Marie and Pierre at that year, in the same shed, with Becquerel's 1896 uranium rays already on the table. Two agents are required. They may divide the work, and they may adversarially peer-review each other. A solo run stays deferred; that wait is part of the method, not a fail. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does, v0.3 looks for a sealed LuDaTs-CC world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.
+Dehydrus calls CurCuriely and locks [Mode Pair](#ludats-mode-pair). World clock T is 1897, before the 1898 isolation notes. Biography clocks A1 and A2 are Marie and Pierre at that year, in the same shed, with Becquerel's 1896 uranium rays already on the table. Two agents are required. They may divide the work, and they may adversarially peer-review each other. A solo run stays deferred; that wait is part of the method, not a fail. If the folder does not claim a discovery or physical-world exam, the evaler stays deferred. If it does, v0.3 looks for a sealed LuDaTs-CC world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.
 
 When the simulator does run, both agents get the 1897 corpus only. The next step is to isolate two new-element property cards from pitchblende and to state that the rays belong to the atom, not to a chemical compound. One agent cannot take Gold alone. The 1903 Nobel write-up, the 1911 chemistry prize, and later nuclear models are leakage. The string "radioactivity" without the atomic-property claim is not Gold. Card: [exams/ludats/ludats-cc-curie.yaml](exams/ludats/ludats-cc-curie.yaml).
 
@@ -1322,7 +1322,7 @@ This evaler is based on Einstein, the physicist who discovered the field equatio
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Dehydrus calls Einsteinly and locks [Mode F](#ludats-mode-f). World clock T is 1914 (field equations November 1915). This is not 1905. Biography clock A is Einstein at that year, working from the Mercury leftover, not from 1919 plates. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does, v0.3 looks for a sealed LuDaTs-E world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.
+Dehydrus calls Einsteinly and locks [Mode F](#ludats-mode-f). World clock T is 1914 (field equations November 1915). This is not 1905. Biography clock A is Einstein at that year, working from the Mercury leftover, not from 1919 plates. If the folder does not claim a discovery or physical-world exam, the evaler stays deferred. If it does, v0.3 looks for a sealed LuDaTs-E world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.
 
 When the simulator does run, the first step is the anomaly the old law cannot eat. The next step is to write field equations whose weak-field limit recovers Newton, and that account for Mercury's perihelion. Light deflection is checked only after that theory is submitted. 1919 eclipse plates before submission are leakage and fail the run. The string "general relativity" is not Gold. Photoelectric / Brownian / 1905 special relativity are not this exam. Card: [exams/ludats/ludats-e-einstein-gr.yaml](exams/ludats/ludats-e-einstein-gr.yaml).
 
@@ -1340,7 +1340,7 @@ The person at the front who points at each player and writes what that player re
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Orchestration engine. The router job lives inside the conductor (order, prior cells, headline). See [docs/PRETRUWs.md](docs/PRETRUWs.md).
+Orchestration engine. The router job lives inside the conductor (order, prior evalers, headline). See [docs/PRETRUWs.md](docs/PRETRUWs.md).
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -1348,7 +1348,7 @@ Orchestration engine. The router job lives inside the conductor (order, prior ce
 <a id="eval-engine" name="eval-engine"></a>
 <h2>Engine</h2>
 
-Not a Hydra cell. An engine emits cells or a headline.
+Not a Hydra evaler. An engine emits evalers or a headline.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -1368,7 +1368,7 @@ Not a count by itself. The sixteen and the eight are agentic evalers.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
-A worker that judges or acts. Plugins that a world needs (a language model, a retriever) are also agents. They are not extra Hydra cells.
+A worker that judges or acts. Plugins that a world needs (a language model, a retriever) are also agents. They are not extra Hydra evalers.
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
@@ -1424,7 +1424,7 @@ The same shelf holds retrieval catalogs. A catalog is a list of public scores. I
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-No Evalathan score. The public board is someone else's number. The cell stays off the vector until a trace file from a run is in the tree.
+No Evalathan score. The public board is someone else's number. The evaler stays off the vector until a trace file from a run is in the tree.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -1460,7 +1460,7 @@ The paper is [arXiv:2509.16941](https://arxiv.org/abs/2509.16941). Inclusion lat
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-Not on the vector. No trace, no cell.
+Not on the vector. No trace, no evaler.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -1478,7 +1478,7 @@ The public page is [deepswe.datacurve.ai](https://deepswe.datacurve.ai/). Evalat
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-No Evalathan score. PRDBench grades an agent that builds from a PRD. The public board is someone else's number. The cell stays off the vector. Finding a named PRD file in the tree is not sitting this exam.
+No Evalathan score. PRDBench grades an agent that builds from a PRD. The public board is someone else's number. The evaler stays off the vector. Finding a named PRD file in the tree is not sitting this exam.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -1517,7 +1517,7 @@ In every gallery the shelves hold only what that year and that discoverer could 
 
 **What a room locks.** Two clocks. World clock T is the freeze year for corpus, instruments, news, and letters. Biography clock A is what that named discoverer could have reached at that age and post. Pair worlds add a second biography clock and a second agent. Observations come from a simulator at T. A prompt that says "pretend it is 1610" while later weights stay loaded is not LuDaTs - [ExAnte](https://aclanthology.org/2026.eacl-long.72/) (ACL 2026) already showed cutoffs leak.
 
-**Who runs it.** [Dehydrus](#dehydrus) writes eight cells, in this order: [Copernly](#copernly) (LuDaTs-C, 1542, pre [*De revolutionibus orbium coelestium*](https://en.wikipedia.org/wiki/De_revolutionibus_orbium_coelestium)), [Keplerly](#keplerly) (LuDaTs-K, 1608), [Galileoly](#galileoly) (LuDaTs-G, required), [Darwinly](#darwinly) (LuDaTs-D, required), [Mendly](#mendly) (LuDaTs-M, 1868), [Einsteinly](#einsteinly) (LuDaTs-E, 1914, General Relativity only - not 1905), [CurCuriely](#curcuriely) (LuDaTs-CC, 1897, Mode Pair), [Newtonly](#newtonly) (LuDaTs-N, Mode Unification, deferred to v2 until Keplerly and Galileoly are both sealed).
+**Who runs it.** [Dehydrus](#dehydrus) writes eight evalers, in this order: [Copernly](#copernly) (LuDaTs-C, 1542, pre [*De revolutionibus orbium coelestium*](https://en.wikipedia.org/wiki/De_revolutionibus_orbium_coelestium)), [Keplerly](#keplerly) (LuDaTs-K, 1608), [Galileoly](#galileoly) (LuDaTs-G, required), [Darwinly](#darwinly) (LuDaTs-D, required), [Mendly](#mendly) (LuDaTs-M, 1868), [Einsteinly](#einsteinly) (LuDaTs-E, 1914, General Relativity only - not 1905), [CurCuriely](#curcuriely) (LuDaTs-CC, 1897, Mode Pair), [Newtonly](#newtonly) (LuDaTs-N, Mode Unification, deferred to v2 until Keplerly and Galileoly are both sealed).
 
 **What is not LuDaTs.** [Domly](#domly) is Hydra's subject-matter quiz desk: it grades present-day Q&A against an answer key. That is the wrong station for a locked-past discovery room. A LuDaTs brand does not live under Domly, and Domly does not move to Dehydrus. Do not add a LuDaTs brand to Hydra either - the sixteen software evalers stay sixteen. LuDaTs does not award a state-of-the-art stamp from a filename.
 
@@ -1547,7 +1547,7 @@ Guessing a live password is not the prize. A mind is not a short login string. H
 
 A digital twin is valid when it predicts the counterpart's measurable outputs under a stated use ([ISO 23247](#iso-23247), Digital twin framework for manufacturing; [VVUQ](#vvuq), Verification, Validation, and Uncertainty Quantification; NASEM, National Academies of Sciences, Engineering, and Medicine, digital-twin report). [HabTwin](#habtwin) scores the habit signature, then checks that the twin fits **P** better than **Q** and better than the crowd. For a machine, it also scores the generator's policy and a next sample only inside a lab toy. Matching one synthetic secret exactly is a ceiling check. It is not the definition of twin.
 
-Five cells, when scoring ships in v0.4: [HabTwin](#habtwin)-C (composition: the shape of the habit), [HabTwin](#habtwin)-D (discrimination: P vs Q vs crowd), [HabTwin](#habtwin)-S (system twin of a documented generator), [HabTwin](#habtwin)-X (exact-match ceiling, never required Gold), [HabTwin](#habtwin)-K (keystroke timing, deferred). Live login is forbidden. Medicine is being told to run VVUQ on human digital twins, not a password parlor trick ([npj Digital Medicine 2025](https://www.nature.com/articles/s41746-025-01447-y); [ISO/AWI 23247-8](https://www.iso.org/standard/94858.html)).
+Five evalers, when scoring ships in v0.4: [HabTwin](#habtwin)-C (composition: the shape of the habit), [HabTwin](#habtwin)-D (discrimination: P vs Q vs crowd), [HabTwin](#habtwin)-S (system twin of a documented generator), [HabTwin](#habtwin)-X (exact-match ceiling, never required Gold), [HabTwin](#habtwin)-K (keystroke timing, deferred). Live login is forbidden. Medicine is being told to run VVUQ on human digital twins, not a password parlor trick ([npj Digital Medicine 2025](https://www.nature.com/articles/s41746-025-01447-y); [ISO/AWI 23247-8](https://www.iso.org/standard/94858.html)).
 
 Do not target live people or production systems. Do not ship wordlists or cracking loops. Do not fail a person for using a password manager. Do not mash [HabTwin](#habtwin)-C into keystrokes. Do not add [HabTwin](#habtwin) to Hydra or [Trajectly](#trajectly). Do not call exact match the definition of twin.
 
@@ -1615,7 +1615,7 @@ WildBench is a public benchmark of hard chat tasks drawn from real use. It is wo
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-The paper is [arXiv:2406.04770](https://arxiv.org/abs/2406.04770). No leaderboard percent from that paper is copied into a cell.
+The paper is [arXiv:2406.04770](https://arxiv.org/abs/2406.04770). No leaderboard percent from that paper is copied into a evaler.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
