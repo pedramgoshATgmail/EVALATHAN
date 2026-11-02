@@ -138,4 +138,25 @@ echo "Starting Evalathan v0.3.2 local desk window..."
 echo "Look for Evalathan.app on your Desktop (dragon icon), or Evalathan.command as a fallback."
 echo "Keep this terminal open while the desk is running, or use the Desktop launcher next time."
 echo
+# Mac order: circle already up; prompt then apply; hard-reset fallback if Python update fails.
+stop_fuss_splash
+start_fuss_splash
+set +e
+python -c "from evalathan.desk_update import sync_or_prompt; raise SystemExit(sync_or_prompt())"
+UP=$?
+set -e
+if [ "$UP" = "42" ]; then
+  # Update now already spawned the desk.
+  exit 0
+fi
+if [ "$UP" -ne 0 ]; then
+  echo "Python update step failed - forcing published main..."
+  if [ -d .git ]; then
+    git checkout main >/dev/null 2>&1 || true
+    git reset --hard origin/main >/dev/null 2>&1 || true
+    python -m pip install -e . >/dev/null 2>&1 || true
+  fi
+fi
+start_fuss_splash
+export EVALATHAN_SKIP_UPDATE=1
 exec python -c "from evalathan.webdesk import open_desk; raise SystemExit(open_desk())"

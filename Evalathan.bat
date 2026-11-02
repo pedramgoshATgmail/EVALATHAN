@@ -1,12 +1,10 @@
 @echo off
-REM Desktop icon entry: FUSS launching splash ASAP, then published main, then local desk.
+REM Desktop icon entry: FUSS splash, update prompt/sync to GitHub main, then desk.
 setlocal EnableExtensions
 cd /d "%~dp0"
 
-REM Show the centered FUSS "launching..." circle as soon as the Desktop icon is clicked.
 call :start_splash
 
-REM Prefetch only - the desk Python popup offers Update now vs Not now.
 if exist ".git\" (
   where git >nul 2>&1
   if not errorlevel 1 (
@@ -28,10 +26,28 @@ if not exist ".venv\Scripts\python.exe" (
   exit /b %ERRORLEVEL%
 )
 
-REM Keep FUSS circle up (Mac order): splash first, then update card on top inside open_desk.
-call :start_splash
 set "VENVPY=%~dp0.venv\Scripts\python.exe"
 "%VENVPY%" -m pip install -e "%~dp0." >nul 2>&1
+
+REM Ask / apply published main before the desk opens (Windows-visible native box).
+call :stop_splash
+"%VENVPY%" -c "from evalathan.desk_update import sync_or_prompt; raise SystemExit(sync_or_prompt())"
+set "UP=%ERRORLEVEL%"
+if "%UP%"=="42" (
+  REM Update now already spawned the desk.
+  exit /b 0
+)
+if not "%UP%"=="0" (
+  echo Python update step failed - forcing published main...
+  if exist ".git\" (
+    git checkout main >nul 2>&1
+    git reset --hard origin/main >nul 2>&1
+    "%VENVPY%" -m pip install -e "%~dp0." >nul 2>&1
+  )
+)
+
+call :start_splash
+set "EVALATHAN_SKIP_UPDATE=1"
 echo Opening Evalathan local desk...
 "%VENVPY%" -c "from evalathan.webdesk import open_desk; raise SystemExit(open_desk())"
 set "EC=%ERRORLEVEL%"
@@ -51,7 +67,6 @@ if not defined SPY for /f "delims=" %%P in ('where python 2^>nul') do (
   if not defined SPY set "SPY=%%P"
 )
 if not defined SPY goto :eof
-REM Intentional start: clear prior stop so a fresh splash may paint.
 if exist "%USERPROFILE%\.evalathan\splash.stop" del /q "%USERPROFILE%\.evalathan\splash.stop" >nul 2>&1
 start "" "%SPY%" "%~dp0ui\v2\launch_splash.py"
 goto :eof

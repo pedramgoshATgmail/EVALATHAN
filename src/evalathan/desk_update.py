@@ -1,4 +1,4 @@
-"""Check GitHub main on desk launch; optional popup to apply published updates."""
+"""Check GitHub main on desk launch; popup to apply published updates."""
 
 from __future__ import annotations
 
@@ -52,7 +52,6 @@ def check_for_update(repo: Path | None = None, *, fetch: bool = True) -> UpdateS
     if fetch:
         fetched = _git(root, "fetch", "origin", "main", timeout=60)
         if fetched.returncode != 0:
-            # Fall back to full fetch when the remote refspec is older.
             fetched = _git(root, "fetch", "origin", timeout=60)
             if fetched.returncode != 0:
                 err = (fetched.stderr or fetched.stdout or "fetch failed").strip()
@@ -115,7 +114,6 @@ def apply_published_main(repo: Path) -> tuple[bool, str]:
     if reset.returncode != 0:
         err = (reset.stderr or reset.stdout or "reset failed").strip()
         return False, err[:240]
-    # Refresh editable install so src/ matches the new tree.
     py = sys.executable
     pip = subprocess.run(
         [py, "-m", "pip", "install", "-e", str(repo)],
@@ -143,8 +141,16 @@ def _log(msg: str) -> None:
         pass
 
 
+def _close_splash() -> None:
+    try:
+        from evalathan.launch_splash import request_close
+
+        request_close()
+    except Exception:  # noqa: BLE001
+        pass
+
+
 def _spawn_fuss_splash() -> None:
-    """FUSS circular splash - show first (Mac order), keep up through update + relaunch."""
     try:
         from evalathan.launch_splash import clear_stop, spawn_if_needed
 
@@ -155,32 +161,62 @@ def _spawn_fuss_splash() -> None:
 
 
 def _ui_font(size: int, weight: str = "normal") -> tuple:
-    family = "Segoe UI" if sys.platform == "win32" else "Helvetica Neue"
+    family = "Helvetica Neue" if sys.platform == "darwin" else "Segoe UI"
     if weight == "bold":
         return (family, size, "bold")
     return (family, size)
 
 
-def _ask_user(status: UpdateStatus) -> bool:
-    """
-    Mac order: FUSS circle is already up (or we start it), then this card sits on top.
-    Return True if the user chose Update now.
-    """
-    _spawn_fuss_splash()
-    try:
-        import time
+def _native_ask(status: UpdateStatus) -> bool | None:
+    """OS-native Yes/No. Returns None if native UI is unavailable."""
+    title = "EVALATHAN update"
+    body = (
+        "A newer desk is on GitHub.\n\n"
+        f"This PC:   {_short(status.local) or '?'}\n"
+        f"Published: {_short(status.remote) or '?'}\n\n"
+        "Update now so this machine matches main?"
+    )
+    if sys.platform == "win32":
+        try:
+            import ctypes
 
-        time.sleep(0.35)  # let the circle paint before the reminder card
-    except Exception:  # noqa: BLE001
-        pass
+            # MB_YESNO | MB_ICONQUESTION | MB_TOPMOST | MB_SETFOREGROUND
+            flags = 0x04 | 0x20 | 0x40000 | 0x10000
+            result = ctypes.windll.user32.MessageBoxW(0, body, title, flags)
+            return result == 6  # IDYES
+        except Exception as exc:  # noqa: BLE001
+            _log(f"MessageBoxW failed: {exc}")
+            return None
+    if sys.platform == "darwin":
+        try:
+            # escape for AppleScript
+            safe = body.replace("\\", "\\\\").replace('"', '\\"')
+            script = (
+                f'display dialog "{safe}" with title "{title}" '
+                'buttons {"Not now", "Update now"} default button "Update now" '
+                "with icon note"
+            )
+            proc = subprocess.run(
+                ["osascript", "-e", script],
+                capture_output=True,
+                text=True,
+                timeout=300,
+                check=False,
+            )
+            if proc.returncode != 0:
+                return False
+            return "Update now" in (proc.stdout or "")
+        except Exception as exc:  # noqa: BLE001
+            _log(f"osascript failed: {exc}")
+            return None
+    return None
 
-    try:
-        import tkinter as tk
-    except Exception as exc:  # noqa: BLE001
-        _log(f"ask_user no tkinter: {exc}")
-        return True
 
-    decision = {"update": False}
+def _tk_ask(status: UpdateStatus) -> bool:
+    """Lime-accent Evalathan reminder card (sits above FUSS on Mac)."""
+    import tkinter as tk
+
+    decision = {"update": True}  # default Update if closed oddly
     ink = "#0a0a0a"
     card = "#141414"
     edge = "#2e2e2e"
@@ -198,21 +234,14 @@ def _ask_user(status: UpdateStatus) -> bool:
     except Exception:  # noqa: BLE001
         pass
 
-    # Outer hairline + lime accent bar (desk reminder, not a system alert)
     shell = tk.Frame(root, bg=edge, padx=1, pady=1)
     shell.pack(fill="both", expand=True)
-    accent_bar = tk.Frame(shell, bg=accent, height=3)
-    accent_bar.pack(fill="x")
+    tk.Frame(shell, bg=accent, height=3).pack(fill="x")
     body = tk.Frame(shell, bg=card, padx=32, pady=28)
     body.pack(fill="both", expand=True)
 
     tk.Label(
-        body,
-        text="EVALATHAN",
-        bg=card,
-        fg=accent,
-        font=_ui_font(10, "bold"),
-        anchor="w",
+        body, text="EVALATHAN", bg=card, fg=accent, font=_ui_font(10, "bold"), anchor="w"
     ).pack(fill="x")
     tk.Label(
         body,
@@ -239,38 +268,22 @@ def _ask_user(status: UpdateStatus) -> bool:
 
     meta = tk.Frame(body, bg="#1a1a1a", padx=14, pady=12)
     meta.pack(fill="x", pady=(18, 0))
+    mono = ("Menlo", 10) if sys.platform == "darwin" else ("Consolas", 10)
+    tk.Label(meta, text="This PC", bg="#1a1a1a", fg=muted, font=_ui_font(9)).grid(
+        row=0, column=0, sticky="w"
+    )
     tk.Label(
-        meta,
-        text="This PC",
-        bg="#1a1a1a",
-        fg=muted,
-        font=_ui_font(9),
-        anchor="w",
-    ).grid(row=0, column=0, sticky="w")
-    tk.Label(
-        meta,
-        text=_short(status.local) or "?",
-        bg="#1a1a1a",
-        fg=text,
-        font=("Consolas", 10) if sys.platform == "win32" else ("Menlo", 10),
-        anchor="e",
+        meta, text=_short(status.local) or "?", bg="#1a1a1a", fg=text, font=mono
     ).grid(row=0, column=1, sticky="e", padx=(24, 0))
     tk.Label(
-        meta,
-        text="Published",
-        bg="#1a1a1a",
-        fg=muted,
-        font=_ui_font(9),
-        anchor="w",
-        pady=(6, 0),
+        meta, text="Published", bg="#1a1a1a", fg=muted, font=_ui_font(9), pady=(6, 0)
     ).grid(row=1, column=0, sticky="w")
     tk.Label(
         meta,
         text=_short(status.remote) or "?",
         bg="#1a1a1a",
         fg=blue,
-        font=("Consolas", 10) if sys.platform == "win32" else ("Menlo", 10),
-        anchor="e",
+        font=mono,
         pady=(6, 0),
     ).grid(row=1, column=1, sticky="e", padx=(24, 0))
     meta.columnconfigure(1, weight=1)
@@ -286,7 +299,7 @@ def _ask_user(status: UpdateStatus) -> bool:
         decision["update"] = False
         root.destroy()
 
-    skip = tk.Button(
+    tk.Button(
         actions,
         text="Not now",
         command=on_skip,
@@ -296,15 +309,12 @@ def _ask_user(status: UpdateStatus) -> bool:
         activeforeground=text,
         relief="flat",
         bd=0,
-        highlightthickness=0,
         padx=20,
         pady=11,
         font=_ui_font(11),
         cursor="hand2",
-    )
-    skip.pack(side="right")
-
-    update = tk.Button(
+    ).pack(side="right")
+    tk.Button(
         actions,
         text="Update now",
         command=on_update,
@@ -314,13 +324,11 @@ def _ask_user(status: UpdateStatus) -> bool:
         activeforeground="#111",
         relief="flat",
         bd=0,
-        highlightthickness=0,
         padx=22,
         pady=11,
         font=_ui_font(11, "bold"),
         cursor="hand2",
-    )
-    update.pack(side="right", padx=(0, 10))
+    ).pack(side="right", padx=(0, 10))
 
     root.protocol("WM_DELETE_WINDOW", on_skip)
     root.update_idletasks()
@@ -331,22 +339,53 @@ def _ask_user(status: UpdateStatus) -> bool:
     root.geometry(f"{w}x{h}+{x}+{y}")
     root.lift()
     root.focus_force()
-    try:
-        update.focus_set()
-    except Exception:  # noqa: BLE001
-        pass
     root.mainloop()
-    _log(f"ask_user behind={status.behind} choice={'update' if decision['update'] else 'skip'}")
     return bool(decision["update"])
 
 
+def _ask_user(status: UpdateStatus) -> bool:
+    """
+    Mac: FUSS circle first, then reminder card on top.
+    Windows: drop splash so the ask cannot sit under the circle, then card / native box.
+    """
+    if sys.platform == "win32":
+        _close_splash()
+    else:
+        _spawn_fuss_splash()
+        try:
+            import time
+
+            time.sleep(0.45)
+        except Exception:  # noqa: BLE001
+            pass
+
+    # Prefer native box on Windows (always visible). Mac keeps the branded card.
+    if sys.platform == "win32":
+        native = _native_ask(status)
+        if native is not None:
+            _log(f"ask_user native windows choice={'update' if native else 'skip'}")
+            return native
+
+    try:
+        choice = _tk_ask(status)
+        _log(f"ask_user tk choice={'update' if choice else 'skip'}")
+        return choice
+    except Exception as exc:  # noqa: BLE001
+        _log(f"ask_user tk failed: {exc}")
+        native = _native_ask(status)
+        if native is not None:
+            _log(f"ask_user native fallback choice={'update' if native else 'skip'}")
+            return native
+        # Dialog impossible - apply so the globe stays on published main.
+        _log("ask_user unavailable; auto-applying published main")
+        return True
+
+
 def _reexec_desk() -> None:
-    """Start a fresh open_desk (FUSS splash already up) and exit this process."""
+    """Start a fresh open_desk and exit this process."""
     os.environ["EVALATHAN_RELAUNCHED"] = "1"
-    os.environ["EVALATHAN_SKIP_UPDATE"] = "1"  # already on main; skip second popup
-    code = (
-        "from evalathan.webdesk import open_desk; raise SystemExit(open_desk())"
-    )
+    os.environ["EVALATHAN_SKIP_UPDATE"] = "1"
+    code = "from evalathan.webdesk import open_desk; raise SystemExit(open_desk())"
     env = os.environ.copy()
     kwargs: dict = {
         "args": [sys.executable, "-c", code],
@@ -355,7 +394,6 @@ def _reexec_desk() -> None:
         "close_fds": True,
     }
     if sys.platform == "win32":
-        # Detach so the Desktop .bat parent can exit without killing the new desk.
         kwargs["creationflags"] = (
             getattr(subprocess, "CREATE_NEW_PROCESS_GROUP", 0x00000200)
             | getattr(subprocess, "DETACHED_PROCESS", 0x00000008)
@@ -371,14 +409,11 @@ def _reexec_desk() -> None:
         _log(f"reexec Popen failed ({exc}); trying execv")
         os.execv(sys.executable, [sys.executable, "-c", code])
         return
-    raise SystemExit(0)
+    # 42 = desk already relaunched; launchers must not open a second window.
+    raise SystemExit(42)
 
 
 def _migrate_legacy_desktop_launcher(repo: Path) -> None:
-    """
-    Older Mac Evalathan.app scripts silent-reset before open_desk, so the
-    update popup never appeared. Rewrite those launchers once to fetch-only.
-    """
     if sys.platform != "darwin":
         return
     app = Path.home() / "Desktop" / "Evalathan.app" / "Contents" / "MacOS" / "Evalathan"
@@ -388,21 +423,22 @@ def _migrate_legacy_desktop_launcher(repo: Path) -> None:
         text = app.read_text(encoding="utf-8", errors="ignore")
     except OSError:
         return
-    if "reset --hard" in text:
+    # Refresh Desktop app whenever install script exists (picks up launcher fixes).
+    if "reset --hard" in text or "Prefetch only" in text:
         _refresh_desktop_launcher(repo)
 
 
 def ensure_published_main(*, interactive: bool = True) -> None:
     """
-    On desk launch: if origin/main is ahead, show an update popup.
-    Update now applies hard-reset to published main and restarts the desk.
-    Not now continues with the local tree.
+    If origin/main is ahead: ask Update now / Not now, then apply + relaunch.
+    If the ask UI fails, auto-apply so installs cannot stay stuck forever.
     """
     if os.environ.get("EVALATHAN_SKIP_UPDATE", "").strip() in ("1", "true", "yes"):
+        _log("ensure: SKIP_UPDATE set")
         return
     if os.environ.get("EVALATHAN_RELAUNCHED", "").strip() == "1":
-        # Clear one-shot relaunch flag for future cold starts.
         os.environ.pop("EVALATHAN_RELAUNCHED", None)
+        _log("ensure: RELAUNCHED one-shot clear")
         return
 
     root = repo_root()
@@ -417,10 +453,17 @@ def ensure_published_main(*, interactive: bool = True) -> None:
     if status.error or not status.behind:
         return
 
-    if interactive and not _ask_user(status):
+    apply = True
+    if interactive:
+        try:
+            apply = _ask_user(status)
+        except Exception as exc:  # noqa: BLE001
+            _log(f"ensure ask crashed ({exc}); auto-applying")
+            apply = True
+    if not apply:
+        _log("ensure: user chose Not now")
         return
 
-    # Agree -> keep FUSS circle up, pull, relaunch desk (no second OK).
     _spawn_fuss_splash()
     ok, detail = apply_published_main(status.repo)
     if not ok:
@@ -435,3 +478,20 @@ def ensure_published_main(*, interactive: bool = True) -> None:
     except OSError as exc:
         _log(f"reexec failed: {exc}")
         print(f"Evalathan updated but could not restart: {exc}", flush=True)
+
+
+def sync_or_prompt() -> int:
+    """CLI/launcher entry: run ensure_published_main. 42 = desk already relaunched."""
+    try:
+        ensure_published_main(interactive=True)
+    except SystemExit as exc:
+        code = exc.code
+        return int(code) if isinstance(code, int) else 0
+    except Exception as exc:  # noqa: BLE001
+        _log(f"sync_or_prompt failed: {exc}")
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(sync_or_prompt())
