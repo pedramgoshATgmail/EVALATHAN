@@ -342,10 +342,6 @@ button { cursor: pointer; border: 0; background: none; }
   text-decoration: underline;
 }
 .repo-link.is-hidden { display: none; }
-.results {
-  width: 100%;
-  max-width: min(640px, 92vw);
-}
 .slot-pill {
   display: flex;
   align-items: center;
