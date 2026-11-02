@@ -17,17 +17,24 @@
   </script>
 </head>
 <body>
-  <div class="app">
-    <aside class="left" id="left">
-      <nav class="engines" id="engines"></nav>
-      <div class="mascots">
-        <img src="assets/prickly.png" alt="PRICKLY" title="PRICKLY" />
-        <img src="assets/fuss.png" alt="FUSS" title="FUSS - For-User Session Switch" />
-      </div>
-      <div class="left-foot">
-        <button type="button" class="rail-link" id="btn-gloss" title="Open Evalathan glossary">GLOSS</button>
-        <button type="button" class="rail-link" id="btn-selfbelt" title="Open SELFBELT glossary entry">SELFBELT</button>
-        <div class="theme-row" role="group" aria-label="Color theme">
+  <div id="app-screen" class="app-screen">
+    <!-- LEFT SLIDER (closed on splash) -->
+    <aside class="slideout" id="slideout" aria-hidden="true">
+      <div class="slideout-inner">
+        <div class="rail-scroll" id="slideout-scroll">
+          <nav class="engine-stack" id="engine-stack" aria-label="Router engines"></nav>
+          <div class="mascots">
+            <img src="assets/prickly.png" alt="PRICKLY" title="PRICKLY" />
+            <img src="assets/fuss.png" alt="FUSS" title="FUSS - For-User Session Switch" />
+          </div>
+          <div class="slide-section">
+            <button type="button" class="section-label" id="btn-gloss" title="Open Evalathan glossary">GLOSS</button>
+          </div>
+          <div class="slide-section">
+            <button type="button" class="section-label" id="btn-selfbelt" title="Open SELFBELT glossary entry">SELFBELT</button>
+          </div>
+        </div>
+        <div class="theme-toggle" role="group" aria-label="Color theme">
           <button type="button" class="theme-btn" data-theme-set="white" title="White">☀</button>
           <button type="button" class="theme-btn" data-theme-set="grey" title="Grey">◐</button>
           <button type="button" class="theme-btn" data-theme-set="black" title="Black">☾</button>
@@ -35,35 +42,58 @@
       </div>
     </aside>
 
-    <main class="center">
-      <header class="center-top">
-        <span class="mark-evals">evals</span>
-        <span class="mark-history">history</span>
-      </header>
-      <div class="hero" id="hero">
-        <img class="hero-mark theme-black" src="assets/evalathan-black.png" alt="EVALATHAN" />
-        <img class="hero-mark theme-light" src="assets/evalathan-white.png" alt="EVALATHAN" />
-        <img class="hero-dragon" src="assets/evalathan-dragon.png" alt="" />
-        <img class="hero-engine" id="hero-engine" src="assets/hydra-logo.png" alt="" hidden />
-        <p class="blurbs" id="blurbs"></p>
-      </div>
-      <section class="slotbox" aria-label="Evaluate target">
-        <p class="slot-label">Paste a GitHub link, or a folder on this PC. Then press Evaluate.</p>
-        <div class="slot-row">
-          <input id="target-input" type="text" spellcheck="false" autocomplete="off" placeholder="" />
-          <input id="folder-picker" type="file" webkitdirectory directory multiple hidden />
-          <button type="button" id="btn-browse">Browse folder</button>
-          <button type="button" id="btn-eval" class="primary">Evaluate</button>
+    <main class="center" id="center">
+      <header class="center-head">
+        <div class="head-left">
+          <button type="button" class="corner-toggle engines-corner" id="btn-toggle-engines" aria-expanded="false" title="Open engines">
+            <img class="corner-word theme-on-dark" src="assets/evalathan-black.png" alt="EVALATHAN" />
+            <img class="corner-word theme-on-light" src="assets/evalathan-white.png" alt="EVALATHAN" />
+          </button>
         </div>
-      </section>
-      <section class="results" id="results" aria-live="polite"></section>
+        <div class="head-right">
+          <button type="button" class="corner-toggle runs-corner" id="btn-toggle-runs" aria-expanded="false" title="Open past runs">
+            <span class="corner-text">PAST RUNS</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="page-stage">
+        <div class="page-upper">
+          <img class="splash-mark theme-on-dark" src="assets/evalathan-black.png" alt="EVALATHAN" />
+          <img class="splash-mark theme-on-light" src="assets/evalathan-white.png" alt="EVALATHAN" />
+          <img class="splash-dragon" src="assets/evalathan-dragon.png" alt="" />
+          <img class="splash-engine" id="splash-engine" src="assets/hydra-logo.png" alt="" hidden />
+          <p class="blurbs" id="blurbs">Paste a target below, or open the left corner for Hydra, Dehydrus, Benchrex, and Biasrex.</p>
+        </div>
+        <div class="page-lower">
+          <section class="slotbox" aria-label="Evaluate target">
+            <p class="slot-label">Paste a GitHub link, or a folder on this PC. Then press Evaluate.</p>
+            <div class="slot-row">
+              <input id="target-input" type="text" spellcheck="false" autocomplete="off" />
+              <input id="folder-picker" type="file" webkitdirectory directory multiple hidden />
+              <button type="button" id="btn-browse">Browse folder</button>
+              <button type="button" id="btn-eval" class="primary">Evaluate</button>
+            </div>
+          </section>
+          <section class="results" id="results" aria-live="polite"></section>
+        </div>
+      </div>
     </main>
 
-    <aside class="right">
-      <button type="button" class="new-eval" id="btn-new">New eval</button>
-      <input class="right-search" type="search" placeholder="Search" aria-label="Search past runs" id="past-search" />
-      <button type="button" class="past-head" title="Past evaluation runs">PAST RUNS <em id="past-count">(0)</em></button>
-      <ul class="past-list" id="past-list"></ul>
+    <!-- RIGHT SLIDER (closed on splash) -->
+    <aside class="runs-rail" id="runs-rail" aria-hidden="true">
+      <div class="runs-inner">
+        <div class="slide-top">
+          <button class="new-eval" id="btn-new" type="button">+ New eval</button>
+          <input class="slide-search" id="past-search" type="search" placeholder="Search" aria-label="Search past runs" />
+        </div>
+        <div class="rail-scroll">
+          <button type="button" class="rail-head" title="Past evaluation runs">
+            <span>PAST RUNS <em id="past-count">(0)</em></span>
+          </button>
+          <ul class="past-list" id="past-list"></ul>
+        </div>
+      </div>
     </aside>
   </div>
   <script src="app.js"></script>

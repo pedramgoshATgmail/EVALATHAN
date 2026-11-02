@@ -3,29 +3,33 @@
     "https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/cde53cbc5d66c631b88d202acd5f56bee9c23b26/docs/glossary.html";
   const GLOSS_MD = "https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/GLOSSARY.md";
   const anchor = (id) => GLOSS_MD + "#user-content-" + id;
+  const app = document.getElementById("app-screen");
 
   const ENGINES = [
     {
       id: "hydra",
       label: "HYDRA",
-      wordBlack: "assets/hydra-word-black.png",
-      wordWhite: "assets/hydra-word-white.png",
+      wordDark: "assets/hydra-word-black.png",
+      wordLight: "assets/hydra-word-white.png",
       art: "assets/hydra-logo.png",
-      showDragon: false,
       blurbs:
         "Routes sixteen software evalers across the product life cycle.\nEach evaler reports its own gate.\nA blank is not a fail and not a zero.",
       evalers: [
         "devly", "archly", "codely", "refactorly", "mixly", "runly", "levi", "menschly",
         "tokely", "pressly", "triadly", "chorely", "trajectly", "warrantly", "domly", "stackly",
-      ].map((id) => ({ id, label: id[0].toUpperCase() + id.slice(1), href: anchor(id), later: false })),
+      ].map((id) => ({
+        id,
+        label: id === "levi" ? "Levi" : id[0].toUpperCase() + id.slice(1),
+        href: anchor(id),
+        later: false,
+      })),
     },
     {
       id: "dehydrus",
       label: "DEHYDRUS",
-      wordBlack: "assets/dehydrus-word-black.png",
-      wordWhite: "assets/dehydrus-word-white.png",
-      art: "assets/hydra-logo.png",
-      showDragon: false,
+      wordDark: "assets/dehydrus-word-black.png",
+      wordLight: "assets/dehydrus-word-white.png",
+      art: null,
       blurbs:
         "Routes eight LuDaTs (Limited-universe Data Test sets) locked-past rooms under PRETRUWs (PREdiscovery TRuncated-Universes and Worlds).\nPhysical world-model and discovery claims stay off Hydra's vector.\nA missing world stays deferred.",
       evalers: [
@@ -40,12 +44,11 @@
     {
       id: "benchrex",
       label: "BENCHREX",
-      wordBlack: "assets/benchrex-word-black.png",
-      wordWhite: "assets/benchrex-word-white.png",
+      wordDark: "assets/benchrex-word-black.png",
+      wordLight: "assets/benchrex-word-white.png",
       art: null,
-      showDragon: true,
       blurbs:
-        "Deprecathan desk: Benchlux checks whether a claimed benchmark is still fit to cite.\nSeven criterion cells in v1 map saturation, contamination, skew, annotation error, obsolescence, assumptions, and drift.\nThree process cells (Assessly, Reportly, Notifyly) stay deferred for later.",
+        "Deprecathan desk: Benchlux checks whether a claimed benchmark is still fit to cite.\nSeven criterion cells in v1: Saturly, Contamly, Skewly, Annotly, Obsoletely, Assumly, Driftly.\nAssessly, Reportly, Notifyly stay deferred.",
       evalers: [
         { id: "saturly", label: "Saturly", href: GLOSS_MD, later: false },
         { id: "contamly", label: "Contamly", href: GLOSS_MD, later: false },
@@ -62,12 +65,11 @@
     {
       id: "biasrex",
       label: "BIASREX",
-      wordBlack: "assets/biasrex-word-black.png",
-      wordWhite: "assets/biasrex-word-white.png",
+      wordDark: "assets/biasrex-word-black.png",
+      wordLight: "assets/biasrex-word-white.png",
       art: null,
-      showDragon: true,
       blurbs:
-        "Four Benson-shaped bias cells for artifact-backed gates (Filterly, Meaningly, Hastely, Memoryly).\nDeferred cells stay blank - never one blended bias score.\nConfirmly and Automately stay deferred until interactive protocols ship.",
+        "Four Benson-shaped bias cells for artifact-backed gates.\nFilterly, Meaningly, Hastely, Memoryly.\nConfirmly and Automately stay deferred - never one blended bias score.",
       evalers: [
         { id: "filterly", label: "Filterly", href: GLOSS_MD, later: false },
         { id: "meaningly", label: "Meaningly", href: GLOSS_MD, later: false },
@@ -80,7 +82,7 @@
   ];
 
   let activeId = "hydra";
-  let openId = "hydra";
+  let openId = null;
   let past = loadPast();
 
   function loadPast() {
@@ -111,9 +113,22 @@
     return ENGINES.find((e) => e.id === id) || ENGINES[0];
   }
 
+  function wordSrc(e) {
+    return theme() === "white" ? e.wordLight : e.wordDark;
+  }
+
+  function toggleSide(side) {
+    const cls = side === "engines" ? "engines-open" : "runs-open";
+    const open = !app.classList.contains(cls);
+    app.classList.toggle(cls, open);
+    const btn = document.getElementById(side === "engines" ? "btn-toggle-engines" : "btn-toggle-runs");
+    const panel = document.getElementById(side === "engines" ? "slideout" : "runs-rail");
+    if (btn) btn.setAttribute("aria-expanded", String(open));
+    if (panel) panel.setAttribute("aria-hidden", String(!open));
+  }
+
   function renderEngines() {
-    const light = theme() === "white";
-    const root = document.getElementById("engines");
+    const root = document.getElementById("engine-stack");
     root.innerHTML = "";
     ENGINES.forEach((e) => {
       const block = document.createElement("div");
@@ -121,8 +136,9 @@
       const btn = document.createElement("button");
       btn.type = "button";
       btn.className = "engine-btn" + (e.id === activeId ? " active" : "");
+      btn.title = e.label + " - router engine";
       const img = document.createElement("img");
-      img.src = light ? e.wordWhite : e.wordBlack;
+      img.src = wordSrc(e);
       img.alt = e.label;
       btn.appendChild(img);
       btn.addEventListener("click", () => {
@@ -161,9 +177,10 @@
   function renderHero() {
     const e = engine(activeId);
     document.getElementById("blurbs").textContent = e.blurbs;
-    const art = document.getElementById("hero-engine");
-    const dragon = document.querySelector(".hero-dragon");
-    if (e.art) {
+    const art = document.getElementById("splash-engine");
+    const dragon = document.querySelector(".splash-dragon");
+    // Grey: never show blue Hydra art - use dragon mark instead
+    if (e.art && theme() !== "grey") {
       art.src = e.art;
       art.hidden = false;
       art.alt = e.label;
@@ -206,10 +223,7 @@
       btn.type = "button";
       btn.className = "chip " + (c.status || "deferred");
       btn.innerHTML = "<strong>" + escapeHtml(c.name) + "</strong><span>" + escapeHtml(c.blurb) + "</span>";
-      btn.title = "Open glossary for " + c.name;
-      btn.addEventListener("click", () => {
-        window.open(c.href || GLOSS_MD, "_blank", "noopener,noreferrer");
-      });
+      btn.addEventListener("click", () => window.open(c.href || GLOSS_MD, "_blank", "noopener,noreferrer"));
       box.appendChild(btn);
     });
   }
@@ -226,39 +240,42 @@
     const e = engine(activeId);
     const cells = e.evalers
       .filter((ev) => !ev.later)
-      .slice(0, activeId === "hydra" ? 16 : activeId === "dehydrus" ? 8 : 7)
       .map((ev, i) => ({
         name: ev.label,
         status: i % 5 === 0 ? "deferred" : "pass",
         blurb:
-          ev.later
-            ? "Deferred - not a fail."
-            : activeId === "dehydrus"
-              ? "Looking for a sealed world file; blank stays deferred."
-              : activeId === "benchrex"
-                ? "Criterion check teased - evidence pack later."
-                : activeId === "biasrex"
-                  ? "Bias cell teased - artifact gate later."
-                  : "Life-cycle gate scanned (local preview).",
+          activeId === "dehydrus"
+            ? "Looking for a sealed world file; blank stays deferred."
+            : activeId === "benchrex"
+              ? "Criterion check teased - evidence pack later."
+              : activeId === "biasrex"
+                ? "Bias cell teased - artifact gate later."
+                : "Life-cycle gate scanned (local preview).",
         href: ev.href,
       }));
-    const ran = cells.length;
     const deferred = cells.filter((c) => c.status === "deferred").length;
-    const summary = ran + " cells · " + deferred + " deferred";
-    const row = {
+    past.unshift({
       title: target || "(no path)",
       when: new Date().toLocaleString(),
       engine: e.label,
-      summary,
+      summary: cells.length + " cells · " + deferred + " deferred",
       target: target || "",
       cells,
-    };
-    past.unshift(row);
+    });
     savePast();
     renderPast(document.getElementById("past-search").value);
     paintResults(cells, target);
+    if (!app.classList.contains("runs-open")) toggleSide("runs");
   }
 
+  document.getElementById("btn-toggle-engines").addEventListener("click", (e) => {
+    e.preventDefault();
+    toggleSide("engines");
+  });
+  document.getElementById("btn-toggle-runs").addEventListener("click", (e) => {
+    e.preventDefault();
+    toggleSide("runs");
+  });
   document.getElementById("btn-browse").addEventListener("click", () => {
     document.getElementById("folder-picker").click();
   });
@@ -266,8 +283,7 @@
     const files = ev.target.files;
     if (!files || !files.length) return;
     const path = files[0].webkitRelativePath || files[0].name;
-    const folder = String(path).split("/")[0] || path;
-    document.getElementById("target-input").value = folder;
+    document.getElementById("target-input").value = String(path).split("/")[0] || path;
   });
   document.getElementById("btn-eval").addEventListener("click", () => {
     mockEvaluate(document.getElementById("target-input").value.trim());
@@ -287,6 +303,8 @@
     b.addEventListener("click", () => setTheme(b.getAttribute("data-theme-set")));
   });
 
+  // Splash: both rails closed
+  app.classList.remove("engines-open", "runs-open");
   setTheme(theme());
   renderPast();
 })();
