@@ -9,8 +9,8 @@
   <link rel="apple-touch-icon" href="assets/favicon-192.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=gold70" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=gold71" />
   <link rel="preload" as="image" href="assets/evalathan-dragon.webp?v=5" type="image/webp" />
   <link rel="preload" as="image" href="assets/hydra-logo.webp?v=5" type="image/webp" />
   <link rel="preload" as="image" href="assets/dehydrus-logo.webp?v=5" type="image/webp" />
@@ -150,10 +150,14 @@
             <input id="fuss-ack" type="checkbox" />
             <span>I understand this is only a timer for my sitting with AI. It is not medical advice, not a diagnosis, and not a replacement for my firm’s AI policy.</span>
           </label>
-          <label class="fuss-mins-row">
-            <span>Minutes</span>
-            <input id="fuss-mins" type="number" min="1" max="180" step="1" value="25" inputmode="numeric" />
-          </label>
+          <div class="fuss-mins-row">
+            <span class="fuss-mins-label">Minutes</span>
+            <div class="fuss-mins-dial" role="group" aria-label="Sitting length in minutes">
+              <button type="button" class="fuss-mins-step" id="fuss-mins-down" title="Decrease minutes" aria-label="Decrease minutes">-</button>
+              <input id="fuss-mins" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="3" value="25" autocomplete="off" aria-label="Minutes" />
+              <button type="button" class="fuss-mins-step" id="fuss-mins-up" title="Increase minutes" aria-label="Increase minutes">+</button>
+            </div>
+          </div>
           <div class="fuss-actions">
             <button type="button" class="fuss-btn fuss-btn-start" id="fuss-start" title="Start timer">Start timer</button>
             <button type="button" class="fuss-btn fuss-btn-stop" id="fuss-stop" title="Stop timer">Stop timer</button>
@@ -176,6 +180,6 @@
     </button>
   </div>
 
-  <script src="app.js?v=gold70"></script>
+  <script src="app.js?v=gold71"></script>
 </body>
 </html>

@@ -598,12 +598,21 @@ button { cursor: pointer; border: 0; background: none; }
   border: 0;
   background: transparent;
   cursor: pointer;
+  outline: none;
+  box-shadow: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.mascot-wrap:focus,
+.mascot-wrap:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 .mascot-wrap .mascot {
   width: 92px;
   height: 92px;
   object-fit: contain;
   /* PNGs are already circular with alpha - radius/ring chrome draws a white halo */
+  border: 0;
   border-radius: 0;
   display: block;
   box-shadow: none;
@@ -618,23 +627,21 @@ button { cursor: pointer; border: 0; background: none; }
   opacity: 1;
   filter: none;
 }
-.mascot-wrap.is-armed {
-  /* Armed cue without a ring around the logo */
-  filter: none;
+.mascot-wrap.is-armed .mascot {
+  box-shadow: none;
+  outline: none;
 }
 .mascot-wrap.is-armed::after {
-  content: "on";
+  content: "";
   position: absolute;
-  right: -0.15rem;
-  bottom: -0.05rem;
-  padding: 0.05rem 0.28rem;
-  border-radius: 0.25rem;
+  right: 0.35rem;
+  bottom: 0.35rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
   background: #2f7a45;
-  color: #fff;
-  font-family: var(--mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.04em;
-  line-height: 1.2;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
 }
 .mascot-soon-blurb {
   position: absolute;
@@ -1368,20 +1375,50 @@ html {
 .fuss-mins-row {
   display: flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.65rem;
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 500;
 }
-.fuss-mins-row input {
-  width: 4.2rem;
-  height: 2rem;
+.fuss-mins-label {
+  min-width: 4.2rem;
+}
+.fuss-mins-dial {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.15rem;
   border: 1px solid #bbb;
-  border-radius: 0.3rem;
-  padding: 0 0.4rem;
-  font-family: "IBM Plex Mono", ui-monospace, monospace;
-  font-size: 0.95rem;
-  text-align: center;
+  border-radius: 0.4rem;
   background: #fff;
+}
+.fuss-mins-step {
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: 0.3rem;
+  background: #e8e8e8;
+  color: #222;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1;
+  cursor: pointer;
+}
+.fuss-mins-step:hover { background: #d8d8d8; }
+.fuss-mins-step:active { background: #c8c8c8; }
+.fuss-mins-dial input {
+  width: 3.4rem;
+  height: 2rem;
+  margin: 0;
+  border: 0;
+  border-radius: 0.2rem;
+  padding: 0 0.2rem;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 1.05rem;
+  font-weight: 400;
+  text-align: center;
+  background: transparent;
+  color: #222;
+  outline: none;
 }
 .fuss-actions {
   display: flex;
@@ -1427,10 +1464,10 @@ html {
   margin: 0;
   font-family: "IBM Plex Mono", ui-monospace, monospace;
   font-size: clamp(4.5rem, 18vw, 7rem);
-  font-weight: 700;
+  font-weight: 300;
   line-height: 1;
   color: #c45c26;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
 }
 .fuss-countdown-hint {
   margin: 0.85rem 0 0;

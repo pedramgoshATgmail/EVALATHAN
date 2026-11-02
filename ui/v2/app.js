@@ -3537,6 +3537,36 @@
       els.mins.addEventListener("blur", function () {
         fussApplyMinutes(els.mins.value);
       });
+    
+      els.mins.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          fussApplyMinutes(els.mins.value);
+          els.mins.blur();
+        } else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          fussApplyMinutes(fussClampMins(els.mins.value) + 1);
+        } else if (e.key === "ArrowDown") {
+          e.preventDefault();
+          fussApplyMinutes(fussClampMins(els.mins.value) - 1);
+        }
+      });
+    }
+    const minsUp = document.getElementById("fuss-mins-up");
+    const minsDown = document.getElementById("fuss-mins-down");
+    if (minsUp) {
+      minsUp.addEventListener("click", function (e) {
+        e.preventDefault();
+        const cur = fussClampMins(els.mins ? els.mins.value : FUSS_DEFAULT);
+        fussApplyMinutes(cur + 1);
+      });
+    }
+    if (minsDown) {
+      minsDown.addEventListener("click", function (e) {
+        e.preventDefault();
+        const cur = fussClampMins(els.mins ? els.mins.value : FUSS_DEFAULT);
+        fussApplyMinutes(cur - 1);
+      });
     }
     if (els.ack) {
       els.ack.addEventListener("change", function () {
