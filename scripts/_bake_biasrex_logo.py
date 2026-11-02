@@ -1,56 +1,56 @@
-"""One-shot: bake Biasrex emblem into glossary card + UI logo assets."""
+"""Bake Biasrex emblem into glossary card + UI logo assets (black / white / grey)."""
 from pathlib import Path
 
-from PIL import Image, ImageOps
+from PIL import Image
 
-SRC = Path(
-    r"C:\Users\admin\.cursor\projects\c-Users-admin-Desktop-Altnoble-Clients-AckmanZiff-AZ-Agent-CHARLIE-07-14-2026-az-signal-engine-main\assets\BIASREX_FINAL-b8e0e828-39cb-4d51-ad34-67737527e8ff.png"
-)
 ROOT = Path(__file__).resolve().parents[1]
+ASSETS = Path(
+    r"C:\Users\admin\.cursor\projects\c-Users-admin-Desktop-Altnoble-Clients-AckmanZiff-AZ-Agent-CHARLIE-07-14-2026-az-signal-engine-main\assets"
+)
+
+# Black UI emblem (size/placement lock). White/grey uploads must match this canvas.
+BLACK_UI = ROOT / "ui" / "v2" / "assets" / "biasrex-logo.png"
+# Full-transparent emblem for white / light backgrounds (and glossary card).
+SRC_WHITE = ASSETS / "BIASREX_full_trans_FINAL-5a2453cd-5d2d-491d-b336-32a8e3bbe07d.png"
+# Grey-theme match (same geometry as black UI).
+SRC_GREY = ASSETS / "BIASREX_GREY_MATCH-ababca29-7d11-47c2-a699-873c51da3d9a.png"
 
 
-def main() -> None:
-    # Keep interior black matte (same as Benchrex / Dehydrus emblems).
-    # Outside the circle is already transparent in the source.
-    cleaned = Image.open(SRC).convert("RGBA")
-
-    bbox = cleaned.getbbox()
-    pad = 8
-    x0, y0, x1, y1 = bbox
-    x0 = max(0, x0 - pad)
-    y0 = max(0, y0 - pad)
-    x1 = min(cleaned.width, x1 + pad)
-    y1 = min(cleaned.height, y1 + pad)
-    cropped = cleaned.crop((x0, y0, x1, y1))
-
-    target_w, target_h = 630, 655
+def fit_to_black_canvas(src: Path, target_w: int, target_h: int) -> Image.Image:
+    """Scale the full source frame into the black UI canvas; do not tight-crop alpha."""
+    im = Image.open(src).convert("RGBA")
     fitted = Image.new("RGBA", (target_w, target_h), (0, 0, 0, 0))
-    scale = min(target_w / cropped.width, target_h / cropped.height)
-    nw = int(round(cropped.width * scale))
-    nh = int(round(cropped.height * scale))
-    resized = cropped.resize((nw, nh), Image.Resampling.LANCZOS)
+    scale = min(target_w / im.width, target_h / im.height)
+    nw = int(round(im.width * scale))
+    nh = int(round(im.height * scale))
+    resized = im.resize((nw, nh), Image.Resampling.LANCZOS)
     ox = (target_w - nw) // 2
     oy = (target_h - nh) // 2
     fitted.paste(resized, (ox, oy), resized)
+    return fitted
+
+
+def main() -> None:
+    target_w, target_h = Image.open(BLACK_UI).size
+    if (target_w, target_h) != (630, 655):
+        raise SystemExit(f"unexpected black UI size {target_w}x{target_h}")
+
+    white = fit_to_black_canvas(SRC_WHITE, target_w, target_h)
+    grey = fit_to_black_canvas(SRC_GREY, target_w, target_h)
 
     card_path = ROOT / "assets" / "glossary" / "cards" / "biasrex.png"
-    ui_png = ROOT / "ui" / "v2" / "assets" / "biasrex-logo.png"
-    ui_webp = ROOT / "ui" / "v2" / "assets" / "biasrex-logo.webp"
+    white_png = ROOT / "ui" / "v2" / "assets" / "biasrex-logo-white.png"
+    white_webp = ROOT / "ui" / "v2" / "assets" / "biasrex-logo-white.webp"
     grey_png = ROOT / "ui" / "v2" / "assets" / "biasrex-logo-grey.png"
     grey_webp = ROOT / "ui" / "v2" / "assets" / "biasrex-logo-grey.webp"
 
-    fitted.save(card_path, "PNG", optimize=True)
-    fitted.save(ui_png, "PNG", optimize=True)
-    fitted.save(ui_webp, "WEBP", quality=90, method=6)
-
-    gray = ImageOps.grayscale(fitted)
-    gray = Image.eval(gray, lambda p: int(p * 0.68))
-    a = fitted.split()[-1]
-    grey = Image.merge("RGBA", (gray, gray, gray, a))
+    white.save(card_path, "PNG", optimize=True)
+    white.save(white_png, "PNG", optimize=True)
+    white.save(white_webp, "WEBP", quality=90, method=6)
     grey.save(grey_png, "PNG", optimize=True)
     grey.save(grey_webp, "WEBP", quality=90, method=6)
 
-    for p in (card_path, ui_png, ui_webp, grey_png, grey_webp):
+    for p in (card_path, white_png, white_webp, grey_png, grey_webp):
         im = Image.open(p)
         print(p.relative_to(ROOT), im.size, im.mode, p.stat().st_size)
 
