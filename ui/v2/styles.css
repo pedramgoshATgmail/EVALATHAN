@@ -396,6 +396,9 @@ button { cursor: pointer; border: 0; background: none; }
   color: var(--accent) !important;
   text-decoration: underline;
 }
+.blurbs .blurb-wired {
+  color: var(--link-blue); /* same blue as Making your PLG... */
+}
 
 .slotbox {
   width: 100%;

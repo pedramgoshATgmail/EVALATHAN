@@ -535,6 +535,12 @@
           );
         }
       );
+      if (splash) {
+        html = html.replace(
+          /16 evalers currently wired in\./g,
+          '<span class="blurb-wired">16 evalers currently wired in.</span>'
+        );
+      }
       htmlOut += '<span class="blurb-line">' + html + "</span>";
       if (splash && contentIdx === 0) {
         htmlOut += '<span class="blurb-gap" aria-hidden="true"></span>';
