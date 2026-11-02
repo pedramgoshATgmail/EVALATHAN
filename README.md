@@ -69,6 +69,14 @@ fi
 bash launch.sh
 ```
 
+**Mac desk stuck on an old UI (missing logos / stale files)?** Paste this one line in Terminal - it finds the Desktop app clone, hard-syncs to `main`, and rewrites `Evalathan.app`:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/main/fix_mac_desk.sh | bash
+```
+
+Then open **Evalathan.app** from the Desktop.
+
 <p><img src="assets/readme/mac.png" alt="Mac" height="43" align="absmiddle"> <img src="assets/readme/python.png" alt="Python" height="36" align="absmiddle"> If that Mac Python has no window library, install Python from <a href="https://www.python.org/downloads/macos/">https://www.python.org/downloads/macos/</a> and run <code>bash launch.sh</code> again. That installer includes the window library.</p>
 
 `launch.bat` resets this clone to published `main` when it can, installs into `.venv`, installs the Desktop Evalathan icon, then opens the local desk window. Next time, click the Desktop icon (or `Evalathan.bat` in the program folder). `git reset --hard` discards local edits inside `evalathan-program` so the published desk always wins.
