@@ -143,18 +143,8 @@ def _log(msg: str) -> None:
         pass
 
 
-def _close_splash_for_dialog() -> None:
-    """Windows Desktop starts splash before open_desk - drop it so the popup is visible."""
-    try:
-        from evalathan.launch_splash import request_close
-
-        request_close()
-    except Exception:  # noqa: BLE001
-        pass
-
-
 def _spawn_fuss_splash() -> None:
-    """Show the FUSS circular launching splash immediately after Update now."""
+    """FUSS circular splash - show first (Mac order), keep up through update + relaunch."""
     try:
         from evalathan.launch_splash import clear_stop, spawn_if_needed
 
@@ -164,9 +154,26 @@ def _spawn_fuss_splash() -> None:
         pass
 
 
+def _ui_font(size: int, weight: str = "normal") -> tuple:
+    family = "Segoe UI" if sys.platform == "win32" else "Helvetica Neue"
+    if weight == "bold":
+        return (family, size, "bold")
+    return (family, size)
+
+
 def _ask_user(status: UpdateStatus) -> bool:
-    """Polished Update now / Not now card. Return True if the user chose Update now."""
-    _close_splash_for_dialog()
+    """
+    Mac order: FUSS circle is already up (or we start it), then this card sits on top.
+    Return True if the user chose Update now.
+    """
+    _spawn_fuss_splash()
+    try:
+        import time
+
+        time.sleep(0.35)  # let the circle paint before the reminder card
+    except Exception:  # noqa: BLE001
+        pass
+
     try:
         import tkinter as tk
     except Exception as exc:  # noqa: BLE001
@@ -174,27 +181,29 @@ def _ask_user(status: UpdateStatus) -> bool:
         return True
 
     decision = {"update": False}
-    bg = "#0c0c0c"
-    card = "#161616"
-    line = "#2a2a2a"
-    text = "#f2f3f4"
-    muted = "#9a9a9a"
+    ink = "#0a0a0a"
+    card = "#141414"
+    edge = "#2e2e2e"
+    text = "#f4f4f4"
+    muted = "#a3a3a3"
     accent = "#d8e04a"
     blue = "#7eb8ff"
 
     root = tk.Tk()
     root.title("EVALATHAN")
-    root.configure(bg=bg)
+    root.configure(bg=ink)
     root.resizable(False, False)
     try:
         root.attributes("-topmost", True)
     except Exception:  # noqa: BLE001
         pass
-    root.overrideredirect(False)
 
-    shell = tk.Frame(root, bg=line, padx=1, pady=1)
+    # Outer hairline + lime accent bar (desk reminder, not a system alert)
+    shell = tk.Frame(root, bg=edge, padx=1, pady=1)
     shell.pack(fill="both", expand=True)
-    body = tk.Frame(shell, bg=card, padx=28, pady=24)
+    accent_bar = tk.Frame(shell, bg=accent, height=3)
+    accent_bar.pack(fill="x")
+    body = tk.Frame(shell, bg=card, padx=32, pady=28)
     body.pack(fill="both", expand=True)
 
     tk.Label(
@@ -202,53 +211,72 @@ def _ask_user(status: UpdateStatus) -> bool:
         text="EVALATHAN",
         bg=card,
         fg=accent,
-        font=("Segoe UI", 11, "bold"),
+        font=_ui_font(10, "bold"),
         anchor="w",
     ).pack(fill="x")
     tk.Label(
         body,
-        text="Desk update available",
+        text="A newer desk is ready",
         bg=card,
         fg=text,
-        font=("Segoe UI", 16, "bold"),
+        font=_ui_font(18, "bold"),
         anchor="w",
-        pady=(8, 0),
+        pady=(10, 0),
     ).pack(fill="x")
     tk.Label(
         body,
         text=(
-            "Published main has a newer desk than this PC.\n"
-            "Update now to match Windows and Mac installs."
+            "GitHub main moved ahead of this install.\n"
+            "Update now so your desk matches every other machine."
         ),
         bg=card,
         fg=muted,
-        font=("Segoe UI", 10),
+        font=_ui_font(11),
         justify="left",
         anchor="w",
-        pady=(10, 0),
+        pady=(12, 0),
     ).pack(fill="x")
 
-    meta = tk.Frame(body, bg=card, pady=14)
-    meta.pack(fill="x")
+    meta = tk.Frame(body, bg="#1a1a1a", padx=14, pady=12)
+    meta.pack(fill="x", pady=(18, 0))
     tk.Label(
         meta,
-        text=f"This PC   {_short(status.local) or '?'}",
-        bg=card,
+        text="This PC",
+        bg="#1a1a1a",
         fg=muted,
-        font=("Consolas", 9),
+        font=_ui_font(9),
         anchor="w",
-    ).pack(fill="x")
+    ).grid(row=0, column=0, sticky="w")
     tk.Label(
         meta,
-        text=f"GitHub    {_short(status.remote) or '?'}",
-        bg=card,
-        fg=blue,
-        font=("Consolas", 9),
+        text=_short(status.local) or "?",
+        bg="#1a1a1a",
+        fg=text,
+        font=("Consolas", 10) if sys.platform == "win32" else ("Menlo", 10),
+        anchor="e",
+    ).grid(row=0, column=1, sticky="e", padx=(24, 0))
+    tk.Label(
+        meta,
+        text="Published",
+        bg="#1a1a1a",
+        fg=muted,
+        font=_ui_font(9),
         anchor="w",
-    ).pack(fill="x")
+        pady=(6, 0),
+    ).grid(row=1, column=0, sticky="w")
+    tk.Label(
+        meta,
+        text=_short(status.remote) or "?",
+        bg="#1a1a1a",
+        fg=blue,
+        font=("Consolas", 10) if sys.platform == "win32" else ("Menlo", 10),
+        anchor="e",
+        pady=(6, 0),
+    ).grid(row=1, column=1, sticky="e", padx=(24, 0))
+    meta.columnconfigure(1, weight=1)
 
     actions = tk.Frame(body, bg=card)
-    actions.pack(fill="x", pady=(6, 0))
+    actions.pack(fill="x", pady=(22, 0))
 
     def on_update() -> None:
         decision["update"] = True
@@ -262,15 +290,16 @@ def _ask_user(status: UpdateStatus) -> bool:
         actions,
         text="Not now",
         command=on_skip,
-        bg="#222",
-        fg=text,
-        activebackground="#333",
+        bg="#1f1f1f",
+        fg=muted,
+        activebackground="#2a2a2a",
         activeforeground=text,
         relief="flat",
         bd=0,
-        padx=18,
-        pady=10,
-        font=("Segoe UI", 10),
+        highlightthickness=0,
+        padx=20,
+        pady=11,
+        font=_ui_font(11),
         cursor="hand2",
     )
     skip.pack(side="right")
@@ -285,16 +314,18 @@ def _ask_user(status: UpdateStatus) -> bool:
         activeforeground="#111",
         relief="flat",
         bd=0,
-        padx=18,
-        pady=10,
-        font=("Segoe UI", 10, "bold"),
+        highlightthickness=0,
+        padx=22,
+        pady=11,
+        font=_ui_font(11, "bold"),
         cursor="hand2",
     )
     update.pack(side="right", padx=(0, 10))
 
     root.protocol("WM_DELETE_WINDOW", on_skip)
     root.update_idletasks()
-    w, h = max(420, root.winfo_reqwidth()), root.winfo_reqheight()
+    w = max(460, root.winfo_reqwidth())
+    h = root.winfo_reqheight()
     x = max(40, (root.winfo_screenwidth() - w) // 2)
     y = max(40, (root.winfo_screenheight() - h) // 3)
     root.geometry(f"{w}x{h}+{x}+{y}")
@@ -389,7 +420,7 @@ def ensure_published_main(*, interactive: bool = True) -> None:
     if interactive and not _ask_user(status):
         return
 
-    # Agree -> FUSS circle immediately, then pull + relaunch desk (no second OK).
+    # Agree -> keep FUSS circle up, pull, relaunch desk (no second OK).
     _spawn_fuss_splash()
     ok, detail = apply_published_main(status.repo)
     if not ok:
