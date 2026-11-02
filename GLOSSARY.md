@@ -1,4 +1,4 @@
-﻿<h1><img src="assets/glossary/title.png" alt="Evalathan glossary" height="33"></h1>
+<h1><img src="assets/glossary/title.png" alt="Evalathan glossary" height="33"></h1>
 
 <big><big><mark><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/31b9441c9762a48b13d01658a3e4e25330f2e221/docs/glossary.html">Search the glossary</a></mark></big></big>. This page is the glossary, with its lettering and images, and the search slot is on the same page. Type a letter and the matching entries appear. Choosing a word moves to that entry in zero latency.
 
