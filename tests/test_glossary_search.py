@@ -71,12 +71,16 @@ def test_search_index_matches_glossary_anchors() -> None:
             )
         ), brand
     card_links = re.findall(
-        r"<a([^>]*href=\"[^\"]*glossary/cards/[^\"]+\"[^>]*)>",
+        r"<a([^>]*data-xl=\"[^\"]*glossary/cards/[^\"]+\"[^>]*)>",
         html,
     )
     assert card_links
     for attrs in card_links:
         assert "ludats-evaler-xl" in attrs
+        assert 'href="#' in attrs
+    assert 'href="assets/glossary/cards/' not in glossary
+    assert "function xlSrc(a)" in html
+    assert "openXl(xlSrc(a), a);" in html
     assert 'id="ludats-xl-close"' in html
     assert "__evalathanCloseLudatsXl" in html
     assert "evalathanXlHome" in html
