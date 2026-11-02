@@ -1857,9 +1857,13 @@ html {
   line-height: 1.4;
   color: #333;
 }
+.prickly-japop-name {
+  font-weight: 700;
+  color: #1a5a1a;
+}
 .prickly-paren {
   font-weight: 600;
-  color: #333;
+  color: #1a5a1a;
   font-size: 0.92em;
 }
 .prickly-back {
@@ -1892,16 +1896,28 @@ html {
 .prickly-form input[type="text"],
 .prickly-form input:not([type]),
 .prickly-block-label input,
-.prickly-block-label textarea {
+.prickly-block-label textarea,
+.prickly-panel select,
+.prickly-panel input[type="text"],
+.prickly-panel input:not([type="checkbox"]):not([type="file"]):not([type="hidden"]),
+.prickly-panel textarea {
   font-family: var(--font);
   font-size: 1rem;
   font-weight: 400;
   padding: 0.45rem 0.55rem;
   border: 1px solid #bbb;
   border-radius: 0.35rem;
-  background: #ECE9EA;
+  background: #ffffff;
+  background-color: #ffffff;
   color: #111;
   color-scheme: light;
+}
+/* Mac WebView: force opaque white select/input surfaces (avoid mint wash bleed-through) */
+.prickly-panel select {
+  -webkit-appearance: menulist;
+  appearance: menulist;
+  background-color: #ffffff !important;
+  background-image: none;
 }
 .prickly-form input[type="text"]::placeholder,
 .prickly-form input:not([type])::placeholder {
