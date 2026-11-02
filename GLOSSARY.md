@@ -329,11 +329,11 @@ Grades attention / selection / availability hygiene in eval design and agent pip
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
-Too much noise - did you filter fairly?
+Imagine a loud market where every stall shouts at once. You cannot hear them all, so your brain keeps the vivid, recent, and repeated bits and drops the rest. Filterly asks whether your eval design or agent pipeline did that filter on purpose - with a fair sampling note - or quietly cherry-picked the loud stalls that make the score look good. Asks: too much noise, did you filter fairly?
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Codex quadrant <b>Too much information</b>. Related biases include availability and selective attention families - not one leaf per name.
+Maps Buster Benson's Codex problem <b>Too much information</b> (<a href="https://buster.medium.com/cognitive-bias-cheat-sheet-55a472476b18">Cognitive bias cheat sheet</a>; <a href="https://commons.wikimedia.org/wiki/File:Cognitive_bias_codex_en.svg">Cognitive Bias Codex</a> SVG; <a href="https://bias.wiki/">bias.wiki</a>). When the world dumps more signal than working memory can hold, attention uses cheap tricks - availability, selective attention, mere exposure, frequency illusion - so some evidence is kept and most is discarded. Filterly grades whether a claimed score or agent run documents that filter (sampling plan, inclusion/exclusion, cherry-pick guard, or filter-bias test) instead of presenting a convenience slice as the whole field. Related leaf families include availability heuristic and attentional bias; Biasrex does not grade one Wikipedia leaf per name. Pass = mitigation artifact or explicit non-claim. Fail = leaderboard cherry-pick with no filter note. Blank = no pack. A blank is not a fail and not a zero.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -348,11 +348,11 @@ Grades story-filling vs evidence (Benson problem: not enough meaning). Looks for
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
-Not enough facts - did you invent a neat story?
+After the filter, only scraps remain - and the mind hates a blank map. It connects dots, fills gaps with what it already believes, and invents a neat story so the scraps feel like a world. Meaningly asks whether your claims are still tied to inspectable evidence, or whether the story did the work the facts never did. Asks: not enough facts, did you invent a neat story?
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Codex quadrant <b>Not enough meaning</b>. Framing / stereotype / illusory-correlation families.
+Maps Benson's Codex problem <b>Not enough meaning</b> (cheat sheet; <a href="https://commons.wikimedia.org/wiki/File:Cognitive_bias_codex_en.svg">Codex</a>; <a href="https://bias.wiki/">bias.wiki</a>). After information is reduced, people still need a usable model, so they fill gaps with prior beliefs - confabulation, clustering illusion, anecdotal fallacy, illusion of validity, neglect of probability, and related story-filling moves. Meaningly grades narrative or stereotype claims in eval writeups and agent rationales: do they cite artifacts a reader can open (logs, citations, Warrantly-adjacent evidence), or does the plot stand alone? Pass = claims cite inspectable evidence. Fail = stereotype or story without a source. Blank = no claim pack. Matching a psych pattern is not proof the product 'has' the bias. A blank is not a fail and not a zero.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -367,11 +367,11 @@ Grades overconfidence, sunk-cost, and irreversible-action gates in agent loops (
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
-Need to move now - did you skip the brake?
+Sometimes waiting feels more dangerous than moving. Under time pressure the brain bets fast - overconfidence, sunk cost, illusion of control - and skips the brake that would have caught a bad path. Hastely asks whether your agent loop or decision pack still has a stop/review gate when urgency is loud. Asks: need to move now, did you skip the brake?
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Codex quadrant <b>Need to act fast</b>. Overconfidence / sunk-cost families.
+Maps Benson's Codex problem <b>Need to act fast</b> (cheat sheet; <a href="https://commons.wikimedia.org/wiki/File:Cognitive_bias_codex_en.svg">Codex</a>; <a href="https://bias.wiki/">bias.wiki</a>). Limited time and incomplete information force action; without speed we stall, but speed without a brake licenses overconfidence effect, optimism bias, illusion of control, sunk-cost continuation, and always-act loops. Hastely grades whether trajectories, runbooks, or agent graphs show an explicit stop, escalate, or human-review gate before irreversible tools fire - not whether the operator felt sure. Pass = stop / review gates or haste tests exist. Fail = always-act loops with no brake. Blank = no trajectory pack. A blank is not a fail and not a zero.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -386,11 +386,11 @@ Grades continued influence of old scores, stale memory, and deprecated cites (Be
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
-What stuck in memory - is it still true?
+Memory is not a perfect hard drive. It keeps generalizations and standout moments, then feeds those leftovers back into tomorrow's filters and stories - even after the world changed. Memoryly asks whether old scores, caches, and cites are still treated as live truth, or whether someone refreshed what stuck. Asks: what stuck in memory, is it still true?
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Codex quadrant <b>What should we remember?</b>. Continued-influence / stale-belief families. Pairs with Benchrex deprecation evalers.
+Maps Benson's Codex problem <b>What should we remember?</b> (cheat sheet; <a href="https://commons.wikimedia.org/wiki/File:Cognitive_bias_codex_en.svg">Codex</a>; <a href="https://bias.wiki/">bias.wiki</a>). Storage is selective: generalizations beat specifics; standout items survive; forgotten detail never corrects the next filter. Related families include false memory, source confusion / misattribution, suggestibility, and continued influence of retracted information. Memoryly grades whether eval products and agent stores refresh, version, or deprecate retained scores and cites instead of letting obsolete numbers keep steering decisions. Pairs with <a href="#benchrex">Benchrex</a> deprecation evalers when the stale item is a benchmark claim. Pass = memory refresh / deprecation link exists. Fail = obsolete scores kept as live truth. Blank = no memory policy. A blank is not a fail and not a zero.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -405,11 +405,11 @@ Grades confirmation-bias gates - seeking only agreeing evidence. Looks for adver
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
-Did you only look for yes?
+Once a hypothesis feels like 'yours,' search tends to hunt for yes. Disagreeing evidence gets skipped, ambiguous evidence gets bent, and memory rehearses the wins. Confirmly asks whether your protocol forced a look for no - a disconfirming check - or only collected agreeing samples. Asks: did you only look for yes?
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Named after <a href="https://en.wikipedia.org/wiki/Confirmation_bias">confirmation bias</a>. Optional Biasrex process-style evaler with a hard protocol bar.
+Named after <a href="https://en.wikipedia.org/wiki/Confirmation_bias">confirmation bias</a>: the tendency to search for, interpret, favor, and recall information that supports prior beliefs, values, or decisions (selective exposure / positive-test strategy; biased interpretation; biased memory). Related: myside bias; one-sided hypothesis tests that never try to falsify. Confirmly is the Biasrex process-style gate for that pattern in eval packs and agent critique loops. It looks for adversarial prompts, red-team notes, holdout counterexamples, or other explicit disconfirming checks - interactive falsification preferred over keyword scans for the word 'bias'. Pass = disconfirming check exists. Fail = only confirming samples. Blank = no confirm protocol. Not fully wired in the default install yet. A blank is not a fail and not a zero.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -424,11 +424,11 @@ Grades automation bias / tool-trust - over-trusting model or tool output without
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
-Did the tool get a free pass?
+Tools feel authoritative. When a model, checker, or autopilot speaks, people often accept the suggestion and stop watching the raw evidence - even when the tool is wrong or silent. Automately asks whether trust was earned with a verify/escalate step, or whether the tool got a free pass. Asks: check before trust?
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Named after <a href="https://en.wikipedia.org/wiki/Automation_bias">automation bias</a>. Pairs with agent-tool traces (Trajectly-adjacent), not a Hydra seventeenth score.
+Named after <a href="https://en.wikipedia.org/wiki/Automation_bias">automation bias</a>: the propensity to favor suggestions from automated decision systems and to ignore contradictory non-automated information, even when the latter is correct. Classic error split: <b>commission</b> (follow a bad automated directive) and <b>omission</b> (miss a problem the automation did not flag because monitoring stopped). Automately grades agent-tool and model-assist traces for an explicit human or second-system verify / escalate step before irreversible accept - Trajectly-adjacent evidence, not a seventeenth Hydra score. Pass = escalation / verify step exists. Fail = blind tool accept. Blank = no trust policy. Not fully wired in the default install yet. A blank is not a fail and not a zero.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
