@@ -1024,11 +1024,87 @@ PRICKLY is Evalathan's [S+L&amp;R](#s-plus-lr) evaler for developers - and for [
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
-Click PRICKLY. Choose Developer <a href="#lr">L&amp;R</a>, JaPoP <a href="#lr">L&amp;R</a>, or JaPoP <a href="#static">Static</a>. Answer who you are. Developer L&amp;R is a timed True/False bank for engineers (twelve specializations, five difficulty levels, ten questions each, five rotatable packs). JaPoP L&amp;R is a timed True/False on partnerability. Static uploads dated emails, texts, and audio notes for a soft partner-leaning / tool-leaning comment. A blank upload is deferred - not a fail and not a zero.
+Click PRICKLY. Choose Developer <a href="#lr">L&amp;R</a>, JaPoP <a href="#lr">L&amp;R</a>, or JaPoP <a href="#static">Static</a>. Answer who you are. Developer L&amp;R is a timed True/False bank for engineers (fifteen specializations, five difficulty levels, ten questions each, five rotatable packs) with practice labels: trusted corridor (vetted / approved), use with care, or new &amp; work-in-progress. JaPoP L&amp;R is a timed True/False on partnerability. Static uploads dated emails, texts, and audio notes for a soft partner-leaning / tool-leaning comment. A blank upload is deferred - not a fail and not a zero.
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Desk files: [ui/v2/prickly.js](ui/v2/prickly.js), Developer banks in [ui/v2/assets/prickly-dev-banks-variants.json](ui/v2/assets/prickly-dev-banks-variants.json) (3000 True/False items: 12 roles × 5 levels × 10 × 5 packs V1-V5), JaPoP levels in `ui/v2/assets/japop-lr-levels.json`. Answers and pack rotation stay in `localStorage` keys `evalathan.prickly.v1` and `evalathan.prickly.devVariantRot.v1`. Soft duration copy on [Static](#static) (~3 weeks provisional, ~6 months stronger) cites multi-month assessment lags in relationship-satisfaction meta-analysis (Buhler et al., 2021; 6-month minimum lag) - guidance only, not a hard gate. Related: [S+L&amp;R](#s-plus-lr), [L&amp;R](#lr), [Static](#static), [JaPoP](#japop), [FUSS](#fuss).
+Desk files: [ui/v2/prickly.js](ui/v2/prickly.js), policy [ui/v2/prickly-policy.js](ui/v2/prickly-policy.js), Developer banks in [ui/v2/assets/prickly-dev-banks-variants.json](ui/v2/assets/prickly-dev-banks-variants.json) (fifteen roles × 5 levels × 10 × 5 packs V1-V5, including Enterprise AI Governance, AI Tokenomics, Data &amp; AI Guardrails), JaPoP levels in `ui/v2/assets/japop-lr-levels.json`. Answers and pack rotation stay in `localStorage` keys `evalathan.prickly.v1` and `evalathan.prickly.devVariantRot.v1`. Soft duration copy on [Static](#static) (~3 weeks provisional, ~6 months stronger) cites multi-month assessment lags in relationship-satisfaction meta-analysis (Buhler et al., 2021; 6-month minimum lag) - guidance only, not a hard gate. Bank posture (v0.3.7): selective rebuild, not scrap-all; prior review HOLD; wired work is policy + structural hygiene; next steps are authoring, [SME](https://en.wikipedia.org/wiki/Subject-matter_expert) (Subject-Matter Expert) dual-key, then a practitioner pilot. Related: [S+L&amp;R](#s-plus-lr), [L&amp;R](#lr), [Static](#static), [JaPoP](#japop), [FUSS](#fuss), [EVOLVER](#evolver).
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+
+<a id="evolver" name="evolver"></a>
+<h2>EVOLVER</h2>
+
+EVOLVER is the Evalathan desk nest for code-refinement loops. It sits on the right history rail, horizontally aligned with [PRICKLY](#prickly) results on the left. It is not a Hydra evaler and does not add a seventeenth score.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+Open <b>history</b>, then expand EVOLVER. Pick [RefineX](#refinex) (paid / bring-your-own APIs), [SpunkworX](#spunkworx) (freemium Mixture of Experts option), or [ConneX](#connex) (wire providers and guardrails). [TOKEX](#tokex) above EVOLVER shows token spend.
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Desk: [ui/v2/evolver.js](ui/v2/evolver.js), [ui/v2/evolver.css](ui/v2/evolver.css). Local APIs on the desk server: `POST /api/evolver/hi0` ([Hi0](#hi0) pack), `POST /api/evolver/status`. Related: [RefineX](#refinex), [SpunkworX](#spunkworx), [ConneX](#connex), [TOKEX](#tokex), [Hi0](#hi0), [PRICKLY](#prickly).
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+
+<a id="refinex" name="refinex"></a>
+<h2>RefineX</h2>
+
+RefineX is the Paid/Bring-your-own API option under [EVOLVER](#evolver). Memo-driven refine paths use your linked models and inherit EVOLVER spend caps and rate limits.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+Use RefineX when you want to wire your own Codex, Claude, Devin, Coder, or similar APIs into the refine loop.
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+
+<a id="spunkworx" name="spunkworx"></a>
+<h2>SpunkworX</h2>
+
+SpunkworX is the freemium Mixture of Experts (MoE) option under [EVOLVER](#evolver). It prefers staged Delphic rounds (generate → peer critique → strongest final → patch proposal only) over one monolithic prompt. No silent git write.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+SpunkworX is the open freemium path. [RefineX](#refinex) is the paid BYO path. Both share [ConneX](#connex) and [TOKEX](#tokex).
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+
+<a id="connex" name="connex"></a>
+<h2>ConneX</h2>
+
+ConneX is the connection sheet under [EVOLVER](#evolver): active provider path, model, spend cap, rate limit, fail-closed, and dry-run defaults. Functionally the connections / guardrails UI; ConneX is the desk title.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+Open ConneX to choose freemium [SpunkworX](#spunkworx) or paid [RefineX](#refinex) keys and to set safe limits before any refine run.
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+
+<a id="tokex" name="tokex"></a>
+<h2>TOKEX</h2>
+
+TOKEX is Token Expenditure: gross / saved / net this run and lifetime totals. On the Evalathan desk it sits on the right rail above [EVOLVER](#evolver), aligned with GLOSS on the left. Sealed counters only - never invented.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+TOKEX answers how many tokens a refine or agent loop used, and how many were saved (for example by [Hi0](#hi0)). Related: [Tokely](#tokely) (Hydra evaler that reads sealed before/after files), [EVOLVER](#evolver).
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+
+<a id="hi0" name="hi0"></a>
+<h2>Hi0</h2>
+
+Hi0 is a lossless compact serialization utility for JSON payloads before model prompts. It reduces prompt TOKEX when the compact form still carries every top-level key. Utility only - not an agent and not a Hydra evaler.
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Code: [src/evalathan/hi0.py](src/evalathan/hi0.py). Desk: `POST /api/evolver/hi0`. Related: [TOKEX](#tokex), [EVOLVER](#evolver).
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
