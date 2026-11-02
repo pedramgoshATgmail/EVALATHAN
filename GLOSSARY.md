@@ -868,7 +868,7 @@ This evaler is based on Einstein, the physicist who discovered the field equatio
 This evaler is based on Einstein, the physicist who discovered the field equations of general relativity. The exam uses [Mode F](#ludats-mode-f): Mercury's leftover motion is a clue Newton's gravity cannot eat, then a new field in 1914-1915. The 1919 eclipse is a check after the theory, not a hint before it. That later check is not Gold (the structural prize that wins this world, not a sports rank) if it leaks in as a hint. Photoelectric work, Brownian motion, and 1905 special relativity belong to other rooms.
 
 <p align="center"><a href="assets/glossary/cards/einsteinly-card-xl.png"><img src="assets/glossary/cards/einsteinly-card.png" alt="Einsteinly writes the field equations from Mercury's leftover. The 1919 eclipse is after the theory." width="703"></a></p>
-<p align="center"><i>If AI was around in my time, with only Mercury's leftover wobble and not the later eclipse plates, would it write the new General Relativity and E=MC on its own based on all the knowlege at that time?</i></p>
+<p align="center"><i>If AI was around in my time, with only <a href="https://www.reddit.com/r/explainlikeimfive/comments/auz33s/eli5_how_did_einsteins_theory_explained_the_orbit/">Mercury's leftover wobble</a> and not the later eclipse plates, would it write the new General Relativity and E=MC on its own based on all the knowlege at that time?</i></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
