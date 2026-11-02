@@ -1,10 +1,9 @@
-"""Browser desk: same Hydra evaluate path as the old Tk window, served as ui/v2."""
+"""Local Hydra desk: ui/v2 files on this PC, shown in an Evalathan desktop window."""
 
 from __future__ import annotations
 
 import json
 import threading
-import webbrowser
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlparse
@@ -24,6 +23,11 @@ def ui_root() -> Path:
     raise FileNotFoundError(
         "ui/v2 was not found. Run from an Evalathan checkout with ui/v2 present."
     )
+
+
+def app_icon() -> Path | None:
+    icon = ui_root() / "assets" / "favicon.ico"
+    return icon if icon.is_file() else None
 
 
 class DeskHandler(SimpleHTTPRequestHandler):
@@ -123,13 +127,38 @@ def start_server(port: int = PORT) -> ThreadingHTTPServer:
     return httpd
 
 
-def open_desk(port: int = PORT, open_browser: bool = True) -> int:
-    """Replace the old Tk Hydra window: serve ui/v2 and run real Hydra evaluates."""
+def _open_desktop_window(url: str, title: str) -> bool:
+    """Show the local desk in a native window with the Evalathan title (no browser chrome)."""
+    try:
+        import webview
+    except ImportError:
+        return False
+    icon = app_icon()
+    kwargs = {
+        "title": title,
+        "url": url,
+        "width": 1440,
+        "height": 900,
+        "min_size": (960, 640),
+    }
+    try:
+        if icon is not None:
+            webview.create_window(**kwargs, icon=str(icon))
+        else:
+            webview.create_window(**kwargs)
+    except TypeError:
+        webview.create_window(**kwargs)
+    webview.start()
+    return True
+
+
+def open_desk(port: int = PORT, open_window: bool = True) -> int:
+    """Serve ui/v2 from this PC and open the Evalathan desktop window."""
     root = ui_root()
     try:
         from evalathan import __version__ as ver
     except Exception:  # noqa: BLE001
-        ver = "0.3.1"
+        ver = "0.3.2"
     httpd = None
     bound = port
     last_err: Exception | None = None
@@ -143,19 +172,28 @@ def open_desk(port: int = PORT, open_browser: bool = True) -> int:
             continue
     if httpd is None:
         raise RuntimeError(
-            f"Could not bind a local port starting at {port}: {last_err}"
+            f"Could not bind a local desk port starting at {port}: {last_err}"
         ) from last_err
+    # Loopback only. All UI files live under ui/v2 on this machine.
     url = f"http://127.0.0.1:{bound}/"
     thread = threading.Thread(target=httpd.serve_forever, daemon=True)
     thread.start()
-    print(f"Evalathan v{ver} browser desk", flush=True)
-    print(f"UI: {root}", flush=True)
-    print(f"Open: {url}", flush=True)
-    print("This is the ui/v2 desk (not the old Tk HYDRA window).", flush=True)
-    if open_browser:
-        webbrowser.open(url)
+    print(f"Evalathan v{ver} local desk", flush=True)
+    print(f"Installed files: {root}", flush=True)
+    print("Opening the Evalathan desktop window (dragon icon on your Desktop)...", flush=True)
     try:
-        thread.join()
+        if open_window:
+            if not _open_desktop_window(url, f"EVALATHAN v{ver}"):
+                import webbrowser
+
+                print(
+                    "Install tip: pywebview is required for the desktop window.",
+                    flush=True,
+                )
+                webbrowser.open(url)
+                thread.join()
+        else:
+            thread.join()
     except KeyboardInterrupt:
         pass
     finally:

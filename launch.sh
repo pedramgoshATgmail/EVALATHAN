@@ -102,7 +102,7 @@ if [ ! -f ui/v2/index.html ]; then
   echo "  git fetch origin"
   echo "  git checkout main"
   echo "  git reset --hard origin/main"
-  echo "Then run bash launch.sh again. Expected: v0.3.1 browser desk."
+  echo "Then run bash launch.sh again. Expected: v0.3.2 local desk."
   exit 1
 fi
 
@@ -110,8 +110,11 @@ fi
 python -m pip install -U pip
 python -m pip install -e .
 echo
-echo "Starting Evalathan v0.3.1 browser desk (not the old Tk HYDRA window)..."
-echo "Your browser should open http://127.0.0.1:8787/"
-echo "Keep this terminal open while you use the desk."
+echo "Installing the Evalathan Desktop launcher..."
+bash "$(dirname "$0")/install_desktop_app.sh" || true
+echo
+echo "Starting Evalathan v0.3.2 local desk window..."
+echo "Look for Evalathan.command on your Desktop (and Desktop/Evalathan/)."
+echo "Keep this terminal open while the desk is running, or use the Desktop launcher next time."
 echo
 exec python -c "from evalathan.webdesk import open_desk; raise SystemExit(open_desk())"

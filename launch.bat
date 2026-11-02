@@ -49,7 +49,7 @@ if not exist "ui\v2\index.html" (
   echo   git fetch origin
   echo   git checkout main
   echo   git reset --hard origin/main
-  echo Then run launch.bat again. Expected: v0.3.1 browser desk.
+  echo Then run launch.bat again. Expected: v0.3.2 local desk.
   pause
   exit /b 1
 )
@@ -79,9 +79,16 @@ if errorlevel 1 (
 )
 
 echo.
-echo Starting Evalathan v0.3.1 browser desk ^(not the old Tk HYDRA window^)...
-echo Your browser should open http://127.0.0.1:8787/
-echo Keep this window open while you use the desk.
+echo Installing the Evalathan Desktop icon ^(red dragon^)...
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0install_desktop_app.ps1"
+if errorlevel 1 (
+  echo Desktop icon helper failed. You can still open Evalathan.bat in this folder.
+)
+
+echo.
+echo Starting Evalathan v0.3.2 local desk window...
+echo Look for the Evalathan icon on your Desktop ^(and Desktop\Evalathan\^).
+echo Keep this console open while the desk is running, or use the Desktop icon next time.
 echo.
 "%VENVPY%" -c "from evalathan.webdesk import open_desk; raise SystemExit(open_desk())"
 if errorlevel 1 pause

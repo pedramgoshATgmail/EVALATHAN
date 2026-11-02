@@ -1,4 +1,9 @@
 @echo off
-cd /d "C:\Users\admin\Desktop\TOKISH\evalathan"
-start "" "http://127.0.0.1:8787/"
-python ui\v2\serve.py
+REM Prefer the repo-root Evalathan.bat (Desktop shortcut points there).
+cd /d "%~dp0..\.."
+if exist "Evalathan.bat" (
+  call "Evalathan.bat"
+  exit /b %ERRORLEVEL%
+)
+echo Run launch.bat once from the Evalathan program folder.
+pause
