@@ -464,6 +464,27 @@ H14 on the card is the NASA-TLX row: one educated user, overall 9 out of 100, lo
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
 
+
+<a id="braidware" name="braidware"></a>
+<h2>Braidware</h2>
+
+This entry is the definition. It is not an evaler.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+Braidware is the post-4IR (Fourth Industrial Revolution) term that refers to agentics, software and hardware as a single consolidated unit (often sandboxed).
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+Braidware is the post-4IR (Fourth Industrial Revolution) braid of three strands: agentics, a software engine, and (when it exists) hardware. That is the unit of spend-time, not Industry 3.0's software-versus-hardware split.
+
+Headless MCP (Model Context Protocol) and CLI (command-line interface) work stay in the braid.
+
+Good examples include: Meta/etc AI Ran Ban glasses which bear their own Edge AI, TinyML, custom framing, cloud and software infusion; Pamir (pamir.ai) Lapis One: a dedicated Linux box where agentics, engine, and hardware sit as one unit (not a 2010s phone PDA.); and most recently (as at Nov 2 2026, Meta's Muse Charm).
+
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+
 <a id="deglove" name="deglove"></a>
 <h2>Deglove (Refactoring)</h2>
 
@@ -556,7 +577,7 @@ Copy the `fuss` folder into a web page or a desktop web view. The same files run
 
 Product-led growth (PLG) is a business strategy in which the product itself drives customer acquisition, adoption, retention, and revenue growth. Instead of relying primarily on salespeople to convince customers to buy, a PLG company lets users experience the product's value directly, often through a free tier, free trial, or self-service onboarding. The key principle is: make the product demonstrate its own value before asking the customer to commit. This entry is the definition. It is not an evaler.
 
-<p align="center"><img src="assets/glossary/plg-funnel.png" alt="How product-led growth works: 1 Acquire, 2 Activate, 3 Retain, 4 Expand." width="541"></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/ddd1a98aff62f7037b1ba6edbb4c4c056872204a/docs/glossary.html#xl-plg-funnel"><img src="assets/glossary/plg-funnel.png" alt="How product-led growth works: 1 Acquire, 2 Activate, 3 Retain, 4 Expand." width="541"></a></p>
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
@@ -574,7 +595,7 @@ Figma: Designers collaborate in the product, naturally encouraging colleagues an
 
 A sales team can still close a large account. PLG does not eliminate enterprise sales. Many successful companies combine product-led adoption with sales-led enterprise expansion.
 
-<p align="center"><img src="assets/glossary/plg-companies.png" alt="Company names stacked by year, from LogMeIn in 2012 to a much taller column in 2020." width="920"></p>
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/ddd1a98aff62f7037b1ba6edbb4c4c056872204a/docs/glossary.html#xl-plg-companies"><img src="assets/glossary/plg-companies.png" alt="Company names stacked by year, from LogMeIn in 2012 to a much taller column in 2020." width="920"></a></p>
 <p align="right"><sub><a href="https://productled.com/">Source: ProductLed</a></sub></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
@@ -658,7 +679,7 @@ A locked room from a past year. The exam has to work with what that year could s
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Manifesto direction: *Until Artificial Intelligence Independently Eurekas on its own*, after [Adaptive Software Development](https://en.wikipedia.org/wiki/Adaptive_software_development) (Jim Highsmith, 1997: messy, exciting, and anxiety-ridden; second world = unpredictable, nonlinear, fast). [PRETRUWs](#pretruws) states a third world: multi-predictable, bilinear and supralinear, hyperfast / instancy-nearest, and polydeterminism. Paradigm [PRETRUWs](#pretruws) holds the [LuDaTs](#ludats) methodology framework. Each brand is one method. Braidware (SEISMO glossary) is agentics, software, and hardware as one unit. LLM (Large Language Model) and RAG (Retrieval-Augmented Generation) stacks are plugins, not extra Hydra cells.
+Manifesto direction: *Until Artificial Intelligence Independently Eurekas on its own*, after [Adaptive Software Development](https://en.wikipedia.org/wiki/Adaptive_software_development) ([Jim Highsmith, 1997: messy, exciting, and anxiety-ridden; second world = unpredictable, nonlinear, fast](https://web.archive.org/web/20171004140236/http://www.adaptivesd.com/articles/messy.htm)). [PRETRUWs](#pretruws) states a third world: multi-predictable, bilinear and supralinear, hyperfast / instancy-nearest, and polydeterminism. Paradigm [PRETRUWs](#pretruws) holds the [LuDaTs](#ludats) methodology framework. Each brand is one method. [Braidware](#braidware) is agentics, software, and hardware as one unit. LLM (Large Language Model) and RAG (Retrieval-Augmented Generation) stacks are plugins, not extra Hydra cells.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>

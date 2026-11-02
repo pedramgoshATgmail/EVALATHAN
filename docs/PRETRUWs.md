@@ -25,11 +25,11 @@ From the house vocabulary (paradigm, framework, method, methodology, mandate, pr
 | Agent / agentic | An evaler with judgment about a world or a software tree. Also the LLM / RAG (Retrieval-Augmented Generation) plugins a world may need. |
 | Utility | A deterministic look-up (PRD file line, HabTwin filename line). Not an evaler. |
 
-Braidware, from the SEISMO glossary, is the post-4IR term for agentics, software, and hardware as one unit (often sandboxed). PRETRUWs worlds are Braidware exams: the physical side (optic, island, assay) only works with the fitted agentic / LLM / SLM (Small Language Model) stack that can act inside that world.
+[Braidware](../GLOSSARY.md#user-content-braidware) is the post-4IR term for agentics, software, and hardware as one unit (often sandboxed). PRETRUWs worlds are [Braidware](../GLOSSARY.md#user-content-braidware) exams: the physical side (optic, island, assay) only works with the fitted agentic / LLM / SLM (Small Language Model) stack that can act inside that world.
 
 ## 2. Third world (Industry 4.0), after Highsmith's second world
 
-[Jim Highsmith, 1997](https://en.wikipedia.org/wiki/Adaptive_software_development), *Messy, Exciting, and Anxiety-Ridden: Adaptive Software Development*, called the second world **unpredictable, nonlinear, and fast**. PRETRUWs takes that to a third world (Industry 4.0 / Braidware):
+[Jim Highsmith, 1997](https://en.wikipedia.org/wiki/Adaptive_software_development), *Messy, Exciting, and Anxiety-Ridden: Adaptive Software Development*, called the second world **unpredictable, nonlinear, and fast**. PRETRUWs takes that to a third world (Industry 4.0 / [Braidware](../GLOSSARY.md#user-content-braidware)):
 
 | Highsmith second world | PRETRUWs third world |
 |------------------------|----------------------|
