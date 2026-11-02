@@ -6,12 +6,14 @@
   const app = document.getElementById("app-screen");
 
   /* word-white = white glyphs for dark grounds; word-black = black glyphs for light grounds */
+  /* Hydra evaler order is life-cycle (GLOSSARY), not alphabetical */
   const ENGINES = [
     {
       id: "hydra",
       label: "HYDRA",
       wordOnDark: "assets/hydra-word-white.png",
       wordOnLight: "assets/hydra-word-black.png",
+      art: "assets/hydra-logo.png",
       blurbs:
         "Sixteen software evalers across the product life cycle.\nEach evaler reports its own gate.\nA blank is not a fail and not a zero.",
       evalers: [
@@ -29,6 +31,7 @@
       label: "DEHYDRUS",
       wordOnDark: "assets/dehydrus-word-white.png",
       wordOnLight: "assets/dehydrus-word-black.png",
+      art: "assets/dehydrus-logo.png",
       blurbs:
         "Eight LuDaTs (Limited-universe Data Test sets) under PRETRUWs.\nPhysical world-model claims stay off Hydra's vector.\nA missing world stays deferred.",
       evalers: [
@@ -45,6 +48,7 @@
       label: "BENCHREX",
       wordOnDark: "assets/benchrex-word-white.png",
       wordOnLight: "assets/benchrex-word-black.png",
+      art: null,
       blurbs:
         "Benchlux checks whether a claimed benchmark is still fit to cite.\nSeven criterion cells in v1 - Saturly through Driftly.\nAssessly, Reportly, Notifyly stay deferred.",
       evalers: [
@@ -65,6 +69,7 @@
       label: "BIASREX",
       wordOnDark: "assets/biasrex-word-white.png",
       wordOnLight: "assets/biasrex-word-black.png",
+      art: null,
       blurbs:
         "Four Benson-shaped bias cells for artifact-backed gates.\nFilterly, Meaningly, Hastely, Memoryly.\nConfirmly and Automately stay deferred.",
       evalers: [
@@ -78,8 +83,12 @@
     },
   ];
 
-  const SPLASH_BLURBS =
-    "Paste a GitHub link or a folder on this PC.\nOpen evals for Hydra, Dehydrus, Benchrex, Biasrex.\nOpen history for past evaluation runs.";
+  const SPLASH = {
+    label: "EVALATHAN",
+    art: "assets/evalathan-dragon.png",
+    blurbs:
+      "Paste a GitHub link or a folder on this PC.\nOpen evals for Hydra, Dehydrus, Benchrex, Biasrex.\nOpen history for past evaluation runs.",
+  };
 
   let activeId = "hydra";
   let openId = null;
@@ -177,11 +186,21 @@
   }
 
   function renderHero() {
-    const el = document.getElementById("blurbs");
-    if (userPickedEngine) {
-      el.textContent = engine(activeId).blurbs;
+    const title = document.getElementById("splash-title");
+    const art = document.getElementById("splash-art");
+    const blurbs = document.getElementById("blurbs");
+    const view = userPickedEngine ? engine(activeId) : SPLASH;
+    title.textContent = view.label;
+    blurbs.textContent = view.blurbs;
+    if (view.art) {
+      art.src = view.art;
+      art.alt = view.label;
+      art.classList.remove("is-blank");
     } else {
-      el.textContent = SPLASH_BLURBS;
+      art.src =
+        "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+      art.alt = "";
+      art.classList.add("is-blank");
     }
   }
 
