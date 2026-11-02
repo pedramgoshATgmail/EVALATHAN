@@ -1362,6 +1362,51 @@
     return String(text || "").replace(/\s+/g, " ").trim();
   }
 
+  /* Evaler blocks (brief chips): ≤5 short highlight sentences. Full prose stays in detail memo. */
+  const BRIEF_CHIP_MAX_SENTENCES = 5;
+  const BRIEF_CHIP_MAX_SENT_CHARS = 140;
+
+  function splitBriefSentences(text) {
+    const s = String(text || "");
+    const out = [];
+    let buf = "";
+    for (let i = 0; i < s.length; i++) {
+      const ch = s[i];
+      buf += ch;
+      if (ch !== "." && ch !== "!" && ch !== "?") continue;
+      const prev = i > 0 ? s[i - 1] : "";
+      const next = i + 1 < s.length ? s[i + 1] : "";
+      /* Keep decimals like 2.50 and ellipses together. */
+      if (ch === "." && /\d/.test(prev) && /\d/.test(next)) continue;
+      if (ch === "." && next === ".") continue;
+      let j = i + 1;
+      while (j < s.length && /\s/.test(s[j])) j++;
+      if (j >= s.length || /[A-Z"'“(]/.test(s[j])) {
+        const piece = buf.trim();
+        if (piece) out.push(piece);
+        buf = "";
+      }
+    }
+    const tail = buf.trim();
+    if (tail) out.push(tail);
+    return out;
+  }
+
+  function briefChipBlurb(text) {
+    let s = nellCleanProse(nellStripPathWall(String(text || ""), null));
+    if (!s) return "";
+    const sentences = splitBriefSentences(s);
+    if (!sentences.length) return s;
+    return sentences
+      .slice(0, BRIEF_CHIP_MAX_SENTENCES)
+      .map(function (sent) {
+        if (sent.length <= BRIEF_CHIP_MAX_SENT_CHARS) return sent;
+        const cut = sent.slice(0, BRIEF_CHIP_MAX_SENT_CHARS - 1).replace(/\s+\S*$/, "");
+        return (cut || sent.slice(0, BRIEF_CHIP_MAX_SENT_CHARS - 1)).replace(/[.,;:]+$/, "") + "…";
+      })
+      .join(" ");
+  }
+
   function nellEvidenceItems(rawList) {
     const items = [];
     (rawList || []).forEach(function (raw) {
@@ -1625,6 +1670,9 @@
       '<div class="memo-chip-grid">' +
       (run.cells || [])
         .map(function (c) {
+          const chip =
+            briefChipBlurb(c.blurb || c.detail || "") ||
+            "No brief highlight from this evaler.";
           return (
             '<button type="button" class="memo-chip ' +
             escapeHtml(c.status || "deferred") +
@@ -1636,7 +1684,7 @@
             "<strong>" +
             escapeHtml(c.name) +
             "</strong><span>" +
-            linkGlossaryTerms(escapeHtml(c.blurb || "")) +
+            linkGlossaryTerms(escapeHtml(chip)) +
             (c.score != null ? " · " + c.score : "") +
             "</span></button>"
           );
@@ -1719,7 +1767,7 @@
           .map((c) => c.name + " " + c.score)
           .join(" · ") || "None";
     return (
-      '<p class="memo-kicker">Brief - short developer memo. Full detailed memo keeps the per-evaler read.</p>' +
+      '<p class="memo-kicker">Brief - each evaler block keeps at most five short highlight sentences. Open Full detailed memo for the full per-evaler read.</p>' +
       "<h2>" +
       memoProductTitleHtml(run) +
       "</h2>" +
