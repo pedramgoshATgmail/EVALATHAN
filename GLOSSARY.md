@@ -605,7 +605,7 @@ Figma: Designers collaborate in the product, naturally encouraging colleagues an
 A sales team can still close a large account. PLG does not eliminate enterprise sales. Many successful companies combine product-led adoption with sales-led enterprise expansion.
 
 <p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/76b0cbc3d34beeb28f0a3088e0cf897786d96944/docs/glossary.html#xl-plg-companies"><img src="assets/glossary/plg-companies.png" alt="Company names stacked by year, from LogMeIn in 2012 to a much taller column in 2020." width="920"></a></p>
-<p align="right"><sub><a href="https://productled.com/">Source: ProductLed</a></sub></p>
+<p align="right"><sub>Source: ProductLed</sub></p>
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
