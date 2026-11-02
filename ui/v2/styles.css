@@ -1462,8 +1462,8 @@ html {
 .fuss-status.is-on { color: #246338; }
 .fuss-setup[hidden],
 .fuss-panel.is-countdown {
-  width: min(320px, 72vw);
-  height: min(320px, 72vw);
+  width: min(360px, 78vw);
+  height: min(360px, 78vw);
   max-height: none;
   padding: 0;
   border-radius: 50%;
@@ -1494,7 +1494,7 @@ html {
 .fuss-countdown-num {
   margin: 0;
   font-family: "IBM Plex Mono", ui-monospace, monospace;
-  font-size: clamp(4.8rem, 22vw, 7.2rem);
+  font-size: clamp(6.6rem, 31vw, 9.6rem); /* was 4.8/22/7.2; +3 sizes */
   font-weight: 300;
   line-height: 1;
   color: #fff;
