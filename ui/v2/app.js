@@ -3478,17 +3478,61 @@
         fussSetStatus("Timer stopped.");
       });
     }
+    function fussApplyMinutes(raw) {
+      const state = fussRead();
+      if (state.on) {
+        if (els.mins) els.mins.value = String(fussClampMins(state.minutes));
+        fussSetStatus("Stop the timer before changing minutes.", "is-warn");
+        return;
+      }
+      state.minutes = fussClampMins(raw);
+      if (els.mins) els.mins.value = String(state.minutes);
+      fussWrite(state);
+      fussPaintLcd(state);
+    }
     if (els.mins) {
       els.mins.addEventListener("change", function () {
-        const state = fussRead();
-        state.minutes = fussClampMins(els.mins.value);
-        els.mins.value = String(state.minutes);
-        if (!state.on) fussWrite(state);
-        fussPaintLcd(state.on ? fussRead() : state);
+        fussApplyMinutes(els.mins.value);
+      });
+      els.mins.addEventListener("blur", function () {
+        fussApplyMinutes(els.mins.value);
+      });
+      els.mins.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          fussApplyMinutes(els.mins.value);
+          els.mins.blur();
+        }
+      });
+    }
+    const minsUp = document.getElementById("fuss-mins-up");
+    const minsDown = document.getElementById("fuss-mins-down");
+    if (minsUp) {
+      minsUp.addEventListener("click", function (e) {
+        e.preventDefault();
+        const cur = fussClampMins(els.mins ? els.mins.value : FUSS_DEFAULT);
+        fussApplyMinutes(cur + 1);
+      });
+    }
+    if (minsDown) {
+      minsDown.addEventListener("click", function (e) {
+        e.preventDefault();
+        const cur = fussClampMins(els.mins ? els.mins.value : FUSS_DEFAULT);
+        fussApplyMinutes(cur - 1);
       });
     }
     if (els.ack) {
       els.ack.addEventListener("change", function () {
+        const state = fussRead();
+        state.ack = !!els.ack.checked;
+        fussWrite(state);
+      });
+    }
+    const ackText = document.getElementById("fuss-ack-text");
+    if (ackText && els.ack) {
+      ackText.addEventListener("click", function (e) {
+        e.preventDefault();
+        els.ack.checked = !els.ack.checked;
         const state = fussRead();
         state.ack = !!els.ack.checked;
         fussWrite(state);

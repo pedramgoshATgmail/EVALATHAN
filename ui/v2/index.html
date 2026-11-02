@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=gold68" />
+  <link rel="stylesheet" href="styles.css?v=gold69" />
   <link rel="preload" as="image" href="assets/evalathan-dragon.webp?v=5" type="image/webp" />
   <link rel="preload" as="image" href="assets/hydra-logo.webp?v=5" type="image/webp" />
   <link rel="preload" as="image" href="assets/dehydrus-logo.webp?v=5" type="image/webp" />
@@ -136,12 +136,15 @@
         <button type="button" class="fuss-hit fuss-hit-stop" id="fuss-stop" title="Stop timer" aria-label="Stop timer"></button>
         <label class="fuss-mins-wrap" title="Sitting length in minutes (20-45)">
           <span class="visually-hidden">Minutes</span>
-          <input id="fuss-mins" type="number" min="20" max="45" step="1" value="25" inputmode="numeric" />
+          <input id="fuss-mins" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" value="25" autocomplete="off" />
         </label>
+        <button type="button" class="fuss-hit fuss-hit-mins-up" id="fuss-mins-up" title="Increase minutes" aria-label="Increase minutes"></button>
+        <button type="button" class="fuss-hit fuss-hit-mins-down" id="fuss-mins-down" title="Decrease minutes" aria-label="Decrease minutes"></button>
         <label class="fuss-ack-wrap" title="Confirm FUSS is only a timer">
           <input id="fuss-ack" type="checkbox" />
           <span class="visually-hidden">I understand this is only a timer for my sitting with AI. It is not medical advice, not a diagnosis, and not a replacement for my firm's AI policy.</span>
         </label>
+        <button type="button" class="fuss-ack-text-hit" id="fuss-ack-text" title="Confirm FUSS is only a timer" aria-label="Toggle disclaimer checkbox"></button>
       </div>
       <p class="fuss-status" id="fuss-status">Timer off.</p>
     </div>
@@ -155,6 +158,6 @@
     </button>
   </div>
 
-  <script src="app.js?v=gold68"></script>
+  <script src="app.js?v=gold69"></script>
 </body>
 </html>
