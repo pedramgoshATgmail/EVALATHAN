@@ -1377,7 +1377,7 @@ html {
   font-weight: 400;
   font-size: 0.98rem;
   line-height: 1.3;
-  color: #333;
+  color: #b02018; /* match PRICKLY logo red */
   letter-spacing: 0;
 }
 .fuss-lead {
@@ -1811,9 +1811,13 @@ html {
   color: #1a5a1a;
   text-align: center;
 }
-.prickly-title-link {
+.prickly-title-link,
+.prickly-gloss-link {
   color: #2f6fbf;
   text-decoration: underline;
+}
+.prickly-gloss-link:hover {
+  color: #1a4f9a;
 }
 .prickly-title-tag {
   display: block;
@@ -1825,7 +1829,7 @@ html {
   font-size: 1.02rem;
   line-height: 1.3;
   letter-spacing: 0;
-  color: #333;
+  color: #b02018; /* match PRICKLY logo red */
 }
 .prickly-lead {
   margin: 0 0 0.85rem;

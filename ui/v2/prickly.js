@@ -1507,8 +1507,17 @@
     centerPanel();
 
     document.querySelectorAll("[data-prickly-test]").forEach(function (b) {
-      b.addEventListener("click", function () {
+      b.addEventListener("click", function (e) {
+        if (e.target && e.target.closest && e.target.closest("a.prickly-gloss-link")) {
+          e.stopPropagation();
+          return;
+        }
         beginFlow(b.getAttribute("data-prickly-test"));
+      });
+    });
+    document.querySelectorAll("#prickly-home a.prickly-gloss-link").forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        e.stopPropagation();
       });
     });
 
