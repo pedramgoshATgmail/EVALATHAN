@@ -99,7 +99,7 @@ Desk route id <code>benchrex</code>. Ten cells, in this order: <a href="#saturly
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-Biasrex (Bias + rex) is the routing conductor for decision-quality / cognitive-bias gate cells. He calls six evalers and writes each report beside the others. He counts how many ran, how many passed their own gate, and how many are deferred. He does not turn a blank into a zero, and he does not fold the six into one number. He is not a seventeenth Hydra score, not a ninth Dehydrus score, and not an eleventh Benchrex score. The room is a curated subset of the Cognitive Bias Codex tradition (Buster Benson's four problems; John Manoogian III poster; <a href="https://en.wikipedia.org/wiki/Cognitive_bias">Wikipedia: Cognitive bias</a>; <a href="https://bias.wiki/">bias.wiki</a>) - never one evaler per Codex leaf. Illustrations ship when the card art lands.
+Biasrex (Bias + rex) is the routing conductor for decision-quality / cognitive-bias gate cells. He calls six evalers and writes each report beside the others. He counts how many ran, how many passed their own gate, and how many are deferred. He does not turn a blank into a zero, and he does not fold the six into one number. He is not a seventeenth Hydra score, not a ninth Dehydrus score, and not an eleventh Benchrex score. The room is a curated subset of the Cognitive Bias Codex tradition (Buster Benson's four problems; John Manoogian III poster; <a href="https://en.wikipedia.org/wiki/Cognitive_bias">Wikipedia: Cognitive bias</a>; <a href="https://bias.wiki/">bias.wiki</a>) - never one evaler per Codex leaf. Evaler card art is Ed Slop (Educational Slop). Live conduct() for Biasrex is still held.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -325,6 +325,8 @@ Maps the paper's <b>notification</b> phase, including governance-list paths.
 
 Grades attention / selection / availability hygiene in eval design and agent pipelines (Benson problem: too much information). Looks for cherry-pick guards, sampling notes, or filter-bias tests. Pass = mitigation artifact or explicit non-claim. Fail = leaderboard cherry-pick with no filter note. Blank = no pack.
 
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/5ef4b9372cd2a57342ce2f4fee87d51d546c2802/docs/glossary.html#xl-filterly"><img src="assets/glossary/cards/filterly-card.jpg" alt="Asks: too much noise, did you filter fairly?" width="541"></a></p>
+
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
 Too much noise - did you filter fairly?
@@ -341,6 +343,8 @@ Codex quadrant <b>Too much information</b>. Related biases include availability 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
 Grades story-filling vs evidence (Benson problem: not enough meaning). Looks for narrative claims backed by artifacts (Warrantly-adjacent). Pass = claims cite inspectable evidence. Fail = stereotype or story without a source. Blank = no claim pack.
+
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/5ef4b9372cd2a57342ce2f4fee87d51d546c2802/docs/glossary.html#xl-meaningly"><img src="assets/glossary/cards/meaningly-card.jpg" alt="Asks: not enough facts, did you invent a neat story?" width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -359,6 +363,8 @@ Codex quadrant <b>Not enough meaning</b>. Framing / stereotype / illusory-correl
 
 Grades overconfidence, sunk-cost, and irreversible-action gates in agent loops (Benson problem: need to act fast). Pass = stop / review gates or haste tests exist. Fail = always-act loops with no brake. Blank = no trajectory pack.
 
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/5ef4b9372cd2a57342ce2f4fee87d51d546c2802/docs/glossary.html#xl-hastely"><img src="assets/glossary/cards/hastely-card.jpg" alt="Asks: need to move now, did you skip the brake?" width="541"></a></p>
+
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
 Need to move now - did you skip the brake?
@@ -375,6 +381,8 @@ Codex quadrant <b>Need to act fast</b>. Overconfidence / sunk-cost families.
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
 Grades continued influence of old scores, stale memory, and deprecated cites (Benson problem: what should we remember?). Pass = memory refresh / deprecation link exists. Fail = obsolete scores kept as live truth. Blank = no memory policy.
+
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/5ef4b9372cd2a57342ce2f4fee87d51d546c2802/docs/glossary.html#xl-memoryly"><img src="assets/glossary/cards/memoryly-card.jpg" alt="what stuck in memory, is it still true?" width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -393,6 +401,8 @@ Codex quadrant <b>What should we remember?</b>. Continued-influence / stale-beli
 
 Grades confirmation-bias gates - seeking only agreeing evidence. Looks for adversarial / falsification prompts or red-team notes. Pass = disconfirming check exists. Fail = only confirming samples. Blank = no confirm protocol. Interactive falsification preferred over keyword scans. Not fully wired in the default install yet.
 
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/5ef4b9372cd2a57342ce2f4fee87d51d546c2802/docs/glossary.html#xl-confirmly"><img src="assets/glossary/cards/confirmly-card.jpg" alt="did you only look for yes?" width="541"></a></p>
+
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
 Did you only look for yes?
@@ -409,6 +419,8 @@ Named after <a href="https://en.wikipedia.org/wiki/Confirmation_bias">confirmati
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
 Grades automation bias / tool-trust - over-trusting model or tool output without a human or second check. Pass = escalation / verify step exists. Fail = blind tool accept. Blank = no trust policy. Not fully wired in the default install yet.
+
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/5ef4b9372cd2a57342ce2f4fee87d51d546c2802/docs/glossary.html#xl-automately"><img src="assets/glossary/cards/automately-card.jpg" alt="Hmmm... Check before Trust?" width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
