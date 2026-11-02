@@ -984,6 +984,99 @@ html {
   text-decoration: underline;
 }
 .memo-deep-lines a:hover { color: #1e5aa8; }
+
+/* Nell rewrite - readable detail cards (no path walls) */
+.nell-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin: 0.35rem 0 0;
+}
+.nell-card {
+  border: 1px solid #d8dde6;
+  border-radius: 10px;
+  padding: 0.75rem 0.85rem 0.85rem;
+  background: #fafbfd;
+}
+.nell-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.45rem 0.65rem;
+  margin: 0 0 0.35rem;
+}
+.nell-card-head a {
+  color: #2f6fbf;
+  font-weight: 700;
+  text-decoration: underline;
+  font-size: 0.95rem;
+}
+.nell-card-head a:hover { color: #1e5aa8; }
+.nell-gate,
+.nell-status,
+.nell-score {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #555;
+  background: #eef1f6;
+  border-radius: 999px;
+  padding: 0.15rem 0.5rem;
+}
+.nell-status { background: #e8f3ea; color: #246338; }
+.nell-question {
+  margin: 0 0 0.4rem;
+  font-size: 0.78rem;
+  color: #555;
+  line-height: 1.35;
+}
+.nell-blurb {
+  margin: 0 0 0.55rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: #1a1a1a;
+}
+.nell-ev-heading {
+  margin: 0 0 0.3rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #666;
+  font-weight: 600;
+}
+.nell-evidence {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+}
+.nell-evidence li {
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: #333;
+}
+.nell-ev-title {
+  font-weight: 600;
+  color: #444;
+  margin-right: 0.25rem;
+}
+.nell-evidence code {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  background: #eef1f6;
+  padding: 0.08rem 0.28rem;
+  border-radius: 4px;
+  word-break: break-all;
+}
+.nell-empty,
+.nell-more {
+  margin: 0.25rem 0 0;
+  font-size: 0.72rem;
+  color: #777;
+}
 .memo-back {
   margin: 0 0 0.75rem;
   font-family: var(--mono);

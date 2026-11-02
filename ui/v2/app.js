@@ -3,6 +3,27 @@
     "https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/cde53cbc5d66c631b88d202acd5f56bee9c23b26/docs/glossary.html";
   const GLOSS_MD = "https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/GLOSSARY.md";
   const anchor = (id) => GLOSS_MD + "#user-content-" + id;
+  /* Auto-link glossary product terms in memo prose (same target pattern as evaler names). */
+  const GLOSS_AUTO_LINKS = [
+    { re: /\bSASPIANT\b/g, id: "saspiant", title: "SASPIANT - glossary" },
+  ];
+  function linkGlossaryTerms(escapedText) {
+    let out = String(escapedText || "");
+    GLOSS_AUTO_LINKS.forEach(function (term) {
+      out = out.replace(term.re, function (matched) {
+        return (
+          '<a href="' +
+          escapeHtml(anchor(term.id)) +
+          '" target="_blank" rel="noopener noreferrer" title="' +
+          escapeHtml(term.title) +
+          '">' +
+          matched +
+          "</a>"
+        );
+      });
+    });
+    return out;
+  }
   const app = document.getElementById("app-screen");
 
   /* word-white = white glyphs for dark grounds; word-black = black glyphs for light grounds */
@@ -1069,8 +1090,7 @@
       else if (measured) status = "measured";
       else status = "pass";
       const evidence = Array.isArray(c.evidence) ? c.evidence : [];
-      const summary = String(c.summary || "");
-      const detailParts = [summary].concat(evidence).filter(Boolean);
+      const summary = nellCleanProse(String(c.summary || ""));
       return {
         id: id,
         name: agent,
@@ -1081,11 +1101,194 @@
         passed: c.passed,
         score: null,
         blurb: summary,
-        detail: detailParts.join(" "),
+        detail: summary,
         evidence: evidence,
         href: anchor(id === "levi" ? "levi" : id),
       };
     });
+  }
+
+  /* Nell (comms rewrite): turn Hydra dumps into titled cards humans can read. */
+  function looksLikePath(token) {
+    const t = String(token || "").trim();
+    if (!t) return false;
+    if (/^[A-Za-z]:[\\/]/.test(t)) return true;
+    if (t.indexOf("\\") >= 0 || t.indexOf("/") >= 0) return true;
+    if (/\.(py|md|json|jsonl|ts|tsx|js|jsx|go|rs|java|html|css|toml|yml|yaml|lock|txt)$/i.test(t))
+      return true;
+    return false;
+  }
+
+  function nellCleanProse(text) {
+    return String(text || "").replace(/\s+/g, " ").trim();
+  }
+
+  function nellEvidenceItems(rawList) {
+    const items = [];
+    (rawList || []).forEach(function (raw) {
+      const entry = String(raw || "").trim();
+      if (!entry) return;
+      if (/^no /i.test(entry) || entry === "no test_*.py modules" || entry === "no identical-byte groups") {
+        items.push({ kind: "note", title: "Note", text: entry });
+        return;
+      }
+      const inMatch = entry.match(/^([A-Za-z_][\w]*)\s+in\s+(.+)$/);
+      if (inMatch) {
+        items.push({
+          kind: "symbol",
+          title: "Unreferenced name",
+          text: inMatch[1],
+          path: inMatch[2],
+        });
+        return;
+      }
+      const stepMatch = entry.match(/^(.+?)\s+(\d+)\s+steps$/i);
+      if (stepMatch && looksLikePath(stepMatch[1])) {
+        items.push({
+          kind: "metric",
+          title: stepMatch[2] + " trace steps",
+          path: stepMatch[1],
+        });
+        return;
+      }
+      if (entry.indexOf(", ") >= 0 && looksLikePath(entry.split(", ")[0])) {
+        entry.split(", ").forEach(function (part) {
+          const p = part.trim();
+          if (p) items.push({ kind: "path", title: "Same-bytes twin", path: p });
+        });
+        return;
+      }
+      const churnMatch = entry.match(/^(.+?)\s+(\d+)$/);
+      if (churnMatch && looksLikePath(churnMatch[1])) {
+        items.push({
+          kind: "metric",
+          title: "Churn lines " + churnMatch[2],
+          path: churnMatch[1],
+        });
+        return;
+      }
+      if (looksLikePath(entry)) {
+        items.push({ kind: "path", title: "File", path: entry });
+        return;
+      }
+      items.push({ kind: "note", title: "Note", text: entry });
+    });
+    return items;
+  }
+
+  function nellStatusLabel(c) {
+    if (c.passed === true) return "passed";
+    if (c.hydraStatus) return String(c.hydraStatus);
+    return String(c.status || "deferred");
+  }
+
+  function nellRewriteCell(c) {
+    const evidence = nellEvidenceItems(c.evidence || []);
+    let blurb = nellCleanProse(c.blurb || c.detail || "");
+    if (!blurb && c.question) blurb = String(c.question);
+    if (!blurb) blurb = "No prose summary from this evaler.";
+    return {
+      name: c.name || "Evaler",
+      href: c.href || GLOSS_MD,
+      gate: c.gate || "",
+      question: c.question || "",
+      status: nellStatusLabel(c),
+      blurb: blurb,
+      evidence: evidence,
+      score: c.score,
+    };
+  }
+
+  function renderNellEvidence(items) {
+    if (!items || !items.length) {
+      return '<p class="nell-empty">No separate evidence files for this cell.</p>';
+    }
+    const maxShow = 8;
+    const shown = items.slice(0, maxShow);
+    const more = items.length - shown.length;
+    const lis = shown
+      .map(function (it) {
+        if (it.kind === "symbol") {
+          return (
+            "<li><span class=\"nell-ev-title\">" +
+            escapeHtml(it.title) +
+            "</span> <code>" +
+            escapeHtml(it.text) +
+            "</code> in <code title=\"" +
+            escapeHtml(it.path) +
+            "\">" +
+            escapeHtml(shortPath(it.path)) +
+            "</code></li>"
+          );
+        }
+        if (it.path) {
+          return (
+            "<li><span class=\"nell-ev-title\">" +
+            escapeHtml(it.title) +
+            "</span> <code title=\"" +
+            escapeHtml(it.path) +
+            "\">" +
+            escapeHtml(shortPath(it.path)) +
+            "</code></li>"
+          );
+        }
+        return (
+          "<li><span class=\"nell-ev-title\">" +
+          escapeHtml(it.title) +
+          "</span> " +
+          escapeHtml(it.text || "") +
+          "</li>"
+        );
+      })
+      .join("");
+    return (
+      '<ul class="nell-evidence">' +
+      lis +
+      "</ul>" +
+      (more > 0
+        ? '<p class="nell-more">+' + more + " more evidence rows (kept in the Hydra report, not dumped here).</p>"
+        : "")
+    );
+  }
+
+  function shortPath(path) {
+    const p = String(path || "").replace(/\\/g, "/");
+    const parts = p.split("/").filter(Boolean);
+    if (parts.length <= 3) return p;
+    return parts.slice(0, 1).join("/") + "/…/" + parts.slice(-2).join("/");
+  }
+
+  function writeNellCard(c) {
+    const n = nellRewriteCell(c);
+    const gateBit = n.gate ? '<span class="nell-gate">' + escapeHtml(n.gate) + "</span>" : "";
+    const scoreBit =
+      n.score != null ? '<span class="nell-score">' + escapeHtml(String(n.score)) + "/100</span>" : "";
+    return (
+      '<article class="nell-card">' +
+      '<header class="nell-card-head">' +
+      "<a href=\"" +
+      escapeHtml(n.href) +
+      "\" target=\"_blank\" rel=\"noopener noreferrer\" title=\"" +
+      escapeHtml(n.name) +
+      " - glossary\">" +
+      escapeHtml(n.name) +
+      "</a>" +
+      gateBit +
+      '<span class="nell-status">' +
+      escapeHtml(n.status) +
+      "</span>" +
+      scoreBit +
+      "</header>" +
+      (n.question
+        ? '<p class="nell-question">' + escapeHtml(n.question) + "</p>"
+        : "") +
+      '<p class="nell-blurb">' +
+      linkGlossaryTerms(escapeHtml(n.blurb)) +
+      "</p>" +
+      '<h4 class="nell-ev-heading">Evidence</h4>' +
+      renderNellEvidence(n.evidence) +
+      "</article>"
+    );
   }
 
   function makeRun(target, eng, cells, comparison, extra) {
@@ -1172,7 +1375,7 @@
             "<strong>" +
             escapeHtml(c.name) +
             "</strong><span>" +
-            escapeHtml(c.blurb || "") +
+            linkGlossaryTerms(escapeHtml(c.blurb || "")) +
             (c.score != null ? " · " + c.score : "") +
             "</span></button>"
           );
@@ -1245,7 +1448,7 @@
           })
           .slice(0, 3)
           .map(function (c) {
-            return c.name + ": " + (c.blurb || c.detail || "").slice(0, 80);
+            return c.name + ": " + nellCleanProse(c.blurb || c.detail || "").slice(0, 90);
           })
           .join(" · ") || "All cells deferred on this tree."
       : run.cells
@@ -1272,7 +1475,7 @@
       means +
       "</p></div>" +
       '<div class="memo-section"><h3>Top gates</h3><p>' +
-      escapeHtml(topGates) +
+      linkGlossaryTerms(escapeHtml(topGates)) +
       "</p></div>" +
       '<div class="memo-section"><h3>Evaler blocks</h3>' +
       writeMemoChipGrid(run) +
@@ -1282,37 +1485,18 @@
   }
 
   function writeDeepMemo(run) {
-    const lines = run.cells
-      .map((c) => {
-        const href = c.href || GLOSS_MD;
-        return (
-          "<li><a href=\"" +
-          escapeHtml(href) +
-          "\" target=\"_blank\" rel=\"noopener noreferrer\" title=\"" +
-          escapeHtml(c.name) +
-          " - glossary\">" +
-          escapeHtml(c.name) +
-          "</a> " +
-          escapeHtml(c.detail || c.blurb) +
-          " <em>(" +
-          escapeHtml(c.hydraStatus || c.status) +
-          (c.passed === true ? " · passed" : "") +
-          (c.score != null ? " · " + c.score + "/100" : "") +
-          ")</em></li>"
-        );
-      })
-      .join("");
+    const cards = (run.cells || []).map(writeNellCard).join("");
     return (
       '<button type="button" class="memo-back memo-back-simple">← Back to brief</button>' +
-      '<p class="memo-kicker">Full detailed memo - one line per evaler, same glossary links as the left rail.</p>' +
+      '<p class="memo-kicker">Full detailed memo - Nell rewrite: titled cards, short blurbs, evidence listed (not path walls). Glossary links match the left rail.</p>' +
       "<h2>" +
       escapeHtml(run.engine) +
       " detail · " +
       memoProductTitleHtml(run) +
       "</h2>" +
-      '<ul class="memo-deep-lines">' +
-      lines +
-      "</ul>"
+      '<div class="nell-stack">' +
+      cards +
+      "</div>"
     );
   }
 
@@ -2410,6 +2594,13 @@
       ".memo-chip{border:1px solid #ccc;border-radius:8px;padding:8px;display:block}" +
       ".memo-chip strong{display:block;font-size:12px;margin-bottom:3px;color:#2f7a45}" +
       ".memo-chip span{font-size:11px;color:#555}" +
+      ".nell-stack{display:flex;flex-direction:column;gap:12px}.nell-card{border:1px solid #ccc;border-radius:8px;padding:10px 12px;page-break-inside:avoid}" +
+      ".nell-card-head{display:flex;flex-wrap:wrap;gap:6px 10px;margin:0 0 6px;align-items:baseline}" +
+      ".nell-gate,.nell-status,.nell-score{font-size:10px;text-transform:uppercase;background:#eee;padding:2px 6px;border-radius:999px}" +
+      ".nell-blurb{margin:0 0 8px;font-size:13px;line-height:1.4}.nell-question{margin:0 0 6px;font-size:11px;color:#555}" +
+      ".nell-ev-heading{margin:0 0 4px;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#666}" +
+      ".nell-evidence{list-style:none;padding:0;margin:0}.nell-evidence li{margin:0 0 4px;font-size:11px}" +
+      ".nell-evidence code{font-size:10px;background:#f3f3f3;padding:1px 4px}.nell-more,.nell-empty{font-size:10px;color:#777}" +
       "</style></head><body>" +
       "<div class=\"memo-block\"><h1>" +
       escapeHtml(heading) +

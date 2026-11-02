@@ -114,7 +114,7 @@ The organizational chart for an AI bot team. It ensures every digital worker has
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Roster files are `agent_registry.md`, `agents.md`, `agentic_registry.md`, or any markdown file inside a folder named `agents`. Rows that start with a bold table cell are counted. SASPIANT (Specific and Specialized, Pain-In-the-Ass, Non-critical Tasks) is the question the roster is for: is this a narrow chore, or a person-shaped decision. Chorely counts. It does not answer that question for you.
+Roster files are `agent_registry.md`, `agents.md`, `agentic_registry.md`, or any markdown file inside a folder named `agents`. Rows that start with a bold table cell are counted. [SASPIANT](#user-content-saspiant) (Specific and Specialized, Pain-In-the-Ass, Non-critical Tasks) is the question the roster is for: is this a narrow chore, or a person-shaped decision. Chorely counts. It does not answer that question for you.
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
@@ -538,6 +538,21 @@ Ralph Nader's *Unsafe at Any Speed* (1965) pushed crash safety into the car inst
 
 Menschly links here. The drop-in timer is [fuss/README.md](fuss/README.md). Installing FUSS is optional. A product can pass Menschly with any real stop, and a product with no sitting stays blank. Nothing in the PDF is scraped into a numeric grade.
 
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+
+<a id="saspiant" name="saspiant"></a>
+<h2>SASPIANT</h2>
+
+SASPIANT (Specific and Specialized, Pain-In-the-Ass, Non-critical Tasks) is the roster question behind [Chorely](#user-content-chorely): is this row a narrow specialist chore an agent can own, or a person-shaped decision that should stay with a human. Chorely counts roster rows. It does not answer SASPIANT for you. SASPIANT is not a seventeenth Hydra score.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+A checklist question for AI chore charts. If the job is a fiddly specialist task nobody wants, an agent might take it. If the job needs a person's judgment, leave it with a person. The chart itself is not the answer.
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+SASPIANT labels the decision Chorely's roster evidence is meant to support. A counted row is not a SASPIANT verdict. Deferred or blank Chorely cells leave SASPIANT unanswered. Related: [Chorely](#user-content-chorely), agent roster files under `agents/`.
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
 
