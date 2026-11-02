@@ -329,34 +329,98 @@
     return dateStr + " - " + title + " · " + pct + " · " + (res.band || "");
   }
 
+  function railGroupMeta(res) {
+    /* Headings are evaler type only - specialty/level live in the blurb under each row */
+    if (res.testId === "japop-lr") {
+      return { key: "japop-lr", title: "JaPoP L&R" };
+    }
+    if (res.testId === "japop-static") {
+      return { key: "japop-static", title: "JaPoP Static" };
+    }
+    return { key: "dev-lr", title: "Dev L&R" };
+  }
+
+  function appendPricklyRailHead(parent, label, kind) {
+    const head = document.createElement("button");
+    head.type = "button";
+    head.className =
+      "rail-head" + (kind === "saved" ? " rail-head-saved" : " rail-head-latest");
+    head.title = label;
+    head.innerHTML = "<span>" + escapeHtml(label) + "</span>";
+    parent.appendChild(head);
+  }
+
+  function appendPricklyRunButton(ul, res, opts) {
+    const li = document.createElement("li");
+    if (opts && opts.latest) li.className = "is-latest";
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "run-entry-btn";
+    const blurb = formatPricklyBlurb(res);
+    b.title = blurb;
+    b.innerHTML = '<span class="run-blurb">' + escapeHtml(blurb) + "</span>";
+    b.addEventListener("click", function () {
+      openSavedResult(res);
+    });
+    li.appendChild(b);
+    ul.appendChild(li);
+  }
+
+  function appendPricklyEmptyLi(ul, text) {
+    const li = document.createElement("li");
+    li.className = "is-empty";
+    li.textContent = text;
+    ul.appendChild(li);
+  }
+
   function renderSavedRail() {
-    const list = els.resultsList || $("prickly-results-list");
-    if (!list) return;
-    list.innerHTML = "";
+    const host = els.resultsList || $("prickly-results-list");
+    if (!host) return;
+    host.innerHTML = "";
     const store = loadStore();
     const saved = store.saved || [];
     if (!saved.length) {
-      const li = document.createElement("li");
-      li.className = "is-empty";
-      li.textContent = "No saved PRICKLY results yet.";
-      list.appendChild(li);
+      const empty = document.createElement("p");
+      empty.className = "prickly-rail-empty";
+      empty.textContent = "No saved PRICKLY results yet.";
+      host.appendChild(empty);
       return;
     }
-    saved.forEach(function (res, idx) {
-      const li = document.createElement("li");
-      /* Same structure as history latest run: newest gets the faint chip */
-      if (idx === 0) li.className = "is-latest";
-      const b = document.createElement("button");
-      b.type = "button";
-      b.className = "run-entry-btn";
-      const blurb = formatPricklyBlurb(res);
-      b.title = blurb;
-      b.innerHTML = '<span class="run-blurb">' + escapeHtml(blurb) + "</span>";
-      b.addEventListener("click", function () {
-        openSavedResult(res);
-      });
-      li.appendChild(b);
-      list.appendChild(li);
+    /* Same structure as history: per test-type rail-set with latest run + saved runs */
+    const groups = [];
+    const byKey = {};
+    saved.forEach(function (res) {
+      const meta = railGroupMeta(res);
+      if (!byKey[meta.key]) {
+        byKey[meta.key] = { key: meta.key, title: meta.title, items: [] };
+        groups.push(byKey[meta.key]);
+      }
+      byKey[meta.key].items.push(res);
+    });
+    groups.forEach(function (g) {
+      const wrap = document.createElement("div");
+      wrap.className = "prickly-rail-set";
+      const latest = g.items[0];
+      const earlier = g.items.slice(1);
+
+      appendPricklyRailHead(wrap, g.title + " - latest run", "latest");
+      const latestList = document.createElement("ul");
+      latestList.className = "past-list past-list-latest";
+      appendPricklyRunButton(latestList, latest, { latest: true });
+      wrap.appendChild(latestList);
+
+      appendPricklyRailHead(wrap, g.title + " - saved runs", "saved");
+      const savedList = document.createElement("ul");
+      savedList.className = "past-list past-list-saved";
+      if (!earlier.length) {
+        appendPricklyEmptyLi(savedList, "No earlier saved runs yet.");
+      } else {
+        earlier.forEach(function (res) {
+          appendPricklyRunButton(savedList, res, null);
+        });
+      }
+      wrap.appendChild(savedList);
+      host.appendChild(wrap);
     });
   }
 
