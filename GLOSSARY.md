@@ -594,6 +594,29 @@ What makes the strategy hold: time to value, low-friction onboarding, a product 
 For an AI product such as Evalathan, PLG means making the product sufficiently useful and accessible that developers discover its value, integrate it into their workflows, and become advocates - while the business converts sustained usage into paid accounts. The runner does not compute a PLG rate. Levi remains the user-first card. Warrantly remains the claim-and-source check.
 
 
+
+<p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
+
+<a id="reductoholism" name="reductoholism"></a>
+<h2>Reductoholism</h2>
+
+Reductoholism is a portmanteau of reductionism and holism. A reductoholistic view bridges those two philosophies instead of treating them as opposites. This entry is the definition. It is not an evaler.
+
+<h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
+
+To understand a system, you need both moves. Reductionism takes the clock apart and studies the gears. Holism watches the whole clock keep time - something no single gear can do alone. Reductoholism says use both: learn the parts, then see how they work together as one system. Move between the small scale and the big picture until the picture is complete.
+
+<p align="center"><a href="#reductoholism"><img src="assets/glossary/cards/reductoholism-card-20261102.jpg" alt="Reductoholism: reductionism studies the parts, holism sees the whole, and both together give a deeper understanding." width="541"></a></p>
+
+<h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
+
+**Reductionism** holds that systems are best understood by breaking them into their smallest parts - gears, springs, and screws studied in isolation. **Holism** holds that the whole is greater than the sum of its parts: systems show emergent properties that no piece has alone - the clock telling time. **Reductoholism** (reductoholistic) is the multilevel bridge. In practice it moves back and forth between scales:
+
+1. Isolate and test individual mechanisms (code, chemistry, a single gene).
+2. Map how those parts form networks, feedback loops, and emergent behavior in the larger system.
+
+Examples: systems biology joins high-throughput data on one gene to the organism's network, not gene-only or lifestyle-only; modern psychology's biopsychosocial model maps neurotransmitters beside culture and circumstance. Evalathan calls itself reductoholistic because it audits parts and the whole lifecycle without collapsing them into one opaque score.
+
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
 
 <a id="prd" name="prd"></a>
