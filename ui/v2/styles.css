@@ -198,10 +198,10 @@ button { cursor: pointer; border: 0; background: none; }
 .engines-corner { justify-items: start; }
 .runs-corner { justify-items: end; }
 
-/* Ref corners: lowercase lime mono */
+/* Ref corners: lowercase lime mono - evals / history / home +2 size steps */
 .corner-label {
   font-family: var(--mono);
-  font-size: 0.95rem;
+  font-size: 1.2rem; /* was 0.95rem; +2 sizes (~0.125rem each) */
   font-weight: 500;
   letter-spacing: 0.02em;
   color: var(--accent);
@@ -316,7 +316,7 @@ button { cursor: pointer; border: 0; background: none; }
   margin: 0;
   max-width: 38rem;
   font-family: var(--mono);
-  font-size: clamp(0.72rem, 1.35vh, 0.88rem);
+  font-size: clamp(0.97rem, 1.65vh, 1.13rem); /* +2 sizes */
   line-height: 1.35;
   text-align: center;
 }
@@ -366,7 +366,7 @@ button { cursor: pointer; border: 0; background: none; }
   max-width: 40rem;
   margin: 0;
   font-family: var(--mono);
-  font-size: clamp(0.7rem, 1.35vh, 0.84rem);
+  font-size: clamp(0.95rem, 1.65vh, 1.09rem); /* +2 sizes */
   line-height: 1.7;
   color: var(--text);
   text-align: center;
@@ -435,7 +435,7 @@ button { cursor: pointer; border: 0; background: none; }
   display: block;
   margin: 0;
   font-family: var(--mono);
-  font-size: clamp(0.72rem, 1.35vh, 0.88rem);
+  font-size: clamp(0.97rem, 1.65vh, 1.13rem); /* +2 sizes */
   color: var(--link-blue);
   text-decoration: none;
   text-align: center;
@@ -450,7 +450,7 @@ button { cursor: pointer; border: 0; background: none; }
   align-items: center;
   gap: 0.35rem;
   width: 100%;
-  min-height: 2.55rem;
+  min-height: 2.7rem;
   padding: 0.28rem 0.35rem 0.28rem 1rem;
   border-radius: 999px;
   background: var(--input-bg);
@@ -460,24 +460,24 @@ button { cursor: pointer; border: 0; background: none; }
 #target-input {
   flex: 1 1 auto;
   min-width: 0;
-  height: 2rem;
+  height: 2.15rem;
   border: 0;
   background: transparent;
   color: var(--input-text);
   font-family: var(--font);
-  font-size: 0.92rem;
+  font-size: 1.045rem; /* was 0.92rem; +1 size */
   outline: none;
 }
 #target-input::placeholder { color: #9a9a9a; }
 #btn-browse, #btn-eval {
   flex: 0 0 auto;
-  height: 2rem;
+  height: 2.15rem;
   padding: 0 0.85rem;
   border-radius: 999px;
   background: #111;
   color: #eee;
   border: 1px solid #333;
-  font-size: 0.78rem;
+  font-size: 0.905rem; /* was 0.78rem; +1 size */
   letter-spacing: 0.02em;
 }
 [data-theme="white"] #btn-browse,
@@ -502,7 +502,7 @@ button { cursor: pointer; border: 0; background: none; }
   margin: 0;
 }
 .home-btn .corner-label {
-  font-size: 0.95rem;
+  font-size: 1.2rem; /* +2 sizes; match evals / history */
 }
 
 /* Left rail: four routing engines as wordmark headers */
@@ -521,7 +521,7 @@ button { cursor: pointer; border: 0; background: none; }
 .engine-word {
   display: block;
   font-family: var(--font);
-  font-size: 0.78rem;
+  font-size: 1.03rem; /* was 0.78rem; +2 sizes */
   font-weight: 400;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -651,7 +651,7 @@ button { cursor: pointer; border: 0; background: none; }
   text-align: left;
   color: var(--link-blue); /* latest: same blue as Evalathan GitHub */
   font-family: var(--mono);
-  font-size: 0.712rem; /* +6% */
+  font-size: 0.837rem; /* was 0.712rem; +1 size */
   letter-spacing: 0.04em;
   text-transform: none;
   margin: 0.35rem 0;
@@ -676,7 +676,7 @@ button { cursor: pointer; border: 0; background: none; }
 }
 .past-list li {
   font-family: var(--mono);
-  font-size: 0.62rem; /* +6% */
+  font-size: 0.745rem; /* was 0.62rem; +1 size */
   line-height: 1.3;
   color: var(--text-soft);
   border: 0;
