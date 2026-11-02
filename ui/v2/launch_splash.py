@@ -12,6 +12,10 @@ Lifecycle (avoids a stuck splash after a second CMD/PowerShell install):
 - If splash.stop already exists, exit immediately (desk is up / closing).
 - On exit, clear splash.pid but leave splash.stop so a late sibling aborts.
 - --close writes splash.stop and terminates the recorded PID.
+
+On Windows the splash uses UpdateLayeredWindow (per-pixel alpha) so the circle
+edge stays clean on light and dark backgrounds. Tk color-key + SetWindowRgn is
+only a fallback (jagged / black fringe on white).
 """
 
 from __future__ import annotations
@@ -152,6 +156,320 @@ def request_close() -> None:
     clear_pid()
 
 
+def _logo_path() -> Path | None:
+    assets = Path(__file__).resolve().parent / "assets"
+    for name in ("fuss-splash.png", "fuss.png"):
+        candidate = assets / name
+        if candidate.is_file():
+            return candidate
+    return None
+
+
+def _build_base_rgba(path: Path, size: int):
+    """Logo on a soft-edged circular alpha matte (clean on white and black)."""
+    from PIL import Image, ImageDraw, ImageFilter
+
+    im = Image.open(path).convert("RGBA")
+    w, h = im.size
+    side = max(w, h, 1)
+    if side != size:
+        scale = size / float(side)
+        im = im.resize(
+            (max(1, int(round(w * scale))), max(1, int(round(h * scale)))),
+            Image.Resampling.LANCZOS,
+        )
+        w, h = im.size
+    canvas = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    canvas.paste(im, ((size - w) // 2, (size - h) // 2), im)
+
+    # Soft circular alpha: blur a hard disk so the rim blends into any desktop.
+    disk = Image.new("L", (size, size), 0)
+    ImageDraw.Draw(disk).ellipse((1, 1, size - 2, size - 2), fill=255)
+    soft = disk.filter(ImageFilter.GaussianBlur(radius=1.25))
+
+    r, g, b, _a = canvas.split()
+    return Image.merge("RGBA", (r, g, b, soft))
+
+
+def _draw_caption(base, phase: int):
+    """Return a copy of base with centered black 'launching' + animated dots."""
+    from PIL import Image, ImageDraw, ImageFont
+
+    frame = base.copy()
+    draw = ImageDraw.Draw(frame)
+    size = frame.size[0]
+    try:
+        font = ImageFont.truetype("segoeui.ttf", 21)
+        font_dots = ImageFont.truetype("segoeui.ttf", 28)
+    except OSError:
+        font = ImageFont.load_default()
+        font_dots = font
+
+    word = "launching"
+    # Measure word and three dots as a group, then center.
+    try:
+        wb = draw.textbbox((0, 0), word, font=font)
+        word_w = wb[2] - wb[0]
+        word_h = wb[3] - wb[1]
+    except Exception:  # noqa: BLE001
+        word_w, word_h = 90, 16
+    dots_w = 40
+    total = word_w + 6 + dots_w
+    x0 = (size - total) // 2
+    y = size // 2 - word_h // 2 - 2
+    draw.text((x0, y), word, fill=(0, 0, 0, 255), font=font)
+    active = phase % 3
+    for i in range(3):
+        if i == active:
+            color = (0, 0, 0, 255)
+        elif i == (active - 1) % 3:
+            color = (58, 58, 58, 255)
+        else:
+            color = (106, 106, 106, 255)
+        draw.text((x0 + word_w + 6 + i * 12, y - 4), ".", fill=color, font=font_dots)
+    return frame
+
+
+def _rgba_to_premultiplied_bgra(im) -> bytes:
+    pixels = bytearray()
+    for r, g, b, a in im.getdata():
+        pixels.extend(
+            (
+                (b * a) // 255,
+                (g * a) // 255,
+                (r * a) // 255,
+                a,
+            )
+        )
+    return bytes(pixels)
+
+
+def _run_splash_layered_win32(logo_path: Path) -> bool:
+    """Per-pixel alpha splash. True if shown; False to fall back to Tk."""
+    import ctypes
+    from ctypes import wintypes
+
+    try:
+        from PIL import Image  # noqa: F401
+    except ImportError:
+        return False
+
+    user32 = ctypes.windll.user32
+    gdi32 = ctypes.windll.gdi32
+    kernel32 = ctypes.windll.kernel32
+
+    class POINT(ctypes.Structure):
+        _fields_ = [("x", ctypes.c_long), ("y", ctypes.c_long)]
+
+    class SIZE(ctypes.Structure):
+        _fields_ = [("cx", ctypes.c_long), ("cy", ctypes.c_long)]
+
+    class BLENDFUNCTION(ctypes.Structure):
+        _fields_ = [
+            ("BlendOp", ctypes.c_byte),
+            ("BlendFlags", ctypes.c_byte),
+            ("SourceConstantAlpha", ctypes.c_byte),
+            ("AlphaFormat", ctypes.c_byte),
+        ]
+
+    class BITMAPINFOHEADER(ctypes.Structure):
+        _fields_ = [
+            ("biSize", wintypes.DWORD),
+            ("biWidth", wintypes.LONG),
+            ("biHeight", wintypes.LONG),
+            ("biPlanes", wintypes.WORD),
+            ("biBitCount", wintypes.WORD),
+            ("biCompression", wintypes.DWORD),
+            ("biSizeImage", wintypes.DWORD),
+            ("biXPelsPerMeter", wintypes.LONG),
+            ("biYPelsPerMeter", wintypes.LONG),
+            ("biClrUsed", wintypes.DWORD),
+            ("biClrImportant", wintypes.DWORD),
+        ]
+
+    class BITMAPINFO(ctypes.Structure):
+        _fields_ = [("bmiHeader", BITMAPINFOHEADER), ("bmiColors", wintypes.DWORD * 3)]
+
+    WndProcType = ctypes.WINFUNCTYPE(
+        ctypes.c_long, wintypes.HWND, ctypes.c_uint, wintypes.WPARAM, wintypes.LPARAM
+    )
+
+    class WNDCLASS(ctypes.Structure):
+        _fields_ = [
+            ("style", ctypes.c_uint),
+            ("lpfnWndProc", WndProcType),
+            ("cbClsExtra", ctypes.c_int),
+            ("cbWndExtra", ctypes.c_int),
+            ("hInstance", wintypes.HINSTANCE),
+            ("hIcon", wintypes.HICON),
+            ("hCursor", wintypes.HANDLE),
+            ("hbrBackground", wintypes.HBRUSH),
+            ("lpszMenuName", wintypes.LPCWSTR),
+            ("lpszClassName", wintypes.LPCWSTR),
+        ]
+
+    WS_POPUP = 0x80000000
+    WS_EX_LAYERED = 0x00080000
+    WS_EX_TOPMOST = 0x00000008
+    WS_EX_TOOLWINDOW = 0x00000080
+    WS_VISIBLE = 0x10000000
+    HWND_TOPMOST = -1
+    SWP_NOSIZE = 0x0001
+    SWP_NOMOVE = 0x0002
+    SWP_SHOWWINDOW = 0x0040
+    SW_SHOW = 5
+    AC_SRC_OVER = 0x00
+    AC_SRC_ALPHA = 0x01
+    ULW_ALPHA = 0x00000002
+    DIB_RGB_COLORS = 0
+    BI_RGB = 0
+    WM_DESTROY = 0x0002
+    WM_CLOSE = 0x0010
+    PM_REMOVE = 0x0001
+
+    size = TARGET_DIAMETER
+    try:
+        base = _build_base_rgba(logo_path, size)
+    except Exception:  # noqa: BLE001
+        return False
+
+    def _wnd_proc(hwnd, msg, wparam, lparam):
+        if msg in (WM_DESTROY, WM_CLOSE):
+            user32.PostQuitMessage(0)
+            return 0
+        return user32.DefWindowProcW(hwnd, msg, wparam, lparam)
+
+    wnd_proc = WndProcType(_wnd_proc)
+    # Keep callable alive for the class lifetime.
+    _run_splash_layered_win32._wnd_proc = wnd_proc  # type: ignore[attr-defined]
+
+    hinstance = kernel32.GetModuleHandleW(None)
+    class_name = "EvalathanFussSplash"
+    wc = WNDCLASS()
+    wc.style = 0
+    wc.lpfnWndProc = wnd_proc
+    wc.cbClsExtra = 0
+    wc.cbWndExtra = 0
+    wc.hInstance = hinstance
+    wc.hIcon = None
+    wc.hCursor = user32.LoadCursorW(None, 32512)
+    wc.hbrBackground = None
+    wc.lpszMenuName = None
+    wc.lpszClassName = class_name
+    atom = user32.RegisterClassW(ctypes.byref(wc))
+    if not atom:
+        # Already registered from a prior run in this process - ignore.
+        err = kernel32.GetLastError()
+        if err not in (0, 1410):  # ERROR_CLASS_ALREADY_EXISTS
+            return False
+
+    sw = user32.GetSystemMetrics(0)
+    sh = user32.GetSystemMetrics(1)
+    x = max(0, (sw - size) // 2)
+    y = max(0, (sh - size) // 2)
+    hwnd = user32.CreateWindowExW(
+        WS_EX_LAYERED | WS_EX_TOPMOST | WS_EX_TOOLWINDOW,
+        class_name,
+        "EVALATHAN",
+        WS_POPUP | WS_VISIBLE,
+        x,
+        y,
+        size,
+        size,
+        None,
+        None,
+        hinstance,
+        None,
+    )
+    if not hwnd:
+        return False
+
+    user32.SetWindowPos(
+        hwnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW
+    )
+    user32.ShowWindow(hwnd, SW_SHOW)
+
+    hdc_screen = user32.GetDC(None)
+    hdc_mem = gdi32.CreateCompatibleDC(hdc_screen)
+    bmi = BITMAPINFO()
+    bmi.bmiHeader.biSize = ctypes.sizeof(BITMAPINFOHEADER)
+    bmi.bmiHeader.biWidth = size
+    bmi.bmiHeader.biHeight = -size  # top-down
+    bmi.bmiHeader.biPlanes = 1
+    bmi.bmiHeader.biBitCount = 32
+    bmi.bmiHeader.biCompression = BI_RGB
+    bits = ctypes.c_void_p()
+    hbmp = gdi32.CreateDIBSection(
+        hdc_screen,
+        ctypes.byref(bmi),
+        DIB_RGB_COLORS,
+        ctypes.byref(bits),
+        None,
+        0,
+    )
+    if not hbmp or not bits:
+        user32.ReleaseDC(None, hdc_screen)
+        gdi32.DeleteDC(hdc_mem)
+        user32.DestroyWindow(hwnd)
+        return False
+    old = gdi32.SelectObject(hdc_mem, hbmp)
+
+    blend = BLENDFUNCTION(AC_SRC_OVER, 0, 255, AC_SRC_ALPHA)
+    pt_dst = POINT(x, y)
+    pt_src = POINT(0, 0)
+    sz = SIZE(size, size)
+    started = time.monotonic()
+    phase = 0
+    last_dot = 0.0
+    ok_paint = False
+
+    def paint(frame_im) -> bool:
+        data = _rgba_to_premultiplied_bgra(frame_im)
+        ctypes.memmove(bits, data, len(data))
+        return bool(
+            user32.UpdateLayeredWindow(
+                hwnd,
+                hdc_screen,
+                ctypes.byref(pt_dst),
+                ctypes.byref(sz),
+                hdc_mem,
+                ctypes.byref(pt_src),
+                0,
+                ctypes.byref(blend),
+                ULW_ALPHA,
+            )
+        )
+
+    try:
+        ok_paint = paint(_draw_caption(base, phase))
+        if not ok_paint:
+            return False
+
+        msg = wintypes.MSG()
+        while True:
+            if stop_path().is_file() or (time.monotonic() - started) > MAX_SECONDS:
+                break
+            while user32.PeekMessageW(ctypes.byref(msg), None, 0, 0, PM_REMOVE):
+                if msg.message == 0x0012:  # WM_QUIT
+                    break
+                user32.TranslateMessage(ctypes.byref(msg))
+                user32.DispatchMessageW(ctypes.byref(msg))
+            now = time.monotonic()
+            if (now - last_dot) * 1000 >= DOT_MS:
+                phase += 1
+                last_dot = now
+                paint(_draw_caption(base, phase))
+            time.sleep(POLL_MS / 1000.0)
+    finally:
+        gdi32.SelectObject(hdc_mem, old)
+        gdi32.DeleteObject(hbmp)
+        gdi32.DeleteDC(hdc_mem)
+        user32.ReleaseDC(None, hdc_screen)
+        if user32.IsWindow(hwnd):
+            user32.DestroyWindow(hwnd)
+    return True
+
+
 def _apply_circle_region(root, size: int) -> None:
     """True circular window on Windows; other platforms keep a square frame."""
     if sys.platform != "win32":
@@ -171,23 +489,8 @@ def _apply_circle_region(root, size: int) -> None:
         pass
 
 
-def _logo_path() -> Path | None:
-    assets = Path(__file__).resolve().parent / "assets"
-    # Pre-sized splash art fills the circle exactly; fall back to the GUI logo.
-    for name in ("fuss-splash.png", "fuss.png"):
-        candidate = assets / name
-        if candidate.is_file():
-            return candidate
-    return None
-
-
 def _keyed_splash_png(path: Path, target: int, key_rgb: tuple[int, int, int]) -> Path:
-    """Flatten logo onto the transparent-key RGB so Tk never paints alpha as black.
-
-    Tk PhotoImage treats PNG transparency as black. That fringe is invisible on a
-    dark desktop and noisy on white (glossary, browser, light wallpaper). Bake the
-    outside of the circle to the same key used by -transparentcolor.
-    """
+    """Flatten logo onto the transparent-key RGB so Tk never paints alpha as black."""
     try:
         from PIL import Image, ImageDraw
     except ImportError:
@@ -197,7 +500,6 @@ def _keyed_splash_png(path: Path, target: int, key_rgb: tuple[int, int, int]) ->
     w, h = im.size
     side = max(w, h, 1)
     if side != target:
-        # Prefer crisp fill of the circular window.
         scale = target / float(side)
         nw = max(1, int(round(w * scale)))
         nh = max(1, int(round(h * scale)))
@@ -221,7 +523,6 @@ def _load_logo_fill(path: Path, target: int, key_rgb: tuple[int, int, int] = (1,
     import tkinter as tk
 
     load_path = path
-    # Always prefer a keyed RGB bake when Pillow is present (fixes white-bg fringe).
     keyed = _keyed_splash_png(path, target, key_rgb)
     if keyed.is_file():
         load_path = keyed
@@ -245,29 +546,15 @@ def _load_logo_fill(path: Path, target: int, key_rgb: tuple[int, int, int] = (1,
     return raw, diameter
 
 
-def run_splash() -> int:
-    # Desk already signaled ready, or a prior close left the stop flag - do not paint.
-    if stop_path().is_file():
-        return 0
-    if already_running():
-        return 0
-
+def _run_splash_tk(logo_path: Path) -> int:
+    """Fallback splash (color-key). Used when layered Win32 path is unavailable."""
     try:
         import tkinter as tk
     except ImportError:
         return 0
 
-    logo_path = _logo_path()
-    if logo_path is None:
-        return 0
-
-    mark_running()
-    if stop_path().is_file():
-        clear_pid()
-        return 0
-
-    started = time.monotonic()
-
+    key = "#010203"
+    key_rgb = (1, 2, 3)
     root = tk.Tk()
     root.title("EVALATHAN")
     root.overrideredirect(True)
@@ -275,28 +562,19 @@ def run_splash() -> int:
         root.attributes("-topmost", True)
     except tk.TclError:
         pass
-
-    # Transparent corners outside the circular region (Windows).
-    # Key must match the RGB bake outside the logo circle - never leave PNG alpha
-    # for Tk to paint as black (that fringe only shows on light backgrounds).
-    key = "#010203"
-    key_rgb = (1, 2, 3)
     root.configure(bg=key)
 
     try:
         logo, size = _load_logo_fill(logo_path, TARGET_DIAMETER, key_rgb)
     except Exception:  # noqa: BLE001
-        clear_pid()
         try:
             root.destroy()
         except tk.TclError:
             pass
         return 0
-    root._logo = logo  # keep PhotoImage alive
+    root._logo = logo
 
-    # Stop may have arrived while we loaded art - abort before showing.
     if stop_path().is_file():
-        clear_pid()
         try:
             root.destroy()
         except tk.TclError:
@@ -317,16 +595,12 @@ def run_splash() -> int:
     except tk.TclError:
         pass
 
-    # Logo fills the circle; circular window clips the square image.
     canvas.create_image(size // 2, size // 2, image=logo, anchor="center")
-
-    # Black "launching..." with animated dots, centered on the logo.
     ink = "#000000"
     ink_mid = "#3a3a3a"
     ink_dim = "#6a6a6a"
     cx = size // 2
     cy = size // 2
-    # +30% vs prior 12 / 16 pt caption.
     label = canvas.create_text(
         cx,
         cy,
@@ -335,7 +609,6 @@ def run_splash() -> int:
         font=("Segoe UI", 16, "bold"),
         anchor="e",
     )
-    # Nudge the word+dots so the whole caption is centered as a group.
     bbox = canvas.bbox(label)
     word_w = (bbox[2] - bbox[0]) if bbox else 90
     dots_w = 36
@@ -365,6 +638,7 @@ def run_splash() -> int:
     _apply_circle_region(root, size)
 
     phase = {"i": 0}
+    started = time.monotonic()
 
     def _tick_dots() -> None:
         if not root.winfo_exists():
@@ -389,12 +663,10 @@ def run_splash() -> int:
                 root.destroy()
             except tk.TclError:
                 pass
-            clear_pid()
             return
         root.after(POLL_MS, _poll)
 
     def _on_close() -> None:
-        clear_pid()
         try:
             root.destroy()
         except tk.TclError:
@@ -406,8 +678,36 @@ def run_splash() -> int:
     try:
         root.mainloop()
     finally:
-        clear_pid()
+        pass
     return 0
+
+
+def run_splash() -> int:
+    # Desk already signaled ready, or a prior close left the stop flag - do not paint.
+    if stop_path().is_file():
+        return 0
+    if already_running():
+        return 0
+
+    logo_path = _logo_path()
+    if logo_path is None:
+        return 0
+
+    mark_running()
+    if stop_path().is_file():
+        clear_pid()
+        return 0
+
+    try:
+        if sys.platform == "win32":
+            try:
+                if _run_splash_layered_win32(logo_path):
+                    return 0
+            except Exception:  # noqa: BLE001 - never block desk launch
+                pass
+        return _run_splash_tk(logo_path)
+    finally:
+        clear_pid()
 
 
 def main(argv: list[str] | None = None) -> int:

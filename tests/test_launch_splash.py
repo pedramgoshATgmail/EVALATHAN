@@ -37,17 +37,22 @@ def test_splash_script_points_at_ui_file() -> None:
     assert (path.parent / "assets" / "fuss-splash.png").is_file()
 
 
-def test_keyed_splash_png_uses_transparent_key(tmp_path: Path, monkeypatch) -> None:
-    """RGBA transparency must bake to the window key, not black."""
+def _load_ui_splash_module():
     import importlib.util
-
-    from PIL import Image
 
     ui_script = splash.splash_script()
     spec = importlib.util.spec_from_file_location("launch_splash_ui", ui_script)
     assert spec and spec.loader
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
+    return mod, ui_script
+
+
+def test_keyed_splash_png_uses_transparent_key(tmp_path: Path, monkeypatch) -> None:
+    """RGBA transparency must bake to the window key, not black."""
+    from PIL import Image
+
+    mod, ui_script = _load_ui_splash_module()
     monkeypatch.setenv("EVALATHAN_STATE_DIR", str(tmp_path))
 
     src = ui_script.parent / "assets" / "fuss-splash.png"
@@ -59,3 +64,14 @@ def test_keyed_splash_png_uses_transparent_key(tmp_path: Path, monkeypatch) -> N
     # Interior stays warm orange, not black.
     center = im.getpixel((110, 110))
     assert center[0] > 150 and center[1] > 80
+
+
+def test_build_base_rgba_has_transparent_corners() -> None:
+    """Layered splash matte must be clear outside the circle (no black fringe)."""
+    mod, ui_script = _load_ui_splash_module()
+    src = ui_script.parent / "assets" / "fuss-splash.png"
+    im = mod._build_base_rgba(src, 220)
+    assert im.mode == "RGBA"
+    assert im.getpixel((0, 0))[3] == 0
+    assert im.getpixel((110, 110))[3] > 200
+    assert im.getpixel((110, 110))[0] > 150
