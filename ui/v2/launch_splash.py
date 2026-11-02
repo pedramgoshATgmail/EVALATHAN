@@ -255,7 +255,7 @@ def _caption_fonts(supersample: int = 1):
     ss = max(1, int(supersample))
     # +4 pt vs original 21/28 (was +3); prefer Bold so the caption reads thicker on Win+Mac.
     word_pt = 25 * ss
-    dots_pt = 32 * ss
+    dots_pt = 42 * ss  # larger chase dots so the pulse reads clearly
     candidates = (
         "segoeuib.ttf",  # Segoe UI Bold (Windows)
         "SegoeUI-Bold.ttf",
@@ -283,24 +283,26 @@ def _caption_fonts(supersample: int = 1):
 
 
 def _caption_dot_rgba(kind: str) -> tuple[int, int, int, int]:
-    """Dark-green chase: active / mid / dim (same beat as the old black/grey dots)."""
+    """Dark-green chase: active / mid / dim (high contrast, like old black/grey dots)."""
     if kind == "active":
-        return (11, 92, 46, 255)  # #0B5C2E
+        return (8, 110, 48, 255)  # strong dark green
     if kind == "mid":
-        return (61, 138, 92, 255)  # #3D8A5C
-    return (122, 173, 142, 255)  # #7AAD8E
+        return (70, 150, 100, 255)
+    return (160, 195, 170, 255)  # pale - clearly "off"
 
 
 def _draw_caption(base, phase: int, supersample: int = 1):
     """Return a copy of base with centered dark-green 'launching' + three pulsing dots."""
-    from PIL import ImageDraw
+    from PIL import Image, ImageDraw
 
     frame = base.copy()
-    draw = ImageDraw.Draw(frame)
     size = frame.size[0]
     ss = max(1, int(supersample))
     font, font_dots = _caption_fonts(ss)
 
+    # Own layer so green AA stays crisp on the orange disk.
+    overlay = Image.new("RGBA", frame.size, (0, 0, 0, 0))
+    draw = ImageDraw.Draw(overlay)
     word = "launching"
     try:
         wb = draw.textbbox((0, 0), word, font=font)
@@ -308,8 +310,8 @@ def _draw_caption(base, phase: int, supersample: int = 1):
         word_h = wb[3] - wb[1]
     except Exception:  # noqa: BLE001
         word_w, word_h = 110 * ss, 20 * ss
-    dots_w = 48 * ss
-    total = word_w + 6 * ss + dots_w
+    dots_w = 56 * ss
+    total = word_w + 8 * ss + dots_w
     x0 = (size - total) // 2
     y = size // 2 - word_h // 2 - 2 * ss
     draw.text((x0, y), word, fill=_caption_dot_rgba("active"), font=font)
@@ -322,12 +324,12 @@ def _draw_caption(base, phase: int, supersample: int = 1):
         else:
             color = _caption_dot_rgba("dim")
         draw.text(
-            (x0 + word_w + 6 * ss + i * 14 * ss, y - 4 * ss),
+            (x0 + word_w + 8 * ss + i * 16 * ss, y - 6 * ss),
             ".",
             fill=color,
             font=font_dots,
         )
-    return frame
+    return Image.alpha_composite(frame, overlay)
 
 def _rgba_to_premultiplied_bgra(im) -> bytes:
     pixels = bytearray()
@@ -347,17 +349,17 @@ def _rgba_to_premultiplied_bgra(im) -> bytes:
 
 
 def _load_layered_frames(logo_path: Path, size: int) -> list[bytes] | None:
-    """Prefer prebaked BGRA; else build with Pillow when available."""
-    prebaked = _prebaked_bgra_frames(size)
-    if prebaked is not None:
-        return prebaked
+    """Build caption frames with Pillow when possible so splash text always matches code.
+
+    Prebaked BGRA is only a no-Pillow fallback - otherwise installs keep showing stale dots.
+    """
     try:
         base = _build_base_rgba(logo_path, size, supersample=8)
         return [
             _rgba_to_premultiplied_bgra(_draw_caption(base, phase)) for phase in range(3)
         ]
     except Exception:  # noqa: BLE001
-        return None
+        return _prebaked_bgra_frames(size)
 
 
 def _run_splash_layered_win32(logo_path: Path) -> bool:
@@ -965,7 +967,7 @@ def _run_splash_tk(logo_path: Path) -> int:
                 cy,
                 text=".",
                 fill=ink_dim,
-                font=("Segoe UI", 25, "bold"),
+                font=("Segoe UI", 32, "bold"),
                 anchor="w",
             )
         )
