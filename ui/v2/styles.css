@@ -900,6 +900,32 @@ html {
   font-family: var(--font);
   font-size: 0.92rem;
   line-height: 1.55;
+  /* Desk WebView often blocks selection unless the sheet opts in explicitly. */
+  user-select: text;
+  -webkit-user-select: text;
+  cursor: text;
+}
+.memo-sheet button,
+.memo-sheet .memo-dock,
+.memo-sheet .nell-gate,
+.memo-sheet .nell-status,
+.memo-sheet .nell-score {
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+}
+.memo-sheet a {
+  cursor: pointer;
+  -webkit-user-select: text;
+  user-select: text;
+}
+.memo-sheet a.memo-file-link {
+  color: #2f6fbf;
+  text-decoration: underline;
+  word-break: break-all;
+}
+.memo-sheet a.memo-file-link:hover {
+  color: #1e5aa8;
 }
 .memo-process-label {
   margin: 0.35rem 0 0.85rem;

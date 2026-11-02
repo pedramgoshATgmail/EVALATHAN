@@ -104,6 +104,24 @@
     { id: "prdbench", phrases: ["PRDBench"] },
     { id: "wildbench", phrases: ["WildBench"] },
     { id: "ragas", phrases: ["Ragas"] },
+    /* Standards / metrics → glossary rooms where they sit (Archly, Codely, Levi, …). */
+    { id: "archly", phrases: [
+      "ISO/IEC/IEEE 42030",
+      "ISO/IEC 25010",
+      "NASA Technology Readiness Level",
+      "NASA TRL",
+      "SEI ATAM",
+      "AWS Well-Architected",
+      "ATAM",
+    ] },
+    { id: "codely", phrases: ["ISO/IEC 5055"] },
+    { id: "levi", phrases: ["ISO/IEC 42001"] },
+    { id: "4uvals", phrases: ["NASA-TLX", "NASA TLX", "IEEE 7010-2020", "IEEE 7010"] },
+    { id: "devly", phrases: ["SFIA"] },
+    { id: "runly", phrases: ["SPEC CPU", "SPEC2017", "pyperformance"] },
+    { id: "prd", phrases: ["ISO/IEC/IEEE 29148", "IEEE 830", "PRD"] },
+    { id: "iso-23247", phrases: ["ISO/AWI 23247-8", "ISO 23247"] },
+    { id: "vvuq", phrases: ["VVUQ"] },
   ];
   function escapeRegExp(s) {
     return String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -112,11 +130,22 @@
     const rows = [];
     GLOSS_AUTO_RAW.forEach(function (row) {
       (row.phrases || []).forEach(function (phrase) {
+        /* Standards with '/' cannot use plain \b edges; use lookaround-ish class edges. */
+        const edged =
+          /[A-Za-z0-9]$/.test(phrase) && /^[A-Za-z0-9]/.test(phrase)
+            ? "\\b" + escapeRegExp(phrase) + "\\b"
+            : "(?<![A-Za-z0-9])" + escapeRegExp(phrase) + "(?![A-Za-z0-9])";
+        let re;
+        try {
+          re = new RegExp(edged, "g");
+        } catch (err) {
+          re = new RegExp(escapeRegExp(phrase), "g");
+        }
         rows.push({
           id: row.id,
           title: phrase + " - glossary",
           phrase: phrase,
-          re: new RegExp("\\b" + escapeRegExp(phrase) + "\\b", "g"),
+          re: re,
         });
       });
     });
@@ -125,6 +154,75 @@
     });
     return rows;
   })();
+
+  const FILE_PATH_RE =
+    /(?:[A-Za-z]:[\\/])?(?:[\w.-]+[\\/])*[\w.-]+\.(?:py|js|ts|tsx|jsx|json|jsonl|md|toml|yml|yaml|txt|html|css|go|rs|java|lock)\b/g;
+
+  function githubBlobBase(target) {
+    const t = String(target || "").trim();
+    const m = t.match(/github\.com[/:]([^/\s]+)\/([^/\s.#]+)/i);
+    if (!m) return "";
+    const owner = m[1];
+    const repo = m[2].replace(/\.git$/i, "");
+    return "https://github.com/" + owner + "/" + repo + "/blob/HEAD/";
+  }
+
+  function memoFileHref(path, run) {
+    let p = String(path || "").replace(/\\/g, "/").trim();
+    if (!p) return "";
+    p = p.replace(/^\.\//, "");
+    const folder = run && run.folder ? String(run.folder).replace(/\\/g, "/").replace(/\/$/, "") : "";
+    if (folder && p.toLowerCase().indexOf(folder.toLowerCase() + "/") === 0) {
+      p = p.slice(folder.length + 1);
+    }
+    const gh = githubBlobBase(run && (run.target || ""));
+    if (gh) return gh + p.replace(/^\/+/, "");
+    if (folder) {
+      const abs = /^(?:[A-Za-z]:\/|\/)/.test(p) ? p : folder + "/" + p;
+      return "file:///" + abs.replace(/^\/+/, "");
+    }
+    return "";
+  }
+
+  function linkFilePaths(escapedText, run) {
+    let out = String(escapedText || "");
+    const parts = out.split(/(<[^>]+>)/g);
+    let inAnchor = false;
+    for (let i = 0; i < parts.length; i += 1) {
+      const part = parts[i];
+      if (!part) continue;
+      if (part.charAt(0) === "<") {
+        const lower = part.toLowerCase();
+        if (lower.indexOf("<a ") === 0 || lower === "<a>") inAnchor = true;
+        if (lower.indexOf("</a>") === 0) inAnchor = false;
+        continue;
+      }
+      if (inAnchor) continue;
+      parts[i] = part.replace(FILE_PATH_RE, function (matched) {
+        const href = memoFileHref(matched, run);
+        if (!href) {
+          return (
+            '<span class="memo-file-link" title="' +
+            escapeHtml(matched) +
+            '">' +
+            matched +
+            "</span>"
+          );
+        }
+        return (
+          '<a class="memo-file-link" href="' +
+          escapeHtml(href) +
+          '" target="_blank" rel="noopener noreferrer" title="' +
+          escapeHtml(matched) +
+          '">' +
+          matched +
+          "</a>"
+        );
+      });
+    }
+    return parts.join("");
+  }
+
   function linkGlossaryTerms(escapedText) {
     let out = String(escapedText || "");
     /* Skip spans already inside an <a>...</a> by splitting on tags. */
@@ -157,6 +255,10 @@
       parts[i] = text;
     }
     return parts.join("");
+  }
+
+  function linkMemoProse(escapedText, run) {
+    return linkFilePaths(linkGlossaryTerms(escapedText), run || null);
   }
   const app = document.getElementById("app-screen");
 
@@ -1460,7 +1562,26 @@
     };
   }
 
-  function renderNellEvidence(items) {
+  function fileAnchorHtml(path, run, label) {
+    const shown = label != null ? label : shortPath(path);
+    const href = memoFileHref(path, run);
+    const safeLabel = escapeHtml(shown);
+    const safePath = escapeHtml(path);
+    if (!href) {
+      return '<code class="memo-file-link" title="' + safePath + '">' + safeLabel + "</code>";
+    }
+    return (
+      '<a class="memo-file-link" href="' +
+      escapeHtml(href) +
+      '" target="_blank" rel="noopener noreferrer" title="' +
+      safePath +
+      '"><code>' +
+      safeLabel +
+      "</code></a>"
+    );
+  }
+
+  function renderNellEvidence(items, run) {
     if (!items || !items.length) {
       return '<p class="nell-empty">No separate evidence files for this cell.</p>';
     }
@@ -1475,29 +1596,25 @@
             escapeHtml(it.title) +
             "</span> <code>" +
             escapeHtml(it.text) +
-            "</code> in <code title=\"" +
-            escapeHtml(it.path) +
-            "\">" +
-            escapeHtml(shortPath(it.path)) +
-            "</code></li>"
+            "</code> in " +
+            fileAnchorHtml(it.path, run) +
+            "</li>"
           );
         }
         if (it.path) {
           return (
             "<li><span class=\"nell-ev-title\">" +
             escapeHtml(it.title) +
-            "</span> <code title=\"" +
-            escapeHtml(it.path) +
-            "\">" +
-            escapeHtml(shortPath(it.path)) +
-            "</code></li>"
+            "</span> " +
+            fileAnchorHtml(it.path, run) +
+            "</li>"
           );
         }
         return (
           "<li><span class=\"nell-ev-title\">" +
           escapeHtml(it.title) +
           "</span> " +
-          escapeHtml(it.text || "") +
+          linkMemoProse(escapeHtml(it.text || ""), run) +
           "</li>"
         );
       })
@@ -1519,7 +1636,7 @@
     return parts.slice(0, 1).join("/") + "/…/" + parts.slice(-2).join("/");
   }
 
-  function writeNellCard(c) {
+  function writeNellCard(c, run) {
     const n = nellRewriteCell(c);
     const gateBit = n.gate ? '<span class="nell-gate">' + escapeHtml(n.gate) + "</span>" : "";
     const scoreBit =
@@ -1541,13 +1658,13 @@
       scoreBit +
       "</header>" +
       (n.question
-        ? '<p class="nell-question">' + linkGlossaryTerms(escapeHtml(n.question)) + "</p>"
+        ? '<p class="nell-question">' + linkMemoProse(escapeHtml(n.question), run) + "</p>"
         : "") +
       '<p class="nell-blurb">' +
-      linkGlossaryTerms(escapeHtml(n.blurb)) +
+      linkMemoProse(escapeHtml(n.blurb), run) +
       "</p>" +
       '<h4 class="nell-ev-heading">Evidence</h4>' +
-      renderNellEvidence(n.evidence) +
+      renderNellEvidence(n.evidence, run) +
       "</article>"
     );
   }
@@ -1707,17 +1824,21 @@
       "</span></div>" +
       deltaHtml +
       '<div class="memo-section"><h3>What this means</h3><p>' +
-      linkGlossaryTerms(means) +
+      linkMemoProse(means, run) +
       "</p></div>" +
       '<div class="memo-section"><h3>Top gates</h3><p>' +
-      linkGlossaryTerms(escapeHtml(topGates)) +
+      linkMemoProse(escapeHtml(topGates), run) +
       "</p></div>" +
       '<p class="complete-intel-line"><button type="button" class="complete-intel-link memo-open-deep">Full details</button></p>'
     );
   }
 
   function writeDeepMemo(run) {
-    const cards = (run.cells || []).map(writeNellCard).join("");
+    const cards = (run.cells || [])
+      .map(function (c) {
+        return writeNellCard(c, run);
+      })
+      .join("");
     return (
       '<button type="button" class="memo-back memo-back-simple">← Back to brief</button>' +
       '<p class="memo-kicker">Full details - Nell rewrite: titled cards, short blurbs, evidence listed (not path walls). Glossary links match the left rail.</p>' +
@@ -2273,6 +2394,23 @@
         openExternal(el.getAttribute("data-gloss-href") || GLOSS_MD);
       };
     });
+    /* Glossary + file links: open outside the desk WebView (Mac/Win). */
+    host.root.querySelectorAll(".memo-sheet a[href]").forEach(function (el) {
+      if (el.getAttribute("data-link-wired")) return;
+      el.setAttribute("data-link-wired", "1");
+      el.addEventListener("click", function (ev) {
+        const href = String(el.getAttribute("href") || "").trim();
+        if (!href || href.charAt(0) === "#") return;
+        if (
+          href.indexOf("http://") === 0 ||
+          href.indexOf("https://") === 0 ||
+          href.indexOf("file:") === 0
+        ) {
+          ev.preventDefault();
+          openExternal(href);
+        }
+      });
+    });
   }
 
   function isRunSaved(run) {
@@ -2537,7 +2675,12 @@
       maximized: false,
       restoreRect: null,
     };
-    root.addEventListener("mousedown", function () {
+    root.addEventListener("mousedown", function (e) {
+      /* Keep text selection in the sheet; only refocus the window chrome. */
+      if (e.target && e.target.closest && e.target.closest(".memo-sheet")) {
+        focusMemoHost(host);
+        return;
+      }
       focusMemoHost(host);
     });
     root.querySelector(".memo-close").addEventListener("click", function () {

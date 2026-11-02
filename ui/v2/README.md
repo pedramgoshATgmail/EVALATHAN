@@ -21,7 +21,7 @@ Hard-refresh (Ctrl+Shift+R) after pulls.
 
 ## Evaluate → memo
 
-**Evaluate** opens a processing popup (fading dots + per-evaler blurbs), then the same window becomes one consolidated brief memo (**What this means**, **Top gates**, then **Full details**). **Full details** keeps the per-evaler read (cards, evidence, glossary links). **Download** (orange) writes a PDF straight to your Downloads folder (no print dialog; Mac/Windows). **Save** (green) writes **latest run** and appends **saved runs** in localStorage (compares the same target against the prior saved twin).
+**Evaluate** opens a processing popup (fading dots + per-evaler blurbs), then the same window becomes one consolidated brief memo (**What this means**, **Top gates**, then **Full details**). Memo text is selectable for copy/paste. Prose auto-links glossary rooms (incl. ISO/IEEE/NASA/SFIA metrics) and file paths (`.py`, `.json`, …) to GitHub or local files. **Full details** keeps the per-evaler read (cards, evidence, glossary links). **Download** (orange) writes a PDF straight to your Downloads folder (no print dialog; Mac/Windows). **Save** (green) writes **latest run** and appends **saved runs** in localStorage (compares the same target against the prior saved twin).
 
 ## Desktop icon
 
