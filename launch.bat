@@ -2,13 +2,16 @@
 setlocal EnableExtensions
 cd /d "%~dp0"
 
-REM Prefetch only - open_desk shows an Update now / Not now popup when behind main.
+REM Always hard-sync to published main so Windows cannot stay on a stale desk.
 if exist ".git\" (
   where git >nul 2>&1
   if not errorlevel 1 (
-    echo Checking Evalathan GitHub main...
+    echo Syncing Evalathan to published main...
     git fetch origin
-    if errorlevel 1 (
+    if not errorlevel 1 (
+      git checkout main
+      git reset --hard origin/main
+    ) else (
       echo git fetch failed. Continuing with the files already on disk.
     )
   )
@@ -89,23 +92,6 @@ echo Starting Evalathan v0.3.2 local desk window...
 echo Look for the Evalathan icon on your Desktop ^(and Desktop\Evalathan\^).
 echo Keep this console open while the desk is running, or use the Desktop icon next time.
 echo.
-REM Visible update ask/apply, then desk (skip second ask inside open_desk).
-if exist "%~dp0ui\v2\launch_splash.py" "%VENVPY%" "%~dp0ui\v2\launch_splash.py" --close >nul 2>&1
-"%VENVPY%" -c "from evalathan.desk_update import sync_or_prompt; raise SystemExit(sync_or_prompt())"
-set "UP=%ERRORLEVEL%"
-if "%UP%"=="42" exit /b 0
-if not "%UP%"=="0" (
-  if exist ".git\" (
-    git checkout main >nul 2>&1
-    git reset --hard origin/main >nul 2>&1
-    "%VENVPY%" -m pip install -e "%~dp0." >nul 2>&1
-  )
-)
-if exist "%~dp0ui\v2\launch_splash.py" (
-  if exist "%~dp0.venv\Scripts\pythonw.exe" (
-    start "" "%~dp0.venv\Scripts\pythonw.exe" "%~dp0ui\v2\launch_splash.py"
-  )
-)
 set "EVALATHAN_SKIP_UPDATE=1"
 "%VENVPY%" -c "from evalathan.webdesk import open_desk; raise SystemExit(open_desk())"
 set "EC=%ERRORLEVEL%"

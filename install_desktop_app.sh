@@ -111,23 +111,15 @@ stop_splash() {
 # Fast path when the venv + desk files already exist (daily Desktop click).
 if [ -x "\$REPO/.venv/bin/python" ] && [ -f "\$REPO/ui/v2/index.html" ]; then
   start_splash
+  # Always hard-sync to published main (logos / desk fixes cannot stay stuck on Mac).
   if [ -d "\$REPO/.git" ] && command -v git >/dev/null 2>&1; then
+    echo "Syncing Evalathan to published main..."
     git -C "\$REPO" fetch origin >/dev/null 2>&1 || true
-  fi
-  "\$REPO/.venv/bin/python" -m pip install -e "\$REPO" >/dev/null 2>&1 || true
-  # Circle first, then update ask/apply (branded or osascript). Hard-reset if Python fails.
-  start_splash
-  "\$REPO/.venv/bin/python" -c "from evalathan.desk_update import sync_or_prompt; raise SystemExit(sync_or_prompt())"
-  UP=\$?
-  if [ "\$UP" = "42" ]; then
-    exit 0
-  fi
-  if [ "\$UP" -ne 0 ]; then
-    echo "Python update step failed - forcing published main..."
     git -C "\$REPO" checkout main >/dev/null 2>&1 || true
     git -C "\$REPO" reset --hard origin/main >/dev/null 2>&1 || true
-    "\$REPO/.venv/bin/python" -m pip install -e "\$REPO" >/dev/null 2>&1 || true
+    start_splash
   fi
+  "\$REPO/.venv/bin/python" -m pip install -e "\$REPO" >/dev/null 2>&1 || true
   start_splash
   export EVALATHAN_SKIP_UPDATE=1
   echo "Opening desk via .venv"

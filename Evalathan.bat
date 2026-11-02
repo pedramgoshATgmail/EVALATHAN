@@ -1,15 +1,22 @@
 @echo off
-REM Desktop icon entry: FUSS splash, update prompt/sync to GitHub main, then desk.
+REM Desktop icon: splash, hard-sync to GitHub main, then local desk.
 setlocal EnableExtensions
 cd /d "%~dp0"
 
 call :start_splash
 
+REM Always take published main so Mac/Windows cannot stay on a stale desk (e.g. no-logo proof).
 if exist ".git\" (
   where git >nul 2>&1
   if not errorlevel 1 (
-    echo Checking Evalathan GitHub main...
-    git fetch origin >nul 2>&1
+    echo Syncing Evalathan to published main...
+    git fetch origin
+    if not errorlevel 1 (
+      git checkout main
+      git reset --hard origin/main
+    ) else (
+      echo git fetch failed. Continuing with the files already on disk.
+    )
   )
 )
 
@@ -26,27 +33,9 @@ if not exist ".venv\Scripts\python.exe" (
   exit /b %ERRORLEVEL%
 )
 
+call :start_splash
 set "VENVPY=%~dp0.venv\Scripts\python.exe"
 "%VENVPY%" -m pip install -e "%~dp0." >nul 2>&1
-
-REM Ask / apply published main before the desk opens (Windows-visible native box).
-call :stop_splash
-"%VENVPY%" -c "from evalathan.desk_update import sync_or_prompt; raise SystemExit(sync_or_prompt())"
-set "UP=%ERRORLEVEL%"
-if "%UP%"=="42" (
-  REM Update now already spawned the desk.
-  exit /b 0
-)
-if not "%UP%"=="0" (
-  echo Python update step failed - forcing published main...
-  if exist ".git\" (
-    git checkout main >nul 2>&1
-    git reset --hard origin/main >nul 2>&1
-    "%VENVPY%" -m pip install -e "%~dp0." >nul 2>&1
-  )
-)
-
-call :start_splash
 set "EVALATHAN_SKIP_UPDATE=1"
 echo Opening Evalathan local desk...
 "%VENVPY%" -c "from evalathan.webdesk import open_desk; raise SystemExit(open_desk())"
