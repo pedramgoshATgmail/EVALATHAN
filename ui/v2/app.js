@@ -199,9 +199,9 @@
   }
 
   function formatBlurbs(text, splash) {
-    const lines = String(text).split("\n");
+    const lines = String(text).split("\n").filter((l) => l.length);
     return lines
-      .map((line) => {
+      .map((line, i) => {
         let html = escapeHtml(line).replace(
           /(Hydra engine|Dehydrus engine|Benchrex engine|Biasrex engine)/g,
           '<span class="blurb-engine">$1</span>'
@@ -212,9 +212,13 @@
         ) {
           html = '<span class="blurb-dim">' + html + "</span>";
         }
-        return html;
+        const gap =
+          splash && i === 0
+            ? '<span class="blurb-gap" aria-hidden="true"></span>'
+            : "";
+        return '<span class="blurb-line">' + html + "</span>" + gap;
       })
-      .join("<br>");
+      .join("");
   }
 
   function artSrc(view) {

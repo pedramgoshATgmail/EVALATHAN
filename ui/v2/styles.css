@@ -180,7 +180,12 @@ button { cursor: pointer; border: 0; background: none; }
 }
 .corner-toggle:hover .corner-label { filter: brightness(1.15); }
 
-/* Splash center stack - brand / equal mid / foot (matches UI-X ref) */
+/*
+  Splash center - measured from UI-X ref (960x540):
+  PLG ~11%, logo 16.7-32.8% (h~16%), title ~36%, rule ~40%,
+  stats ~45%, engines ~53-62%, pill ~67-73%, github ~79%.
+  Compact stack - do NOT flex-stretch the mid band.
+*/
 .page-stage {
   width: 100%;
   max-width: min(640px, 92vw);
@@ -188,32 +193,43 @@ button { cursor: pointer; border: 0; background: none; }
   min-height: calc(100vh - 5.5rem);
   display: flex;
   flex-direction: column;
+  align-items: center;
   text-align: center;
-  padding-bottom: 1.5rem;
+  padding-bottom: 2rem;
+  box-sizing: border-box;
+}
+.page-stage.is-splash {
+  justify-content: flex-start;
+  padding-top: 8vh;
 }
 .page-stage.is-splash .splash-brand {
   flex: 0 0 auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.35rem;
-  padding: 0.15rem 0.5rem 0;
+  gap: 0;
 }
 .page-stage.is-splash .splash-mid {
-  flex: 1 1 auto;
-  min-height: 4.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  flex: 0 0 auto;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  /* ref: ~5% gap blurbs→pill, ~6% pill→github */
+  padding: 5.2vh 0 4.2vh;
 }
 .page-stage.is-splash .splash-foot {
   flex: 0 0 auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.55rem;
-  padding-top: 0.15rem;
+  gap: 1.4vh;
+  padding-bottom: 3vh;
+}
+.page-stage:not(.is-splash) {
+  justify-content: stretch;
+  padding-top: 0.5rem;
 }
 .page-stage:not(.is-splash) .splash-brand {
   flex: 1 1 auto;
@@ -234,12 +250,14 @@ button { cursor: pointer; border: 0; background: none; }
 
 .splash-art-slot {
   --art-scale: 1;
-  width: calc(min(198px, 42vw) * var(--art-scale));
-  height: calc(min(198px, 42vw) * var(--art-scale));
+  width: calc(16.3vh * var(--art-scale));
+  height: calc(16.3vh * var(--art-scale));
+  max-width: min(220px, 42vw);
+  max-height: min(220px, 42vw);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0.15rem 0 0.1rem;
+  margin: 2.2vh 0 1.4vh;
 }
 .splash-art-slot.art-evalathan { --art-scale: 1; }
 .splash-art-slot.art-hydra { --art-scale: 1.1342; }
@@ -256,10 +274,10 @@ button { cursor: pointer; border: 0; background: none; }
   visibility: hidden;
 }
 .plg-tag {
-  margin: 0 0 0.15rem;
-  max-width: 36rem;
+  margin: 0;
+  max-width: 38rem;
   font-family: var(--mono);
-  font-size: 0.78rem;
+  font-size: clamp(0.72rem, 1.35vh, 0.88rem);
   line-height: 1.35;
   text-align: center;
 }
@@ -273,16 +291,22 @@ button { cursor: pointer; border: 0; background: none; }
 }
 .plg-tag.is-hidden { display: none; }
 .splash-title {
-  margin: 0.1rem 0 0;
+  margin: 0;
   padding: 0;
   font-family: var(--font);
   font-weight: 400;
-  font-size: clamp(1.7rem, 4.6vw, 2.35rem);
+  font-size: clamp(1.65rem, 3.6vh, 2.4rem);
   letter-spacing: 0.38em;
   text-indent: 0.38em;
   color: var(--text);
   text-transform: uppercase;
   line-height: 1.05;
+}
+.page-stage.is-splash .splash-rule {
+  width: min(460px, 78vw);
+  margin: 2vh 0 3.2vh;
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.72);
 }
 .splash-rule {
   width: min(460px, 78vw);
@@ -290,34 +314,45 @@ button { cursor: pointer; border: 0; background: none; }
   border: 0;
   border-top: 1px solid rgba(255, 255, 255, 0.55);
 }
-[data-theme="white"] .splash-rule {
+[data-theme="white"] .splash-rule,
+[data-theme="white"] .page-stage.is-splash .splash-rule {
   border-top-color: rgba(0, 0, 0, 0.28);
 }
 .splash-rule-foot {
   width: min(460px, 78vw);
   margin: 0;
-  opacity: 0.7;
+  opacity: 0.65;
 }
 .blurbs {
-  max-width: 38rem;
-  margin: 0.15rem 0 0;
+  max-width: 40rem;
+  margin: 0;
   font-family: var(--mono);
-  font-size: 0.72rem;
-  line-height: 1.5;
+  font-size: clamp(0.7rem, 1.35vh, 0.84rem);
+  line-height: 1.7;
   color: var(--text);
-  white-space: pre-line;
   text-align: center;
+}
+.blurbs .blurb-line {
+  display: block;
+  padding: 0.25vh 0;
+}
+.blurbs .blurb-gap {
+  display: block;
+  height: 3.8vh; /* ref gap between stats line and engine lines */
 }
 .blurbs .blurb-engine {
   color: var(--accent);
   font-weight: 500;
 }
 .blurbs .blurb-dim {
-  color: var(--text-muted);
+  color: #8a8a8a;
 }
 .blurbs .blurb-dim .blurb-engine {
   color: var(--accent);
-  opacity: 0.45;
+  opacity: 0.42;
+}
+[data-theme="white"] .blurbs .blurb-dim {
+  color: #9a9a9a;
 }
 
 .slotbox {
@@ -332,7 +367,7 @@ button { cursor: pointer; border: 0; background: none; }
   display: block;
   margin: 0;
   font-family: var(--mono);
-  font-size: 0.78rem;
+  font-size: clamp(0.72rem, 1.35vh, 0.88rem);
   color: var(--link-blue);
   text-decoration: none;
   text-align: center;
