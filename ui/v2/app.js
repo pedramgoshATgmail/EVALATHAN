@@ -3644,26 +3644,39 @@
       }
       if (e.key === "Escape" && els.layer && !els.layer.hidden) fussClosePanel();
     }, true);
-    /* Desk sessions do not resume a sitting - closing the GUI kills the timer. */
+    /* Kill timers on desk close without blocking the WebView teardown.
+       Do not call evaluate_js from Python closing - that freezes pywebview. */
     function fussGuiShutdown() {
       try {
-        fussHideBreak();
-      } catch (err) {}
-      try {
-        fussClearTickers();
-      } catch (err) {}
-      try {
-        fussStopTimer({ clearAck: false });
-      } catch (err) {}
-      try {
-        const layer = fussEls().layer;
-        if (layer) layer.hidden = true;
+        if (fussTick) {
+          window.clearInterval(fussTick);
+          fussTick = null;
+        }
+        if (fussCountTimer) {
+          window.clearTimeout(fussCountTimer);
+          fussCountTimer = null;
+        }
+        if (fussPanelTick) {
+          window.clearInterval(fussPanelTick);
+          fussPanelTick = null;
+        }
+        fussCounting = false;
+        const prev = fussRead();
+        localStorage.setItem(
+          FUSS_KEY,
+          JSON.stringify({
+            ack: !!prev.ack,
+            on: false,
+            minutes: fussClampMins(prev.minutes || FUSS_DEFAULT),
+            started: 0,
+            lastPing: 0,
+          })
+        );
       } catch (err) {}
     }
     window.__fussGuiShutdown = fussGuiShutdown;
-    ["pagehide", "beforeunload", "unload"].forEach(function (evName) {
-      window.addEventListener(evName, fussGuiShutdown);
-    });
+    window.addEventListener("pagehide", fussGuiShutdown);
+    /* Never resume a sitting from a prior desk session. */
     const boot = fussRead();
     if (boot.on || boot.started) {
       fussStopTimer({ clearAck: false });
