@@ -322,7 +322,7 @@
       cells,
     });
     savePast();
-    renderPast(document.getElementById("past-search").value);
+    renderPast();
     paintResults(cells, target);
     if (!app.classList.contains("runs-open")) toggleSide("runs");
   }
@@ -347,11 +347,6 @@
   document.getElementById("btn-eval").addEventListener("click", () => {
     mockEvaluate(document.getElementById("target-input").value.trim());
   });
-  document.getElementById("btn-new").addEventListener("click", () => {
-    document.getElementById("target-input").value = "";
-    document.getElementById("results").innerHTML = "";
-  });
-  document.getElementById("past-search").addEventListener("input", (e) => renderPast(e.target.value));
   document.getElementById("btn-home").addEventListener("click", () => {
     userPickedEngine = false;
     openId = null;
