@@ -2,32 +2,24 @@
 setlocal EnableExtensions
 cd /d "%~dp0"
 
-REM Update this clone from GitHub when possible (fixes stale desks when the folder already exists).
+REM Always take published main when this folder is a git clone (old Tk desk -> browser desk).
 if exist ".git\" (
   where git >nul 2>&1
   if not errorlevel 1 (
-    echo Checking GitHub for Evalathan updates...
+    echo Updating Evalathan to the published main tree...
+    for /f "delims=" %%H in ('git rev-parse HEAD') do set "BEFORE=%%H"
     git fetch origin
     if not errorlevel 1 (
-      for /f "delims=" %%H in ('git rev-parse HEAD') do set "BEFORE=%%H"
-      git merge --ff-only origin/main
-      if errorlevel 1 (
-        echo.
-        echo Fast-forward update failed. Local edits may block it.
-        echo To take the published desk exactly:
-        echo   git fetch origin
-        echo   git reset --hard origin/main
-        echo.
-      ) else (
-        for /f "delims=" %%H in ('git rev-parse HEAD') do set "AFTER=%%H"
-        if defined BEFORE if defined AFTER if /I not "%BEFORE%"=="%AFTER%" (
-          if not defined EVALATHAN_RELAUNCHED (
-            echo Update applied. Restarting launcher...
-            endlocal
-            set "EVALATHAN_RELAUNCHED=1"
-            "%~f0" %*
-            exit /b %ERRORLEVEL%
-          )
+      git checkout main
+      git reset --hard origin/main
+      for /f "delims=" %%H in ('git rev-parse HEAD') do set "AFTER=%%H"
+      if defined BEFORE if defined AFTER if /I not "%BEFORE%"=="%AFTER%" (
+        if not defined EVALATHAN_RELAUNCHED (
+          echo Update applied. Restarting launcher...
+          endlocal
+          set "EVALATHAN_RELAUNCHED=1"
+          "%~f0" %*
+          exit /b %ERRORLEVEL%
         )
       )
     ) else (
@@ -55,6 +47,7 @@ if not exist "ui\v2\index.html" (
   echo ui\v2 is missing. This checkout is too old or incomplete.
   echo From this folder run:
   echo   git fetch origin
+  echo   git checkout main
   echo   git reset --hard origin/main
   echo Then run launch.bat again. Expected: v0.3.1 browser desk.
   pause

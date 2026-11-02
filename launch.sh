@@ -2,25 +2,18 @@
 set -e
 cd "$(dirname "$0")"
 
-# Update this clone from GitHub when possible (fixes stale desks when the folder already exists).
+# Always take published main when this folder is a git clone (old Tk desk -> browser desk).
 if [ -d .git ] && command -v git >/dev/null 2>&1; then
-  echo "Checking GitHub for Evalathan updates..."
+  echo "Updating Evalathan to the published main tree..."
+  BEFORE="$(git rev-parse HEAD)"
   if git fetch origin; then
-    BEFORE="$(git rev-parse HEAD)"
-    if git merge --ff-only origin/main; then
-      AFTER="$(git rev-parse HEAD)"
-      if [ "$BEFORE" != "$AFTER" ] && [ -z "${EVALATHAN_RELAUNCHED:-}" ]; then
-        echo "Update applied. Restarting launcher..."
-        export EVALATHAN_RELAUNCHED=1
-        exec bash "$0" "$@"
-      fi
-    else
-      echo
-      echo "Fast-forward update failed. Local edits may block it."
-      echo "To take the published desk exactly:"
-      echo "  git fetch origin"
-      echo "  git reset --hard origin/main"
-      echo
+    git checkout main
+    git reset --hard origin/main
+    AFTER="$(git rev-parse HEAD)"
+    if [ "$BEFORE" != "$AFTER" ] && [ -z "${EVALATHAN_RELAUNCHED:-}" ]; then
+      echo "Update applied. Restarting launcher..."
+      export EVALATHAN_RELAUNCHED=1
+      exec bash "$0" "$@"
     fi
   else
     echo "git fetch failed. Continuing with the files already on disk."
@@ -107,6 +100,7 @@ if [ ! -f ui/v2/index.html ]; then
   echo "ui/v2 is missing. This checkout is too old or incomplete."
   echo "From this folder run:"
   echo "  git fetch origin"
+  echo "  git checkout main"
   echo "  git reset --hard origin/main"
   echo "Then run bash launch.sh again. Expected: v0.3.1 browser desk."
   exit 1

@@ -25,9 +25,9 @@ Shipped Nov 19 2026. Same Hydra sixteen + Dehydrus eight. New default **browser 
 
 - `launch.bat` / `launch.sh` open `http://127.0.0.1:8787/` (`ui/v2` via `evalathan.webdesk`), not the old Tk HYDRA window.
 - Evaluate on the desk calls the real Hydra path: `prepare()` then `conduct()` for all sixteen evalers. Memo lines are cell summaries (measured / deferred / passed), not mock `/100` scores.
-- README install blocks **clone if missing, else `git fetch` + fast-forward** so `destination path already exists` is not a dead end.
-- Launchers also pull from GitHub on each start when the folder is a git clone, then re-enter once so a newly pulled launcher is the one that runs.
-- If fast-forward is blocked, docs show `git reset --hard origin/main` to take the published tree.
+- README CMD / PowerShell / Mac install blocks **clone if missing, else always `git fetch` + `git checkout main` + `git reset --hard origin/main`**, so an old Tk Hydra folder is replaced by the published browser desk every paste.
+- Launchers do the same hard-reset on each start when the folder is a git clone, then re-enter once so the newly pulled launcher runs.
+- `git reset --hard` discards local edits inside `evalathan-program` on purpose: published desk wins.
 - Dehydrus stays a second command: `evalathan dehydrus`.
 
 ## Next - v0.4

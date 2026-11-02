@@ -14,7 +14,7 @@ Evalathan grades a product across its life cycle. It is one [evaluation harness]
 
 **v0.3** shipped on Nov 1 2026 as a local runner. **v0.3.1** shipped on Nov 19 2026: the default Hydra desk is now the browser UI at `http://127.0.0.1:8787/` (`ui/v2`), wired to the same sixteen-evaler `prepare()` + `conduct()` path - not the old Tk window, and not mock scores. Hydra still runs those sixteen software checks. A second desk, [Dehydrus](GLOSSARY.md#user-content-dehydrus), runs eight more checks aimed at [physical world models](https://en.wikipedia.org/wiki/World_model_(artificial_intelligence)) and how they meet LLMs (Large Language Models). Those eight concrete rooms are [LuDaTs](GLOSSARY.md#user-content-ludats) (Limited-universe Data Test sets) methods. They sit under [PRETRUWs](GLOSSARY.md#user-content-pretruws) (PREdiscovery TRuncated-Universes and Worlds - the locked-past testing idea). LuDaTs does not award a state-of-the-art stamp yet. A deferred cell is not a "fail" and not a zero. Roadmap: [docs/BUILDLOG.md](docs/BUILDLOG.md).
 
-On Windows or Mac, use the blocks below. They **clone once**, or **update** if `evalathan-program` is already on disk (so you never hit `destination path already exists`). Then the launcher opens the **v0.3.1 browser desk** at `http://127.0.0.1:8787/` (not the old Tk HYDRA window). `launch.bat` / `launch.sh` also pull from GitHub each start when the folder is a git clone. On Windows you can also double-click `launch.bat` inside an already-updated folder. The Dehydrus window is still `evalathan dehydrus`.
+On Windows or Mac, paste **one** block below. Each block **clones** if `evalathan-program` is missing, or **always replaces** that folder with the published `main` tree if it already exists (old Tk Hydra GUI included). That is intentional: paste again later and you get the current browser desk, not a stale v0.3 window. Then the launcher opens **v0.3.1** at `http://127.0.0.1:8787/`. `launch.bat` / `launch.sh` also hard-reset to `origin/main` on each start when the folder is a git clone. The Dehydrus window is still `evalathan dehydrus`.
 
 <p><img src="assets/readme/windows.png" alt="Windows" height="32" align="absmiddle"> <img src="assets/readme/command-prompt.png" alt="Command Prompt" height="32" align="absmiddle"> <strong>Command Prompt (Windows):</strong></p>
 
@@ -22,7 +22,8 @@ On Windows or Mac, use the blocks below. They **clone once**, or **update** if `
 if exist evalathan-program (
   cd evalathan-program
   git fetch origin
-  git merge --ff-only origin/main
+  git checkout main
+  git reset --hard origin/main
 ) else (
   git clone https://github.com/pedramgoshATgmail/EVALATHAN.git evalathan-program
   cd evalathan-program
@@ -36,7 +37,8 @@ launch.bat
 if (Test-Path evalathan-program) {
   Set-Location evalathan-program
   git fetch origin
-  git merge --ff-only origin/main
+  git checkout main
+  git reset --hard origin/main
 } else {
   git clone https://github.com/pedramgoshATgmail/EVALATHAN.git evalathan-program
   Set-Location evalathan-program
@@ -50,7 +52,8 @@ if (Test-Path evalathan-program) {
 if [ -d evalathan-program ]; then
   cd evalathan-program
   git fetch origin
-  git merge --ff-only origin/main
+  git checkout main
+  git reset --hard origin/main
 else
   git clone https://github.com/pedramgoshATgmail/EVALATHAN.git evalathan-program
   cd evalathan-program
@@ -58,18 +61,9 @@ fi
 bash launch.sh
 ```
 
-If fast-forward is blocked (local edits), take the published tree exactly:
-
-```bat
-cd evalathan-program
-git fetch origin
-git reset --hard origin/main
-launch.bat
-```
-
 <p><img src="assets/readme/mac.png" alt="Mac" height="43" align="absmiddle"> <img src="assets/readme/python.png" alt="Python" height="36" align="absmiddle"> If that Mac Python has no window library, install Python from <a href="https://www.python.org/downloads/macos/">https://www.python.org/downloads/macos/</a> and run <code>bash launch.sh</code> again. That installer includes the window library.</p>
 
-`launch.bat` pulls updates when it can, installs into `.venv`, then starts the browser desk (`evalathan.webdesk`). Keep the console open while you use it.
+`launch.bat` resets this clone to published `main` when it can, installs into `.venv`, then starts the browser desk (`evalathan.webdesk`). Keep the console open while you use it. `git reset --hard` discards local edits inside `evalathan-program` so the published desk always wins.
 
 `cd evalathan-program` is required before `python -m pip install -e .`. The dot means the current folder. That folder must be the clone, because `pyproject.toml` is there. From a home folder, the dot is that home folder and pip stops. Python 3.10 or newer is required. Git is required to clone this program, and again when the desk evaluates a GitHub link (same download step as before). A folder already on the PC can be evaluated without cloning it.
 
