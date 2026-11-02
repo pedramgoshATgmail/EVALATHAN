@@ -219,22 +219,42 @@ def _open_desktop_window(url: str, title: str) -> bool:
         webview.settings["OPEN_EXTERNAL_LINKS_IN_BROWSER"] = True
     except Exception:  # noqa: BLE001
         pass
+    def _attach_fuss_shutdown(win) -> None:
+        """Stop FUSS timers when the desk window closes."""
+        if win is None:
+            return
+
+        def _on_closing() -> None:
+            try:
+                win.evaluate_js(
+                    "typeof window.__fussGuiShutdown==='function'&&window.__fussGuiShutdown()"
+                )
+            except Exception:  # noqa: BLE001
+                pass
+
+        try:
+            win.events.closing += _on_closing
+        except Exception:  # noqa: BLE001
+            pass
+
+    win = None
     try:
         if icon is not None:
-            webview.create_window(**kwargs, icon=str(icon))
+            win = webview.create_window(**kwargs, icon=str(icon))
         else:
-            webview.create_window(**kwargs)
+            win = webview.create_window(**kwargs)
     except TypeError:
         kwargs.pop("js_api", None)
         try:
             if icon is not None:
-                webview.create_window(**kwargs, icon=str(icon))
+                win = webview.create_window(**kwargs, icon=str(icon))
             else:
-                webview.create_window(**kwargs)
+                win = webview.create_window(**kwargs)
         except TypeError:
-            webview.create_window(
+            win = webview.create_window(
                 title=title, url=url, width=1440, height=900, min_size=(960, 640)
             )
+    _attach_fuss_shutdown(win)
     # private_mode=True (pywebview default on some builds) wipes localStorage on close.
     storage = state_dir() / "webview"
     storage.mkdir(parents=True, exist_ok=True)

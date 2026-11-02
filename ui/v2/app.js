@@ -3644,13 +3644,30 @@
       }
       if (e.key === "Escape" && els.layer && !els.layer.hidden) fussClosePanel();
     }, true);
+    /* Desk sessions do not resume a sitting - closing the GUI kills the timer. */
+    function fussGuiShutdown() {
+      try {
+        fussHideBreak();
+      } catch (err) {}
+      try {
+        fussClearTickers();
+      } catch (err) {}
+      try {
+        fussStopTimer({ clearAck: false });
+      } catch (err) {}
+      try {
+        const layer = fussEls().layer;
+        if (layer) layer.hidden = true;
+      } catch (err) {}
+    }
+    window.__fussGuiShutdown = fussGuiShutdown;
+    ["pagehide", "beforeunload", "unload"].forEach(function (evName) {
+      window.addEventListener(evName, fussGuiShutdown);
+    });
     const boot = fussRead();
-    if (boot.on && boot.started && fussRemainingMs(boot) > 0) {
-      fussArm();
-      fussSyncMascot(boot);
-    } else if (boot.on) {
+    if (boot.on || boot.started) {
       fussStopTimer({ clearAck: false });
-      fussShowBreak();
+      fussHideBreak();
     } else {
       fussSyncMascot(boot);
     }
