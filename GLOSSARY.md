@@ -82,7 +82,7 @@ The other conductor. Hydra watches software. Dehydrus watches locked physical wo
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-Benchrex (Benchmark + rex) is the routing conductor for deprecation / cite-fitness cells. He calls ten evalers and writes each report beside the others. He counts how many ran, how many passed their own gate, and how many are deferred. He does not turn a blank into a zero, and he does not fold the ten into one number. He is not a seventeenth Hydra score and not a ninth Dehydrus score. The criterion set follows <a href="https://arxiv.org/abs/2507.06434">Deprecating Benchmarks: Criteria and Framework</a> (Ayrton San Joaquin, Rokas Gipiškis, Leon Staufer, Ariel Gil; TAIG @ ICML 2025; arXiv:2507.06434; also <a href="https://aistandardslab.org/deprecating-benchmarks-criteria-and-framework/">AI Standards Lab</a>). Illustrations for Benchrex and his evalers ship when the card art lands; the desk names are live now.
+Benchrex (Benchmark + rex) is the routing conductor for deprecation / cite-fitness cells. He calls ten evalers and writes each report beside the others. He counts how many ran, how many passed their own gate, and how many are deferred. He does not turn a blank into a zero, and he does not fold the ten into one number. He is not a seventeenth Hydra score and not a ninth Dehydrus score. The criterion set follows <a href="https://arxiv.org/abs/2507.06434">Deprecating Benchmarks: Criteria and Framework</a> (Ayrton San Joaquin, Rokas Gipiškis, Leon Staufer, Ariel Gil; TAIG @ ICML 2025; arXiv:2507.06434; also <a href="https://aistandardslab.org/deprecating-benchmarks-criteria-and-framework/">AI Standards Lab</a>). Evaler card art is Ed Slop (Educational Slop). The desk names are live; live conduct() for Benchrex is still held.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -135,6 +135,8 @@ Primary references: <a href="https://en.wikipedia.org/wiki/Cognitive_bias">Wikip
 
 Checks whether a cited benchmark is saturated - scores near a ceiling so further gains lose discrimination. Looks for flat curves, near-perfect leaderboards, or explicit saturation notes. Pass = saturation evidence is documented or ruled out with a method note. Fail = cite claims SOTA without addressing saturation. Blank = no benchmark claim pack.
 
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/e8227dcda599d84d7dc0f582708367f253af9ccf/docs/glossary.html#xl-saturly"><img src="assets/glossary/cards/saturly-card.jpg" alt="Hmm... are these all the same difficulty? Can this harder one still tell them apart?" width="541"></a></p>
+
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
 Asks: is this bench still hard enough to tell models apart?
@@ -151,6 +153,8 @@ Maps paper criterion <b>Saturation</b>. Soft heuristic. A blank is not a fail an
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
 Checks contamination / leakage risk on a claimed score - train-test overlap, memorization signals, or missing holdout honesty. Pass = contamination stance is stated with evidence or a holdout method. Fail = public score presented as generalization with no leakage discussion. Blank = no score pack.
+
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/e8227dcda599d84d7dc0f582708367f253af9ccf/docs/glossary.html#xl-contamly"><img src="assets/glossary/cards/contamly-card.jpg" alt="did the model see the test?" width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -169,6 +173,8 @@ Maps paper criterion <b>Contamination</b>. Method-agnostic on public vs private 
 
 Checks statistical bias / class or label imbalance that a model could exploit without the claimed capability. Pass = balance or stratified metrics are shown. Fail = overall accuracy hides a broken minority class. Blank = no distribution note.
 
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/e8227dcda599d84d7dc0f582708367f253af9ccf/docs/glossary.html#xl-skewly"><img src="assets/glossary/cards/skewly-card.jpg" alt="is the score riding an uneven label stack?" width="541"></a></p>
+
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
 Asks: is the score riding an uneven label stack?
@@ -185,6 +191,8 @@ Maps paper criterion <b>Statistical bias</b>.
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
 Checks high annotation / label error evidence behind the number (human or auto labelers). Pass = error audit or quarantine note exists. Fail = cite ignores known label-error reports. Blank = no annotation quality record.
+
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/e8227dcda599d84d7dc0f582708367f253af9ccf/docs/glossary.html#xl-annotly"><img src="assets/glossary/cards/annotly-card.jpg" alt="are the labels clean enough to trust the grade?" width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -203,6 +211,8 @@ Maps paper criterion <b>High annotation error rate</b>.
 
 Checks task obsolescence - whether the benchmark task still matches the capability being claimed. Pass = relevance argument is on disk. Fail = obsolete task sold as current skill. Blank = no task-relevance note.
 
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/e8227dcda599d84d7dc0f582708367f253af9ccf/docs/glossary.html#xl-obsoletely"><img src="assets/glossary/cards/obsoletely-card.png" alt="is this still the right exam for what you claim?" width="541"></a></p>
+
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
 Asks: is this still the right exam for what you claim?
@@ -219,6 +229,8 @@ Maps paper criterion <b>Task obsolescence</b>.
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
 Checks invalidated design assumptions (for example a no-tool exam used to grade a tool-using agent). Pass = assumptions vs current use are stated. Fail = old assumptions silently reused. Blank = no assumption note.
+
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/e8227dcda599d84d7dc0f582708367f253af9ccf/docs/glossary.html#xl-assumly"><img src="assets/glossary/cards/assumly-card.jpg" alt="Asks: did the ground rules change under the score?" width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -237,6 +249,8 @@ Maps paper criterion <b>Invalidated assumptions</b>.
 
 Checks semantic / cultural / language drift since the claimed result - labels or meanings that aged. Pass = drift review or refresh date exists. Fail = stale meanings treated as fixed. Blank = no drift pack.
 
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/e8227dcda599d84d7dc0f582708367f253af9ccf/docs/glossary.html#xl-driftly"><img src="assets/glossary/cards/driftly-card.jpg" alt="do the words on the bench still mean what they meant?" width="541"></a></p>
+
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
 Asks: do the words on the bench still mean what they meant?
@@ -253,6 +267,8 @@ Maps paper criterion <b>Semantic drift</b>.
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
 Process cell. Checks whether a project or governance actor ran a deprecation assessment against the soft criteria (Deprecard-shaped evidence pack). Pass = assessment artifact exists. Fail = deprecation claimed with no assessment. Blank = process not started. Not wired as a live simulator in the default install yet.
+
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/e8227dcda599d84d7dc0f582708367f253af9ccf/docs/glossary.html#xl-assessly"><img src="assets/glossary/cards/assessly-card.jpg" alt="Asks: did anyone actually assess whether to deprecate?" width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
@@ -271,6 +287,8 @@ Maps the paper's <b>assessment</b> phase. Soft gate.
 
 Process cell. Checks whether assessment findings were reported in a durable, citable form (Deprecard / changelog / advisory). Pass = report artifact exists. Fail = silent deprecation talk. Blank = no report. Not wired as a live simulator in the default install yet.
 
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/e8227dcda599d84d7dc0f582708367f253af9ccf/docs/glossary.html#xl-reportly"><img src="assets/glossary/cards/reportly-card.jpg" alt="was the deprecation decision written down where others can find it?" width="541"></a></p>
+
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
 Asks: was the deprecation decision written down where others can find it?
@@ -287,6 +305,8 @@ Maps the paper's <b>reporting</b> phase.
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
 Process cell. Checks whether users and dependents were notified (partial update vs full retire; third-party path when creators will not act). Pass = notification channel or advisory exists. Fail = users left on a dead cite. Blank = no notify pack. Not wired as a live simulator in the default install yet.
+
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/e8227dcda599d84d7dc0f582708367f253af9ccf/docs/glossary.html#xl-notifyly"><img src="assets/glossary/cards/notifyly-card.jpg" alt="did the people still citing this bench get notified?" width="541"></a></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
