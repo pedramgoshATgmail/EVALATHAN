@@ -477,15 +477,15 @@ H14 on the card is the NASA-TLX row: one educated user, overall 9 out of 100, lo
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
-Braidware is the post-4IR (Fourth Industrial Revolution) term that refers to agentics, software and hardware as a single consolidated unit (often sandboxed).
+Braidware is the post-4IR (Fourth Industrial Revolution) term that refers to agentics, software and hardware as a single consolidated unit (often sandboxed). It is the 4IR progression of [Wearables](https://en.wikipedia.org/wiki/Wearable_technology) (wearable technology - body-worn devices with sensors, connectivity, and software).
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
-Braidware is the post-4IR (Fourth Industrial Revolution) braid of three strands: agentics, a software engine, and (when it exists) hardware. That is the unit of spend-time, not Industry 3.0's software-versus-hardware split.
+Braidware is the post-4IR (Fourth Industrial Revolution) braid of three strands: agentics, a software engine, and (when it exists) hardware. That is the unit of spend-time, not Industry 3.0's software-versus-hardware split. [Wearables](https://en.wikipedia.org/wiki/Wearable_technology) put sensing and apps on the body; Braidware is the 4IR neologism for the next step - the three strands as one unit, not a watch-or-glasses add-on alone.
 
 Headless MCP (Model Context Protocol) and CLI (command-line interface) work stay in the braid.
 
-Good examples include: Meta/etc AI Ray Ban [glasses](https://en.wikipedia.org/wiki/Meta_smart_glasses) which bear their own [Edge AI](https://www.ibm.com/think/topics/edge-ai), [TinyML](https://en.wikipedia.org/wiki/TinyML), custom framing, cloud and software infusion; [Superbrain](https://7sense.ee/); [Pamir Lapis One](https://pamir.ai): a dedicated Linux box where agentics, engine, and hardware sit as one unit (not a [1996-2011 PDA](https://en.wikipedia.org/wiki/Palm_(device_line)).); and most recently (as at Nov 2 2026, [Meta's Muse](https://www.theguardian.com/fashion/2026/sep/26/charming-and-disarming-how-metas-technology-packed-muse-harnesses-the-power-of-cuteness) Charm).
+Good examples include, oldest release to newest: [Superbrain](https://7sense.ee/) (commercial from July 2024); Meta/etc AI Ray Ban [glasses](https://en.wikipedia.org/wiki/Meta_smart_glasses) which bear their own [Edge AI](https://www.ibm.com/think/topics/edge-ai), [TinyML](https://en.wikipedia.org/wiki/TinyML), custom framing, cloud and software infusion (Ray-Ban Meta Gen 3 available 23 Sep 2026); [Pamir Lapis One](https://pamir.ai): a dedicated Linux box where agentics, engine, and hardware sit as one unit (not a [1996-2011 PDA](https://en.wikipedia.org/wiki/Palm_(device_line)).) (first units Oct 2026); and most recently [Meta's Muse](https://www.theguardian.com/fashion/2026/sep/26/charming-and-disarming-how-metas-technology-packed-muse-harnesses-the-power-of-cuteness) Charm (announced 23 Sep 2026; Meta says shipping December 2026 - not released yet as of 15 Nov 2026).
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
