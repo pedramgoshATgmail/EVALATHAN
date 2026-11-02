@@ -615,7 +615,7 @@ To understand a system, you need both moves. Reductionism takes the clock apart 
 1. Isolate and test individual mechanisms (code, chemistry, a single gene).
 2. Map how those parts form networks, feedback loops, and emergent behavior in the larger system.
 
-Examples: systems biology joins high-throughput data on one gene to the organism's network, not gene-only or lifestyle-only; modern psychology's biopsychosocial model maps neurotransmitters beside culture and circumstance. Evalathan calls itself reductoholistic because it audits parts and the whole lifecycle without collapsing them into one opaque score.
+Examples: [Bottom-up cum Top-down](https://en.wikipedia.org/wiki/Bottom-up_and_top-down_approaches) and [Top-down cum Bottom-up](https://www.investopedia.com/articles/investing/030116/topdown-vs-bottomup.asp); systems biology joins high-throughput data on one gene to the organism's network, not gene-only or lifestyle-only; modern psychology's biopsychosocial model maps neurotransmitters beside culture and circumstance. Evalathan calls itself reductoholistic because it audits parts and the whole lifecycle without collapsing them into one opaque score.
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
 
