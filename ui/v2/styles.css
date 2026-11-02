@@ -1120,7 +1120,7 @@ html {
 }
 .nell-ev-heading {
   margin: 0 0 0.3rem;
-  font-size: 0.68rem;
+  font-size: 0.8rem; /* was 0.68rem; +1 size */
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #bf0a30; /* US flag red (Old Glory Red) */
@@ -1129,6 +1129,7 @@ html {
 .memo-evidence-word {
   color: #bf0a30; /* US flag red (Old Glory Red) */
   font-weight: 600;
+  font-size: 1.125em; /* +1 size vs surrounding prose */
 }
 .nell-evidence {
   list-style: none;
