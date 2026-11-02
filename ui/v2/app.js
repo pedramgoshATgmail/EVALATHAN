@@ -231,8 +231,8 @@
       wired: false,
       wordOnDark: "assets/biasrex-word-white.png?v=shade1",
       wordOnLight: "assets/biasrex-word-black.png?v=shade1",
-      art: null,
-      artGrey: null,
+      art: "assets/biasrex-logo.webp?v=6",
+      artGrey: "assets/biasrex-logo-grey.webp?v=6",
       blurbs:
         "Biasrex engine conducts 6 bias cells (not wired in currently).\nFilterly, Meaningly, Hastely, and Memoryly map the Cognitive Bias Codex four problems.\nConfirmly and Automately add confirmation and automation trust gates.",
       evalers: [

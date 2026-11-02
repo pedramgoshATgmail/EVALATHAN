@@ -302,6 +302,8 @@ button { cursor: pointer; border: 0; background: none; }
 .splash-art-slot.art-hydra { --art-scale: 1.9417; } /* +7% */
 .splash-art-slot.art-dehydrus { --art-scale: 2.6584; } /* -10% */
 .splash-art-slot.art-benchrex { --art-scale: 3.23642; } /* prior +30%, then +10% */
+/* Biasrex emblem fill matches Benchrex; same glossary width=400 ? same logo/title ratio */
+.splash-art-slot.art-biasrex { --art-scale: 3.23642; }
 .splash-art {
   width: 100%;
   height: 100%;

@@ -29,7 +29,7 @@ Adds Dehydrus + eight LuDaTs worlds under PRETRUWs. Hydra’s sixteen stay sixte
 Default desk is local `ui/v2` (native window + Desktop dragon icon). Same Hydra sixteen, live evaluate path. Install blocks always replace an old clone with published `main`. Nell cards for detail memos. Glossary term auto-links. Saved runs survive restart via `~/.evalathan/run_sets.json`. Double-clicking the Desktop icon pops a centered FUSS logo splash with launching... and three fading dots until the desk window is ready.
 
 ### 11/20/26 - v0.3.2 (current)
-Glossary + desk names for Benchrex (10) and Biasrex (6) match Hydra/Dehydrus writing structure (Score Constitution / Simplespeak / Techspeak). Paper people and Codex lineage are cited. Ed Slop card art lands for all ten Benchrex and all six Biasrex evalers (Filterly, Meaningly, Hastely, Memoryly, Confirmly, Automately). Live `conduct()` for those rooms is still held.
+Glossary + desk names for Benchrex (10) and Biasrex (6) match Hydra/Dehydrus writing structure (Score Constitution / Simplespeak / Techspeak). Paper people and Codex lineage are cited. Ed Slop card art lands for all ten Benchrex and all six Biasrex evalers (Filterly, Meaningly, Hastely, Memoryly, Confirmly, Automately). Biasrex conductor emblem ships in glossary + desktop desk (same logo/title scale as Benchrex). Live `conduct()` for those rooms is still held.
 
 ## Next (not shipped)
 
