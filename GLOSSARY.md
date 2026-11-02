@@ -347,7 +347,7 @@ JSON may use `before` and `after`, or `total_tokex` and `tokex_this_run`, includ
 
 Analyzes sequential execution logs of agentic tasks. Counts total steps taken, tool call frequencies, backtracking loops, and final task resolution states. Disregards third-party leaderboard claims that lack inspectable raw trace files.
 
-<p align="center"</a>href="assets/glossary/cards/trajectly-revised.jpg"><img src="assets/glossary/cards/trajectly-revised.jpg" alt="Trajectly replays an agent's recorded journey, steps, loops and all." width="541"></a></p>  
+<p align="center"><a href="assets/glossary/cards/trajectly-revised.jpg"><img src="assets/glossary/cards/trajectly-revised.jpg" alt="Trajectly replays an agent's recorded journey, steps, loops and all." width="541"></a></p>  
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
