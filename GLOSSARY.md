@@ -1094,7 +1094,7 @@ The paper is [arXiv:2510.24358](https://arxiv.org/abs/2510.24358), submitted 28 
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-[LuDaTs](#ludats) (Limited-universe Data Test sets) methodology framework is a subset of [PRETRUWs](#pretruws): the methodology framework inside that paradigm, not a [Trajectly](#trajectly) exam and not a seventeenth Hydra evaler. Dehydrus conducts the eight [LuDaTs](#ludats) evalers. A missing world is blank, not a fail and not a zero. A gold medal is the structural prize for that world, not a sports rank of the product.
+[LuDaTs](#ludats) (Limited-universe Data Test sets) [methodology framework](https://researchmethod.net/methodological-framework/) is a subset of [PRETRUWs](#pretruws): the methodology framework inside that paradigm, not a [Trajectly](#trajectly) exam and not a seventeenth Hydra evaler. Dehydrus conducts the eight [LuDaTs](#ludats) evalers. A missing world is blank, not a fail and not a zero. A gold medal is the structural prize for that world, not a sports rank of the product.
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
