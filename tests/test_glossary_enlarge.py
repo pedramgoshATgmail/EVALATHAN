@@ -25,7 +25,7 @@ def test_github_cards_point_at_search_enlarge() -> None:
         r'<p align="center"><a href="([^"]+)"><img src="assets/glossary/cards/',
         glossary,
     )
-    assert len(cards) == 29
+    assert len(cards) == 30
     for href in cards:
         assert sha in href, href
         assert "htmlpreview.github.io/?" in href

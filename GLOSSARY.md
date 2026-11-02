@@ -411,6 +411,8 @@ JSON may be a list of objects with a `claim` key, or an object with `claims` or 
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
+<p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/f00b0370a38423ba3719f7357ebee85c3a8e95ba/docs/glossary.html#xl-4uvals"><img src="assets/glossary/cards/4uvals-card-20261106.jpg" alt="4Uvals infographic: Ultimate User-User-User Evaluations. Did this AI session put the person using it first? v1.2 PASS, mean 3.4 of 4, U5 Emerging, NASA-TLX 9 of 100." width="703"></a></p>
+
 The published card is 4Uvals v1.2. First-order means the people who ran that sitting scored it themselves; [Levi](#levi) only prints the mean and gate already on the card. Gate result: PASS. Mean: 3.4 out of 4. Nine of the ten checks are Solid or Strong.
 
 Each check uses a 1–4 scale: 4 Strong, 3 Solid, 2 Emerging, 1 Weak. U5 (retell the work) is Emerging because it was named on the card and not measured. Emerging stays Emerging. It is not rewritten as a fail and not rewritten as zero.
