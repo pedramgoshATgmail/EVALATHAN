@@ -120,6 +120,22 @@
       cursor: zoom-out;
       background: #fff;
     }
+    #ludats-xl-close {
+      position: fixed;
+      top: 12px;
+      right: 14px;
+      z-index: 81;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border: 1px solid #fff;
+      border-radius: 4px;
+      background: #1f2328;
+      color: #fff;
+      font: 28px/1 Calibri, "Segoe UI", sans-serif;
+      cursor: pointer;
+    }
+    #ludats-xl-close:focus { outline: 2px solid #ffe08a; }
     .sheet [id], .sheet h2 { scroll-margin-top: 72px; }
     .sheet table { border-collapse: collapse; display: block; overflow-x: auto; }
     .sheet th, .sheet td { border: 1px solid #d0d7de; padding: 6px 13px; }
@@ -834,7 +850,7 @@
 <p>This evaler is based on Copernicus, the astronomer who discovered that the known planets go around the Sun, not around the Earth. Copernly (code LuDaTs-C) is a Dehydrus world under <a href="#ludats">LuDaTs</a> (Limited-universe Data Test sets). It runs <a href="#ludats-mode-a">Mode A</a>. It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The cell stays deferred until a sealed 1542 world file is in the tree. A blank is not a fail and not a zero.</p>
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 <p>This evaler is based on Copernicus, the astronomer who discovered that the known planets go around the Sun, not around the Earth. The exam uses <a href="#ludats-mode-a">Mode A</a>: the same old sky numbers everyone already had, and no new telescope. The room is 1542, the year before he published <a href="https://en.wikipedia.org/wiki/De_revolutionibus_orbium_coelestium"><i>De revolutionibus orbium coelestium</i></a> (1543). A new picture of the sky that puts the Earth among the planets is Gold (the structural prize that wins this world, not a sports rank). Saying the later word "heliocentrism" is not Gold.</p>
-<p align="center"><a class="ludats-card ludats-evaler-xl" href="../assets/glossary/cards/copernly-card-20261101-xl.png"><img src="../assets/glossary/cards/copernly-card-20261101.png" alt="Copernly rebuilds the old sky numbers as a sun-centered model. No new telescope. Mode A only." width="703" height="524"></a></p>
+<p align="center"><a class="ludats-card ludats-evaler-xl" href="../assets/glossary/cards/copernly-card-20261101t-xl.png"><img src="../assets/glossary/cards/copernly-card-20261101t.png" alt="Copernly rebuilds the old sky numbers as a sun-centered model. No new telescope. Mode A only." width="703" height="522"></a></p>
 <p align="center"><i>If AI was around in my time, with only the old sky numbers everyone already had and no new telescope, would it still put the Earth among the planets - or keep the Earth in the middle because that is what ALL the books said?</i></p>
 <h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
 <p>Dehydrus calls Copernly and locks <a href="#ludats-mode-a">Mode A</a>. World clock T is 1542, before <a href="https://en.wikipedia.org/wiki/De_revolutionibus_orbium_coelestium"><i>De revolutionibus orbium coelestium</i></a> (1543). Biography clock A is what Copernicus could have reached at that year. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does claim one, v0.3 looks for a sealed LuDaTs-C world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.</p>
@@ -899,7 +915,7 @@
 <p>This evaler is based on Kepler, the astronomer who discovered that planets travel in ellipses and sweep equal areas in equal times. Keplerly (LuDaTs-K) is a Dehydrus world. It runs <a href="#ludats-mode-b">Mode B</a>. It is not a Hydra cell. v0.3 does not award Gold (the structural prize that wins this world, not a sports rank) from a filename. The cell stays deferred until a sealed Mars-table world is in the tree. A blank is not a fail and not a zero.</p>
 <h3><img src="../assets/glossary/simplespeak.png" alt="Simplespeak" height="21" width="113"></h3>
 <p>This evaler is based on Kepler, the astronomer who discovered that planets travel in ellipses, not perfect circles. The exam uses <a href="#ludats-mode-b">Mode B</a>: Tycho's Mars table, better numbers, same kind of naked-eye instrument. This is not Copernly's quiz. The freeze sits at 1608 / 1618, around <a href="https://en.wikipedia.org/wiki/Astronomia_nova"><i>Astronomia nova</i></a> (1609) and <a href="https://en.wikipedia.org/wiki/Harmonices_Mundi"><i>Harmonices mundi</i></a> (1619). Drawing the ellipse and the equal-area rule from the table is Gold (the structural prize that wins this world, not a sports rank). Naming "Kepler's laws" later is not Gold.</p>
-<p align="center"><a class="ludats-card ludats-evaler-xl" href="../assets/glossary/cards/keplerly-card-20261101-xl.png"><img src="../assets/glossary/cards/keplerly-card-20261101.png" alt="Keplerly draws the ellipse and equal areas from Tycho's Mars table. Same instrument class." width="703" height="527"></a></p>
+<p align="center"><a class="ludats-card ludats-evaler-xl" href="../assets/glossary/cards/keplerly-card-20261101t-xl.png"><img src="../assets/glossary/cards/keplerly-card-20261101t.png" alt="Keplerly draws the ellipse and equal areas from Tycho's Mars table. Same instrument class." width="703" height="523"></a></p>
 <p align="center"><i>If AI was around in my time, sitting with Tycho's Mars table and the same kind of eye as mine, would it throw out perfect circles and draw the ellipse - or keep the circles because a new glass had not been invented yet?</i></p>
 <h3><img src="../assets/glossary/techspeak.png" alt="Techspeak" height="21" width="95"></h3>
 <p>Dehydrus calls Keplerly and locks <a href="#ludats-mode-b">Mode B</a>. World clocks are 1608 / 1618, beside <a href="https://en.wikipedia.org/wiki/Astronomia_nova"><i>Astronomia nova</i></a> (1609) and <a href="https://en.wikipedia.org/wiki/Harmonices_Mundi"><i>Harmonices mundi</i></a> (1619). Biography clock A is Kepler working Tycho's Mars table with the same instrument class, not a telescope. If the folder does not claim a discovery or physical-world exam, the cell stays deferred. If it does, v0.3 looks for a sealed LuDaTs-K world file and names it when present. v0.3 does not run the simulator, and it does not award Gold (the structural prize that wins this world, not a sports rank) from a filename.</p>
@@ -1509,28 +1525,51 @@
     });
     }
   </script>
-  <div id="ludats-xl"><img alt="Enlarged LuDaTs card"></div>
+  <div id="ludats-xl"><button type="button" id="ludats-xl-close" title="Close - return to the glossary entry">X</button><img alt="Enlarged LuDaTs card"></div>
   <script>
     if (!window.__evalathanLudatsXl) {
     window.__evalathanLudatsXl = true;
     const box = document.getElementById("ludats-xl");
     const pic = box.querySelector("img");
-    function closeXl() {
+    let xlPushed = false;
+    function closeXl(fromHistory) {
       box.classList.remove("is-open");
       pic.removeAttribute("src");
+      if (xlPushed && !fromHistory) {
+        xlPushed = false;
+        history.back();
+        return;
+      }
+      xlPushed = false;
+    }
+    window.__evalathanCloseLudatsXl = closeXl;
+    function openXl(href) {
+      pic.src = href;
+      box.classList.add("is-open");
+      if (!xlPushed) {
+        history.pushState({ evalathanLudatsXl: 1 }, "");
+        xlPushed = true;
+      }
     }
     document.addEventListener("click", function (e) {
+      if (e.target && e.target.closest && e.target.closest("#ludats-xl-close")) {
+        e.preventDefault();
+        closeXl(false);
+        return;
+      }
       const a = e.target && e.target.closest ? e.target.closest("a.ludats-evaler-xl") : null;
       if (a) {
         e.preventDefault();
-        pic.src = a.href;
-        box.classList.add("is-open");
+        openXl(a.href);
         return;
       }
-      if (box.classList.contains("is-open")) closeXl();
+      if (box.classList.contains("is-open")) closeXl(false);
     });
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && box.classList.contains("is-open")) closeXl();
+      if (e.key === "Escape" && box.classList.contains("is-open")) closeXl(false);
+    });
+    window.addEventListener("popstate", function () {
+      if (box.classList.contains("is-open")) closeXl(true);
     });
     }
   </script>
@@ -1542,6 +1581,10 @@
       back.addEventListener("click", function () {
         const box = document.getElementById("ludats-xl");
         if (box && box.classList.contains("is-open")) {
+          if (window.__evalathanCloseLudatsXl) {
+            window.__evalathanCloseLudatsXl(false);
+            return;
+          }
           box.classList.remove("is-open");
           const pic = box.querySelector("img");
           if (pic) pic.removeAttribute("src");
