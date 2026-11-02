@@ -33,7 +33,7 @@ Adds Dehydrus + eight LuDaTs worlds under PRETRUWs. Hydra’s sixteen stay sixte
 Local install folder + Desktop dragon icon. Click the icon to open the Evalathan window on this computer.
 
 ### 2026-11-19 - v0.3.3 (current)
-Nell rewrite for the full detailed memo. Each evaler is a card: title + gate + status, one readable blurb, then a short Evidence list (paths truncated, capped). No more comma-glued path walls. Memo prose auto-links glossary names (SASPIANT, M3, Archly…Newtonly, LuDaTs, PRETRUWs, and the rest of the distinctive Evalathan glossary set) to `GLOSSARY.md#user-content-…`.
+Nell rewrite for the full detailed memo. Each evaler is a card: title + gate + status, one readable blurb, then a short Evidence list (paths truncated, capped). No more comma-glued path walls. Memo prose auto-links glossary names (SASPIANT, M3, Archly…Newtonly, LuDaTs, PRETRUWs, and the rest of the distinctive Evalathan glossary set) to `GLOSSARY.md#user-content-…`. Reverted the failed +40% type-scale experiment; kept original post-Benchrex type alignment with only a bit more top pad for evals/history. Saved runs now persist on disk under `~/.evalathan/run_sets.json` (and pywebview private mode is off) so they survive GUI restart.
 
 ## Next (not shipped)
 

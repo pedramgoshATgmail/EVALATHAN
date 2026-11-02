@@ -9,6 +9,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 from evalathan.desk import prepare
+from evalathan.desk_store import load_run_sets, runs_path, save_run_sets, state_dir
 from evalathan.hydra import conduct
 
 PORT = 8787
@@ -64,6 +65,26 @@ class DeskHandler(SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
+    def do_GET(self) -> None:
+        path = urlparse(self.path).path
+        if path == "/api/runs":
+            try:
+                sets = load_run_sets()
+                self._send_json(
+                    200,
+                    {
+                        "ok": True,
+                        "runSets": sets,
+                        "path": str(runs_path()),
+                    },
+                )
+            except Exception as exc:  # noqa: BLE001
+                self._send_json(
+                    500, {"ok": False, "error": str(exc) or exc.__class__.__name__}
+                )
+            return
+        return super().do_GET()
+
     def do_POST(self) -> None:
         path = urlparse(self.path).path
         try:
@@ -73,11 +94,22 @@ class DeskHandler(SimpleHTTPRequestHandler):
             if path == "/api/pick-folder":
                 self._pick_folder()
                 return
+            if path == "/api/runs":
+                self._save_runs()
+                return
             self._send_json(404, {"ok": False, "error": "Unknown API route."})
         except ValueError as exc:
             self._send_json(400, {"ok": False, "error": str(exc) or "Bad request."})
         except Exception as exc:  # noqa: BLE001 - return message to the desk
             self._send_json(500, {"ok": False, "error": str(exc) or exc.__class__.__name__})
+
+    def _save_runs(self) -> None:
+        data = self._read_json()
+        run_sets = data.get("runSets")
+        if not isinstance(run_sets, list):
+            raise ValueError("Body must include a runSets array.")
+        path = save_run_sets(run_sets)
+        self._send_json(200, {"ok": True, "path": str(path), "count": len(run_sets)})
 
     def _evaluate(self) -> None:
         data = self._read_json()
@@ -148,7 +180,16 @@ def _open_desktop_window(url: str, title: str) -> bool:
             webview.create_window(**kwargs)
     except TypeError:
         webview.create_window(**kwargs)
-    webview.start()
+    # private_mode=True (pywebview default on some builds) wipes localStorage on close.
+    storage = state_dir() / "webview"
+    storage.mkdir(parents=True, exist_ok=True)
+    try:
+        webview.start(private_mode=False, storage_path=str(storage))
+    except TypeError:
+        try:
+            webview.start(private_mode=False)
+        except TypeError:
+            webview.start()
     return True
 
 

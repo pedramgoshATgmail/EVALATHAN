@@ -240,7 +240,59 @@
     }
   }
   function persistRuns() {
-    localStorage.setItem("evalathan_run_sets", JSON.stringify(runSets.slice(0, 24)));
+    const payload = runSets.slice(0, 24);
+    try {
+      localStorage.setItem("evalathan_run_sets", JSON.stringify(payload));
+    } catch (e) {
+      /* ignore quota / private mode */
+    }
+    /* Disk store via desk API - survives pywebview restart even when localStorage does not */
+    try {
+      fetch("/api/runs", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ runSets: payload }),
+        keepalive: true,
+      }).catch(function () {
+        /* offline / old server */
+      });
+    } catch (e2) {
+      /* ignore */
+    }
+  }
+
+  function hydrateRunsFromDisk(done) {
+    fetch("/api/runs")
+      .then(function (r) {
+        return r.ok ? r.json() : null;
+      })
+      .then(function (data) {
+        if (data && data.ok && Array.isArray(data.runSets) && data.runSets.length) {
+          const local = loadJson("evalathan_run_sets", []);
+          const disk = data.runSets;
+          /* Prefer whichever side has more saved rows; disk wins ties so restart restores. */
+          const countSaved = function (sets) {
+            let n = 0;
+            (sets || []).forEach(function (s) {
+              n += (s.saved || []).length;
+              if (s.latest) n += 1;
+            });
+            return n;
+          };
+          if (!Array.isArray(local) || !local.length || countSaved(disk) >= countSaved(local)) {
+            runSets = disk;
+            try {
+              localStorage.setItem("evalathan_run_sets", JSON.stringify(runSets.slice(0, 24)));
+            } catch (e) {
+              /* ignore */
+            }
+          }
+        }
+        if (typeof done === "function") done();
+      })
+      .catch(function () {
+        if (typeof done === "function") done();
+      });
   }
 
   function normalizeTargetKey(target) {
@@ -2824,4 +2876,7 @@
   preloadArts();
   setTheme(theme());
   renderRunsRail();
+  hydrateRunsFromDisk(function () {
+    renderRunsRail();
+  });
 })();

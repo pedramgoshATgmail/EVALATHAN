@@ -31,8 +31,6 @@
   --runs-w: 320px;
   --font: "IBM Plex Sans", system-ui, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, monospace;
-  /* Body UI type +40%; brand wordmarks/logos stay at pre-scale size */
-  --ui-scale: 1.4;
 }
 
 [data-theme="white"] {
@@ -98,9 +96,6 @@
 }
 
 * { box-sizing: border-box; }
-html {
-  font-size: calc(100% * var(--ui-scale));
-}
 html, body {
   margin: 0;
   min-height: 100%;
@@ -122,8 +117,8 @@ button { cursor: pointer; border: 0; background: none; }
 .center {
   width: 100%;
   min-height: 100vh;
-  /* Extra top pad so evals / history sit clear of the window edge */
-  padding: 1.85rem 1.35rem 2rem;
+  /* Keep original type scale; only drop evals/history off the window lip */
+  padding: 1.55rem 1.35rem 2rem;
   overflow: auto;
   background: var(--bg);
   transition: padding 0.28s ease;
@@ -185,16 +180,20 @@ button { cursor: pointer; border: 0; background: none; }
   align-items: flex-start;
   justify-content: space-between;
   gap: 1rem;
-  margin-top: 0.35rem;
+  margin-top: 0.25rem;
   margin-bottom: 0.35rem;
   position: relative;
   z-index: 50;
 }
 .corner-toggle {
   display: grid;
-  padding: 0.35rem 0;
+  padding: 0.2rem 0;
   position: relative;
   z-index: 60;
+}
+.corner-toggle:focus,
+.corner-toggle:focus-visible {
+  outline: none;
 }
 .engines-corner { justify-items: start; }
 .runs-corner { justify-items: end; }
@@ -208,6 +207,9 @@ button { cursor: pointer; border: 0; background: none; }
   color: var(--accent);
   text-transform: lowercase;
   line-height: 1;
+  outline: none;
+  box-shadow: none;
+  border: 0;
 }
 .corner-toggle:hover .corner-label { filter: brightness(1.15); }
 
@@ -314,7 +316,7 @@ button { cursor: pointer; border: 0; background: none; }
   margin: 0;
   max-width: 38rem;
   font-family: var(--mono);
-  font-size: clamp(0.72rem, 1.89vh, 0.88rem);
+  font-size: clamp(0.72rem, 1.35vh, 0.88rem);
   line-height: 1.35;
   text-align: center;
 }
@@ -332,12 +334,7 @@ button { cursor: pointer; border: 0; background: none; }
   padding: 0;
   font-family: var(--font);
   font-weight: 400;
-  /* Keep EVALATHAN wordmark at pre-scale size (undo --ui-scale on rem) */
-  font-size: clamp(
-    calc(1.65rem / var(--ui-scale)),
-    3.6vh,
-    calc(2.4rem / var(--ui-scale))
-  );
+  font-size: clamp(1.65rem, 3.6vh, 2.4rem);
   letter-spacing: 0.38em;
   text-indent: 0.38em;
   color: var(--text);
@@ -369,7 +366,7 @@ button { cursor: pointer; border: 0; background: none; }
   max-width: 40rem;
   margin: 0;
   font-family: var(--mono);
-  font-size: clamp(0.7rem, 1.89vh, 0.84rem);
+  font-size: clamp(0.7rem, 1.35vh, 0.84rem);
   line-height: 1.7;
   color: var(--text);
   text-align: center;
@@ -389,8 +386,6 @@ button { cursor: pointer; border: 0; background: none; }
   color: var(--accent) !important;
   font-weight: 500;
   opacity: 1 !important;
-  /* HYDRA / DEHYDRUS / BENCHREX / BIASREX name tokens stay pre-scale size */
-  font-size: calc(1em / var(--ui-scale));
 }
 
 .slotbox {
@@ -440,7 +435,7 @@ button { cursor: pointer; border: 0; background: none; }
   display: block;
   margin: 0;
   font-family: var(--mono);
-  font-size: clamp(0.72rem, 1.89vh, 0.88rem);
+  font-size: clamp(0.72rem, 1.35vh, 0.88rem);
   color: var(--link-blue);
   text-decoration: none;
   text-align: center;
@@ -526,8 +521,7 @@ button { cursor: pointer; border: 0; background: none; }
 .engine-word {
   display: block;
   font-family: var(--font);
-  /* HYDRA / DEHYDRUS / BENCHREX / BIASREX rail labels stay pre-scale size */
-  font-size: calc(0.78rem / var(--ui-scale));
+  font-size: 0.78rem;
   font-weight: 400;
   letter-spacing: 0.2em;
   text-transform: uppercase;
