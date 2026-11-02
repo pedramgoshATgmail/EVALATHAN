@@ -589,7 +589,11 @@ button { cursor: pointer; border: 0; background: none; }
   flex-direction: column;
   align-items: center;
   gap: 0.7rem;
-  margin: 0.85rem 0 0.5rem;
+  margin: 0.85rem 0 0.15rem; /* sit closer above GLOSS */
+}
+#btn-fuss {
+  align-self: flex-start;
+  margin-left: 0.1rem; /* screen-left toward GLOSS column */
 }
 .mascot-wrap {
   position: relative;
