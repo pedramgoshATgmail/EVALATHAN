@@ -3246,8 +3246,8 @@
 
   /* ---- FUSS (For-User Session Switch): popup + 3-2-1-0 + BREAK TIME disk ---- */
   const FUSS_KEY = "evalathan.fuss.v1";
-  const FUSS_MIN = 1;
-  const FUSS_MAX = 180;
+  const FUSS_MIN = 5;
+  const FUSS_MAX = 45;
   const FUSS_DEFAULT = 25;
   const FUSS_REMIND_EVERY = 15;
   let fussTick = null;
