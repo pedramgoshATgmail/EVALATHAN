@@ -2900,14 +2900,14 @@
       ".memo-chip-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}" +
       ".memo-chip{border:1px solid #ccc;border-radius:8px;padding:8px;display:block}" +
       ".memo-chip strong{display:block;font-size:12px;margin-bottom:3px;color:#2f7a45}" +
-      ".memo-chip span{font-size:11px;color:#555}" +
+      ".memo-chip span{font-size:12px;color:#555}" +
       ".nell-stack{display:flex;flex-direction:column;gap:12px}.nell-card{border:1px solid #ccc;border-radius:8px;padding:10px 12px;page-break-inside:avoid}" +
       ".nell-card-head{display:flex;flex-wrap:wrap;gap:6px 10px;margin:0 0 6px;align-items:baseline}" +
       ".nell-gate,.nell-status,.nell-score{font-size:10px;text-transform:uppercase;background:#eee;padding:2px 6px;border-radius:999px}" +
-      ".nell-blurb{margin:0 0 8px;font-size:13px;line-height:1.4}.nell-question{margin:0 0 6px;font-size:11px;color:#555}" +
+      ".nell-blurb{margin:0 0 8px;font-size:14px;line-height:1.4}.nell-question{margin:0 0 6px;font-size:12px;color:#555}" +
       ".nell-ev-heading{margin:0 0 4px;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#666}" +
-      ".nell-evidence{list-style:none;padding:0;margin:0}.nell-evidence li{margin:0 0 4px;font-size:11px}" +
-      ".nell-evidence code{font-size:10px;background:#f3f3f3;padding:1px 4px}.nell-more,.nell-empty{font-size:10px;color:#777}" +
+      ".nell-evidence{list-style:none;padding:0;margin:0}.nell-evidence li{margin:0 0 4px;font-size:12px}" +
+      ".nell-evidence code{font-size:11px;background:#f3f3f3;padding:1px 4px}.nell-more,.nell-empty{font-size:11px;color:#777}" +
       "</style></head><body>" +
       "<div class=\"memo-block\"><h1>" +
       escapeHtml(heading) +
