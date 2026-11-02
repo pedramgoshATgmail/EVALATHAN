@@ -8,11 +8,19 @@
 
 <p align="center">The one-stop evaluation platform for software (aka <a href="GLOSSARY.md#user-content-braidware">Braidware</a>), engines, agentics, codebases, compilers, languages, and world models.</p>
 
-Evalathan grades a product across its life cycle. It is one [evaluation harness](https://en.wikipedia.org/wiki/Test_harness) - a local tool that runs many separate checks and writes each result beside the others, instead of hiding everything behind one opaque number.
+Evalathan grades your software product across its developer life cycle. It is a single, unified [evaluation harness](https://en.wikipedia.org/wiki/Test_harness): a local platform that runs many separate checks (evaluations) and generates all the results separately (instead of hiding and diluting every result behind a single opaque score).
 
-[Hydra](GLOSSARY.md#user-content-hydra) is the [conductor](https://opensource.microsoft.com/blog/2026/05/14/conductor-deterministic-orchestration-for-multi-agent-ai-workflows/) for the software desk: like the person at the front of an orchestra who cues each player, she calls sixteen specialized checkers. Evalathan calls those checkers [evalers](https://en.wikipedia.org/wiki/Evaluation) (short for evaluators). Each evaler reports against its own life-cycle gate.
+Evalathan houses 4 routing engines: [Hydra](GLOSSARY.md#user-content-hydra), [Dehydrus](GLOSSARY.md#user-content-dehydrus), [Benchrex](GLOSSARY.md#user-content-benchrex), [Biasrex](GLOSSARY.md#user-content-biasrex). Each engine conducts a set of [evalers](https://www.thoughtworks.com/en-in/insights/decoder/a/ai-evals) (current total: 40 evalers).
 
-**v0.3.0** shipped on **2026-10-31** as a local runner. **v0.3.1** shipped the local desktop desk. **v0.3.2** (current) adds full glossary rooms for [Benchrex](GLOSSARY.md#user-content-benchrex) and [Biasrex](GLOSSARY.md#user-content-biasrex) (illustrations pending; not live-wired yet). The local desktop desk: files live in `evalathan-program` on your PC, an **Evalathan** icon (red dragon) is on the Desktop, and clicking it opens a native window with a Nell rewrite on the Hydra detail memo (titled cards, short blurbs, evidence listed - not path walls) - not a public website. Hydra’s sixteen evalers still run through `prepare()` + `conduct()`. A second desk, [Dehydrus](GLOSSARY.md#user-content-dehydrus), runs eight more checks aimed at [physical world models](https://en.wikipedia.org/wiki/World_model_(artificial_intelligence)) and how they meet LLMs (Large Language Models). Those eight concrete rooms are [LuDaTs](GLOSSARY.md#user-content-ludats) (Limited-universe Data Test sets) methods. They sit under [PRETRUWs](GLOSSARY.md#user-content-pretruws) (PREdiscovery TRuncated-Universes and Worlds - the locked-past testing idea). LuDaTs does not award a state-of-the-art stamp yet. A deferred cell is not a "fail" and not a zero. Version dates: **[BUILDLOG.md](BUILDLOG.md)**. Longer roadmap notes: [docs/BUILDLOG.md](docs/BUILDLOG.md).
+Currently, only Hydra is operational. Hydra is a [conductor](https://opensource.microsoft.com/blog/2026/05/14/conductor-deterministic-orchestration-for-multi-agent-ai-workflows/) of her 16 evalers: like the person at the front of an orchestra who cues each player, she calls sixteen specialized checkers. Evalathan calls those checkers evalers (short for evaluators). Each evaler reports against its own life-cycle gate.
+
+**v0.3.2** (current) adds full glossary sections for [Benchrex](GLOSSARY.md#user-content-benchrex) and [Biasrex](GLOSSARY.md#user-content-biasrex).
+
+After download (below) as a local desktop [GUI](https://en.wikipedia.org/wiki/Graphical_user_interface), Evalathan runs locally as a native desktop app - files live in `evalathan-program` - while an Evalathan icon sits on your Desktop.
+
+Hydra’s sixteen evalers run through `prepare()` + `conduct()`. A deferred cell is not a "fail" and not a zero.
+
+Version dates: [BUILDLOG.md](BUILDLOG.md). Longer roadmap notes: [docs/BUILDLOG.md](docs/BUILDLOG.md).
 
 On Windows or Mac, paste **one** block below. Each block **clones** if `evalathan-program` is missing, or **always replaces** that folder with the published `main` tree if it already exists (old Tk Hydra GUI included). Then `launch.bat` / `launch.sh` installs the Desktop **Evalathan** icon + `Desktop/Evalathan/` launcher folder, and opens the local desk window. After that, daily use is: double-click the Desktop icon. The Dehydrus window is still `evalathan dehydrus`.
 
