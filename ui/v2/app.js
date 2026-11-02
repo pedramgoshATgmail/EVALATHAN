@@ -13,8 +13,8 @@
       label: "HYDRA",
       wordOnDark: "assets/hydra-word-white.png",
       wordOnLight: "assets/hydra-word-black.png",
-      art: "assets/hydra-logo.png",
-      artGrey: "assets/hydra-logo-grey.png",
+      art: "assets/hydra-logo.png?v=3",
+      artGrey: "assets/hydra-logo-grey.png?v=3",
       blurbs:
         "Hydra engine conducts 16 static evalers (non-exhaustive).\nEach evaler reports its own life-cycle gate.\nA blank is not a fail and not a zero.\nHydra's order is product life-cycle, not A-Z: Devly → Archly → Codely → … → Domly → Stackly. Conduct walks that sequence, and Stackly needs the earlier cells.",
       evalers: [
@@ -32,8 +32,8 @@
       label: "DEHYDRUS",
       wordOnDark: "assets/dehydrus-word-white.png",
       wordOnLight: "assets/dehydrus-word-black.png",
-      art: "assets/dehydrus-logo.png",
-      artGrey: "assets/dehydrus-logo-grey.png",
+      art: "assets/dehydrus-logo.png?v=3",
+      artGrey: "assets/dehydrus-logo-grey.png?v=3",
       blurbs:
         "Dehydrus engine conducts 8 physical world models (not wired in currently).\nLuDaTs (Limited-universe Data Test sets) rooms under PRETRUWs stay off Hydra's vector.\nA missing world stays deferred.",
       evalers: [
@@ -50,8 +50,8 @@
       label: "BENCHREX",
       wordOnDark: "assets/benchrex-word-white.png",
       wordOnLight: "assets/benchrex-word-black.png",
-      art: "assets/benchrex-logo.png",
-      artGrey: "assets/benchrex-logo-grey.png",
+      art: "assets/benchrex-logo.png?v=gold3",
+      artGrey: "assets/benchrex-logo-grey.png?v=gold3",
       blurbs:
         "Benchrex engine conducts 10 Benchlux cells (3 not wired in currently).\nSeven criterion cells check whether a claimed benchmark is still fit to cite.\nAssessly, Reportly, and Notifyly stay deferred.",
       evalers: [
@@ -89,8 +89,8 @@
 
   const SPLASH = {
     label: "EVALATHAN",
-    art: "assets/evalathan-dragon.png",
-    artGrey: "assets/evalathan-dragon-grey.png",
+    art: "assets/evalathan-dragon.png?v=3",
+    artGrey: "assets/evalathan-dragon-grey.png?v=3",
     blurbs:
       "40 current evals, 4 routing engines, 16 evalers currently wired in.\nHydra engine conducts 16 static evalers (non-exhaustive).\nDehydrus engine conducts 8 physical world models (not wired in currently).\nBenchrex engine conducts 10 Benchlux cells (3 not wired in currently).\nBiasrex engine conducts 6 bias cells (2 not wired in currently).",
   };
