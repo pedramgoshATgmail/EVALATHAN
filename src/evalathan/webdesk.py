@@ -249,6 +249,14 @@ def _open_desktop_window(url: str, title: str) -> bool:
 
 def open_desk(port: int = PORT, open_window: bool = True) -> int:
     """Serve ui/v2 from this PC and open the Evalathan desktop window."""
+    # Popup when published main is ahead; Update now resets + restarts this desk.
+    try:
+        from evalathan.desk_update import ensure_published_main
+
+        ensure_published_main(interactive=True)
+    except Exception as exc:  # noqa: BLE001 - never block the desk on update UI
+        print(f"Evalathan update check skipped: {exc}", flush=True)
+
     root = ui_root()
     try:
         from evalathan import __version__ as ver

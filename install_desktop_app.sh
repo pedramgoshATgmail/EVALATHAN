@@ -111,11 +111,9 @@ stop_splash() {
 # Fast path when the venv + desk files already exist (daily Desktop click).
 if [ -x "\$REPO/.venv/bin/python" ] && [ -f "\$REPO/ui/v2/index.html" ]; then
   start_splash
-  # Keep published main current, but never block the desk on fetch failure.
+  # Prefetch only - open_desk shows Update now / Not now when behind main.
   if [ -d "\$REPO/.git" ] && command -v git >/dev/null 2>&1; then
     git -C "\$REPO" fetch origin >/dev/null 2>&1 || true
-    git -C "\$REPO" checkout main >/dev/null 2>&1 || true
-    git -C "\$REPO" reset --hard origin/main >/dev/null 2>&1 || true
     start_splash
   fi
   "\$REPO/.venv/bin/python" -m pip install -e "\$REPO" >/dev/null 2>&1 || true

@@ -25,6 +25,10 @@ If they say anything in this family - approve, ship it, commit these, push so Ma
 - Still honor normal git safety: no force-push to main, no secrets, no amending pushed commits unless they ask.
 - Unrelated untracked assessment/docx scripts stay out of the ship commit unless they asked those in too.
 
+## Desk update popup
+
+Shipped desks check `origin/main` on launch (`evalathan.desk_update`). When behind, users get **Update now / Not now**. Approve+push is still required first - the popup only appears after GitHub has the new commit.
+
 ## Do not
 
 - Assume Windows local disk is enough for the Mac app.

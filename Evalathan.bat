@@ -6,26 +6,12 @@ cd /d "%~dp0"
 REM Show the centered FUSS "launching..." circle as soon as the Desktop icon is clicked.
 call :start_splash
 
+REM Prefetch only - the desk Python popup offers Update now vs Not now.
 if exist ".git\" (
   where git >nul 2>&1
   if not errorlevel 1 (
-    echo Updating Evalathan to published main...
-    for /f "delims=" %%H in ('git rev-parse HEAD') do set "BEFORE=%%H"
-    git fetch origin
-    if not errorlevel 1 (
-      git checkout main
-      git reset --hard origin/main
-      for /f "delims=" %%H in ('git rev-parse HEAD') do set "AFTER=%%H"
-      if defined BEFORE if defined AFTER if /I not "%BEFORE%"=="%AFTER%" (
-        if not defined EVALATHAN_RELAUNCHED (
-          echo Update applied. Restarting...
-          endlocal
-          set "EVALATHAN_RELAUNCHED=1"
-          "%~f0" %*
-          exit /b %ERRORLEVEL%
-        )
-      )
-    )
+    echo Checking Evalathan GitHub main...
+    git fetch origin >nul 2>&1
   )
 )
 

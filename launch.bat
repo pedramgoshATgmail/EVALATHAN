@@ -2,27 +2,13 @@
 setlocal EnableExtensions
 cd /d "%~dp0"
 
-REM Always take published main when this folder is a git clone (old Tk desk -> browser desk).
+REM Prefetch only - open_desk shows an Update now / Not now popup when behind main.
 if exist ".git\" (
   where git >nul 2>&1
   if not errorlevel 1 (
-    echo Updating Evalathan to the published main tree...
-    for /f "delims=" %%H in ('git rev-parse HEAD') do set "BEFORE=%%H"
+    echo Checking Evalathan GitHub main...
     git fetch origin
-    if not errorlevel 1 (
-      git checkout main
-      git reset --hard origin/main
-      for /f "delims=" %%H in ('git rev-parse HEAD') do set "AFTER=%%H"
-      if defined BEFORE if defined AFTER if /I not "%BEFORE%"=="%AFTER%" (
-        if not defined EVALATHAN_RELAUNCHED (
-          echo Update applied. Restarting launcher...
-          endlocal
-          set "EVALATHAN_RELAUNCHED=1"
-          "%~f0" %*
-          exit /b %ERRORLEVEL%
-        )
-      )
-    ) else (
+    if errorlevel 1 (
       echo git fetch failed. Continuing with the files already on disk.
     )
   )
