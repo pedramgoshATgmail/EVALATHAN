@@ -1,6 +1,6 @@
 (function () {
   const GLOSS_SEARCH =
-    "https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/f0a5b6537350c6fe5f8601648929b208dd10a18b/docs/glossary.html";
+    "https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/b714e3541783766d11d45fe79413be565da56182/docs/glossary.html";
   const GLOSS_MD = "https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/GLOSSARY.md";
   const anchor = (id) => GLOSS_MD + "#user-content-" + id;
   /*
