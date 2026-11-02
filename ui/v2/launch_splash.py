@@ -29,7 +29,7 @@ from pathlib import Path
 TARGET_DIAMETER = 220
 MAX_SECONDS = 180
 POLL_MS = 120
-DOT_MS = 360  # whole-caption flash pulse (launching...)
+DOT_MS = 380  # three chasing dots under launching
 
 
 def state_dir() -> Path:
@@ -282,42 +282,52 @@ def _caption_fonts(supersample: int = 1):
     return ImageFont.load_default(), ImageFont.load_default()
 
 
-def _caption_fade_alpha(phase: int) -> int:
-    """Whole-string pulse - same beat the old 3-dot chase used (bright / mid / nearly gone)."""
-    # Hard steps so the full 'launching...' reads as flashing, not a soft blend.
-    return (255, 110, 28)[phase % 3]
+def _caption_dot_rgba(kind: str) -> tuple[int, int, int, int]:
+    """Dark-green chase: active / mid / dim (same beat as the old black/grey dots)."""
+    if kind == "active":
+        return (11, 92, 46, 255)  # #0B5C2E
+    if kind == "mid":
+        return (61, 138, 92, 255)  # #3D8A5C
+    return (122, 173, 142, 255)  # #7AAD8E
 
 
 def _draw_caption(base, phase: int, supersample: int = 1):
-    """Return a copy of base with centered dark-green fading 'launching...'."""
-    from PIL import Image, ImageDraw
+    """Return a copy of base with centered dark-green 'launching' + three pulsing dots."""
+    from PIL import ImageDraw
 
     frame = base.copy()
+    draw = ImageDraw.Draw(frame)
     size = frame.size[0]
     ss = max(1, int(supersample))
-    font, _font_dots = _caption_fonts(ss)
+    font, font_dots = _caption_fonts(ss)
 
-    # Draw opaque dark-green text on its own layer, then scale layer alpha so the
-    # whole word+ellipsis flashes together (Pillow text RGBA fill alone is too soft).
-    overlay = Image.new("RGBA", frame.size, (0, 0, 0, 0))
-    draw = ImageDraw.Draw(overlay)
-    word = "launching..."
+    word = "launching"
     try:
         wb = draw.textbbox((0, 0), word, font=font)
         word_w = wb[2] - wb[0]
         word_h = wb[3] - wb[1]
     except Exception:  # noqa: BLE001
-        word_w, word_h = 150 * ss, 20 * ss
-    x0 = (size - word_w) // 2
+        word_w, word_h = 110 * ss, 20 * ss
+    dots_w = 48 * ss
+    total = word_w + 6 * ss + dots_w
+    x0 = (size - total) // 2
     y = size // 2 - word_h // 2 - 2 * ss
-    draw.text((x0, y), word, fill=(11, 92, 46, 255), font=font)  # #0B5C2E
-
-    alpha = _caption_fade_alpha(phase)
-    if alpha < 255:
-        r, g, b, a = overlay.split()
-        a = a.point(lambda p, mul=alpha: (p * mul) // 255)
-        overlay = Image.merge("RGBA", (r, g, b, a))
-    return Image.alpha_composite(frame, overlay)
+    draw.text((x0, y), word, fill=_caption_dot_rgba("active"), font=font)
+    active = phase % 3
+    for i in range(3):
+        if i == active:
+            color = _caption_dot_rgba("active")
+        elif i == (active - 1) % 3:
+            color = _caption_dot_rgba("mid")
+        else:
+            color = _caption_dot_rgba("dim")
+        draw.text(
+            (x0 + word_w + 6 * ss + i * 14 * ss, y - 4 * ss),
+            ".",
+            fill=color,
+            font=font_dots,
+        )
+    return frame
 
 def _rgba_to_premultiplied_bgra(im) -> bytes:
     pixels = bytearray()
@@ -926,18 +936,39 @@ def _run_splash_tk(logo_path: Path) -> int:
         pass
 
     canvas.create_image(size // 2, size // 2, image=logo, anchor="center")
-    # Tk cannot do true alpha; hard green steps mimic the bright/mid/dim flash.
-    fade_fills = ("#0B5C2E", "#6FAF88", "#C5E0CF")
+    # Dark green chase (Tk has no true alpha - use solid green steps).
+    ink = "#0B5C2E"
+    ink_mid = "#3D8A5C"
+    ink_dim = "#7AAD8E"
     cx = size // 2
     cy = size // 2
     label = canvas.create_text(
         cx,
         cy,
-        text="launching...",
-        fill=fade_fills[0],
+        text="launching",
+        fill=ink,
         font=("Segoe UI", 20, "bold"),
-        anchor="center",
+        anchor="e",
     )
+    bbox = canvas.bbox(label)
+    word_w = (bbox[2] - bbox[0]) if bbox else 110
+    dots_w = 42
+    total_w = word_w + 4 + dots_w
+    word_right = cx - total_w // 2 + word_w
+    canvas.coords(label, word_right, cy)
+    canvas.itemconfigure(label, anchor="e")
+    dot_ids = []
+    for i in range(3):
+        dot_ids.append(
+            canvas.create_text(
+                word_right + 2 + i * 14,
+                cy,
+                text=".",
+                fill=ink_dim,
+                font=("Segoe UI", 25, "bold"),
+                anchor="w",
+            )
+        )
 
     root.update_idletasks()
     sw = root.winfo_screenwidth()
@@ -954,7 +985,15 @@ def _run_splash_tk(logo_path: Path) -> int:
     def _tick_dots() -> None:
         if not root.winfo_exists():
             return
-        canvas.itemconfigure(label, fill=fade_fills[phase["i"] % 3])
+        active = phase["i"] % 3
+        for i, dot_id in enumerate(dot_ids):
+            if i == active:
+                color = ink
+            elif i == (active - 1) % 3:
+                color = ink_mid
+            else:
+                color = ink_dim
+            canvas.itemconfigure(dot_id, fill=color)
         phase["i"] += 1
         root.after(DOT_MS, _tick_dots)
 
