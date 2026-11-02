@@ -228,21 +228,26 @@ button { cursor: pointer; border: 0; background: none; }
   padding-bottom: 3vh;
 }
 .page-stage:not(.is-splash) {
-  justify-content: stretch;
-  padding-top: 0.5rem;
+  justify-content: flex-start;
+  padding-top: 1.5vh;
+  padding-bottom: 1.5rem;
 }
 .page-stage:not(.is-splash) .splash-brand {
-  flex: 1 1 auto;
+  flex: 0 0 auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 0.45rem;
 }
 .page-stage:not(.is-splash) .splash-mid {
-  flex: 0 0 auto;
+  flex: 1 1 auto;
   width: 100%;
-  padding: 0.75rem 0 1rem;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0;
 }
 .page-stage:not(.is-splash) .splash-foot {
   display: none;
@@ -261,8 +266,8 @@ button { cursor: pointer; border: 0; background: none; }
   margin: 2.2vh 0 1.4vh;
 }
 .splash-art-slot.art-evalathan { --art-scale: 1.5; } /* splash dragon +50% */
-.splash-art-slot.art-hydra { --art-scale: 1.8147; }
-.splash-art-slot.art-dehydrus { --art-scale: 2.9538; } /* +25% */
+.splash-art-slot.art-hydra { --art-scale: 1.9417; } /* +7% */
+.splash-art-slot.art-dehydrus { --art-scale: 2.6584; } /* -10% */
 .splash-art-slot.art-benchrex { --art-scale: 2.9422; } /* +30% */
 .splash-art {
   width: 100%;
