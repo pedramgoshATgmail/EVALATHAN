@@ -327,7 +327,8 @@ body.is-rail-resizing .center {
   height: calc(16.3vh * var(--art-scale));
   max-width: min(72vw, 70vh);
   max-height: min(72vw, 70vh);
-  display: flex;
+  /* Update-popup proof: hide main dragon / engine emblems on GUI pages */
+  display: none;
   align-items: center;
   justify-content: center;
   margin: 2.2vh 0 1.4vh;
