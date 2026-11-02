@@ -480,7 +480,7 @@ Braidware is the post-4IR (Fourth Industrial Revolution) braid of three strands:
 
 Headless MCP (Model Context Protocol) and CLI (command-line interface) work stay in the braid.
 
-Good examples include: Meta/etc AI Ran Ban glasses which bear their own Edge AI, TinyML, custom framing, cloud and software infusion; Pamir (pamir.ai) Lapis One: a dedicated Linux box where agentics, engine, and hardware sit as one unit (not a 2010s phone PDA.); and most recently (as at Nov 2 2026, Meta's Muse Charm).
+Good examples include: Meta/etc AI Ray Ban glasses which bear their own Edge AI, TinyML, custom framing, cloud and software infusion; Pamir (pamir.ai) Lapis One: a dedicated Linux box where agentics, engine, and hardware sit as one unit (not a 2010s phone PDA.); and most recently (as at Nov 2 2026, Meta's Muse Charm).
 
 
 <p><img src="assets/term-rule.png" alt="" width="100%" height="18"></p>
