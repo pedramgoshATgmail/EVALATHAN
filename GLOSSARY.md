@@ -1145,9 +1145,9 @@ Spec: [docs/LuDaTs.md](docs/LuDaTs.md). Machine cards: [exams/ludats/](exams/lud
 [HabTwin](#habtwin) (Habit Twin) is a later exam for a digital twin: a stand-in that is supposed to act like one real person or one real machine. It is not one of Hydra's sixteen software evalers, and it is not a [Trajectly](#trajectly) exam. In v0.3 Dehydrus only looks for a lab file. If none is there, it prints `No HabTwin lab trace`. It does not invent a score. A blank is not a fail and not a zero. Spec: [docs/HabTwin.md](docs/HabTwin.md).
 
 <p align="center"><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/9eaf2bb5dba6b3978c0b936a7966d587d6e62690/docs/glossary.html#xl-habtwin"><img src="assets/glossary/cards/habtwin-card.png" alt="HabTwin asks whether a stand-in predicts the real person or machine, in a lab, more than once." width="703"></a></p>
+<p align="center"><i>Guessing my passwords correctly is not the prize; the prize is encoding the habits and idiosyncracies that went into secretly making my passwords.</i></p>
 <p align="center"><i>If AI made a copy of me, would that copy still sound like me tomorrow, or only like "people in general"?</i></p>
 <p align="center"><i>Copy me once and you have a sketch. Copy me again and still be right - that is a twin.</i></p>
-<p align="center"><i>But guessing my passwords correctly is not the prize; the prize is encoding the habits and idiosyncracies that went into secretly making my passwords.</i></p>
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
