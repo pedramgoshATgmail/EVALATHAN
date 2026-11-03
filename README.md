@@ -146,7 +146,7 @@ Each name opens its glossary entry. An entry has the same three parts as the Hyd
 
 ## Key Strengths
 
-[Reductoholistic](GLOSSARY.md#user-content-reductoholism) Lifecycle View (Yin & Yang spehrical) : Most evaluation tools are siloed into either static analysis (e.g., SonarQube, flake8), benchmark profiling (e.g., pytest-benchmark), or LLM (Large Language Model) observability (e.g., Promptfoo, DeepEval). EVALATHAN attempts to unify traditional software metrics, AI agent evaluations, and human-centric design under Hydra, and locked physical-world discovery under Dehydrus.
+[Reductoholistic](GLOSSARY.md#user-content-reductoholism) Lifecycle View ('Yinyang spherical 360x360 objectivity'): Most evaluation tools are siloed into either static analysis (e.g., SonarQube, flake8), benchmark profiling (e.g., pytest-benchmark), or LLM (Large Language Model) observability (e.g., Promptfoo, DeepEval). EVALATHAN attempts to unify traditional software metrics, AI agent evaluations, and human-centric design under Hydra, and locked physical-world discovery under Dehydrus.
 
 Two Rooms, Two Conductors: Hydra still writes sixteen software cells. Dehydrus writes eight LuDaTs cells. The rooms do not share a vector. Twenty-four cells are not folded into one number, and there is no state-of-the-art stamp.
 
