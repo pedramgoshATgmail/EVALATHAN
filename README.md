@@ -92,7 +92,7 @@ A standout aspect of EVALATHAN platform is its integration of developer and user
 
 [Menschly](GLOSSARY.md#user-content-menschly): The evaluator specifically tasked with verifying whether a codebase incorporates real session limiters/timers rather than just vague README promises.
 
-[PRETRUWs](GLOSSARY.md#user-content-pretruws) / [LuDaTs](GLOSSARY.md#user-content-ludats) / [Dehydrus](GLOSSARY.md#user-content-dehydrus): The v0.3 physical-world room. PRETRUWs is the 4IR (Fourth Industrial Revolution) paradigm. LuDaTs methodology framework (Limited-universe Data Test sets) is a subset of PRETRUWs: the methodology framework inside that paradigm, not a [Trajectly](GLOSSARY.md#user-content-trajectly) exam. Dehydrus conducts eight LuDaTs evalers. A prompt cutoff is not a world. A blank is not a fail and not a zero.
+[PRETRUWs](GLOSSARY.md#user-content-pretruws) / [LuDaTs](GLOSSARY.md#user-content-ludats) / [Dehydrus](GLOSSARY.md#user-content-dehydrus): The v0.3 physical-world room. PRETRUWs is the 4IR (Fourth Industrial Revolution) paradigm. LuDaTs methodology framework (Limited-universe Data Test sets) is a subset of PRETRUWs. Dehydrus conducts the (current) eight LuDaTs evalers. A prompt cutoff is not a world. A blank is not a fail and not a zero.
 
 [HabTwin](GLOSSARY.md#user-content-habtwin): A digital twin is a stand-in. HabTwin asks whether that stand-in keeps predicting what the real person or the real machine would do, in a safe lab, more than once. One lucky guess is not enough. Guessing a live password is not the prize. v0.3 does not run this exam yet. Dehydrus only looks for a lab file. If none is there, it prints `No HabTwin lab trace`. It does not invent a score.
 
