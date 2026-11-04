@@ -48,7 +48,7 @@ Hydra calls the current sixteen bespoke evalers (evaluators) and writes each rep
 
 <h3><img src="assets/glossary/simplespeak.png" alt="Simplespeak" height="21"></h3>
 
-The conductor. She points at each evaluator and writes down what it assessed and reported. She does not hand the evaluator group's results ae a single score or grade for the whole assessment group (16 current evaluators).
+The routing conductor. She points at each evaluator and writes down what it assessed and reported. She does not hand the evaluator group's results ae a single score or grade for the whole assessment group (16 current evaluators).
 
 <h3><img src="assets/glossary/techspeak.png" alt="Techspeak" height="21"></h3>
 
@@ -62,7 +62,7 @@ The conductor. She points at each evaluator and writes down what it assessed and
 
 <h3><img src="assets/glossary/score-constitution.png" alt="Score Constitution" height="17"></h3>
 
-Dehydrus (foremerly <i>Cyrus Dehydrux</i>) is the conducting router for [physical world models](https://en.wikipedia.org/wiki/World_model_(artificial_intelligence)) evalers specializing in Physical AI, Digitwins, IoTs and LLMs interactions. Dehydrus calls the eight [LuDaTs](#ludats) evalers and writes each report beside the others. He counts how many ran, how many passed their own gate, and how many are deferred. He does not turn a blank into a zero, and he does not fold the eight into one number. He is not an eighteenth Hydra score. He also prints a [HabTwin](#habtwin) filename line. That line is a utility, not a ninth evaler.
+Dehydrus (foremerly <i>Cyrus Dehydrux</i>) is the routing conductor for [physical world models](https://en.wikipedia.org/wiki/World_model_(artificial_intelligence)) evalers specializing in Physical AI, Digitwins, IoTs and LLMs interactions. Dehydrus calls the eight [LuDaTs](#ludats) evalers and writes each report beside the others. He counts how many ran, how many passed their own gate, and how many are deferred. He does not turn a blank into a zero, and he does not fold the eight into one number. He is not an eighteenth Hydra score. He also prints a [HabTwin](#habtwin) filename line. That line is a utility, not a ninth evaler.
 
 <p align="center"><img src="assets/glossary/cards/dehydrus.png" alt="Dehydrus" width="485"></p>
 <p align="center"><i>He routes the eight. He does not add a score.</i></p>
