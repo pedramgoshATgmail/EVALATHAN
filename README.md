@@ -6,7 +6,7 @@
 
 <p align="center"><i><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/main/docs/glossary.html?v=plgout#product-led-growth">Making your Product-led growth (PLG) more efficient, robust, and user-friendly!</a></i></p>
 
-<p align="center">The one-stop evaluation platform for software, engines, agentics, codebases, compilers and languages.</p>
+<p align="center">The one-stop evaluation platform for software, engines, agentics, codebases, compilers, languages, and world models.</p>
 
 Evalathan grades a product across its life cycle. Evalathan is one evaluation harness; [Hydra](GLOSSARY.md#user-content-hydra) is the conductor - she orchestrates sixteen evaluators ('evalers'); each evaluator reports against a life-cycle gate.
 
