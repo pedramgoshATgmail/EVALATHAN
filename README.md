@@ -64,8 +64,7 @@ evalathan scan . --json report.json
 
 ## Overview & Core Philosophy
 
-EVALATHAN is an open-source, [reductoholistic](GLOSSARY.md#user-content-reductoholism) evaluation harness designed to audit and score software projects, codebases, compilers, and AI agent pipelines across their entire lifecycle.
-)
+EVALATHAN is an open-source, [reductoholistic](GLOSSARY.md#user-content-reductoholism) evaluation harness designed to audit and score software projects, codebases, engines, agentic pipelines, compilers, and world models across their entire lifecycle.
 
 The tool is a local runner (v0.3) aimed at Product-led growth (PLG) and codebase verification. Rather than generating a single aggregated or opaque score, EVALATHAN uses two conductors. [Hydra](GLOSSARY.md#user-content-hydra) orchestrates sixteen software evaluators ("evalers") and writes a transparent status matrix. [Dehydrus](GLOSSARY.md#user-content-dehydrus) orchestrates eight [LuDaTs](GLOSSARY.md#user-content-ludats) (Limited-universe Data Test sets) evalers under [PRETRUWs](GLOSSARY.md#user-content-pretruws). LuDaTs is a subset of PRETRUWs. The two rooms do not share a vector, and they are not folded into one number.
 
