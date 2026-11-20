@@ -90,7 +90,7 @@ EVALATHAN is an open-source, [reductoholistic](GLOSSARY.md#user-content-reductoh
 
 The tool is a local runner (v0.3.2) aimed at Product-led growth (PLG) and codebase verification. Rather than generating a single aggregated or opaque score, EVALATHAN uses four named conductors. [Hydra](GLOSSARY.md#user-content-hydra) orchestrates sixteen software evaluators ("evalers") and writes a transparent status matrix. [Dehydrus](GLOSSARY.md#user-content-dehydrus) orchestrates eight [LuDaTs](GLOSSARY.md#user-content-ludats) (Limited-universe Data Test sets) evalers under [PRETRUWs](GLOSSARY.md#user-content-pretruws). [Benchrex](GLOSSARY.md#user-content-benchrex) orchestrates ten deprecation cells. [Biasrex](GLOSSARY.md#user-content-biasrex) orchestrates six bias-gate cells. LuDaTs is a subset of PRETRUWs. The rooms do not share a vector, and they are not folded into one number.
 
-## Architecture & The 16 Evaluators
+## Architecture & The 16 Current Working Evaluators  (Hydra engine)
 
 EVALATHAN evaluates a project by passing a local directory path (`evalathan scan <path> [--json report.json]`). Its 16 evaluators span four distinct operational categories:
 
