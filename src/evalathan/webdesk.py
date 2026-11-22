@@ -102,6 +102,12 @@ class DeskHandler(SimpleHTTPRequestHandler):
             if path == "/api/download-memo":
                 self._download_memo()
                 return
+            if path == "/api/evolver/hi0":
+                self._evolver_hi0()
+                return
+            if path == "/api/evolver/status":
+                self._evolver_status()
+                return
             self._send_json(404, {"ok": False, "error": "Unknown API route."})
         except ValueError as exc:
             self._send_json(400, {"ok": False, "error": str(exc) or "Bad request."})
@@ -115,6 +121,50 @@ class DeskHandler(SimpleHTTPRequestHandler):
             raise ValueError("Body must include a runSets array.")
         path = save_run_sets(run_sets)
         self._send_json(200, {"ok": True, "path": str(path), "count": len(run_sets)})
+
+    def _evolver_hi0(self) -> None:
+        """Compact a JSON payload with Hi0 (lossless utility). Used by RefineX / SpunkworX."""
+        from evalathan.hi0 import estimate_tokens, serialize_for_llm
+
+        data = self._read_json()
+        payload = data.get("payload")
+        if payload is None:
+            raise ValueError("Body must include a payload object or array.")
+        text, saved = serialize_for_llm(payload)
+        self._send_json(
+            200,
+            {
+                "ok": True,
+                "hi0": text,
+                "tokensSavedEst": saved,
+                "baselineTokensEst": estimate_tokens(
+                    __import__("json").dumps(payload, indent=2, default=str)
+                ),
+                "note": "Hi0 utility only - does not call a model and does not write git.",
+            },
+        )
+
+    def _evolver_status(self) -> None:
+        """PoC status for EVOLVER Connections / guardrails (no silent writes)."""
+        data = self._read_json()
+        self._send_json(
+            200,
+            {
+                "ok": True,
+                "evolver": "ready",
+                "arms": {
+                    "RefineX": "paid_byo_sheet",
+                    "SpunkworX": "freemium_moe_staged",
+                },
+                "held": ["Kelkboom Test", "Self-test mint"],
+                "echo": {
+                    "connection": data.get("connection"),
+                    "model": data.get("model"),
+                    "guardrails": data.get("guardrails"),
+                },
+                "apis": ["/api/evolver/hi0", "/api/evolver/status"],
+            },
+        )
 
     def _download_memo(self) -> None:
         """Write memo PDF (or HTML fallback) straight to Downloads - no print dialog."""

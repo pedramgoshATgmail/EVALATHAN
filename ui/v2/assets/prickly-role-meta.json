@@ -1,0 +1,129 @@
+{
+  "version": 3,
+  "source": "Developer L&R bank review HOLD + policy hygiene + governance mint",
+  "ship_gate": "HOLD",
+  "fair_use": "Practice feedback only - not for hire or promotion cuts.",
+  "notes": [
+    "Trusted corridor (vetted / approved for practice): Programmer, Software Engineer.",
+    "Architect cluster quarantined: TA/SA/PA shared-stem risk from review.",
+    "Costume / work-in-progress roles: specialty rewrite still required.",
+    "Data Engineer: content-keep, use with care.",
+    "Three governance roles are new & work-in-progress - practice-only until a later review."
+  ],
+  "roles": {
+    "programmer": {
+      "class": "hand_authored",
+      "trust": "corridor",
+      "label": "Programmer",
+      "badge": null,
+      "ui_group": "trusted",
+      "warning": "Trusted corridor (vetted / approved). Structural hygiene applied; full rewrite of other roles still pending."
+    },
+    "software_engineer": {
+      "class": "hand_authored",
+      "trust": "corridor",
+      "label": "Software Engineer",
+      "badge": null,
+      "ui_group": "trusted",
+      "warning": "Trusted corridor (vetted / approved). Structural hygiene applied; full rewrite of other roles still pending."
+    },
+    "data_engineer": {
+      "class": "key_skewed",
+      "trust": "disclose",
+      "label": "Data Engineer",
+      "badge": "key_skew_disclosed",
+      "ui_group": "disclosed",
+      "warning": "Strong content, use with care. Practice OK; not for hire or promotion cuts."
+    },
+    "enterprise_ai_governance": {
+      "class": "new_wip",
+      "trust": "disclose",
+      "label": "Enterprise AI Governance",
+      "badge": "new_pack",
+      "ui_group": "disclosed",
+      "warning": "New & work-in-progress (ScaleAI 19 + summit seeds)."
+    },
+    "ai_tokenomics": {
+      "class": "new_wip",
+      "trust": "disclose",
+      "label": "AI Tokenomics",
+      "badge": "new_pack",
+      "ui_group": "disclosed",
+      "warning": "New & work-in-progress."
+    },
+    "data_ai_guardrails": {
+      "class": "new_wip",
+      "trust": "disclose",
+      "label": "Data & AI Guardrails",
+      "badge": "new_pack",
+      "ui_group": "disclosed",
+      "warning": "New & work-in-progress."
+    },
+    "technical_architect": {
+      "class": "architect_cluster",
+      "trust": "prototype",
+      "label": "Technical Architect",
+      "badge": "architect_quarantine",
+      "ui_group": "prototype",
+      "warning": "New & work-in-progress (shared stem cluster with Solutions/Principal)."
+    },
+    "solutions_architect": {
+      "class": "architect_cluster",
+      "trust": "prototype",
+      "label": "Solutions Architect",
+      "badge": "architect_quarantine",
+      "ui_group": "prototype",
+      "warning": "New & work-in-progress (shared stem cluster with Technical/Principal)."
+    },
+    "principal_architect": {
+      "class": "costume_clone",
+      "trust": "prototype",
+      "label": "Principal Architect",
+      "badge": "prototype_rebuild",
+      "ui_group": "prototype",
+      "warning": "New & work-in-progress - under rebuild."
+    },
+    "frontend_engineer": {
+      "class": "costume_clone",
+      "trust": "prototype",
+      "label": "Frontend Engineer",
+      "badge": "prototype_rebuild",
+      "ui_group": "prototype"
+    },
+    "ml_engineer": {
+      "class": "costume_clone",
+      "trust": "prototype",
+      "label": "ML Engineer",
+      "badge": "prototype_rebuild",
+      "ui_group": "prototype"
+    },
+    "llm_evals_engineer": {
+      "class": "costume_clone",
+      "trust": "prototype",
+      "label": "LLM Evals Engineer",
+      "badge": "prototype_rebuild",
+      "ui_group": "prototype"
+    },
+    "security_engineer": {
+      "class": "costume_clone",
+      "trust": "prototype",
+      "label": "Security Engineer",
+      "badge": "prototype_rebuild",
+      "ui_group": "prototype"
+    },
+    "qa_engineer": {
+      "class": "costume_clone",
+      "trust": "prototype",
+      "label": "QA / Test Engineer",
+      "badge": "prototype_rebuild",
+      "ui_group": "prototype"
+    },
+    "devops": {
+      "class": "costume_clone",
+      "trust": "prototype",
+      "label": "DevOps / Platform",
+      "badge": "prototype_rebuild",
+      "ui_group": "prototype"
+    }
+  }
+}

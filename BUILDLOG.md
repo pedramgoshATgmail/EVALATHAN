@@ -13,7 +13,8 @@ Plain version history. Dates are the day each version landed on `main` (git comm
 | **v0.3.3** | **11/20/26** | Desk memo eye-comfort palette under [**4Uvals** (Ultimate User-User-User evaluations)](GLOSSARY.md#user-content-4uvals) + [**Menschly** (limited-use / well-being evaler)](GLOSSARY.md#user-content-menschly) policy: memo sheet `#FFF4E5`, evaler bevel cards `#E8F3E8`, body text `#2B2B2B` (hyperlinks stay blue). Same mandate covers FUSS (For-User Session Switch) Irish-orange controls and Prickly accent hues. See one-line detail below. |
 | **v0.3.4** | **11/21/26** | [**PRICKLY**](GLOSSARY.md#user-content-prickly) desk live (no Coming soon): FUSS-simple picker → profile → timed True/False (Developer L&R + [**JaPoP**](GLOSSARY.md#user-content-japop) L&R) or JaPoP Static timestamped-comms heuristic. Soft 3-week / 6-month duration guidance only. Glossary entries for PRICKLY + JaPoP. |
 | **v0.3.5** | **11/21/26** | PRICKLY Developer L&R wires 3000-item True/False banks (12 roles × 5 levels × 10 × 5 packs V1-V5) with local pack rotation; final FUSS + PRICKLY circular logos on desk, glossary, and README; memo/FUSS/PRICKLY palette polish; scalable PRICKLY popup + Irish-green circular countdown twin of FUSS. |
-| **v0.3.6** | **11/21/26** (current) | Desk copy/UI: PRICKLY/FUSS italic title tags, drop "sit" language, PRICKLY RESULTS rail matches history latest-run chips, Nell (agent) rewrite label; mint panel colors kept. |
+| **v0.3.6** | **11/21/26** | Desk copy/UI: PRICKLY/FUSS italic title tags, drop "sit" language, PRICKLY RESULTS rail matches history latest-run chips, Nell (agent) rewrite label; mint panel colors kept. |
+| **v0.3.7** | **11/22/26** (current) | [EVOLVER](GLOSSARY.md#user-content-evolver) right-rail nest ([RefineX](GLOSSARY.md#user-content-refinex), [SpunkworX](GLOSSARY.md#user-content-spunkworx), [ConneX](GLOSSARY.md#user-content-connex), [TOKEX](GLOSSARY.md#user-content-tokex), Hi0); PRICKLY fifteen specializations + practice policy labels + governance packs; selective bank hygiene (HOLD; rebuild = authoring + [SME](https://en.wikipedia.org/wiki/Subject-matter_expert) dual-key + pilot). |
 
 ## One-line each
 
@@ -41,7 +42,10 @@ Glossary + desk names for Benchrex (10) and Biasrex (6) match Hydra/Dehydrus wri
 ### 11/21/26 - v0.3.5
 **PRICKLY banks + final logos.** Developer L&R loads [prickly-dev-banks-variants.json](ui/v2/assets/prickly-dev-banks-variants.json) (3000 True/False items; rotates packs V1-V5). Final circular FUSS and PRICKLY logos on the desk rail, glossary, and README. Memo / FUSS / PRICKLY shared palette; PRICKLY countdown matches FUSS circular splash in Irish-flag green.
 
-### 11/21/26 - v0.3.6 (current)
+### 11/22/26 - v0.3.7 (current)
+**EVOLVER + PRICKLY expansion.** Right history rail gains TOKEX - Token Expenditure strip and EVOLVER nest: RefineX (Paid/Bring-your-own API option), SpunkworX (freemium MoE option; staged Delphic rounds), ConneX (provider/model/guardrails). Hi0 lossless pack utility + `/api/evolver/*` on the local desk. PRICKLY Developer L&R grows to fifteen specializations (adds Enterprise AI Governance, AI Tokenomics, Data & AI Guardrails) with trusted-corridor / use-with-care / new & work-in-progress labels. Bank posture: selective rebuild, not scrap-all; prior review HOLD; wired work is policy + structural hygiene; next rebuild steps are authoring, [SME](https://en.wikipedia.org/wiki/Subject-matter_expert) (Subject-Matter Expert) dual-key, then a practitioner pilot - not more UI.
+
+### 11/21/26 - v0.3.6
 **Desk GUI polish.** Centered italic PRICKLY/FUSS title tags; replace user-facing "sit" copy; PRICKLY RESULTS list uses the same latest-run chip structure as history; Full details kicker says Nell (agent) rewrite. Panel wash stays mint (`#D1E6DE`).
 
 ### 11/20/26 - v0.3.3

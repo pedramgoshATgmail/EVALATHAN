@@ -477,7 +477,7 @@
 
   function loadBanks() {
     return Promise.all([
-      fetch("assets/prickly-dev-banks-variants.json?v=6")
+      fetch("assets/prickly-dev-banks-variants.json?v=8")
         .then(function (r) {
           return r.json();
         })

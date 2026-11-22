@@ -14,7 +14,7 @@ Evalathan houses 4 routing engines: [Hydra](GLOSSARY.md#user-content-hydra), [De
 
 Currently, only Hydra is operational. Hydra is a [conductor](https://opensource.microsoft.com/blog/2026/05/14/conductor-deterministic-orchestration-for-multi-agent-ai-workflows/) of her 16 evalers: like the person at the front of an orchestra who cues each player, she calls sixteen specialized checkers. Evalathan calls those checkers evalers (short for evaluators). Each evaler reports against its own life-cycle gate.
 
-**v0.3.6** (current) ships [PRICKLY](GLOSSARY.md#user-content-prickly) on the desk with 3000-item Developer L&R banks, [JaPoP](GLOSSARY.md#user-content-japop), and final FUSS/PRICKLY logos. Earlier: **v0.3.2** added full glossary sections for [Benchrex](GLOSSARY.md#user-content-benchrex) and [Biasrex](GLOSSARY.md#user-content-biasrex).
+**v0.3.7** (current) ships [EVOLVER](GLOSSARY.md#user-content-evolver) on the right history rail ([RefineX](GLOSSARY.md#user-content-refinex), [SpunkworX](GLOSSARY.md#user-content-spunkworx), [ConneX](GLOSSARY.md#user-content-connex), [TOKEX](GLOSSARY.md#user-content-tokex) strip, Hi0 utility) plus expanded [PRICKLY](GLOSSARY.md#user-content-prickly) Developer L&R (fifteen specializations, practice policy labels, governance packs). Earlier: **v0.3.6** PRICKLY/FUSS desk polish; **v0.3.5** 3000-item banks + logos; **v0.3.2** [Benchrex](GLOSSARY.md#user-content-benchrex) / [Biasrex](GLOSSARY.md#user-content-biasrex) glossary rooms.
 
 After download (below) as a local desktop [GUI](https://en.wikipedia.org/wiki/Graphical_user_interface), Evalathan runs locally as a native desktop app - files live in `evalathan-program` - while an Evalathan icon sits on your Desktop.
 
@@ -111,7 +111,7 @@ EVALATHAN evaluates a project by passing a local directory path (`evalathan scan
 
 Dehydrus's eight LuDaTs evalers sit in their own room. They are listed under [What v0.3 runs](#what-v03-runs-dehydrus-evalers-are-not-wired-in-yet). Benchrex and Biasrex are listed under [What v0.3.2 runs](#what-v032-runs-benchrex-and-biasrex-evalers-are-not-wired-in-yet). They are not a seventeenth Hydra score.
 
-### Unique Features: SELFBELT, FUSS, PRICKLY, and PRETRUWs
+### Unique Features: SELFBELT, FUSS, PRICKLY, EVOLVER, and PRETRUWs
 
 A standout aspect of EVALATHAN platform is its integration of developer and user wellness into the evaluation criteria:
 
@@ -121,9 +121,11 @@ A standout aspect of EVALATHAN platform is its integration of developer and user
 
 <p align="center"><img src="fuss/fuss-logo.png" alt="FUSS" width="160"></p>
 
-[PRICKLY](GLOSSARY.md#user-content-prickly): Timed judgment sittings on the Evalathan desk - Developer Live & Realtime (L&R) with twelve specializations and five difficulty levels (rotating 3000-item True/False banks), plus [JaPoP](GLOSSARY.md#user-content-japop) (Just-a-Professional-or-Partnerable) L&R and Static paper-trail uploads. Not a seventeenth Hydra score. Opens like FUSS: pick a test, say who is sitting, sit or upload.
+[PRICKLY](GLOSSARY.md#user-content-prickly): Timed judgment sittings on the Evalathan desk - Developer Live & Realtime (L&R) with fifteen specializations and five difficulty levels (rotating True/False packs), plus [JaPoP](GLOSSARY.md#user-content-japop) (Just-a-Professional-or-Partnerable) L&R and Static paper-trail uploads. Desk policy labels mark trusted corridor vs use-with-care vs new & work-in-progress. Not a seventeenth Hydra score. Opens like FUSS: pick a test, say who is sitting, sit or upload.
 
 <p align="center"><img src="assets/prickly-logo.png" alt="PRICKLY" width="160"></p>
+
+[EVOLVER](GLOSSARY.md#user-content-evolver): Right-rail nest for code refinement loops under Evalathan. Children: [RefineX](GLOSSARY.md#user-content-refinex) (Paid/Bring-your-own API option), [SpunkworX](GLOSSARY.md#user-content-spunkworx) (freemium Mixture of Experts option with staged Delphic rounds), [ConneX](GLOSSARY.md#user-content-connex) (provider / model / guardrails sheet), plus a [TOKEX](GLOSSARY.md#user-content-tokex) - Token Expenditure strip and Hi0 lossless pack utility. Not a Hydra evaler.
 
 [Menschly](GLOSSARY.md#user-content-menschly): The evaluator specifically tasked with verifying whether a codebase incorporates real session limiters/timers rather than just vague README promises.
 
@@ -255,9 +257,15 @@ DevOps & Community Infrastructure: The repository would benefit from automated G
 
 ## PRICKLY
 
-[PRICKLY](GLOSSARY.md#user-content-prickly) is the desk rail for timed True/False judgment sittings and for [JaPoP](GLOSSARY.md#user-content-japop) (Just-a-Professional-or-Partnerable). Developer L&R covers twelve specializations across five levels with five rotatable question packs (3000 items). JaPoP adds partnerability L&R plus a Static dated-comms upload. It is not one of the sixteen Hydra evalers. Desk code: [ui/v2/prickly.js](ui/v2/prickly.js).
+[PRICKLY](GLOSSARY.md#user-content-prickly) is the desk rail for timed True/False judgment sittings and for [JaPoP](GLOSSARY.md#user-content-japop) (Just-a-Professional-or-Partnerable). Developer L&R covers fifteen specializations across five levels with five rotatable packs (banks in [ui/v2/assets/prickly-dev-banks-variants.json](ui/v2/assets/prickly-dev-banks-variants.json)), including three governance packs (Enterprise AI Governance, AI Tokenomics, Data & AI Guardrails). JaPoP adds partnerability L&R plus a Static dated-comms upload. It is not one of the sixteen Hydra evalers. Desk code: [ui/v2/prickly.js](ui/v2/prickly.js), policy labels: [ui/v2/prickly-policy.js](ui/v2/prickly-policy.js).
+
+**Bank status (simple):** selective rebuild, not scrap-all. A prior review of the Developer L&R bank was HOLD. What v0.3.7 wires is practice policy + structural hygiene. A real rebuild is mostly authoring + [SME](https://en.wikipedia.org/wiki/Subject-matter_expert) (Subject-Matter Expert) dual-key review + a practitioner pilot - not more UI.
 
 <p align="center"><img src="assets/prickly-logo.png" alt="PRICKLY" width="200"></p>
+
+## EVOLVER
+
+[EVOLVER](GLOSSARY.md#user-content-evolver) sits on the right history rail (aligned with PRICKLY results on the left). Expand it for [RefineX](GLOSSARY.md#user-content-refinex), [SpunkworX](GLOSSARY.md#user-content-spunkworx), and [ConneX](GLOSSARY.md#user-content-connex). [TOKEX](GLOSSARY.md#user-content-tokex) sits above EVOLVER (aligned with GLOSS). Desk code: [ui/v2/evolver.js](ui/v2/evolver.js). Local APIs: `POST /api/evolver/hi0`, `POST /api/evolver/status`.
 
 ## [Ed Slop](GLOSSARY.md#user-content-ed-slop)
 

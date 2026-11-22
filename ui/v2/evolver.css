@@ -1,0 +1,302 @@
+/* EVOLVER + TOKEX - right rail dock (outside #rail-scroll). */
+
+.runs-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.runs-inner > .rail-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.evolver-dock {
+  flex: 0 0 auto;
+  border-top: 1px solid rgba(180, 220, 120, 0.28);
+  padding: 0.55rem 0.65rem 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.evolver-dock .section-label,
+.evolver-dock .tokex-toggle,
+.evolver-dock .evolver-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  padding: 0.35rem 0;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+.evolver-dock .rail-head-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: #b8e06a;
+}
+
+.evolver-dock .rail-head-caret {
+  display: inline-block;
+  transition: transform 0.15s ease;
+  color: #b8e06a;
+}
+
+.evolver-dock .tokex-toggle[aria-expanded="true"] .rail-head-caret,
+.evolver-dock .evolver-toggle[aria-expanded="true"] .rail-head-caret {
+  transform: rotate(90deg);
+}
+
+.tokex-panel,
+.evolver-panel {
+  margin-top: 0.25rem;
+  padding-left: 0.15rem;
+}
+
+.tokex-detail {
+  font-size: 0.78rem;
+  line-height: 1.4;
+  opacity: 0.92;
+}
+
+.tokex-block {
+  padding: 0.35rem 0;
+  border-top: 0.5px solid var(--link-blue, #7eb8ff); /* same thin blue as history rail separators */
+}
+
+.tokex-block:first-child {
+  border-top: 0;
+  padding-top: 0.1rem;
+}
+
+.tokex-block.net .tokex-net-label,
+.tokex-block.net .tokex-net-stats {
+  color: #d7f28a;
+}
+
+.evolver-child {
+  display: block;
+  width: 100%;
+  text-align: left;
+  margin: 0.35rem 0;
+  padding: 0.45rem 0.5rem;
+  border: 1px solid rgba(180, 220, 120, 0.22);
+  background: rgba(0, 0, 0, 0.18);
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+
+.evolver-child strong {
+  display: block;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.88rem;
+  color: #c9ec7a;
+  margin-bottom: 0.2rem;
+}
+
+.evolver-blurb {
+  display: block;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  opacity: 0.88;
+}
+
+.evolver-guardrails-chip {
+  display: inline-block;
+  margin-top: 0.4rem;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid rgba(201, 162, 39, 0.55);
+  background: rgba(255, 246, 217, 0.08);
+  color: #e6d28a;
+  font-size: 0.72rem;
+  cursor: pointer;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+.evolver-conn-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 120000;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.evolver-conn-layer[hidden] {
+  display: none !important;
+}
+
+.evolver-conn-card {
+  width: min(420px, 94vw);
+  max-height: 90vh;
+  overflow: auto;
+  background: #121820;
+  color: #e8eef7;
+  border: 1px solid rgba(180, 220, 120, 0.35);
+  padding: 1rem 1.1rem 1.15rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+}
+
+.evolver-conn-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.evolver-conn-head h2 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  color: var(--accent, #c9ec7a);
+}
+
+.evolver-conn-close {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 1.4rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.evolver-conn-lead,
+.evolver-conn-sub {
+  font-size: 0.82rem;
+  opacity: 0.9;
+}
+
+.evolver-field {
+  display: block;
+  margin: 0.65rem 0;
+  font-size: 0.8rem;
+}
+
+.evolver-field > strong {
+  display: block;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.88rem;
+  color: #c9ec7a;
+  margin-bottom: 0.2rem;
+}
+
+.evolver-field > .evolver-blurb {
+  margin-bottom: 0.35rem;
+}
+
+.evolver-conn-card select,
+.evolver-conn-card input[type="text"],
+.evolver-conn-card input[type="number"] {
+  display: block;
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 0.35rem 0.45rem;
+  background: #0b1016;
+  border: 1px solid rgba(180, 220, 120, 0.28);
+  color: inherit;
+}
+
+html[data-theme="white"] .evolver-conn-card select,
+html[data-theme="white"] .evolver-conn-card input[type="text"],
+html[data-theme="white"] .evolver-conn-card input[type="number"] {
+  background: #eceeef;
+  border-color: #c8c8c8;
+  color: #333333;
+}
+
+.evolver-check {
+  display: flex !important;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.88rem;
+  color: #c9ec7a;
+}
+
+.evolver-check input {
+  width: auto !important;
+  margin: 0 !important;
+}
+
+.evolver-field-check > .evolver-blurb {
+  margin-top: 0.25rem;
+}
+
+.evolver-conn-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+}
+
+.evolver-conn-save,
+.evolver-conn-cancel {
+  flex: 1;
+  padding: 0.45rem 0.6rem;
+  cursor: pointer;
+  border: 1px solid rgba(180, 220, 120, 0.35);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+.evolver-conn-save {
+  background: #b8e06a;
+  color: #121820;
+  border-color: #b8e06a;
+}
+
+.evolver-conn-cancel {
+  background: transparent;
+  color: inherit;
+}
+
+html[data-theme="white"] .evolver-dock .rail-head-label,
+html[data-theme="white"] .evolver-field > strong,
+html[data-theme="white"] .evolver-check {
+  color: var(--accent, #8a9a12);
+}
+
+/* White UI: RefineX / SpunkworX / ConneX titles match white theme mark */
+html[data-theme="white"] .evolver-child strong {
+  color: #ffffff;
+}
+
+html[data-theme="white"] .evolver-child {
+  background: #3a3a3a;
+  border-color: #5a5a5a;
+  color: #f2f2f2;
+}
+
+html[data-theme="white"] .evolver-conn-head h2 {
+  color: var(--accent, #8a9a12);
+}
+
+html[data-theme="white"] .evolver-conn-card {
+  background: #f7f9f4;
+  color: #1a2210;
+}
+
+/* White mode: NET TOKEX + Guardrails use same deep red as PRICKLY logo/title */
+html[data-theme="white"] .tokex-block.net .tokex-net-label,
+html[data-theme="white"] .tokex-block.net .tokex-net-stats {
+  color: #b02018;
+}
+
+html[data-theme="white"] .evolver-guardrails-chip {
+  color: #b02018;
+  border-color: #b02018;
+  background: rgba(176, 32, 24, 0.08);
+}
+
+html[data-theme="white"] .evolver-conn-sub {
+  color: #b02018;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+}

@@ -1189,6 +1189,23 @@ html {
   text-decoration: underline;
 }
 .memo-deep-lines a:hover { color: #1e5aa8; }
+/* Compare - Full compare detail: darker blues on cream sheet */
+.memo-win[data-kind="compare"] .memo-deep-lines a,
+.memo-win[data-kind="compare"] .memo-title-link,
+.memo-win[data-kind="compare"] a.memo-gloss-link,
+.memo-win[data-kind="compare"] a.memo-std-link,
+.memo-win[data-kind="compare"] a.memo-file-link,
+.memo-win[data-kind="compare"] .complete-intel-link {
+  color: #0038b8;
+}
+.memo-win[data-kind="compare"] .memo-deep-lines a:hover,
+.memo-win[data-kind="compare"] .memo-title-link:hover,
+.memo-win[data-kind="compare"] a.memo-gloss-link:hover,
+.memo-win[data-kind="compare"] a.memo-std-link:hover,
+.memo-win[data-kind="compare"] a.memo-file-link:hover,
+.memo-win[data-kind="compare"] .complete-intel-link:hover {
+  color: #001f6b;
+}
 
 /* Nell rewrite - readable detail cards (no path walls) */
 .nell-stack {
@@ -1898,6 +1915,25 @@ html {
   font-size: 1.05rem;
   line-height: 1.45;
   color: #222;
+}
+.prickly-role-trust {
+  margin: 0 0 0.55rem;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: #444;
+}
+.prickly-role-trust[data-trust="prototype"] {
+  color: #8a4b12;
+}
+.prickly-role-trust[data-trust="disclose"] {
+  color: #6b4a00;
+}
+.prickly-fair-use {
+  margin: 0 0 0.75rem;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: #666;
+  font-style: italic;
 }
 .prickly-hint-cta {
   color: #1a5a1a;

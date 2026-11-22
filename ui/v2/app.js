@@ -1,7 +1,7 @@
 (function () {
   /* Must match GLOSSARY.md Search pin = content commit that holds docs/glossary.html + assets. */
   const GLOSS_SEARCH =
-    "https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/9723ffbbf5cb80435dd1a22cd2b906d6489318e9/docs/glossary.html";
+    "https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/025dae761c3c90a9bfa4b61eaaf78cc08ef87cdf/docs/glossary.html";
   const GLOSS_MD = "https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/GLOSSARY.md";
   const anchor = (id) => GLOSS_MD + "#user-content-" + id;
 
@@ -2430,6 +2430,9 @@
       emptySaved.className = "past-list past-list-saved";
       appendEmptyLi(emptySaved, "No saved runs yet.");
       appendRailNest(scroll, "past runs", "Past evaluation runs", "saved", emptySaved, true);
+      if (window.EvalathanEvolver && typeof window.EvalathanEvolver.remount === "function") {
+        window.EvalathanEvolver.remount();
+      }
       return;
     }
 
@@ -2491,6 +2494,9 @@
       );
       scroll.appendChild(wrap);
     });
+    if (window.EvalathanEvolver && typeof window.EvalathanEvolver.remount === "function") {
+      window.EvalathanEvolver.remount();
+    }
   }
 
   function syncMemoLayer() {
@@ -2894,6 +2900,7 @@
     if (!host || !run) return;
     host.kind = "run";
     host.comparePack = null;
+    host.root.setAttribute("data-kind", "run");
     run = resolveRunRecord(run);
     if (!run.shortTitle) run.shortTitle = shortTitleFromTarget(run.target || run.title);
     enrichRunExplanations(run);
@@ -2923,6 +2930,7 @@
     if (!pack) return;
     host.kind = "compare";
     host.comparePack = pack;
+    host.root.setAttribute("data-kind", "compare");
     pack.memoSimple = writeCompareSimple(pack);
     pack.memoDeep = writeCompareDeep(pack);
     host.root.querySelector(".memo-win-title").textContent =
