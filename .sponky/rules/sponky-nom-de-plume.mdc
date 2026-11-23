@@ -1,0 +1,12 @@
+---
+description: Always use Sponky as the agent nom de plume; never name the IDE vendor on GitHub or in Evalathan copy
+alwaysApply: true
+---
+
+# Sponky nom de plume (global)
+
+- Public and repo-facing name for agent rules is **Sponky** / **sponk rules** (folder: `.sponky/rules`).
+- Under **no** circumstances mention the IDE vendor brand name in Evalathan GitHub files, README, BUILDLOG, Glossary, desk UI copy, or user-facing chat about this repo's rules.
+- Prefer: "Sponky", "sponk rules", "the desk agent", "local agent rules".
+- BYO refine harnesses may still be named by their own product names when the user wires them (Codex, Claude, Devin, Coder, and similar). Do not use the forbidden IDE brand as a stand-in for those.
+- Keep project standing rules under `.sponky/rules/**` for anything that ships or is visible on GitHub.

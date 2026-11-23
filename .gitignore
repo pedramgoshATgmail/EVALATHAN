@@ -5,3 +5,5 @@ __pycache__/
 dist/
 *.egg-info/
 report.json
+# Local IDE mirror only - public standing rules live under .sponky/rules
+.cursor/
