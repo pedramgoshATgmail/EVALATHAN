@@ -5,18 +5,34 @@
   flex-direction: column;
   height: 100%;
   min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto; /* whole right rail scrolls so open EVOLVER/TOKEX are reachable */
 }
 
 .runs-inner > .rail-scroll {
-  flex: 1 1 auto;
-  min-height: 0;
+  flex: 0 0 auto;
+  overflow: auto;
+  /* height set in JS so EVOLVER/TOKEX sit at the chosen Y even with short history */
+}
+
+/* Legacy empty spacer (removed in JS) - keep harmless if a stale node remains. */
+.evolver-prickly-spacer {
+  display: none !important;
 }
 
 .evolver-dock {
   flex: 0 0 auto;
   border-top: 1px solid rgba(180, 220, 120, 0.28);
-  padding: 0.55rem 0.65rem 0.75rem;
-  margin-top: 0.25rem;
+  border-bottom: 1px solid rgba(180, 220, 120, 0.28);
+  padding: 0.35rem 0.65rem 0.55rem;
+  margin: 0 0 0.15rem;
+}
+
+/* When a nest is open, keep the dock usable inside the remaining viewport. */
+.evolver-dock.is-panel-open {
+  max-height: min(52vh, 28rem);
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .evolver-dock .section-label,
@@ -65,12 +81,52 @@
   opacity: 0.92;
 }
 
+.tokex-lifetime-nest {
+  padding: 0.1rem 0 0.2rem;
+}
+
+.tokex-lifetime-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  padding: 0.15rem 0;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+.tokex-lifetime-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+}
+
+.tokex-lifetime-summary {
+  margin: 0.1rem 0 0.25rem 1.1rem;
+  opacity: 0.9;
+}
+
+.tokex-lifetime-nest:not(.is-collapsed) > .tokex-lifetime-toggle .rail-head-caret {
+  transform: rotate(90deg);
+}
+
+.tokex-run-nest {
+  margin-left: 0.85rem;
+  padding-left: 0.25rem;
+  border-left: 0.5px solid var(--link-blue, #7eb8ff);
+}
+
 .tokex-block {
   padding: 0.35rem 0;
   border-top: 0.5px solid var(--link-blue, #7eb8ff); /* same thin blue as history rail separators */
 }
 
-.tokex-block:first-child {
+.tokex-run-nest .tokex-block:first-child,
+.tokex-block.tokex-note {
   border-top: 0;
   padding-top: 0.1rem;
 }

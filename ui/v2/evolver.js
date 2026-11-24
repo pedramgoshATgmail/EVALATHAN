@@ -19,10 +19,25 @@
       .replace(/"/g, "&quot;");
   }
 
+  function normalizeTokexNote(note) {
+    var n = String(
+      note ||
+        "How many tokens EVOLVER routes used - and how much saved. Sealed runs only; never invented."
+    );
+    return n.replace(
+      "and how much Hi0 / routing saved.",
+      "and how much saved."
+    );
+  }
+
   function loadTokex() {
     try {
       var raw = localStorage.getItem(STORAGE_TOKEX);
-      if (raw) return JSON.parse(raw);
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        parsed.note = normalizeTokexNote(parsed.note);
+        return parsed;
+      }
     } catch (e) {}
     return {
       gross_prompt: 0,
@@ -37,11 +52,21 @@
       lifetime_saved: 0,
       lifetime_pct: 0,
       lifetime_runs: 0,
-      note: "How many tokens EVOLVER routes used - and how much Hi0 / routing saved. Sealed runs only; never invented.",
+      note: normalizeTokexNote(""),
     };
   }
 
   function saveTokex(t) {
+    if (
+      t &&
+      typeof t.note === "string" &&
+      t.note.indexOf("Hi0 / routing saved") >= 0
+    ) {
+      t.note = t.note.replace(
+        "and how much Hi0 / routing saved.",
+        "and how much saved."
+      );
+    }
     localStorage.setItem(STORAGE_TOKEX, JSON.stringify(t));
   }
 
@@ -77,7 +102,24 @@
 
   function renderTokexDetail(detail, t) {
     if (!detail) return;
+    /* LIFETIME is the only open row; gross / saved / net nest under it (same caret as history). */
     detail.innerHTML =
+      '<div class="tokex-lifetime-nest is-collapsed" id="tokex-lifetime-nest">' +
+      '<button type="button" class="tokex-lifetime-toggle" id="tokex-lifetime-toggle" aria-expanded="false" title="LIFETIME TOKEX - expand this-run counts">' +
+      '<span class="rail-head-caret" aria-hidden="true">▸</span>' +
+      '<span class="tokex-lifetime-label">LIFETIME TOKEX</span>' +
+      "</button>" +
+      '<div class="tokex-lifetime-summary">' +
+      "total=" +
+      escapeHtml(t.lifetime_total) +
+      " · saved=" +
+      escapeHtml(t.lifetime_saved) +
+      " (" +
+      Number(t.lifetime_pct || 0).toFixed(2) +
+      "% · " +
+      escapeHtml(t.lifetime_runs) +
+      " run(s))</div>" +
+      '<div class="tokex-run-nest" id="tokex-run-nest" hidden>' +
       '<div class="tokex-block">' +
       "<div>GROSS TOKEX THIS RUN</div>" +
       "<div>prompt=" +
@@ -103,20 +145,21 @@
       " · total=" +
       escapeHtml(t.net_total) +
       "</div></div>" +
-      '<div class="tokex-block">' +
-      "<div>LIFETIME TOKEX</div>" +
-      "<div>total=" +
-      escapeHtml(t.lifetime_total) +
-      " · saved=" +
-      escapeHtml(t.lifetime_saved) +
-      " (" +
-      Number(t.lifetime_pct || 0).toFixed(2) +
-      "% · " +
-      escapeHtml(t.lifetime_runs) +
-      " run(s))</div></div>" +
-      '<div class="tokex-block"><div>' +
+      "</div>" +
+      '<div class="tokex-block tokex-note"><div>' +
       escapeHtml(t.note || "") +
-      "</div></div>";
+      "</div></div></div>";
+    var nest = detail.querySelector("#tokex-lifetime-nest");
+    var btn = detail.querySelector("#tokex-lifetime-toggle");
+    var runNest = detail.querySelector("#tokex-run-nest");
+    if (btn && nest && runNest) {
+      btn.addEventListener("click", function () {
+        var open = nest.classList.contains("is-collapsed");
+        nest.classList.toggle("is-collapsed", !open);
+        runNest.hidden = !open;
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+    }
   }
 
   function openConnectionsSheet() {
@@ -189,6 +232,29 @@
       "EVOLVER guardrails - spend cap, rate limit, fail-closed. Kelkboom gate held for later.";
   }
 
+  function panelOpenState(root) {
+    var evOpen =
+      root &&
+      root.querySelector("#evolver-panel") &&
+      !root.querySelector("#evolver-panel").hidden;
+    var txOpen =
+      root &&
+      root.querySelector("#tokex-panel") &&
+      !root.querySelector("#tokex-panel").hidden;
+    return { evolver: !!evOpen, tokex: !!txOpen, any: !!(evOpen || txOpen) };
+  }
+
+  function revealDockPanel(root, focusEl) {
+    root.classList.toggle("is-panel-open", panelOpenState(root).any);
+    syncDockToPrickly();
+    window.requestAnimationFrame(function () {
+      var target = focusEl || root;
+      if (target && typeof target.scrollIntoView === "function") {
+        target.scrollIntoView({ block: "nearest", inline: "nearest" });
+      }
+    });
+  }
+
   function wireToggles(root) {
     var tokexBtn = root.querySelector("#tokex-toggle");
     var tokexPanel = root.querySelector("#tokex-panel");
@@ -198,6 +264,7 @@
         tokexPanel.hidden = !open;
         tokexBtn.setAttribute("aria-expanded", open ? "true" : "false");
         if (open) renderTokexDetail($("tokex-detail"), loadTokex());
+        revealDockPanel(root, tokexPanel.hidden ? tokexBtn : tokexPanel);
       });
     }
 
@@ -209,6 +276,7 @@
         evPanel.hidden = !open;
         evBtn.setAttribute("aria-expanded", open ? "true" : "false");
         root.classList.toggle("evolver-open", open);
+        revealDockPanel(root, evPanel.hidden ? evBtn : evPanel);
       });
     }
 
@@ -219,33 +287,82 @@
     if (guardChip) guardChip.addEventListener("click", openConnectionsSheet);
   }
 
+  /*
+   * Align EVOLVER/TOKEX under history:
+   * - closed: history band ends near mid (PRICKLY→bottom halfway)
+   * - open: shrink history so the dock keeps enough room, and the rail can scroll
+   */
+  function syncDockToPrickly() {
+    var dock = $("evolver-dock");
+    var scroll = $("rail-scroll");
+    var prickly = $("prickly-results-section");
+    var inner = document.querySelector("#runs-rail .runs-inner");
+    if (!dock || !scroll || !prickly || !inner) return;
+    var innerH = inner.clientHeight || 0;
+    if (innerH < 120) return;
+    var innerTop = inner.getBoundingClientRect().top;
+    var pricklyTop = prickly.getBoundingClientRect().top;
+    var band = Math.round(pricklyTop - innerTop);
+    if (!isFinite(band) || band < 96) band = 96;
+    var maxBand = Math.max(120, Math.round(innerH * 0.55));
+    if (band > maxBand) band = maxBand;
+    var open = panelOpenState(dock);
+    /* Reserve room for open panels so RefineX/SpunkworX/TOKEX are not clipped. */
+    var reserve = open.any ? Math.round(Math.min(innerH * 0.58, 340)) : 96;
+    var dockH = Math.max(dock.offsetHeight || 0, reserve);
+    var bottomTop = Math.max(band, innerH - dockH);
+    var mid = Math.round(band + (bottomTop - band) / 2);
+    if (open.any) {
+      /* Pull history up so the open dock fits in the viewport. */
+      mid = Math.max(96, Math.min(mid, innerH - reserve));
+    } else {
+      mid = Math.max(96, Math.min(mid, innerH - 96));
+    }
+    scroll.style.flex = "0 0 auto";
+    scroll.style.height = mid + "px";
+    scroll.style.maxHeight = mid + "px";
+    scroll.style.minHeight = Math.min(mid, 96) + "px";
+    scroll.style.overflow = "auto";
+    dock.classList.toggle("is-panel-open", open.any);
+  }
+
   function ensureDock() {
     var inner = document.querySelector("#runs-rail .runs-inner");
     if (!inner) return null;
     var dock = $("evolver-dock");
+    var deadSpacer = $("evolver-prickly-spacer");
+    if (deadSpacer) deadSpacer.remove();
+    /* Remount when order/labels are stale (EVOLVER must lead TOKEX; dock after history). */
     if (
       dock &&
       (!dock.querySelector("#evolver-btn-spunkworx") ||
+        !dock.querySelector(".evolver-section") ||
+        (dock.firstElementChild &&
+          !dock.firstElementChild.classList.contains("evolver-section")) ||
         (dock.querySelector("#evolver-btn-connections strong") &&
           dock.querySelector("#evolver-btn-connections strong").textContent !== "ConneX") ||
         (dock.querySelector("#evolver-btn-refinex .evolver-blurb") &&
-          dock.querySelector("#evolver-btn-refinex .evolver-blurb").textContent.indexOf("API option") < 0))
+          dock.querySelector("#evolver-btn-refinex .evolver-blurb").textContent.indexOf("API option") < 0) ||
+        (dock.nextElementSibling && dock.nextElementSibling.id === "rail-scroll"))
     ) {
       dock.remove();
       dock = null;
     }
-    if (dock) return dock;
+    if (dock) {
+      /* History must stay first so latest + past/saved remain visible. */
+      var scrollEl = inner.querySelector("#rail-scroll");
+      if (scrollEl && scrollEl.previousElementSibling === dock) {
+        inner.insertBefore(scrollEl, dock);
+      }
+      syncDockToPrickly();
+      return dock;
+    }
 
     dock = document.createElement("div");
     dock.id = "evolver-dock";
     dock.className = "evolver-dock";
+    /* EVOLVER above TOKEX; dock after #rail-scroll so past/saved history stays intact. */
     dock.innerHTML =
-      '<div class="slide-section tokex-section">' +
-      '<button type="button" class="section-label tokex-toggle" id="tokex-toggle" aria-expanded="false" title="TOKEX - Token Expenditure">' +
-      '<span class="rail-head-caret" aria-hidden="true">▸</span><span class="rail-head-label">TOKEX</span>' +
-      "</button>" +
-      '<div id="tokex-panel" class="tokex-panel" hidden><div id="tokex-detail" class="tokex-detail"></div></div>' +
-      "</div>" +
       '<div class="slide-section evolver-section">' +
       '<button type="button" class="section-label evolver-toggle rail-head-evolver" id="evolver-toggle" aria-expanded="false" title="EVOLVER - code refinement loop; nests RefineX and SpunkworX">' +
       '<span class="rail-head-caret" aria-hidden="true">▸</span><span class="rail-head-label">EVOLVER</span>' +
@@ -264,11 +381,25 @@
       "<span class=\"evolver-blurb\">One connection sheet for both options - provider status, model, fallback order.</span>" +
       "</button>" +
       '<button type="button" class="evolver-guardrails-chip" id="evolver-guardrails-chip" title="EVOLVER guardrails - spend caps, rate limits, fail-closed">Guardrails</button>' +
-      "</div></div>";
+      "</div></div>" +
+      '<div class="slide-section tokex-section">' +
+      '<button type="button" class="section-label tokex-toggle" id="tokex-toggle" aria-expanded="false" title="TOKEX - Token Expenditure">' +
+      '<span class="rail-head-caret" aria-hidden="true">▸</span><span class="rail-head-label">TOKEX</span>' +
+      "</button>" +
+      '<div id="tokex-panel" class="tokex-panel" hidden><div id="tokex-detail" class="tokex-detail"></div></div>' +
+      "</div>";
 
-    inner.appendChild(dock);
+    var scroll = inner.querySelector("#rail-scroll");
+    if (scroll) {
+      /* History first (latest + past/saved), then EVOLVER/TOKEX at PRICKLY height. */
+      if (scroll.nextSibling) inner.insertBefore(dock, scroll.nextSibling);
+      else inner.appendChild(dock);
+    } else {
+      inner.appendChild(dock);
+    }
     wireToggles(dock);
     refreshGuardChip();
+    syncDockToPrickly();
     return dock;
   }
 
@@ -326,6 +457,21 @@
   function boot() {
     ensureDock();
     ensureConnLayer();
+    window.requestAnimationFrame(function () {
+      syncDockToPrickly();
+      window.setTimeout(syncDockToPrickly, 50);
+      window.setTimeout(syncDockToPrickly, 250);
+    });
+    if (!window.__evolverPricklyAlignWired) {
+      window.__evolverPricklyAlignWired = true;
+      window.addEventListener("resize", syncDockToPrickly);
+      var app = document.getElementById("app-screen");
+      if (app && typeof MutationObserver !== "undefined") {
+        new MutationObserver(function () {
+          window.requestAnimationFrame(syncDockToPrickly);
+        }).observe(app, { attributes: true, attributeFilter: ["class"] });
+      }
+    }
   }
 
   /* Public: let RefineX / SpunkworX routers record sealed TOKEX later */
