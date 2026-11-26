@@ -6,7 +6,7 @@
 
 <p align="center"><i><a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pedramgoshATgmail/EVALATHAN/main/docs/glossary.html?v=plgout#product-led-growth">Making your Product-led growth (PLG) more efficient, robust, and user-friendly!</a></i></p>
 
-<p align="center">The one-stop evaluation platform for "supra-tech" software (aka <a href="GLOSSARY.md#user-content-braidware">Braidware</a>), engines, agentics, codebases, compilers, languages, and world models.</p>
+<p align="center">The one-stop evaluation platform for software (aka <a href="GLOSSARY.md#user-content-braidware">Braidware</a>), engines, agentics, codebases, compilers, languages, and world models.</p>
 
 Evalathan grades your software product across its developer life cycle. It is a single, unified [evaluation harness](https://en.wikipedia.org/wiki/Test_harness): a local platform that runs many separate checks (evaluations) and generates all the results separately (instead of hiding and diluting every result behind a single opaque score).
 
