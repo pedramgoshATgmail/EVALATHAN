@@ -17,7 +17,8 @@ See [BUILDLOG.md](../BUILDLOG.md). Short form:
 - **v0.3.4** (2026-11-21): [PRICKLY](../GLOSSARY.md#user-content-prickly) desk live + [JaPoP](../GLOSSARY.md#user-content-japop) L&R/Static (True/False banks, soft 3wk/6mo duration guidance).
 - **v0.3.5** (2026-11-21): PRICKLY Developer L&R 3000-item banks (12×5×10×5 packs), final FUSS/PRICKLY logos, desk palette + circular Irish-green countdown.
 - **v0.3.6** (2026-11-21): PRICKLY/FUSS title tags + sit-language cleanup; PRICKLY RESULTS rail = history latest-run chips; Nell (agent) rewrite label.
-- **v0.3.7** (2026-11-22, current): EVOLVER nest (RefineX / SpunkworX / ConneX) + TOKEX + Hi0 on the right rail; PRICKLY fifteen specializations + practice policy; selective bank hygiene (HOLD; rebuild = authoring + [SME](https://en.wikipedia.org/wiki/Subject-matter_expert) dual-key + pilot).
+- **v0.3.7** (2026-11-22): EVOLVER nest (RefineX / SpunkworX / ConneX) + TOKEX + Hi0 on the right rail; PRICKLY fifteen specializations + practice policy; selective bank hygiene (HOLD; rebuild = authoring + [SME](https://en.wikipedia.org/wiki/Subject-matter_expert) dual-key + pilot).
+- **v0.3.7.1** (2026-11-26, current): Developer L&R MCQ (five A-E packs + format picker); clearer L&R / JaPoP glossary explainers; [MCQ](../GLOSSARY.md#user-content-mcq) glossary entry.
 
 PRETRUWs (PREdiscovery TRuncated-Universes and Worlds) is the 4IR paradigm. LuDaTs (Limited-universe Data Test sets) is the methodology framework under it. Dehydrus conducts the eight LuDaTs brands. HabTwin is not one of those eight.
 

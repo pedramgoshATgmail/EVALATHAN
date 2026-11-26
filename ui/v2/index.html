@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=gold130" />
+  <link rel="stylesheet" href="styles.css?v=gold133" />
   <link rel="stylesheet" href="evolver.css?v=11" />
   <link rel="preload" as="image" href="assets/evalathan-dragon.webp?v=5" type="image/webp" />
   <link rel="preload" as="image" href="assets/hydra-logo.webp?v=5" type="image/webp" />
@@ -203,7 +203,7 @@
         <div class="prickly-choices">
           <button type="button" class="prickly-choice" data-prickly-test="dev-lr" title="Developer Live and Realtime Questionnaire">
             <strong>Developer <a class="prickly-gloss-link" href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/GLOSSARY.md#user-content-lr" target="_blank" rel="noopener noreferrer" title="L&amp;R - Live and Realtime (glossary)">L&amp;R</a> <span class="prickly-paren">(Live &amp; Realtime Questionnaire)</span></strong>
-            <span>Timed True / False matched to the kind of developer you are.</span>
+            <span>Timed True / False or Multiple Choice matched to the kind of developer you are.</span>
           </button>
           <button type="button" class="prickly-choice" data-prickly-test="japop-lr" title="JaPoP Live and Realtime Questionnaire">
             <strong><a class="prickly-gloss-link" href="https://github.com/pedramgoshATgmail/EVALATHAN/blob/main/GLOSSARY.md#user-content-japop" target="_blank" rel="noopener noreferrer" title="JaPoP - Just-a-Professional-or-Partnerable (glossary)">JaPoP</a> L&amp;R <span class="prickly-paren">(Live &amp; Realtime Questionnaire)</span></strong>
@@ -276,7 +276,23 @@
             </select>
           </label>
         </div>
-        <button type="button" class="prickly-btn" id="prickly-dev-next">Continue to timed test</button>
+        <button type="button" class="prickly-btn" id="prickly-dev-next">Continue</button>
+      </div>
+
+      <div id="prickly-dev-format" hidden>
+        <button type="button" class="prickly-back" id="prickly-format-back">← Back</button>
+        <h2 class="prickly-title">Developer L&amp;R - answer format</h2>
+        <p class="prickly-lead">Pick how you want to answer this sitting. True / False keeps the classic bank. Multiple Choice uses five options per question across five rotatable packs.</p>
+        <div class="prickly-choices">
+          <button type="button" class="prickly-choice" id="prickly-format-tf" data-prickly-format="tf" title="True / False">
+            <strong>True / False</strong>
+            <span>Classic timed statements. Answer True or False.</span>
+          </button>
+          <button type="button" class="prickly-choice" id="prickly-format-mcq" data-prickly-format="mcq" title="Multiple Choice">
+            <strong>Multiple Choice</strong>
+            <span>Five choices (A-E) per question. Same specializations, levels, and pack rotation.</span>
+          </button>
+        </div>
       </div>
 
       <div id="prickly-profile" hidden>
@@ -358,9 +374,16 @@
           <span id="prickly-clock" class="prickly-clock">00:00</span>
         </div>
         <p id="prickly-stem" class="prickly-stem"></p>
-        <div class="prickly-tf">
+        <div class="prickly-tf" id="prickly-tf">
           <button type="button" class="prickly-btn prickly-btn-true" id="prickly-true" title="True">True</button>
           <button type="button" class="prickly-btn prickly-btn-false" id="prickly-false" title="False">False</button>
+        </div>
+        <div class="prickly-mcq" id="prickly-mcq" hidden>
+          <button type="button" class="prickly-btn prickly-btn-mcq" data-mcq-index="0" id="prickly-mcq-0"></button>
+          <button type="button" class="prickly-btn prickly-btn-mcq" data-mcq-index="1" id="prickly-mcq-1"></button>
+          <button type="button" class="prickly-btn prickly-btn-mcq" data-mcq-index="2" id="prickly-mcq-2"></button>
+          <button type="button" class="prickly-btn prickly-btn-mcq" data-mcq-index="3" id="prickly-mcq-3"></button>
+          <button type="button" class="prickly-btn prickly-btn-mcq" data-mcq-index="4" id="prickly-mcq-4"></button>
         </div>
       </div>
 
@@ -468,7 +491,7 @@
   </div>
 
   <script src="app.js?v=gold100"></script>
-  <script src="prickly.js?v=24"></script>
+  <script src="prickly.js?v=25"></script>
   <script src="evolver.js?v=13"></script>
   <script src="prickly-policy.js?v=2"></script>
 </body>

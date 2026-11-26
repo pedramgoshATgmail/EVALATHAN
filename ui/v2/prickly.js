@@ -7,13 +7,14 @@
   const DEV_VARIANT_NAMES = ["V1", "V2", "V3", "V4", "V5"];
 
   const els = {};
-  let banks = { devRoles: null, devVariants: null, japopLevels: null };
+  let banks = { devRoles: null, devVariants: null, devMcqVariants: null, japopLevels: null };
   let state = {
     step: "home",
     testId: null,
     level: 1,
     maxLevel: 5,
     profile: {},
+    format: "tf", /* tf | mcq - Developer L&R only */
     items: [],
     idx: 0,
     answers: {},
@@ -221,6 +222,7 @@
     [
       "prickly-home",
       "prickly-dev-profile",
+      "prickly-dev-format",
       "prickly-profile",
       "prickly-sit",
       "prickly-static",
@@ -260,6 +262,7 @@
     state.step = "home";
     state.testId = null;
     state.level = 1;
+    state.format = "tf";
     state.result = null;
     state.devVariant = null;
     setCountdownMode(false);
@@ -316,7 +319,8 @@
         banks.devRoles.roles[kind].label) ||
       "Developer";
     const lv = res.level ? " · Level " + res.level : "";
-    return "Dev L&R · " + label + lv;
+    const fmt = res.format === "mcq" ? " · MCQ" : res.format === "tf" ? " · T/F" : "";
+    return "Dev L&R · " + label + lv + fmt;
   }
 
   function formatPricklyBlurb(res) {
@@ -470,6 +474,7 @@
     state.result = res;
     state.testId = res.testId;
     state.level = res.level || 1;
+    state.format = res.format || "tf";
     state.profile = res.profile || {};
     if (els.layer) els.layer.hidden = false;
     paintResult(res, res.static || null, { fromSaved: true });
@@ -504,6 +509,17 @@
               banks.devRoles = j;
               if (j && j.maxLevel) state.maxLevel = Math.max(state.maxLevel || 5, j.maxLevel);
             });
+        }),
+      fetch("assets/prickly-dev-mcq-banks-variants.json?v=1")
+        .then(function (r) {
+          return r.json();
+        })
+        .then(function (j) {
+          banks.devMcqVariants = j;
+          if (j && j.maxLevel) state.maxLevel = Math.max(state.maxLevel || 5, j.maxLevel);
+        })
+        .catch(function () {
+          banks.devMcqVariants = null;
         }),
       fetch("assets/japop-lr-levels.json?v=2")
         .then(function (r) {
@@ -597,13 +613,22 @@
     return levels[String(level)] || null;
   }
 
+  function activeDevBank() {
+    if (state.testId === "dev-lr" && state.format === "mcq") {
+      return banks.devMcqVariants;
+    }
+    return banks.devVariants;
+  }
+
   function devLevelPack(kind, level, variantName) {
     const vName = variantName || state.devVariant || "V1";
-    const variants = banks.devVariants && banks.devVariants.variants;
+    const bank = activeDevBank();
+    const variants = bank && bank.variants;
     if (variants && variants[vName] && variants[vName].roles) {
       const role = variants[vName].roles[kind];
       if (role && role.levels) return role.levels[String(level)] || null;
     }
+    if (state.format === "mcq") return null;
     const role = banks.devRoles && banks.devRoles.roles && banks.devRoles.roles[kind];
     if (!role) return null;
     if (role.levels) return role.levels[String(level)] || null;
@@ -681,6 +706,16 @@
   function afterDevProfile() {
     state.profile = readDevProfile();
     state.level = 1; /* kind picker always starts Level 1; Next Level skips this screen */
+    state.step = "dev-format";
+    showOnly("prickly-dev-format");
+  }
+
+  function afterDevFormat(format) {
+    state.format = format === "mcq" ? "mcq" : "tf";
+    if (state.format === "mcq" && !(banks.devMcqVariants && banks.devMcqVariants.variants)) {
+      window.alert("Multiple Choice bank did not load. Choose True / False, or refresh and try again.");
+      return;
+    }
     startTimedFromProfile();
   }
 
@@ -746,16 +781,43 @@
     el.textContent = pad2(Math.floor(s / 60)) + ":" + pad2(s % 60);
   }
 
+  function isMcqSitting() {
+    return state.testId === "dev-lr" && state.format === "mcq";
+  }
+
   function paintQuestion() {
     const item = state.items[state.idx];
     const prog = $("prickly-progress");
     const stem = $("prickly-stem");
+    const tfBox = $("prickly-tf");
+    const mcqBox = $("prickly-mcq");
+    const mcqMode = isMcqSitting();
     let label = "Question " + (state.idx + 1) + " of " + state.items.length;
     if (state.testId === "japop-lr" || state.testId === "dev-lr") {
       label = "Level " + state.level + " · " + label;
     }
+    if (mcqMode) label += " · MCQ";
     if (prog) prog.textContent = label;
-    if (stem) stem.textContent = item ? item.text : "";
+    if (stem) {
+      if (mcqMode) {
+        const theme = item && item.theme ? item.theme + " — " : "";
+        stem.textContent = item ? theme + (item.stem || "") : "";
+      } else {
+        stem.textContent = item ? item.text : "";
+      }
+    }
+    if (tfBox) tfBox.hidden = !!mcqMode;
+    if (mcqBox) mcqBox.hidden = !mcqMode;
+    if (mcqMode && item && Array.isArray(item.choices)) {
+      const letters = ["A", "B", "C", "D", "E"];
+      for (let i = 0; i < 5; i++) {
+        const btn = $("prickly-mcq-" + i);
+        if (!btn) continue;
+        const choice = item.choices[i] || "";
+        btn.textContent = letters[i] + ". " + choice;
+        btn.hidden = !choice;
+      }
+    }
     paintClock();
   }
 
@@ -784,17 +846,26 @@
     return "Priority gap. Many answers missed the key. Treat this as a learning pass, not a verdict on any named person.";
   }
 
+  function keyForItem(it) {
+    if (isMcqSitting() || (it && Array.isArray(it.choices))) {
+      return it.answerIndex;
+    }
+    return it.answer;
+  }
+
   function finishSitting() {
     if (state.tick) {
       window.clearInterval(state.tick);
       state.tick = null;
     }
+    const mcqMode = isMcqSitting();
     let correct = 0;
     const misses = [];
     const missDetails = [];
     state.items.forEach(function (it) {
       const a = state.answers[it.id];
-      if (a === it.answer) {
+      const key = keyForItem(it);
+      if (a === key) {
         correct += 1;
         return;
       }
@@ -802,9 +873,14 @@
       misses.push(it.id);
       missDetails.push({
         id: it.id,
-        text: it.text,
+        text: mcqMode
+          ? (it.theme ? it.theme + " — " : "") + (it.stem || "")
+          : it.text,
         yours: a,
-        correct: it.answer,
+        correct: key,
+        yoursText: mcqMode && it.choices ? it.choices[a] : null,
+        correctText: mcqMode && it.choices ? it.choices[key] : null,
+        format: mcqMode ? "mcq" : "tf",
       });
     });
     const pct = Math.round((100 * correct) / state.items.length);
@@ -822,6 +898,7 @@
     state.result = {
       id: "prk-" + Date.now().toString(36),
       testId: state.testId,
+      format: state.testId === "dev-lr" ? state.format || "tf" : null,
       level: state.testId === "japop-lr" || state.testId === "dev-lr" ? state.level : null,
       levelTitle: pack ? pack.title : null,
       variant: state.testId === "dev-lr" ? state.devVariant || null : null,
@@ -843,6 +920,10 @@
     return v === true ? "True" : v === false ? "False" : String(v);
   }
 
+  function mcqLetter(idx) {
+    return ["A", "B", "C", "D", "E"][idx] || String(idx);
+  }
+
   function missReviewHtml(res) {
     const details = res.missDetails || [];
     if (!details.length) {
@@ -850,6 +931,13 @@
     }
     const items = details
       .map(function (m, i) {
+        const mcq = m.format === "mcq" || res.format === "mcq";
+        const yours = mcq
+          ? mcqLetter(m.yours) + (m.yoursText ? ". " + m.yoursText : "")
+          : tfWord(m.yours);
+        const correct = mcq
+          ? mcqLetter(m.correct) + (m.correctText ? ". " + m.correctText : "")
+          : tfWord(m.correct);
         return (
           '<li class="prickly-miss-item">' +
           '<p class="prickly-miss-q"><strong>Miss ' +
@@ -858,10 +946,10 @@
           escapeHtml(m.text) +
           "</p>" +
           '<p class="prickly-miss-a">Your answer: <strong>' +
-          escapeHtml(tfWord(m.yours)) +
+          escapeHtml(yours) +
           "</strong></p>" +
           '<p class="prickly-miss-a">Correct answer: <strong>' +
-          escapeHtml(tfWord(m.correct)) +
+          escapeHtml(correct) +
           "</strong></p>" +
           "</li>"
         );
@@ -1487,6 +1575,9 @@
     const next = cur >= maxL ? maxL : cur + 1;
     state.level = next;
     state.devVariant = null; /* fresh pack rotation for the next level sitting */
+    if (state.testId === "dev-lr") {
+      state.format = (state.result && state.result.format) || state.format || "tf";
+    }
     if (state.testId === "japop-lr") {
       state.profile = state.profile || readJapopProfile();
     } else {
@@ -1567,6 +1658,13 @@
     if (backHome) backHome.addEventListener("click", goHome);
     const backDev = $("prickly-dev-back");
     if (backDev) backDev.addEventListener("click", goHome);
+    const backFormat = $("prickly-format-back");
+    if (backFormat) {
+      backFormat.addEventListener("click", function () {
+        state.step = "dev-profile";
+        showOnly("prickly-dev-profile");
+      });
+    }
     const backProf = $("prickly-back-profile");
     if (backProf) {
       backProf.addEventListener("click", function () {
@@ -1579,6 +1677,11 @@
     if (profNext) profNext.addEventListener("click", afterJapopProfile);
     const devNext = $("prickly-dev-next");
     if (devNext) devNext.addEventListener("click", afterDevProfile);
+    document.querySelectorAll("[data-prickly-format]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        afterDevFormat(b.getAttribute("data-prickly-format"));
+      });
+    });
 
     const trueBtn = $("prickly-true");
     const falseBtn = $("prickly-false");
@@ -1590,6 +1693,16 @@
       falseBtn.addEventListener("click", function () {
         answer(false);
       });
+    for (let mi = 0; mi < 5; mi++) {
+      (function (idx) {
+        const btn = $("prickly-mcq-" + idx);
+        if (btn) {
+          btn.addEventListener("click", function () {
+            answer(idx);
+          });
+        }
+      })(mi);
+    }
 
     const staticGo = $("prickly-static-run");
     if (staticGo) staticGo.addEventListener("click", runStatic);
